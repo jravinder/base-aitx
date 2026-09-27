@@ -535,7 +535,7 @@
   }
   // Page analytics, only on the hosted site. Vercel Web Analytics and Speed Insights are served by Vercel itself;
   // Google Analytics loads only when a measurement id is set in ANALYTICS.ga (for example "G-XXXXXXX").
-  const ANALYTICS = {ga: ""};
+  const ANALYTICS = {ga: "G-9QLRH4GSME"};
   function analytics() {
     if (!/\.vercel\.app$|^basefleet\./.test(location.hostname) || window.__bfAnalytics) return;
     window.__bfAnalytics = true;
