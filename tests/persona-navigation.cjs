@@ -14,8 +14,8 @@ const cases = {
 const menus = {
  lead:['home','status','rewards','brain','member','knowledge','built'],
  operations:['market','explorer','grid','ask','dataflow','admin','house','recovery','wall','knowledge','brain','built','dataqa','judgments','gaps'],
- gpu:['computehome','copilot','energy','plans','brain','models','tower','block','knowledge','built'],
- fleet:['overview','tower','placement','jobs','index','plans','block','models','pitch','grid','ask','dataflow','admin','knowledge','brain','built','gaps']
+ gpu:['computehome','copilot','energy','plans','models','tower','block','built'],
+ fleet:['overview','tower','placement','jobs','index','plans','block','models','pitch','built','gaps']
 };
 (async () => {
  const browser = await chromium.launch({headless:true});
@@ -94,7 +94,7 @@ const menus = {
     ['home','lead','address','4601 CLAWSON RD','home'],
     ['compute','gpu','node','7','tower']
   ]) {
-   await page.goto(`https://fleet.test/web/brain.html?track=${track}&persona=${persona}&${context}=${encodeURIComponent(value)}`);
+   await page.goto(`https://fleet.test/web/${track === 'home' ? 'brain' : 'copilot'}.html?track=${track}&persona=${persona}&${context}=${encodeURIComponent(value)}`);
    await page.waitForSelector('.sh-nav');
    assert.match(await page.locator('.sh-name').first().innerText(), new RegExp(track === 'home' ? 'Base Ready' : 'Base Super Local AI'));
    const link = new URL(await page.locator(`[data-sh-id="${destination}"]`).getAttribute('href'));
