@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What we built | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="shell.css">
+<style>.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+#main{overflow-wrap:anywhere}
+body{margin:0}
+#main p,#main h1,#main h2,#main h3,#main dl,#main dd,#main ol,#main ul,#main pre{margin:0}
+#main ol,#main ul{padding:0;list-style:none}
+#main a,.shell nav[aria-label=Breadcrumb] a{text-decoration:none}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:#fff;padding:6px 10px}
+.mono,#main pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.eyebrow{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970}
+.stat{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px 14px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.stat .v{font:700 22px/28px "Plus Jakarta Sans",sans-serif;color:#0F172A;font-variant-numeric:tabular-nums}
+.stat .s{font-size:12px;line-height:18px;color:#717970}
+table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;line-height:19px;background:#fff;border:1px solid #e2e8f0;border-radius:12px}
+.reg th,.reg td{text-align:left;padding:10px 12px;border-bottom:1px solid #e2e8f0;vertical-align:top}
+.reg th{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970;background:#F8FAFC}
+.reg thead th:first-child{border-top-left-radius:12px}.reg thead th:last-child{border-top-right-radius:12px}
+.reg tr:last-child td{border-bottom:0}
+.reg tr.grp td{background:#F8FAFC;font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#1e4d2b;padding:8px 12px}
+.reg td.n{font-variant-numeric:tabular-nums;color:#717970;font-weight:700;white-space:nowrap}
+.reg td.first b{display:block;color:#0F172A;font-weight:700}
+.reg td .sub{display:block;color:#717970;font-size:12px;margin-top:2px}
+.reg td .num{display:block;font-weight:700;color:#0F172A;font-variant-numeric:tabular-nums}
+.reg td a.pg{display:inline-flex;align-items:center;gap:2px;color:#1e4d2b;font-weight:600;white-space:nowrap;margin:0 8px 2px 0}
+.reg td a.pg:hover{text-decoration:underline}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:700;line-height:20px;white-space:nowrap;border:1px solid #e2e8f0;background:#F8FAFC;color:#414941}
+.pill.ok{background:#cbf080;border-color:#afd367;color:#023616}.pill.warn{background:#fffbeb;border-color:#fde68a;color:#78350f}.pill.next{background:#fff;border-style:dashed;color:#414941}
+.pill.tag{font-weight:600;font-size:10.5px;line-height:17px;margin-top:4px}
+.src{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:#414941}
+.flowrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.flowrow .node{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;font-size:12.5px;font-weight:600;color:#0F172A}
+.flowrow .node.src0{background:#cbf080;border-color:#afd367;color:#023616}
+.flowrow .arr{color:#717970;font-size:14px}
+.flowrow .lab{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970;min-width:92px}
+.cmd{display:flex;align-items:flex-start;gap:8px;background:#F8FAFC;border:1px solid #e2e8f0;border-radius:8px;padding:8px 12px}
+.cmd pre{flex:1;min-width:0;font-size:12px;line-height:18px;color:#0F172A;white-space:pre-wrap;overflow-wrap:anywhere}
+.rt{display:grid;grid-template-columns:minmax(0,140px) minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid #e2e8f0;align-items:start}
+.rt:last-child{border-bottom:0}
+@media (max-width:900px){
+ table.reg,.reg thead,.reg tbody,.reg tr,.reg td{display:block;width:100%}
+ .reg thead{display:none}
+ table.reg{border:0;background:none}
+ .reg tr{background:#fff;border:1px solid #e2e8f0;border-radius:12px;margin:0 0 8px;padding:10px 14px}
+ .reg tr.grp{background:none;border:0;padding:8px 0 0;margin:0}
+ .reg tr.grp td{background:none;padding:0}
+ .reg td{border:0;padding:3px 0}
+ .reg td[data-l]::before{content:attr(data-l);display:block;color:#717970;font:700 10.5px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+ .reg td.n{display:inline-block;width:auto;margin-right:6px}
+ .rt{grid-template-columns:1fr;gap:6px}
+}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid #e2e8f0}
+.tabs [role=tab]{font:600 14px/20px "Plus Jakarta Sans",sans-serif;padding:10px 14px;border:1px solid transparent;border-bottom:0;border-radius:10px 10px 0 0;background:transparent;color:#414941;cursor:pointer;margin-bottom:-1px;text-align:left}
+.tabs [role=tab]:hover{color:#0F172A;background:#F1F5F9}
+.tabs [role=tab][aria-selected=true]{background:#fff;border-color:#e2e8f0;color:#1e4d2b;box-shadow:inset 0 3px 0 #1e4d2b}
+.tabs [role=tab]:focus-visible,[role=tabpanel]:focus-visible{outline:2px solid #84CC16;outline-offset:2px}
+.t3q{margin:0;border-left:4px solid #cbf080;background:#F8FAFC;border-radius:0 12px 12px 0;padding:14px 18px;font:500 16px/26px "Plus Jakarta Sans",sans-serif;color:#0F172A;max-width:920px}
+.t3q .sub{display:block;margin-top:6px;font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970}
+</style>
+<script defer src="shell.js"></script>
+</head>
+<body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<a class="skip" href="#main">Skip to what we built</a>
+<div class="shell">
+<div class="bg-surface-container-lowest border-b border-wire-border">
+ <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-body-sm font-body-sm">
+  <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-outline">
+   <a href="story.html" class="hover:text-ink-primary flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">auto_stories</span><span>Story overview</span></a>
+   <span class="material-symbols-outlined text-[14px] opacity-70" aria-hidden="true">chevron_right</span>
+   <span class="text-ink-primary font-semibold">What we built</span>
+  </nav>
+  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span><span id="built-chip">7 built · 3 partly built</span></span>
+ </div>
+</div>
+<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-6">
+ <div class="tabs" role="tablist" aria-label="Build register tabs">
+  <button type="button" role="tab" id="tab-lead" aria-controls="panel-lead" aria-selected="true" tabindex="0" data-tab="lead">Base Ready &middot; Track 2: a product for members (lead flow onboarding)</button>
+  <button type="button" role="tab" id="tab-track3" aria-controls="panel-track3" aria-selected="false" tabindex="-1" data-tab="track3">Base Super Local AI &middot; Track 3: orchestration (local AI on the fleet)</button>
+ </div>
+ <div role="tabpanel" id="panel-lead" aria-labelledby="tab-lead" tabindex="0" class="space-y-6">
+
+ <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-4" aria-labelledby="hero-title">
+  <div class="min-w-0">
+   <span class="eyebrow">Build register · Base Ready · Track 2: Orchestration</span>
+   <h1 id="hero-title" class="font-headline-lg text-headline-lg text-ink-primary mt-1">What we built</h1>
+   <blockquote class="t3q mt-3">What matters is how it holds up when pieces fail.<span class="sub">Track 2 prompt</span></blockquote>
+   <p class="font-body-md text-body-md text-on-surface-variant mt-3 max-w-[920px]">Open data tells us about a home before the lead arrives. City of Austin permits, ERCOT prices and load, and Census ACS feed one readiness read per home. The member gets a form that is mostly filled in, guided steps with rewards, a photo check, and help by voice or chat. The Base team gets market intelligence and a conversion view. One knowledge base answers both sides. Each row below names its source file and tags its proof: Measured, Simulation, or Our design.</p>
+  </div>
+  <div class="grid grid-cols-2 xl:grid-cols-4 gap-3">
+   <div class="stat"><span class="eyebrow">Built</span><span class="v">7</span><span class="s">rows 1, 2, 3, 5, 7, 8, 10</span></div>
+   <div class="stat"><span class="eyebrow">Partly built</span><span class="v">3</span><span class="s">rows 4, 6, 9</span></div>
+   <div class="stat"><span class="eyebrow">Knowledge base</span><span class="v">169 · 1,075</span><span class="s">nodes · links, <span class="src">web/data/kb_graph.json</span></span></div>
+  </div>
+  <div class="min-w-0 pt-1">
+   <span class="eyebrow">Evidence: ERCOT and open grid data</span>
+   <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-[920px]">Not a track entry on its own — supporting evidence for Base Ready (and Base Super Local AI). Austin energy permits: <b>34,334</b> <span class="src">web/data/explorer_zip.json</span>.</p>
+  </div>
+  <div class="space-y-2 pt-1" aria-label="Flow">
+   <ul class="flowrow" aria-label="Member side flow">
+    <li class="lab">Member side</li>
+    <li class="node src0"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">database</span>Open data</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node">Readiness</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node">Autofill</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node">Guided steps</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node">Photo check</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node">Help: voice, chat</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">hub</span>Knowledge base</li>
+   </ul>
+   <ul class="flowrow" aria-label="Base side flow">
+    <li class="lab">Base side</li>
+    <li class="node src0"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">database</span>Open data</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node">Market intelligence</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node">Conversion</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">hub</span>Knowledge base</li>
+   </ul>
+  </div>
+ </section>
+
+ <section class="space-y-3" aria-labelledby="reg-title">
+  <div class="min-w-0">
+   <span class="eyebrow">Register</span>
+   <h2 id="reg-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Ten rows, each checked in the repo</h2>
+  </div>
+  <table class="reg" id="built-register">
+   <thead><tr><th>#</th><th>What</th><th>Why</th><th>How</th><th>Proof</th><th>Page</th><th>Status</th></tr></thead>
+   <tbody>
+    <tr class="grp"><td colspan="7">Member side</td></tr>
+    <tr data-row="1">
+     <td class="n">1</td>
+     <td class="first" data-l="What"><b>Readiness per home</b>Each home gets a fit bucket, easy fit or needs work, with the permit that decided it.</td>
+     <td data-l="Why">Base sees which homes fit before anyone visits.</td>
+     <td data-l="How">City of Austin permits (Socrata 3syk-w9eu). Rule on service upgrades, amps, solar, battery and build year. <span class="src">house/permits.py fit()</span> → <span class="src">house/cohort.json</span></td>
+     <td data-l="Proof"><span class="num">22 of 40 homes easy fit</span><span class="src">house/cohort.json</span><br><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="house.html">house.html</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+    <tr data-row="2">
+     <td class="n">2</td>
+     <td class="first" data-l="What"><b>Address autofill</b>The lead types an address. The page fills what records know and asks only the rest.</td>
+     <td data-l="Why">Each question the member skips is one less place to stop.</td>
+     <td data-l="How">Address combobox over the public-record homes. Each field carries its permit number and a confidence. <span class="src">web/onboarding.js</span>, <span class="src">house/cohort.json</span></td>
+     <td data-l="Proof"><span class="num">161 of 200 fields filled from records</span><span class="sub">40 homes, 5 fields each</span><span class="src">house/cohort.json</span><br><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="onboarding.html#home">onboarding.html</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+    <tr data-row="3">
+     <td class="n">3</td>
+     <td class="first" data-l="What"><b>Guided steps with rewards</b>Five milestones in one shared tracker. Each answer and the photo earn points.</td>
+     <td data-l="Why">A clear next step and a reward keep a lead moving to installation.</td>
+     <td data-l="How">One tracker component on journey, status and rewards, saved on this device. Points table from ADR 0018: 10 pts per answer, 20 for the photo, 30 to finish, 50 per neighbour. <span class="src">web/milestones.js</span></td>
+     <td data-l="Proof"><span class="num">Up to 100 pts per home</span><span class="sub">plus 50 pts per neighbour invite</span><span class="src">web/milestones.js</span><br><span class="pill tag">Our design</span></td>
+     <td data-l="Page"><a class="pg" href="onboarding.html#home">journey</a><a class="pg" href="status.html">status</a><a class="pg" href="rewards.html">rewards</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+    <tr data-row="4">
+     <td class="n">4</td>
+     <td class="first" data-l="What"><b>Photo check</b>The photo is classified on the spot and the member gets a retake tip right away.</td>
+     <td data-l="Why">The photo step is where leads stall. A tip in seconds replaces a wait for a human review.</td>
+     <td data-l="How">Guided shot list saved on this device (<span class="src">web/photo-checklist.js</span>). gemma4:e4b through local Ollama returns photo type and pass, with a fixed safe retake tip (<span class="src">web/voice.js</span>, prompt from <span class="src">panel/read.py</span>). Reads on 5 reference photos (<span class="src">web/extraction-gallery.js</span>).</td>
+     <td data-l="Proof"><span class="num">Photo type 16 of 21, local</span><span class="sub">18 of 21 in the cloud model</span><span class="src">panel/BASELINE.md</span><br><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="voice.html">voice.html</a><a class="pg" href="onboarding.html#home">journey gallery</a></td>
+     <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: read breaker amps (<span class="src">docs/GAPS.md</span>); live check runs when local Ollama is up</span></td>
+    </tr>
+    <tr data-row="5">
+     <td class="n">5</td>
+     <td class="first" data-l="What"><b>Voice guide</b>One question at a time, spoken, with a caregiver view.</td>
+     <td data-l="Why">Some members need more help to finish, for example older members or members with a disability.</td>
+     <td data-l="How">Browser speech synthesis and recognition. Questions come from the home's public record. Optional Kokoro-82M voice. <span class="src">web/voice.js</span>, <span class="src">brain/tts.py</span></td>
+     <td data-l="Proof"><span class="num">5 yes/no questions, 1 photo</span><span class="src">web/voice.js buildSteps()</span><br><span class="pill tag">Our design</span></td>
+     <td data-l="Page"><a class="pg" href="voice.html">voice.html</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+    <tr data-row="6">
+     <td class="n">6</td>
+     <td class="first" data-l="What"><b>Chat, any hour</b>Help answers from the knowledge base at any hour. Account, contract and bill questions go to the Base Help Center.</td>
+     <td data-l="Why">Members ask at night and on weekends. Base team time goes to account work.</td>
+     <td data-l="How">Indexed FAQs with sources, plus the ask server with gemma4:e4b on the local machine. <span class="src">web/brain.html</span>, <span class="src">web/data/faq.json</span>, <span class="src">brain/ask.py</span></td>
+     <td data-l="Proof"><span class="num">10 of 88 FAQs go to the Base team</span><span class="src">web/data/faq.json</span><span class="sub">Local answers 18 of 20 correct, <span class="src">brain/LOCAL_VS_CLOUD.md</span></span><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="brain.html">brain.html</a></td>
+     <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: hand off to a person during Base hours</span></td>
+    </tr>
+    <tr data-row="7">
+     <td class="n">7</td>
+     <td class="first" data-l="What"><b>Knowledge base</b>One second brain behind every answer, each answer with its source.</td>
+     <td data-l="Why">Every answer stays the same across chat, voice and the Base team view.</td>
+     <td data-l="How">Docs, FAQs and data files built into graph tables in <span class="src">data/fleet.db</span> by <span class="src">store/kb.py</span>, exported to <span class="src">web/data/kb_graph.json</span></td>
+     <td data-l="Proof"><span class="num">169 nodes, 1,075 links</span><span class="src">web/data/kb_graph.json</span><br><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="knowledge.html">knowledge.html</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+    <tr class="grp"><td colspan="7">Base side</td></tr>
+    <tr data-row="8">
+     <td class="n">8</td>
+     <td class="first" data-l="What"><b>Market intelligence</b>Where Base installs, where ready homes concentrate, and grid prices by hour.</td>
+     <td data-l="Why">Go to market with zip-level targets before spend.</td>
+     <td data-l="How">Permits by month, status and zip (<span class="src">house/market.py</span> → <span class="src">data/market.json</span>). Easy-fit estimate per zip from ACS and permits (<span class="src">house/funnel.py</span> → <span class="src">data/funnel.json</span>). ERCOT day-ahead prices (<span class="src">data/ercot_dam_hourly_2025_2026.csv</span>).</td>
+     <td data-l="Proof"><span class="num">264 of 316 Base permits open</span><span class="sub">Austin, 2026</span><span class="src">data/market.json</span><br><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="market.html">market</a><a class="pg" href="explorer.html">explorer</a><a class="pg" href="grid.html">grid</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+    <tr data-row="9">
+     <td class="n">9</td>
+     <td class="first" data-l="What"><b>Conversion view</b>Leads through each stage to installation, with the dials that move them.</td>
+     <td data-l="Why">Shows where leads stall and what a guided photo step is worth.</td>
+     <td data-l="How">Stage model with dials: photo drop 35% by default, 15% with guided collection. Both are assumptions. <span class="src">sim/stages.py</span> → <span class="src">web/data/report.json</span></td>
+     <td data-l="Proof"><span class="num">318 of 513 served leads finish the photo</span><span class="src">web/data/report.json</span><br><span class="pill tag warn">Simulation</span></td>
+     <td data-l="Page"><a class="pg" href="index.html">index.html</a></td>
+     <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: Base's real drop rate</span></td>
+    </tr>
+    <tr data-row="10">
+     <td class="n">10</td>
+     <td class="first" data-l="What"><b>Same knowledge base for Base</b>The Base team asks the same brain, with its own FAQ set.</td>
+     <td data-l="Why">Team and member answers stay in step.</td>
+     <td data-l="How">Base team tab on Help for the Base admin role. <span class="src">web/brain.html</span>, FAQ audience field in <span class="src">web/data/faq.json</span></td>
+     <td data-l="Proof"><span class="num">41 Base team FAQs, 47 member FAQs</span><span class="src">web/data/faq.json</span><br><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="brain.html?track=home&amp;persona=operations">brain, team</a><a class="pg" href="knowledge.html">knowledge</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+   </tbody>
+  </table>
+ </section>
+
+ </div>
+ <div role="tabpanel" id="panel-track3" aria-labelledby="tab-track3" tabindex="0" class="space-y-6" hidden>
+ <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-4" aria-labelledby="t3-title">
+  <div class="min-w-0">
+   <span class="eyebrow">Build register · Base Super Local AI · Track 3: Most Commercializable</span>
+   <h2 id="t3-title" class="font-headline-lg text-headline-lg text-ink-primary mt-1">Local AI on the battery fleet</h2>
+   <blockquote class="t3q mt-3">Base is a power company, not a battery company, and is building a world-class product for its members. Build something that could actually ship as a product on top of what Base does. Show off your taste.<span class="sub">Track 3 prompt</span></blockquote>
+   <p class="font-body-md text-body-md text-on-surface-variant mt-3 max-w-[920px]">Our answer: a control tower for private AI next door. The PC beside the battery and a station on the feeder run open models for the member, with the backup reserve held first and the fleet holding up when a station goes offline, price spikes, or the scheduler drops. Spare GPU time sells to local businesses. Each row names its source file and tags its proof: Measured, Simulation, or Our design. A Base Fleet proposal.</p>
+  </div>
+  <div class="grid grid-cols-2 xl:grid-cols-4 gap-3">
+   <div class="stat"><span class="eyebrow">Built</span><span class="v">4</span><span class="s">rows 11, 14, 16, 17</span></div>
+   <div class="stat"><span class="eyebrow">Partly built</span><span class="v">3</span><span class="s">rows 12, 13, 15</span></div>
+   <div class="stat"><span class="eyebrow">Open gaps</span><span class="v">3</span><span class="s">row 18: #80, #85, demand</span></div>
+   <div class="stat"><span class="eyebrow">Local model, measured</span><span class="v">18 of 20</span><span class="s">gemma4:e4b, 2.2 s median, <span class="src">brain/LOCAL_VS_CLOUD.md</span></span></div>
+  </div>
+  <ul class="flowrow" aria-label="Track 3 flow">
+   <li class="lab">Base fleet</li>
+   <li class="node src0"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">home</span>Member question</li><li class="arr" aria-hidden="true">→</li>
+   <li class="node">PC beside the battery</li><li class="arr" aria-hidden="true">→</li>
+   <li class="node">Station on the feeder</li><li class="arr" aria-hidden="true">→</li>
+   <li class="node">Control tower</li><li class="arr" aria-hidden="true">→</li>
+   <li class="node"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">payments</span>Use, Host, Sell</li>
+  </ul>
+ </section>
+
+ <section class="space-y-3" aria-labelledby="reg3-title">
+  <div class="min-w-0">
+   <span class="eyebrow">Register</span>
+   <h2 id="reg3-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Eight rows, each checked in the repo</h2>
+  </div>
+  <table class="reg" id="built-register-track3">
+   <thead><tr><th>#</th><th>What</th><th>Why</th><th>How</th><th>Proof</th><th>Page</th><th>Status</th></tr></thead>
+   <tbody>
+    <tr class="grp"><td colspan="7">Member</td></tr>
+    <tr data-row="11">
+     <td class="n">11</td>
+     <td class="first" data-l="What"><b>Why local AI</b>Ask a question and the station on your street answers. Take a station offline or spike the grid price and ask again.</td>
+     <td data-l="Why">A battery home has steady power and a network for a small computer. Base is building the stations; a member AI service is a Base Fleet proposal.</td>
+     <td data-l="How">Pitch page with a live ask box and a fleet toggle for station offline, price spike and battery at reserve. <span class="src">web/pitch.js</span></td>
+     <td data-l="Proof"><span class="num">0 GPU-hours lost with 2+ nodes per feeder</span><span class="sub">50 nodes, 3 days: $142 power alone, $1,041 with compute</span><span class="src">grid/RATES.md</span><br><span class="pill tag warn">Simulation</span></td>
+     <td data-l="Page"><a class="pg" href="pitch.html">pitch.html</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+    <tr data-row="12">
+     <td class="n">12</td>
+     <td class="first" data-l="What"><b>How it thinks, and Try it</b>Each question runs through route, model, check and answer, step by step, with sources.</td>
+     <td data-l="Why">A member trusts an answer they can watch being made.</td>
+     <td data-l="How">gemma4:e4b through Ollama on the home PC, or Qwen2.5-0.5B in the browser with WebLLM. <span class="src">web/models.js</span>, <span class="src">brain/ask.py</span>, <span class="src">scripts/install-local.sh</span></td>
+     <td data-l="Proof"><span class="num">18 of 20 correct, median 2.2 s</span><span class="sub">M2 laptop; Jetson 16 of 20, 3.0 s</span><span class="src">brain/LOCAL_VS_CLOUD.md</span><br><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="models.html">models.html</a><a class="pg" href="models.html#try">Try it</a></td>
+     <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: target PC speed (#80)</span></td>
+    </tr>
+    <tr data-row="13">
+     <td class="n">13</td>
+     <td class="first" data-l="What"><b>Your own AI</b>A chat that runs on the PC beside the battery, with backup hours, today's grid prices and the Base Help Center one tap away.</td>
+     <td data-l="Why">The member's questions and home data stay with the member.</td>
+     <td data-l="How">Home-first answers with sources, a backup-hours calculator from the battery settings, ERCOT prices. <span class="src">web/copilot.js</span></td>
+     <td data-l="Proof"><span class="num">Median answer 2.2 s laptop, 3.0 s Jetson</span><span class="src">brain/LOCAL_VS_CLOUD.md</span><br><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="copilot.html">copilot.html</a></td>
+     <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: run on the target PC (#80); internet-off test</span></td>
+    </tr>
+    <tr data-row="14">
+     <td class="n">14</td>
+     <td class="first" data-l="What"><b>Energy and credits</b>What the battery and PC did this week, hour by hour, with the backup reserve locked.</td>
+     <td data-l="Why">The member sees what the hardware earned and that backup came first.</td>
+     <td data-l="How">Seven days replayed on real ERCOT day-ahead prices; reserve setting tool; proposed credit. <span class="src">web/energy.js</span>, <span class="src">data/members.json</span></td>
+     <td data-l="Proof"><span class="num">Library station $205.78 a week, one home $84.71</span><span class="sub">4 batteries + 4 GPUs vs 1 + 1, 40% GPU use</span><span class="src">grid/LIBRARY_NODE.md</span><br><span class="pill tag warn">Simulation</span></td>
+     <td data-l="Page"><a class="pg" href="energy.html">energy.html</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+    <tr class="grp"><td colspan="7">Plans and stations</td></tr>
+    <tr data-row="15">
+     <td class="n">15</td>
+     <td class="first" data-l="What"><b>Three offers: Use, Host, Sell</b>Members buy GPU time like energy, host a GPU for a share, and Base sells spare station time to local businesses.</td>
+     <td data-l="Why">Open models are close to the frontier; people lack the GPU. Base has the homes, installers and care to supply it.</td>
+     <td data-l="How">Offer table, rate card, open-model catalog by machine, comparison with cloud APIs, the data rule. <span class="src">docs/COMPUTE_PLANS.md</span></td>
+     <td data-l="Proof"><span class="num">5 tiers pinned to public GPU prices</span><span class="sub">$0.16 to $1.09 per GPU-hour, checked 2026-09-26</span><span class="src">grid/RATES.md</span><br><span class="pill tag ok">Measured</span> <span class="pill tag">Our design</span></td>
+     <td data-l="Page"><a class="pg" href="plans.html">plans.html</a></td>
+     <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: set the Host revenue share</span></td>
+    </tr>
+    <tr data-row="16">
+     <td class="n">16</td>
+     <td class="first" data-l="What"><b>Stations</b>A station could sit at the Menchaca Road Branch library, with homes on the same feeder covering each other.</td>
+     <td data-l="Why">A station holds more batteries and GPUs than one home and serves the homes around it.</td>
+     <td data-l="How">City of Austin permits in a 1.5 km ring; station layout of 4 batteries and 4 GPU PCs; feeder topology. <span class="src">grid/library_node.py</span>, <span class="src">web/data/block.json</span></td>
+     <td data-l="Proof"><span class="num">537 energy permits, 185 solar homes, 27 battery homes</span><span class="sub">within 1.5 km of the library</span><span class="pill tag ok">Measured</span></td>
+     <td data-l="Page"><a class="pg" href="overview.html">overview</a><a class="pg" href="placement.html">placement</a><a class="pg" href="block.html">block</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span></td>
+    </tr>
+    <tr data-row="17">
+     <td class="n">17</td>
+     <td class="first" data-l="What"><b>Job rules and the control tower</b>Backup reserve first, work stays on the feeder, grid price sets the pace.</td>
+     <td data-l="Why">Compute runs only on power the home can spare.</td>
+     <td data-l="How">Fleet simulation on ERCOT day-ahead prices with node, region and scheduler interruptions. <span class="src">sim/fleet.py</span>, <span class="src">sim/server.py</span></td>
+     <td data-l="Proof"><span class="num">0 reserve crossings, 0 jobs lost under kills</span><span class="sub">lowest-rate job pauses at $400/MWh</span><span class="src">grid/RATES.md</span><br><span class="pill tag warn">Simulation</span></td>
+     <td data-l="Page"><a class="pg" href="jobs.html">jobs.html</a><a class="pg" href="tower.html">tower.html</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span><span class="sub">Live controls with python3 -m sim.server</span></td>
+    </tr>
+    <tr class="grp"><td colspan="7">Open</td></tr>
+    <tr data-row="18">
+     <td class="n">18</td>
+     <td class="first" data-l="What"><b>Open gaps</b>Three measurements before the numbers are claims.</td>
+     <td data-l="Why">Speed, power and demand set what a member pays and earns.</td>
+     <td data-l="How">#80 target PC speed; #85 one PC power draw (0.4 kW in the sim, 350 W in the hub model); demand, 40% GPU use as a dial. <span class="src">docs/COMPUTE_FLOW.md</span>, <span class="src">sim/fleet.py UTIL</span></td>
+     <td data-l="Proof"><span class="num">3 open</span><span class="src">docs/COMPUTE_FLOW.md</span></td>
+     <td data-l="Page"><a class="pg" href="plans.html#gaps">plans gaps</a></td>
+     <td data-l="Status"><span class="pill next">Next</span></td>
+    </tr>
+   </tbody>
+  </table>
+ </section>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6" aria-labelledby="open-title">
+   <span class="eyebrow">Open before we claim it</span>
+   <h2 id="open-title" class="font-headline-sm text-headline-sm text-ink-primary mt-1">Three items</h2>
+   <div class="mt-2">
+    <div class="rt"><div><span class="pill">#80</span></div><div class="font-body-sm text-body-sm text-on-surface-variant">Measure answer speed on the target Windows-class PC with the same questions. <span class="src">docs/COMPUTE_FLOW.md</span></div></div>
+    <div class="rt"><div><span class="pill">#85</span></div><div class="font-body-sm text-body-sm text-on-surface-variant">Pick one PC power draw: 0.4 kW in the fleet sim, 350 W in the hub model. Then run both again. <span class="src">docs/COMPUTE_FLOW.md</span></div></div>
+    <div class="rt"><div><span class="pill">Repo</span></div><div class="font-body-sm text-body-sm text-on-surface-variant">Make the repo public so every source link opens for a judge. <span class="src">docs/SUBMISSION_FORM.md</span></div></div>
+   </div>
+  </section>
+  <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-3" aria-labelledby="run-title">
+   <div><span class="eyebrow">Run it</span>
+   <h2 id="run-title" class="font-headline-sm text-headline-sm text-ink-primary mt-1">Three commands, from the repo root</h2></div>
+   <div class="space-y-1"><p class="font-body-sm text-body-sm text-on-surface-variant">Pages, Python 3 only. Then open http://localhost:8741/web/built.html</p><div class="cmd"><pre>python3 -m http.server 8741</pre></div></div>
+   <div class="space-y-1"><p class="font-body-sm text-body-sm text-on-surface-variant">Help and Ask the data, with Ollama and gemma4:e4b</p><div class="cmd"><pre>python3 -m brain.ask --serve 8742</pre></div></div>
+   <div class="space-y-1"><p class="font-body-sm text-body-sm text-on-surface-variant">Local AI on your PC, one command</p><div class="cmd"><pre>bash scripts/install-local.sh</pre></div></div>
+  </section>
+ </div>
+
+ <footer class="font-body-sm text-body-sm text-outline py-6 border-t border-wire-border">A Base Fleet design. Each proof names its source file.</footer>
+</main></div>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tabs [role=tab]'));
+  var chip=document.getElementById('built-chip');
+  var counts={lead:'7 built · 3 partly built',track3:'4 built · 3 partly built · 3 open'};
+  function show(id,focus,push){
+    if(id==='track2') id='track3';
+    if(!counts[id]) id='lead';
+    tabs.forEach(function(b){var on=b.dataset.tab===id;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;document.getElementById(b.getAttribute('aria-controls')).hidden=!on;if(on&&focus)b.focus();});
+    chip.textContent=counts[id];
+    if(push&&location.hash!=='#'+id) history.replaceState(null,'',location.pathname+location.search+'#'+id);
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){show(b.dataset.tab,false,true);});
+    b.addEventListener('keydown',function(e){
+      var k=e.key,j=null;
+      if(k==='ArrowRight')j=(i+1)%tabs.length;else if(k==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;else if(k==='Home')j=0;else if(k==='End')j=tabs.length-1;
+      if(j!==null){e.preventDefault();show(tabs[j].dataset.tab,true,true);}
+    });
+  });
+  function fromHash(){show(location.hash.slice(1),false,false);}
+  window.addEventListener('hashchange',fromHash);
+  fromHash();
+})();
+</script>
+</body></html>

@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fleet economics - Base Fleet</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script src="assets/stitch/tailwind-forms.js"></script>
+<script>
+  if (window.tailwind) tailwind.config = {
+    theme: { extend: {
+      fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], mono: ['"JetBrains Mono"', 'monospace'] },
+      colors: { brand: { primary: '#1e4d2b', emerald: '#10b981', emeraldDark: '#065f46', surface: '#f9f9ff' } }
+    } }
+  };
+</script>
+<link rel="stylesheet" href="shell.css">
+<style>
+  body { font-family:'Plus Jakarta Sans', sans-serif; background-color:#f8fafc; color:#0f172a; -webkit-font-smoothing:antialiased }
+  [hidden] { display:none!important }
+  #map { width:100%; height:auto; display:block }
+  input[type=range]#t { width:100%; accent-color:#1e4d2b; min-height:32px; cursor:pointer }
+  .legend i { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px; vertical-align:middle }
+  .chip { cursor:pointer; min-height:44px; display:inline-flex; align-items:center; padding:8px 14px; border-radius:999px; border:1px solid #e2e8f0; background:#fff; font-size:13.5px; font-weight:600; color:#0f172a }
+  .chip:hover { border-color:#1e4d2b }
+  .chip[aria-pressed="true"] { background:#ecfdf5; border-color:#1e4d2b; color:#065f46 }
+  .chip:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
+  #ans .big small { display:block; font-size:14px; line-height:1.5; font-weight:400; color:#475569; margin-top:10px; letter-spacing:0 }
+  .money { margin:14px 0 0; background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:14px 18px }
+  .money p { margin:0 0 8px; font-size:15px }
+  .mbar { display:grid; grid-template-columns:190px minmax(0,1fr) 90px; gap:10px; align-items:center; font-size:13.5px; margin-top:6px }
+  .mbar .track { height:14px; background:#f1f5f9; border-radius:7px; overflow:hidden }
+  .mbar .track i { display:block; height:100%; background:#1e4d2b }
+  .mbar.pw .track i { background:#94a3b8 }
+  .mbar b { text-align:right; font-variant-numeric:tabular-nums }
+  details.detail > summary { list-style:none }
+  details.detail > summary::-webkit-details-marker { display:none }
+  details.detail > summary h2::before { content:"\25B8"; display:inline-block; margin-right:8px; color:#64748b; transition:transform .15s }
+  details.detail[open] > summary h2::before { transform:rotate(90deg) }
+  .dsec { border-top:1px solid #e2e8f0; padding:18px 0 }
+  .dsec h3 { font-size:15px; font-weight:700; margin:0 0 6px }
+  .dsec canvas { width:100%; height:auto; display:block; background:#fff; border:1px solid #e2e8f0; border-radius:8px }
+  .num { font-size:28px; font-weight:700; font-variant-numeric:tabular-nums; margin:6px 0 0 }
+  .unit { color:#64748b; font-size:13px }
+  .ceil { margin:10px 0 0; font-size:13px; color:#64748b }
+  .ceil b { color:#0f172a; font-weight:600 }
+  .tw { overflow-x:auto }
+  table { border-collapse:collapse; font-size:13px; margin-top:10px; width:100% }
+  td, th { text-align:left; padding:4px 10px 4px 0; border-bottom:1px solid #e2e8f0; font-variant-numeric:tabular-nums }
+  th { color:#64748b; font-weight:500 }
+  ul.assume { margin:10px 0 0; padding-left:18px; font-size:12.5px; color:#64748b; list-style:disc }
+  ul.assume li.stub::before { content:"GUESS "; color:#a0184b; font-weight:600 }
+  .kills { margin-top:8px; font-size:13px } .kills span { display:inline-block; margin-right:18px }
+  .row4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin:6px 0 0 }
+  .row4 .num { font-size:24px } .row4 .k { font-size:13px; font-weight:600 }
+  @media (max-width:720px){ .mbar { grid-template-columns:minmax(0,1fr) 80px } .mbar .track { grid-column:1 / -1; grid-row:2 } .row4 { grid-template-columns:1fr 1fr } }
+</style>
+<script defer src="shell.js"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+<main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-8">
+  <div class="mb-8">
+    <div class="inline-flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-md border border-emerald-100 mb-3">
+      <span>Fleet economics</span><span class="text-emerald-400">&middot;</span><span>Modeled results</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">What the fleet earns: power alone vs power plus compute.</h1>
+    <p class="mt-2 text-sm text-slate-500" id="lede">The same 50 homes, each with a battery and a PC, over three real ERCOT days &mdash; measured against public ERCOT prices.</p>
+  </div>
+
+  <section class="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-7 mb-8" id="hero-compare" aria-live="polite"></section>
+
+  <section class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden mb-8" data-purpose="hero-topology">
+    <div class="px-4 sm:px-6 py-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4 bg-slate-50/60">
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span class="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+        <span class="text-sm font-bold text-slate-800" id="hero-title">Watch the three days</span>
+        <span class="text-xs text-slate-400 font-mono">|</span>
+        <span class="text-xs font-medium text-slate-500">Simulated fleet activity across three historical ERCOT price days, not current operations.</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> <span id="n-on"></span></span>
+        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-slate-400 inline-block"></span> <span id="n-off"></span></span>
+      </div>
+    </div>
+    <div class="p-3 sm:p-8 flex items-center justify-center bg-[#fcfdfd]">
+      <div class="w-full max-w-5xl rounded-xl border border-slate-100 bg-white p-2 shadow-inner">
+        <canvas id="map" width="1040" height="190" role="img" aria-label="Homes by area of Austin, battery and PC state at the selected hour"></canvas>
+      </div>
+    </div>
+    <details class="px-4 sm:px-6 pb-3 text-sm"><summary class="cursor-pointer min-h-[44px] py-2.5 font-semibold text-slate-700">Battery and compute states</summary><div class="legend flex flex-wrap gap-x-3.5 gap-y-1.5 text-xs text-slate-500">
+      <span>Battery (dot):</span>
+      <span><i style="background:#2f6f3e"></i>sells power to the grid</span>
+      <span><i style="background:#3b6ea8"></i>charges</span>
+      <span><i style="background:#c9c4b8"></i>waits</span>
+      <span><i style="background:#1f2328"></i>switched off in the test</span>
+      <span>PC beside it (ring):</span>
+      <span><i style="background:transparent;border:3px solid #b8471b"></i>works for the home</span>
+      <span><i style="background:transparent;border:3px solid #e0a04a"></i>works for a buyer</span>
+    </div></details>
+    <div class="px-4 sm:px-6 py-5 bg-white border-t border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+        <div class="flex items-center gap-3">
+          <button id="play" aria-label="Play" class="w-11 h-11 shrink-0 rounded-full bg-[#1e4d2b] hover:bg-emerald-900 text-white flex items-center justify-center transition shadow-sm" type="button"></button>
+          <div>
+            <span class="text-sm font-bold text-slate-900">Three real ERCOT days</span>
+            <span class="text-xs text-slate-500 block">72 hours, public day-ahead prices, three planned switch-offs</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-xs font-mono font-medium text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 self-start sm:self-auto">
+          <span id="tlabel"></span><span class="text-slate-300">|</span><span class="text-emerald-700 font-bold" id="tprice"></span>
+        </div>
+      </div>
+      <div class="relative pt-1 pb-1">
+        <input type="range" id="t" min="0" max="71" value="0" aria-label="Hour of the test run">
+        <div class="flex justify-between items-center text-xs font-semibold text-slate-400 mt-1 px-1" id="days">
+          <div class="flex flex-col"><span data-day="0" class="text-slate-700">Day 1</span><span class="text-[10px] text-slate-400 font-normal">0h - 24h</span></div>
+          <div class="flex flex-col items-center"><span data-day="1" class="text-slate-700">Day 2</span><span class="text-[10px] text-slate-400 font-normal">24h - 48h</span></div>
+          <div class="flex flex-col items-end"><span data-day="2" class="text-slate-700">Day 3</span><span class="text-[10px] text-slate-400 font-normal">48h - 72h</span></div>
+        </div>
+      </div>
+      <p id="hourline" class="mt-3 text-[13px] text-slate-600 tabular-nums"></p>
+    </div>
+  </section>
+
+  <div class="flex flex-wrap gap-2 mb-4" id="chips" role="group" aria-label="Pick a question"></div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden" id="ans" aria-live="polite">
+      <div class="absolute top-0 left-0 right-0 h-1 bg-[#10b981]"></div>
+      <p class="q text-sm font-semibold">Loading the test run</p>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden" id="tile-money" hidden></div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden" id="tile-floor" hidden></div>
+  </div>
+
+  <details class="detail mt-10 border-t border-slate-200" id="detail">
+    <summary class="cursor-pointer min-h-[44px] pt-4 pb-1"><h2 class="text-lg font-bold">Economics and assumptions</h2></summary>
+    <div class="money" id="money"></div>
+    <div class="dsec">
+      <h3>Homes per street, three results</h3>
+      <canvas id="density" width="1040" height="220"></canvas>
+      <p class="ceil" id="n-ceil"></p>
+    </div>
+    <div class="dsec">
+      <h3>Money over three days</h3>
+      <div class="num" id="f-num"></div><div class="unit">batteries plus PCs, all homes</div>
+      <p class="ceil" id="f-compute"></p>
+      <div class="tw"><table id="tiers"></table></div>
+      <p class="ceil" id="f-ceil"></p>
+      <div class="tw"><canvas id="strip" width="1040" height="120"></canvas></div>
+    </div>
+    <div class="dsec">
+      <h3>Three things we switched off on purpose</h3>
+      <div class="kills" id="kills"></div>
+      <ul class="assume" id="f-assume"></ul>
+    </div>
+    <div class="dsec">
+      <h3>The pipe that brings new homes to the fleet</h3>
+      <p class="ceil" id="thread"></p>
+      <div class="row4" id="row"></div>
+      <div id="p1" class="dsec"></div><div id="p2" class="dsec"></div><div id="p3" class="dsec"></div><div id="p4" class="dsec"></div>
+    </div>
+  </details>
+  <details class="text-sm"><summary class="cursor-pointer min-h-[44px] py-2.5 font-semibold text-slate-700">Data sources</summary><p id="foot" class="text-xs text-slate-500">From data/report.json, data/density.json and data/fleet_kill_log.json. Public ERCOT price history is an input; equipment, utilization and compute rates are model assumptions. The bundle has no capture timestamp and is not a current forecast, bill, or issued payment. Inspect the assumptions before applying the results.</p></details>
+  <div class="mt-8 flex justify-end">
+    <a id="story-next" href="plans.html" class="inline-flex items-center gap-2 min-h-[44px] px-5 py-2.5 rounded-full bg-[#1e4d2b] hover:bg-emerald-900 text-white text-sm font-bold shadow-sm transition">Next: plans to use, host or sell GPU time <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</main>
+<footer class="w-full bg-white border-t border-slate-200 mt-12 py-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4 text-center">
+    <div class="flex items-center gap-2"><span class="font-bold text-slate-700">Base Fleet</span><span>&middot;</span><span>Fleet economics</span></div>
+    <div class="text-slate-500">Base is building the stations; a member AI service is a Base Fleet proposal.</div>
+    <div class="text-slate-500">Sources: data/report.json, data/density.json, data/fleet_kill_log.json</div>
+  </div>
+</footer>
+<script>
+const $ = s => document.querySelector(s);
+const usd = n => "$" + n.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const fmt = n => typeof n === "number" ? n.toLocaleString(undefined, {maximumFractionDigits: 2}) : n;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TIER = {member: "the home itself", business: "local businesses", base: "Base", partner: "partners", external: "outside buyers"};
+
+function panelHtml(i, p, extra = "") {
+  const assume = (p.assumptions || []).map(a => `<li class="${a.startsWith("STUB") ? "stub" : ""}">${esc(a.replace(/^STUB:? /, ""))}</li>`).join("");
+  return `<h3>${i}. ${esc(p.name)}</h3><div class="num">${fmt(p.number)}</div><div class="unit">${esc(p.unit)}</div>${extra}
+    <p class="ceil"><b>Best case:</b> ${esc(p.ceiling)}</p><ul class="assume">${assume}</ul>`;
+}
+
+Promise.all(["data/report.json", "data/fleet_kill_log.json", "data/density.json"].map(u => fetch(u).then(r => { if (!r.ok) throw new Error(u); return r.json(); })))
+.then(([R, LOG, D]) => {
+  const [p1, p2, p3, p4, p5] = R.panels;
+  const rows = D.rows, lone = rows[0], two = rows.find(r => r.nodes_per_feeder === 2), six = rows.find(r => r.nodes_per_feeder === 6);
+  const lostDense = Math.max(...rows.filter(r => r.nodes_per_feeder >= 2).map(r => r.gpu_hours_lost));
+
+  // One answer per question. Default is the first.
+  const A = [
+    { chip: "What if 1 in 5 batteries fails?", label: "RESILIENCE",
+      q: "When 1 in 5 homes drops out, how much work is lost?",
+      big: `${lostDense} hours<small>of work lost with 2 or more homes per street. With 1 home per street: ${lone.gpu_hours_lost} hours lost.</small>`,
+      why: `Two homes on the same street cover for each other. When one home drops out, its neighbour picks up the PC work, so nothing is lost.`,
+      todo: `Sign homes in pairs on the same street, not one home per street across town.` },
+    { chip: "What does the PC beside the battery add?", label: "COMPUTE",
+      q: "What does the PC beside each battery add?",
+      big: `${usd(p5.compute)}<small>extra over three days, on top of ${usd(p5.power_only)} from power alone</small>`,
+      why: `The PC works in the hours the battery waits. It earned about ${Math.round(p5.compute / p5.power_only)} times what the batteries earned from power, with the PCs busy ${Math.round(p5.gpu_utilisation * 100)}% of the time.`,
+      todo: `Pitch the PC as the main earner and the battery as backup plus a bonus. Test the ${Math.round(p5.util * 100)}% busy guess with real buyers first.` },
+    { chip: "How much does it ease the street at peak?", label: "GRID HELP",
+      q: "How much load do the batteries take off one street at the peak hour?",
+      big: `${two.peak_relief_kw_per_feeder} kW<small>with 2 homes per street. ${six.peak_relief_kw_per_feeder} kW with 6 or more, then it stops growing.</small>`,
+      why: `Each street line can take back only so much power (we guess 25 kW). Past 6 homes on one street, more homes add PC work, not grid help.`,
+      todo: `For grid help, aim for 2 to 6 homes per street. Past that, pick homes for PC work, not for the grid.` }
+  ];
+  let cur = 0;
+  function show(i) {
+    cur = i; const a = A[i];
+    $("#ans").innerHTML = `<div class="absolute top-0 left-0 right-0 h-1 bg-[#10b981]"></div><div>
+      <div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${a.label}</span></div>
+      <p class="q text-sm font-semibold text-slate-500 mb-2">${a.q}</p>
+      <div class="big text-3xl font-extrabold text-slate-900 tracking-tight leading-none mb-3">${a.big}</div>
+      <p class="why text-sm text-slate-600 leading-relaxed">${a.why}</p></div>
+      <div class="do mt-6 pt-4 border-t border-slate-100 text-xs text-slate-600"><b class="block text-[11px] uppercase tracking-wide text-emerald-800 mb-1">What to do with this</b>${a.todo}</div>`;
+    $("#chips").querySelectorAll(".chip").forEach((c, k) => c.setAttribute("aria-pressed", k === i));
+  }
+  $("#chips").innerHTML = A.map((a, i) => `<button class="chip" type="button" data-i="${i}">${a.chip}</button>`).join("");
+  $("#chips").querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => show(+c.dataset.i)));
+  show(0);
+
+  // Hero comparison: power alone vs power plus compute, above the fold
+  $("#hero-compare").innerHTML = `
+    <div class="flex items-center justify-between mb-4 gap-2 flex-wrap">
+      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">SIMULATION</span>
+      <span class="text-xs font-semibold text-slate-500">${p5.nodes} homes &middot; 3 days &middot; ${Math.round(p5.gpu_utilisation * 100)}% GPU use assumed</span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+        <div class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Power alone</div>
+        <div class="text-3xl font-extrabold text-slate-500 tracking-tight">${usd(p5.power_only)}</div>
+        <div class="text-xs text-slate-500 mt-2">from battery trading only</div>
+      </div>
+      <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50">
+        <div class="text-xs font-bold uppercase tracking-wide text-emerald-800 mb-1">Power plus compute</div>
+        <div class="text-3xl font-extrabold text-[#1e4d2b] tracking-tight">${usd(p5.compute)}</div>
+        <div class="text-xs text-emerald-800 mt-2">members ${usd(p5.compute_members)} &middot; outside buyers ${usd(p5.compute_outside)}</div>
+      </div>
+    </div>
+    <div class="mt-4 pt-4 border-t border-slate-100 text-xs font-semibold text-slate-600">Backup reserve kept every hour (0 breaches).</div>`;
+
+  // Money line
+  const mx = Math.max(p5.power_only, p5.compute_outside);
+  $("#money").innerHTML = `<p><b>Power alone:</b> ${p5.nodes} homes earned ${usd(p5.power_only)} over three days from battery trading.</p>
+    <div class="mbar pw"><span>Power alone</span><div class="track"><i style="width:${100 * p5.power_only / mx}%"></i></div><b>${usd(p5.power_only)}</b></div>
+    <p class="mt-3"><b>Plus compute:</b> the PCs selling spare hours to outside buyers earned ${usd(p5.compute_outside)}.</p>
+    <div class="mbar"><span>PCs, outside buyers</span><div class="track"><i style="width:${100 * p5.compute_outside / mx}%"></i></div><b>${usd(p5.compute_outside)}</b></div>`;
+
+  // Summary tiles: money line and the backup floor, both from report.json
+  $("#tile-money").innerHTML = `<div class="absolute top-0 left-0 right-0 h-1 bg-[#1e4d2b]"></div><div>
+      <div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-800 border border-slate-200">FLEET ECONOMICS</span></div>
+      <div class="space-y-4">
+        <div><span class="text-xs uppercase tracking-wider font-bold text-slate-500 block mb-1">Power alone, over three days, ${p5.nodes} homes:</span>
+          <div class="text-slate-900 font-extrabold text-2xl tracking-tight">${usd(p5.power_only)}</div></div>
+        <div class="p-3 bg-emerald-50/70 border border-emerald-100 rounded-xl">
+          <div class="text-xs font-semibold text-emerald-900 uppercase tracking-wide">Plus compute &middot; PCs selling spare hours</div>
+          <div class="text-2xl font-black text-[#1e4d2b] tracking-tight mt-0.5">outside compute buyers ${usd(p5.compute_outside)}</div>
+          <span class="text-xs font-medium text-emerald-700 mt-1 block">at ${Math.round(p5.util * 100)}% use, a planning guess</span></div>
+      </div></div>
+      <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2 text-xs text-slate-500"><span>Outside buyers vs power alone</span><span class="font-bold text-emerald-700">${(p5.compute_outside / p5.power_only).toFixed(1)}x</span></div>`;
+  const floor = (p5.assumptions || []).find(a => /^reserve = /.test(a)) || "";
+  const fm = floor.match(/(\d+)% of ([\d.]+) kWh/);
+  $("#tile-floor").innerHTML = `<div class="absolute top-0 left-0 right-0 h-1 bg-slate-400"></div><div>
+      <div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-900 border border-blue-200">BACKUP FLOOR</span></div>
+      <h3 class="text-2xl font-bold text-slate-900 tracking-tight leading-snug mb-3">The ${fm ? fm[1] + "% " : ""}backup reserve was never breached.</h3>
+      <p class="text-sm text-slate-600 leading-relaxed">${p5.reserve_breaches} times a battery went below its backup floor${fm ? ` (${fm[1]}% of ${fm[2]} kWh)` : ""} in three days, through three planned switch-offs.</p></div>
+      <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">Asserted in the model run, not measured on real homes.</div>`;
+  $("#tile-money").hidden = false; $("#tile-floor").hidden = false;
+
+  // Details: money
+  $("#f-num").textContent = usd(p5.number);
+  $("#f-compute").innerHTML = `PCs add <b>${usd(p5.compute)}</b> at ${Math.round(p5.util * 100)}% planned use (reached ${(p5.gpu_utilisation * 100).toFixed(1)}%): work for the homes themselves <b>${usd(p5.compute_members)}</b>, outside buyers <b>${usd(p5.compute_outside)}</b>. Power alone: <b>${usd(p5.power_only)}</b>.`;
+  $("#f-ceil").innerHTML = `<b>Best case:</b> ${esc(p5.ceiling)}`;
+  const tot = Object.values(p5.by_tier).reduce((a, v) => a + v.hours, 0);
+  $("#tiers").innerHTML = `<tr><th>Who buys the PC hour</th><th>Price</th><th>Share of hours</th><th>$ per hour after power and upload</th><th>$ over 3 days</th></tr>` +
+    Object.entries(p5.by_tier).map(([k, v]) => `<tr><td>${TIER[k] || k}</td><td>$${p5.tiers[k].rate.toFixed(2)}</td><td>${Math.round(100 * v.hours / tot)}%</td><td>${(v.revenue / Math.max(v.hours, 1)).toFixed(2)}</td><td>${usd(v.revenue)}</td></tr>`).join("");
+  $("#f-assume").innerHTML = p5.assumptions.map(a => `<li class="${a.startsWith("STUB") ? "stub" : ""}">${esc(a.replace(/^STUB:? /, ""))}</li>`).join("");
+  const rec = p5.recovery_intervals;
+  $("#kills").innerHTML = `<span>Hour 20, one home switched off: jobs lost <b>${p5.jobs_lost_under_kills}</b>, back in <b>${rec["node:0"]} h</b></span>
+    <span>Hour 30, east side cut off: back in <b>${rec["region:east"]} h</b></span>
+    <span>Hour 40, the schedule itself stopped: backup charge held, back in <b>${rec["scheduler:None"]} h</b></span>
+    <span>Times a battery went below its backup floor: <b>${p5.reserve_breaches}</b></span>`;
+
+  // Details: pipe
+  $("#thread").textContent = R.header.sentence;
+  const terr = Object.entries(p1.by_territory || {}).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join("");
+  $("#p1").innerHTML = panelHtml(1, p1, `<div class="tw"><table><tr><th>Area</th><th>Leads</th></tr>${terr}<tr><td>No address yet (new build)</td><td>${p1.no_address_yet}</td></tr></table></div>`);
+  const f = R.funnel;
+  $("#p2").innerHTML = panelHtml(2, p2, `<div class="tw"><table><tr><th>Step</th><th>Homes</th></tr>
+    <tr><td>Leads (4 weeks)</td><td>${f.leads}</td></tr><tr><td>Base sells there, owner, address</td><td>${f.served}</td></tr>
+    <tr><td>Photos complete</td><td>${f.photos_complete}</td></tr><tr><td>Given a crew day</td><td>${f.routed}</td></tr></table></div>`);
+  $("#p3").innerHTML = panelHtml(3, p3);
+  $("#p4").innerHTML = panelHtml(4, p4, `<p class="ceil">First come, first served: <b>${p4.naive}</b> miles per install. Nearest next: <b>${p4.number}</b>.</p>`);
+  $("#row").innerHTML = [[p1, "leads matched"], [p2, "drop at the photo step"], [p3, "permit paths seen"], [p4, "miles per install"]]
+    .map(([p, u], i) => `<div><div class="k">${i + 1}. ${esc(p.name)}</div><div class="num">${fmt(p.number)}</div><div class="unit">${u}</div></div>`).join("");
+
+  // Play: dots
+  const N = p5.nodes, REG = ["north", "south", "east", "west"];
+  const colors = {discharge: "#2f6f3e", charge: "#3b6ea8", local: "#b8471b", sell: "#e0a04a", idle: "#c9c4b8", dead: "#1f2328"};
+  const map = $("#map"), mc = map.getContext("2d"), pos = [];
+  const cols = Math.ceil(N / 4 / 2);
+  for (let i = 0; i < N; i++) { const r = i % 4, k = Math.floor(i / 4); pos.push({x: 60 + r * 250 + (k % cols) * 28, y: 70 + Math.floor(k / cols) * 34}); }
+  const KILL = {20: "One home switched off", 30: "East side cut off", 40: "Schedule stopped"};
+  function drawMap(t) {
+    const row = LOG[t];
+    mc.clearRect(0, 0, map.width, map.height);
+    mc.font = "600 15px sans-serif"; mc.fillStyle = "#5b6470";
+    REG.forEach((r, i) => mc.fillText(r[0].toUpperCase() + r.slice(1) + " Austin", 60 + i * 250, 38));
+    pos.forEach((p, i) => {
+      const a = row.actions[i] || "idle";
+      const b = a === "dead" ? "dead" : (a === "charge" || a === "discharge") ? a : "idle";
+      const g = (row.gpu_actions || {})[i] || "idle";
+      mc.beginPath(); mc.arc(p.x, p.y, 8, 0, Math.PI * 2); mc.fillStyle = colors[b]; mc.fill();
+      if (a !== "dead" && (g === "local" || g === "sell")) { mc.beginPath(); mc.arc(p.x, p.y, 11.5, 0, Math.PI * 2); mc.lineWidth = 3; mc.strokeStyle = colors[g]; mc.stroke(); }
+    });
+    if (KILL[t]) { mc.fillStyle = "#b8471b"; mc.font = "600 16px sans-serif"; mc.fillText(KILL[t], 60, 170); }
+  }
+  const strip = $("#strip"), sc = strip.getContext("2d");
+  function drawStrip(t) {
+    sc.clearRect(0, 0, strip.width, strip.height);
+    const W = strip.width - 80, H = strip.height - 30, x0 = 60, y0 = 10;
+    const mx = Math.max(...LOG.map(r => r.margin)), gx = Math.max(...LOG.map(r => r.grid));
+    LOG.forEach((r, i) => { const x = x0 + i * W / 72; sc.fillStyle = i === t ? "#b8471b" : "#d9d5cc"; sc.fillRect(x, y0 + H - r.margin / mx * H, W / 72 - 2, r.margin / mx * H); });
+    sc.beginPath(); sc.strokeStyle = "#3b6ea8"; sc.lineWidth = 1.5;
+    LOG.forEach((r, i) => { const x = x0 + i * W / 72 + W / 144, y = y0 + H - r.grid / gx * H; i ? sc.lineTo(x, y) : sc.moveTo(x, y); });
+    sc.stroke(); sc.fillStyle = "#5b6470"; sc.font = "12px sans-serif";
+    sc.fillText("Bars: money each hour, all homes. Line: ERCOT day-ahead power price.", x0, strip.height - 6);
+  }
+  const slider = $("#t");
+  function render(t) {
+    drawMap(t); drawStrip(t);
+    const row = LOG[t];
+    $("#tlabel").textContent = `Day ${Math.floor(t / 24) + 1}, ${String(t % 24).padStart(2, "0")}:00`;
+    $("#tprice").textContent = `${(row.grid * 100).toFixed(1)}¢ per kWh`;
+    const off = Object.values(row.actions).filter(a => a === "dead").length;
+    $("#n-on").textContent = `${N - off} operating`; $("#n-off").textContent = `${off} switched off`;
+    document.querySelectorAll("#days [data-day]").forEach(s => { const on = +s.dataset.day === Math.floor(t / 24); s.className = on ? "text-slate-900 font-bold" : "text-slate-700"; });
+    $("#hourline").innerHTML = `Power price <b>${(row.grid * 100).toFixed(1)}¢ per kWh</b> · PC hour sells for <b>$${row.gpu.toFixed(2)}</b> · jobs waiting <b>${row.queue}</b> · earned this hour <b>$${row.margin.toFixed(2)}</b>`;
+  }
+  slider.addEventListener("input", () => render(+slider.value));
+  let timer = null;
+  const ICON = {Play: '<svg class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24" aria-hidden="true"><polygon points="5,3 19,12 5,21"></polygon></svg>',
+    Pause: '<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="5" height="18"></rect><rect x="14" y="3" width="5" height="18"></rect></svg>'};
+  const setPlay = s => { $("#play").innerHTML = ICON[s]; $("#play").setAttribute("aria-label", s); };
+  setPlay("Play");
+  $("#hero-title").textContent = `${N} homes, three historical ERCOT days`;
+  $("#play").addEventListener("click", () => {
+    if (timer) { clearInterval(timer); timer = null; setPlay("Play"); return; }
+    setPlay("Pause");
+    timer = setInterval(() => { slider.value = (+slider.value + 1) % 72; render(+slider.value); }, 180);
+  });
+  const busy = LOG.reduce((b, r, i) => { const n = Object.values(r.actions).filter(a => a === "discharge").length; return n > b[1] ? [i, n] : b; }, [0, -1])[0];
+  slider.value = busy; render(busy);
+
+  // Details: density chart
+  const [cmin, cmax] = D.compute_per_node_range;
+  $("#n-ceil").textContent = `${D.nodes} homes, test seed ${D.seed}, PCs busy ${Math.round(D.util * 100)}% of the time. We guess each street line takes back 25 kW at most. Peak help grows from ${lone.peak_relief_kw_per_feeder} kW at 1 home per street to ${six.peak_relief_kw_per_feeder} kW at 6, then stays flat. PC money per home stays between ${usd(cmin)} and ${usd(cmax)}. Best case: ${D.ceiling}.`;
+  const c = $("#density"), g = c.getContext("2d"), W = c.width, H = c.height, L = 150, Rr = 30, T = 16, B = 40;
+  const xs = rows.map(r => r.nodes_per_feeder), xmax = Math.max(...xs);
+  const X = d => L + (W - L - Rr) * Math.log(d) / Math.log(xmax);
+  g.font = "12px system-ui"; g.fillStyle = "#555";
+  xs.forEach(d => g.fillText(d, X(d) - 4, H - B + 16));
+  g.fillText("homes per street", W / 2 - 50, H - 6);
+  let n = 0;
+  function line(key, color, label, ymin, ymax) {
+    const Y = v => T + (H - T - B) * (1 - (v - ymin) / (ymax - ymin));
+    g.strokeStyle = color; g.lineWidth = 2.5; g.beginPath();
+    rows.forEach((r, i) => i ? g.lineTo(X(r.nodes_per_feeder), Y(r[key])) : g.moveTo(X(r.nodes_per_feeder), Y(r[key])));
+    g.stroke(); g.fillStyle = color;
+    rows.forEach(r => { g.beginPath(); g.arc(X(r.nodes_per_feeder), Y(r[key]), 3.5, 0, 7); g.fill(); });
+    g.fillText(label, 4, T + 14 + 16 * n++);
+  }
+  line("gpu_hours_lost", "#1f2328", "hours of work lost", 0, Math.max(10, lone.gpu_hours_lost));
+  line("compute_per_node", "#b8471b", "$ PC money per home", Math.floor(cmin) - 1, Math.ceil(cmax) + 1);
+  line("peak_relief_kw_per_feeder", "#2f6f3e", "kW off the street", 0, 25);
+}).catch(e => { $("#ans").innerHTML = `<p class="q font-semibold">Could not load the test run</p><p class="why text-sm">Start the server from the repo root: python3 -m http.server 8741, then open http://localhost:8741/web/index.html. (${esc(e.message)})</p>`; });
+</script>
+</body>
+</html>

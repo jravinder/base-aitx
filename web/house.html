@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homes ready | Base Fleet</title>
+<script src="assets/stitch/tailwind-forms.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    if (window.tailwind) tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-dim": "#cfdaf2",
+            "primary": "#023616",
+            "on-primary-fixed-variant": "#21502e",
+            "secondary": "#4a6700",
+            "surface-container-low": "#f0f3ff",
+            "surface-container-high": "#dee8ff",
+            "on-error-container": "#93000a",
+            "surface-container-highest": "#d8e3fb",
+            "secondary-fixed-dim": "#afd367",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed": "#cbf080",
+            "on-primary-container": "#8bbd92",
+            "ink-primary": "#0F172A",
+            "on-secondary": "#ffffff",
+            "primary-fixed-dim": "#a0d3a6",
+            "outline-variant": "#c1c9be",
+            "on-tertiary-fixed": "#00210a",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "inverse-on-surface": "#ecf1ff",
+            "outline": "#717970",
+            "critical-red": "#EF4444",
+            "on-background": "#111c2d",
+            "evergreen-deep": "#004A31",
+            "surface-container-lowest": "#ffffff",
+            "solar-green": "#22C55E",
+            "tertiary-container": "#004f21",
+            "inverse-surface": "#263143",
+            "error-container": "#ffdad6",
+            "surface": "#f9f9ff",
+            "primary-container": "#1e4d2b",
+            "on-surface-variant": "#414941",
+            "warning-amber": "#F59E0B",
+            "surface-variant": "#d8e3fb",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#79db8d",
+            "surface-subtle": "#F1F5F9",
+            "on-surface": "#111c2d",
+            "surface-muted": "#F8FAFC",
+            "on-primary-fixed": "#00210b",
+            "energy-lime": "#84CC16",
+            "tertiary": "#003614",
+            "on-tertiary-container": "#63c479",
+            "background": "#f9f9ff",
+            "primary-fixed": "#bbefc1",
+            "inverse-primary": "#a0d3a6",
+            "secondary-container": "#cbf080",
+            "surface-container": "#e7eeff",
+            "on-secondary-fixed": "#141f00",
+            "surface-bright": "#f9f9ff",
+            "on-secondary-fixed-variant": "#374e00",
+            "wire-border": "#E2E8F0",
+            "tertiary-fixed": "#95f8a7",
+            "surface-tint": "#396844",
+            "on-tertiary-fixed-variant": "#005323",
+            "on-secondary-container": "#506e08"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "gutter-lg": "2rem",
+            "space-xl": "2rem",
+            "margin-xl": "3rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "telemetry-unit": ["Plus Jakarta Sans"],
+            "telemetry-metric": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<link rel="stylesheet" href="shell.css">
+<script defer src="shell.js"></script>
+<style>
+  body { font-family:'Plus Jakarta Sans', system-ui, sans-serif }
+  .material-symbols-outlined { line-height:1 }
+  .node-grid { display:grid; grid-template-columns:repeat(8, 44px); gap:8px; justify-content:center }
+  @media (max-width:560px) { .node-grid { grid-template-columns:repeat(auto-fill, 44px) } }
+  .gn { width:44px; height:44px; border-radius:8px; cursor:pointer; border:0; padding:0; background:#E2E8F0; position:relative; box-shadow:0 1px 2px rgba(15,23,42,.08) }
+  .gn.ask { background:#1e4d2b } .gn.inh { background:#84CC16 }
+  .gn.easy { background:#1e4d2b } .gn.needs_love { background:#F59E0B } .gn.not_now { background:#EF4444 }
+  .gn.sel { box-shadow:0 0 0 2px #fff, 0 0 0 4px #0F172A }
+  .gn .tk { position:absolute; inset:0; display:grid; place-items:center; color:#fff; font-weight:700; font-size:16px }
+  .timeline { position:relative; height:70px; margin:6px 0 }
+  .timeline .axis { position:absolute; left:0; right:0; top:34px; height:2px; background:#E2E8F0 }
+  .timeline .yr { position:absolute; top:44px; font-size:11px; color:#717970; transform:translateX(-50%) }
+  .timeline .yr:last-child { transform:translateX(-100%) }
+  .tk2 { position:absolute; top:24px; width:12px; height:12px; border-radius:50%; transform:translateX(-50%); border:2px solid #fff }
+  .tk2.built { background:#0F172A } .tk2.service_upgrade, .tk2.sub_panel { background:#84CC16 }
+  .tk2.solar, .tk2.battery, .tk2.generator { background:#EF4444 } .tk2.demolition { background:#b23 } .tk2.remodel { background:#F59E0B }
+  .tk2.other, .tk2.pool, .tk2.addition, .tk2.ac_changeout, .tk2.demolition_accessory { background:#717970 }
+  .key { display:flex; gap:8px 16px; flex-wrap:wrap; font-size:12px; color:#414941; margin:12px 0 0 }
+  .key i { display:inline-block; width:12px; height:12px; border-radius:999px; margin-right:6px; vertical-align:-1px }
+  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px }
+  .dot.easy { background:#1e4d2b } .dot.needs_love { background:#F59E0B } .dot.not_now { background:#EF4444 }
+  .confbar { height:6px; width:60px; background:#F1F5F9; border-radius:999px; overflow:hidden; display:inline-block; vertical-align:middle }
+  .confbar i { display:block; height:100%; background:#023616 } .confbar.low i { background:#EF4444 }
+  .confirm { font-size:12px; display:flex; align-items:center; gap:5px } .confirmed { color:#023616; font-weight:600; font-size:12px }
+  summary { list-style:none; cursor:pointer } summary::-webkit-details-marker { display:none }
+  details[open] > summary .chev { transform:rotate(180deg) }
+  #chips button[aria-pressed="true"] { background:#1e4d2b; color:#fff; border-color:#1e4d2b }
+  button:focus-visible, summary:focus-visible, input:focus-visible, a:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
+  .admin-path [aria-current] { color:#023616; border-color:#023616; font-weight:700 }
+  #guesses td, #guesses th { text-align:left; padding:8px 8px 8px 0; border-bottom:1px solid #E2E8F0; vertical-align:middle; font-size:13px }
+  #guesses th { color:#717970; font-weight:500 }
+  @media (max-width:860px) { #guesses { table-layout:fixed } #guesses td, #guesses th { overflow-wrap:anywhere } }
+</style>
+</head>
+<body class="bg-surface-muted text-ink-primary font-body-md antialiased min-h-screen">
+<main class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-margin py-8 flex flex-col gap-8">
+  <section class="flex flex-col gap-1.5">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-caps uppercase bg-primary/10 text-primary-container font-bold">Travis County · 78745</span>
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold bg-secondary-container text-on-secondary-container"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">description</span>Inferred from permits</span>
+      <span class="text-body-sm text-outline">Base admin · member growth and installs</span>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+     <div class="min-w-0">
+      <h1 id="q" class="text-display-sm font-display-sm text-ink-primary tracking-tight">Which homes are ready for a battery?</h1>
+      <p class="text-body-lg font-body-lg text-on-surface-variant" id="lede">40 homes in 78745, read from City of Austin permits. Pick a home to see its permit history.</p>
+     </div>
+     <a id="story-next" href="wall.html?track=home&amp;persona=operations" class="shrink-0 self-start md:self-auto inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest text-label-md font-label-md font-semibold hover:bg-evergreen-deep shadow-sm no-underline"><span>Next: will the battery fit?</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+    </div>
+    <nav class="admin-path flex flex-wrap gap-x-6 text-label-md font-label-md text-on-surface-variant" aria-label="Market workflow"><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="market.html">Priorities</a><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="explorer.html">Permit map</a><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="house.html" aria-current="page">Homes ready</a></nav>
+    <div class="flex flex-wrap gap-2.5 mt-2" id="chips" role="group" aria-label="Questions"></div>
+  </section>
+  <div class="hidden border-l-4 border-critical-red bg-error-container rounded-lg px-4 py-3 text-sm" id="notice">Homes will load once the property-records file is available.</div>
+
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    <div id="panel" class="lg:col-span-8 bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm relative overflow-hidden flex flex-col justify-between lg:min-h-[520px] min-w-0">Loading homes...</div>
+    <div id="card" aria-live="polite" class="lg:col-span-4 bg-surface-container-lowest border border-wire-border rounded-xl p-5 shadow-sm flex flex-col gap-5 min-w-0 break-words">Loading homes...</div>
+  </section>
+
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6" id="stats"></section>
+
+  <details id="details" class="bg-surface-container-lowest border border-wire-border rounded-xl px-6 shadow-sm">
+    <summary class="min-h-[52px] flex items-center justify-between text-headline-sm font-headline-sm text-ink-primary">Inferred details and sources <span class="chev material-symbols-outlined text-outline transition-transform">expand_more</span></summary>
+    <div class="grid gap-6 pb-6 pt-2 border-t border-wire-border" style="grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))">
+      <div class="min-w-0" style="grid-column:1/-1"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mt-4 mb-2" id="dhead">What the permits already say</h3><table class="w-full border-collapse" id="guesses"></table>
+        <p class="text-body-sm text-outline mt-2">Confidence scores are model heuristics. The optional block-learning exercise applies an assumed breaker size to similarly aged homes in memory only, for exploration; permit records stay unchanged.</p></div>
+      <div class="min-w-0"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">All homes by group</h3><ul class="text-[13px] sm:columns-2 gap-5 space-y-1" id="all"></ul></div>
+      <div class="min-w-0"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">Community sites in 78745</h3><p id="community" class="text-body-sm text-outline">None on file.</p>
+        <h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mt-4 mb-2">Source</h3><p class="text-body-sm text-outline">City of Austin Issued Construction Permits (open data), built into house/cohort.json.</p></div>
+    </div>
+  </details>
+</main>
+<footer class="mt-auto border-t border-wire-border bg-surface-container-lowest py-5">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-margin flex flex-wrap items-center gap-2 text-body-sm text-outline">
+    <span class="font-bold text-ink-primary">Base Fleet</span><span>·</span><span>Homes ready</span><span>·</span><span>Travis County 78745</span>
+  </div>
+</footer>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const title = a => a.replace(/\s+/g, " ").replace(/\b0{5}\b/, "").trim().toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+const GROUP = {easy:"Lower complexity", needs_love:"Needs review", not_now:"Model blocker"};
+const FIELD = {main_breaker_amps:"Main breaker size", has_solar:"Solar on the roof", has_battery:"Battery on site", has_generator:"Generator on site", ac_age_years:"A/C age (years)"};
+const KIND = {built:"built", service_upgrade:"panel upgrade", sub_panel:"sub panel", solar:"solar", battery:"battery", generator:"generator", ac_changeout:"A/C change out", remodel:"remodel", addition:"addition", pool:"pool", demolition:"demolition", demolition_accessory:"demolition", other:"other"};
+const QS = [
+  {k:"easy", chip:"Install readiness", h:"Which homes have lower apparent complexity?"},
+  {k:"file", chip:"Permit history", h:"What is on file for this home?"},
+  {k:"teach", chip:"Block learning", h:"How does one answer teach the whole street?"},
+];
+
+let houses = [], selected = null, view = "easy";
+let confirmed = {};  // address -> Set(field)
+let inherited = {};  // address -> {from}
+
+const yearBuilt = h => typeof h.year_built === "number"
+  ? {year:h.year_built, label:`built ${h.year_built}`}
+  : {year:h.year_built.lower_bound, label:`built before ${h.year_built.lower_bound + 1}`, source:h.year_built.source};
+const parseAddr = a => { const m = a.match(/^(\d+)\s+(.+)$/); return m ? {num:+m[1], street:m[2]} : {num:0, street:a}; };
+const sorted = () => houses.slice().sort((a, b) => { const pa = parseAddr(a.address), pb = parseAddr(b.address); return pa.street.localeCompare(pb.street) || pa.num - pb.num; });
+const hasUpgrade = h => h.events.some(e => e.kind === "service_upgrade");
+const amps = h => h.guessable.find(g => g.field === "main_breaker_amps");
+const canAsk = h => (h.confirm_with_member || []).includes("main_breaker_amps");
+const conf = a => confirmed[a] ||= new Set();
+
+// Which homes take their breaker size from a home whose owner confirmed it.
+// UI only, never written to the source file.
+function inheritFrom(cf) {
+  const out = {};
+  const sources = houses.filter(h => cf(h.address).has("main_breaker_amps"));
+  houses.forEach(h => {
+    if (cf(h.address).has("main_breaker_amps") || hasUpgrade(h)) return;
+    const hy = yearBuilt(h).year; let best = null, bd = Infinity;
+    sources.forEach(s => { if (s.address === h.address) return; const d = Math.abs(yearBuilt(s).year - hy); if (d <= 3 && d < bd) { best = s; bd = d; } });
+    if (best) out[h.address] = {from:best.address};
+  });
+  return out;
+}
+const computeInheritance = () => { inherited = inheritFrom(conf); };
+// Homes that would take the answer if this one owner confirmed it.
+function reach(h) {
+  const tmp = a => a === h.address ? new Set(["main_breaker_amps"]) : conf(a);
+  return Object.entries(inheritFrom(tmp)).filter(([, v]) => v.from === h.address).map(([a]) => a);
+}
+
+function renderChips() {
+  $("#chips").innerHTML = QS.map(q => `<button type="button" data-k="${q.k}" aria-pressed="${q.k === view}" class="inline-flex items-center min-h-[44px] px-4 py-2 rounded-xl text-label-md font-label-md bg-surface-container-lowest text-ink-primary border border-wire-border hover:bg-surface-subtle transition-colors">${esc(q.chip)}</button>`).join("");
+  $("#chips").querySelectorAll("button").forEach(b => b.onclick = () => { view = b.dataset.k; render(); });
+}
+
+function gridHTML(cls) {
+  return `<div class="node-grid">${sorted().map(h => {
+    const c = cls(h), yb = yearBuilt(h);
+    return `<button type="button" class="gn ${c.c} ${h.address === selected ? "sel" : ""}" data-addr="${esc(h.address)}" title="${esc(title(h.address))}, ${yb.label}, ${GROUP[h.fit.bucket]}" aria-label="${esc(title(h.address))}">${c.t ? `<span class="tk">${c.t}</span>` : ""}</button>`;
+  }).join("")}</div>`;
+}
+function bindGrid() {
+  $("#panel").querySelectorAll(".gn").forEach(el => el.onclick = () => { selected = el.dataset.addr; render(); renderDetails(); });
+}
+const ampsText = g => g && g.value != null ? `${g.value} A` : "size not on the permit";
+const K = (color, label) => `<div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full" style="background:${color}"></span><span class="text-[12px] font-medium text-ink-primary">${label}</span></div>`;
+// Left hero: status strip, home grid on a dotted field with two floating cards, legend bar.
+function panel({label, pill, grid, badgeA, badgeB, keys, foot}) {
+  $("#panel").innerHTML = `<div class="flex flex-wrap items-center justify-between gap-2 mb-4 z-10">
+      <div class="flex items-center gap-2"><span class="flex h-2.5 w-2.5 rounded-full bg-solar-green"></span><span class="text-label-caps font-label-caps text-ink-primary uppercase tracking-wider">${label}</span></div>
+      ${pill ? `<div class="flex items-center gap-2 bg-surface-muted px-2.5 py-1 rounded-lg border border-wire-border text-body-sm">${pill}</div>` : ""}
+    </div>
+    <div class="relative w-full flex-1 flex flex-col items-center justify-center gap-4 py-4 xl:pt-6 xl:pb-44">
+      <div class="absolute inset-0 opacity-40 pointer-events-none bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:16px_16px]"></div>
+      <div class="relative w-full">${grid}</div>
+      ${badgeA ? `<div class="relative xl:absolute xl:left-4 xl:bottom-4 w-full xl:w-[300px] bg-surface-container-lowest/95 backdrop-blur-md border border-solar-green/40 shadow-lg rounded-xl p-3.5 ">${badgeA}</div>` : ""}
+      ${badgeB ? `<div class="relative xl:absolute xl:right-4 xl:bottom-4 w-full xl:w-[300px] bg-surface-container-lowest/95 backdrop-blur-md border border-wire-border shadow-lg rounded-xl p-3.5 ">${badgeB}</div>` : ""}
+    </div>
+    <div class="pt-4 border-t border-wire-border flex flex-wrap items-center justify-between gap-4 text-body-sm text-on-surface-variant z-10">
+      <div class="flex flex-wrap items-center gap-4">${keys}</div>
+      <span class="text-[12px] text-outline">${foot || "Tap any square to pick a home."}</span>
+    </div>`;
+  bindGrid();
+}
+const homeBadge = (h, extra) => { const g = amps(h), yb = yearBuilt(h);
+  return `<div class="flex items-center justify-between gap-2 mb-1"><span class="text-ink-primary font-bold text-[13px] leading-tight">${esc(title(h.address))}</span>
+    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-solar-green/15 text-evergreen-deep whitespace-nowrap">${GROUP[h.fit.bucket].toLowerCase()}</span></div>
+    <div class="text-body-sm text-on-surface-variant flex flex-wrap items-center gap-2 mb-1.5"><span class="font-bold text-primary">Breaker ${ampsText(g)}</span><span class="text-outline">•</span><span>${yb.label}</span><span class="text-outline">•</span><span>${h.events.length} permits</span></div>
+    <p class="text-[11px] text-outline leading-tight">${extra}</p>`; };
+const permitList = (h, max = 8) => { const ev = h.events.slice().sort((a, b) => b.date.localeCompare(a.date));
+  return `<div class="flex flex-col gap-3"><div class="flex items-center justify-between"><span class="text-label-caps font-label-caps text-ink-primary uppercase tracking-wider">Permit history (City of Austin)</span><span class="text-[11px] text-outline">${ev.length} records</span></div>
+    <div class="relative pl-6 space-y-3 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-wire-border max-h-[340px] overflow-auto pr-1">${ev.slice(0, max).map(e => `
+      <div class="relative flex items-start gap-2"><div class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-surface-container-lowest border-2 ${e.kind === "service_upgrade" || e.kind === "sub_panel" ? "border-energy-lime" : e.kind === "other" ? "border-outline-variant" : "border-primary"} flex items-center justify-center"><span class="w-1.5 h-1.5 rounded-full ${e.kind === "service_upgrade" || e.kind === "sub_panel" ? "bg-energy-lime" : e.kind === "other" ? "bg-outline-variant" : "bg-primary"}"></span></div>
+        <div class="bg-surface-subtle p-2.5 rounded-lg border border-wire-border flex-1 min-w-0"><div class="flex flex-wrap items-center justify-between gap-x-2 text-[12px] font-bold text-ink-primary"><span>${e.date.slice(0, 4)} · ${esc(KIND[e.kind] || e.kind)}${e.amps ? `, ${e.amps} A` : ""}</span><span class="text-[10px] font-mono text-outline font-normal">${esc(e.permit)}</span></div>
+          <div class="text-[11px] text-on-surface-variant mt-0.5 line-clamp-2">${esc(e.text)}</div></div></div>`).join("")}</div>
+    ${ev.length > max ? `<p class="text-[11px] text-outline">Showing the ${max} newest of ${ev.length}. Open Details for all.</p>` : ""}</div>`; };
+const cardHead = (h, label) => `<div class="border-b border-wire-border pb-4"><div class="flex items-center justify-between mb-1"><span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">${label}</span>
+    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-primary/10 text-primary"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>${GROUP[h.fit.bucket]}</span></div>
+    <h2 class="text-headline-md font-headline-md text-ink-primary font-bold">${esc(title(h.address))}</h2><p class="text-body-sm text-on-surface-variant">${h.zip} · ${yearBuilt(h).label}</p></div>`;
+const doBox = t => `<div class="pt-4 border-t border-wire-border flex items-start gap-2"><span class="text-[11px] font-bold uppercase text-primary bg-primary/10 px-1.5 py-0.5 rounded shrink-0" title="What to do">Do</span><p class="text-[12px] font-medium text-ink-primary">${t}</p></div>`;
+
+function render() {
+  const h = houses.find(x => x.address === selected);
+  const yb = yearBuilt(h), name = title(h.address);
+  document.querySelectorAll("#chips button").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === view));
+  const groupKeys = Object.entries(GROUP).map(([k, v]) => K({easy:"#1e4d2b", needs_love:"#F59E0B", not_now:"#EF4444"}[k], `${v}: ${houses.filter(x => x.fit.bucket === k).length}`)).join("");
+
+  if (view === "teach") {
+    const g = amps(h), isConf = conf(h.address).has("main_breaker_amps");
+    const list = isConf ? Object.entries(inherited).filter(([, v]) => v.from === h.address).map(([a]) => a) : reach(h);
+    panel({label: `Block learning · ${houses.length} homes`, pill: `<span class="text-outline">Assumed confirmation:</span><span class="font-semibold text-primary">${isConf ? "on" : "off"}</span>`,
+      grid: gridHTML(x => x.address === h.address ? {c:"ask", t:isConf ? "&#10003;" : ""} : list.includes(x.address) ? {c:"inh"} : {c:""}),
+      badgeA: homeBadge(h, "The home you ask. Breaker size comes from its own permits."),
+      badgeB: `<div class="flex items-center gap-1.5 mb-1"><span class="material-symbols-outlined text-[15px] text-evergreen-deep">hub</span><span class="font-label-caps text-label-caps uppercase text-primary">${list.length} neighbours learn</span></div>
+        <p class="text-body-sm text-ink-primary font-semibold mb-1">${isConf ? `${list.length} homes learn from one answer` : `${list.length} homes would learn from one answer`}</p>
+        <p class="text-[11px] text-on-surface-variant leading-relaxed">Built within 3 years of each other, no panel upgrade on file.${list.length ? ` ${list.map(a => esc(title(a))).join(", ")}.` : ""}</p>`,
+      keys: K("#1e4d2b", "The home you ask") + K("#84CC16", isConf ? "Takes the same answer" : "Would take the same answer") + K("#E2E8F0", "Other homes"),
+      foot: "Tap any square to ask a different home."});
+    if (!canAsk(h)) {
+      $("#card").innerHTML = cardHead(h, "The home you ask") + `<div><div class="text-telemetry-metric font-telemetry-metric text-ink-primary">0</div><p class="text-headline-sm font-headline-sm">homes learn from this one</p>
+        <p class="text-body-sm text-on-surface-variant mt-1">The permits already give the breaker size at ${esc(name)} (${ampsText(g)}, ${yb.label}).</p></div>` +
+        doBox("Open Details to see the permit behind the breaker size.");
+    } else {
+      $("#card").innerHTML = cardHead(h, "The home you ask") + `<div><div class="text-telemetry-metric font-telemetry-metric text-ink-primary">${list.length}</div><p class="text-headline-sm font-headline-sm">${isConf ? "homes learn from one answer" : "homes would learn from one answer"}</p></div>
+        <label class="flex gap-2.5 items-start p-3 rounded-lg border border-wire-border bg-surface-subtle cursor-pointer text-body-md"><input type="checkbox" id="ask" class="w-5 h-5 mt-0.5 rounded text-primary-container" ${isConf ? "checked" : ""}><span>Try an assumed confirmation for ${esc(name)}: main breaker ${ampsText(g)}.</span></label>
+        <p class="text-body-sm text-on-surface-variant">${list.length ? `${list.length} neighbours built within 3 years receive the same estimate in this exercise. Each home's own permits confirm its size at installation.` : "Every neighbour built within 3 years has its own panel work on file."}</p>` +
+        doBox("Compare the inferred fields with each home's permits; each house's equipment is confirmed by its own permits.");
+      $("#ask").onchange = e => { e.target.checked ? conf(h.address).add("main_breaker_amps") : conf(h.address).delete("main_breaker_amps"); computeInheritance(); render(); renderDetails(); };
+    }
+  }
+
+  if (view === "easy") {
+    const n = houses.filter(x => x.fit.bucket === "easy").length;
+    panel({label: `${n} of ${houses.length} homes have lower apparent complexity`, pill: `<span class="text-outline">Source:</span><span class="font-semibold text-primary">Austin permits</span>`,
+      grid: gridHTML(x => ({c:x.fit.bucket})),
+      badgeA: homeBadge(h, esc(h.fit.reasons[0] || "")), badgeB: illus(), keys: groupKeys});
+    $("#card").innerHTML = cardHead(h, "Selected home") + `<div>${timeline(h)}<ul class="list-disc pl-5 mt-2 text-body-sm text-on-surface-variant space-y-1">${h.fit.reasons.map(r => `<li>${esc(r)}</li>`).join("")}</ul></div>` +
+      confMatrix(h) + permitList(h, 2) + `<p class="text-[11px] text-outline">Base confirms each home at installation.</p>` +
+      doBox(`<a class="text-primary underline underline-offset-2" href="recovery.html">Open install stage: permits and the path to yes</a>`);
+  }
+
+  if (view === "file") {
+    panel({label: `${esc(name)}, ${h.zip}, ${yb.label}`, pill: `<span class="text-outline">Permits on file:</span><span class="font-semibold text-primary">${h.events.length}</span>`,
+      grid: gridHTML(x => ({c:x.fit.bucket})),
+      badgeA: homeBadge(h, esc(h.fit.reasons[0] || "")), badgeB: `<div class="text-label-caps font-label-caps uppercase text-primary mb-1">Timeline</div>${timeline(h)}`, keys: groupKeys});
+    const last = h.events.map(e => e.date).sort().pop();
+    $("#card").innerHTML = cardHead(h, "Selected home") + `<div><div class="text-telemetry-metric font-telemetry-metric text-ink-primary">${h.events.length}</div><p class="text-headline-sm font-headline-sm">permits on file</p>
+      <p class="text-body-sm text-on-surface-variant mt-1">${esc(name)} is in the "${GROUP[h.fit.bucket].toLowerCase()}" group. The last permit is from ${last ? last.slice(0, 4) : "no year on file"}.</p></div>` +
+      permitList(h) + doBox("Confirm open details with the owner; Base gives installation approval after that.");
+  }
+  renderStats(h);
+}
+
+// Three cards below the hero, all from house/cohort.json.
+function renderStats(h) {
+  const n = houses.length, e = houses.filter(x => x.fit.bucket === "easy").length, r = n - e;
+  const reachN = conf(h.address).has("main_breaker_amps") ? Object.values(inherited).filter(v => v.from === h.address).length : reach(h).length;
+  const ask = (h.guessable || []).filter(g => (h.confirm_with_member || []).includes(g.field));
+  const c = "bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm flex flex-col justify-between";
+  $("#stats").innerHTML = `<div class="${c}"><div><div class="flex items-center justify-between mb-2"><span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">Permit records</span><span class="material-symbols-outlined text-outline text-[20px]">feed</span></div>
+      <div class="text-telemetry-metric font-telemetry-metric text-ink-primary mb-1">${n}</div><h3 class="text-headline-sm font-headline-sm text-ink-primary mb-1">Homes read from records</h3>
+      <p class="text-body-sm text-on-surface-variant">${e} lower complexity, ${r} need review or have a model blocker</p></div>
+      <div class="mt-6 pt-4 border-t border-wire-border"><div class="flex items-center justify-between text-[12px] mb-1.5"><span class="font-semibold text-primary">${e} lower complexity (${Math.round(e / n * 100)}%)</span><span class="font-semibold text-warning-amber">${r} other (${Math.round(r / n * 100)}%)</span></div>
+      <div class="w-full h-2 rounded-full bg-surface-subtle flex overflow-hidden"><div class="bg-primary h-full" style="width:${e / n * 100}%"></div><div class="bg-warning-amber h-full" style="width:${r / n * 100}%"></div></div></div></div>
+    <div class="${c}"><div><div class="flex items-center justify-between mb-2"><span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">Block learning</span><span class="material-symbols-outlined text-solar-green text-[20px]">bolt</span></div>
+      <div class="text-telemetry-metric font-telemetry-metric text-ink-primary mb-1">${reachN}</div><h3 class="text-headline-sm font-headline-sm text-ink-primary mb-1">Homes that would learn from one answer</h3>
+      <p class="text-body-sm text-on-surface-variant">An assumed breaker answer for ${esc(title(h.address))} copies to neighbours built within 3 years, as an estimate.</p></div>
+      <div class="mt-6 pt-4 border-t border-wire-border"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-wire-border text-[11px] font-bold text-ink-primary"><span class="w-2 h-2 rounded-full bg-energy-lime"></span>${esc(title(h.address))}</span></div></div>
+    <div class="${c}"><div><div class="flex items-center justify-between mb-2"><span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">Missing fields</span><span class="material-symbols-outlined text-outline text-[20px]">checklist</span></div>
+      <h3 class="text-headline-lg font-headline-lg text-ink-primary mb-1">Fields still to confirm</h3><p class="text-body-sm text-on-surface-variant mb-4">For ${esc(title(h.address))}, from permit records</p>
+      <div class="flex flex-wrap gap-2">${ask.length ? ask.map(g => `<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[12px] font-semibold bg-surface-subtle border border-wire-border text-ink-primary">${FIELD[g.field] || esc(g.field)}</span>`).join("") : `<span class="text-body-sm text-outline">All fields on file.</span>`}</div></div>
+      <div class="mt-6 pt-4 border-t border-wire-border text-body-sm text-outline">Open Details for each field's source and confidence.</div></div>`;
+}
+
+function timeline(h) {
+  const start = yearBuilt(h).year, end = 2026, span = Math.max(end - start, 1);
+  const years = []; for (let y = start; y <= end; y += Math.ceil(span / 6)) years.push(y);
+  if (years[years.length - 1] !== end) years.push(end);
+  const pos = y => `${((Math.max(y, start) - start) / span) * 100}%`, seen = {};
+  const ticks = h.events.map(e => { const y = new Date(e.date).getFullYear(), n = (seen[y] = (seen[y] || 0) + 1);
+    return `<div class="tk2 ${e.kind}" style="left:${pos(y)};top:${24 - Math.min(n - 1, 6) * 4}px" title="${esc(e.date.slice(0, 10))}, ${KIND[e.kind] || e.kind}, permit ${esc(e.permit)}${e.amps ? ", " + e.amps + " A" : ""}: ${esc(e.text)}"></div>`; }).join("");
+  return `<div class="timeline"><div class="axis"></div>${ticks}${years.map(y => `<div class="yr" style="left:${pos(y)}">${y}</div>`).join("")}</div>
+    <div class="key"><span><i style="background:#0F172A"></i>new build</span><span><i style="background:#84CC16"></i>panel upgrade</span><span><i style="background:#EF4444"></i>solar, battery, generator</span><span><i style="background:#F59E0B"></i>remodel</span><span><i style="background:#717970"></i>other</span></div>`;
+}
+
+// Stitch "field confidence matrix": one bar per inferred field, from house/cohort.json.
+function confMatrix(h) {
+  const rows = (h.guessable || []).map(g => { const p = Math.round(g.confidence * 100);
+    const v = g.value === true ? "permit found" : g.value === false ? "no permit" : g.value == null ? "open" : g.field === "main_breaker_amps" ? g.value + " A" : g.value;
+    return `<div><div class="flex justify-between gap-2 text-[12px] font-medium text-ink-primary mb-1"><span>${FIELD[g.field] || esc(g.field)}</span><span class="font-mono">${esc(v)} · ${p}%</span></div>
+      <div class="h-1.5 w-full bg-surface-subtle rounded-full overflow-hidden"><div class="h-full ${g.confidence < 0.7 ? "bg-warning-amber" : "bg-primary-container"}" style="width:${p}%"></div></div>
+      <div class="text-[10px] text-outline mt-0.5">${esc(g.source)}</div></div>`; }).join("");
+  return rows ? `<div class="bg-surface-muted border border-wire-border rounded-lg p-3.5"><div class="flex items-center justify-between mb-3"><span class="text-label-caps font-label-caps text-ink-primary uppercase tracking-wider">Field confidence</span><span class="text-[10px] font-mono text-outline">from permits</span></div><div class="flex flex-col gap-3">${rows}</div></div>` : "";
+}
+const illus = () => `<div class="flex items-center gap-3"><div class="relative shrink-0 w-[96px]"><img src="assets/stitch/iso-house.jpg" alt="Illustration of a home with rooftop solar and a wall battery" class="w-full h-auto rounded-lg"><span class="absolute -top-1 -left-1 px-1 py-0.5 rounded bg-surface-container-lowest/90 border border-wire-border text-[9px] font-semibold text-outline">Illustration</span></div>
+  <p class="text-[11px] text-on-surface-variant leading-snug"><span class="block font-label-caps text-label-caps uppercase text-primary mb-0.5">How to read it</span>Green homes have simple permit histories; amber homes need one more check.</p></div>`;
+function confBar(c) { const p = Math.round(c * 100); return `<span class="confbar ${c < 0.7 ? "low" : ""}"><i style="width:${p}%"></i></span> <span style="color:#717970;font-size:11.5px">${p}%</span>`; }
+
+function renderDetails() {
+  const h = houses.find(x => x.address === selected), cs = conf(h.address);
+  $("#dhead").textContent = `Evidence and estimates for ${title(h.address)}`;
+  $("#guesses").innerHTML = `<tr><th>What</th><th>Guess</th><th>From</th><th>How sure</th><th></th></tr>` + (h.guessable.map(g => {
+    const ask = g.confidence < 0.7 && (h.confirm_with_member || []).includes(g.field), done = cs.has(g.field);
+    const inh = g.field === "main_breaker_amps" && inherited[h.address] ? `<div style="color:#65a30d;font-size:11.5px">takes the answer from ${esc(title(inherited[h.address].from))}</div>` : "";
+    const act = ask ? (done ? `<span class="confirmed">marked locally</span>` : `<label class="confirm"><input type="checkbox" data-field="${g.field}"> mark reviewed</label>`) : "";
+    const v = g.value === true ? "permit found" : g.value === false ? "no permit found" : g.value == null ? "unknown" : g.field === "main_breaker_amps" ? g.value + " A" : g.value;
+    return `<tr><td>${FIELD[g.field] || esc(g.field)}${inh}</td><td>${esc(v)}</td><td style="color:#717970">${esc(g.source)}</td><td>${confBar(g.confidence)}</td><td>${act}</td></tr>`;
+  }).join("") || `<tr><td colspan="5">The permits cover this home.</td></tr>`);
+  $("#guesses").querySelectorAll("input[data-field]").forEach(cb => cb.onchange = () => { if (cb.checked) cs.add(cb.dataset.field); computeInheritance(); render(); renderDetails(); });
+  $("#all").innerHTML = Object.keys(GROUP).flatMap(k => sorted().filter(x => x.fit.bucket === k).map(x =>
+    `<li><span class="dot ${k}"></span>${esc(title(x.address))} <span style="color:#717970">${yearBuilt(x).label}, ${x.events.length} permits</span></li>`)).join("");
+}
+
+async function load() {
+  let data = null;
+  for (const p of ["../house/cohort.json", "../house/cohort.sample.json"]) {
+    try { const r = await fetch(p); if (r.ok) { data = await r.json(); break; } } catch (e) {}
+  }
+  if (!data) { $("#notice").classList.remove("hidden"); $("#panel").hidden = true; $("#card").hidden = true; return; }
+  houses = data;
+  const nE = houses.filter(x => x.fit.bucket === "easy").length;
+  $("#lede").textContent = `${houses.length} homes in 78745, read from City of Austin permits: ${nE} look straightforward, ${houses.length - nE} need one more check.`;
+  // Start with a useful record; confirmation remains an explicit user action.
+  const cands = houses.filter(h => canAsk(h) && amps(h) && amps(h).value != null);
+  const best = (cands.length ? cands : houses).map(h => [h, reach(h).length]).sort((a, b) => b[1] - a[1])[0][0];
+  selected = best.address;
+  computeInheritance();
+  renderChips(); render(); renderDetails();
+}
+load();
+
+(async () => {
+  try {
+    const r = await fetch("../house/public_buildings.json"); if (!r.ok) return;
+    const d = await r.json(), z = (d.count_by_zip || {})["78745"] || {};
+    const parts = Object.entries(z).map(([k, v]) => `${esc(k.replace(/_/g, " "))}: <b>${v}</b>`);
+    if (parts.length) $("#community").innerHTML = parts.join(", ");
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+{
+  "_meta": {
+    "about": "Public-data-first tours. Legacy IDs retained. Track/persona metadata describes intended navigation, not authorization. Shell must preserve it. Badges contain no hard-coded numerical results.",
+    "updated": "2026-09-27"
+  },
+  "tours": [
+    {
+      "id": "lead",
+      "track": "home",
+      "persona": "lead",
+      "label": "Home / User: getting started",
+      "chip": "Home / User: getting started",
+      "story": "Public records first, then uncertain inferences and review. Customer and admin views remain separate.",
+      "stops": [
+        {
+          "page": "onboarding.html#home",
+          "headline": "Review a sample home's public-record evidence and unknowns. Saved drafts are not an application.",
+          "number": {
+            "value": "Public records",
+            "text": "Inspect the source and its date.",
+            "source": "house/cohort.json"
+          }
+        },
+        {
+          "page": "voice.html",
+          "headline": "Use optional browser speech and touch guidance. Hosted photos are previews; local model checks are unverified, not engineering approval.",
+          "number": {
+            "value": "Guidance",
+            "text": "Inspect the source and its date.",
+            "source": "web/voice.js"
+          }
+        },
+        {
+          "page": "brain.html",
+          "headline": "Inspect indexed help and its sources. This is not authenticated account access or a support submission.",
+          "number": {
+            "value": "Indexed help",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/faq.json"
+          }
+        }
+      ]
+    },
+    {
+      "id": "older-house",
+      "track": "home",
+      "persona": "operations",
+      "label": "Home / Base admin: property review",
+      "chip": "Home / Base admin: property review",
+      "story": "Public records first, then uncertain inferences and review. Customer and admin views remain separate.",
+      "stops": [
+        {
+          "page": "house.html",
+          "headline": "Inspect permits and inferred details. Confirmations and inherited guesses are memory-only, not engineering verification.",
+          "number": {
+            "value": "Public records",
+            "text": "Inspect the source and its date.",
+            "source": "house/cohort.json"
+          }
+        },
+        {
+          "page": "explorer.html",
+          "headline": "Compare available permit history; a permit does not establish a home's present condition.",
+          "number": {
+            "value": "Public records",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/explorer_zip.json"
+          }
+        },
+        {
+          "page": "admin.html",
+          "headline": "Inspect dated signals and source rules, then follow a review link. No case assignment is saved.",
+          "number": {
+            "value": "Recorded snapshot",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/admin.json"
+          }
+        }
+      ]
+    },
+    {
+      "id": "member",
+      "track": "home",
+      "persona": "lead",
+      "label": "Home / User: energy and help",
+      "chip": "Home / User: energy and help",
+      "story": "Public records first, then uncertain inferences and review. Customer and admin views remain separate.",
+      "stops": [
+        {
+          "page": "member.html",
+          "headline": "Inspect example member records and saved answers, not a connected battery or live account.",
+          "number": {
+            "value": "Example records",
+            "text": "Inspect the source and its date.",
+            "source": "web/member.html"
+          }
+        },
+        {
+          "page": "brain.html",
+          "headline": "Read sourced help. Unresolved account questions still need Base; no callback is requested.",
+          "number": {
+            "value": "Indexed help",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/faq.json"
+          }
+        },
+        {
+          "page": "knowledge.html",
+          "headline": "Inspect source relationships; graph connections do not establish answer correctness.",
+          "number": {
+            "value": "Indexed sources",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/kb_graph.json"
+          }
+        }
+      ]
+    },
+    {
+      "id": "small-business",
+      "track": "compute",
+      "persona": "gpu",
+      "label": "Compute / User: locality context",
+      "chip": "Compute / User: locality context",
+      "story": "Public energy and locality inputs first, then modeled or recorded behavior. No live GPU or confidentiality guarantee.",
+      "stops": [
+        {
+          "page": "block.html",
+          "headline": "Inspect public neighborhood context. Proximity is not proof of an available GPU, network hop, or private data route.",
+          "number": {
+            "value": "Public context",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/block.json"
+          }
+        },
+        {
+          "page": "brain.html",
+          "headline": "Inspect indexed help and sources. Local services are optional; confidentiality and offline operation are not guaranteed.",
+          "number": {
+            "value": "Indexed help",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/faq.json"
+          }
+        },
+        {
+          "page": "knowledge.html",
+          "headline": "Inspect the source graph. No model installation, allocation, or tenant access is provisioned.",
+          "number": {
+            "value": "Indexed sources",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/kb_graph.json"
+          }
+        }
+      ]
+    },
+    {
+      "id": "base-ops",
+      "track": "home",
+      "persona": "operations",
+      "label": "Home / Base admin: market review",
+      "chip": "Home / Base admin: market review",
+      "story": "Public records first, then uncertain inferences and review. Customer and admin views remain separate.",
+      "stops": [
+        {
+          "page": "market.html",
+          "headline": "Inspect public permit counts and dates. An open permit does not establish a stalled customer or installation delay.",
+          "number": {
+            "value": "Public records",
+            "text": "Inspect the source and its date.",
+            "source": "data/market.json"
+          }
+        },
+        {
+          "page": "explorer.html",
+          "headline": "Compare ZIP-level appraisal, Census, permit, and territory estimates on the permit map. These are not surveys or site eligibility decisions.",
+          "number": {
+            "value": "Aggregate estimates",
+            "text": "Inspect the source and its date.",
+            "source": "data/funnel.json"
+          }
+        },
+        {
+          "page": "house.html",
+          "headline": "Review the fixed sample cohort. The previously selected ZIP is not transferred into this page.",
+          "number": {
+            "value": "Public records",
+            "text": "Inspect the source and its date.",
+            "source": "house/cohort.json"
+          }
+        },
+        {
+          "page": "admin.html",
+          "headline": "Check dated feeds and signals before following a review link. Navigation does not create assigned work.",
+          "number": {
+            "value": "Recorded snapshot",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/admin.json"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fleet",
+      "track": "compute",
+      "persona": "fleet",
+      "label": "Compute / Base admin: energy-aware capacity",
+      "chip": "Compute / Base admin: energy-aware capacity",
+      "story": "Public energy and locality inputs first, then modeled or recorded behavior. No live GPU or confidentiality guarantee.",
+      "stops": [
+        {
+          "page": "grid.html",
+          "headline": "Inspect dated ERCOT inputs alongside modeled dispatch. Modeled returns are not member earnings or a forecast.",
+          "number": {
+            "value": "Public inputs / model",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/grid_year.json"
+          }
+        },
+        {
+          "page": "index.html",
+          "headline": "Compare modeled economics and failure outcomes with assumptions; a recorded result is not a reliability guarantee.",
+          "number": {
+            "value": "Modeled results",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/report.json"
+          }
+        },
+        {
+          "page": "tower.html",
+          "headline": "Static hosting replays recorded workload and failure events. Optional local simulator controls do not execute real GPU jobs.",
+          "number": {
+            "value": "Recorded / simulator",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/tower_replay.json"
+          }
+        },
+        {
+          "page": "placement.html",
+          "headline": "Compare simulated placement policies, not a deployed Base topology or hardware reservation.",
+          "number": {
+            "value": "Simulation",
+            "text": "Inspect the source and its date.",
+            "source": "web/placement.html"
+          }
+        }
+      ]
+    },
+    {
+      "id": "block-host",
+      "track": "compute",
+      "persona": "fleet",
+      "label": "Compute / Base admin: placement review",
+      "chip": "Compute / Base admin: placement review",
+      "story": "Public energy and locality inputs first, then modeled or recorded behavior. No live GPU or confidentiality guarantee.",
+      "stops": [
+        {
+          "page": "placement.html",
+          "headline": "Compare hub and home capacity assumptions. The model does not identify approved host sites.",
+          "number": {
+            "value": "Simulation",
+            "text": "Inspect the source and its date.",
+            "source": "web/placement.html"
+          }
+        },
+        {
+          "page": "index.html",
+          "headline": "Inspect modeled income, power draw, and failures. No host income or uninterrupted service is guaranteed.",
+          "number": {
+            "value": "Modeled results",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/report.json"
+          }
+        },
+        {
+          "page": "grid.html",
+          "headline": "Review public energy inputs and dates; no actual host battery is controlled.",
+          "number": {
+            "value": "Public inputs / model",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/grid_year.json"
+          }
+        }
+      ]
+    },
+    {
+      "id": "judge",
+      "track": "home",
+      "persona": "operations",
+      "label": "Home / Base admin: short evidence walk",
+      "chip": "Home / Base admin: short evidence walk",
+      "story": "Public records first, then uncertain inferences and review. Customer and admin views remain separate.",
+      "stops": [
+        {
+          "page": "market.html",
+          "headline": "Start with permit evidence, not an assumed customer bottleneck. Open status alone does not explain project progress.",
+          "number": {
+            "value": "Public records",
+            "text": "Inspect the source and its date.",
+            "source": "data/market.json"
+          }
+        },
+        {
+          "page": "explorer.html",
+          "headline": "Compare aggregate opportunity signals on the permit map, with source dates and estimation limits visible.",
+          "number": {
+            "value": "Aggregate estimates",
+            "text": "Inspect the source and its date.",
+            "source": "data/funnel.json"
+          }
+        },
+        {
+          "page": "house.html",
+          "headline": "Inspect property evidence and unknowns. Neither records nor inferred fit establish installation approval.",
+          "number": {
+            "value": "Public records",
+            "text": "Inspect the source and its date.",
+            "source": "house/cohort.json"
+          }
+        },
+        {
+          "page": "admin.html",
+          "headline": "Check evidence and feed health. Service decisions and case handoff are not implemented here.",
+          "number": {
+            "value": "Recorded snapshot",
+            "text": "Inspect the source and its date.",
+            "source": "web/data/admin.json"
+          }
+        }
+      ]
+    }
+  ]
+}

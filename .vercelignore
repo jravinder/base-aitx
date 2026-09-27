@@ -1,0 +1,8 @@
+panel/photos
+panel/flickr
+house/local
+out
+__pycache__
+.git
+node_modules
+docs/evidence

@@ -1,0 +1,112 @@
+{
+ "nodes": 120,
+ "seed": 7,
+ "util": 0.4,
+ "member_cap": 0.25,
+ "rows": [
+  {
+   "nodes_per_feeder": 1,
+   "feeders": 120,
+   "margin_per_node": 23.31,
+   "compute_per_node": 20.63,
+   "failover_rate": 0.0,
+   "gpu_hours_lost": 8,
+   "upload_cost_per_node": 2.41,
+   "discharges_capped": 0,
+   "peak_relief_kw_per_feeder": 6.3
+  },
+  {
+   "nodes_per_feeder": 2,
+   "feeders": 60,
+   "margin_per_node": 23.34,
+   "compute_per_node": 20.65,
+   "failover_rate": 1.0,
+   "gpu_hours_lost": 0,
+   "upload_cost_per_node": 2.54,
+   "discharges_capped": 0,
+   "peak_relief_kw_per_feeder": 12.7
+  },
+  {
+   "nodes_per_feeder": 3,
+   "feeders": 40,
+   "margin_per_node": 22.96,
+   "compute_per_node": 20.66,
+   "failover_rate": 1.0,
+   "gpu_hours_lost": 0,
+   "upload_cost_per_node": 2.57,
+   "discharges_capped": 224,
+   "peak_relief_kw_per_feeder": 16.0
+  },
+  {
+   "nodes_per_feeder": 4,
+   "feeders": 30,
+   "margin_per_node": 22.78,
+   "compute_per_node": 20.67,
+   "failover_rate": 1.0,
+   "gpu_hours_lost": 0,
+   "upload_cost_per_node": 2.59,
+   "discharges_capped": 336,
+   "peak_relief_kw_per_feeder": 19.3
+  },
+  {
+   "nodes_per_feeder": 6,
+   "feeders": 20,
+   "margin_per_node": 22.24,
+   "compute_per_node": 20.7,
+   "failover_rate": 1.0,
+   "gpu_hours_lost": 0,
+   "upload_cost_per_node": 2.57,
+   "discharges_capped": 590,
+   "peak_relief_kw_per_feeder": 20.0
+  },
+  {
+   "nodes_per_feeder": 8,
+   "feeders": 15,
+   "margin_per_node": 21.69,
+   "compute_per_node": 20.67,
+   "failover_rate": 1.0,
+   "gpu_hours_lost": 0,
+   "upload_cost_per_node": 2.61,
+   "discharges_capped": 740,
+   "peak_relief_kw_per_feeder": 20.0
+  },
+  {
+   "nodes_per_feeder": 12,
+   "feeders": 10,
+   "margin_per_node": 21.35,
+   "compute_per_node": 20.77,
+   "failover_rate": 1.0,
+   "gpu_hours_lost": 0,
+   "upload_cost_per_node": 2.52,
+   "discharges_capped": 940,
+   "peak_relief_kw_per_feeder": 20.0
+  },
+  {
+   "nodes_per_feeder": 20,
+   "feeders": 6,
+   "margin_per_node": 21.19,
+   "compute_per_node": 20.92,
+   "failover_rate": 1.0,
+   "gpu_hours_lost": 0,
+   "upload_cost_per_node": 2.39,
+   "discharges_capped": 1236,
+   "peak_relief_kw_per_feeder": 20.0
+  },
+  {
+   "nodes_per_feeder": 30,
+   "feeders": 4,
+   "margin_per_node": 21.09,
+   "compute_per_node": 21.04,
+   "failover_rate": 1.0,
+   "gpu_hours_lost": 0,
+   "upload_cost_per_node": 2.26,
+   "discharges_capped": 1396,
+   "peak_relief_kw_per_feeder": 20.0
+  }
+ ],
+ "compute_per_node_range": [
+  20.63,
+  21.04
+ ],
+ "ceiling": "real feeder map and line ratings; density then set by routing (Panel 4), not assumed"
+}

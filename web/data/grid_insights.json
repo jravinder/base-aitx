@@ -1,0 +1,767 @@
+{
+ "title": "What most people miss in ERCOT's public data",
+ "tag": "Measured (from public data)",
+ "run": "python3 grid/insights.py",
+ "battery": {
+  "kwh": 39.2,
+  "kw": 10.0,
+  "reserve": 0.3
+ },
+ "findings": [
+  {
+   "id": "heavy-tail",
+   "title": "A few days carry the year",
+   "big": "18%",
+   "headline": "The best 4 days (1% of the year) made 18% of one battery's day-ahead arbitrage value on LZ_AEN; the best 37 days (10%) made 39%.",
+   "detail": "The median day made $1.02; the best day made $53.01. The top 50 hours hold 25% of all price-above-daily-average dollars.",
+   "chart": {
+    "type": "curve",
+    "x_label": "% of days, best first",
+    "y_label": "% of year's value",
+    "points": [
+     {
+      "days": 4,
+      "pct_days": 1.1,
+      "pct_value": 18.4
+     },
+     {
+      "days": 10,
+      "pct_days": 2.7,
+      "pct_value": 24.8
+     },
+     {
+      "days": 18,
+      "pct_days": 4.9,
+      "pct_value": 29.8
+     },
+     {
+      "days": 37,
+      "pct_days": 10.1,
+      "pct_value": 38.7
+     },
+     {
+      "days": 73,
+      "pct_days": 20.0,
+      "pct_value": 51.1
+     },
+     {
+      "days": 110,
+      "pct_days": 30.1,
+      "pct_value": 61.2
+     },
+     {
+      "days": 183,
+      "pct_days": 50.1,
+      "pct_value": 76.8
+     },
+     {
+      "days": 365,
+      "pct_days": 100.0,
+      "pct_value": 100.0
+     }
+    ]
+   },
+   "method": "earned.simulate_day on each of the last 365 days (one cycle, cheapest 3 hours in, dearest 3 out, 27.4 kWh usable); days sorted by value, cumulative share. Hour view: each hour's price above its day's mean.",
+   "base": "Dispatch: one scarcity day is worth more than a month of ordinary cycling, so being charged and available on forecast spike days is the first dispatch rule; daily optimisation comes second.",
+   "sources": [
+    "data/ercot_dam_hourly_2025_2026.csv (ERCOT report 13060, DAM load zone prices)"
+   ],
+   "range": "2025-09-20 to 2026-09-19",
+   "held": true,
+   "numbers": {
+    "top1_days": 4,
+    "top1_share": 0.184,
+    "top10pct_share": 0.387,
+    "top50h_share": 0.248,
+    "median_day": 1.02,
+    "best_day": 53.01,
+    "total": 558.67
+   }
+  },
+  {
+   "id": "peak-lag",
+   "title": "Price peaks after load peaks",
+   "big": "+4 h",
+   "headline": "In 9 of 12 months the typical day-ahead price peak comes later than the load peak, by up to 4 hours in summer; the summer 8 pm price is 2.3x the 1 pm price.",
+   "detail": "Load peaks late afternoon; price peaks as solar fades and net load climbs into the evening. Load peak hour and price peak hour by month are in the chart.",
+   "chart": {
+    "type": "pairs",
+    "x_label": "month",
+    "y_label": "hour ending of the daily peak",
+    "points": [
+     {
+      "x": "Jan",
+      "load": 8,
+      "price": 8
+     },
+     {
+      "x": "Feb",
+      "load": 20,
+      "price": 19
+     },
+     {
+      "x": "Mar",
+      "load": 18,
+      "price": 20
+     },
+     {
+      "x": "Apr",
+      "load": 18,
+      "price": 20
+     },
+     {
+      "x": "May",
+      "load": 18,
+      "price": 20
+     },
+     {
+      "x": "Jun",
+      "load": 17,
+      "price": 21
+     },
+     {
+      "x": "Jul",
+      "load": 17,
+      "price": 21
+     },
+     {
+      "x": "Aug",
+      "load": 17,
+      "price": 20
+     },
+     {
+      "x": "Sep",
+      "load": 17,
+      "price": 20
+     },
+     {
+      "x": "Oct",
+      "load": 17,
+      "price": 19
+     },
+     {
+      "x": "Nov",
+      "load": 16,
+      "price": 18
+     },
+     {
+      "x": "Dec",
+      "load": 19,
+      "price": 18
+     }
+    ]
+   },
+   "method": "Per calendar month (2025 to 2026 pooled): hour with the highest mean ERCOT total load, and hour with the highest median LZ_AEN DAM price (median so one spike day does not decide). Summer ratio = median HE20 / median HE13 price, Jun to Sep.",
+   "base": "Dispatch: holding charge through the load peak and discharging into HE19 to HE21 captures the net-load ramp; dispatch keyed to the price curve, not the load curve, captures it.",
+   "sources": [
+    "data/ercot_dam_hourly_2025_2026.csv (ERCOT report 13060, DAM load zone prices)",
+    "data/ercot_load_hourly_2024_2026.csv (ERCOT Native Load by weather zone)"
+   ],
+   "range": "prices 2025-01-01 to 2026-09-19; load 2025-01-01 to 2026-08-31",
+   "held": true,
+   "numbers": {
+    "by_month": [
+     {
+      "month": "Jan",
+      "load_peak_he": 8,
+      "price_peak_he": 8,
+      "ramp_17_20": 13.65,
+      "midday_13": 17.16,
+      "he20": 38.02
+     },
+     {
+      "month": "Feb",
+      "load_peak_he": 20,
+      "price_peak_he": 19,
+      "ramp_17_20": 15.56,
+      "midday_13": 14.59,
+      "he20": 32.84
+     },
+     {
+      "month": "Mar",
+      "load_peak_he": 18,
+      "price_peak_he": 20,
+      "ramp_17_20": 29.01,
+      "midday_13": 15.55,
+      "he20": 50.74
+     },
+     {
+      "month": "Apr",
+      "load_peak_he": 18,
+      "price_peak_he": 20,
+      "ramp_17_20": 28.6,
+      "midday_13": 18.95,
+      "he20": 62.22
+     },
+     {
+      "month": "May",
+      "load_peak_he": 18,
+      "price_peak_he": 20,
+      "ramp_17_20": 22.75,
+      "midday_13": 21.59,
+      "he20": 58.31
+     },
+     {
+      "month": "Jun",
+      "load_peak_he": 17,
+      "price_peak_he": 21,
+      "ramp_17_20": 18.01,
+      "midday_13": 24.26,
+      "he20": 52.04
+     },
+     {
+      "month": "Jul",
+      "load_peak_he": 17,
+      "price_peak_he": 21,
+      "ramp_17_20": 19.05,
+      "midday_13": 25.69,
+      "he20": 56.05
+     },
+     {
+      "month": "Aug",
+      "load_peak_he": 17,
+      "price_peak_he": 20,
+      "ramp_17_20": 20.91,
+      "midday_13": 33.16,
+      "he20": 74.7
+     },
+     {
+      "month": "Sep",
+      "load_peak_he": 17,
+      "price_peak_he": 20,
+      "ramp_17_20": 22.55,
+      "midday_13": 27.8,
+      "he20": 69.15
+     },
+     {
+      "month": "Oct",
+      "load_peak_he": 17,
+      "price_peak_he": 19,
+      "ramp_17_20": 16.76,
+      "midday_13": 30.62,
+      "he20": 76.74
+     },
+     {
+      "month": "Nov",
+      "load_peak_he": 16,
+      "price_peak_he": 18,
+      "ramp_17_20": -5.05,
+      "midday_13": 29.81,
+      "he20": 53.76
+     },
+     {
+      "month": "Dec",
+      "load_peak_he": 19,
+      "price_peak_he": 18,
+      "ramp_17_20": 6.36,
+      "midday_13": 17.42,
+      "he20": 40.77
+     }
+    ],
+    "mean_lag_h": 1.83,
+    "summer_he20_over_he13": 2.27
+   }
+  },
+  {
+   "id": "charge-window",
+   "title": "The cheap hours are at midday",
+   "big": "73%",
+   "headline": "73% of each day's three cheapest day-ahead hours on LZ_AEN fall between 10 am and 4 pm; only 12% fall overnight (1 am to 6 am).",
+   "detail": "2026 so far: 75% midday, 8% overnight. Peak month: 2026-03 at 92% midday.",
+   "chart": {
+    "type": "stack",
+    "x_label": "month",
+    "y_label": "% of charge hours",
+    "points": [
+     {
+      "x": "2025-01",
+      "night": 23,
+      "midday": 71
+     },
+     {
+      "x": "2025-02",
+      "night": 26,
+      "midday": 70
+     },
+     {
+      "x": "2025-03",
+      "night": 11,
+      "midday": 87
+     },
+     {
+      "x": "2025-04",
+      "night": 8,
+      "midday": 90
+     },
+     {
+      "x": "2025-05",
+      "night": 14,
+      "midday": 75
+     },
+     {
+      "x": "2025-06",
+      "night": 6,
+      "midday": 69
+     },
+     {
+      "x": "2025-07",
+      "night": 4,
+      "midday": 63
+     },
+     {
+      "x": "2025-08",
+      "night": 16,
+      "midday": 57
+     },
+     {
+      "x": "2025-09",
+      "night": 10,
+      "midday": 76
+     },
+     {
+      "x": "2025-10",
+      "night": 20,
+      "midday": 70
+     },
+     {
+      "x": "2025-11",
+      "night": 19,
+      "midday": 61
+     },
+     {
+      "x": "2025-12",
+      "night": 26,
+      "midday": 67
+     },
+     {
+      "x": "2026-01",
+      "night": 15,
+      "midday": 80
+     },
+     {
+      "x": "2026-02",
+      "night": 5,
+      "midday": 90
+     },
+     {
+      "x": "2026-03",
+      "night": 4,
+      "midday": 92
+     },
+     {
+      "x": "2026-04",
+      "night": 26,
+      "midday": 63
+     },
+     {
+      "x": "2026-05",
+      "night": 0,
+      "midday": 80
+     },
+     {
+      "x": "2026-06",
+      "night": 12,
+      "midday": 62
+     },
+     {
+      "x": "2026-07",
+      "night": 1,
+      "midday": 72
+     },
+     {
+      "x": "2026-08",
+      "night": 2,
+      "midday": 67
+     },
+     {
+      "x": "2026-09",
+      "night": 5,
+      "midday": 68
+     }
+    ]
+   },
+   "method": "earned.simulate_day on LZ_AEN each day; its 3 cheapest hours counted as overnight (HE1 to HE6) or midday (HE10 to HE16), share per month.",
+   "base": "Members and dispatch: a battery can refill from midday prices, often from the member's own solar, and still be full for the evening peak; overnight charging is now the more costly habit.",
+   "sources": [
+    "data/ercot_dam_hourly_2025_2026.csv (ERCOT report 13060, DAM load zone prices)"
+   ],
+   "range": "2025-01-01 to 2026-09-19",
+   "held": true,
+   "numbers": {
+    "midday_share": 72.9,
+    "overnight_share": 12.1,
+    "midday_2026": 74.9
+   }
+  },
+  {
+   "id": "zone-spread",
+   "title": "Zones split in bursts, not every day",
+   "big": "33%",
+   "headline": "Austin, Dallas and Houston day-ahead prices sit within $5/MWh of each other in 67% of hours; the other 33% of hours carry the congestion, and the top 1% of hours hold 20% of all spread dollars.",
+   "detail": "Spread is widest at HE17 (mean $14.53/MWh) and narrowest at HE24 ($3.29). When zones split by more than $5, LZ_AEN is the dearest zone 53% of the time. Hours over $20 apart: 1068.",
+   "chart": {
+    "type": "bars",
+    "x_label": "hour ending",
+    "y_label": "mean max-min spread, $/MWh",
+    "points": [
+     {
+      "x": 1,
+      "y": 3.65
+     },
+     {
+      "x": 2,
+      "y": 3.53
+     },
+     {
+      "x": 3,
+      "y": 3.36
+     },
+     {
+      "x": 4,
+      "y": 3.37
+     },
+     {
+      "x": 5,
+      "y": 3.47
+     },
+     {
+      "x": 6,
+      "y": 4.07
+     },
+     {
+      "x": 7,
+      "y": 5.41
+     },
+     {
+      "x": 8,
+      "y": 6.05
+     },
+     {
+      "x": 9,
+      "y": 4.45
+     },
+     {
+      "x": 10,
+      "y": 4.96
+     },
+     {
+      "x": 11,
+      "y": 5.83
+     },
+     {
+      "x": 12,
+      "y": 7.2
+     },
+     {
+      "x": 13,
+      "y": 8.93
+     },
+     {
+      "x": 14,
+      "y": 10.68
+     },
+     {
+      "x": 15,
+      "y": 12.0
+     },
+     {
+      "x": 16,
+      "y": 13.8
+     },
+     {
+      "x": 17,
+      "y": 14.53
+     },
+     {
+      "x": 18,
+      "y": 13.74
+     },
+     {
+      "x": 19,
+      "y": 11.51
+     },
+     {
+      "x": 20,
+      "y": 9.21
+     },
+     {
+      "x": 21,
+      "y": 7.03
+     },
+     {
+      "x": 22,
+      "y": 5.44
+     },
+     {
+      "x": 23,
+      "y": 3.95
+     },
+     {
+      "x": 24,
+      "y": 3.29
+     }
+    ]
+   },
+   "method": "For every hour, max minus min of the three load-zone DAM prices. Share of hours over $5 and $20; mean spread by hour ending; which zone is dearest when the spread is over $5.",
+   "base": "Siting: a battery in the zone that is dearest during split hours earns the congestion premium; fleet dispatch should read the member's own zone, not the hub.",
+   "sources": [
+    "data/ercot_dam_hourly_2025_2026.csv (ERCOT report 13060, DAM load zone prices)"
+   ],
+   "range": "2025-01-01 to 2026-09-19",
+   "held": true,
+   "numbers": {
+    "hours": 15046,
+    "share_gt5": 0.333,
+    "hours_gt20": 1068,
+    "top1pct_share": 0.205,
+    "dearest_when_split": {
+     "LZ_NORTH": 742,
+     "LZ_AEN": 2671,
+     "LZ_HOUSTON": 1600
+    },
+    "monthly_share_gt5": {
+     "2025-01": 0.227,
+     "2025-02": 0.247,
+     "2025-03": 0.412,
+     "2025-04": 0.401,
+     "2025-05": 0.395,
+     "2025-06": 0.294,
+     "2025-07": 0.278,
+     "2025-08": 0.332,
+     "2025-09": 0.249,
+     "2025-10": 0.371,
+     "2025-11": 0.382,
+     "2025-12": 0.382,
+     "2026-01": 0.242,
+     "2026-02": 0.201,
+     "2026-03": 0.538,
+     "2026-04": 0.506,
+     "2026-05": 0.335,
+     "2026-06": 0.282,
+     "2026-07": 0.254,
+     "2026-08": 0.333,
+     "2026-09": 0.309
+    }
+   },
+   "note": "The CSV holds three zones (AEN, NORTH, HOUSTON). LZ_SOUTH and LZ_WEST exist only in one-day dashboard snapshots, so they are left out of the year view."
+  },
+  {
+   "id": "near-zero",
+   "title": "Near-free hours cluster at winter middays",
+   "big": "277",
+   "headline": "277 day-ahead hours on LZ_AEN cleared at $5/MWh or less (37 at or below zero); 89% of them fall between 10 am and 4 pm.",
+   "detail": "Busiest months: Feb 103, Jan 84, Mar 49 hours. Day-ahead prices only.",
+   "chart": {
+    "type": "bars",
+    "x_label": "hour ending",
+    "y_label": "hours at $5/MWh or less",
+    "points": [
+     {
+      "x": 1,
+      "y": 1
+     },
+     {
+      "x": 2,
+      "y": 1
+     },
+     {
+      "x": 3,
+      "y": 1
+     },
+     {
+      "x": 4,
+      "y": 1
+     },
+     {
+      "x": 5,
+      "y": 1
+     },
+     {
+      "x": 6,
+      "y": 1
+     },
+     {
+      "x": 7,
+      "y": 0
+     },
+     {
+      "x": 8,
+      "y": 0
+     },
+     {
+      "x": 9,
+      "y": 6
+     },
+     {
+      "x": 10,
+      "y": 22
+     },
+     {
+      "x": 11,
+      "y": 36
+     },
+     {
+      "x": 12,
+      "y": 37
+     },
+     {
+      "x": 13,
+      "y": 43
+     },
+     {
+      "x": 14,
+      "y": 36
+     },
+     {
+      "x": 15,
+      "y": 38
+     },
+     {
+      "x": 16,
+      "y": 35
+     },
+     {
+      "x": 17,
+      "y": 16
+     },
+     {
+      "x": 18,
+      "y": 0
+     },
+     {
+      "x": 19,
+      "y": 0
+     },
+     {
+      "x": 20,
+      "y": 0
+     },
+     {
+      "x": 21,
+      "y": 0
+     },
+     {
+      "x": 22,
+      "y": 0
+     },
+     {
+      "x": 23,
+      "y": 1
+     },
+     {
+      "x": 24,
+      "y": 1
+     }
+    ]
+   },
+   "method": "Count of LZ_AEN DAM hours at or below $5/MWh and at or below $0, grouped by hour ending and month.",
+   "base": "Dispatch and members: these are the hours to fill batteries and shift home load (EV, pool pump) toward.",
+   "sources": [
+    "data/ercot_dam_hourly_2025_2026.csv (ERCOT report 13060, DAM load zone prices)"
+   ],
+   "range": "2025-01-01 to 2026-09-19",
+   "held": true,
+   "numbers": {
+    "hours": 15046,
+    "le5": 277,
+    "le0": 37,
+    "midday_share": 0.892,
+    "by_month": {
+     "Jan": 84,
+     "Feb": 103,
+     "Mar": 49,
+     "Apr": 10,
+     "May": 11,
+     "Oct": 8,
+     "Nov": 11,
+     "Dec": 1
+    }
+   }
+  },
+  {
+   "id": "season",
+   "title": "The priciest hours came in winter",
+   "big": "15 vs 0",
+   "headline": "Winter had 15 day-ahead hours over $1,000/MWh on LZ_AEN, summer had 0; winter days averaged $1.82 of arbitrage vs $1.42 in summer.",
+   "detail": "The $1,000 hours all fall in 2026-01. Hours over $200: winter 66, summer 18 of 117. Weekdays averaged $1.68 a day, weekends $1.35.",
+   "chart": {
+    "type": "hbars",
+    "x_label": "$ per day, one battery",
+    "y_label": "season",
+    "points": [
+     {
+      "x": "Winter (Dec-Feb)",
+      "y": 1.82,
+      "h200": 66,
+      "h1000": 15
+     },
+     {
+      "x": "Spring (Mar-May)",
+      "y": 1.56,
+      "h200": 30,
+      "h1000": 0
+     },
+     {
+      "x": "Summer (Jun-Sep)",
+      "y": 1.42,
+      "h200": 18,
+      "h1000": 0
+     },
+     {
+      "x": "Fall (Oct-Nov)",
+      "y": 1.74,
+      "h200": 3,
+      "h1000": 0
+     }
+    ]
+   },
+   "method": "LZ_AEN DAM hours over $200 and $1,000 by season; earned.simulate_day value averaged per day by season and by weekday vs weekend. 2025-01-01 to 2026-09-19 (two winters partly, one full summer plus 2026 to Sep 19).",
+   "base": "Reserve policy and members: winter cold snaps pay most and hurt most; hold backup reserve through winter fronts, not just summer heat.",
+   "sources": [
+    "data/ercot_dam_hourly_2025_2026.csv (ERCOT report 13060, DAM load zone prices)"
+   ],
+   "range": "2025-01-01 to 2026-09-19",
+   "held": true,
+   "numbers": {
+    "Winter (Dec-Feb)": {
+     "h200": 66,
+     "h1000": 15,
+     "days": 149,
+     "per_day": 1.82
+    },
+    "Spring (Mar-May)": {
+     "h200": 30,
+     "h1000": 0,
+     "days": 184,
+     "per_day": 1.56
+    },
+    "Summer (Jun-Sep)": {
+     "h200": 18,
+     "h1000": 0,
+     "days": 233,
+     "per_day": 1.42
+    },
+    "Fall (Oct-Nov)": {
+     "h200": 3,
+     "h1000": 0,
+     "days": 61,
+     "per_day": 1.74
+    },
+    "weekday_per_day": 1.68,
+    "weekend_per_day": 1.35
+   }
+  }
+ ],
+ "not_supported": [
+  {
+   "candidate": "Reserves vs price",
+   "held": false,
+   "why": "Supply-demand history holds 289 five-minute intervals (2026-09-26 to 2026-09-27); the tightest margin was 13,623 MW, far from scarcity, so a reserve threshold effect needs more history."
+  },
+  {
+   "candidate": "Wind and solar share at peak-price hours",
+   "held": false,
+   "why": "Fuel-mix history covers 2 days (2026-09-25, 2026-09-26); a year of generation mix next to the year of prices would test it."
+  }
+ ]
+}

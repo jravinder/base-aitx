@@ -1,0 +1,100 @@
+[
+  {
+    "address": "4108 Avenue G",
+    "zip": "78751",
+    "year_built": 1938,
+    "events": [
+      {"date": "1938-03-01", "kind": "new_construction", "amps": null, "permit": "1938-0091", "text": "Original residence permit."},
+      {"date": "1971-06-14", "kind": "electrical", "amps": 100, "permit": "1971-4412", "text": "Service upgrade to 100A."},
+      {"date": "2005-09-02", "kind": "remodel", "amps": null, "permit": "2005-8830", "text": "Kitchen remodel."},
+      {"date": "2019-04-18", "kind": "electrical", "amps": 200, "permit": "2019-2210", "text": "Panel upgrade to 200A."}
+    ],
+    "fit": {"bucket": "easy", "reasons": ["200A service already installed", "no open permits", "panel accessible from garage"]},
+    "guessable": [
+      {"field": "panel_amps", "value": 200, "source": "permit 2019-2210", "confidence": 0.95},
+      {"field": "panel_location", "value": "garage exterior wall", "source": "permit 2019-2210 sketch", "confidence": 0.6}
+    ],
+    "confirm_with_member": ["panel_location"]
+  },
+  {
+    "address": "1712 Newning Ave",
+    "zip": "78704",
+    "year_built": 1952,
+    "events": [
+      {"date": "1952-01-10", "kind": "new_construction", "amps": null, "permit": "1952-0210", "text": "Original residence permit."},
+      {"date": "1988-08-22", "kind": "electrical", "amps": 100, "permit": "1988-5561", "text": "Service upgrade to 100A."},
+      {"date": "2012-03-11", "kind": "remodel", "amps": null, "permit": "2012-1190", "text": "Addition, rear bedroom."}
+    ],
+    "fit": {"bucket": "easy", "reasons": ["100A service, headroom likely sufficient", "one open addition permit, closed"]},
+    "guessable": [
+      {"field": "panel_amps", "value": 100, "source": "permit 1988-5561", "confidence": 0.9},
+      {"field": "roof_type", "value": "composition shingle", "source": "addition permit 2012-1190", "confidence": 0.55}
+    ],
+    "confirm_with_member": ["roof_type"]
+  },
+  {
+    "address": "2201 Goodrich Ave",
+    "zip": "78704",
+    "year_built": {"lower_bound": 1945, "source": "earliest permit on file (1945-1120)", "confidence": 0.7},
+    "events": [
+      {"date": "1945-05-02", "kind": "new_construction", "amps": null, "permit": "1945-1120", "text": "Earliest permit on file, not necessarily original construction."},
+      {"date": "1979-11-30", "kind": "electrical", "amps": 100, "permit": "1979-6602", "text": "Service upgrade to 100A."},
+      {"date": "2001-02-14", "kind": "remodel", "amps": null, "permit": "2001-0455", "text": "Bathroom remodel."},
+      {"date": "2016-07-19", "kind": "remodel", "amps": null, "permit": "2016-9902", "text": "Foundation repair."}
+    ],
+    "fit": {"bucket": "needs_love", "reasons": ["100A service, aging wiring likely", "foundation repair on file, worth a look"]},
+    "guessable": [
+      {"field": "panel_amps", "value": 100, "source": "permit 1979-6602", "confidence": 0.85},
+      {"field": "foundation_type", "value": "pier and beam", "source": "permit 2016-9902", "confidence": 0.5}
+    ],
+    "confirm_with_member": ["foundation_type"]
+  },
+  {
+    "address": "907 Baylor St",
+    "zip": "78703",
+    "year_built": 1961,
+    "events": [
+      {"date": "1961-02-20", "kind": "new_construction", "amps": null, "permit": "1961-0310", "text": "Original residence permit."},
+      {"date": "1990-09-05", "kind": "electrical", "amps": 60, "permit": "1990-2207", "text": "Service noted at 60A, no upgrade recorded."},
+      {"date": "2008-05-16", "kind": "remodel", "amps": null, "permit": "2008-3341", "text": "Window replacement."}
+    ],
+    "fit": {"bucket": "needs_love", "reasons": ["60A service is a hard ceiling for most loads", "no electrical upgrade since 1990"]},
+    "guessable": [
+      {"field": "panel_amps", "value": 60, "source": "permit 1990-2207", "confidence": 0.65},
+      {"field": "wiring_type", "value": "likely aluminum branch circuits", "source": "era inference, 1961 build with no rewiring permit", "confidence": 0.4}
+    ],
+    "confirm_with_member": ["panel_amps", "wiring_type"]
+  },
+  {
+    "address": "5610 Ledesma Rd",
+    "zip": "78721",
+    "year_built": {"lower_bound": 1958, "source": "earliest permit on file (1958-0821)", "confidence": 0.6},
+    "events": [
+      {"date": "1958-04-12", "kind": "new_construction", "amps": null, "permit": "1958-0821", "text": "Earliest permit on file."},
+      {"date": "1975-10-01", "kind": "electrical", "amps": 60, "permit": "1975-4013", "text": "Service noted at 60A."}
+    ],
+    "fit": {"bucket": "not_now", "reasons": ["60A service, no upgrades in 50 years", "no permit activity since 1975, unclear condition"]},
+    "guessable": [
+      {"field": "panel_amps", "value": 60, "source": "permit 1975-4013", "confidence": 0.5},
+      {"field": "condition", "value": "unknown, no recent permits", "source": "absence of permit activity", "confidence": 0.3}
+    ],
+    "confirm_with_member": ["panel_amps", "condition"]
+  },
+  {
+    "address": "3314 Manchaca Rd",
+    "zip": "78704",
+    "year_built": {"lower_bound": 1949, "source": "earliest permit on file (1949-0033)", "confidence": 0.65},
+    "events": [
+      {"date": "1949-01-25", "kind": "new_construction", "amps": null, "permit": "1949-0033", "text": "Earliest permit on file."},
+      {"date": "1982-06-18", "kind": "electrical", "amps": 100, "permit": "1982-2255", "text": "Service upgrade to 100A."},
+      {"date": "1999-03-09", "kind": "remodel", "amps": null, "permit": "1999-0810", "text": "Garage conversion."},
+      {"date": "2021-11-02", "kind": "permit_open", "amps": null, "permit": "2021-6650", "text": "Open permit, structural review pending."}
+    ],
+    "fit": {"bucket": "not_now", "reasons": ["open structural permit, unresolved", "garage conversion may affect panel access"]},
+    "guessable": [
+      {"field": "panel_amps", "value": 100, "source": "permit 1982-2255", "confidence": 0.8},
+      {"field": "open_permit_status", "value": "pending structural review", "source": "permit 2021-6650", "confidence": 0.5}
+    ],
+    "confirm_with_member": ["open_permit_status"]
+  }
+]

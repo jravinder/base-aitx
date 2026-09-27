@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grid, for a Base battery</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind-forms.js"></script>
+<script id="tailwind-config">
+    if (window.tailwind) tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#ecf1ff",
+            "wire-border": "#E2E8F0",
+            "surface-variant": "#d8e3fb",
+            "energy-lime": "#84CC16",
+            "on-primary-fixed": "#00210b",
+            "surface-bright": "#f9f9ff",
+            "primary": "#023616",
+            "on-tertiary-fixed-variant": "#005323",
+            "surface": "#f9f9ff",
+            "on-secondary-container": "#506e08",
+            "evergreen-deep": "#004A31",
+            "on-error-container": "#93000a",
+            "outline": "#717970",
+            "error-container": "#ffdad6",
+            "surface-container-highest": "#d8e3fb",
+            "inverse-primary": "#a0d3a6",
+            "tertiary": "#003614",
+            "on-error": "#ffffff",
+            "primary-fixed": "#bbefc1",
+            "surface-muted": "#F8FAFC",
+            "error": "#ba1a1a",
+            "secondary": "#4a6700",
+            "on-primary": "#ffffff",
+            "surface-subtle": "#F1F5F9",
+            "primary-fixed-dim": "#a0d3a6",
+            "tertiary-fixed-dim": "#79db8d",
+            "on-surface": "#111c2d",
+            "surface-dim": "#cfdaf2",
+            "primary-container": "#1e4d2b",
+            "inverse-surface": "#263143",
+            "on-background": "#111c2d",
+            "on-surface-variant": "#414941",
+            "on-secondary-fixed": "#141f00",
+            "on-tertiary": "#ffffff",
+            "ink-primary": "#0F172A",
+            "secondary-fixed-dim": "#afd367",
+            "tertiary-container": "#004f21",
+            "secondary-container": "#cbf080",
+            "surface-container-high": "#dee8ff",
+            "on-secondary-fixed-variant": "#374e00",
+            "outline-variant": "#c1c9be",
+            "surface-tint": "#396844",
+            "on-tertiary-container": "#63c479",
+            "on-primary-fixed-variant": "#21502e",
+            "secondary-fixed": "#cbf080",
+            "critical-red": "#EF4444",
+            "background": "#f9f9ff",
+            "solar-green": "#22C55E",
+            "surface-container-lowest": "#ffffff",
+            "surface-container": "#e7eeff",
+            "warning-amber": "#F59E0B",
+            "tertiary-fixed": "#95f8a7",
+            "on-primary-container": "#8bbd92",
+            "on-tertiary-fixed": "#00210a",
+            "surface-container-low": "#f0f3ff",
+            "on-secondary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "margin-xl": "3rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "gutter-lg": "2rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "margin": "2rem"
+          },
+          "fontFamily": {
+            "telemetry-metric": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "display-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "telemetry-unit": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+
+<link rel="stylesheet" href="shell.css">
+<style>
+  :root { --paper:var(--bf-bg); --ink:var(--bf-ink); --muted:var(--bf-muted); --rule:var(--bf-line); --card:var(--bf-surface);
+    --live:#2f9e5b; --stale:#c98a1c; --gas:#b8471b; --coal:#6b5a4e; --nuke:#7a5aa8; --wind:#4b86b3; --solar:#e0a04a;
+    --hydro:#5aa0a8; --store:#2f6f3e; --other:#9a9a9a; --dem:var(--bf-danger); --cap:var(--bf-brand); --red:#b0303c; --gold:#d99a3e; }
+  * { box-sizing:border-box }
+  [hidden] { display:none !important }
+  body { margin:0; background:var(--paper); color:var(--ink); font:14px/1.45 var(--bf-font) }
+  main { max-width:1280px; margin:0 auto; padding:20px 24px 40px }
+  .top { display:flex; justify-content:space-between; align-items:flex-end; gap:8px 20px; flex-wrap:wrap; margin-bottom:14px }
+  h1 { font-size:24px; margin:0; font-weight:650; letter-spacing:-.01em }
+  .lede { color:var(--muted); font-size:13px; margin:4px 0 0; max-width:720px }
+  .stamp { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); white-space:nowrap }
+  .dot { width:9px; height:9px; border-radius:50%; background:var(--live); box-shadow:0 0 0 3px color-mix(in srgb, var(--live) 25%, transparent) }
+  .dot.old { background:var(--stale); box-shadow:0 0 0 3px color-mix(in srgb, var(--stale) 25%, transparent) }
+  .notice { border-left:4px solid var(--bf-danger); background:var(--bf-danger-tint); padding:10px 14px; font-size:13px; margin:10px 0; display:none }
+
+  .kpis { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px }
+  .kpi { background:var(--card); border:1px solid var(--rule); border-radius:var(--bf-radius-lg); padding:12px 14px 8px; min-width:0 }
+  .kpi .l { color:var(--muted); font-size:12px; white-space:normal; overflow-wrap:anywhere }
+  .kpi .v { font-size:24px; font-weight:650; font-variant-numeric:tabular-nums; line-height:1.2; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+  .kpi .v small { font-size:13px; font-weight:500; color:var(--muted) }
+  .kpi .s { font-size:11.5px; color:var(--muted); white-space:normal; overflow-wrap:anywhere }
+  .kpi svg { display:block; width:100%; height:34px; margin-top:6px }
+
+  .tabs { display:flex; gap:4px; margin:22px 0 12px; border-bottom:1px solid var(--rule); overflow-x:auto; scrollbar-width:none }
+  .tabs button { all:unset; cursor:pointer; padding:9px 14px; font-size:14px; font-weight:550; color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-1px; white-space:nowrap }
+  .tabs button[aria-selected="true"] { color:var(--ink); border-bottom-color:var(--bf-brand) }
+  .tabs button:focus-visible { outline:3px solid var(--bf-focus); outline-offset:-3px }
+
+  .grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px }
+  .card { background:var(--card); border:1px solid var(--rule); border-radius:var(--bf-radius-lg); padding:12px 14px 14px; min-width:0 }
+  .card.wide { grid-column:1 / -1 }
+  .card > header { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:8px }
+  .card h3 { font-size:14px; margin:0; font-weight:650 }
+  .card header p { margin:2px 0 0; color:var(--muted); font-size:12px }
+  .acts { display:flex; gap:6px; flex:none }
+  .acts a, .acts button { all:unset; cursor:pointer; font-size:11.5px; color:var(--muted); border:1px solid var(--rule); border-radius:4px; padding:3px 7px; white-space:nowrap }
+  .acts a:hover, .acts button:hover { color:var(--ink); border-color:var(--bf-line-strong) }
+  .acts a:focus-visible, .acts button:focus-visible { outline:3px solid var(--bf-focus) }
+  .card.full { position:fixed; inset:0; z-index:200; border-radius:0; overflow:auto; padding:18px 22px }
+  body.noscroll { overflow:hidden }
+  .body { min-width:0 }
+  .body svg { display:block; width:100%; overflow:visible }
+  svg text { font-size:11px; fill:var(--muted); font-family:var(--bf-font) }
+  .legend { display:flex; gap:6px 14px; font-size:11.5px; color:var(--muted); margin-top:8px; flex-wrap:wrap }
+  .legend i { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:4px; vertical-align:-1px }
+  .legend i.dash { height:0; width:14px; border-top:2px dashed currentColor; border-radius:0; vertical-align:3px }
+
+  .tscroll { overflow-x:auto }
+  table { border-collapse:collapse; font-size:13px; width:100% }
+  td, th { text-align:left; padding:5px 10px 5px 0; border-bottom:1px solid var(--rule); font-variant-numeric:tabular-nums; white-space:nowrap }
+  th { color:var(--muted); font-weight:500; font-size:12px }
+  td.n, th.n { text-align:right }
+
+  .cond { border-left:4px solid var(--cap); background:var(--bf-sunk); padding:8px 12px; border-radius:0 6px 6px 0; margin-bottom:8px }
+  .cond.tight { border-color:var(--bf-danger) }
+  .cond b { font-size:15px }
+  .facts { margin:8px 0 0; padding:0; list-style:none; font-size:13px }
+  .facts li { display:flex; justify-content:space-between; gap:10px; border-bottom:1px solid var(--rule); padding:4px 0 }
+  .facts li span:first-child { color:var(--muted) }
+
+  .tiles { display:grid; grid-template-columns:repeat(auto-fill, minmax(118px, 1fr)); gap:6px }
+  .tile { border-radius:5px; padding:8px 9px; min-width:0 }
+  .tile .nm { font-size:11px; font-weight:600; opacity:.85; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+  .tile .px { font-size:19px; font-weight:650; font-variant-numeric:tabular-nums }
+  .tile .da { font-size:11px; opacity:.8 }
+  .scrub { display:flex; align-items:center; gap:10px; margin:12px 0 4px; font-size:13px; flex-wrap:wrap }
+  .scrub input { flex:1 1 200px; accent-color:var(--bf-brand); min-width:0 }
+  .scrub output { font-variant-numeric:tabular-nums; font-weight:600; min-width:150px }
+  .scale { display:flex; align-items:center; gap:8px; font-size:11px; color:var(--muted); margin-top:10px; flex-wrap:wrap }
+  .scale .bar { height:10px; flex:1 1 180px; border-radius:2px; min-width:120px }
+  .scale .ticks { display:flex; justify-content:space-between; flex-basis:100%; padding:0 2px }
+
+  h2.row { font-size:16px; margin:26px 0 10px; font-weight:650 }
+  .notes { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px }
+  .note { background:var(--bf-brand-tint); border-radius:var(--bf-radius-lg); padding:12px 14px; font-size:13px; min-width:0 }
+  .note b { display:block; font-size:20px; font-variant-numeric:tabular-nums; color:var(--bf-brand); margin-bottom:2px }
+  footer { margin-top:24px; padding-top:12px; border-top:1px solid var(--rule); color:var(--muted); font-size:12px }
+  footer code { font-size:11.5px }
+
+  @media (max-width:1000px) { .notes { grid-template-columns:repeat(2, minmax(0,1fr)) } }
+  @media (max-width:860px) {
+    main { padding:16px 16px 32px }
+    .grid { grid-template-columns:minmax(0,1fr) }
+    .kpis { grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px }
+    .kpi { padding:10px 10px 6px }
+    .kpi .v { font-size:20px }
+    h1 { font-size:21px }
+  }
+  @media (max-width:480px) { .notes { grid-template-columns:minmax(0,1fr) } .card > header { flex-wrap:wrap } }
+  .material-symbols-outlined { font-family:'Material Symbols Outlined'; font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; font-size:20px; line-height:1; display:inline-block; vertical-align:middle; font-style:normal; letter-spacing:normal; text-transform:none; white-space:nowrap; direction:ltr }
+  body { font-family:"Plus Jakarta Sans", system-ui, sans-serif }
+  .dot.old { background:#F59E0B }
+  #plan svg text { font-family:"Plus Jakarta Sans", system-ui, sans-serif }
+  details.detail > summary::-webkit-details-marker { display:none }
+  details.detail > summary h2::before { content:"\25B8"; display:inline-block; margin-right:8px; color:#717970; transition:transform .15s }
+  details.detail[open] > summary h2::before { transform:rotate(90deg) }
+  .card { border-radius:12px }
+  button:focus-visible, a:focus-visible, summary:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
+  summary{cursor:pointer;min-height:44px;padding:10px 0}
+  summary:focus-visible{outline:3px solid var(--bf-focus);outline-offset:3px}
+</style>
+<script defer src="shell.js"></script>
+</head>
+<body class="bg-surface-muted text-ink-primary font-body-md antialiased min-h-screen">
+<main class="w-full max-w-[1520px] mx-auto px-4 md:px-margin py-8">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-8 pb-6 border-b border-wire-border">
+    <div class="space-y-1.5 min-w-0">
+      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white border border-wire-border shadow-sm text-label-caps font-label-caps text-on-surface-variant uppercase">
+        <span class="dot w-2 h-2 rounded-full bg-solar-green" id="dot"></span>
+        <span id="zoneTag">ERCOT public snapshot</span>
+      </div>
+      <h1 class="text-display-sm font-display-sm text-ink-primary tracking-tight">What the grid asks a Base battery to do right now.</h1>
+      <p class="text-body-md font-body-md text-outline" id="lede">Inspect public ERCOT snapshots and a separate battery dispatch model.</p>
+    </div>
+    <div class="flex flex-wrap items-center gap-2 self-start md:self-auto shrink-0 whitespace-nowrap bg-surface-container-lowest border border-wire-border rounded-xl p-1 shadow-sm">
+      <span class="px-3 py-1.5 text-label-md font-label-md rounded bg-surface-subtle text-primary font-semibold inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">schedule</span><span id="asof">loading</span></span>
+      <a id="story-next" href="house.html" class="inline-flex items-center gap-2 min-h-[40px] px-4 rounded-lg bg-primary-container text-white text-label-md font-label-md font-semibold hover:bg-evergreen-deep shadow-sm no-underline"><span>Next: a home's records</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </div>
+  <div class="notice" id="notice">Could not load the grid data. Start the server from the repo root: <code>python3 -m http.server 8741</code>, then open <code>http://localhost:8741/web/grid.html</code>.</div>
+
+  <section class="mb-8" id="missed" aria-labelledby="missed-h">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4">
+      <div class="min-w-0">
+        <span class="text-label-caps font-label-caps text-outline uppercase tracking-wider block">Open grid data · 627 days of ERCOT prices and load</span>
+        <h2 class="text-headline-lg font-headline-lg text-ink-primary" id="missed-h">What most people miss in ERCOT's public data</h2>
+        <p class="text-body-md font-body-md text-outline">Six findings from ERCOT's public price and load archives, each reproducible with <code>python3 grid/insights.py</code>.</p>
+      </div>
+      <span class="self-start md:self-auto shrink-0 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container text-label-caps font-label-caps uppercase">Measured (from public data)</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter" id="missed-cards"></div>
+    <p class="mt-4 text-body-sm font-body-sm text-outline" id="missed-next"></p>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-8">
+    <div class="lg:col-span-5 bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between shadow-sm min-w-0" id="a-now" aria-live="polite"><p class="text-label-caps font-label-caps text-outline uppercase">Right now</p><div class="text-display-sm font-display-sm">loading</div></div>
+    <div class="lg:col-span-7 bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between shadow-sm min-w-0">
+      <div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-surface-subtle gap-2">
+          <div><span class="text-label-caps font-label-caps text-outline uppercase tracking-wider block">Dispatch plan</span>
+            <h3 class="text-headline-md font-headline-md text-ink-primary font-bold" id="plan-q">Today's price by hour, and what the battery does</h3></div>
+          <span class="text-body-sm font-body-sm text-outline self-start sm:self-auto">Midnight to midnight</span>
+        </div>
+        <div class="bg-surface-subtle rounded-xl p-3 md:p-4 border border-wire-border relative">
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-body-sm font-body-sm" id="plan-leg"></div>
+          <div class="w-full" id="plan"></div>
+        </div>
+      </div>
+      <div class="pt-4 mt-4 border-t border-wire-border flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-body-sm font-body-sm text-outline" id="plan-foot"></div>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
+    <div class="bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between hover:border-primary-container transition-colors duration-150 shadow-sm min-w-0" id="a-earn"></div>
+    <div class="bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between hover:border-primary-container transition-colors duration-150 shadow-sm min-w-0" id="a-when"></div>
+    <div class="bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between hover:border-primary-container transition-colors duration-150 shadow-sm min-w-0" id="a-storm"></div>
+  </section>
+
+  <details class="detail bg-surface-container-lowest rounded-xl border border-wire-border px-4 md:px-space-lg shadow-sm" id="detail">
+    <summary class="cursor-pointer list-none min-h-[52px] flex flex-wrap items-baseline gap-x-3 py-4"><h2 class="text-headline-sm font-headline-sm text-ink-primary">ERCOT grid data and history</h2><span class="text-body-sm text-outline">Conditions, prices, year and load tabs</span></summary>
+    <div class="detail-body pb-6">
+      <div class="kpis" id="kpis"></div>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div id="panels"></div>
+      <h2 class="row">More numbers for a Base battery</h2>
+      <div class="notes" id="notes"></div>
+    </div>
+  </details>
+</main>
+<footer class="w-full bg-surface-container-lowest border-t border-wire-border py-6 px-4 md:px-margin mt-12">
+  <div class="max-w-[1520px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4 text-body-sm font-body-sm text-outline">
+    <div class="flex items-center gap-2 shrink-0"><span class="font-semibold text-ink-primary">Base Fleet</span><span>·</span><span class="px-2 py-0.5 rounded bg-surface-subtle text-on-surface-variant font-mono text-[11px]" id="zoneFoot">LZ_AEN</span></div>
+    <div class="text-on-surface-variant min-w-0 overflow-wrap-anywhere" style="overflow-wrap:anywhere">Sources: ERCOT grid dashboards (www.ercot.com/gridmktinfo/dashboards), hourly snapshots from <code>collect/ercot_feeds.sh</code>, built by <code>grid/today.py</code>. Day-ahead history: ERCOT report 13060 (<code>grid/year.py</code>, <code>grid/YEAR.md</code>). Load: ERCOT Native Load (<code>grid/LOAD.md</code>). Battery logic: <code>grid/earned.py</code>. Storm alerts: <code>web/data/signals.json</code> (National Weather Service).</div>
+  </div>
+</footer>
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
+const fmt = (n, d = 0) => n == null ? "n/a" : Number(n).toLocaleString("en-US", {minimumFractionDigits: d, maximumFractionDigits: d});
+const usd = (n, d = 2) => (n < 0 ? "-$" : "$") + fmt(Math.abs(n), d);
+const FUEL = [["Nuclear", "--nuke"], ["Coal and Lignite", "--coal"], ["Hydro", "--hydro"], ["Other", "--other"],
+  ["Wind", "--wind"], ["Solar", "--solar"], ["Natural Gas", "--gas"], ["Power Storage", "--store"]];
+const FUEL_VAR = Object.fromEntries(FUEL);
+const cssv = v => `var(${v})`;
+const mins = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+const hm = m => `${String(Math.floor(m / 60) % 24).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+
+// ---------- SVG helpers ----------
+function el(parent, tag, attrs = {}, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) {
+    if (["fill", "stroke", "opacity"].includes(k)) e.style[k] = attrs[k];
+    else e.setAttribute(k, attrs[k]);
+  }
+  if (text != null) e.textContent = text;
+  parent.appendChild(e);
+  return e;
+}
+const path = pts => pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join("");
+
+// A frame with x domain [x0, x1], y domain [y0, y1], y grid lines and labels.
+function frame(host, w, h, {x0, x1, y0, y1, yTicks, fmtY, xTicks = [], log = false, ml = 46}) {
+  const m = {l: ml, r: 10, t: 8, b: 22}, s = document.createElementNS(NS, "svg");
+  s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("height", h);
+  const f = log ? v => Math.log10(Math.max(v, 1)) : v => v;
+  const X = x => m.l + (x - x0) / (x1 - x0) * (w - m.l - m.r);
+  const Y = v => h - m.b - (f(v) - f(y0)) / (f(y1) - f(y0)) * (h - m.t - m.b);
+  for (const t of yTicks) {
+    el(s, "line", {x1: m.l, x2: w - m.r, y1: Y(t), y2: Y(t), stroke: "var(--rule)"});
+    el(s, "text", {x: m.l - 6, y: Y(t) + 3.5, "text-anchor": "end"}, fmtY(t));
+  }
+  for (const [x, lab] of xTicks) el(s, "text", {x: X(x), y: h - 6, "text-anchor": "middle"}, lab);
+  host.appendChild(s);
+  return {s, X, Y, m, w, h};
+}
+const line = (F, pts, color, width = 1.7, dash = "") =>
+  el(F.s, "path", {d: path(pts.map(([x, v]) => [F.X(x), F.Y(v)])), fill: "none", stroke: color, "stroke-width": width, "stroke-dasharray": dash, "stroke-linejoin": "round"});
+const band = (F, a, b, label) => {
+  const r = el(F.s, "rect", {x: F.X(a), y: F.m.t, width: F.X(b) - F.X(a), height: F.h - F.m.t - F.m.b, fill: "var(--bf-amber-tint)"});
+  F.s.insertBefore(r, F.s.firstChild);
+  if (label) el(F.s, "text", {x: (F.X(a) + F.X(b)) / 2, y: F.m.t + 12, "text-anchor": "middle"}, label);
+};
+const hourTicks = (w, from = 0, span = 1440) => (w < 420 ? [0, 12, 24] : [0, 6, 12, 18, 24]).map(hh => [from + hh * 60, hh === 24 ? "24:00" : hm(hh * 60)]);
+
+function spark(host, vals, color) {
+  const s = document.createElementNS(NS, "svg"), w = 200, h = 34, v = vals.filter(x => x != null);
+  s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("preserveAspectRatio", "none");
+  const lo = Math.min(...v), hi = Math.max(...v), Y = x => h - 3 - (x - lo) / ((hi - lo) || 1) * (h - 6);
+  const pts = vals.map((x, i) => x == null ? null : [i / Math.max(vals.length - 1, 1) * w, Y(x)]).filter(Boolean);
+  el(s, "path", {d: path(pts) + `L${pts.at(-1)[0]} ${h}L0 ${h}Z`, fill: color, opacity: .12});
+  el(s, "path", {d: path(pts), fill: "none", stroke: color, "stroke-width": 1.6, "vector-effect": "non-scaling-stroke"});
+  host.appendChild(s);
+}
+
+// ---------- price color scale: diverging, fixed stops ----------
+const STOPS = [[-40, [37, 92, 134]], [-10, [140, 189, 230]], [0, [236, 239, 234]], [100, [236, 164, 92]], [225, [150, 28, 40]]];
+function priceColor(p) {
+  if (p <= STOPS[0][0]) return STOPS[0][1];
+  for (let i = 1; i < STOPS.length; i++) {
+    const [a, ca] = STOPS[i - 1], [b, cb] = STOPS[i];
+    if (p <= b) { const t = (p - a) / (b - a); return ca.map((c, k) => Math.round(c + (cb[k] - c) * t)); }
+  }
+  return STOPS.at(-1)[1];
+}
+const rgb = c => `rgb(${c.join(",")})`;
+const inkOn = c => (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) > 150 ? "#182b27" : "#fff";
+
+// ---------- cards and tabs ----------
+const TABS = ["Conditions", "Pricing", "Year", "Load"];
+const cards = [];
+let active = "Conditions";
+function card(tab, {title, sub, json, wide, legend, draw}) {
+  const c = document.createElement("article");
+  c.className = "card" + (wide ? " wide" : "");
+  c.innerHTML = `<header><div><h3>${title}</h3>${sub ? `<p>${sub}</p>` : ""}</div><div class="acts">` +
+    `<a href="${json}" download title="Download the JSON behind this card">JSON</a>` +
+    `<button type="button" aria-pressed="false" title="Show full screen">Full screen</button></div></header><div class="body"></div>` +
+    (legend ? `<div class="legend">${legend}</div>` : "");
+  const btn = c.querySelector("button");
+  btn.onclick = () => {
+    const on = !c.classList.contains("full");
+    c.classList.toggle("full", on); document.body.classList.toggle("noscroll", on);
+    btn.textContent = on ? "Close" : "Full screen"; btn.setAttribute("aria-pressed", on);
+    render(cards.find(x => x.el === c));
+  };
+  $(`#panel-${tab}`).appendChild(c);
+  const entry = {el: c, body: c.querySelector(".body"), draw};
+  cards.push(entry);
+  return entry;
+}
+function render(k) {
+  const full = k.el.classList.contains("full"), w = Math.max(k.body.clientWidth, 260);
+  const h = full ? Math.max(260, Math.min(window.innerHeight - 170, w * .55)) : (w < 500 ? 200 : 230);
+  k.body.innerHTML = ""; k.draw(k.body, w, h, full);
+}
+function renderActive() { cards.filter(k => k.el.offsetParent !== null || k.el.classList.contains("full")).forEach(render); }
+function setTab(t) {
+  active = t;
+  for (const b of document.querySelectorAll("#tabs button")) b.setAttribute("aria-selected", b.dataset.tab === t);
+  for (const p of TABS) $(`#panel-${p}`).hidden = p !== t;
+  try { localStorage.setItem("grid-tab", t); } catch (e) { /* storage off */ }
+  renderActive();
+}
+function buildTabs() {
+  $("#tabs").innerHTML = TABS.map(t => `<button role="tab" data-tab="${t}" aria-controls="panel-${t}">${t}</button>`).join("");
+  $("#panels").innerHTML = TABS.map(t => `<div class="grid" role="tabpanel" id="panel-${t}"></div>`).join("");
+  for (const b of document.querySelectorAll("#tabs button")) b.onclick = () => setTab(b.dataset.tab);
+}
+document.addEventListener("keydown", e => { if (e.key === "Escape") { const f = document.querySelector(".card.full button"); if (f) f.click(); } });
+let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { renderActive(); if (window.drawPlan) window.drawPlan(); }, 120); });
+
+// ---------- data ----------
+const J = {today: "data/grid_today.json", year: "data/grid_year.json", load: "data/grid_load.json"};
+async function load() {
+  const out = {};
+  await Promise.all(Object.entries(J).map(async ([k, u]) => { const r = await fetch(u); if (!r.ok) throw new Error(u); out[k] = await r.json(); }));
+  try { const r = await fetch("data/signals.json"); out.signals = r.ok ? await r.json() : null; } catch (e) { out.signals = null; }
+  return out;
+}
+
+function header(td) {
+  const t = new Date(td.as_of), ageMin = (Date.now() - t) / 60000;
+  const ct = t.toLocaleString("en-US", {timeZone: "America/Chicago", hour: "numeric", minute: "2-digit", month: "short", day: "numeric"});
+  $("#asof").textContent = `as of ${ct} CT`;
+  $("#dot").classList.toggle("old", !(ageMin < 120));
+  $("#dot").title = ageMin < 120 ? "Snapshot under 2 hours old" : `Snapshot ${fmt(ageMin / 60, 1)} hours old`;
+}
+
+function kpis(td) {
+  const sd = td.supply_demand.actual, nl = td.net_load, rtA = td.prices.rt.map(r => r.LZ_AEN);
+  const now = td.fuel_mix.now, tot = Object.values(now).filter(v => v > 0).reduce((a, b) => a + b, 0);
+  const [main, mainMw] = Object.entries(now).sort((a, b) => b[1] - a[1])[0];
+  const last = sd.at(-1), lastNl = nl.at(-1), lastRt = td.prices.rt.at(-1);
+  const tiles = [
+    {l: "Load", v: `${fmt(last.dem)} <small>MW</small>`, s: `at ${last.t} CT, peak so far ${fmt(Math.max(...sd.map(r => r.dem)))}`, d: sd.map(r => r.dem), c: "var(--dem)"},
+    {l: "Net load (load minus wind and solar)", v: `${fmt(lastNl.net)} <small>MW</small>`, s: `wind and solar ${fmt(lastNl.ws)} MW`, d: nl.map(r => r.net), c: "var(--bf-blue-line)"},
+    {l: "LZ_AEN real-time price", v: `${usd(lastRt.LZ_AEN)} <small>/MWh</small>`, s: `interval ending ${lastRt.t}, high ${usd(Math.max(...rtA))}`, d: rtA, c: "var(--bf-amber)"},
+    {l: "Main source now", v: `${main === "Natural Gas" ? "Gas" : main} <small>${fmt(mainMw / tot * 100)}%</small>`, s: `${fmt(mainMw)} MW of ${fmt(tot)} MW`, d: td.fuel_mix.series.map(r => r[main]), c: cssv(FUEL_VAR[main] || "--other")}
+  ];
+  $("#kpis").innerHTML = "";
+  for (const k of tiles) {
+    const d = document.createElement("div"); d.className = "kpi";
+    d.innerHTML = `<div class="l">${k.l}</div><div class="v">${k.v}</div><div class="s">${k.s}</div>`;
+    spark(d, k.d, k.c); $("#kpis").appendChild(d);
+  }
+}
+
+// ---------- Conditions ----------
+function conditions(td) {
+  const fmLeg = FUEL.map(([f, v]) => `<span><i style="background:${cssv(v)}"></i>${f}</span>`).join("");
+  card("Conditions", {title: "Fuel mix today", sub: "Generation by fuel, MW, stacked, 15 min", json: J.today, wide: true, legend: fmLeg,
+    draw(host, w, h) {
+      const fs = td.fuel_mix.series, xs = fs.map(r => mins(r.t));
+      const tops = fs.map(r => FUEL.reduce((a, [f]) => a + Math.max(0, r[f] || 0), 0));
+      const yMax = Math.ceil(Math.max(...tops) / 20000) * 20000;
+      const F = frame(host, w, h, {x0: 0, x1: 1440, y0: 0, y1: yMax, yTicks: [0, yMax / 4, yMax / 2, yMax * 3 / 4, yMax].map(Math.round), fmtY: v => fmt(v / 1000) + "k", xTicks: hourTicks(w)});
+      const base = fs.map(() => 0);
+      for (const [f, v] of FUEL) {
+        const top = fs.map((r, i) => base[i] + Math.max(0, r[f] || 0));
+        const pts = xs.map((x, i) => [F.X(x), F.Y(top[i])]).concat(xs.map((x, i) => [F.X(x), F.Y(base[i])]).reverse());
+        el(F.s, "path", {d: path(pts) + "Z", fill: cssv(v), opacity: .9}).appendChild(document.createElementNS(NS, "title")).textContent = `${f}: ${fmt(fs.at(-1)[f])} MW now`;
+        top.forEach((t, i) => base[i] = t);
+      }
+    }});
+
+  card("Conditions", {title: "Supply vs demand", sub: "MW. Solid: measured today. Dashed: ERCOT forecast, rest of today and tomorrow", json: J.today,
+    legend: `<span><i style="background:var(--cap)"></i>available capacity</span><span><i style="background:var(--dem)"></i>demand</span><span style="color:var(--muted)"><i class="dash"></i>forecast</span>`,
+    draw(host, w, h) {
+      const sd = td.supply_demand, tomorrow = sd.forecast.filter(r => r.date > td.date).slice(0, 24);
+      const act = sd.actual.map(r => [mins(r.t), r]), rest = sd.rest_of_today.map(r => [mins(r.t) || 1440, r]);
+      const fc = tomorrow.map(r => [1440 + r.he * 60, r]);
+      const all = [...act, ...rest, ...fc].flatMap(([, r]) => [r.cap, r.dem]);
+      const lo = Math.floor(Math.min(...all) / 10000) * 10000, hi = Math.ceil(Math.max(...all) / 10000) * 10000;
+      const ticks = []; for (let t = lo; t <= hi; t += 10000 * Math.ceil((hi - lo) / 50000)) ticks.push(t);
+      const F = frame(host, w, h, {x0: 0, x1: 2880, y0: lo, y1: hi, yTicks: ticks, fmtY: v => fmt(v / 1000) + "k",
+        xTicks: w < 420 ? [[0, "00:00"], [1440, "tomorrow"], [2880, "24:00"]] : [[0, "00:00"], [720, "12:00"], [1440, "tomorrow 00:00"], [2160, "12:00"], [2880, "24:00"]]});
+      el(F.s, "line", {x1: F.X(1440), x2: F.X(1440), y1: F.m.t, y2: h - F.m.b, stroke: "var(--bf-line-strong)", "stroke-dasharray": "2 3"});
+      for (const [k, c] of [["cap", "var(--cap)"], ["dem", "var(--dem)"]]) {
+        line(F, act.map(([x, r]) => [x, r[k]]), c);
+        const join = act.length ? [act.at(-1)] : [];
+        line(F, [...join, ...rest, ...fc].map(([x, r]) => [x, r[k]]), c, 1.5, "4 3");
+      }
+    }});
+
+  const c = td.conditions;
+  card("Conditions", {title: "Reserves and grid condition", sub: "Physical responsive capability (PRC), MW. ERCOT calls conservation when PRC falls under 3,000 MW", json: J.today,
+    draw(host, w, h) {
+      const box = document.createElement("div");
+      if (c) box.innerHTML = `<div class="cond${c.eea > 0 ? " tight" : ""}"><b>${c.title}</b><div style="color:var(--muted);font-size:13px">${c.note}</div></div>`;
+      host.appendChild(box);
+      if (c) {
+        const pts = c.prc.map(r => [mins(r.t), r.mw]), hi = Math.ceil(Math.max(...pts.map(p => p[1]), 3000) / 5000) * 5000;
+        const F = frame(host, w, Math.min(h, 170), {x0: 0, x1: 1440, y0: 0, y1: hi, yTicks: [0, 3000, hi / 2, hi], fmtY: v => fmt(v / 1000, v === 3000 ? 0 : 0) + "k", xTicks: hourTicks(w)});
+        el(F.s, "line", {x1: F.m.l, x2: w - F.m.r, y1: F.Y(3000), y2: F.Y(3000), stroke: "var(--bf-danger)", "stroke-dasharray": "3 3"});
+        line(F, pts, "var(--bf-brand)");
+      }
+      const facts = [
+        ["Reserves (PRC) now", c ? `${fmt(c.prc_mw)} MW` : null],
+        ["Headroom now", `${fmt(td.supply_demand.actual.at(-1).cap - td.supply_demand.actual.at(-1).dem)} MW`],
+        ["Generation out", td.outages ? `${fmt(td.outages.total_mw)} MW (${fmt(td.outages.unplanned_mw)} unplanned)` : null],
+        ["Grid batteries now", td.storage_now_mw != null ? `${fmt(td.storage_now_mw)} MW net` : null],
+        ["Frequency", td.ancillary ? `${td.ancillary.frequency.toFixed(3)} Hz` : null],
+        ["Austin high / 15 yr normal", td.weather_austin ? `${td.weather_austin.high}°F / ${td.weather_austin.high15yr}°F` : null]
+      ].filter(r => r[1]);
+      const ul = document.createElement("ul"); ul.className = "facts";
+      ul.innerHTML = facts.map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join("");
+      host.appendChild(ul);
+    }});
+
+  if (td.wind_solar) card("Conditions", {title: "Wind and solar", sub: "MW by hour, measured vs ERCOT forecast", json: J.today,
+    legend: `<span><i style="background:var(--solar)"></i>solar</span><span><i style="background:var(--wind)"></i>wind</span><span style="color:var(--muted)"><i class="dash"></i>forecast</span>`,
+    draw(host, w, h) {
+      const ws = td.wind_solar, hi = Math.ceil(Math.max(...ws.flatMap(r => [r.wind, r.solar, r.wind_fc, r.solar_fc]).filter(v => v != null)) / 10000) * 10000;
+      const F = frame(host, w, h, {x0: 0, x1: 24, y0: 0, y1: hi, yTicks: [0, hi / 2, hi], fmtY: v => fmt(v / 1000) + "k", xTicks: (w < 420 ? [0, 12, 24] : [0, 6, 12, 18, 24]).map(x => [x, x === 24 ? "24:00" : hm(x * 60)])});
+      const S = k => ws.filter(r => r[k] != null).map(r => [r.he - .5, r[k]]);
+      line(F, S("solar_fc"), "var(--solar)", 1.4, "4 3"); line(F, S("wind_fc"), "var(--wind)", 1.4, "4 3");
+      line(F, S("solar"), "var(--solar)", 2); line(F, S("wind"), "var(--wind)", 2);
+    }});
+}
+
+// ---------- Pricing ----------
+function pricing(td) {
+  const P = td.prices, pts = P.points;
+  let idx = P.rt.length - 1;
+  const damAt = i => P.dam[Math.min(24, Math.max(1, Math.ceil(mins(P.rt[i].t) / 60))) - 1];
+  const grad = STOPS.map(([p, c], i) => `${rgb(c)} ${i / (STOPS.length - 1) * 100}%`).join(",");
+  const scale = `<div class="scale"><span>$/MWh</span><div class="bar" style="background:linear-gradient(90deg,${grad})"></div>` +
+    `<div class="ticks"><span>under -40</span><span>-10</span><span>0</span><span>100</span><span>over 225</span></div></div>`;
+  let redrawLine = () => {};
+  const tiles = card("Pricing", {title: "Real-time price by zone and hub", sub: "15 min settlement point price, every load zone and hub. Move the slider to replay today", json: J.today, wide: true, legend: scale,
+    draw(host) {
+      host.innerHTML = `<div class="tiles"></div><div class="scrub"><label for="scrub">Interval</label><input id="scrub" type="range" min="0" max="${P.rt.length - 1}" value="${idx}"><output id="scrubOut"></output></div>`;
+      const paint = () => {
+        const r = P.rt[idx], d = damAt(idx);
+        host.querySelector("#scrubOut").textContent = `ending ${r.t} CT (HE${d.he})`;
+        host.querySelector(".tiles").innerHTML = pts.map(n => {
+          const c = priceColor(r[n]);
+          return `<div class="tile" style="background:${rgb(c)};color:${inkOn(c)}" title="${n}: real-time ${usd(r[n])}, day-ahead ${usd(d[n])}">` +
+            `<div class="nm">${n}</div><div class="px">${usd(r[n])}</div><div class="da">day-ahead ${usd(d[n])}</div></div>`;
+        }).join("");
+      };
+      host.querySelector("#scrub").oninput = e => { idx = +e.target.value; paint(); redrawLine(); };
+      paint();
+    }});
+
+  const lineCard = card("Pricing", {title: "LZ_AEN: day-ahead vs real-time", sub: "$/MWh. Day-ahead is hourly, real-time is 15 min. The marker follows the slider", json: J.today, wide: true,
+    legend: `<span><i style="background:var(--ink)"></i>day-ahead, hourly</span><span><i style="background:var(--bf-amber)"></i>real-time, 15 min</span>`,
+    draw(host, w, h) {
+      const rtp = P.rt.map(r => [mins(r.t), r.LZ_AEN]), dam = P.dam.flatMap(r => [[(r.he - 1) * 60, r.LZ_AEN], [r.he * 60, r.LZ_AEN]]);
+      const vals = [...rtp, ...dam].map(p => p[1]), lo = Math.min(0, Math.floor(Math.min(...vals) / 20) * 20), hi = Math.ceil(Math.max(...vals) / 20) * 20;
+      const step = Math.max(20, Math.ceil((hi - lo) / 4 / 20) * 20), ticks = []; for (let t = lo; t <= hi; t += step) ticks.push(t);
+      const F = frame(host, w, h, {x0: 0, x1: 1440, y0: lo, y1: hi, yTicks: ticks, fmtY: v => "$" + v, xTicks: hourTicks(w)});
+      line(F, dam, "var(--ink)", 1.5); line(F, rtp, "var(--bf-amber)", 2);
+      const x = mins(P.rt[idx].t);
+      el(F.s, "line", {x1: F.X(x), x2: F.X(x), y1: F.m.t, y2: h - F.m.b, stroke: "var(--bf-brand)", "stroke-dasharray": "2 2"});
+      el(F.s, "circle", {cx: F.X(x), cy: F.Y(P.rt[idx].LZ_AEN), r: 4, fill: "var(--bf-brand)"});
+    }});
+  redrawLine = () => render(lineCard);
+}
+
+// ---------- Year ----------
+function year(yr) {
+  const Y25 = yr.years["2025"], Y26 = yr.years["2026"];
+  card("Year", {title: "Day-ahead price, LZ_AEN, every day", sub: `${yr.first} to ${yr.last}. Daily peak hour and daily mean, $/MWh, log scale`, json: J.year, wide: true,
+    legend: `<span><i style="background:var(--ink)"></i>daily peak hour</span><span><i style="background:var(--bf-line-strong)"></i>daily mean</span><span><i style="background:var(--gold);border-radius:50%"></i>peak over $200</span><span><i style="background:var(--bf-danger);border-radius:50%"></i>over $500</span><span><i style="background:var(--red);border-radius:50%"></i>over $1,000</span>`,
+    draw(host, w, h) {
+      const d = yr.daily;
+      const F = frame(host, w, h + 30, {x0: 0, x1: d.length - 1, y0: 10, y1: 3000, log: true, yTicks: w < 500 ? [10, 100, 1000] : [10, 30, 100, 200, 500, 1000, 3000], fmtY: v => "$" + fmt(v)});
+      d.forEach((r, i) => { if (r.date.endsWith("-01") && (w > 700 || +r.date.slice(5, 7) % 3 === 1)) el(F.s, "text", {x: F.X(i), y: F.h - 6, "text-anchor": "middle"}, r.date.slice(2, 7)); });
+      line(F, d.map((r, i) => [i, r.mean]), "var(--bf-line-strong)", 1);
+      line(F, d.map((r, i) => [i, r.peak]), "var(--ink)", 1);
+      d.forEach((r, i) => {
+        if (r.peak <= 200) return;
+        const c = r.peak > 1000 ? "var(--red)" : r.peak > 500 ? "var(--bf-danger)" : "var(--gold)";
+        el(F.s, "circle", {cx: F.X(i), cy: F.Y(r.peak), r: r.peak > 1000 ? 4.5 : 3.5, fill: c, stroke: "var(--card)", "stroke-width": 1})
+          .appendChild(document.createElementNS(NS, "title")).textContent = `${r.date}: peak ${usd(r.peak)}, battery ${usd(r.net)}`;
+      });
+    }});
+
+  card("Year", {title: "Top 10 price days", sub: "Ranked by LZ_AEN peak hour. Battery $ is that day's net for one battery", json: J.year,
+    draw(host) {
+      host.innerHTML = `<div class="tscroll"><table><tr><th>date</th><th>hour</th><th class="n">AEN peak</th><th class="n">NORTH</th><th class="n">HOUSTON</th><th class="n">battery $</th></tr>` +
+        yr.top10.map(t => `<tr><td>${t.date}</td><td>HE${t.peak_he}</td><td class="n">${fmt(t.peak.aen)}</td><td class="n">${fmt(t.peak.north)}</td><td class="n">${fmt(t.peak.houston)}</td><td class="n"><b>${t.net.aen.toFixed(2)}</b></td></tr>`).join("") +
+        `</table></div><p style="color:var(--muted);font-size:12px;margin:8px 0 0">A typical 2025 day earned ${usd(Y25.aen.per_day)} (median ${usd(Y25.aen.median_day)}).</p>`;
+    }});
+
+  card("Year", {title: "Scarcity hours by zone", sub: "Day-ahead hours with the price over the threshold", json: J.year,
+    draw(host) {
+      const Z = [["aen", "LZ_AEN"], ["north", "LZ_NORTH"], ["houston", "LZ_HOUSTON"]], T = ["200", "500", "1000"];
+      host.innerHTML = `<div class="tscroll"><table><tr><th>zone</th><th class="n">2025 &gt;$200</th><th class="n">&gt;$500</th><th class="n">&gt;$1k</th><th class="n">2026 &gt;$200</th><th class="n">&gt;$500</th><th class="n">&gt;$1k</th></tr>` +
+        Z.map(([z, n]) => `<tr><td>${n}</td>${T.map(t => `<td class="n">${Y25[z].hours_over[t]}</td>`).join("")}${T.map(t => `<td class="n">${Y26[z].hours_over[t]}</td>`).join("")}</tr>`).join("") +
+        `</table></div><p style="color:var(--muted);font-size:12px;margin:8px 0 0">2026 runs to ${yr.last}.</p>`;
+    }});
+
+  card("Year", {title: "Battery $ by month", sub: "One battery, net $ per month, day-ahead energy only", json: J.year, wide: true,
+    legend: `<span><i style="background:var(--bf-danger)"></i>LZ_AEN</span><span><i style="background:var(--bf-blue-line)"></i>LZ_NORTH</span><span><i style="background:var(--gold)"></i>LZ_HOUSTON</span>`,
+    draw(host, w, h) {
+      const mo = yr.monthly, Z = [["aen", "var(--bf-danger)"], ["north", "var(--bf-blue-line)"], ["houston", "var(--gold)"]];
+      const hi = Math.ceil(Math.max(...mo.flatMap(r => Z.map(([z]) => r[z]))) / 40) * 40;
+      const F = frame(host, w, h, {x0: 0, x1: mo.length, y0: 0, y1: hi, yTicks: [0, hi / 2, hi], fmtY: v => "$" + fmt(v), ml: 40});
+      const bw = F.X(1) - F.X(0);
+      mo.forEach((r, i) => {
+        Z.forEach(([z, c], j) => el(F.s, "rect", {x: F.X(i) + 1 + j * (bw - 3) / 3, y: F.Y(r[z]), width: Math.max(1, (bw - 3) / 3), height: F.Y(0) - F.Y(r[z]), fill: c})
+          .appendChild(document.createElementNS(NS, "title")).textContent = `${r.month} ${z.toUpperCase()}: ${usd(r[z])}`);
+        if (i % (w < 500 ? 4 : 2) === 0) el(F.s, "text", {x: F.X(i) + bw / 2, y: F.h - 6, "text-anchor": "middle"}, r.month.slice(2));
+      });
+    }});
+}
+
+// ---------- Load ----------
+function loadTab(ld) {
+  const YC = {"2024": "var(--bf-line-strong)", "2025": "var(--bf-blue-line)", "2026": "var(--bf-danger)"};
+  const yLeg = ld.years.map(y => `<span><i style="background:${YC[y] || "var(--ink)"}"></i>${y}${y === ld.years.at(-1) ? " to " + ld.last.slice(0, 5) : ""}</span>`).join("");
+  card("Load", {title: "Annual peak hour by zone", sub: "MW and the hour it happened. ERCOT Native Load", json: J.load, wide: true,
+    draw(host) {
+      host.innerHTML = `<div class="tscroll"><table><tr><th>year</th>${ld.zones.map(z => `<th class="n">${z}</th>`).join("")}</tr>` +
+        ld.peaks.map(p => `<tr><td>${p.year}</td>${ld.zones.map(z => `<td class="n">${fmt(p[z].mw)} MW<br><span style="color:var(--muted);font-size:11.5px">${p[z].at}</span></td>`).join("")}</tr>`).join("") + `</table></div>`;
+    }});
+
+  card("Load", {title: "When the top 100 load hours happen", sub: "ERCOT total, count of each year's 100 highest hours by hour ending. Shaded: 16:00 to 20:00", json: J.load,
+    legend: yLeg + ld.top100.map(t => `<span>${t.year}: <b style="color:var(--ink)">${t.window}</b> of 100 in the window</span>`).join(""),
+    draw(host, w, h) {
+      const hi = Math.ceil(Math.max(...ld.top100.flatMap(t => t.by_he)) / 5) * 5;
+      const F = frame(host, w, h, {x0: 0, x1: 24, y0: 0, y1: hi, yTicks: [0, hi / 2, hi], fmtY: v => fmt(v), ml: 30,
+        xTicks: [0, 6, 12, 18, 24].map(x => [x, x === 24 ? "24:00" : hm(x * 60)])});
+      band(F, 16, 20);
+      const bw = F.X(1) - F.X(0), n = ld.top100.length;
+      ld.top100.forEach((t, j) => t.by_he.forEach((v, i) => { if (v) el(F.s, "rect", {x: F.X(i) + 1 + j * (bw - 2) / n, y: F.Y(v), width: (bw - 2) / n, height: F.Y(0) - F.Y(v), fill: YC[t.year]})
+        .appendChild(document.createElementNS(NS, "title")).textContent = `${t.year}, hour ending ${i + 1}: ${v} hours`; }));
+    }});
+
+  card("Load", {title: "A summer day, on average", sub: "Mean ERCOT load by hour, July and August, MW. Shaded: 16:00 to 20:00", json: J.load, legend: yLeg,
+    draw(host, w, h) {
+      const all = ld.summer_profile.flatMap(p => p.mw).filter(v => v != null);
+      const lo = Math.floor(Math.min(...all) / 10000) * 10000, hi = Math.ceil(Math.max(...all) / 10000) * 10000;
+      const ticks = []; for (let t = lo; t <= hi; t += 10000) ticks.push(t);
+      const F = frame(host, w, h, {x0: 0, x1: 24, y0: lo, y1: hi, yTicks: ticks, fmtY: v => fmt(v / 1000) + "k",
+        xTicks: [0, 6, 12, 18, 24].map(x => [x, x === 24 ? "24:00" : hm(x * 60)])});
+      band(F, 16, 20);
+      for (const p of ld.summer_profile) line(F, p.mw.map((v, i) => [i + .5, v]).filter(q => q[1] != null), YC[p.year], 2);
+    }});
+}
+
+// ---------- battery notes, all computed ----------
+function notes(td, yr) {
+  const A26 = yr.years["2026"].aen, T = yr.years.trailing365.aen;
+  const dam = td.prices.dam, pk = dam.reduce((a, r) => r.LZ_AEN > a.LZ_AEN ? r : a);
+  const lo3 = [...dam].sort((a, b) => a.LZ_AEN - b.LZ_AEN).slice(0, 3), hi3 = [...dam].sort((a, b) => b.LZ_AEN - a.LZ_AEN).slice(0, 3);
+  const mean = a => a.reduce((s, r) => s + r.LZ_AEN, 0) / a.length;
+  const sd = td.supply_demand, todayPeak = Math.max(...[...sd.actual, ...sd.rest_of_today].map(r => r.dem));
+  const tom = sd.forecast.filter(r => r.date > td.date).slice(0, 24), tomPk = tom.reduce((a, r) => r.dem > a.dem ? r : a, tom[0]);
+  const diff = tomPk ? (tomPk.dem - todayPeak) / todayPeak * 100 : null;
+  const items = [
+    [`${fmt(A26.hours_over["1000"])} h`, `LZ_AEN day-ahead hours over $1,000 in 2026 (to ${yr.last}). ${fmt(A26.hours_over["200"])} hours over $200. These few hours set the year.`],
+    [`${fmt(T.top10_share * 100)}%`, `of one battery's last-365-day $ (${usd(T.total, 0)}) came from the 10 highest-price days, ${fmt(10 / T.days * 100, 1)}% of the days.`],
+    [`HE${pk.he} ${usd(pk.LZ_AEN)}`, `Today's priciest day-ahead hour on LZ_AEN. The 3 best hours average ${usd(mean(hi3))} vs ${usd(mean(lo3))} for the 3 cheapest: a spread of ${usd(mean(hi3) - mean(lo3))}/MWh.`],
+    tomPk ? [`${diff >= 0 ? "+" : ""}${fmt(diff, 1)}%`, `Tomorrow's forecast peak demand, ${fmt(tomPk.dem)} MW at HE${tomPk.he}, vs today's ${fmt(todayPeak)} MW. ${diff > 3 ? "A tighter day: hold charge for the evening." : diff < -3 ? "An easier day: less upside from the evening peak." : "About the same as today."}`]
+      : ["n/a", "No forecast for tomorrow in this snapshot."]
+  ];
+  $("#notes").innerHTML = items.map(([b, t]) => `<div class="note"><b>${b}</b>${t}</div>`).join("");
+}
+
+// ---------- answer cards, question first ----------
+const h12 = h => { const x = ((h % 24) + 24) % 24; return x === 0 ? "midnight" : x === 12 ? "noon" : `${x % 12} ${x < 12 ? "am" : "pm"}`; };
+// hour-ending list -> "9 am to noon" when the hours run together, else "9 am, 1 pm, ..."
+const heSpan = hes => {
+  const s = [...hes].sort((a, b) => a - b), run = s.every((h, i) => !i || h === s[i - 1] + 1);
+  return run ? `${h12(s[0] - 1)} to ${h12(s.at(-1))}` : s.map(h => h12(h - 1)).join(", ");
+};
+const aboutShare = f => {
+  const words = [[1 / 2, "half"], [1 / 3, "a third"], [1 / 4, "a quarter"], [1 / 5, "a fifth"], [1 / 10, "a tenth"]];
+  const hit = words.find(([v]) => Math.abs(f - v) < 0.015);
+  return hit ? hit[1] : `${fmt(f * 100)}%`;
+};
+
+function answerCards(td, yr, ld, signals) {
+  const b = td.battery, dam = td.prices.dam, zone = b.zone;
+  const rtNow = td.prices.rt.at(-1), nowMin = mins(rtNow.t), nowHe = Math.floor(nowMin / 60) + 1;
+  const px = dam.map(r => r[zone]), lo = Math.min(...px), hi = Math.max(...px);
+  const priceNow = rtNow[zone], pos = (priceNow - lo) / ((hi - lo) || 1);
+  const prc = td.conditions ? td.conditions.prc_mw : null, line3k = td.conservation_prc_mw;
+  const storm = signals && (signals.rules || []).find(r => r.name === "storm_alert");
+  const stormOn = storm ? (storm.fired_now > 0 || (storm.now && storm.now.value > 0)) : false;
+  const tight = prc != null && prc < line3k;
+  const reservePct = `${fmt(b.reserve * 100)}%`;
+  const word = pos < 1 / 3 ? "cheap" : pos > 2 / 3 ? "pricey" : "about average";
+
+  let v, cls, why, feel;
+  const upcoming = [...b.charge_he.map(h => [h, "charge"]), ...b.discharge_he.map(h => [h, "discharge"])].filter(([h]) => h > nowHe).sort((a, c) => a[0] - c[0]);
+  const next = upcoming.length ? upcoming[0][1] : null;
+  const nextHes = next ? (next === "charge" ? b.charge_he : b.discharge_he).filter(h => h > nowHe) : [];
+  if (stormOn || tight) {
+    v = "Hold a full charge"; cls = "v-alert";
+    why = stormOn ? `The weather service has ${fmt(storm.now.value)} active alert${storm.now.value === 1 ? "" : "s"} for Travis and Williamson counties, so the battery keeps its charge for backup.`
+      : `Reserves are down to ${fmt(prc)} MW, under ERCOT's ${fmt(line3k)} MW conservation line, so the battery keeps its charge for backup.`;
+    feel = "<b>At home:</b> nothing changes; if the power goes out, your house runs on the battery.";
+  } else if (b.charge_he.includes(nowHe)) {
+    v = "Charge"; cls = "v-charge";
+    why = `Power is ${word} at ${usd(priceNow)} a MWh and supply is ample, so the battery fills up.`;
+    feel = "<b>At home:</b> nothing changes; the battery fills from cheap grid power.";
+  } else if (b.discharge_he.includes(nowHe)) {
+    v = "Discharge to the grid"; cls = "v-discharge";
+    why = `Power is ${word} at ${usd(priceNow)} a MWh, one of today's priciest hours, so the battery sells ${fmt(b.kwh_per_hour, 1)} kWh this hour.`;
+    feel = `<b>At home:</b> nothing changes; ${reservePct} of the battery stays for your backup.`;
+  } else {
+    v = `Hold your ${reservePct} reserve`; cls = "v-hold";
+    why = `Power is ${word} at ${usd(priceNow)} a MWh and supply is ${prc != null ? "ample" : "normal"}, so the battery waits.`;
+    feel = "<b>At home:</b> nothing changes; your backup stays full.";
+  }
+  const nextTxt = next ? `Next: ${next} ${heSpan(nextHes)}.` : `Today's cycle is done. Charged ${heSpan(b.charge_he)}, sold ${heSpan(b.discharge_he)}.`;
+  const ct = new Date(td.as_of).toLocaleString("en-US", {timeZone: "America/Chicago", hour: "numeric", minute: "2-digit"});
+  // modeled battery level at the snapshot hour, same stepping as the plan chart
+  const usableK = b.kwh * (1 - b.reserve), firstC0 = Math.min(...b.charge_he), firstD0 = Math.min(...b.discharge_he);
+  let lvlNow = firstC0 < firstD0 ? b.kwh * b.reserve : b.kwh;
+  for (let he = 1; he < nowHe; he++) {
+    if (b.charge_he.includes(he)) lvlNow = Math.min(b.kwh, lvlNow + usableK / b.hours_per_window);
+    if (b.discharge_he.includes(he)) lvlNow = Math.max(b.kwh * b.reserve, lvlNow - usableK / b.hours_per_window);
+  }
+  const PILL = {"v-alert": ["Hold full", "bg-red-50 text-critical-red border-red-100", "bg-critical-red"], "v-charge": ["Charging", "bg-sky-50 text-sky-700 border-sky-100", "bg-sky-500"],
+    "v-discharge": ["Discharging", "bg-amber-50 text-amber-700 border-amber-100", "bg-warning-amber"], "v-hold": ["Holding", "bg-emerald-50 text-solar-green border-emerald-100", "bg-solar-green"]}[cls];
+  const stat = (l, v, u, c = "text-ink-primary") => `<div class="space-y-1 min-w-0"><span class="text-label-caps font-label-caps text-outline block uppercase">${l}</span><div class="flex flex-wrap items-baseline gap-1"><span class="text-headline-md font-headline-md ${c}">${v}</span><span class="text-body-sm font-body-sm text-outline">${u}</span></div></div>`;
+  $("#a-now").innerHTML = `<div>
+      <div class="flex items-center justify-between gap-2 mb-4"><span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">Modeled battery on ${zone}</span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-label-caps font-label-caps font-semibold border ${PILL[1]}"><span class="w-1.5 h-1.5 rounded-full ${PILL[2]}"></span>${PILL[0]}</span></div>
+      <div class="mb-6"><h2 class="text-display-sm font-display-sm text-ink-primary font-bold tracking-tight">${v}.</h2>
+        <p class="mt-2 text-body-md font-body-md text-on-surface-variant leading-relaxed"><strong class="text-ink-primary font-semibold">Reason:</strong> ${why}</p></div>
+      <div class="p-3.5 bg-surface-subtle border border-wire-border rounded-xl mb-6 flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">schedule</span>
+        <div><span class="text-label-md font-label-md text-ink-primary block font-semibold">${nextTxt}</span>
+        <span class="text-body-sm font-body-sm text-outline">At snapshot time, ${ct} CT. Today's band: ${usd(lo)} to ${usd(hi)} a MWh.${prc != null ? ` Reserves: ${fmt(prc)} MW (alarm at ${fmt(line3k)} MW).` : ""}</span></div></div>
+      <div class="p-4 bg-emerald-50/70 border border-emerald-100 rounded-xl mb-6">
+        <div class="flex items-center gap-2 text-primary font-semibold text-label-md font-label-md mb-1"><span class="material-symbols-outlined text-[18px]">verified_user</span><span>${feel.replace(/<\/?b>/g, "")}</span></div>
+        <p class="text-body-sm font-body-sm text-on-surface-variant pl-6"><abbr class="underline decoration-dotted cursor-help" title="${b.rule} A storm alert or reserves under ${fmt(line3k)} MW override the plan and keep the battery full.">The rule</abbr>: charge in the ${b.hours_per_window} cheapest hours, discharge in the ${b.hours_per_window} priciest, always keep ${reservePct} for the member.</p></div>
+    </div>
+    <div class="pt-4 border-t border-wire-border grid grid-cols-3 gap-3">
+      ${stat("ERCOT price at snapshot", usd(priceNow), "/MWh")}
+      ${stat("Modeled level", `${fmt(lvlNow / b.kwh * 100)}%`, `${fmt(lvlNow, 1)} kWh`)}
+      ${stat("Reserve kept", reservePct, `${fmt(b.kwh * b.reserve, 1)} kWh`, "text-primary font-bold")}
+    </div>`;
+  $("#lede").textContent = `Right now: ${v.charAt(0).toLowerCase() + v.slice(1)}. ERCOT ${zone} prices at ${ct} CT and the dispatch plan for one modeled ${fmt(b.kwh, 1)} kWh battery; the tower fleet runs on its own simulator.`;
+  $("#zoneTag").textContent = `ERCOT ${zone} load zone · public snapshot`;
+  $("#zoneFoot").textContent = zone;
+
+  const ansCard = ({label, icon, iconCls = "text-outline", q, big, bigCls = "text-primary", badge = "", sub, foot, link}) =>
+    `<div><div class="flex items-center justify-between mb-2"><span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">${label}</span><span class="material-symbols-outlined ${iconCls} text-[20px]">${icon}</span></div>
+      <h4 class="text-headline-sm font-headline-sm text-ink-primary font-semibold mb-4">${q}</h4>
+      <div class="mb-3"><div class="flex flex-wrap items-center gap-3"><span class="text-telemetry-metric font-telemetry-metric ${bigCls} tracking-tight font-bold">${big}</span>${badge}</div>
+      <span class="text-body-sm font-body-sm text-outline block mt-1">${sub}</span></div></div>
+    <div class="pt-4 border-t border-surface-subtle">${foot}${link ? `<button type="button" data-tab="${link[1]}" class="mt-3 inline-flex items-center gap-1 min-h-[44px] text-label-md font-label-md text-primary font-semibold hover:underline"><span>${link[0]}</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button>` : ""}</div>`;
+
+  // earned this year
+  const Y25 = yr.years["2025"].aen, T = yr.years.trailing365.aen;
+  $("#a-earn").innerHTML = ansCard({label: "Annual performance", icon: "payments", q: "What did one modeled battery earn in 2025?", big: usd(Y25.total, 0),
+    sub: `${zone}, 2025 day-ahead prices, energy only.`,
+    foot: `<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">Simulation: one modeled Base Core on public prices. About ${usd(Y25.per_day)} a typical day, ${usd(T.total, 0)} over the last 365 days. Source: ERCOT report 13060, ${yr.first} to ${yr.last}.</p>`,
+    link: ["See the year tab", "Year"]});
+
+  // when does it matter most
+  const [he0, he1] = ld.window_he, pool = ld.top100_pooled;
+  $("#a-when").innerHTML = ansCard({label: "Dispatch timing", icon: "bolt", q: "When does it matter most?", big: `${h12(he0 - 1)} to ${h12(he1)}`, bigCls: "text-ink-primary",
+    sub: `These ${he1 - he0 + 1} hours hold ${fmt(pool.window)} of the 100 highest-load hours in Texas (${pool.years}).`,
+    foot: `<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">A few days carry the year: ${aboutShare(T.top10_share)} of a year's money (${fmt(T.top10_share * 100)}%) came from just 10 days, ${yr.trailing_range[0]} to ${yr.trailing_range[1]}.</p>`,
+    link: ["See the load tab", "Load"]});
+
+  // storm or shortage
+  const sd = td.supply_demand, todayPeak = Math.max(...[...sd.actual, ...sd.rest_of_today].map(r => r.dem));
+  const tom = sd.forecast.filter(r => r.date > td.date).slice(0, 24), tomPk = tom.length ? tom.reduce((a, r) => r.dem > a.dem ? r : a) : null;
+  const diff = tomPk ? (tomPk.dem - todayPeak) / todayPeak * 100 : null;
+  const warn = stormOn || tight || (diff != null && diff > 5);
+  const verdict = stormOn || tight ? "Yes" : warn ? "Watch" : "No";
+  const SC = stormOn || tight ? ["text-critical-red", "bg-red-50 text-critical-red border-red-200", "bg-critical-red", "Alert", "warning"]
+    : warn ? ["text-warning-amber", "bg-amber-50 text-amber-700 border-amber-200", "bg-warning-amber", "Watch", "info"]
+    : ["text-solar-green", "bg-emerald-50 text-solar-green border-emerald-200", "bg-solar-green", "No alert", "check_circle"];
+  $("#a-storm").innerHTML = ansCard({label: "Grid reliability check", icon: SC[4], iconCls: SC[0], q: "Is a storm or shortage coming?", big: verdict, bigCls: SC[0],
+    badge: `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-caps font-label-caps border ${SC[1]}"><span class="w-1.5 h-1.5 rounded-full ${SC[2]}"></span>${SC[3]}</span>`,
+    sub: `${tomPk ? `Tomorrow's peak is forecast at ${fmt(tomPk.dem)} MW around ${h12(tomPk.he - 1)}, ${diff >= 0 ? fmt(diff, 1) + "% above" : fmt(-diff, 1) + "% below"} today's ${fmt(todayPeak)} MW.` : "Tomorrow's forecast arrives with the next snapshot."}`,
+    foot: (prc != null ? `<div class="p-2.5 bg-surface-subtle rounded border border-wire-border flex items-center justify-between gap-2 text-body-sm font-body-sm mb-2"><span class="text-outline">Reserves vs conservation line:</span><span class="font-bold text-primary">${fmt(prc)} MW (${prc >= line3k ? fmt(prc / line3k, 1) + "x" : "under"})</span></div>` : "") +
+      `<p class="text-body-sm font-body-sm text-outline">Weather alerts: ${storm ? (stormOn ? `${fmt(storm.now.value)} active for Travis and Williamson counties. Batteries stay full for backup.` : `none active for Travis and Williamson counties, checked ${new Date(storm.now.as_of).toLocaleString("en-US", {timeZone: "America/Chicago", hour: "numeric", minute: "2-digit", month: "short", day: "numeric"})} CT.`) : "no alert feed in this build."}</p>`});
+  document.querySelectorAll("[data-tab]").forEach(btn => { if (btn.closest("#tabs")) return; btn.onclick = () => { det.open = true; setTab(btn.dataset.tab); det.scrollIntoView({behavior: "smooth"}); }; });
+
+  $("#plan-foot").innerHTML = `<span>Discharge volume: <strong>${fmt(b.kwh_per_hour * b.discharge_he.length, 1)} kWh</strong></span><span>Discharge value: <strong>${usd(b.discharge_revenue)} gross</strong></span><span>Today's plan nets: <strong>${usd(b.net)}</strong></span>`;
+  window.drawPlan = () => planChart(td, nowMin);
+  window.drawPlan();
+}
+
+// today's price by hour with the battery's action on it
+function planChart(td, nowMin) {
+  const b = td.battery, zone = b.zone, host = $("#plan");
+  const w = Math.max(host.clientWidth, 260), H = w < 500 ? 330 : 360;
+  host.innerHTML = "";
+  const s = document.createElementNS(NS, "svg");
+  s.setAttribute("viewBox", `0 0 ${w} ${H}`); s.setAttribute("height", H);
+  s.setAttribute("role", "img");
+  s.setAttribute("aria-label", `Today's ${zone} day-ahead price by hour. The battery charges ${heSpan(b.charge_he)} and discharges ${heSpan(b.discharge_he)}.`);
+  host.appendChild(s);
+  const ml = 44, mr = 10, X = hr => ml + hr / 24 * (w - ml - mr), bw = X(1) - X(0);
+  const dam = td.prices.dam, px = dam.map(r => r[zone]);
+  const pHi = Math.ceil(Math.max(...px) / 20) * 20, pLo = Math.min(0, Math.floor(Math.min(...px) / 20) * 20);
+  // strip A: price bars
+  const aT = 8, aB = H * 0.56, YA = v => aB - (v - pLo) / (pHi - pLo) * (aB - aT);
+  for (let t = pLo; t <= pHi; t += Math.max(20, Math.ceil((pHi - pLo) / 3 / 20) * 20)) {
+    el(s, "line", {x1: ml, x2: w - mr, y1: YA(t), y2: YA(t), stroke: "var(--rule)"});
+    el(s, "text", {x: ml - 6, y: YA(t) + 3.5, "text-anchor": "end"}, "$" + t);
+  }
+  const act = he => b.charge_he.includes(he) ? "charge" : b.discharge_he.includes(he) ? "discharge" : "";
+  const COL = {charge: "var(--bf-blue)", discharge: "var(--bf-amber)", "": "var(--bf-line-strong)"};
+  dam.forEach(r => {
+    const a = act(r.he), y = YA(Math.max(r[zone], 0)), y0 = YA(Math.max(pLo, 0));
+    el(s, "rect", {x: X(r.he - 1) + 1, y: Math.min(y, y0), width: Math.max(1, bw - 2), height: Math.abs(y0 - y), fill: COL[a], opacity: a ? 1 : .55, rx: 1.5})
+      .appendChild(document.createElementNS(NS, "title")).textContent = `${h12(r.he - 1)} to ${h12(r.he)}: ${usd(r[zone])} a MWh${a ? ", battery " + a + "s" : ""}`;
+  });
+  const rt = td.prices.rt.map(r => [X(mins(r.t) / 60), YA(r[zone])]);
+  el(s, "path", {d: path(rt), fill: "none", stroke: "var(--ink)", "stroke-width": 1.4, opacity: .7});
+  el(s, "text", {x: ml, y: aT + 10, "text-anchor": "start"}, "$/MWh");
+
+  // strip B: flow, discharge above, charge below
+  const bT = aB + 22, bB = H * 0.80, mid = (bT + bB) / 2, half = (bB - bT) / 2, k = half / b.kwh_per_hour;
+  el(s, "line", {x1: ml, x2: w - mr, y1: mid, y2: mid, stroke: "var(--bf-line-strong)"});
+  el(s, "text", {x: ml - 6, y: bT + 8, "text-anchor": "end"}, "sell");
+  el(s, "text", {x: ml - 6, y: bB, "text-anchor": "end"}, "buy");
+  for (const he of b.discharge_he) el(s, "rect", {x: X(he - 1) + 1, y: mid - b.kwh_per_hour * k, width: Math.max(1, bw - 2), height: b.kwh_per_hour * k, fill: COL.discharge, rx: 1.5})
+    .appendChild(document.createElementNS(NS, "title")).textContent = `${h12(he - 1)}: sends ${fmt(b.kwh_per_hour, 1)} kWh to the grid`;
+  for (const he of b.charge_he) el(s, "rect", {x: X(he - 1) + 1, y: mid, width: Math.max(1, bw - 2), height: b.kwh_per_hour * k, fill: COL.charge, rx: 1.5})
+    .appendChild(document.createElementNS(NS, "title")).textContent = `${h12(he - 1)}: takes ${fmt(b.kwh_per_hour, 1)} kWh from the grid`;
+
+  // strip C: battery level with the reserve line
+  const cT = bB + 14, cB = H - 22, YC = f => cB - f * (cB - cT);
+  const firstC = Math.min(...b.charge_he), firstD = Math.min(...b.discharge_he);
+  const usable = b.kwh * (1 - b.reserve);
+  let lvl = firstC < firstD ? b.kwh * b.reserve : b.kwh;
+  const pts = [[X(0), YC(lvl / b.kwh)]];
+  for (let he = 1; he <= 24; he++) {
+    if (b.charge_he.includes(he)) lvl = Math.min(b.kwh, lvl + usable / b.hours_per_window);
+    if (b.discharge_he.includes(he)) lvl = Math.max(b.kwh * b.reserve, lvl - usable / b.hours_per_window);
+    pts.push([X(he), YC(lvl / b.kwh)]);
+  }
+  el(s, "path", {d: path(pts) + `L${X(24)} ${cB}L${X(0)} ${cB}Z`, fill: "var(--bf-brand)", opacity: .14});
+  el(s, "path", {d: path(pts), fill: "none", stroke: "var(--bf-brand)", "stroke-width": 2, "stroke-linejoin": "round"});
+  el(s, "line", {x1: ml, x2: w - mr, y1: YC(b.reserve), y2: YC(b.reserve), stroke: "var(--bf-danger)", "stroke-dasharray": "4 3", "stroke-width": 1.3});
+  const lx = firstC < firstD ? X(Math.max(...b.charge_he)) + 4 : X(Math.max(...b.discharge_he)) + 4;
+  el(s, "text", {x: lx, y: YC(b.reserve) - 4, "text-anchor": "start", fill: "var(--bf-danger)"}, w < 500 ? `${fmt(b.reserve * 100)}% reserve` : `${fmt(b.reserve * 100)}% reserve, never sold`);
+  el(s, "text", {x: ml - 6, y: cT + 8, "text-anchor": "end"}, "full");
+
+  // now marker and hour labels
+  el(s, "line", {x1: X(nowMin / 60), x2: X(nowMin / 60), y1: aT, y2: cB, stroke: "var(--ink)", "stroke-dasharray": "2 3", "stroke-width": 1.2});
+  el(s, "text", {x: X(nowMin / 60), y: aT + 10, "text-anchor": X(nowMin / 60) > w - 50 ? "end" : "middle", fill: "var(--ink)"}, "now");
+  for (const hh of (w < 420 ? [0, 6, 12, 18, 24] : [0, 3, 6, 9, 12, 15, 18, 21, 24])) el(s, "text", {x: X(hh), y: H - 6, "text-anchor": hh === 0 ? "start" : hh === 24 ? "end" : "middle"}, h12(hh));
+
+  $("#plan-q").textContent = `Today on ${zone}: price by hour, and what the battery does`;
+  const lg = (sw, t, tc = "text-on-surface-variant font-medium") => `<div class="flex items-center gap-1.5">${sw}<span class="${tc}">${t}</span></div>`;
+  $("#plan-leg").innerHTML = lg('<span class="w-3 h-3 rounded-sm" style="background:var(--bf-blue)"></span>', `Charge ${heSpan(b.charge_he)}`) +
+    lg('<span class="w-3 h-3 rounded-sm" style="background:var(--bf-amber)"></span>', `Discharge ${heSpan(b.discharge_he)}`) +
+    lg('<span class="w-3 h-3 rounded-sm" style="background:var(--bf-line-strong)"></span>', "Hold") +
+    lg('<span class="w-4 h-0.5" style="background:var(--ink)"></span>', "Real-time price") +
+    lg('<span class="w-4 h-0.5 bg-primary"></span>', "Battery level") +
+    lg('<span class="w-4 h-0.5 border-t border-dashed border-red-500"></span>', `${fmt(b.reserve * 100)}% reserve floor`, "text-red-700 font-semibold");
+}
+
+buildTabs();
+const det = $("#detail");
+det.open = false;  // detail stays closed until the reader asks for it
+det.addEventListener("toggle", () => { if (det.open) renderActive(); });
+load().then(({today, year: yr, load: ld, signals}) => {
+  header(today); answerCards(today, yr, ld, signals);
+  kpis(today);
+  conditions(today); pricing(today); year(yr); loadTab(ld);
+  notes(today, yr);
+  let t = "Conditions"; try { t = localStorage.getItem("grid-tab") || t; } catch (e) { /* storage off */ }
+  setTab(TABS.includes(t) ? t : "Conditions");
+}).catch(e => { console.error(e); $("#notice").style.display = "block"; });
+</script>
+<script>
+"use strict";
+// "What most people miss" cards: web/data/grid_insights.json, built by grid/insights.py
+(function () {
+  const G = "#1e4d2b", L = "#84CC16", M = "#717970", R = "#E2E8F0";
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+  const W = 320, H = 150, P = {l: 40, r: 8, t: 12, b: 24};
+  const iw = W - P.l - P.r, ih = H - P.t - P.b;
+  const txt = (x, y, t, a = "middle", c = M) => `<text x="${x}" y="${y}" text-anchor="${a}" font-size="10" fill="${c}">${esc(t)}</text>`;
+  const frame = (ymax, fmt) => [0, 0.5, 1].map(f => { const y = P.t + ih - f * ih;
+    return `<line x1="${P.l}" x2="${W - P.r}" y1="${y}" y2="${y}" stroke="${R}"/>` + txt(P.l - 4, y + 3, fmt(f * ymax), "end"); }).join("");
+  const svg = (body, label) => `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(label)}" class="block">${body}</svg>`;
+  const nice = v => { const m = Math.pow(10, Math.floor(Math.log10(v))); return Math.ceil(v / m) * m; };
+
+  function bars(pts, yfmt, xfmt, color = G, every = 1) {
+    const ymax = nice(Math.max(...pts.map(p => p.y)) || 1), bw = iw / pts.length;
+    return frame(ymax, yfmt) + pts.map((p, i) => { const h = p.y / ymax * ih, x = P.l + i * bw;
+      return `<rect x="${x + bw * 0.15}" y="${P.t + ih - h}" width="${bw * 0.7}" height="${h}" fill="${color}" rx="1"><title>${esc(xfmt(p.x))}: ${p.y}</title></rect>` +
+        (i % every === 0 ? txt(x + bw / 2, H - 8, xfmt(p.x)) : ""); }).join("");
+  }
+  const chart = {
+    curve: c => bars(c.points.filter(p => p.days > 1 && p.days < 365).map(p => ({x: p.pct_days, y: p.pct_value})), v => Math.round(v) + "%", x => `${Math.round(x)}%`),
+    bars: c => bars(c.points, v => Math.round(v), x => x, G, 3),
+    stack: c => { const bw = iw / c.points.length;
+      return frame(100, v => v + "%") + c.points.map((p, i) => { const x = P.l + i * bw, hm = p.midday / 100 * ih, hn = p.night / 100 * ih;
+        return `<rect x="${x + bw * 0.12}" y="${P.t + ih - hm}" width="${bw * 0.76}" height="${hm}" fill="${G}"><title>${p.x}: ${p.midday}% midday</title></rect>` +
+          `<rect x="${x + bw * 0.12}" y="${P.t + ih - hm - hn}" width="${bw * 0.76}" height="${hn}" fill="${L}"><title>${p.x}: ${p.night}% overnight</title></rect>` +
+          (p.x.endsWith("-01") || i === 0 ? txt(x + bw / 2, H - 8, p.x.slice(0, 4)) : ""); }).join(""); },
+    pairs: c => { const lo = 6, hi = 22, y = v => P.t + ih - (v - lo) / (hi - lo) * ih, bw = iw / c.points.length;
+      return [8, 14, 20].map(v => `<line x1="${P.l}" x2="${W - P.r}" y1="${y(v)}" y2="${y(v)}" stroke="${R}"/>` + txt(P.l - 4, y(v) + 3, "HE" + v, "end")).join("") +
+        c.points.map((p, i) => { const x = P.l + i * bw + bw / 2;
+          return `<line x1="${x}" x2="${x}" y1="${y(p.load)}" y2="${y(p.price)}" stroke="${R}" stroke-width="3"/>` +
+            `<circle cx="${x}" cy="${y(p.load)}" r="4" fill="${M}"><title>${p.x} load peak HE${p.load}</title></circle>` +
+            `<circle cx="${x}" cy="${y(p.price)}" r="4" fill="${G}"><title>${p.x} price peak HE${p.price}</title></circle>` +
+            txt(x, H - 8, p.x[0]); }).join(""); },
+    hbars: c => { const xmax = nice(Math.max(...c.points.map(p => p.y))), bh = ih / c.points.length, lx = 108;
+      return c.points.map((p, i) => { const y0 = P.t + i * bh, w = p.y / xmax * (W - lx - 70);
+        return txt(lx - 6, y0 + bh / 2 + 3, p.x.split(" (")[0], "end", "#0F172A") +
+          `<rect x="${lx}" y="${y0 + bh * 0.2}" width="${w}" height="${bh * 0.6}" fill="${G}" rx="1"/>` +
+          txt(lx + w + 4, y0 + bh / 2 + 3, `$${p.y.toFixed(2)} · ${p.h1000} h >$1k`, "start"); }).join(""); },
+  };
+  const legend = {
+    curve: "Share of the year's value earned by the best days (x: best share of days).",
+    bars: "", stack: `<span style="color:${G}">■</span> midday HE10-16 <span style="color:${L}">■</span> overnight HE1-6`,
+    pairs: `<span style="color:${M}">●</span> load peak <span style="color:${G}">●</span> price peak (hour ending)`,
+    hbars: "Average one-battery arbitrage $ per day, and hours over $1,000/MWh.",
+  };
+  const row = (k, v) => `<div class="grid grid-cols-[72px_1fr] gap-2"><dt class="text-label-caps font-label-caps text-outline uppercase pt-0.5">${k}</dt><dd class="text-body-sm font-body-sm text-on-surface-variant min-w-0" style="overflow-wrap:anywhere">${v}</dd></div>`;
+  fetch("data/grid_insights.json").then(r => r.ok ? r.json() : Promise.reject(r.status)).then(d => {
+    document.getElementById("missed-cards").innerHTML = d.findings.map(f => `
+      <article class="bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg shadow-sm min-w-0 flex flex-col gap-3" id="finding-${f.id}" data-held="${f.held}">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">${esc(f.title)}</span>
+          <span class="shrink-0 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container text-[10px] font-semibold uppercase tracking-wide">Measured</span>
+        </div>
+        <div class="text-telemetry-metric font-telemetry-metric text-primary-container">${esc(f.big)}</div>
+        <p class="text-body-md font-body-md text-ink-primary font-semibold">${esc(f.headline)}</p>
+        <figure class="bg-surface-subtle rounded-xl border border-wire-border p-2">${svg(chart[f.chart.type](f.chart), f.chart.y_label)}
+          <figcaption class="px-1 pt-1 text-body-sm font-body-sm text-outline">${legend[f.chart.type] || esc(f.chart.y_label + " by " + f.chart.x_label)}</figcaption></figure>
+        <p class="text-body-sm font-body-sm text-on-surface-variant">${esc(f.detail)}</p>
+        <dl class="mt-auto pt-3 border-t border-wire-border space-y-1.5">
+          ${row("Method", esc(f.method))}
+          ${row("Source", f.sources.map(s => esc(s)).join("<br>") + "<br>" + esc(f.range))}
+          ${row("For Base", esc(f.base))}
+        </dl>
+      </article>`).join("");
+    document.getElementById("missed-next").innerHTML = "Next data to add: " + d.not_supported.map(c => `<strong>${esc(c.candidate)}</strong>: ${esc(c.why)}`).join(" ");
+  }).catch(() => { document.getElementById("missed").hidden = true; });
+})();
+</script>
+</body>
+</html>

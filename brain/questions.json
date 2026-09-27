@@ -1,0 +1,126 @@
+{
+ "member_id": "m001",
+ "note": "expected answers are computed from data/members.json for m001; GAP = policy not in the record, the brain must say it does not know",
+ "questions": [
+  {
+   "id": "q01",
+   "question": "why did my battery discharge at 5 pm on day 2",
+   "expected": "On day 2 (2026-09-09) your battery discharged 18:00-19:00 on price 91 $/MWh. The scheduler discharges only in the top-4 price hours of the coming day.",
+   "source_field": "week[1].events"
+  },
+  {
+   "id": "q02",
+   "question": "what did my node earn this week",
+   "expected": "Battery 5.92 USD, GPU 123.19 USD, total 129.11 USD over 7 days.",
+   "source_field": "totals"
+  },
+  {
+   "id": "q03",
+   "question": "what is my reserve floor",
+   "expected": "30% of the 39.2 kWh pack, 11.76 kWh, always kept for your backup. Lowest point this week: 49.0%.",
+   "source_field": "node.reserve_pct, node.reserve_kwh, week[].reserve_min_pct"
+  },
+  {
+   "id": "q04",
+   "question": "which of my fields still need my confirmation",
+   "expected": "main_breaker_amps, has_solar, has_battery, has_generator, ac_age_years.",
+   "source_field": "confirm_with_member"
+  },
+  {
+   "id": "q05",
+   "question": "when did my GPU run a job",
+   "expected": "day 1: GPU ran a business job 00:00-06:00 at 1.09 $/h; day 1: GPU ran a base job 07:00-10:00 at 0.79 $/h; day 1: GPU ran a business job 10:00-16:00 at 1.09 $/h; day 1: GPU ran a base job 16:00-19:00 at 0.79 $/h; day 1: GPU ran a partner job 19:00-22:00 at 0.34 $/h; day 1: GPU ran a business job 22:00-24:00 at 1.09 $/h; day 2: GPU ran a business job 00:00-07:00 at 1.09 $/h; day 2: GPU ran a base job 07:00-10:00 at 0.79 $/h; day 2: GPU ran a external job 10:00-13:00 at 0.16 $/h; day 2: GPU ran a base job 13:00-16:00 at 0.79 $/h; day 2: GPU ran a business job 16:00-24:00 at 1.09 $/h; day 3: GPU ran a business job 00:00-01:00 at 1.09 $/h; day 3: GPU ran a external job 01:00-04:00 at 0.16 $/h; day 3: GPU ran a member job 04:00-10:00 at 1.20 $/h; day 3: GPU ran a partner job 10:00-13:00 at 0.34 $/h; day 3: GPU ran a business job 13:00-19:00 at 1.09 $/h; day 3: GPU ran a business job 20:00-23:00 at 1.09 $/h; day 4: GPU ran a business job 00:00-06:00 at 1.09 $/h; day 4: GPU ran a base job 07:00-10:00 at 0.79 $/h; day 4: GPU ran a business job 10:00-16:00 at 1.09 $/h; day 4: GPU ran a base job 16:00-19:00 at 0.79 $/h; day 4: GPU ran a partner job 19:00-22:00 at 0.34 $/h; day 4: GPU ran a business job 22:00-24:00 at 1.09 $/h; day 5: GPU ran a business job 00:00-07:00 at 1.09 $/h; day 5: GPU ran a base job 07:00-10:00 at 0.79 $/h; day 5: GPU ran a external job 10:00-13:00 at 0.16 $/h; day 5: GPU ran a base job 13:00-16:00 at 0.79 $/h; day 5: GPU ran a business job 16:00-24:00 at 1.09 $/h; day 6: GPU ran a business job 00:00-01:00 at 1.09 $/h; day 6: GPU ran a external job 01:00-04:00 at 0.16 $/h; day 6: GPU ran a member job 04:00-10:00 at 1.20 $/h; day 6: GPU ran a partner job 10:00-13:00 at 0.34 $/h; day 6: GPU ran a business job 13:00-19:00 at 1.09 $/h; day 6: GPU ran a business job 20:00-23:00 at 1.09 $/h; day 7: GPU ran a business job 00:00-06:00 at 1.09 $/h; day 7: GPU ran a base job 07:00-10:00 at 0.79 $/h; day 7: GPU ran a business job 10:00-16:00 at 1.09 $/h; day 7: GPU ran a base job 16:00-19:00 at 0.79 $/h; day 7: GPU ran a partner job 19:00-22:00 at 0.34 $/h; day 7: GPU ran a business job 22:00-24:00 at 1.09 $/h",
+   "source_field": "week[].events"
+  },
+  {
+   "id": "q06",
+   "question": "how many GPU hours did I sell or run this week",
+   "expected": "161 hours, earning 123.19 USD.",
+   "source_field": "totals.gpu_hours, totals.gpu_usd"
+  },
+  {
+   "id": "q07",
+   "question": "which day was my best day",
+   "expected": "Day 1 (2026-09-07): battery 1.22 USD plus GPU 17.83 USD.",
+   "source_field": "week[].battery_usd, week[].gpu_usd"
+  },
+  {
+   "id": "q08",
+   "question": "what do you know about my house",
+   "expected": "Zip 78745, built 2024, fit bucket easy: panel or service work in 2025 (permit 2025-076119 EP), amps to confirm. main_breaker_amps = None (40% from 2025-076119 EP), has_solar = False (60% from no permit on file), has_battery = False (50% from no permit on file), has_generator = False (50% from no permit on file), ac_age_years = None (20% from no mechanical change-out permit on file).",
+   "source_field": "zip, year_built, fit, fields"
+  },
+  {
+   "id": "q09",
+   "question": "when is my next credit paid",
+   "expected": "GAP",
+   "source_field": null
+  },
+  {
+   "id": "q10",
+   "question": "can I cancel",
+   "expected": "GAP",
+   "source_field": null
+  },
+  {
+   "id": "k01",
+   "question": "how does my battery decide when to charge and discharge",
+   "expected": "It charges in the cheapest 3 hours and discharges in the priciest 3 hours, once a day, on ERCOT day-ahead prices.",
+   "source_field": "knowledge base"
+  },
+  {
+   "id": "k02",
+   "question": "when does grid demand peak in the summer",
+   "expected": "Load peaks on a hot August afternoon or early evening.",
+   "source_field": "knowledge base"
+  },
+  {
+   "id": "k03",
+   "question": "what happened to backup permits after winter storm Uri",
+   "expected": "Backup power permits surged after Winter Storm Uri.",
+   "source_field": "knowledge base"
+  },
+  {
+   "id": "k04",
+   "question": "what live grid data does the app watch",
+   "expected": "Live ERCOT feeds: prices, supply and demand, fuel mix, reserves.",
+   "source_field": "knowledge base"
+  },
+  {
+   "id": "k05",
+   "question": "what storm alerts does the app watch",
+   "expected": "National Weather Service active alerts for Travis and Williamson counties.",
+   "source_field": "knowledge base"
+  },
+  {
+   "id": "k06",
+   "question": "do you keep owner names from deed records",
+   "expected": "Deed dates per zip only, no owner names.",
+   "source_field": "knowledge base"
+  },
+  {
+   "id": "k07",
+   "question": "how does the energy credit preview work",
+   "expected": "A proposed energy-credit preview; rewards are assumptions, not issued credits or Base policy.",
+   "source_field": "knowledge base"
+  },
+  {
+   "id": "k08",
+   "question": "what is a star area",
+   "expected": "A zip where Base can expect many easy-fit homes.",
+   "source_field": "knowledge base"
+  },
+  {
+   "id": "k09",
+   "question": "how are guessed house facts checked before they are used",
+   "expected": "Each guess gets a confidence and is routed to auto-accept, model review, or a human.",
+   "source_field": "knowledge base"
+  },
+  {
+   "id": "k10",
+   "question": "where do the grid prices come from",
+   "expected": "ERCOT public day-ahead price report, no login.",
+   "source_field": "knowledge base"
+  }
+ ]
+}

@@ -1,0 +1,435 @@
+{
+ "source": "OpenStreetMap via Overpass API (power=substation, inside the ZCTA polygon); fetched 2026-09-26",
+ "license": "ODbL 1.0, (c) OpenStreetMap contributors. Attribution required; share-alike on the derived database.",
+ "note": "No open feeder ids or hosting capacity from Oncor, CenterPoint, Austin Energy or PEC. feeder_ids = [] and hosting_capacity_kw = null everywhere. See grid/FEEDERS.md.",
+ "zips": {
+  "78613": {
+   "city": "Cedar Park",
+   "tdu_in_funnel": "Oncor",
+   "star": 6674,
+   "bbox": [
+    30.4483,
+    -97.8829,
+    30.5505,
+    -97.7454
+   ],
+   "substations": [
+    {
+     "osm": "way/1179815778",
+     "name": null,
+     "operator": null,
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.54426,
+     "lon": -97.78239
+    },
+    {
+     "osm": "way/29169713",
+     "name": "Whitestone Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.52005,
+     "lon": -97.83047
+    },
+    {
+     "osm": "way/29402185",
+     "name": "Balcones Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.46105,
+     "lon": -97.8302
+    },
+    {
+     "osm": "way/29402277",
+     "name": "Buttercup Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.4869,
+     "lon": -97.8239
+    },
+    {
+     "osm": "way/339937469",
+     "name": "Kent Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.49531,
+     "lon": -97.80837
+    }
+   ],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  },
+  "78665": {
+   "city": "Round Rock",
+   "tdu_in_funnel": "Oncor",
+   "star": 6530,
+   "bbox": [
+    30.4963,
+    -97.6929,
+    30.5939,
+    -97.5863
+   ],
+   "substations": [
+    {
+     "osm": "way/340389556",
+     "name": "Round Rock Northeast Substation",
+     "operator": "Oncor",
+     "voltage": "138000;25000",
+     "type": "distribution",
+     "lat": 30.54146,
+     "lon": -97.6489
+    }
+   ],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  },
+  "78641": {
+   "city": "Leander",
+   "tdu_in_funnel": "Oncor",
+   "star": 4810,
+   "bbox": [
+    30.4222,
+    -98.0667,
+    30.6466,
+    -97.7628
+   ],
+   "substations": [
+    {
+     "osm": "way/1179815776",
+     "name": null,
+     "operator": null,
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.58481,
+     "lon": -97.8105
+    },
+    {
+     "osm": "way/1270206078",
+     "name": null,
+     "operator": null,
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.56982,
+     "lon": -97.88961
+    },
+    {
+     "osm": "way/165867452",
+     "name": "Leander Substation",
+     "operator": "Lower Colorado River Authority",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.58571,
+     "lon": -97.84161
+    },
+    {
+     "osm": "way/186977835",
+     "name": "Nameless Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.52813,
+     "lon": -97.92838
+    },
+    {
+     "osm": "way/192364866",
+     "name": "Seward Junction Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.63452,
+     "lon": -97.85093
+    },
+    {
+     "osm": "way/29415736",
+     "name": "Blockhouse Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.54837,
+     "lon": -97.83824
+    }
+   ],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  },
+  "78634": {
+   "city": "Hutto",
+   "tdu_in_funnel": "Oncor",
+   "star": 3825,
+   "bbox": [
+    30.4746,
+    -97.6262,
+    30.6363,
+    -97.4825
+   ],
+   "substations": [],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  },
+  "78664": {
+   "city": "Round Rock",
+   "tdu_in_funnel": "Oncor",
+   "star": 3466,
+   "bbox": [
+    30.4571,
+    -97.6926,
+    30.5537,
+    -97.5845
+   ],
+   "substations": [
+    {
+     "osm": "way/387794988",
+     "name": "Round Rock Southeast Substation",
+     "operator": "Oncor",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.48532,
+     "lon": -97.64504
+    }
+   ],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  },
+  "78681": {
+   "city": "Round Rock",
+   "tdu_in_funnel": "Oncor",
+   "star": 2863,
+   "bbox": [
+    30.4723,
+    -97.765,
+    30.6077,
+    -97.6742
+   ],
+   "substations": [
+    {
+     "osm": "way/339132897",
+     "name": "Round Rock Substation",
+     "operator": "Oncor",
+     "voltage": "138000;25000;12500",
+     "type": "distribution",
+     "lat": 30.5212,
+     "lon": -97.70216
+    },
+    {
+     "osm": "way/340398044",
+     "name": "Round Rock Westinghouse Substation",
+     "operator": "Oncor",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.56704,
+     "lon": -97.69854
+    }
+   ],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  },
+  "78660": {
+   "city": "Pflugerville",
+   "tdu_in_funnel": "Oncor",
+   "star": 1340,
+   "bbox": [
+    30.3833,
+    -97.6716,
+    30.5009,
+    -97.5231
+   ],
+   "substations": [
+    {
+     "osm": "way/1284506318",
+     "name": null,
+     "operator": null,
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.42,
+     "lon": -97.58203
+    },
+    {
+     "osm": "way/366046720",
+     "name": "Pflugerville Substation",
+     "operator": "Oncor",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.45405,
+     "lon": -97.59986
+    }
+   ],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  },
+  "78666": {
+   "city": "San Marcos",
+   "tdu_in_funnel": "AEP Texas Central",
+   "star": 995,
+   "bbox": [
+    29.7425,
+    -98.1714,
+    30.0134,
+    -97.8486
+   ],
+   "substations": [
+    {
+     "osm": "way/232387824",
+     "name": "Camp Gary Substation",
+     "operator": "Lower Colorado River Authority",
+     "voltage": "69000;12500",
+     "type": "distribution",
+     "lat": 29.88124,
+     "lon": -97.86641
+    },
+    {
+     "osm": "way/232389287",
+     "name": "Beback Substation",
+     "operator": "Bluebonnet Electric Cooperative",
+     "voltage": "138000;12500",
+     "type": "distribution",
+     "lat": 29.7971,
+     "lon": -97.9556
+    },
+    {
+     "osm": "way/30886499",
+     "name": "Hilltop Substation",
+     "operator": "San Marcos Electric Utilities",
+     "voltage": "138000;12500",
+     "type": "distribution",
+     "lat": 29.8986,
+     "lon": -97.94149
+    },
+    {
+     "osm": "way/30887076",
+     "name": "Strahan Substation",
+     "operator": "San Marcos Electric Utilities",
+     "voltage": "138000;12500",
+     "type": "distribution",
+     "lat": 29.88969,
+     "lon": -97.9324
+    },
+    {
+     "osm": "way/31110361",
+     "name": "Redwood Substation",
+     "operator": "Lower Colorado River Authority",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 29.85053,
+     "lon": -97.94476
+    },
+    {
+     "osm": "way/32041691",
+     "name": null,
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 29.82298,
+     "lon": -98.00336
+    },
+    {
+     "osm": "way/33692087",
+     "name": "Canyon Substation",
+     "operator": "Lower Colorado River Authority",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 29.91153,
+     "lon": -97.9001
+    },
+    {
+     "osm": "way/341351760",
+     "name": "Highway 32 Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 29.94574,
+     "lon": -98.09357
+    },
+    {
+     "osm": "way/342673635",
+     "name": "Ranch Road 12 Substation",
+     "operator": "San Marcos Electric Utilities",
+     "voltage": "138000;12500",
+     "type": "distribution",
+     "lat": 29.90058,
+     "lon": -97.99184
+    },
+    {
+     "osm": "way/364744027",
+     "name": "Kyle Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 29.94987,
+     "lon": -97.88428
+    },
+    {
+     "osm": "way/508455364",
+     "name": "Rohr Substation",
+     "operator": "Pedernales Electric Cooperative",
+     "voltage": "138000",
+     "type": "industrial",
+     "lat": 29.93556,
+     "lon": -97.87888
+    }
+   ],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  },
+  "76574": {
+   "city": "Taylor",
+   "tdu_in_funnel": "Oncor",
+   "star": 654,
+   "bbox": [
+    30.4664,
+    -97.5271,
+    30.7036,
+    -97.2433
+   ],
+   "substations": [
+    {
+     "osm": "way/1280991280",
+     "name": null,
+     "operator": null,
+     "voltage": "138000",
+     "type": "industrial",
+     "lat": 30.54482,
+     "lon": -97.44964
+    },
+    {
+     "osm": "way/340389557",
+     "name": "Taylor West Substation",
+     "operator": "Oncor",
+     "voltage": "138000;13200",
+     "type": "distribution",
+     "lat": 30.557,
+     "lon": -97.48663
+    }
+   ],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  },
+  "78745": {
+   "city": "Austin (South)",
+   "tdu_in_funnel": "Austin Energy",
+   "star": 414,
+   "bbox": [
+    30.167,
+    -97.849,
+    30.2447,
+    -97.7519
+   ],
+   "substations": [
+    {
+     "osm": "way/206176305",
+     "name": "Salem Walk Substation",
+     "operator": "Austin Energy",
+     "voltage": "138000",
+     "type": "distribution",
+     "lat": 30.21581,
+     "lon": -97.79003
+    }
+   ],
+   "feeder_ids": [],
+   "hosting_capacity_kw": null
+  }
+ }
+}

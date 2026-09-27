@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rewards | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "tertiary-container": "#004f21", "warning-amber": "#F59E0B", "surface-subtle": "#F1F5F9", "inverse-primary": "#a0d3a6", "tertiary-fixed": "#95f8a7", "primary-container": "#1e4d2b", "surface-variant": "#d8e3fb", "primary-fixed": "#bbefc1", "secondary-container": "#cbf080", "on-tertiary": "#ffffff", "on-error-container": "#93000a", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "critical-red": "#EF4444", "tertiary-fixed-dim": "#79db8d", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "on-tertiary-fixed-variant": "#005323", "primary-fixed-dim": "#a0d3a6", "surface": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "primary": "#023616", "outline-variant": "#c1c9be", "on-error": "#ffffff", "on-primary-fixed": "#00210b", "on-secondary-fixed-variant": "#374e00", "surface-container-low": "#f0f3ff", "on-primary": "#ffffff", "inverse-surface": "#263143", "secondary-fixed-dim": "#afd367", "outline": "#717970", "surface-bright": "#f9f9ff", "on-secondary-fixed": "#141f00", "secondary-fixed": "#cbf080", "surface-container-highest": "#d8e3fb", "surface-muted": "#F8FAFC", "on-primary-fixed-variant": "#21502e", "ink-primary": "#0F172A", "surface-tint": "#396844", "surface-container-high": "#dee8ff", "secondary": "#4a6700", "evergreen-deep": "#004A31", "on-primary-container": "#8bbd92", "on-secondary": "#ffffff", "on-surface-variant": "#414941", "on-surface": "#111c2d", "on-tertiary-fixed": "#00210a", "surface-dim": "#cfdaf2", "tertiary": "#003614", "background": "#f9f9ff", "on-secondary-container": "#506e08", "energy-lime": "#84CC16", "wire-border": "#E2E8F0", "solar-green": "#22C55E", "on-background": "#111c2d" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-md": "1rem", "gutter-lg": "2rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem", "gutter": "1.5rem", "space-xs": "0.25rem", "margin": "2rem" }, "fontFamily": { "headline-lg": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "telemetry-metric": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"] }, "fontSize": { "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "0em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "700" }], "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "0em", "fontWeight": "700" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "0em", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }] } } } } ;</script>
+<link rel="stylesheet" href="shell.css">
+<link rel="stylesheet" href="milestones.css">
+<style>
+.rw .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;font-size:18px;line-height:1;display:inline-block;vertical-align:middle}
+.rw main,.rw main *,.rw main *::before,.rw main *::after{box-sizing:border-box}
+body.rw{font-family:'Plus Jakarta Sans',sans-serif;margin:0}
+.rw .skip{position:absolute;left:-9999px}.rw .skip:focus{left:8px;top:8px;z-index:50;background:#fff;padding:6px}
+.rw table{min-width:640px}
+.rw h1,.rw h2,.rw h3,.rw p{margin:0}
+</style>
+<script defer src="shell.js"></script><script defer src="milestones.js"></script><script defer src="rewards.js"></script>
+</head>
+<body class="rw bg-background text-on-surface antialiased min-h-screen">
+<a class="skip" href="#main">Skip to rewards</a>
+<div class="shell">
+<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-margin py-8 flex flex-col gap-6">
+<div class="bg-surface-container-lowest border border-wire-border rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-body-sm font-body-sm">
+ <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-outline">
+  <a id="rw-crumb-home" href="onboarding.html#home" class="hover:text-ink-primary flex items-center gap-1 no-underline text-outline"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">home</span><span>Onboarding</span></a>
+  <span class="material-symbols-outlined text-[14px] opacity-70" aria-hidden="true">chevron_right</span>
+  <a id="rw-crumb-status" href="status.html" class="hover:text-ink-primary no-underline text-outline">Application status</a>
+  <span class="material-symbols-outlined text-[14px] opacity-70" aria-hidden="true">chevron_right</span>
+  <span class="text-primary-container font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">redeem</span>Rewards and referrals</span>
+ </nav>
+ <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span>Member rewards ledger</span>
+</div>
+
+<!-- Page header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-wire-border">
+ <div class="min-w-0">
+  <div class="flex flex-wrap items-center gap-2 text-outline mb-1">
+   <span class="font-label-caps text-label-caps uppercase text-outline">Home from Austin permit records</span>
+   <span aria-hidden="true">•</span>
+   <span id="rw-addr" class="font-label-caps text-label-caps text-primary-container bg-surface-subtle px-1.5 py-0.5 rounded border border-wire-border">Pick a home on Onboarding</span>
+  </div>
+  <h1 class="font-headline-lg text-headline-lg text-ink-primary">Your points, and how to earn more.</h1>
+  <p class="font-body-md text-body-md text-outline mt-0.5">Points from the steps you finished, plus +50 pts for each neighbour who joins from your invite. Redeem them for a bill credit or a priority review.</p>
+ </div>
+ <div class="flex flex-wrap items-center gap-2 self-start md:self-auto">
+  <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface-container-lowest border border-wire-border text-outline">
+   <span class="material-symbols-outlined text-warning-amber" aria-hidden="true">info</span>
+   <span class="font-body-sm text-body-sm">Saved on this device</span>
+  </div>
+  <a id="story-next" href="brain.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold hover:bg-evergreen-deep shadow-sm no-underline"><span>Next: ask anything</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+ </div>
+</div>
+
+<!-- Tracker section -->
+<section class="bg-surface-container-lowest border border-wire-border rounded-xl p-4 sm:p-6 shadow-none flex flex-col gap-6" aria-labelledby="rw-track-title">
+ <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-wire-border">
+  <div>
+   <div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-primary-container text-[18px]" aria-hidden="true">verified</span><span class="font-label-caps text-label-caps uppercase text-outline font-bold">Base Fleet points (proposal)</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-secondary-container text-ink-primary uppercase tracking-normal">5-step track</span></div>
+   <h2 id="rw-track-title" class="font-headline-lg text-headline-lg text-ink-primary font-bold">Onboarding and referral points</h2>
+   <p class="font-body-md text-body-md text-outline mt-0.5">Finish your steps to earn points. Base confirms points at installation.</p>
+  </div>
+  <div class="flex items-center gap-2.5 shrink-0">
+   <button type="button" data-invite data-reward="neighbour" class="bg-primary-container hover:bg-evergreen-deep text-surface-container-lowest font-label-md text-label-md px-4 py-2.5 rounded-lg transition-colors inline-flex items-center gap-2 shadow-sm"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">share</span><span>Copy invite link</span></button>
+  </div>
+ </div>
+ <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-xl bg-surface-subtle border border-wire-border">
+  <div class="p-3 bg-surface-container-lowest border border-wire-border rounded-lg flex flex-col justify-between">
+   <div class="flex items-center justify-between text-outline text-label-caps font-bold uppercase mb-1"><span>Earned</span><span class="w-2 h-2 rounded-full bg-warning-amber"></span></div>
+   <div class="flex items-baseline gap-2"><span id="rw-proposed" class="font-telemetry-metric text-telemetry-metric text-ink-primary">0</span><span class="font-telemetry-unit text-telemetry-unit text-outline font-semibold">pts</span></div>
+   <div class="mt-2 pt-2 border-t border-surface-subtle text-xs text-outline">From your own steps</div>
+  </div>
+  <div class="p-3 bg-surface-container-lowest border border-wire-border rounded-lg flex flex-col justify-between">
+   <div class="flex items-center justify-between text-outline text-label-caps font-bold uppercase mb-1"><span>Still to earn</span><span class="w-2 h-2 rounded-full bg-solar-green"></span></div>
+   <div class="flex items-baseline gap-2"><span id="rw-waiting" class="font-telemetry-metric text-telemetry-metric text-ink-primary">0</span><span class="font-telemetry-unit text-telemetry-unit text-outline font-semibold">pts</span></div>
+   <div id="rw-waiting-note" class="mt-2 pt-2 border-t border-surface-subtle text-xs text-outline">Still open from your own steps</div>
+  </div>
+  <div class="p-3 bg-surface-container-lowest border border-wire-border rounded-lg flex flex-col justify-between">
+   <div class="flex items-center justify-between text-outline text-label-caps font-bold uppercase mb-1"><span>Issued</span><span class="w-2 h-2 rounded-full bg-outline-variant"></span></div>
+   <div class="flex items-baseline gap-2"><span class="font-telemetry-metric text-telemetry-metric text-ink-primary">0</span><span class="font-telemetry-unit text-telemetry-unit text-outline font-semibold">pts</span></div>
+   <div class="mt-2 pt-2 border-t border-surface-subtle text-xs text-outline">Issued after Base confirms installation</div>
+  </div>
+ </div>
+
+ <div class="p-3.5 bg-secondary-container/30 border border-secondary-container rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+  <div class="flex items-center gap-3">
+   <span class="w-8 h-8 rounded-lg bg-surface-container-lowest border border-secondary-container flex items-center justify-center text-primary-container shrink-0"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">group_add</span></span>
+   <div>
+    <div class="flex flex-wrap items-center gap-2"><span class="font-headline-sm text-[14px] font-bold text-ink-primary">Neighbour booster</span><span id="rw-joins" class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary-container text-surface-container-lowest uppercase tracking-normal">0 joins recorded</span></div>
+    <p id="rw-booster" class="font-body-sm text-xs text-outline mt-0.5">Points when a neighbour joins from your invite.</p>
+   </div>
+  </div>
+  <div class="flex items-center gap-2.5 shrink-0">
+   <button type="button" data-invite data-reward="neighbour" class="bg-primary-container hover:bg-evergreen-deep text-surface-container-lowest font-label-md text-xs px-3 py-1.5 rounded-lg transition-colors inline-flex items-center gap-1.5 shadow-sm"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">share</span><span>Invite a neighbour</span></button>
+  </div>
+ </div>
+ <p class="rw-out font-body-sm text-body-sm text-outline -mt-3" role="status" aria-live="polite"></p>
+</section>
+
+<!-- Ledger + side column -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+ <div class="lg:col-span-8 min-w-0 bg-surface-container-lowest border border-wire-border rounded-xl overflow-hidden shadow-none">
+  <div class="p-4 px-5 border-b border-wire-border flex items-center justify-between gap-2 bg-surface-container-lowest">
+   <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container" aria-hidden="true">list_alt</span><h2 class="font-headline-sm text-headline-sm text-ink-primary">Points ledger</h2></div>
+   <span id="rw-count" class="font-body-sm text-body-sm text-outline">0 rows</span>
+  </div>
+  <div class="overflow-x-auto">
+   <table class="w-full text-left border-collapse">
+    <thead><tr class="bg-surface-subtle border-b border-wire-border text-outline">
+     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold w-24">Date</th>
+     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Description</th>
+     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Milestone</th>
+     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Points</th>
+     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Status</th>
+     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Source</th>
+     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold text-right">Next</th>
+    </tr></thead>
+    <tbody id="rw-ledger" class="divide-y divide-wire-border font-body-md text-body-md"></tbody>
+   </table>
+  </div>
+  <div class="p-3 bg-surface-subtle/70 border-t border-wire-border flex flex-wrap items-center justify-between gap-2 text-body-sm text-outline">
+   <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">sync</span>Read from answers saved on this device</span>
+   <span class="font-semibold text-ink-primary">Total earned: <span id="rw-total">0</span> pts</span>
+  </div>
+ </div>
+
+ <div class="lg:col-span-4 min-w-0 flex flex-col gap-6">
+  <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-5 flex flex-col gap-4">
+   <div class="flex items-center justify-between gap-2">
+    <div class="flex items-center gap-2"><span class="w-7 h-7 rounded-lg bg-surface-subtle border border-wire-border flex items-center justify-center text-primary-container"><span class="material-symbols-outlined" aria-hidden="true">share</span></span><h3 class="font-headline-sm text-headline-sm text-ink-primary">Your invite code</h3></div>
+    <span id="rw-code-state" class="font-label-caps text-label-caps text-primary-container bg-secondary-container/30 px-2 py-0.5 rounded font-bold">Ready to make</span>
+   </div>
+   <p class="font-body-sm text-body-sm text-outline">Share with a neighbour. The link holds an anonymous code only: no name, no address.</p>
+   <div class="flex flex-col gap-2">
+    <span class="font-label-caps text-label-caps text-outline uppercase font-bold">Invite link</span>
+    <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch gap-2">
+     <div id="rw-link" class="flex-1 min-w-0 bg-surface-subtle border border-wire-border rounded-lg px-3 py-2 font-mono text-body-sm text-ink-primary select-all overflow-hidden text-ellipsis whitespace-nowrap">Copy the link to make a code</div>
+     <button type="button" data-invite data-reward="neighbour" class="bg-primary-container hover:bg-evergreen-deep text-surface-container-lowest font-label-md text-label-md px-3.5 py-2 rounded-lg transition-colors shrink-0 inline-flex items-center justify-center gap-1.5 shadow-sm"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span><span>Copy link</span></button>
+    </div>
+   </div>
+   <div class="p-3 bg-surface-subtle rounded-lg border border-wire-border text-body-sm text-outline flex items-start gap-2">
+    <span class="material-symbols-outlined text-[17px] text-outline shrink-0 mt-0.5" aria-hidden="true">policy</span>
+    <p class="leading-relaxed">Points arrive when a neighbour joins from your link and Base confirms their installation.</p>
+   </div>
+  </div>
+
+  <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-5 flex flex-col gap-3">
+   <div class="flex items-center gap-2 pb-2 border-b border-wire-border"><span class="material-symbols-outlined text-outline" aria-hidden="true">tune</span><h3 class="font-headline-sm text-headline-sm text-ink-primary">Points policy</h3></div>
+   <div id="rw-policy" class="space-y-2.5 font-body-sm text-body-sm"></div>
+   <div class="pt-2 border-t border-wire-border flex items-center gap-1.5 text-xs text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">gavel</span><span>Base confirms points at installation.</span></div>
+  </div>
+ </div>
+</div>
+
+<!-- Redeem: a proposal. Buttons show state only; no transaction happens. -->
+<section id="rw-redeem" class="bg-surface-container-lowest border border-wire-border rounded-xl p-4 sm:p-6 flex flex-col gap-4" aria-labelledby="rw-redeem-title">
+ <div class="flex flex-wrap items-center justify-between gap-2">
+  <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container" aria-hidden="true">redeem</span><h2 id="rw-redeem-title" class="font-headline-sm text-headline-sm text-ink-primary">Redeem your points</h2></div>
+  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-secondary-container text-ink-primary uppercase tracking-normal">Proposal</span>
+ </div>
+ <p class="font-body-sm text-body-sm text-outline"><span id="rw-avail">0</span> pts available. Three ways to use them, as a Base Fleet proposal.</p>
+ <div id="rw-options" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+</section>
+
+<div data-milestones="ribbon"></div>
+
+<footer class="border-t border-wire-border pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-body-sm text-outline">
+ <span>A Base Fleet design. Answers saved on this device.</span>
+ <span><a class="hover:text-ink-primary underline" href="brain.html">Ask Base Brain</a> · Base support for account or contract questions</span>
+</footer>
+</main>
+</div>
+</body></html>

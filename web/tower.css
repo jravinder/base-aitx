@@ -1,0 +1,178 @@
+/* Control tower: operations wall (fleet) + node view (gpu). Stitch light theme. */
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;overflow:hidden;max-width:1.2em}
+*,*::before,*::after { box-sizing:border-box; border-width:0; border-style:solid; border-color:#e2e8f0 }
+body { margin:0; font-family:"Plus Jakarta Sans", var(--bf-font); background:#f9f9ff }
+#main { overflow-wrap:anywhere }
+#main p, #main h1, #main h2, #main h3 { margin:0 }
+#main a { text-decoration:none }
+[hidden] { display:none!important }
+.card { background:#fff; border:1px solid #e2e8f0; border-radius:12px }
+.mono { font-family:ui-monospace, SFMono-Regular, Menlo, monospace }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap }
+.field { min-height:36px; padding:0 10px; border:1px solid #e2e8f0; border-radius:8px; background:#fff; color:#0f172a; font:500 13px/18px "Plus Jakarta Sans", sans-serif }
+button { font-family:inherit; cursor:pointer }
+button:disabled { opacity:.5; cursor:not-allowed }
+summary { cursor:pointer; font-weight:600; color:#0f172a }
+summary:focus-visible, a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
+.off { color:#ba1a1a; font-weight:600 }
+.lbl { font:700 10.5px/14px "Plus Jakarta Sans", sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#717970 }
+.tag { display:inline-flex; align-items:center; gap:6px; padding:3px 9px; border-radius:999px; background:#cbf080; color:#141f00; font:700 10.5px/14px "Plus Jakarta Sans", sans-serif; letter-spacing:.05em; text-transform:uppercase; white-space:nowrap }
+.tag i { width:6px; height:6px; border-radius:50%; background:#1e4d2b }
+
+/* ---------- wall grid ---------- */
+.wall { max-width:1440px; margin:0 auto; padding:8px 16px 10px; display:grid; gap:8px;
+  grid-template-columns:minmax(0,1fr) 340px; grid-template-rows:auto auto minmax(0,1fr) auto;
+  grid-template-areas:"status status" "controls controls" "nodes log" "queue log";
+  height:calc(100vh - var(--sh-navh, 72px)); height:calc(100dvh - var(--sh-navh, 72px)) }
+.wall.member-mode { height:auto; grid-template-columns:minmax(0,1fr); grid-template-rows:auto; grid-template-areas:"status" "member" }
+#status { grid-area:status } #ctl { grid-area:controls } #nodes-panel { grid-area:nodes } #log-panel { grid-area:log } #queue-panel { grid-area:queue } #member { grid-area:member }
+#ops { display:contents }
+
+/* ---------- status bar ---------- */
+#status { position:sticky; top:var(--sh-navh, 72px); z-index:20; display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; padding:7px 12px }
+#status .title { display:flex; flex-direction:column; gap:3px; min-width:0 }
+#page-title { font:700 15px/20px "Plus Jakarta Sans", sans-serif; color:#0f172a; letter-spacing:-.01em }
+.kpis { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin-left:auto }
+.kpi { display:flex; flex-direction:column; gap:1px; min-width:0 }
+.kpi b { font:700 16px/20px "Plus Jakarta Sans", sans-serif; color:#0f172a; font-variant-numeric:tabular-nums; white-space:nowrap }
+.kpi b small { font-size:11px; font-weight:600; color:#414941 }
+.kpi b.spike { color:#b45309 }
+.kpi-sep { width:1px; align-self:stretch; background:#e2e8f0 }
+#run-tiers { display:flex; gap:4px; flex-wrap:wrap }
+#run-tiers span { font:600 10.5px/15px ui-monospace, SFMono-Regular, Menlo, monospace; padding:1px 6px; border-radius:6px; background:#f1f5f9; border:1px solid #e2e8f0; color:#0f172a; white-space:nowrap }
+#replay-controls { display:flex; align-items:center; gap:6px }
+.rbtn { min-height:32px; min-width:32px; padding:0 8px; display:inline-flex; align-items:center; justify-content:center; gap:4px; border-radius:8px; background:#fff; border:1px solid #e2e8f0; color:#0f172a; font:600 12px/16px "Plus Jakarta Sans", sans-serif }
+.rbtn:hover:not(:disabled) { background:#f1f5f9 }
+#speed { min-height:32px; padding:0 6px }
+#clock { font:700 14px/18px ui-monospace, SFMono-Regular, Menlo, monospace; color:#0f172a; white-space:nowrap; font-variant-numeric:tabular-nums }
+.pop { position:relative }
+.pop > summary { list-style:none; display:inline-flex; align-items:center; min-height:28px; font:600 12px/16px "Plus Jakarta Sans", sans-serif; color:#1e4d2b; padding:0 8px; border-radius:8px; border:1px solid #e2e8f0; background:#fff; white-space:nowrap }
+.pop > summary::-webkit-details-marker { display:none }
+.pop > .panel { position:absolute; right:0; top:calc(100% + 6px); z-index:40; width:min(560px, calc(100vw - 32px)); max-height:min(70vh, 640px); overflow:auto;
+  background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:16px; box-shadow:0 12px 32px rgba(15,23,42,.12); font:400 13px/20px "Plus Jakarta Sans", sans-serif; color:#414941 }
+.pop.left > .panel { left:0; right:auto }
+
+/* ---------- controls ---------- */
+#ctl { display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; padding:6px 12px }
+.grp { display:flex; flex-wrap:wrap; align-items:center; gap:6px }
+.act { min-height:34px; padding:0 10px; border-radius:8px; display:inline-flex; align-items:center; gap:5px; font:600 12.5px/16px "Plus Jakarta Sans", sans-serif;
+  background:#fff; color:#0f172a; border:1px solid #c1c9be }
+.act:hover:not(:disabled) { background:#f0f3ff }
+.act[aria-pressed="true"]:hover:not(:disabled) { background:#023616 }
+.act[aria-pressed="true"], button.sim[aria-pressed="true"] { background:#1e4d2b; color:#fff; border-color:#1e4d2b }
+.act .material-symbols-outlined { font-size:18px }
+button.kill { min-height:32px; padding:0 10px; border-radius:8px; font:600 12px/16px "Plus Jakarta Sans", sans-serif; background:#fff; color:#414941; border:1px dashed #c1c9be }
+button.kill:hover:not(:disabled) { background:#f1f5f9 }
+#ctl .field { min-height:32px }
+.tw-next { display:inline-flex; align-items:center; gap:6px; min-height:34px; padding:0 12px; border-radius:8px; background:#1e4d2b; color:#fff!important; font:600 13px/18px "Plus Jakarta Sans", sans-serif; white-space:nowrap }
+.tw-next:hover { background:#023616 }
+.ctl-right { margin-left:auto; display:flex; align-items:center; gap:8px }
+
+/* ---------- node wall ---------- */
+.panel-h { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; padding-bottom:6px; margin-bottom:8px; border-bottom:1px solid #e2e8f0 }
+.panel-h h2 { font:700 13px/18px "Plus Jakarta Sans", sans-serif; color:#0f172a }
+#nodes-panel, #log-panel, #queue-panel { padding:10px 14px; min-width:0; min-height:0; display:flex; flex-direction:column }
+#feeders { flex:1; min-height:0; overflow:auto; display:flex; flex-wrap:wrap; align-content:flex-start; gap:8px }
+.fd { border:1px solid #e2e8f0; border-radius:8px; background:#f9f9ff; padding:4px 5px 5px }
+.fd-h { display:flex; justify-content:space-between; gap:6px; font:600 10px/13px ui-monospace, SFMono-Regular, Menlo, monospace; color:#414941; padding:0 2px 3px; white-space:nowrap }
+.fd-h.cap { color:#b45309 }
+.fd-n { display:flex; gap:4px }
+.t { display:flex; flex-direction:column; justify-content:space-between; width:62px; height:50px; padding:4px 5px; border-radius:6px; border:1px solid #e2e8f0; background:#fff; color:#414941;
+  font:600 10px/12px "Plus Jakarta Sans", sans-serif; transition:background .3s, border-color .3s }
+.t .r1 { display:flex; justify-content:space-between; gap:2px; font:700 11px/13px ui-monospace, SFMono-Regular, Menlo, monospace }
+.t .job { white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.t .soc { height:4px; background:rgba(15,23,42,.12); border-radius:2px; position:relative; overflow:hidden }
+.t .soc i { display:block; height:100%; background:#84cc16 }
+.t .soc b { position:absolute; left:30%; top:0; bottom:0; border-left:1px solid rgba(15,23,42,.55) }
+.t.running { background:#1e4d2b; border-color:#1e4d2b; color:#fff }
+.t.running .soc { background:rgba(255,255,255,.25) } .t.running .soc b { border-color:#fff }
+.t.paused { background:#fef3c7; border-color:#f59e0b; color:#78350f }
+.t.held { background:#e7eeff; border-color:#467bb0; color:#1e3a5f }
+.t.offline { background:#ffdad6; border-color:#ba1a1a; color:#93000a }
+.t.offline .soc i { background:#ba1a1a }
+.t.hl { outline:2px solid #0f172a; outline-offset:1px }
+.t:hover { border-color:#0f172a }
+.legend { display:flex; flex-wrap:wrap; gap:4px 12px; font:500 11px/16px "Plus Jakarta Sans", sans-serif; color:#414941 }
+.legend i { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:4px; vertical-align:-1px; border:1px solid #e2e8f0 }
+.legend .running { background:#1e4d2b; border-color:#1e4d2b } .legend .paused { background:#fef3c7; border-color:#f59e0b }
+.legend .held { background:#e7eeff; border-color:#467bb0 } .legend .offline { background:#ffdad6; border-color:#ba1a1a }
+
+/* ---------- event log ---------- */
+#log { flex:1; min-height:0; overflow:auto; margin:0; padding:0; list-style:none; font:500 11.5px/16px ui-monospace, SFMono-Regular, Menlo, monospace; color:#0f172a }
+#log li { display:grid; grid-template-columns:auto auto 1fr; gap:6px; padding:5px 0; border-bottom:1px solid #f1f5f9 }
+#log li time { color:#717970; white-space:nowrap }
+#log li .k { font-weight:700; white-space:nowrap }
+#log li.price .k { color:#b45309 } #log li.node .k, #log li.region .k, #log li.sched .k { color:#ba1a1a }
+#log li.reserve .k { color:#1e4d2b } #log li.ok .k { color:#1e4d2b }
+#log li.you .k { color:#467bb0 }
+#log li.you { background:#f0f3ff; margin:0 -6px; padding:5px 6px; border-radius:6px }
+#recovery-note { margin-top:6px; font:500 11.5px/16px "Plus Jakarta Sans", sans-serif; color:#414941 }
+#recovery-note:empty { display:none }
+
+/* ---------- dispatch queue ---------- */
+#q { width:100%; border-collapse:collapse; font:500 12.5px/16px "Plus Jakarta Sans", sans-serif; color:#0f172a; font-variant-numeric:tabular-nums }
+#q th { text-align:left; font:700 10.5px/14px "Plus Jakarta Sans", sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#717970; padding:0 10px 5px 0; border-bottom:1px solid #e2e8f0 }
+#q td { padding:3px 10px 3px 0; border-bottom:1px solid #f1f5f9; white-space:nowrap }
+#q td.rule { white-space:normal; color:#414941; font-size:12px }
+#q .num { text-align:right; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-weight:600 }
+#q tr.paused td.rule { color:#b45309; font-weight:600 }
+#q tr.maybe td { color:#414941 }
+.qwrap { overflow-x:auto }
+
+/* ---------- More panel content ---------- */
+#tiers, #m-jobs { border-collapse:collapse; width:100%; font:500 13px/18px "Plus Jakarta Sans", sans-serif; color:#0f172a }
+#tiers td, #tiers th, #m-jobs td, #m-jobs th { text-align:left; padding:6px 10px 6px 0; border-bottom:1px solid #e2e8f0; font-variant-numeric:tabular-nums }
+#tiers th, #m-jobs th { color:#414941; font-weight:700; font-size:11px; line-height:16px; text-transform:uppercase; letter-spacing:.06em }
+td.r, th.r { text-align:right }
+#strip { width:100%; height:auto; display:block; background:#fff; border:1px solid #e2e8f0; border-radius:8px }
+.more-links { display:flex; flex-wrap:wrap; gap:6px }
+.more-links a { min-height:36px; padding:0 12px; display:inline-flex; align-items:center; border-radius:8px; border:1px solid #e2e8f0; color:#0f172a; font:600 13px/18px "Plus Jakarta Sans", sans-serif }
+.more-links a:hover { background:#f1f5f9 }
+.more-sec { padding:10px 0; border-top:1px solid #e2e8f0 }
+.more-sec:first-child { border-top:0; padding-top:0 }
+.more-sec h3 { font:700 12px/16px "Plus Jakarta Sans", sans-serif; color:#0f172a; margin-bottom:6px!important }
+code { font:600 12px/18px "Plus Jakarta Sans", sans-serif; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:4px; padding:0 4px; color:#0f172a }
+
+/* ---------- node view (gpu persona) ---------- */
+.nodes { display:flex; flex-wrap:wrap; gap:6px }
+.n { display:inline-block; min-width:28px; width:28px; height:28px; padding:0; border-radius:50%; border:3px solid transparent; position:relative; cursor:pointer }
+.n::after { content:""; position:absolute; inset:1px; border-radius:50%; background:#c1c9be }
+.n.discharge::after { background:#1e4d2b } .n.charge::after { background:#2563eb } .n.dead::after { background:#0f172a }
+.n.local { border-color:#84cc16 } .n.sell { border-color:#f59e0b }
+.n.hl { outline:2px solid #0f172a; outline-offset:1px }
+.socm { height:12px; background:#f1f5f9; border-radius:6px; overflow:hidden; position:relative; margin:8px 0 }
+.socm i { display:block; height:100%; background:#1e4d2b }
+.socm b { position:absolute; left:30%; top:0; bottom:0; border-left:2px dashed #87591c }
+#nav-ops.on, #nav-member.on { background:#1e4d2b; color:#fff }
+.vnav a { min-height:32px; padding:0 10px; border-radius:8px; display:inline-flex; align-items:center; gap:4px; font:600 12px/16px "Plus Jakarta Sans", sans-serif; color:#414941 }
+.vnav a:hover { color:#0f172a }
+
+/* ---------- narrow: stack status, controls, nodes, log, queue ---------- */
+@media (max-width:1023px) {
+  .wall { height:auto; grid-template-columns:minmax(0,1fr); grid-template-rows:none;
+    grid-template-areas:"status" "controls" "nodes" "log" "queue" }
+  #feeders { overflow:visible }
+  #log { max-height:340px }
+  .kpis { margin-left:0 }
+  .ctl-right { margin-left:0 }
+}
+@media (max-width:640px) {
+  #status { position:static }
+  .kpi-sep { display:none }
+  .t { width:58px }
+  #q tr > :nth-child(2) { display:none }
+}
+
+@media (min-width:1280px) { #status { flex-wrap:nowrap } .kpis { flex-wrap:nowrap } }
+.fd { max-width:100% }
+.fd-n { flex-wrap:wrap }
+@media (max-width:640px) { .pop { position:static } .pop > .panel, .pop.left > .panel { position:absolute; left:12px; right:12px; width:auto } #status, #ctl { position:relative; top:auto } }
+@media (max-width:640px) {
+  #q, #q tbody { display:block }
+  #q tr { display:grid; grid-template-columns:minmax(0,1fr) 58px 58px 58px; align-items:baseline; border-bottom:1px solid #f1f5f9; padding:4px 0 }
+  #q th, #q td { border:0; padding:2px 0; overflow-wrap:normal; word-break:normal; white-space:normal }
+  #q th { font-size:9.5px; letter-spacing:.02em }
+  #q tr > :nth-child(2) { display:none }
+  #q tr > :last-child { grid-column:1 / -1 }
+  #q th:last-child { display:none }
+}

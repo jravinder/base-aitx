@@ -1,0 +1,38 @@
+{
+  "_note": "Hand-edited by Ravi. build.py reads this file. A 'from' value is read live from the file named (path:dot.key); 'value' is the fallback text. Strength is judgment.",
+  "tracks": [
+    {
+      "name": "Most Commercializable",
+      "strength": 5,
+      "evidence": [
+        {"page": "market.html", "label": "Base backup permits in Austin 2026 still open", "value": "264 of 316", "from": "data/market.json:base_totals.by_status.active", "of": "data/market.json:base_totals.total"},
+        {"page": "house.html", "label": "Houses in the 78745 cohort scored easy fit", "value": "22 of 40", "source": "house/cohort.json"},
+        {"page": "star.html", "label": "Zips checked against Power to Choose for territory", "value": "59", "source": "data/ptc_tdu.json"}
+      ],
+      "weak_spot": "\"Demand is met\" is spoken on the factory tour only; no public source. No model reads breaker amps from a photo.",
+      "issues": [57, 54, 40, 38]
+    },
+    {
+      "name": "Open Grid Data",
+      "strength": 4,
+      "evidence": [
+        {"page": "grid.html", "label": "Days of ERCOT day-ahead prices on file", "value": "627", "source": "web/data/grid_year.json (daily)"},
+        {"page": "grid.html", "label": "Energy arbitrage per battery, LZ_AEN, 2025", "value": "$603 a year", "from": "web/data/grid_year.json:years.2025.aen.total"},
+        {"page": "grid.html", "label": "ERCOT dashboard feeds on file", "value": "11", "source": "data/ercot/*.json"}
+      ],
+      "weak_spot": "Day-ahead energy only; no RTM or ancillary prices. No open feeder id or hosting capacity from any Texas utility.",
+      "issues": [73]
+    },
+    {
+      "name": "Orchestration",
+      "strength": 3,
+      "evidence": [
+        {"page": "tower.html", "label": "Reserve breaches with the scheduler killed", "value": "0", "source": "grid/NUMBERS.md"},
+        {"page": "member.html", "label": "Member brain on laptop gemma4, correct plus GAP", "value": "18 of 20, 2.2 s median", "source": "brain/LOCAL_VS_CLOUD.md"},
+        {"page": "member.html", "label": "Same questions on the Jetson over the home network", "value": "16 of 20, 3.0 s median", "source": "brain/LOCAL_VS_CLOUD.md"}
+      ],
+      "weak_spot": "Internet-off test not run. The tower runs locally only (sim.server), so a judge cannot open it from the static deploy.",
+      "issues": [71, 31, 13, 14]
+    }
+  ]
+}

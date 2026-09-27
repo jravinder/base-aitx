@@ -1,0 +1,17 @@
+{
+  "note": "Fixture for house/funnel.py when data/demographics.json or data/permits_by_zip.json is absent. Rounded, plausible values. Not real ACS rows.",
+  "demographics": [
+    {"zip": "78664", "households": 21500, "owner_occupied": 12800, "single_family_detached": 14200, "median_year_built": 2001, "median_income": 82000, "median_home_value": 340000},
+    {"zip": "78660", "households": 27000, "owner_occupied": 18900, "single_family_detached": 21500, "median_year_built": 2006, "median_income": 95000, "median_home_value": 360000},
+    {"zip": "78613", "households": 29000, "owner_occupied": 19000, "single_family_detached": 21000, "median_year_built": 2003, "median_income": 105000, "median_home_value": 420000},
+    {"zip": "78745", "households": 26000, "owner_occupied": 12000, "single_family_detached": 15500, "median_year_built": 1975, "median_income": 72000, "median_home_value": 430000},
+    {"zip": "78640", "households": 18000, "owner_occupied": 12500, "single_family_detached": 14000, "median_year_built": 2008, "median_income": 78000, "median_home_value": 300000}
+  ],
+  "permits": [
+    {"zip": "78664", "permits": 2209, "service_upgrade": 60, "solar": 40, "battery": 5, "new_sfr": 900, "covered": true},
+    {"zip": "78660", "permits": 2632, "service_upgrade": 80, "solar": 55, "battery": 8, "new_sfr": 1200, "covered": true},
+    {"zip": "78613", "permits": 700, "service_upgrade": 30, "solar": 20, "battery": 2, "new_sfr": 150, "covered": true},
+    {"zip": "78745", "permits": 3100, "service_upgrade": 220, "solar": 180, "battery": 20, "new_sfr": 260, "covered": true},
+    {"zip": "78640", "permits": null, "service_upgrade": null, "solar": null, "battery": null, "new_sfr": null, "covered": false}
+  ]
+}

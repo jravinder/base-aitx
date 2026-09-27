@@ -1,0 +1,573 @@
+{
+  "built": "2026-09-27T00:00:00Z",
+  "datasets": {
+    "austin_permits": {
+      "name": "City of Austin building/electrical permits",
+      "publisher": "City of Austin Open Data",
+      "id": "Socrata 3syk-w9eu",
+      "url": "https://data.austintexas.gov/resource/3syk-w9eu.json",
+      "refresh": "daily",
+      "collector": "house/mirror.py, house/permits.py, collect/daily.sh",
+      "files": [
+        "data/mirror/energy_permits.csv.gz",
+        "data/market.json",
+        "data/permits_by_zip.json",
+        "house/cohort.json",
+        "web/data/explorer_points.json",
+        "web/data/explorer_zip.json"
+      ],
+      "kind": "public"
+    },
+    "ercot_dashboards": {
+      "name": "ERCOT public dashboards (system-wide prices, supply-demand, fuel mix, daily-prc)",
+      "publisher": "ERCOT",
+      "id": "",
+      "url": "https://www.ercot.com/api/1/services/read/dashboards/system-wide-prices.json",
+      "refresh": "hourly",
+      "collector": "collect/ercot_feeds.sh, grid/ercot_system.js, grid/today.py",
+      "files": [
+        "data/live/ercot/<feed>/<UTC>.json.gz",
+        "data/ercot/*.json",
+        "web/data/grid_today.json",
+        "web/data/grid_load.json",
+        "web/data/signals.json"
+      ],
+      "kind": "public"
+    },
+    "ercot_dam_archive": {
+      "name": "ERCOT DAM/RTM settlement point price archive (report 13060)",
+      "publisher": "ERCOT",
+      "id": "reportTypeId 13060",
+      "url": "https://www.ercot.com/misapp/GetReports.do?reportTypeId=13060",
+      "refresh": "one-time",
+      "collector": "grid/ercot_archive.py",
+      "files": [
+        "data/ercot_dam_hourly_2025_2026.csv"
+      ],
+      "kind": "public"
+    },
+    "ercot_load_history": {
+      "name": "ERCOT Native Load history by weather zone",
+      "publisher": "ERCOT",
+      "id": "",
+      "url": "https://www.ercot.com/gridinfo/load/load_hist",
+      "refresh": "one-time",
+      "collector": "manual download (see grid/LOAD.md)",
+      "files": [
+        "data/ercot_load_hourly_2024_2026.csv"
+      ],
+      "kind": "public"
+    },
+    "census_acs": {
+      "name": "U.S. Census ACS 5-year estimates (via Census Reporter)",
+      "publisher": "U.S. Census Bureau ACS",
+      "id": "B11001, B25003, B25024, B25035, B19013, B25077, B01001, B18101, B11007",
+      "url": "https://api.censusreporter.org/1.0/data/show/latest",
+      "refresh": "monthly",
+      "collector": "house/demographics.py, collect/monthly.sh",
+      "files": [
+        "data/demographics.json"
+      ],
+      "kind": "public"
+    },
+    "power_to_choose": {
+      "name": "Power to Choose retail plan listings (PUCT)",
+      "publisher": "Power to Choose (PUCT)",
+      "id": "",
+      "url": "http://api.powertochoose.org/api/PowerToChoose/plans",
+      "refresh": "one-time",
+      "collector": "house/territory.py",
+      "files": [
+        "data/ptc_tdu.json"
+      ],
+      "kind": "public"
+    },
+    "travis_appraisal": {
+      "name": "Travis County appraisal/deed records (TCAD)",
+      "publisher": "Williamson/Travis appraisal",
+      "id": "",
+      "url": "https://traviscad.org/publicinformation",
+      "refresh": "one-time",
+      "collector": "house/cad_deeds.py",
+      "files": [
+        "data/mirror/deeds_min.csv.gz",
+        "data/deeds_by_zip.json"
+      ],
+      "kind": "public"
+    },
+    "williamson_appraisal": {
+      "name": "Williamson County appraisal records (WCAD)",
+      "publisher": "Williamson/Travis appraisal",
+      "id": "",
+      "url": "https://data.wcad.org",
+      "refresh": "one-time",
+      "collector": "house/cad_deeds.py, house/wcad.js",
+      "files": [
+        "data/mirror/deeds_min.csv.gz",
+        "data/deeds_by_zip.json"
+      ],
+      "kind": "public"
+    },
+    "wcad_live_lookup": {
+      "name": "WCAD per-address appraisal lookup (live scrape)",
+      "publisher": "Williamson/Travis appraisal",
+      "id": "",
+      "url": "https://search.wcad.org/",
+      "refresh": "live",
+      "collector": "house/appraisal.py, house/wcad.js",
+      "files": [],
+      "kind": "public"
+    },
+    "nws_alerts": {
+      "name": "National Weather Service active alerts (Travis, Williamson counties)",
+      "publisher": "National Weather Service",
+      "id": "zones TXC453, TXC491",
+      "url": "https://api.weather.gov/alerts/active?zone=TXC453,TXC491",
+      "refresh": "hourly",
+      "collector": "collect/ercot_feeds.sh, store/signals.py",
+      "files": [
+        "data/live/nws/<UTC>.json.gz"
+      ],
+      "kind": "public"
+    },
+    "osm_substations": {
+      "name": "OpenStreetMap power substations (Overpass API)",
+      "publisher": "OpenStreetMap contributors (Overpass API)",
+      "id": "",
+      "url": "https://overpass-api.de/api/interpreter",
+      "refresh": "one-time",
+      "collector": "house/feeders.py",
+      "files": [
+        "data/feeders.json"
+      ],
+      "kind": "public"
+    },
+    "austin_library_locations": {
+      "name": "Austin Public Library locations",
+      "publisher": "Austin Public Library",
+      "id": "Socrata tc36-hn4j",
+      "url": "https://data.austintexas.gov/resource/tc36-hn4j.json",
+      "refresh": "one-time",
+      "collector": "house/public_buildings.py",
+      "files": [
+        "house/public_buildings.json"
+      ],
+      "kind": "public"
+    },
+    "austin_rec_centers": {
+      "name": "Austin Parks & Recreation - Recreation Centers",
+      "publisher": "City of Austin Open Data",
+      "id": "Socrata 8dff-2vkt",
+      "url": "https://datahub.austintexas.gov/resource/8dff-2vkt.json",
+      "refresh": "one-time",
+      "collector": "house/public_buildings.py",
+      "files": [
+        "house/public_buildings.json"
+      ],
+      "kind": "public"
+    },
+    "tx_schools": {
+      "name": "Texas Education Agency AskTED school directory",
+      "publisher": "City of Austin Open Data",
+      "id": "Socrata hzek-udky",
+      "url": "https://data.texas.gov/resource/hzek-udky.json",
+      "refresh": "one-time",
+      "collector": "house/public_buildings.py",
+      "files": [
+        "house/public_buildings.json"
+      ],
+      "kind": "public"
+    },
+    "base_public_site": {
+      "name": "Base Power public site copy (FAQ corpus)",
+      "publisher": "Base Power public site",
+      "id": "",
+      "url": "https://basepowercompany.com",
+      "refresh": "one-time",
+      "collector": "manual copy into faq/corpus/",
+      "files": [
+        "faq/corpus/home.md",
+        "faq/corpus/how-it-works.md",
+        "faq/corpus/pricing.md",
+        "faq/corpus/help-center.md"
+      ],
+      "kind": "public"
+    },
+    "gpu_cloud_pricing": {
+      "name": "GPU cloud and token pricing (RunPod, Lambda, Together AI)",
+      "publisher": "RunPod/Lambda pricing pages",
+      "id": "",
+      "url": "https://www.runpod.io/pricing",
+      "refresh": "one-time",
+      "collector": "manual sourcing, grid/RATES.md",
+      "files": [
+        "sim/fleet.py",
+        "grid/RATES.md"
+      ],
+      "kind": "public"
+    },
+    "austin_energy_battery_program": {
+      "name": "Austin Energy backup-battery program (news release)",
+      "publisher": "Base Power public site",
+      "id": "",
+      "url": "https://austinenergy.com/about/news/news-releases/2026/Austin-Energy-expands-local-battery-storage-to-support-reliable-affordable-power",
+      "refresh": "one-time",
+      "collector": "manual sourcing, house/territory.py",
+      "files": [
+        "house/territory.py",
+        "data/ptc_tdu.json"
+      ],
+      "kind": "public"
+    },
+    "hugging_face_model_cards": {
+      "name": "Hugging Face model cards (gemma4:e4b and related)",
+      "publisher": "Hugging Face model cards",
+      "id": "",
+      "url": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "refresh": "one-time",
+      "collector": "manual sourcing",
+      "files": [
+        "brain/LOCAL_VS_CLOUD.md"
+      ],
+      "kind": "public"
+    },
+    "local_vs_cloud_benchmark": {
+      "name": "Local vs cloud member-brain benchmark (laptop/Jetson Ollama)",
+      "publisher": "Our measurements",
+      "id": "",
+      "url": "",
+      "refresh": "one-time",
+      "collector": "brain/answer.py, brain/score.py",
+      "files": [
+        "brain/LOCAL_VS_CLOUD.md",
+        "brain/pred_laptop.jsonl",
+        "brain/pred_jetson.jsonl",
+        "brain/pred_gemini.jsonl",
+        "panel/pred_gemini.jsonl"
+      ],
+      "kind": "measured"
+    },
+    "fleet_simulation": {
+      "name": "Base Fleet simulation (nodes, jobs, earnings, kills, recovery)",
+      "publisher": "Our simulation",
+      "id": "",
+      "url": "",
+      "refresh": "one-time",
+      "collector": "sim/fleet.py, sim/server.py, grid/earned.py",
+      "files": [
+        "data/members.json",
+        "web/data/tower_replay.json",
+        "web/data/density.json",
+        "web/data/block.json",
+        "web/data/fleet_kill_log.json",
+        "web/data/grid_insights.json",
+        "data/storms.json"
+      ],
+      "kind": "simulation"
+    },
+    "onboarding_funnel_simulation": {
+      "name": "Onboarding/photo-drop funnel simulation",
+      "publisher": "Our simulation",
+      "id": "",
+      "url": "",
+      "refresh": "one-time",
+      "collector": "sim/stages.py",
+      "files": [
+        "web/data/report.json"
+      ],
+      "kind": "simulation"
+    },
+    "easy_fit_funnel": {
+      "name": "Per-zip easy-fit funnel (households to easy-fit Base homes)",
+      "publisher": "Our simulation",
+      "id": "",
+      "url": "",
+      "refresh": "one-time",
+      "collector": "house/funnel.py",
+      "files": [
+        "data/funnel.json"
+      ],
+      "kind": "simulation"
+    },
+    "base_footprint_cities": {
+      "name": "Base Power public footprint / launch cities",
+      "publisher": "Base Power public site",
+      "id": "",
+      "url": "https://www.basepowercompany.com",
+      "refresh": "one-time",
+      "collector": "manual sourcing",
+      "files": [
+        "data/base_footprint_cities.json"
+      ],
+      "kind": "public"
+    },
+    "knowledge_base_graph": {
+      "name": "Base Brain knowledge graph (docs, FAQs, data joined into nodes/edges)",
+      "publisher": "Our simulation",
+      "id": "",
+      "url": "",
+      "refresh": "daily",
+      "collector": "store/kb.py",
+      "files": [
+        "data/fleet.db",
+        "web/data/kb_graph.json"
+      ],
+      "kind": "measured"
+    },
+    "faq_corpus_indexed": {
+      "name": "Indexed FAQs (member and Base team, with sources)",
+      "publisher": "Base Power public site",
+      "id": "",
+      "url": "https://help.basepowercompany.com/",
+      "refresh": "daily",
+      "collector": "store/faq.py",
+      "files": [
+        "web/data/faq.json",
+        "data/faq.json"
+      ],
+      "kind": "public"
+    },
+    "learning_loop": {
+      "name": "Member-question learning loop (proposals from questions)",
+      "publisher": "Our measurements",
+      "id": "",
+      "url": "",
+      "refresh": "daily",
+      "collector": "store/learn.py",
+      "files": [
+        "web/data/learning.json"
+      ],
+      "kind": "measured"
+    },
+    "judgments": {
+      "name": "Permit classification judgments (confidence routing)",
+      "publisher": "Our measurements",
+      "id": "",
+      "url": "",
+      "refresh": "daily",
+      "collector": "store/judgments.py, store/judge.py",
+      "files": [
+        "web/data/judgments.json"
+      ],
+      "kind": "measured"
+    },
+    "data_qa": {
+      "name": "Data QA checks over the store",
+      "publisher": "Our measurements",
+      "id": "",
+      "url": "",
+      "refresh": "daily",
+      "collector": "store/data_qa.py",
+      "files": [
+        "web/data/data_qa.json",
+        "data/data_qa.json"
+      ],
+      "kind": "measured"
+    },
+    "gaps_ledger": {
+      "name": "Gaps / open questions ledger",
+      "publisher": "Our measurements",
+      "id": "",
+      "url": "",
+      "refresh": "daily",
+      "collector": "admin/build.py",
+      "files": [
+        "web/data/gaps.json",
+        "data/gaps.json"
+      ],
+      "kind": "measured"
+    },
+    "admin_dashboard": {
+      "name": "Collector freshness / admin dashboard",
+      "publisher": "Our measurements",
+      "id": "",
+      "url": "",
+      "refresh": "hourly",
+      "collector": "admin/build.py",
+      "files": [
+        "web/data/admin.json",
+        "data/admin.json"
+      ],
+      "kind": "measured"
+    },
+    "zcta_boundaries": {
+      "name": "ZCTA zip code boundary polygons (TIGERweb)",
+      "publisher": "U.S. Census Bureau ACS",
+      "id": "",
+      "url": "https://tigerweb.geo.census.gov",
+      "refresh": "one-time",
+      "collector": "manual pull",
+      "files": [
+        "data/zcta.geojson"
+      ],
+      "kind": "public"
+    },
+    "kubra_outages": {
+      "name": "Outage snapshot (Kubra outage map)",
+      "publisher": "Base Power public site",
+      "id": "",
+      "url": "",
+      "refresh": "one-time",
+      "collector": "manual pull",
+      "files": [
+        "web/data/admin.json"
+      ],
+      "kind": "public"
+    },
+    "recorded_answers": {
+      "name": "Recorded Base Brain answers over permit data",
+      "publisher": "Our measurements",
+      "id": "brain/insights.json",
+      "url": "",
+      "refresh": "on each rebuild",
+      "collector": "brain/ask.py --insights",
+      "files": [
+        "brain/insights.json"
+      ],
+      "kind": "measured"
+    }
+  },
+  "pages": {
+    "admin.html": [
+      "admin_dashboard",
+      "gaps_ledger",
+      "learning_loop"
+    ],
+    "ask.html": [
+      "local_vs_cloud_benchmark",
+      "faq_corpus_indexed"
+    ],
+    "block.html": [
+      "fleet_simulation",
+      "austin_permits",
+      "osm_substations"
+    ],
+    "brain.html": [
+      "austin_permits",
+      "data_qa",
+      "faq_corpus_indexed",
+      "knowledge_base_graph"
+    ],
+    "built.html": [
+      "austin_permits",
+      "knowledge_base_graph",
+      "faq_corpus_indexed",
+      "local_vs_cloud_benchmark",
+      "onboarding_funnel_simulation",
+      "easy_fit_funnel",
+      "ercot_dam_archive",
+      "osm_substations",
+      "fleet_simulation"
+    ],
+    "copilot.html": [
+      "local_vs_cloud_benchmark",
+      "faq_corpus_indexed"
+    ],
+    "data-qa.html": [
+      "data_qa"
+    ],
+    "dataflow.html": [
+      "admin_dashboard",
+      "austin_permits",
+      "ercot_dashboards",
+      "ercot_dam_archive",
+      "ercot_load_history",
+      "census_acs",
+      "power_to_choose",
+      "travis_appraisal",
+      "williamson_appraisal",
+      "nws_alerts",
+      "osm_substations",
+      "base_public_site"
+    ],
+    "demo.html": [
+      "austin_permits",
+      "local_vs_cloud_benchmark"
+    ],
+    "energy.html": [
+      "fleet_simulation"
+    ],
+    "explorer.html": [
+      "austin_permits",
+      "fleet_simulation"
+    ],
+    "gaps.html": [
+      "gaps_ledger"
+    ],
+    "grid.html": [
+      "ercot_dashboards",
+      "fleet_simulation"
+    ],
+    "house.html": [
+      "austin_library_locations",
+      "austin_rec_centers",
+      "tx_schools"
+    ],
+    "index.html": [
+      "fleet_simulation"
+    ],
+    "judgments.html": [
+      "judgments"
+    ],
+    "knowledge.html": [
+      "faq_corpus_indexed",
+      "knowledge_base_graph",
+      "learning_loop"
+    ],
+    "market.html": [
+      "austin_permits",
+      "recorded_answers"
+    ],
+    "member.html": [
+      "ercot_dashboards",
+      "austin_permits",
+      "local_vs_cloud_benchmark"
+    ],
+    "models.html": [
+      "local_vs_cloud_benchmark",
+      "faq_corpus_indexed",
+      "knowledge_base_graph"
+    ],
+    "onboarding.html": [
+      "power_to_choose",
+      "austin_permits"
+    ],
+    "overview.html": [
+      "fleet_simulation",
+      "austin_library_locations",
+      "austin_permits",
+      "gpu_cloud_pricing"
+    ],
+    "pitch.html": [
+      "local_vs_cloud_benchmark"
+    ],
+    "placement.html": [
+      "fleet_simulation"
+    ],
+    "plans.html": [
+      "fleet_simulation",
+      "gpu_cloud_pricing",
+      "local_vs_cloud_benchmark"
+    ],
+    "qa.html": [
+      "data_qa"
+    ],
+    "recovery.html": [
+      "fleet_simulation",
+      "base_footprint_cities"
+    ],
+    "rewards.html": [
+      "austin_permits"
+    ],
+    "status.html": [
+      "austin_permits"
+    ],
+    "tower.html": [
+      "fleet_simulation"
+    ],
+    "voice.html": [
+      "local_vs_cloud_benchmark",
+      "austin_permits"
+    ]
+  }
+}

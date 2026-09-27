@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Judge drill</title>
+<link rel="stylesheet" href="shell.css">
+<script defer src="shell.js"></script>
+<style>
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+#main{overflow-wrap:anywhere}
+:where(#main) :where(p,h1,h2,h3,dl,dd){margin:0}
+#main a{color:#1e4d2b}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:#fff;padding:6px 10px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:4px 10px;border-radius:8px;background:#F1F5F9;border:1px solid #E2E8F0;color:#717970;font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:#22C55E;display:inline-block}
+.caps{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970}
+.panel{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:24px;min-width:0}
+code,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:12px;background:#F1F5F9;border:1px solid #E2E8F0;border-radius:4px;padding:0 4px;color:#0F172A}
+
+  .seg { display:inline-flex; flex-wrap:wrap; border:1px solid #E2E8F0; border-radius:8px; overflow:hidden; background:#fff }
+  .seg button { font:inherit; font-size:13px; font-weight:500; border:0; background:none; color:#414941; padding:8px 12px; cursor:pointer; border-right:1px solid #E2E8F0; min-height:40px }
+  .seg button:last-child { border-right:0 }
+  .seg button[aria-pressed="true"] { background:#1e4d2b; color:#fff; font-weight:600 }
+  .btn { font:inherit; font-size:14px; font-weight:600; border:1px solid #E2E8F0; background:#fff; color:#0F172A; padding:8px 16px; border-radius:8px; cursor:pointer; min-height:44px }
+  .btn:hover { background:#F1F5F9 }
+  .btn.primary { background:#1e4d2b; color:#fff; border-color:#1e4d2b }
+  .btn.primary:hover { background:#004A31 }
+  .btn[aria-pressed="true"] { background:#ecfdf5; border-color:#1e4d2b; color:#1e4d2b }
+  .btn:disabled { opacity:.45; cursor:default }
+  button:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
+  .check { display:inline-flex; gap:6px; align-items:center; font-size:14px; color:#414941; cursor:pointer; min-height:44px }
+  .progress { display:flex; align-items:center; gap:12px; font-size:13px; color:#717970; font-variant-numeric:tabular-nums }
+  .meter { flex:1; height:8px; background:#F1F5F9; border-radius:99px; overflow:hidden }
+  .meter i { display:block; height:100%; width:0; background:#1e4d2b; border-radius:99px; transition:width .25s }
+  .card { position:relative; background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:24px; min-height:360px; cursor:pointer }
+  .card.nailed { border-color:#1e4d2b }
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 16px }
+  .tag { font-size:11.5px; font-weight:600; padding:2px 10px; border-radius:99px; background:#F1F5F9; color:#414941; border:1px solid #E2E8F0 }
+  .tag.must { background:#fffbeb; color:#87591c; border-color:#fde68a }
+  .tag.trap { background:#fbe9f0; color:#a0184b; border-color:#f5c2d4 }
+  .tag.ok { background:#cbf080; color:#141f00; border-color:#afd367 }
+  .q { font:600 24px/32px "Plus Jakarta Sans",sans-serif; letter-spacing:-.015em; color:#0F172A; margin:0 0 16px !important; text-wrap:balance }
+  .hint { color:#717970; font-size:13px; margin:24px 0 0 !important }
+  .hint kbd { font:12px "JetBrains Mono",monospace; border:1px solid #E2E8F0; border-bottom-width:2px; border-radius:4px; padding:0 5px; background:#F8FAFC }
+  .ans { display:none; border-top:1px solid #E2E8F0; padding-top:16px }
+  .card.open .ans { display:block }
+  .card.open .hint { display:none }
+  .say { font-size:16px; line-height:26px; margin:0 0 16px !important; color:#0F172A }
+  #main dl { margin:0; display:grid; grid-template-columns:100px 1fr; gap:10px 16px; font-size:14px }
+  #main dt { font:700 11px/16px "Plus Jakarta Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#717970; padding-top:3px }
+  #main dd { margin:0; overflow-wrap:anywhere; min-width:0 }
+  dd.num { font-weight:600 }
+  dd.never { color:#a0184b }
+  dd.limit { color:#717970 }
+  .nav { display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; margin:16px 0 0 }
+  .nav .grp { display:flex; flex-wrap:wrap; gap:8px }
+  .empty { padding:40px 0; color:#717970 }
+  @media (max-width:640px) {
+    .card { min-height:300px }
+    .q { font-size:20px; line-height:28px }
+    #main dl { grid-template-columns:1fr; gap:2px 0 }
+    #main dd { margin-bottom:10px }
+  }
+</style>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+</head>
+<body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<a class="skip" href="#main">Skip to Q&amp;A drill</a>
+<div class="shell">
+<main id="main" class="max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
+  <section class="panel">
+    <span class="eyebrow"><i></i>Judge prep</span>
+    <h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight mt-3">Q&amp;A drill</h1>
+    <p class="lede font-body-md text-body-md text-outline mt-2 max-w-3xl">Rehearse the evidence, assumptions and limits behind the two product tracks. Prepared answers are presentation notes; check each claim against its source page.</p>
+  </section>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <div class="lg:col-span-8 min-w-0">
+      <section id="card" class="card" tabindex="0" aria-label="Flashcard. Press space to reveal."></section>
+      <div class="nav">
+        <div class="grp">
+          <button class="btn" id="prev">Previous</button>
+          <button class="btn primary" id="flip">Reveal</button>
+          <button class="btn" id="next">Next</button>
+        </div>
+        <button class="btn" id="nail" aria-pressed="false">Nailed</button>
+      </div>
+    </div>
+
+    <aside class="lg:col-span-4 min-w-0 space-y-6">
+      <div class="panel space-y-4">
+        <p class="caps">Progress</p>
+        <div class="progress" aria-live="polite">
+          <span id="pos"></span>
+          <div class="meter" aria-hidden="true"><i id="fill"></i></div>
+          <span id="done"></span>
+        </div>
+      </div>
+      <div class="panel space-y-4">
+        <p class="caps">Deck</p>
+        <div class="bar">
+          <div class="seg" id="deck" role="group" aria-label="Deck">
+            <button data-v="drill" aria-pressed="true">Top 20</button>
+            <button data-v="trap" aria-pressed="false">Traps</button>
+            <button data-v="all" aria-pressed="false">All 90</button>
+          </div>
+        </div>
+        <p class="caps">Question set</p>
+        <div class="bar">
+          <div class="seg" id="set" role="group" aria-label="Question set">
+            <button data-v="" aria-pressed="true">Every set</button>
+            <button data-v="business" aria-pressed="false">Business</button>
+            <button data-v="grid" aria-pressed="false">Grid and AI</button>
+            <button data-v="skeptic" aria-pressed="false">Skeptic</button>
+          </div>
+        </div>
+        <div class="bar flex flex-wrap items-center gap-3 pt-2 border-t border-wire-border">
+          <button class="btn" id="shuffle" aria-pressed="false">Shuffle</button>
+          <label class="check"><input type="checkbox" id="hide"> Hide nailed</label>
+          <button class="btn" id="reset">Clear nailed</button>
+        </div>
+      </div>
+      <div class="panel">
+        <p class="caps mb-2">Keys and source</p>
+        <p class="src font-body-sm text-body-sm text-outline">Keys: <b>space</b> reveal, <b>arrows</b> previous and next, <b>N</b> nailed. Source: <a href="../docs/qa/DRILL.md">docs/qa/DRILL.md</a> and the three set files in <code>docs/qa/</code>, built into <code>data/qa.json</code> by <code>web/data/build_qa.py</code>.</p>
+      </div>
+    </aside>
+  </div>
+  <footer class="font-body-sm text-body-sm text-outline pt-8 border-t border-wire-border">A Base Fleet design. Nailed cards are saved on this device.</footer>
+</main></div>
+
+<script>
+(() => {
+  "use strict";
+  const KEY = "bf-qa-nailed";
+  const $ = id => document.getElementById(id);
+  const cardEl = $("card");
+  let all = [], labels = {}, list = [], i = 0, open = false;
+  const st = { deck: "drill", set: "", shuffle: false, hide: false };
+
+  function load() { try { return new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch { return new Set(); } }
+  const nailed = load();
+  function save() { try { localStorage.setItem(KEY, JSON.stringify([...nailed])); } catch { /* private window */ } }
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+  function md(s) { return esc(s).replace(/`([^`]+)`/g, "<code>$1</code>").replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>"); }
+
+  function rebuild(keepId) {
+    let l = all.filter(c => c.deck === st.deck && (!st.set || c.set === st.set));
+    const deckSize = l.length;
+    if (st.hide) l = l.filter(c => !nailed.has(c.id));
+    if (st.shuffle) {
+      for (let k = l.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [l[k], l[j]] = [l[j], l[k]]; }
+    }
+    list = l; list.deckSize = deckSize;
+    const at = keepId ? list.findIndex(c => c.id === keepId) : -1;
+    i = at >= 0 ? at : 0; open = false; render();
+  }
+
+  function render() {
+    const scope = all.filter(c => c.deck === st.deck && (!st.set || c.set === st.set));
+    const n = scope.filter(c => nailed.has(c.id)).length;
+    $("done").textContent = `${n} of ${scope.length} nailed`;
+    $("fill").style.width = scope.length ? (100 * n / scope.length) + "%" : "0";
+    if (!list.length) {
+      $("pos").textContent = "No cards";
+      cardEl.className = "card";
+      cardEl.innerHTML = `<p class="empty">${scope.length ? "Every card in this view is nailed. Clear the \"Hide nailed\" box to drill them again." : "Pick another deck or set to see cards."}</p>`;
+      ["prev","flip","next","nail"].forEach(b => $(b).disabled = true);
+      return;
+    }
+    ["prev","flip","next","nail"].forEach(b => $(b).disabled = false);
+    const c = list[i], isN = nailed.has(c.id);
+    $("pos").textContent = `Card ${i + 1} of ${list.length}`;
+    const tags = [`<span class="tag">${esc(labels[c.set] || c.set)}</span>`];
+    if (c.deck === "trap") tags.push(`<span class="tag trap">Trap</span>`);
+    if (c.deck === "drill") tags.push(`<span class="tag">#${c.rank} most likely</span>`);
+    if (c.must) tags.push(`<span class="tag must">Must nail</span>`);
+    if (isN) tags.push(`<span class="tag ok">Nailed</span>`);
+    const rows = [];
+    if (c.number) rows.push(`<dt>Number</dt><dd class="num">${md(c.number)}</dd>`);
+    if (c.page) rows.push(`<dt>Open</dt><dd><a href="${esc(c.page.href)}" target="_blank" rel="noopener">${esc(c.page.label)}</a></dd>`);
+    if (c.limit) rows.push(`<dt>Limit</dt><dd class="limit">${md(c.limit)}</dd>`);
+    if (c.never) rows.push(`<dt>Never say</dt><dd class="never">${md(c.never)}</dd>`);
+    cardEl.className = "card" + (open ? " open" : "") + (isN ? " nailed" : "");
+    cardEl.innerHTML = `<div class="tags">${tags.join("")}</div>
+      <h2 class="q">${md(c.q)}</h2>
+      <p class="hint">Say your answer out loud. Then press <kbd>space</kbd> or tap the card.</p>
+      <div class="ans"><p class="say">${md(c.say)}</p><dl>${rows.join("")}</dl></div>`;
+    $("flip").textContent = open ? "Hide" : "Reveal";
+    $("nail").setAttribute("aria-pressed", String(isN));
+    $("nail").textContent = isN ? "Nailed" : "Mark nailed";
+  }
+
+  function go(d) { if (!list.length) return; i = (i + d + list.length) % list.length; open = false; render(); }
+  function flip() { if (!list.length) return; open = !open; render(); }
+  function nail() {
+    if (!list.length) return;
+    const id = list[i].id;
+    if (nailed.has(id)) nailed.delete(id); else nailed.add(id);
+    save();
+    if (st.hide && nailed.has(id)) { const nextId = list[(i + 1) % list.length].id; rebuild(nextId === id ? null : nextId); }
+    else render();
+  }
+
+  function seg(id, key) {
+    $(id).addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b) return;
+      st[key] = b.dataset.v;
+      $(id).querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+      rebuild();
+    });
+  }
+  seg("deck", "deck"); seg("set", "set");
+  $("shuffle").addEventListener("click", () => { st.shuffle = !st.shuffle; $("shuffle").setAttribute("aria-pressed", String(st.shuffle)); rebuild(); });
+  $("hide").addEventListener("change", e => { st.hide = e.target.checked; rebuild(list[i] && list[i].id); });
+  $("reset").addEventListener("click", () => { if (!nailed.size || !confirm("Clear every nailed mark?")) return; nailed.clear(); save(); rebuild(list[i] && list[i].id); });
+  $("prev").addEventListener("click", () => go(-1));
+  $("next").addEventListener("click", () => go(1));
+  $("flip").addEventListener("click", flip);
+  $("nail").addEventListener("click", nail);
+  cardEl.addEventListener("click", e => { if (e.target.closest("a")) return; flip(); });
+
+  document.addEventListener("keydown", e => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const t = e.target;
+    if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+    if (e.key === " " || e.key === "Enter" && t === cardEl) { e.preventDefault(); flip(); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+    else if (e.key === "n" || e.key === "N") { e.preventDefault(); nail(); }
+  });
+
+  fetch("data/qa.json").then(r => r.json()).then(d => {
+    all = d.cards; labels = d.sets;
+    const p = new URLSearchParams(location.search);
+    if (p.get("open") === "1") open = true;
+    rebuild();
+    if (p.get("open") === "1") { open = true; render(); }
+  }).catch(() => { cardEl.innerHTML = `<p class="empty">Questions will appear once the page is served from the site.</p>`; });
+})();
+</script>
+</body>
+</html>

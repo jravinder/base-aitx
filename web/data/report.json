@@ -1,0 +1,168 @@
+{
+ "seed": 7,
+ "dials": {
+  "leads_per_week": 200,
+  "photo_drop_rate": 0.35,
+  "photo_drop_rate_guided": 0.15,
+  "crews": 4,
+  "installs_per_crew_day": 3
+ },
+ "funnel": {
+  "leads": 800,
+  "served": 513,
+  "photos_complete": 318,
+  "routed": 318
+ },
+ "header": {
+  "homes_lost_per_month_at_photo": 104,
+  "compute_margin_per_node_per_month": 208.14,
+  "margin_never_scheduled_per_month": 21646.14,
+  "sentence": "At a 35% photo drop rate, 104 homes a month never reach the fleet that guided collection at 15% would keep. That is $21,646 a month of compute margin never scheduled."
+ },
+ "panels": [
+  {
+   "name": "Territory and lead",
+   "number": 0.641,
+   "unit": "share of leads resolved to a served territory, owner, with an address",
+   "by_territory": {
+    "Austin Energy": 511,
+    "Oncor": 250,
+    "Pedernales Electric Cooperative (PEC)": 29,
+    "AEP Texas North": 10
+   },
+   "by_status": {
+    "backup_only": 511,
+    "energy_and_backup": 125,
+    "mixed": 135,
+    "not_served": 29
+   },
+   "territory_only_share": 0.964,
+   "no_address_yet": 34,
+   "ceiling": "Base's own eligibility rules; unknown to us",
+   "assumptions": [
+    "leads drawn by zip in proportion to permit volume (49 Austin zips, Undervolt extract)",
+    "territory: house/territory.py lookup(); served = energy_and_backup, backup_only (Austin Energy, Backup Only plan), or mixed (competitive TDU in part of the zip)",
+    "zips missing from territory.py ZIP_TABLE count as unmapped, not served; territory_only_share ignores tenure and new builds",
+    "new-build share drives 'no address yet' (Base's head of software: homes still being built have no address)"
+   ]
+  },
+  {
+   "name": "Photo step",
+   "number": 0.35,
+   "unit": "share of leads that never complete the panel photos",
+   "ceiling": "Base's real drop rate; ask Saturday",
+   "assumptions": [
+    "drop rate is a dial, default from the funnel walk",
+    "state machine asked/reminded/partial not modelled yet"
+   ]
+  },
+  {
+   "name": "Permit permutations",
+   "number": 13,
+   "unit": "distinct territory x tenure x equipment paths observed",
+   "ceiling": "Base's head of software: 'in the hundreds, will probably get into thousands' with fire and electrical codes",
+   "assumptions": [
+    "STUB: 3 axes only; fire code and electrical code axes not added"
+   ]
+  },
+  {
+   "name": "Install routing",
+   "number": 8.3,
+   "unit": "miles per install, greedy nearest-next",
+   "naive": 17.89,
+   "ceiling": "a real VRP solver; greedy is the floor",
+   "assumptions": [
+    "toy 30x30 mile plane, one depot",
+    "drive time = miles"
+   ]
+  },
+  {
+   "name": "Fleet",
+   "nodes": 50,
+   "intervals": 72,
+   "number": 1182.82,
+   "unit": "$ fleet margin over 3 days, power plus compute",
+   "power_only": 142.14,
+   "util": 0.4,
+   "member_cap": 0.25,
+   "gpu_utilisation": 0.397,
+   "compute": 1040.68,
+   "compute_members": 646.6,
+   "compute_outside": 394.08,
+   "at_full_util": {
+    "number": 2885.71,
+    "compute": 2743.57,
+    "compute_members": 1618.53,
+    "compute_outside": 1125.04
+   },
+   "jobs_lost_under_kills": 0,
+   "recovery_intervals": {
+    "node:0": 1,
+    "region:east": 1,
+    "scheduler:None": 1
+   },
+   "reserve_breaches": 0,
+   "by_tier": {
+    "member": {
+     "jobs": 182,
+     "hours": 547,
+     "revenue": 646.6
+    },
+    "business": {
+     "jobs": 69,
+     "hours": 207,
+     "revenue": 194.67
+    },
+    "base": {
+     "jobs": 81,
+     "hours": 243,
+     "revenue": 156.88
+    },
+    "partner": {
+     "jobs": 69,
+     "hours": 207,
+     "revenue": 39.33
+    },
+    "external": {
+     "jobs": 75,
+     "hours": 225,
+     "revenue": 3.2
+    }
+   },
+   "tiers": {
+    "member": {
+     "rate": 1.2,
+     "share": 0.35
+    },
+    "business": {
+     "rate": 1.09,
+     "share": 0.15
+    },
+    "base": {
+     "rate": 0.79,
+     "share": 0.2
+    },
+    "partner": {
+     "rate": 0.34,
+     "share": 0.15
+    },
+    "external": {
+     "rate": 0.16,
+     "share": 0.15
+    }
+   },
+   "ceiling": "MILP on real telemetry; greedy on three historical days is the floor. Say replication.",
+   "assumptions": [
+    "grid price: ERCOT DAM, Austin Energy load zone (LZ_AEN), three real days 2026-09-07, 09-09, 09-26; no replay",
+    "STUB demand: buyers take 40% of GPU node-hours (jobs plus marketplace); member self-use capped at 25% of a node's hours. No telemetry; both are dials (--util, --member-cap)",
+    "compute_members = member tier, homeowners paying $1.20/h for jobs on their own node; compute_outside = every other buyer",
+    "sourced: buyer rates per GPU hour: member 1.20 (local job rate, fixed, unchanged), business 1.09 (Lambda A6000 on-demand, reliable dedicated cloud), base 0.79 (RunPod community L40S, Base's own batch work on spot capacity), partner 0.34 (RunPod community RTX 4090), external 0.16 (RunPod community RTX A5000, cheapest public marketplace batch). See grid/RATES.md.",
+    "scheduler: greedy with 24h day-ahead lookahead (top-4 hours discharge, bottom-6 charge)",
+    "interval = 1 hour, 72 intervals",
+    "reserve = 30% of 39.2 kWh, never breached (asserted)",
+    "recovery = hours until the hourly margin is back to 95% of the same hour with no kill; components return after 3"
+   ]
+  }
+ ],
+ "runtime_s": 0.1
+}

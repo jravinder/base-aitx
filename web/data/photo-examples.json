@@ -1,0 +1,79 @@
+{
+  "examples": [
+    {
+      "id": "panel-rating",
+      "title": "Panel rating close-up",
+      "image": "assets/extract-panel-rating.jpg",
+      "alt": "Residential breaker panel with its main breaker, circuit labels and rating label visible",
+      "source": {"url": "https://commons.wikimedia.org/wiki/File:2026-05-17_08_36_08_Circuit_breaker_panel_within_a_house_in_the_Mountainview_section_of_Ewing_Township,_Mercer_County,_New_Jersey.jpg", "author": "Famartin", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"},
+      "model": "gemma4:e4b",
+      "fields": [
+        {"key": "photo_type", "label": "Photo type", "value": "Open panel", "note": "The outer door is open in this reference photo; protective metal surrounds the breakers."},
+        {"key": "brand", "label": "Manufacturer", "value": null, "note": "Manufacturer: add it if you can see it."},
+        {"key": "main_breaker_amps", "label": "Main breaker rating", "value": "200 A", "note": "Saved model reading. Review the main breaker marking in the full image."},
+        {"key": "location", "label": "Location", "value": "Indoor", "note": "Saved model suggestion."}
+      ],
+      "reviewNote": "A closer view makes labels easier to review. This saved reading is a framing check only. For your own photos, keep doors and covers closed and ask Base if a label is inaccessible."
+    },
+    {
+      "id": "service-overview",
+      "title": "Meters and smart panel",
+      "image": "assets/extract-service-overview.jpg",
+      "alt": "Wide view of a residential exterior wall with multiple electricity meters, a SPAN smart panel and closed equipment enclosures",
+      "source": {"url": "https://commons.wikimedia.org/wiki/File:Residential_service_entrance_with_multiple_meters_and_a_smart_panel.jpg", "author": "Rsparks3", "license": "CC0", "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"},
+      "model": "gemma4:e4b",
+      "fields": [
+        {"key": "photo_type", "label": "Photo type", "value": "Other", "note": "The model did not identify the equipment type; the source describes a residential service entrance."},
+        {"key": "brand", "label": "Manufacturer", "value": null, "note": "Add the manufacturer if you can see it."},
+        {"key": "main_breaker_amps", "label": "Main breaker rating", "value": null, "note": "A wide view does not establish the service rating."},
+        {"key": "location", "label": "Location", "value": "Outdoor", "note": "Saved model suggestion."}
+      ],
+      "reviewNote": "The wide view shows how the meters and equipment sit together. It complements a label close-up; it does not establish available clearance or installation eligibility."
+    },
+    {
+      "id": "closed-panel",
+      "title": "Closed home panel",
+      "image": "assets/extract-closed-panel.jpg",
+      "alt": "Closed gray circuit breaker enclosure on an interior wall",
+      "source": {"url": "https://commons.wikimedia.org/wiki/File:2026-05-17_08_35_49_Circuit_breaker_panel_within_a_house_in_the_Mountainview_section_of_Ewing_Township,_Mercer_County,_New_Jersey.jpg", "author": "Famartin", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"},
+      "model": "gemma4:e4b",
+      "fields": [
+        {"key": "photo_type", "label": "Photo type", "value": "Closed panel", "note": "Saved model classification; confirm against the photo."},
+        {"key": "brand", "label": "Manufacturer", "value": null, "note": "Manufacturer: add it if you can see it."},
+        {"key": "main_breaker_amps", "label": "Main breaker rating", "value": null, "note": "The closed enclosure does not establish amperage."},
+        {"key": "location", "label": "Location", "value": "Indoor", "note": "Saved model suggestion."}
+      ],
+      "reviewNote": "The panel exterior is visible, but its rating is not. Keep protective covers closed; ask Base for safe next steps."
+    },
+    {
+      "id": "exterior-rating",
+      "title": "Exterior equipment",
+      "image": "assets/extract-exterior.jpg",
+      "alt": "Exterior distribution equipment with several closed enclosures and a visible 60 A marking",
+      "source": {"url": "https://commons.wikimedia.org/wiki/File:Distribution_board_in_Suderbys,_Romakloster,_Gotland.jpg", "author": "W.carter", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"},
+      "model": "gemma4:e4b",
+      "fields": [
+        {"key": "photo_type", "label": "Photo type", "value": "Exterior meter", "note": "Model suggestion may be wrong: the source describes a distribution board."},
+        {"key": "brand", "label": "Manufacturer", "value": null, "note": "Manufacturer: add it if you can see it."},
+        {"key": "main_breaker_amps", "label": "Main breaker rating", "value": "60 A", "note": "Model-read result. Base confirms the service rating at the engineering review."},
+        {"key": "location", "label": "Location", "value": "Outdoor", "note": "Saved model suggestion."}
+      ],
+      "reviewNote": "Review the model's interpretation, not just the number. This Swedish equipment example is not evidence of Base eligibility or installation readiness."
+    },
+    {
+      "id": "wrong-equipment",
+      "title": "Other equipment",
+      "image": "assets/extract-wrong-equipment.jpg",
+      "alt": "Industrial generator instrumentation with exposed components, not a residential home panel",
+      "source": {"url": "https://commons.wikimedia.org/wiki/File:154-PGP.jpg", "author": "Vivan755", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"},
+      "model": "gemma4:e4b",
+      "fields": [
+        {"key": "photo_type", "label": "Photo type", "value": "Open panel", "note": "Broad model classification: this reads as industrial equipment, not a home panel."},
+        {"key": "brand", "label": "Manufacturer", "value": null, "note": "Manufacturer: add it if you can see it."},
+        {"key": "main_breaker_amps", "label": "Main breaker rating", "value": null, "note": "No rating was read."},
+        {"key": "location", "label": "Location", "value": "Unknown", "note": "The model did not establish the location."}
+      ],
+      "reviewNote": "Other equipment, kept closed. This reference photo is not an instruction to open equipment or expose wiring."
+    }
+  ]
+}

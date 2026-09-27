@@ -1,0 +1,22 @@
+{
+ "source": "Kubra StormCenter public JSON behind the utility outage maps (keyless). Live snapshot only, no history.",
+ "endpoints": {
+  "Austin Energy": "https://kubra.io/stormcenter/api/v1/stormcenters/dd9c446f-f6b8-43f9-8f80-83f5245c60a1/views/76446308-a901-4fa3-849c-3dd569933a51/currentState",
+  "Oncor": "https://kubra.io/stormcenter/api/v1/stormcenters/560abba3-7881-4741-b538-ca416b58ba1e/views/ca124b24-9a06-4b19-aeb3-1841a9c962e1/currentState"
+ },
+ "note": "currentState gives data/<id>; summary is kubra.io/<data path>/public/summary-1/data.json. Terms of use not published for the JSON; treat as fetch-and-cite, do not redistribute bulk.",
+ "snapshots": {
+  "Austin Energy": {
+   "at": "2026-09-26T21:13:11.791099836Z",
+   "customers_served": 591989,
+   "customers_out": 14,
+   "outages": 1
+  },
+  "Oncor": {
+   "at": "2026-09-26T21:09:42.045751218Z",
+   "customers_served": 4178584,
+   "customers_out": 236,
+   "outages": 22
+  }
+ }
+}

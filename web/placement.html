@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Physical siting | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="shell.css">
+<style>
+  :root { --accent: var(--bf-brand); --batt: var(--bf-blue); --job: var(--bf-amber); --local: var(--bf-info-ink); --stress: var(--bf-danger); --dim: #717970 }
+  *,*::before,*::after { box-sizing: border-box }
+  body { margin: 0; font-family: "Plus Jakarta Sans", sans-serif; background: #f9f9ff }
+  #main p, #main h1, #main h2, #main h3 { margin: 0 }
+  #main { overflow-wrap: anywhere }
+  .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; direction: ltr; overflow: hidden; max-width: 1.2em; display: inline-block; -webkit-font-smoothing: antialiased }
+  [hidden] { display: none!important }
+  canvas { display: block; width: 100%; height: 100%; cursor: crosshair }
+  .sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block }
+  #stats b { color: #1e4d2b }
+  #stats.homes b { color: var(--local) }
+  .model-notes summary { cursor: pointer; min-height: 44px; padding: 10px 0; font-weight: 600 }
+  summary:focus-visible, button:focus-visible { outline: 3px solid var(--bf-focus); outline-offset: 3px }
+</style>
+<script defer src="shell.js"></script>
+</head>
+<body class="bg-surface text-ink-primary font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 flex flex-col gap-8">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div class="flex flex-col gap-2 min-w-0">
+<div class="flex flex-wrap items-center gap-3">
+<span class="text-label-caps font-label-caps uppercase tracking-widest text-primary-container">Example station site · Austin <span id="site-zip">78745</span></span>
+<span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span>
+<span class="text-label-md font-label-md text-primary-container">Physical siting</span>
+</div>
+<h1 class="text-display-sm font-display-sm lg:text-display-lg lg:font-display-lg tracking-tight text-ink-primary">A station could sit here.</h1>
+<p class="text-body-md text-on-surface-variant flex items-start gap-2"><span class="material-symbols-outlined shrink-0 mt-0.5 text-[18px] text-primary-container" aria-hidden="true">location_on</span><span>The library example: <span id="site-name">Menchaca Road Branch library</span>, an Austin Public Library location with every energy permit inside a 1.5 km ring.</span></p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<span class="flex items-center gap-2 px-3 py-2 bg-white border border-wire-border rounded-xl text-label-md font-label-md text-ink-primary"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">local_library</span>Public building</span>
+<span class="flex items-center gap-2 px-3 py-2 bg-white border border-wire-border rounded-xl text-label-md font-label-md text-ink-primary"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">hub</span>Sim feeder 78745-f0</span>
+<a id="pl-next" href="block.html" class="no-underline flex items-center gap-2 min-h-[44px] px-5 py-2 rounded-xl bg-primary-container text-white text-label-md font-label-md shadow-sm hover:opacity-90">See the homes it serves<span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+</div>
+</div>
+<div class="w-full bg-white border border-wire-border rounded-xl p-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-label-md font-label-md">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">description</span><span class="text-on-surface-variant font-medium">Energy permits:</span><b id="s-permits" class="text-ink-primary font-mono">537</b></span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">home</span><span class="text-on-surface-variant font-medium">Addresses:</span><b id="s-addresses" class="text-ink-primary font-mono">428</b></span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-solar-green" aria-hidden="true">solar_power</span><span class="text-on-surface-variant font-medium">Solar homes:</span><b id="s-solar" class="text-ink-primary font-mono">185</b></span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">battery_charging_full</span><span class="text-on-surface-variant font-medium">Battery homes:</span><b id="s-battery" class="text-ink-primary font-mono">27</b></span>
+<span class="sm:ml-auto"><span class="shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed">Measured</span></span>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+<div class="xl:col-span-8 flex flex-col gap-6 min-w-0">
+<figure class="relative m-0 w-full rounded-xl overflow-hidden border border-wire-border bg-white">
+<img src="assets/stitch/placement-1.jpg" width="1376" height="768" alt="Illustration: a stone library building under oak trees, with a fenced steel yard beside it holding battery and compute cabinets" class="block w-full h-auto aspect-[16/9] object-cover">
+<figcaption class="p-3 sm:p-0 sm:absolute sm:bottom-3 sm:left-3 sm:right-3 flex flex-wrap items-end justify-between gap-3">
+<span class="bg-white/95 border border-wire-border px-4 py-2 rounded-xl shadow-sm"><span class="block text-label-caps font-label-caps uppercase text-primary-container">Station layout</span><span class="text-body-sm text-ink-primary font-medium">Four batteries and four GPU PCs in one fenced yard beside the building</span></span>
+<span class="flex flex-wrap items-center gap-2"><span class="shrink-0 px-2.5 py-1 rounded-lg text-label-md font-label-md bg-primary-container text-white">Public library site</span><span class="shrink-0 px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-white/90 text-ink-primary border border-wire-border">Illustration</span></span>
+</figcaption>
+</figure>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">Batteries</span><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">battery_charging_full</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary">4<span class="text-headline-sm text-outline">×</span></span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">39.2 kWh</span></div><span class="text-body-sm text-on-surface-variant mt-1">10 kW each, 30% kept in reserve</span></div>
+<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">GPU PCs</span><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">memory</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary">4<span class="text-headline-sm text-outline">×</span></span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">40% use</span></div><span class="text-body-sm text-on-surface-variant mt-1">One per customer tier</span></div>
+<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">Ring</span><span class="material-symbols-outlined text-[20px] text-energy-lime" aria-hidden="true">radar</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary" id="k-radius">1.5</span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">km</span></div><span class="text-body-sm text-on-surface-variant mt-1">Around the library</span></div>
+<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">Solar homes</span><span class="material-symbols-outlined text-[20px] text-solar-green" aria-hidden="true">solar_power</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary" id="k-solar">185</span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">homes</span></div><span class="text-body-sm text-on-surface-variant mt-1">Permits in the ring</span></div>
+</div>
+<section class="bg-white border border-wire-border rounded-xl overflow-hidden flex flex-col">
+<div class="px-6 py-4 border-b border-wire-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="min-w-0">
+<h2 class="text-headline-sm font-headline-sm text-ink-primary font-bold flex items-center gap-2"><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">account_tree</span>Stations and homes on six feeders</h2>
+<p class="text-body-sm text-on-surface-variant">Compare where the compute goes: at the station, or in every home.</p>
+</div>
+<div class="flex items-center bg-surface-muted border border-wire-border p-1 rounded-xl self-start shrink-0" role="group" aria-label="Placement policy">
+<button id="btn-homes" type="button" aria-pressed="false" class="min-h-[44px] px-4 py-2 text-label-md font-label-md text-outline hover:text-ink-primary rounded-lg transition-colors flex items-center gap-1.5 border-0 bg-transparent cursor-pointer"><span class="material-symbols-outlined text-[16px]" aria-hidden="true" hidden>check_circle</span>Homes only</button>
+<button id="btn-hub" type="button" aria-pressed="true" class="on min-h-[44px] px-4 py-2 text-label-md font-label-md bg-primary-container text-white rounded-lg shadow-sm flex items-center gap-1.5 border-0 cursor-pointer"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">check_circle</span>Station-optimized</button>
+</div>
+</div>
+<div class="relative w-full aspect-square sm:aspect-[16/9] bg-surface-subtle overflow-hidden border-b border-wire-border" id="cwrap">
+<canvas id="c" role="img" aria-label="Animated placement model: compute stations and home batteries. Compare policies using the buttons above."></canvas>
+<div class="absolute top-4 left-4 bg-white/90 px-3 py-1.5 rounded-lg border border-wire-border flex items-center gap-2 pointer-events-none">
+<span class="w-2 h-2 rounded-full bg-solar-green"></span>
+<span class="text-label-md font-label-md text-ink-primary" id="hud-policy">Station-optimized placement</span>
+</div>
+<span class="absolute top-4 right-4 pointer-events-none"><span class="shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-surface-subtle text-outline border border-wire-border">Simulation</span></span>
+</div>
+<div class="p-4 bg-surface-muted flex flex-wrap items-center gap-3">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-white border border-wire-border rounded-lg"><span class="material-symbols-outlined text-primary-container text-[18px]" aria-hidden="true">local_library</span><span class="text-label-md font-label-md text-ink-primary">Stations: <span class="font-bold text-primary-container" id="chip-hubs">2 libraries</span></span></div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-white border border-wire-border rounded-lg"><span class="material-symbols-outlined text-outline text-[18px]" aria-hidden="true">home_pin</span><span class="text-label-md font-label-md text-ink-primary">Homes: <span class="font-bold" id="chip-homes">42 batteries</span></span></div>
+<div class="flex flex-wrap items-center gap-3" id="stats" aria-live="off"></div>
+</div>
+<div class="px-4 pb-4 bg-surface-muted flex flex-wrap gap-x-3 gap-y-1 text-body-sm text-on-surface-variant">
+<span class="inline-flex items-center gap-1.5"><i class="sw" style="background:var(--accent)"></i>compute station</span>
+<span class="inline-flex items-center gap-1.5"><i class="sw" style="background:var(--batt)"></i>home battery</span>
+<span class="inline-flex items-center gap-1.5"><i class="sw" style="background:var(--job)"></i>job to station</span>
+<span class="inline-flex items-center gap-1.5"><i class="sw" style="background:var(--local)"></i>job kept at a home</span>
+<span class="inline-flex items-center gap-1.5"><i class="sw" style="background:var(--stress)"></i>export-cap stress</span>
+</div>
+</section>
+<section id="colocated" class="bg-white border border-wire-border rounded-xl p-6 flex flex-col gap-5" aria-labelledby="colocated-title">
+<div class="flex flex-wrap items-center justify-between gap-3">
+<h2 id="colocated-title" class="text-headline-md font-headline-md text-ink-primary flex items-center gap-2 m-0"><span class="material-symbols-outlined text-primary-container" aria-hidden="true">account_tree</span>Co-located at the station</h2>
+<span class="shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-surface-subtle text-on-surface-variant border border-wire-border">Simulation</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-surface-muted border border-wire-border rounded-xl p-5 flex flex-col gap-3 min-w-0">
+<h3 class="text-headline-sm font-headline-sm text-ink-primary flex items-center gap-2 m-0"><span class="w-2 h-2 rounded-full bg-solar-green shrink-0"></span>Storage yard</h3>
+<p class="text-body-sm text-on-surface-variant">Four Base Core batteries, 39.2 kWh and 10 kW each, 156.8 kWh in all. Each keeps 30% for backup and runs one cycle a day at ERCOT day-ahead prices for Austin.</p>
+<ul class="list-none m-0 p-0 grid grid-cols-2 gap-2 text-[11px] font-mono text-on-surface-variant"><li class="flex justify-between gap-2 px-2 py-1 bg-white rounded border border-wire-border"><span>Capacity</span><b class="text-ink-primary">156.8 kWh</b></li><li class="flex justify-between gap-2 px-2 py-1 bg-white rounded border border-wire-border"><span>Power</span><b class="text-ink-primary">40 kW</b></li><li class="flex justify-between gap-2 px-2 py-1 bg-white rounded border border-wire-border"><span>Reserve</span><b class="text-ink-primary">47.0 kWh</b></li><li class="flex justify-between gap-2 px-2 py-1 bg-white rounded border border-wire-border"><span>Cycles</span><b class="text-ink-primary">1 / day</b></li></ul>
+<div><div class="flex justify-between text-[11px] font-mono text-on-surface-variant mb-1"><span>0%</span><span class="font-bold text-primary-container">30% floor</span><span>100%</span></div><div class="h-2 rounded-full bg-surface-subtle border border-wire-border overflow-hidden flex"><span class="block h-full bg-primary-container" style="width:30%"></span><span class="block h-full bg-energy-lime" style="width:70%"></span></div></div>
+<div class="mt-auto pt-3 border-t border-wire-border flex items-center justify-between gap-2"><span class="text-[11px] font-mono text-on-surface-variant">Battery net / week</span><span class="text-[11px] font-mono font-bold text-primary-container">$50.32</span></div>
+</div>
+<div class="bg-surface-muted border border-wire-border rounded-xl p-5 flex flex-col gap-3 min-w-0">
+<h3 class="text-headline-sm font-headline-sm text-ink-primary flex items-center gap-2 m-0"><span class="w-2 h-2 rounded-full bg-energy-lime shrink-0"></span>Compute rack</h3>
+<p class="text-body-sm text-on-surface-variant">Four GPU PCs, one for each customer tier, busy 67.2 hours a week each. About 350 W each under load, powered at the week's average Austin price.</p>
+<ul class="list-none m-0 p-0 grid grid-cols-2 gap-2 text-[11px] font-mono text-on-surface-variant">
+<li class="flex justify-between gap-2 px-2 py-1 bg-white rounded border border-wire-border"><span>Business</span><b class="text-ink-primary">$1.09/h</b></li>
+<li class="flex justify-between gap-2 px-2 py-1 bg-white rounded border border-wire-border"><span>Base</span><b class="text-ink-primary">$0.79/h</b></li>
+<li class="flex justify-between gap-2 px-2 py-1 bg-white rounded border border-wire-border"><span>Partner</span><b class="text-ink-primary">$0.34/h</b></li>
+<li class="flex justify-between gap-2 px-2 py-1 bg-white rounded border border-wire-border"><span>External</span><b class="text-ink-primary">$0.16/h</b></li>
+</ul>
+<div class="mt-auto pt-3 border-t border-wire-border flex items-center justify-between gap-2"><span class="text-[11px] font-mono text-on-surface-variant">GPU net / week, power $4.48</span><span class="text-[11px] font-mono font-bold text-primary-container">$155.46</span></div>
+</div>
+</div>
+</section>
+</div>
+<div class="xl:col-span-4 flex flex-col gap-6 min-w-0">
+<section class="bg-white border border-wire-border rounded-xl p-6 flex flex-col gap-5">
+<div class="flex items-center justify-between gap-3"><span class="text-label-caps font-label-caps uppercase tracking-wider text-primary-container">Station economics</span><span class="shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-surface-subtle text-outline border border-wire-border">Simulation</span></div>
+<div class="flex flex-col gap-1">
+<span class="text-body-sm text-on-surface-variant font-medium">What the library station earns</span>
+<div class="flex items-baseline gap-1"><span class="text-display-lg font-display-lg text-ink-primary tracking-tight" id="eco-total">$205.78</span><span class="text-label-md text-on-surface-variant">/ week</span></div>
+</div>
+<div class="flex flex-col gap-3 text-body-sm">
+<div class="flex items-center justify-between gap-3 p-3 bg-surface-muted rounded-xl"><span class="text-on-surface-variant font-medium">Four batteries</span><b class="text-ink-primary" id="eco-batt">$50.32</b></div>
+<div class="flex items-center justify-between gap-3 p-3 bg-surface-muted rounded-xl"><span class="text-on-surface-variant font-medium">Four GPU PCs, after power</span><b class="text-ink-primary" id="eco-gpu">$155.46</b></div>
+<div class="flex items-center justify-between gap-3 p-3 bg-surface-muted rounded-xl"><span class="text-on-surface-variant font-medium">One home, 1 battery + 1 PC</span><b class="text-ink-primary" id="eco-house">$84.71</b></div>
+<div class="flex items-center justify-between gap-3 p-3 bg-secondary-fixed/40 border border-secondary-fixed rounded-xl"><span class="text-ink-primary font-medium">Station vs one home</span><b class="text-primary-container" id="eco-ratio">2.4×</b></div>
+</div>
+<p class="text-body-sm text-on-surface-variant">Battery trades use real ERCOT day-ahead prices for Austin; GPU hours use dated public cloud rates.</p>
+</section>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-4" id="pair" hidden>
+<div class="bg-white border border-wire-border rounded-xl p-4 flex flex-col justify-between min-w-0">
+<div><div class="flex items-center justify-between mb-2"><span class="text-label-caps font-label-caps uppercase text-outline">Station</span><span class="w-2 h-2 rounded-full bg-solar-green"></span></div>
+<h3 class="text-headline-sm font-headline-sm text-ink-primary font-bold mb-1">Library station</h3>
+<div class="my-2"><div class="text-headline-lg font-headline-lg text-primary-container font-bold tracking-tight" id="hub-v"></div><div class="text-label-md text-on-surface-variant font-medium">a week</div></div></div>
+<p class="text-body-sm text-on-surface-variant pt-2 border-t border-surface-subtle mt-2" id="hub-note"></p>
+</div>
+<div class="bg-white border border-wire-border rounded-xl p-4 flex flex-col justify-between min-w-0">
+<div><div class="flex items-center justify-between mb-2"><span class="text-label-caps font-label-caps uppercase text-outline">Home</span><span class="w-2 h-2 rounded-full bg-outline-variant"></span></div>
+<h3 class="text-headline-sm font-headline-sm text-ink-primary font-bold mb-1">One home</h3>
+<div class="my-2"><div class="text-headline-lg font-headline-lg text-ink-primary font-bold tracking-tight" id="home-v"></div><div class="text-label-md text-on-surface-variant font-medium">a week</div></div></div>
+<p class="text-body-sm text-on-surface-variant pt-2 border-t border-surface-subtle mt-2" id="home-note"></p>
+</div>
+</div>
+<section class="bg-white border border-wire-border rounded-xl p-6 flex flex-col gap-4">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">location_city</span><h2 class="text-headline-sm font-headline-sm text-ink-primary font-bold">Why this library</h2></div>
+<p class="text-body-sm text-on-surface-variant">It has the most energy permits within 1.5 km of the public buildings we compared.</p>
+<ul class="list-none m-0 p-0 flex flex-col gap-2 text-body-sm text-on-surface-variant" id="why-cands">
+<li class="flex items-center justify-between gap-3 p-3 rounded-xl bg-secondary-fixed/40 border border-secondary-fixed"><span class="font-semibold text-ink-primary">Menchaca Road Branch</span><span>537 permits</span></li>
+</ul>
+<p class="text-body-sm text-on-surface-variant flex items-start gap-2"><span class="material-symbols-outlined text-[18px] text-solar-green" aria-hidden="true">check_circle</span><span id="why-cohort">7 of 40 sample member homes sit inside the ring.</span></p>
+<a class="text-label-md font-label-md text-primary-container underline" href="block.html?track=compute&amp;persona=fleet">See the ring on the map</a>
+</section>
+<section class="bg-primary-container text-white rounded-xl p-6 flex flex-col gap-3" aria-live="polite">
+<div class="flex items-center justify-between gap-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-md font-label-md"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">compare_arrows</span><span id="ans-q">Station-optimized</span></span>
+</div>
+<h3 class="text-display-sm font-display-sm tracking-tight" id="ans-big">Stations first.</h3>
+<p class="text-body-md text-white/85" id="ans-why">Put the compute at the station near the homes; homes keep the battery and backup. A home PC only where the job needs local data.</p>
+<div class="pt-3 border-t border-white/20 grid grid-cols-2 gap-4">
+<div><span class="text-label-caps font-label-caps uppercase text-secondary-fixed block mb-1">Library station</span><span class="text-headline-sm font-headline-sm font-bold">4 batteries, 4 PCs</span></div>
+<div><span class="text-label-caps font-label-caps uppercase text-secondary-fixed block mb-1">One home</span><span class="text-headline-sm font-headline-sm font-bold">1 battery, 1 PC</span></div>
+</div>
+<div class="pt-3 border-t border-white/20 flex items-center justify-between gap-3 font-mono text-[12px]"><span class="uppercase tracking-wider text-white/85">Backup reserve 30%</span><span class="font-bold text-secondary-fixed">KEPT</span></div>
+</section>
+<div class="rounded-xl border border-wire-border bg-white p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[20px] mt-0.5" aria-hidden="true">info</span>
+<div class="text-label-md font-label-md text-ink-primary">Base is building the stations; a member AI service is a Base Fleet proposal.</div>
+</div>
+</div>
+</div>
+<details class="model-notes border-t border-wire-border pt-2 text-body-md text-on-surface-variant"><summary class="text-ink-primary">Model assumptions</summary><p class="max-w-[75ch]">Stations hold the bulk GPUs; homes provide batteries and feeder-local compute in this placement model (ADR-0016). The library is an example site from Austin Public Library locations. GPU PCs busy 40% of the time is a planning estimate. Workloads a station could run: member questions, business inference, and open-science batch work such as protein folding. The six-feeder view shows the idea at a glance; the fleet recording shows recovery evidence.</p><a class="text-primary-container font-semibold underline" href="tower.html?track=compute&amp;persona=fleet">Inspect recorded fleet recovery</a></details>
+</main>
+<footer class="bg-white border-t border-wire-border">
+<div class="max-w-[1440px] px-4 sm:px-6 mx-auto py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-body-sm text-outline text-center">
+<div class="flex flex-wrap justify-center items-center gap-2"><span class="font-bold text-primary-container uppercase tracking-tight">Base Fleet</span><span>&middot;</span><span>Physical siting</span></div>
+<div>Sources: data/block.json, grid/LIBRARY_NODE.md, placement model (ADR-0016)</div>
+</div>
+</footer>
+<script>
+(() => {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d', { alpha: false });
+  const statsEl = document.getElementById('stats');
+  const btnHub = document.getElementById('btn-hub');
+  const btnHomes = document.getElementById('btn-homes');
+
+  const C = {};
+  function alpha(color, opacity) {
+    return `color-mix(in srgb, ${color} ${opacity * 100}%, transparent)`;
+  }
+  function syncTheme() {
+    const style = getComputedStyle(document.documentElement);
+    const tokens = {bg:'bg', panel:'surface', accent:'brand', batt:'blue', job:'amber',
+      local:'info-ink', stress:'danger', ink:'ink', muted:'muted', dim:'muted', wire:'line-strong'};
+    for (const [key, token] of Object.entries(tokens)) C[key] = style.getPropertyValue(`--bf-${token}`).trim();
+    for (const packet of packets) packet.color = packet.kind === 'hub' ? C.job : C.local;
+    sparks.length = 0;
+    if (trailCtx) trailCtx.clearRect(0, 0, W, H);
+  }
+
+  let W = 0, H = 0, dpr = 1;
+  let mode = 'hub'; // 'hub' | 'homes'
+  let t0 = performance.now();
+  let last = t0;
+  let spawnAcc = 0;
+  let jobsPerSec = 0;
+  let jobsWindow = [];
+
+  const FEEDERS = 6;
+  const HOUSES_PER = 7;
+  const HUB_FEEDERS = [1, 4];
+
+  const sub = { x: 0, y: 0 };
+  const feeders = [];
+  const houses = [];
+  const hubs = [];
+  const packets = [];
+  const sparks = [];
+
+  // Soft trail buffer (intentional motion blur, not neon soup)
+  let trailCanvas, trailCtx;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const wrap = document.getElementById('cwrap');
+    W = wrap.clientWidth;
+    H = wrap.clientHeight;
+    canvas.width = Math.floor(W * dpr);
+    canvas.height = Math.floor(H * dpr);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    if (!trailCanvas) {
+      trailCanvas = document.createElement('canvas');
+      trailCtx = trailCanvas.getContext('2d');
+    }
+    trailCanvas.width = canvas.width;
+    trailCanvas.height = canvas.height;
+    trailCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    layout();
+  }
+
+  function layout() {
+    sub.x = W * 0.5;
+    sub.y = H * 0.52;
+    feeders.length = 0;
+    houses.length = 0;
+    hubs.length = 0;
+
+    const R0 = Math.min(W, H) * 0.12;
+    const R1 = Math.min(W, H) * 0.42;
+
+    for (let f = 0; f < FEEDERS; f++) {
+      const ang = -Math.PI / 2 + (f / FEEDERS) * Math.PI * 2 + 0.18;
+      const tipX = sub.x + Math.cos(ang) * R1;
+      const tipY = sub.y + Math.sin(ang) * R1;
+      const midX = sub.x + Math.cos(ang) * (R0 + R1) * 0.55;
+      const midY = sub.y + Math.sin(ang) * (R0 + R1) * 0.55;
+      const feeder = {
+        id: f, ang, tipX, tipY, midX, midY,
+        stress: 0.15 + (f % 3) * 0.12,
+        load: 0, houses: [], hub: null,
+      };
+      feeders.push(feeder);
+
+      for (let h = 0; h < HOUSES_PER; h++) {
+        const u = 0.28 + (h / (HOUSES_PER - 1)) * 0.68;
+        const bx = sub.x + Math.cos(ang) * (R0 + (R1 - R0) * u);
+        const by = sub.y + Math.sin(ang) * (R0 + (R1 - R0) * u);
+        const perp = ang + Math.PI / 2;
+        const side = (h % 2 === 0 ? 1 : -1) * (18 + (h % 3) * 6);
+        const house = {
+          feeder: f,
+          x: bx + Math.cos(perp) * side,
+          y: by + Math.sin(perp) * side,
+          charge: 0.35 + Math.random() * 0.55,
+          phase: Math.random() * Math.PI * 2,
+          hasGpu: false,
+          jobs: 0,
+        };
+        houses.push(house);
+        feeder.houses.push(house);
+      }
+
+      if (HUB_FEEDERS.includes(f)) {
+        const hx = Math.max(52, Math.min(W - 52, midX + Math.cos(ang + 0.35) * 36));
+        const hy = midY + Math.sin(ang + 0.35) * 36;
+        const hub = {
+          feeder: f, x: hx, y: hy,
+          racks: 4, load: 0,
+          pulse: Math.random() * Math.PI * 2,
+          jobs: 0,
+        };
+        hubs.push(hub);
+        feeder.hub = hub;
+      }
+    }
+    applyMode();
+  }
+
+  function applyMode() {
+    for (const h of houses) h.hasGpu = mode === 'homes';
+    if (mode === 'hub') {
+      for (const f of feeders) {
+        f.localHome = f.houses[Math.floor(f.houses.length / 2)];
+      }
+    } else {
+      for (const f of feeders) f.localHome = null;
+    }
+  }
+
+  function setMode(m) {
+    mode = m;
+    applyMode();
+    btnHub.classList.toggle('on', mode === 'hub');
+    btnHomes.classList.toggle('on', mode === 'homes');
+    btnHub.setAttribute('aria-pressed', String(mode === 'hub'));
+    btnHomes.setAttribute('aria-pressed', String(mode === 'homes'));
+    statsEl.classList.toggle('homes', mode === 'homes');
+    const hub = mode === 'hub';
+    const ON = ['bg-primary-container', 'text-white', 'shadow-sm'], OFF = ['text-outline', 'hover:text-ink-primary'];
+    for (const [btn, on] of [[btnHub, hub], [btnHomes, !hub]]) {
+      btn.classList.remove(...(on ? OFF : ON)); btn.classList.add(...(on ? ON : OFF));
+      btn.querySelector('.material-symbols-outlined').hidden = !on;
+    }
+    document.getElementById('hud-policy').textContent = hub ? 'Station-optimized placement' : 'Homes-only placement';
+    document.getElementById('ans-q').textContent = hub ? 'Station-optimized' : 'Homes only';
+    document.getElementById('ans-big').textContent = hub ? 'Stations first.' : 'Every home.';
+    document.getElementById('ans-why').textContent = hub
+      ? 'Put the compute at the station near the homes; homes keep the battery and backup. A home PC only where the job needs local data.'
+      : 'Every home runs a PC beside its battery and the hubs sit idle. In this model, feeders carry more export-cap stress.';
+    packets.length = 0;
+  }
+
+  btnHub.addEventListener('click', () => setMode('hub'));
+  btnHomes.addEventListener('click', () => setMode('homes'));
+  window.addEventListener('keydown', (e) => {
+    if (e.target.closest('button, input, select, textarea, a, [contenteditable]') || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.key === 'h' || e.key === 'H' || e.key === ' ') {
+      e.preventDefault();
+      setMode(mode === 'hub' ? 'homes' : 'hub');
+    }
+    if (e.key === 'Escape') setMode('hub');
+  });
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function dist(ax, ay, bx, by) {
+    const dx = bx - ax, dy = by - ay;
+    return Math.hypot(dx, dy);
+  }
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function spawnPacket(now) {
+    const feeder = feeders[Math.floor(Math.random() * feeders.length)];
+    const isLocal = Math.random() < (mode === 'hub' ? 0.18 : 0.08);
+
+    let target, kind, color;
+    if (mode === 'hub') {
+      if (isLocal && feeder.localHome) {
+        target = feeder.localHome;
+        kind = 'local';
+        color = C.local;
+      } else if (feeder.hub) {
+        target = feeder.hub;
+        kind = 'hub';
+        color = C.job;
+      } else {
+        const hub = hubs[Math.floor(Math.random() * hubs.length)];
+        target = hub;
+        kind = 'hub';
+        color = C.job;
+      }
+    } else {
+      const pool = Math.random() < 0.7 ? feeder.houses : houses;
+      target = pool[Math.floor(Math.random() * pool.length)];
+      kind = 'home';
+      color = C.local;
+    }
+
+    let ox, oy;
+    if (Math.random() < 0.55) {
+      const ang = feeder.ang + (Math.random() - 0.5) * 0.4;
+      const R = Math.max(W, H) * 0.55;
+      ox = sub.x + Math.cos(ang) * R;
+      oy = sub.y + Math.sin(ang) * R;
+    } else {
+      const src = feeder.houses[Math.floor(Math.random() * feeder.houses.length)];
+      ox = src.x; oy = src.y;
+    }
+
+    packets.push({
+      x: ox, y: oy,
+      tx: target.x, ty: target.y,
+      target, kind, color,
+      speed: 85 + Math.random() * 70,
+      trail: [],
+      life: 0,
+      feeder: target.feeder != null ? target.feeder : feeder.id,
+      glow: 0.45 + Math.random() * 0.3,
+    });
+    jobsWindow.push(now);
+  }
+
+  function update(dt, now) {
+    for (const h of houses) {
+      h.phase += dt * 1.1;
+      h.charge = 0.4 + 0.35 * Math.sin(h.phase) * 0.5 + 0.25 * Math.sin(h.phase * 0.37 + h.feeder);
+      h.charge = Math.max(0.15, Math.min(0.98, h.charge));
+    }
+    for (const hub of hubs) {
+      hub.pulse += dt * 1.6;
+      hub.load = Math.max(0, hub.load - dt * 0.32);
+    }
+
+    for (const f of feeders) {
+      let onWire = 0;
+      for (const p of packets) if (p.feeder === f.id) onWire++;
+      const dens = f.houses.length / HOUSES_PER;
+      const targetStress = Math.min(1, 0.2 + dens * 0.15 + onWire * 0.08 + (mode === 'homes' ? 0.25 : 0.05));
+      f.stress = lerp(f.stress, targetStress, 1 - Math.exp(-dt * 1.6));
+      f.load = onWire;
+    }
+
+    const rate = mode === 'hub' ? 7.0 : 9.0;
+    spawnAcc += dt * rate;
+    while (spawnAcc >= 1) {
+      spawnAcc -= 1;
+      if (packets.length < 80) spawnPacket(now);
+    }
+
+    // jobs/s rolling window (2s)
+    while (jobsWindow.length && now - jobsWindow[0] > 2000) jobsWindow.shift();
+    jobsPerSec = jobsWindow.length / 2;
+
+    for (let i = packets.length - 1; i >= 0; i--) {
+      const p = packets[i];
+      p.life += dt;
+      const d = dist(p.x, p.y, p.tx, p.ty);
+      if (d < 6 || p.life > 8) {
+        if (p.target.jobs != null) p.target.jobs++;
+        if (p.target.load != null) p.target.load = Math.min(1, p.target.load + 0.22);
+        // fewer, softer arrival sparks (intentional, not firework)
+        const n = 2 + (Math.random() < 0.35 ? 1 : 0);
+        for (let s = 0; s < n; s++) {
+          const a = Math.random() * Math.PI * 2;
+          sparks.push({
+            x: p.tx, y: p.ty,
+            vx: Math.cos(a) * (18 + Math.random() * 36),
+            vy: Math.sin(a) * (18 + Math.random() * 36),
+            life: 0.28 + Math.random() * 0.18,
+            age: 0,
+            color: p.color,
+          });
+        }
+        packets.splice(i, 1);
+        continue;
+      }
+      const ux = (p.tx - p.x) / d;
+      const uy = (p.ty - p.y) / d;
+      let px = ux, py = uy;
+      if (p.kind === 'hub' && p.life < 1.2) {
+        const pull = 0.18 * Math.sin(p.life * 2.0);
+        const f = feeders[p.feeder] || feeders[0];
+        const mx = f.midX - p.x, my = f.midY - p.y;
+        const md = Math.hypot(mx, my) || 1;
+        px = ux + (mx / md) * pull;
+        py = uy + (my / md) * pull;
+        const n = Math.hypot(px, py) || 1;
+        px /= n; py /= n;
+      }
+      // ease-in speed near target for smoother docking
+      const approach = Math.min(1, d / 80);
+      const step = p.speed * dt * (0.55 + 0.45 * approach);
+      p.x += px * step;
+      p.y += py * step;
+      p.trail.push({ x: p.x, y: p.y });
+      if (p.trail.length > 22) p.trail.shift(); // longer intentional trails
+    }
+
+    for (let i = sparks.length - 1; i >= 0; i--) {
+      const s = sparks[i];
+      s.age += dt;
+      if (s.age > s.life) { sparks.splice(i, 1); continue; }
+      s.x += s.vx * dt;
+      s.y += s.vy * dt;
+      s.vx *= 0.88;
+      s.vy *= 0.88;
+    }
+  }
+
+  function drawGrid() {
+    ctx.save();
+    ctx.strokeStyle = alpha(C.wire, 0.18);
+    ctx.lineWidth = 1;
+    const step = 48;
+    const ox = (sub.x % step);
+    const oy = (sub.y % step);
+    for (let x = ox; x < W; x += step) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = oy; y < H; y += step) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawFeeder(f, now) {
+    const stress = f.stress;
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(sub.x, sub.y);
+    ctx.quadraticCurveTo(
+      lerp(sub.x, f.tipX, 0.5) + Math.cos(f.ang + Math.PI / 2) * 12,
+      lerp(sub.y, f.tipY, 0.5) + Math.sin(f.ang + Math.PI / 2) * 12,
+      f.tipX, f.tipY
+    );
+    ctx.strokeStyle = alpha(C.wire, 0.6 + stress * 0.2);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    if (stress > 0.45) {
+      ctx.beginPath();
+      ctx.moveTo(sub.x, sub.y);
+      ctx.quadraticCurveTo(
+        lerp(sub.x, f.tipX, 0.5) + Math.cos(f.ang + Math.PI / 2) * 12,
+        lerp(sub.y, f.tipY, 0.5) + Math.sin(f.ang + Math.PI / 2) * 12,
+        f.tipX, f.tipY
+      );
+      const alpha = (stress - 0.45) / 0.55;
+      ctx.strokeStyle = C.stress;
+      ctx.globalAlpha = 0.3 + alpha * 0.5;
+      ctx.lineWidth = 1.5 + alpha * 2.5;
+      // no shadowBlur — hairline stress only
+      ctx.stroke();
+
+      const ticks = 4;
+      for (let i = 0; i < ticks; i++) {
+        const u = ((now * 0.00028 * (0.55 + stress) + i / ticks) % 1);
+        const x = lerp(sub.x, f.tipX, u);
+        const y = lerp(sub.y, f.tipY, u);
+        ctx.beginPath();
+        ctx.arc(x, y, 1.2 + alpha * 0.8, 0, Math.PI * 2);
+        ctx.fillStyle = C.stress;
+        ctx.fill();
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawSubstation(now) {
+    const pulse = 0.5 + 0.5 * Math.sin(now * 0.0018);
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(sub.x, sub.y, 26 + pulse * 1.2, 0, Math.PI * 2);
+    ctx.strokeStyle = C.wire;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(sub.x, sub.y, 20, 0, Math.PI * 2);
+    ctx.fillStyle = C.panel;
+    ctx.fill();
+    ctx.strokeStyle = C.accent;
+    ctx.lineWidth = 1.25;
+    ctx.stroke();
+
+    // transformer glyph — flat, no glow
+    ctx.fillStyle = C.ink;
+    roundRect(ctx, sub.x - 6, sub.y - 8, 12, 16, 2);
+    ctx.fill();
+    ctx.fillStyle = C.accent;
+    ctx.fillRect(sub.x - 3.5, sub.y - 4, 7, 2.2);
+    ctx.fillRect(sub.x - 3.5, sub.y + 2, 7, 2.2);
+
+    ctx.font = '500 9px Inter, system-ui, sans-serif';
+    ctx.fillStyle = C.muted;
+    ctx.textAlign = 'center';
+    ctx.letterSpacing = '0px';
+    ctx.fillText('SUBSTATION', sub.x, sub.y + 38);
+    ctx.restore();
+  }
+
+  function drawBattery(h) {
+    const pulse = 0.5 + 0.5 * Math.sin(h.phase);
+    const w = 10, hh = 14;
+    ctx.save();
+    ctx.translate(h.x, h.y);
+
+    ctx.fillStyle = C.panel;
+    ctx.strokeStyle = C.batt;
+    ctx.lineWidth = 1;
+    roundRect(ctx, -w / 2, -hh / 2, w, hh, 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = C.muted;
+    ctx.fillRect(-2.5, -hh / 2 - 2.5, 5, 2.5);
+
+    const fillH = (hh - 2.5) * h.charge;
+    ctx.fillStyle = alpha(C.batt, 0.65 + pulse * 0.2);
+    ctx.fillRect(-w / 2 + 1.2, hh / 2 - 1.2 - fillH, w - 2.4, fillH);
+
+    if (h.hasGpu || (mode === 'hub' && feeders[h.feeder] && feeders[h.feeder].localHome === h)) {
+      ctx.beginPath();
+      ctx.arc(0, 0, 1.8, 0, Math.PI * 2);
+      ctx.fillStyle = C.local;
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function roundRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r);
+    c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r);
+    c.arcTo(x, y, x + w, y, r);
+    c.closePath();
+  }
+
+  function drawHub(hub, now) {
+    const pulse = 0.5 + 0.5 * Math.sin(hub.pulse);
+    const load = hub.load;
+    ctx.save();
+    ctx.translate(hub.x, hub.y);
+
+    const bw = 32, bh = 26;
+    ctx.fillStyle = C.panel;
+    ctx.strokeStyle = C.accent;
+    ctx.lineWidth = 1.15;
+    roundRect(ctx, -bw / 2, -bh / 2, bw, bh, 4);
+    ctx.fill();
+    ctx.stroke();
+
+    for (let i = 0; i < hub.racks; i++) {
+      const x = -11 + i * 7.5;
+      const active = load > i * 0.22 || (Math.sin(hub.pulse * 2.4 + i) > 0.25);
+      ctx.fillStyle = alpha(C.accent, active ? 0.7 + pulse * 0.25 : 0.25);
+      roundRect(ctx, x, -8, 4.5, 16, 1);
+      ctx.fill();
+      // quiet LED — muted amber, no blink chaos
+      ctx.fillStyle = active ? C.job : alpha(C.job, 0.2);
+      ctx.fillRect(x + 1, -6 + ((Math.floor(now / 280) + i) % 3) * 4.5, 2.5, 1.6);
+    }
+
+    ctx.fillStyle = alpha(C.panel, 0.94);
+    roundRect(ctx, -46, bh / 2 + 3, 92, 26, 4);
+    ctx.fill();
+    ctx.font = '600 9px Inter, system-ui, sans-serif';
+    ctx.fillStyle = C.accent;
+    ctx.textAlign = 'center';
+    ctx.fillText('LIBRARY STATION', 0, bh / 2 + 13);
+    ctx.font = '400 9px Inter, system-ui, sans-serif';
+    ctx.fillStyle = C.muted;
+    ctx.fillText('4× batt · 4× GPU', 0, bh / 2 + 24);
+    ctx.restore();
+  }
+
+  function drawPacket(p) {
+    ctx.save();
+    if (p.trail.length > 1) {
+      // gradient trail along path — intentional, not glow spam
+      for (let i = 1; i < p.trail.length; i++) {
+        const a = (i / p.trail.length) * 0.45;
+        ctx.beginPath();
+        ctx.moveTo(p.trail[i - 1].x, p.trail[i - 1].y);
+        ctx.lineTo(p.trail[i].x, p.trail[i].y);
+        ctx.strokeStyle = p.color;
+        ctx.globalAlpha = a;
+        ctx.lineWidth = 1.2 + (i / p.trail.length) * 1.2;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
+    // core — tight, soft halo via alpha disk (no shadowBlur)
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 5.5, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = 0.12;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2.4, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 1.1, 0, Math.PI * 2);
+    ctx.fillStyle = C.panel;
+    ctx.globalAlpha = 0.55;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawSpark(s) {
+    const t = s.age / s.life;
+    const a = 1 - easeOutCubic(t);
+    ctx.save();
+    ctx.globalAlpha = a * 0.7;
+    ctx.fillStyle = s.color;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, 1.2 * a, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawPolicyChip() {
+    const label = mode === 'hub' ? 'Station-optimized placement' : 'Homes-only placement';
+    ctx.save();
+    ctx.font = '500 11px Inter, system-ui, sans-serif';
+    const tw = ctx.measureText(label).width;
+    const padX = 14, padY = 10;
+    const bw = tw + padX * 2;
+    const bh = 28;
+    const x = (W - bw) / 2;
+    const y = H - 36;
+
+    ctx.fillStyle = C.panel;
+    roundRect(ctx, x, y, bw, bh, 4);
+    ctx.fill();
+    ctx.strokeStyle = C.wire;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.fillStyle = mode === 'hub' ? C.accent : C.local;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, x + padX, y + bh / 2 + 0.5);
+    ctx.restore();
+  }
+
+  function frame(now) {
+    const dt = Math.min(0.033, (now - last) / 1000);
+    last = now;
+    update(dt, now);
+
+    // Fade transparency without accumulating a theme-colored background.
+    trailCtx.save();
+    trailCtx.globalCompositeOperation = 'destination-out';
+    trailCtx.globalAlpha = 0.28;
+    trailCtx.fillStyle = C.bg;
+    trailCtx.fillRect(0, 0, W, H);
+    trailCtx.restore();
+    trailCtx.save();
+    for (const p of packets) {
+      trailCtx.beginPath();
+      trailCtx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+      trailCtx.fillStyle = p.color;
+      trailCtx.globalAlpha = 0.35;
+      trailCtx.fill();
+    }
+    trailCtx.restore();
+
+    ctx.fillStyle = C.bg;
+    ctx.fillRect(0, 0, W, H);
+    ctx.drawImage(trailCanvas, 0, 0, W, H);
+
+    drawGrid();
+    for (const f of feeders) drawFeeder(f, now);
+    drawSubstation(now);
+
+    if (mode !== 'hub') {
+      for (const hub of hubs) {
+        ctx.save();
+        ctx.globalAlpha = 0.28;
+        ctx.translate(hub.x, hub.y);
+        ctx.strokeStyle = C.muted;
+        ctx.lineWidth = 1;
+        ctx.setLineDash([2, 4]);
+        roundRect(ctx, -16, -13, 32, 26, 4);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.font = '500 9px Inter, system-ui, sans-serif';
+        ctx.fillStyle = C.muted;
+        ctx.textAlign = 'center';
+        ctx.fillText('station idle', 0, 26);
+        ctx.restore();
+      }
+    }
+
+    for (const h of houses) drawBattery(h);
+    if (mode === 'hub') for (const hub of hubs) drawHub(hub, now);
+    for (const p of packets) drawPacket(p);
+    for (const s of sparks) drawSpark(s);
+
+    const avgStress = feeders.reduce((a, f) => a + f.stress, 0) / feeders.length;
+    statsEl.innerHTML = `<div class="flex items-center gap-2 px-3 py-1.5 bg-white border border-wire-border rounded-lg shadow-2xs"><span class="material-symbols-outlined text-solar-green text-[18px]" aria-hidden="true">speed</span><span class="text-label-md font-label-md text-ink-primary">Export-cap stress: <b class="font-bold">${(avgStress * 100) | 0}%</b></span></div>`;
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  new MutationObserver(syncTheme).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+  fetch('data/block.json').then(r => { if (!r.ok) throw new Error('block'); return r.json(); }).then(d => {
+    const usd = n => '$' + Number(n).toFixed(2), w = d.weekly;
+    document.getElementById('hub-v').textContent = usd(w.library);
+    document.getElementById('home-v').textContent = usd(w.house);
+    document.getElementById('hub-note').textContent = `${d.hub.name} library. Battery ${usd(w.library_battery)}, PCs ${usd(w.library_gpu)}.`;
+    document.getElementById('home-note').textContent = `Battery ${usd(w.house_battery)}, PC ${usd(w.house_gpu)}.`;
+    document.getElementById('pair').hidden = false;
+    const c = d.counts, fmt = n => Number(n).toLocaleString('en-US');
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    set('site-name', d.hub.name + ' library');
+    set('site-zip', d.hub.zip);
+    set('s-permits', fmt(c.permits)); set('s-addresses', fmt(c.addresses));
+    set('s-solar', fmt(c.homes_solar)); set('s-battery', fmt(c.homes_battery));
+    set('k-solar', fmt(c.homes_solar)); set('k-radius', (d.radius_m / 1000).toFixed(1));
+    set('eco-total', usd(w.library)); set('eco-batt', usd(w.library_battery)); set('eco-gpu', usd(w.library_gpu)); set('eco-house', usd(w.house));
+    set('eco-ratio', (w.library / w.house).toFixed(1) + '×');
+    const cand = Object.entries(d.candidates_checked || {});
+    document.getElementById('why-cands').innerHTML = cand.map(([n, v], i) =>
+      `<li class="flex items-center justify-between gap-3 p-3 rounded-xl ${i ? 'bg-surface-muted' : 'bg-secondary-fixed/40 border border-secondary-fixed'}"><span class="font-semibold text-ink-primary min-w-0">${n}</span><span class="shrink-0 tabular-nums">${fmt(v)} permits</span></li>`).join('');
+    set('why-cohort', `${d.cohort.in_ring.length} of ${d.cohort.total} sample member homes sit inside the ring.`);
+  }).catch(() => {});
+  document.getElementById('chip-hubs').textContent = HUB_FEEDERS.length + ' libraries';
+  document.getElementById('chip-homes').textContent = FEEDERS * HOUSES_PER + ' batteries';
+  syncTheme();
+  resize();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

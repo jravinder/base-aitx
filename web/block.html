@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neighborhood network | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="shell.css">
+<link rel="stylesheet" href="assets/leaflet/leaflet.css">
+<style>.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+#nodes td:nth-child(2),#nodes td:nth-child(5),#nodes td:nth-child(6),.mono{font-family:ui-monospace,"JetBrains Mono",SFMono-Regular,Menlo,monospace}
+#main p,#main h1,#main h2,#main h3{margin:0}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:#fff;padding:6px 10px}
+:root{--c-solar:#d9912a;--c-sb:#b8651b;--c-batt:#2f6f3e;--c-gen:#8a3b8f;--c-ev:#3f7cb0;--c-panel:#8b8f96;--c-other:#b7b1a6;--c-hub:#1e4d2b}
+[hidden]{display:none!important}
+.sim-tag{display:inline-flex;align-items:center;padding:1px 8px;border-radius:999px;background:#cbf080;color:#141f00;font-size:11px;font-weight:700;letter-spacing:.02em}
+.leaflet-container{font:inherit;background:#f8fafc}
+.leaflet-tile-pane{filter:grayscale(1) brightness(1.06) contrast(.85);opacity:.7}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.legend i.ring{background:transparent;border:2px solid #0f172a;width:12px;height:12px}
+.legend i.line{width:16px;height:0;border-top:2px dashed var(--c-hub);border-radius:0}
+.legend i.house{background:#fff;border:2px solid var(--c-hub)}
+.hop{background:none;border:none;box-shadow:none;font-size:11px;font-weight:600;color:var(--c-hub);padding:0}
+.hop::before{display:none}
+details.detail>summary{list-style:none}
+details.detail>summary::-webkit-details-marker{display:none}
+details.detail>summary h2::before{content:"\25B8";display:inline-block;margin-right:8px;color:#64748b;transition:transform .15s}
+details.detail[open]>summary h2::before{transform:rotate(90deg)}
+summary:focus-visible{outline:3px solid #467bb0;outline-offset:3px}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.92em}
+.note{font-size:12.5px;color:#596158;margin:8px 0 0}
+</style>
+<script defer src="shell.js"></script>
+</head>
+<body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<a class="skip" href="#main">Skip to the station</a>
+<main id="main" class="w-full max-w-[1440px] mx-auto px-4 sm:px-6 py-8 flex flex-col gap-8">
+
+ <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+  <div class="flex flex-col gap-2 min-w-0">
+   <div class="flex flex-wrap items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-solar-green"></span>
+    <span class="font-mono text-xs font-bold tracking-widest uppercase text-ink-primary">Station topology &bull; <span id="zip-chip">78745</span></span>
+    <span class="text-xs px-2 py-0.5 rounded bg-secondary-container text-on-secondary-fixed font-semibold uppercase tracking-wide">Example station site</span>
+   </div>
+   <h1 class="font-display-sm text-display-sm lg:text-[36px] lg:leading-[44px] font-extrabold tracking-tight text-ink-primary">The homes around a station, and how they cover each other.</h1>
+   <p class="font-body-md text-body-md text-outline max-w-3xl" id="lede">Public records place 537 energy permits within 1.5 km of Menchaca Road Branch library. Simulated member homes on the same feeder pick up each other's work when one drops.</p>
+   <div class="hidden rounded-xl border-l-4 border-error bg-error-container px-4 py-3 text-sm" id="notice">To load the station data, start the server from the repo root with <code>python3 -m http.server 8741</code> and open <code>web/block.html</code> there.</div>
+  </div>
+  <div class="flex flex-wrap items-center gap-3 shrink-0">
+   <div class="flex items-center gap-2 px-3 py-2 bg-surface-container-lowest border border-wire-border rounded-xl text-xs font-semibold text-on-surface-variant tabular-nums">
+    <span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">location_on</span><span id="coords" class="font-mono">30.22&deg; N, 97.80&deg; W</span>
+   </div>
+   <button type="button" id="toggle-permits" aria-pressed="true" class="min-h-[40px] px-4 py-2 bg-surface-container-lowest text-ink-primary border border-wire-border rounded-xl text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">layers</span><span id="toggle-label">Permits shown</span>
+   </button>
+   <a id="bk-next" href="jobs.html" class="no-underline min-h-[44px] px-5 py-2 bg-primary-container text-white rounded-xl text-sm font-semibold flex items-center gap-2 shadow-sm hover:opacity-90">See the job rules<span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+  </div>
+ </div>
+
+ <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+  <div class="xl:col-span-8 flex flex-col gap-6 min-w-0">
+
+   <section class="bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm overflow-hidden">
+    <div class="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-surface-subtle">
+     <div id="map" class="absolute inset-0" role="img" aria-label="Map of the library station, a 1.5 km ring, and energy permits around it"></div>
+     <div class="hidden sm:block absolute top-4 right-4 z-[500] bg-surface-container-lowest/95 border border-wire-border rounded-xl p-4 shadow-sm max-w-[300px]">
+      <div class="font-mono text-[11px] font-bold tracking-widest uppercase text-ink-primary">Station site</div>
+      <div class="mt-1 flex items-center gap-1.5 font-label-md text-label-md text-ink-primary"><span class="material-symbols-outlined text-[18px] text-solar-green" aria-hidden="true">bolt</span><span id="ov-name">Menchaca Road Branch library</span></div>
+      <div class="mt-2 pt-2 border-t border-wire-border text-xs text-outline flex justify-between gap-3"><span id="ov-ring" class="font-mono">1.5 km ring</span><span class="font-semibold text-primary-container" id="ov-permits"></span></div>
+     </div>
+    </div>
+    <div class="legend flex flex-wrap gap-x-3 gap-y-1.5 px-4 sm:px-6 py-3 border-t border-wire-border text-xs text-outline [&>span]:inline-flex [&>span]:items-center [&>span]:gap-1.5" id="legend"></div>
+   </section>
+
+   <section class="bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm p-5 sm:p-6 min-w-0" aria-labelledby="nodes-h">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-4">
+     <div class="min-w-0">
+      <div class="flex flex-wrap items-center gap-2"><h2 id="nodes-h" class="font-headline-md text-headline-md text-ink-primary">Member nodes around the station</h2><span class="sim-tag">Simulation</span></div>
+      <p class="font-body-sm text-body-sm text-outline mt-1" id="nodes-sub">Each simulated member home in 78745: its feeder, battery, backup reserve and the work its PC runs.</p>
+     </div>
+     <label class="flex items-center gap-2 text-xs font-semibold text-on-surface-variant shrink-0">
+      <span class="w-2 h-2 rounded-full bg-solar-green"></span><span id="hour-label">Hour 18, day 1</span>
+      <input type="range" id="hour" min="0" max="71" value="18" class="w-28 accent-[#1e4d2b]" aria-label="Simulated hour">
+     </label>
+    </div>
+    <div class="overflow-x-auto max-h-[560px] overflow-y-auto border border-wire-border rounded-xl">
+     <table class="w-full min-w-[760px] text-left text-sm border-collapse whitespace-nowrap" id="nodes">
+      <thead class="bg-surface-subtle sticky top-0 z-[1]"><tr class="font-label-caps text-label-caps uppercase text-outline">
+       <th class="px-4 py-3">Member node</th><th class="px-4 py-3">Feeder</th><th class="px-4 py-3">Battery charge</th><th class="px-4 py-3">PC work</th><th class="px-4 py-3">Reserve floor</th><th class="px-4 py-3 text-right">Week earned</th>
+      </tr></thead>
+      <tbody id="nodes-body"><tr><td class="px-4 py-3 text-outline" colspan="6">Loading member nodes</td></tr></tbody>
+     </table>
+    </div>
+   </section>
+  </div>
+
+  <aside class="xl:col-span-4 flex flex-col gap-6 min-w-0">
+   <section class="bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm p-6">
+    <div class="flex items-center justify-between gap-2"><span class="font-mono text-[11px] font-bold tracking-widest uppercase text-ink-primary">Work keeps running</span><span class="sim-tag">Simulation</span></div>
+    <div class="mt-4 flex items-baseline gap-2"><span class="mono text-[40px] leading-[44px] font-bold text-primary-container tabular-nums">0</span><span class="text-sm font-semibold text-on-surface-variant">GPU-hours lost when a node drops</span></div>
+    <p class="mt-3 text-sm text-on-surface-variant">With two or more nodes on a feeder, a neighbour picks up the work. A lone node on its feeder gives up 8 GPU-hours.</p>
+    <div class="mt-5">
+     <div class="flex justify-between text-xs font-semibold text-on-surface-variant"><span>Backup reserve held</span><span class="text-primary-container">30% floor</span></div>
+     <div class="mt-2 h-2 rounded-full bg-wire-border overflow-hidden"><div class="h-full bg-gradient-to-r from-primary-container to-energy-lime" id="reserve-bar" style="width:100%"></div></div>
+     <div class="mt-2 flex justify-between text-[11px] text-outline"><span id="reserve-low">Lowest charge this hour</span><span>From web/data/density.json</span></div>
+    </div>
+   </section>
+
+   <div class="grid grid-cols-2 gap-4">
+    <div class="bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm p-5 min-w-0">
+     <div class="flex items-center justify-between gap-2"><span class="font-mono text-[11px] font-bold tracking-widest uppercase text-ink-primary">Member nodes</span><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">hub</span></div>
+     <div class="mt-3 text-[32px] leading-[38px] font-bold tabular-nums" id="c-nodes"></div>
+     <p class="text-xs text-outline mt-3 px-2.5 py-2 rounded-lg bg-surface-subtle border border-wire-border"><span id="c-feeders"></span> <span class="sim-tag">Simulation</span></p>
+    </div>
+
+    <div class="bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm p-5 min-w-0">
+     <div class="flex items-center justify-between gap-2"><span class="font-mono text-[11px] font-bold tracking-widest uppercase text-ink-primary">Solar homes</span><span class="material-symbols-outlined text-[20px] text-warning-amber" aria-hidden="true">solar_power</span></div>
+     <div class="mt-3 text-[32px] leading-[38px] font-bold tabular-nums" id="c-solar"></div>
+     <p class="text-xs text-outline mt-3 px-2.5 py-2 rounded-lg bg-surface-subtle border border-wire-border">Issued permits in the ring</p>
+    </div>
+    <div class="bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm p-5 min-w-0">
+     <div class="flex items-center justify-between gap-2"><span class="font-mono text-[11px] font-bold tracking-widest uppercase text-ink-primary">Battery homes</span><span class="material-symbols-outlined text-[20px] text-solar-green" aria-hidden="true">battery_charging_full</span></div>
+     <div class="mt-3 text-[32px] leading-[38px] font-bold tabular-nums" id="c-batt"></div>
+     <p class="text-xs text-outline mt-3 px-2.5 py-2 rounded-lg bg-surface-subtle border border-wire-border" id="c-base"></p>
+    </div>
+    <div class="bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm p-5 min-w-0">
+     <div class="flex items-center justify-between gap-2"><span class="font-mono text-[11px] font-bold tracking-widest uppercase text-ink-primary">Generators</span><span class="material-symbols-outlined text-[20px] text-on-surface-variant" aria-hidden="true">electric_bolt</span></div>
+     <div class="mt-3 text-[32px] leading-[38px] font-bold tabular-nums" id="c-gen"></div>
+     <p class="text-xs text-outline mt-3 px-2.5 py-2 rounded-lg bg-surface-subtle border border-wire-border">Generator permits</p>
+    </div>
+   </div>
+   <section class="bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm p-6" id="ans" aria-live="polite">
+    <div class="flex items-center justify-between gap-2">
+     <span class="font-mono text-[11px] font-bold tracking-widest uppercase text-ink-primary">Library station potential</span><span class="sim-tag">Simulation</span>
+    </div>
+    <p class="mt-4 text-xs text-outline">Modeled weekly earnings</p>
+    <div class="mt-1 text-[40px] leading-[44px] font-extrabold tracking-tight text-ink-primary tabular-nums"><span id="a-lib">Loading</span> <span class="text-base font-semibold text-outline">a week</span></div>
+    <p class="mt-2 text-sm font-semibold text-on-surface-variant">against <span class="px-2 py-0.5 rounded-lg bg-surface-subtle border border-wire-border text-ink-primary"><span id="a-home"></span> for one home</span></p>
+    <div class="mt-5 p-4 rounded-xl bg-surface-subtle border border-wire-border">
+     <div class="flex justify-between text-xs font-semibold text-on-surface-variant"><span>Station vs one home</span><span class="tabular-nums" id="a-ratio"></span></div>
+     <div class="mt-2 h-2 rounded-full bg-wire-border overflow-hidden flex"><div class="h-full bg-primary-container" id="a-bar-lib" style="width:70%"></div><div class="h-full bg-energy-lime" id="a-bar-home" style="width:30%"></div></div>
+     <div class="mt-2 flex justify-between text-[11px] text-outline"><span>4 batteries + 4 PCs</span><span>1 battery + 1 PC</span></div>
+    </div>
+    <div class="mt-4 grid grid-cols-2 gap-3">
+     <div class="p-3 rounded-xl bg-surface-subtle border border-wire-border min-w-0"><div class="font-mono text-[10px] font-bold tracking-widest uppercase text-outline">Batteries</div><div class="mt-1 text-xl font-bold tabular-nums text-ink-primary" id="a-batt"></div><div class="text-[11px] text-primary-container font-semibold">ERCOT day-ahead trades</div></div>
+     <div class="p-3 rounded-xl bg-surface-subtle border border-wire-border min-w-0"><div class="font-mono text-[10px] font-bold tracking-widest uppercase text-outline">GPU PCs</div><div class="mt-1 text-xl font-bold tabular-nums text-ink-primary" id="a-gpu"></div><div class="text-[11px] text-primary-container font-semibold">After power, 40% busy</div></div>
+    </div>
+   </section>
+
+
+
+   <section class="bg-primary-container text-white rounded-xl shadow-sm p-6">
+    <div class="flex items-center justify-between gap-2"><span class="font-label-caps text-label-caps uppercase text-white/80">Station site</span><span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed">Example</span></div>
+    <h2 class="mt-3 font-headline-md text-headline-md text-white" id="hub-name">Menchaca Road Branch library</h2>
+    <p class="mt-1 text-sm text-white/80">A station could sit here: shared batteries and PCs serving the member homes around it.</p>
+    <div class="mt-5 grid grid-cols-2 gap-3">
+     <div class="rounded-xl bg-black/15 border border-white/10 p-3"><div class="font-label-caps text-label-caps uppercase text-white/75">Storage</div><div class="mt-1 mono font-bold text-secondary-container">4 batteries</div></div>
+     <div class="rounded-xl bg-black/15 border border-white/10 p-3"><div class="font-label-caps text-label-caps uppercase text-white/75">Compute</div><div class="mt-1 mono font-bold text-secondary-container">4 PCs</div></div>
+    </div>
+    <p class="mt-4 text-xs text-white/80">Workloads it could run: member questions, business inference and open-science batch such as protein folding.</p>
+   </section>
+  </aside>
+ </div>
+
+ <p class="text-center text-sm text-outline font-medium">Base is building the stations; a member AI service is a Base Fleet proposal.</p>
+
+ <details class="detail border-t border-wire-border">
+  <summary class="cursor-pointer min-h-[44px] pt-4 pb-1 flex flex-wrap items-baseline gap-x-3 gap-y-1"><h2 class="font-headline-sm text-headline-sm">Details</h2><span class="text-sm text-outline">every permit in the ring, why a station, where the numbers come from</span></summary>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-3">
+   <section class="bg-surface-container-lowest rounded-xl border border-wire-border p-6">
+    <h3 class="font-label-md text-label-md mb-3">Modeled weekly earnings</h3>
+    <div class="flex flex-col gap-2" id="bars"></div>
+   </section>
+   <section class="bg-surface-container-lowest rounded-xl border border-wire-border p-6">
+    <h3 class="font-label-md text-label-md mb-3">Inside the 1.5 km ring</h3>
+    <div class="grid grid-cols-2 gap-2" id="stats"></div>
+    <p class="note" id="statnote"></p>
+   </section>
+   <section class="bg-surface-container-lowest rounded-xl border border-wire-border p-6">
+    <h3 class="font-label-md text-label-md mb-3">Why a station</h3>
+    <blockquote class="m-0 text-sm border-l-[3px] border-primary-container pl-3">Base told us on the factory tour that in a Dallas-area storm, one street with test batteries kept its power, and neighbours walked over.</blockquote>
+    <p class="note">A planning hypothesis for Base to confirm: library participation, site capacity and outage operation.</p>
+    <p class="note">Library station: 4 batteries and 4 PCs. One home: 1 battery and 1 PC. Real ERCOT day-ahead prices; PCs busy 40% of the time is a planning dial. From <code>grid/LIBRARY_NODE.md</code> and <code>grid/NUMBERS.md</code>. Member nodes from <code>data/members.json</code> and <code>web/data/tower_replay.json</code>.</p>
+   </section>
+  </div>
+  <p class="note" id="foot">Sources: Austin Public Library Locations (tc36-hn4j), via <code>house/public_buildings.json</code>, and City of Austin issued permits via <code>data/mirror/energy_permits.csv.gz</code>, as of the capture date. Permit locations are rounded to 4 decimals and show filing activity. Locations only, no street addresses. Check current public records when assessing a site.</p>
+ </details>
+
+ <footer class="border-t border-wire-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-outline text-center">
+  <div class="flex flex-wrap justify-center items-center gap-2"><span class="font-bold text-on-surface-variant">Base Fleet</span><span>&bull;</span><span id="f-left">Neighborhood network, public records</span></div>
+  <div><span id="f-right">Library station, a Base Fleet proposal</span></div>
+ </footer>
+</main>
+<script src="assets/leaflet/leaflet.js"></script>
+<script>
+"use strict";
+const CATS = [
+  ["solar", "Solar", "--c-solar"], ["solar_battery", "Solar and battery", "--c-sb"], ["battery", "Battery", "--c-batt"],
+  ["generator", "Generator", "--c-gen"], ["ev_charger", "EV charger", "--c-ev"], ["panel_upgrade", "Panel upgrade", "--c-panel"],
+  ["other_electrical", "Other electrical", "--c-other"]];
+const WORK = {member: "Member questions", business: "Business inference", base: "Base forecasting", partner: "Grid partner batch", external: "Open-science batch"};
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fmt = n => Number(n).toLocaleString("en-US");
+const usd = n => "$" + Number(n).toFixed(2);
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"})[c]);
+const getJson = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+const firstJson = urls => urls.reduce((p, u) => p.catch(() => getJson(u)), Promise.reject());
+let permitsOn = true, setPermits = () => {};
+
+getJson("data/block.json").then(draw).catch(() => { $("notice").classList.remove("hidden"); });
+Promise.all([firstJson(["../data/members.json", "../data/members.fixture.json"]), getJson("data/tower_replay.json")])
+  .then(([m, r]) => nodes(m.members || [], r.frames || [])).catch(() => {
+    $("nodes-body").innerHTML = `<tr><td class="px-4 py-3 text-outline" colspan="6">Member nodes appear here when the simulation files are served with the page.</td></tr>`;
+  });
+
+$("toggle-permits").addEventListener("click", e => {
+  permitsOn = !permitsOn; setPermits(permitsOn);
+  e.currentTarget.setAttribute("aria-pressed", permitsOn);
+  $("toggle-label").textContent = permitsOn ? "Permits shown" : "Show permits";
+});
+
+function draw(d) {
+  const h = d.hub, c = d.counts;
+  $("lede").textContent = `Public records place ${fmt(c.permits)} energy permits within 1.5 km of ${h.name} library. Simulated member homes on the same feeder pick up each other's work when one drops.`;
+  $("coords").textContent = `${Math.abs(h.lat).toFixed(2)}° N, ${Math.abs(h.lon).toFixed(2)}° W`;
+  $("zip-chip").textContent = h.zip;
+  $("ov-name").textContent = `${h.name} library`;
+  $("hub-name").textContent = `${h.name} library`;
+  $("ov-ring").textContent = `${(d.radius_m / 1000).toFixed(1)} km ring`;
+  $("ov-permits").textContent = `${fmt(c.permits)} permits`;
+
+  const col = Object.fromEntries(CATS.map(([k, , v]) => [k, css(v)]));
+  const order = Object.fromEntries(CATS.map(([k], i) => [k, i]));
+  const pts = d.permits.slice().sort((a, b) => order[b.cat] - order[a.cat]);
+  if (window.L) leaflet(d, h, col, pts); else schematic(d, h, col, pts);
+
+  $("legend").innerHTML = `<span><i style="background:${css("--c-hub")};width:14px;height:14px"></i>Library station</span>` +
+    CATS.filter(([k]) => c.by_category[k]).map(([k, l]) => `<span><i style="background:${col[k]}"></i>${l} (${fmt(c.by_category[k])})</span>`).join("") +
+    `<span><i class="ring"></i>Base permit</span><span><i class="house"></i>Public-record sample home</span><span><i class="line"></i>Illustrative link to the station</span>`;
+
+  const S = [[c.homes_solar, "locations with solar permits"], [c.homes_battery, "locations with battery permits"],
+    [c.homes_generator, "locations with generator permits"], [c.base_permits, "Base permits"]];
+  $("stats").innerHTML = S.map(([v, l]) => `<div class="border border-wire-border rounded-xl px-3 py-2 min-w-0"><div class="text-xl font-bold tabular-nums">${fmt(v)}</div><div class="text-xs text-outline">${l}</div></div>`).join("");
+  $("statnote").textContent =
+    `${fmt(c.permits)} energy permits at ${fmt(c.addresses)} locations. A home counts once per kind. Battery includes solar and battery permits. ${d.cohort.in_ring.length} of the ${d.cohort.total} homes we checked sit inside the ring.`;
+
+  const w = d.weekly, max = w.library, inRing = d.cohort.in_ring.length;
+  const bar = (l, t, b, g, c2) => `<div><div class="flex justify-between gap-2 text-sm"><span>${l}</span><b class="tabular-nums">${usd(t)} a week</b></div>
+      <div class="h-2.5 bg-surface-subtle rounded-full overflow-hidden mt-1"><div class="h-full" style="width:${(t / max * 100).toFixed(1)}%;background:${c2}"></div></div>
+      <div class="note" style="margin:3px 0 0">Battery ${usd(b)}, PC ${usd(g)}</div></div>`;
+  $("bars").innerHTML = bar("Library", w.library, w.library_battery, w.library_gpu, "var(--c-hub)") + bar("One home", w.house, w.house_battery, w.house_gpu, "#94a3b8") +
+    `<p class="note">The model returns ${(w.library / w.house).toFixed(1)} times the single-home result. ${inRing} of ${d.cohort.total} sample homes lie within 1.5 km of ${h.name} library. These figures are a planning estimate for Base to confirm on site.</p>`;
+  $("a-lib").textContent = usd(w.library);
+  $("a-home").textContent = usd(w.house);
+  $("a-batt").textContent = usd(w.library_battery);
+  $("a-gpu").textContent = usd(w.library_gpu);
+  const share = w.library / (w.library + w.house) * 100;
+  $("a-ratio").textContent = `${(w.library / w.house).toFixed(1)}x`;
+  $("a-bar-lib").style.width = share.toFixed(1) + "%";
+  $("a-bar-home").style.width = (100 - share).toFixed(1) + "%";
+  $("c-solar").textContent = fmt(c.homes_solar);
+  $("c-batt").textContent = fmt(c.homes_battery);
+  $("c-gen").textContent = fmt(c.homes_generator);
+  $("c-base").textContent = `${fmt(c.base_permits)} Base permits`;
+  $("f-left").textContent = `${h.zip} Austin, ${h.name} library, public records`;
+  $("f-right").textContent = `${h.name} library station, a Base Fleet proposal`;
+}
+
+function leaflet(d, h, col, pts) {
+  const map = L.map("map", {scrollWheelZoom: false, zoomSnap: 0.25}).setView([h.lat, h.lon], 14);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, attribution: "&copy; OpenStreetMap contributors"}).addTo(map);
+  const ring = L.circle([h.lat, h.lon], {radius: d.radius_m, color: css("--c-hub"), weight: 2, dashArray: "6 5", fill: true, fillOpacity: .04}).addTo(map);
+  map.fitBounds(ring.getBounds(), {padding: [8, 8]});
+  const permits = L.layerGroup().addTo(map);
+  for (const p of pts) L.circleMarker([p.lat, p.lon], {radius: 3.5, stroke: false, fillColor: col[p.cat] || "#999", fillOpacity: .85})
+    .bindTooltip(`${(CATS.find(x => x[0] === p.cat) || [, p.cat])[1]}, ${p.year}`).addTo(permits);
+  for (const p of d.permits.filter(p => p.base)) L.circleMarker([p.lat, p.lon], {radius: 9, color: css("--bf-ink"), weight: 2.5, fill: false})
+    .bindTooltip(`Base permit: ${p.cat.replace("_", " ")}, ${p.year}`).addTo(permits);
+  setPermits = on => on ? permits.addTo(map) : permits.remove();
+  for (const q of d.cohort.in_ring) {
+    L.polyline([[q.lat, q.lon], [h.lat, h.lon]], {color: css("--c-hub"), weight: 2, dashArray: "4 4", opacity: .9}).addTo(map);
+    L.circleMarker([q.lat, q.lon], {radius: 6, color: css("--c-hub"), weight: 2.5, fillColor: "#fff", fillOpacity: 1})
+      .bindTooltip(`${fmt(q.m)} m`, {permanent: true, direction: "right", className: "hop", offset: [6, 0]})
+      .bindPopup(`Public-record sample home, ${fmt(q.m)} m from the example station`).addTo(map);
+  }
+  const hubIcon = L.divIcon({className: "", iconSize: [34, 34], iconAnchor: [17, 17],
+    html: `<div style="width:34px;height:34px;border-radius:50%;background:${css("--c-hub")};border:4px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,.4);display:grid;place-items:center;color:#fff;font:700 13px var(--bf-font)">H</div>`});
+  L.marker([h.lat, h.lon], {icon: hubIcon, zIndexOffset: 1000}).bindPopup(`<b>${esc(h.name)}</b><br>Public library, an example station site`).addTo(map)
+    .bindTooltip(`${h.name} (example station)`, {permanent: true, direction: "top", offset: [0, -18]});
+}
+
+// Offline view: the same ring, permits and sample homes drawn to scale without map tiles.
+function schematic(d, h, col, pts) {
+  const k = Math.cos(h.lat * Math.PI / 180) * 111320, R = d.radius_m * 1.12;
+  const xy = p => [((p.lon - h.lon) * k).toFixed(0), (-(p.lat - h.lat) * 110540).toFixed(0)];
+  const hub = css("--c-hub");
+  let s = `<svg viewBox="${-R * 1.6} ${-R} ${R * 3.2} ${R * 2}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="position:absolute;inset:0">
+    <circle r="${d.radius_m}" fill="${hub}" fill-opacity=".04" stroke="${hub}" stroke-width="12" stroke-dasharray="60 50"/><g id="svg-permits">`;
+  for (const p of pts) { const [x, y] = xy(p); s += `<circle cx="${x}" cy="${y}" r="26" fill="${col[p.cat] || "#999"}" fill-opacity=".85"><title>${esc((CATS.find(c => c[0] === p.cat) || [, p.cat])[1])}, ${esc(p.year)}</title></circle>`; }
+  s += `</g>`;
+  for (const q of d.cohort.in_ring) { const [x, y] = xy(q); s += `<line x1="${x}" y1="${y}" x2="0" y2="0" stroke="${hub}" stroke-width="12" stroke-dasharray="40 40"/><circle cx="${x}" cy="${y}" r="44" fill="#fff" stroke="${hub}" stroke-width="18"><title>Public-record sample home, ${fmt(q.m)} m from the example station</title></circle>`; }
+  s += `<circle r="110" fill="${hub}" stroke="#fff" stroke-width="28"/><text y="40" text-anchor="middle" font-size="120" font-weight="700" fill="#fff">H</text></svg>`;
+  $("map").innerHTML = s;
+  setPermits = on => { $("svg-permits").style.display = on ? "" : "none"; };
+}
+
+function nodes(members, frames) {
+  if (!members.length || !frames.length) throw new Error("empty");
+  const feeders = new Set(members.map(m => m.node.feeder));
+  $("c-nodes").textContent = members.length;
+  $("c-feeders").textContent = `on ${feeders.size} feeders`;
+  const slider = $("hour");
+  slider.max = frames.length - 1;
+  const render = () => {
+    const f = frames[Math.min(+slider.value, frames.length - 1)];
+    const byId = new Map(f.nodes.map(n => [n.id, n]));
+    $("hour-label").textContent = `Hour ${f.hour_of_day}, day ${f.day}`;
+    let low = 1;
+    $("nodes-body").innerHTML = members.map(m => {
+      const n = byId.get(m.node.nid) || {}, soc = n.soc ?? 0, floor = m.node.reserve_pct / 100;
+      if (n.alive !== false) low = Math.min(low, soc);
+      const work = n.alive === false ? `<span class="text-outline">Handed to a neighbour</span>`
+        : n.job ? `<span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span>${WORK[n.job.tier] || n.job.tier}</span>`
+        : `<span class="text-outline">Ready for work</span>`;
+      const batt = n.battery === "discharge" ? "sharing" : n.battery === "charge" ? "charging" : "holding";
+      const wk = (m.totals.battery_usd + m.totals.gpu_usd);
+      return `<tr class="border-t border-wire-border">
+        <td class="px-4 py-3"><div class="font-semibold">${esc(m.member_id)}</div><div class="text-xs text-outline">Node ${m.node.nid}, ${esc(m.zip)}</div></td>
+        <td class="px-4 py-3 tabular-nums">${esc(m.node.feeder)}</td>
+        <td class="px-4 py-3"><div class="flex items-center gap-2"><div class="w-16 h-1.5 rounded-full bg-wire-border overflow-hidden"><div class="h-full ${soc > floor ? "bg-primary-container" : "bg-warning-amber"}" style="width:${(soc * 100).toFixed(0)}%"></div></div><span class="tabular-nums font-semibold">${(soc * 100).toFixed(0)}%</span></div><div class="text-xs text-outline">${n.kwh ?? "-"} of ${m.node.battery_kwh} kWh, ${batt}</div></td>
+        <td class="px-4 py-3">${work}</td>
+        <td class="px-4 py-3 tabular-nums">${m.node.reserve_pct}% <span class="text-xs text-outline">(${m.node.reserve_kwh} kWh)</span></td>
+        <td class="px-4 py-3 text-right tabular-nums font-semibold">${usd(wk)}</td></tr>`;
+    }).join("");
+    $("reserve-bar").style.width = (low * 100).toFixed(0) + "%";
+    $("reserve-low").textContent = `Lowest charge this hour: ${(low * 100).toFixed(0)}%`;
+  };
+  slider.addEventListener("input", render);
+  render();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+[
+ {
+  "member_id": "m001",
+  "zip": "78745",
+  "year_built": 1974,
+  "fit": "easy",
+  "fields": {
+   "panel_amps": {
+    "value": 200,
+    "confidence": 0.95,
+    "source": "permit 2019-2210 service upgrade"
+   },
+   "panel_location": {
+    "value": "garage exterior wall",
+    "confidence": 0.6,
+    "source": "permit sketch"
+   },
+   "solar": {
+    "value": false,
+    "confidence": 0.8,
+    "source": "no solar permit on file"
+   },
+   "battery_install_date": {
+    "value": "2026-08-14",
+    "confidence": 1.0,
+    "source": "install record"
+   }
+  },
+  "confirm_with_member": [
+   "panel_location"
+  ],
+  "node": {
+   "nid": 3,
+   "feeder": "F2",
+   "battery_kwh": 39.2,
+   "gpu": "RTX 4090"
+  },
+  "week": [
+   {
+    "day": "Mon",
+    "battery_usd": 1.1,
+    "gpu_usd": 6.4,
+    "gpu_hours": 5,
+    "reserve_min_pct": 30,
+    "events": [
+     "17:00 battery discharged to feeder at ERCOT peak price $0.19/kWh, reserve held at 30%"
+    ]
+   },
+   {
+    "day": "Tue",
+    "battery_usd": 1.42,
+    "gpu_usd": 7.1,
+    "gpu_hours": 6,
+    "reserve_min_pct": 30,
+    "events": []
+   },
+   {
+    "day": "Wed",
+    "battery_usd": 0.95,
+    "gpu_usd": 5.9,
+    "gpu_hours": 5,
+    "reserve_min_pct": 30,
+    "events": []
+   },
+   {
+    "day": "Thu",
+    "battery_usd": 2.31,
+    "gpu_usd": 8.2,
+    "gpu_hours": 7,
+    "reserve_min_pct": 30,
+    "events": [
+     "16:00 to 19:00 battery discharged, day-ahead price peak $0.42/kWh",
+     "20:00 GPU job for local business tier, 2 hours"
+    ]
+   },
+   {
+    "day": "Fri",
+    "battery_usd": 1.88,
+    "gpu_usd": 7.75,
+    "gpu_hours": 6,
+    "reserve_min_pct": 30,
+    "events": [
+     "03:00 battery charged at low price $0.02/kWh"
+    ]
+   },
+   {
+    "day": "Sat",
+    "battery_usd": 0.71,
+    "gpu_usd": 4.3,
+    "gpu_hours": 4,
+    "reserve_min_pct": 30,
+    "events": []
+   },
+   {
+    "day": "Sun",
+    "battery_usd": 0.6,
+    "gpu_usd": 3.95,
+    "gpu_hours": 3,
+    "reserve_min_pct": 30,
+    "events": [
+     "scheduler maintenance window 02:00, node held last action, reserve 30%"
+    ]
+   }
+  ],
+  "totals": {
+   "battery_usd": 8.97,
+   "gpu_usd": 43.6,
+   "gpu_hours": 36,
+   "week_usd": 52.57,
+   "reserve_breaches": 0
+  },
+  "scaffolded_from": [
+   "house/cohort.json",
+   "sim hourly state",
+   "grid/earned.py"
+  ]
+ },
+ {
+  "member_id": "m002",
+  "zip": "78745",
+  "year_built": 1962,
+  "fit": "needs_love",
+  "fields": {
+   "panel_amps": {
+    "value": 100,
+    "confidence": 0.55,
+    "source": "year built, no upgrade permit"
+   },
+   "panel_location": {
+    "value": "unknown",
+    "confidence": 0.2,
+    "source": "none"
+   },
+   "solar": {
+    "value": true,
+    "confidence": 0.9,
+    "source": "permit 2021-0333 solar"
+   },
+   "battery_install_date": {
+    "value": "2026-09-02",
+    "confidence": 1.0,
+    "source": "install record"
+   }
+  },
+  "confirm_with_member": [
+   "panel_amps",
+   "panel_location"
+  ],
+  "node": {
+   "nid": 17,
+   "feeder": "F5",
+   "battery_kwh": 39.2,
+   "gpu": "RTX 3060"
+  },
+  "week": [
+   {
+    "day": "Mon",
+    "battery_usd": 0.8,
+    "gpu_usd": 3.1,
+    "gpu_hours": 3,
+    "reserve_min_pct": 30,
+    "events": []
+   },
+   {
+    "day": "Tue",
+    "battery_usd": 0.92,
+    "gpu_usd": 3.4,
+    "gpu_hours": 3,
+    "reserve_min_pct": 30,
+    "events": [
+     "17:00 battery discharged to feeder at peak, reserve held at 30%"
+    ]
+   },
+   {
+    "day": "Wed",
+    "battery_usd": 0.77,
+    "gpu_usd": 2.9,
+    "gpu_hours": 3,
+    "reserve_min_pct": 30,
+    "events": []
+   },
+   {
+    "day": "Thu",
+    "battery_usd": 1.6,
+    "gpu_usd": 4.1,
+    "gpu_hours": 4,
+    "reserve_min_pct": 30,
+    "events": [
+     "16:00 to 19:00 battery discharged, day-ahead price peak $0.42/kWh"
+    ]
+   },
+   {
+    "day": "Fri",
+    "battery_usd": 1.2,
+    "gpu_usd": 3.8,
+    "gpu_hours": 4,
+    "reserve_min_pct": 30,
+    "events": []
+   },
+   {
+    "day": "Sat",
+    "battery_usd": 0.55,
+    "gpu_usd": 2.2,
+    "gpu_hours": 2,
+    "reserve_min_pct": 30,
+    "events": [
+     "GPU idle 6 hours, no buyer above marketplace rate $0.16"
+    ]
+   },
+   {
+    "day": "Sun",
+    "battery_usd": 0.5,
+    "gpu_usd": 2.05,
+    "gpu_hours": 2,
+    "reserve_min_pct": 30,
+    "events": []
+   }
+  ],
+  "totals": {
+   "battery_usd": 6.34,
+   "gpu_usd": 21.55,
+   "gpu_hours": 21,
+   "week_usd": 27.89,
+   "reserve_breaches": 0
+  },
+  "scaffolded_from": [
+   "house/cohort.json",
+   "sim hourly state",
+   "grid/earned.py"
+  ]
+ }
+]

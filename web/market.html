@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market insights | Base Fleet</title>
+<script src="assets/stitch/tailwind.js"></script>
+<script>
+  if (window.tailwind) tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+    colors: {
+      brand: { 50:'#f0fdf4', 100:'#dcfce7', 200:'#bbf7d0', 500:'#22c55e', 600:'#16a34a', 700:'#15803d', 800:'#1e4d2b', 900:'#143d22' },
+      surface: { bg:'#f9f9ff', card:'#ffffff', subtle:'#f4f5fa', border:'#e5e7eb' }
+    } } } };
+</script>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/chart.umd.min.js"></script>
+<link rel="stylesheet" href="shell.css">
+<script defer src="shell.js"></script>
+<style>
+  body { font-family:'Plus Jakarta Sans', system-ui, sans-serif; background-color:#f8fafc; color:#0f172a; -webkit-font-smoothing:antialiased }
+  summary { cursor:pointer; min-height:44px; display:flex; align-items:center; justify-content:space-between; gap:12px }
+  summary { list-style:none } summary::-webkit-details-marker, summary::marker { display:none; content:"" }
+  details[open] > summary .chev { transform:rotate(180deg) }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid #467bb0; outline-offset:3px }
+  .admin-path [aria-current] { background:#f1f5f9; color:#0f172a; font-weight:700 }
+  .bars { grid-template-columns:repeat(var(--n), minmax(0,1fr)) }
+</style>
+</head>
+<body class="min-h-screen selection:bg-brand-100 selection:text-brand-900">
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-10">
+
+    <div class="mb-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+       <div class="min-w-0">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-500 text-[11px] font-bold uppercase tracking-wider mb-3"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>Market pace &middot; City of Austin open data</span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-2">Base permits are climbing fast in Austin.</h1>
+        <p class="text-base text-slate-500 font-medium" id="sub">Backup power permits (city class: Auxiliary Power), City of Austin.</p>
+       </div>
+       <a id="story-next" href="explorer.html" class="shrink-0 inline-flex items-center justify-center gap-2 min-h-[44px] px-4 rounded-lg bg-[#1e4d2b] text-white text-sm font-semibold hover:bg-[#143d22] shadow-sm no-underline"><span>Next: every permit on the map</span><span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <nav class="admin-path flex flex-wrap gap-1 mt-4 text-sm font-medium text-slate-600" aria-label="Market workflow"><a class="px-3 min-h-[44px] inline-flex items-center rounded-lg hover:bg-slate-50" href="market.html" aria-current="page">Priorities</a><a class="px-3 min-h-[44px] inline-flex items-center rounded-lg hover:bg-slate-50" href="explorer.html">Permit map</a><a class="px-3 min-h-[44px] inline-flex items-center rounded-lg hover:bg-slate-50" href="recovery.html">Install stage</a><a class="px-3 min-h-[44px] inline-flex items-center rounded-lg hover:bg-slate-50" href="house.html">Homes ready</a></nav>
+    </div>
+    <div class="hidden mb-6 border-l-4 border-emerald-600 bg-emerald-50 rounded-lg px-4 py-3 text-sm" id="notice">Could not load data/market.json. Start the server from the repo root: <code>python3 -m http.server 8741</code>, then open <code>http://localhost:8741/web/market.html</code>.</div>
+
+    <!-- Hero: monthly stacked bars -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-4">
+        <div>
+          <span class="text-xs font-bold tracking-wider uppercase text-slate-400">Monthly permit volume</span>
+          <h2 class="text-lg font-bold text-slate-900" id="chartnote">Backup power permits each month</h2>
+        </div>
+        <div class="flex flex-wrap items-center gap-5 text-xs font-semibold">
+          <div class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-sm bg-emerald-600 inline-block shadow-sm"></span><span class="text-slate-800">Base Power</span></div>
+          <div class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-sm bg-slate-300 inline-block"></span><span class="text-slate-600">All other installers</span></div>
+          <button class="min-h-[44px] px-3 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 aria-pressed:bg-brand-800 aria-pressed:text-white aria-pressed:border-brand-800" id="range" aria-pressed="false">Show since 2024</button>
+        </div>
+      </div>
+      <div class="relative pt-12 pb-4" id="monthly">
+        <div class="absolute top-0 bottom-8 w-px border-l-2 border-dashed border-emerald-500 z-20 pointer-events-none flex flex-col items-center hidden" id="launch">
+          <div class="bg-emerald-50 border border-emerald-500/30 text-emerald-800 text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm -mt-2 whitespace-nowrap flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span><span id="launchlbl"></span></div>
+        </div>
+        <div class="absolute inset-x-0 top-12 bottom-10 flex flex-col justify-between pointer-events-none" id="grid"></div>
+        <div class="bars relative z-10 grid gap-1 sm:gap-4 h-64 items-end pl-8 pr-2 sm:pr-6" id="bars"></div>
+      </div>
+    </section>
+
+    <!-- Four answer cards -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10" id="cards"></section>
+
+    <!-- Install stage strip -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm mb-8" id="install-stage" aria-label="Install stage">
+      <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+        <div class="min-w-0 flex-1">
+          <span class="text-xs font-bold tracking-wider uppercase text-slate-400">Install stage · Austin evidence</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-0.5">Permit milestones are the public install signal</h3>
+          <p class="text-sm text-slate-600 mt-2 max-w-2xl" id="install-stage-copy">Loading…</p>
+          <ol class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4" id="install-stage-steps"></ol>
+        </div>
+        <div class="lg:w-80 shrink-0 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-slate-800">
+          <p class="font-bold text-amber-900 mb-1">Outside Austin · #57</p>
+          <p class="text-slate-700 leading-snug">Oncor / CenterPoint cities have no open contractor-named permit feed. Star estimates still rank those zips; we do not invent Base install counts there.</p>
+          <a class="inline-flex mt-3 min-h-[40px] items-center font-semibold text-emerald-800 underline underline-offset-2" href="recovery.html?track=home&amp;persona=operations">Open install stage →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where Base installs most -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
+      <div class="flex items-center justify-between pb-6 border-b border-slate-100 mb-6 gap-4">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900">Where Base installs most</h3>
+          <p class="text-xs text-slate-500 font-medium mt-0.5">Top 5 zips by Base permits per 1,000 owner-occupied homes.</p>
+        </div>
+        <span class="text-xs font-semibold px-2.5 py-1 rounded bg-slate-100 text-slate-600 whitespace-nowrap">Per 1,000 homes</span>
+      </div>
+      <div class="space-y-5 max-w-4xl" id="zipbars"></div>
+    </section>
+
+    <!-- Details, closed -->
+    <details class="bg-white border border-slate-200 rounded-2xl px-6 shadow-sm mb-12 group" id="market-trends">
+      <summary class="text-sm font-semibold text-slate-700 py-3"><span>Permit history, installer mix, all zips, sources and related questions</span><span class="chev text-slate-400 transition-transform">&#9662;</span></summary>
+      <div class="pb-6 pt-2 space-y-8 border-t border-slate-100">
+        <div id="context-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4"></div>
+        <div>
+          <h4 class="text-sm font-bold text-slate-900 mb-1">Every year</h4>
+          <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_280px] gap-4 items-center">
+            <div class="relative h-[120px] min-w-0"><canvas id="annual"></canvas></div>
+            <p class="text-xs text-slate-500" id="sparknote"></p>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-sm font-bold text-slate-900 mb-1">Installer mix</h4>
+          <p class="text-xs text-slate-500 mb-2" id="instnote"></p>
+          <div id="groups"></div>
+        </div>
+        <div>
+          <h4 class="text-sm font-bold text-slate-900 mb-2" id="zipsum">All zips</h4>
+          <div class="max-h-[420px] overflow-auto"><table class="w-full text-xs" id="zips"></table></div>
+        </div>
+        <div>
+          <h4 class="text-sm font-bold text-slate-900 mb-2">Related questions</h4>
+          <div class="flex flex-wrap gap-2" id="chips"></div>
+        </div>
+      </div>
+    </details>
+  </main>
+
+  <footer class="w-full border-t border-slate-200/70 bg-white py-4 px-6">
+    <div class="max-w-7xl mx-auto text-xs text-slate-400 font-medium" id="foot">Source: City of Austin issued construction permits (open data).</div>
+  </footer>
+<script>
+const $ = s => document.querySelector(s);
+const fmt = n => n.toLocaleString();
+const pct = x => Math.round(x * 100) + "%";
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const mi = m => +m.slice(5,7) - 1;
+const mlabel = m => MON[mi(m)] + " " + m.slice(2,4);
+const dlabel = s => MON[mi(s)] + " " + +s.slice(8,10) + " " + s.slice(0,4);
+const mean = a => a.reduce((x, y) => x + y, 0) / a.length;
+const SOC = "https://data.austintexas.gov/resource/3syk-w9eu.json";
+const soql = p => SOC + "?" + Object.entries(p).map(([k, v]) => encodeURIComponent(k) + "=" + encodeURIComponent(v)).join("&");
+const AUX = "work_class='Auxiliary Power'", BASE = "contractor_company_name='Base Power' AND issue_date >= '2026-01-01'";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+(async () => {
+  let d, storms = null, ins = null;
+  try { const r = await fetch("../data/market.json"); if (!r.ok) throw 0; d = await r.json(); }
+  catch (e) { $("#notice").classList.remove("hidden"); return; }
+  try { const r = await fetch("../data/storms.json"); if (r.ok) storms = await r.json(); } catch (e) {}
+  try { const r = await fetch("../brain/insights.json"); if (r.ok) ins = await r.json(); } catch (e) {}
+
+  const asof = d.fetched_at, m = d.monthly, bt = d.base_totals, zips = d.base_by_zip;
+  const lastM = m[m.length - 1], partial = asof.slice(0, 7) === lastM.month;
+  
+  // Cards
+  const launch = (d.events || [])[0];
+  const lm = launch ? launch.date.slice(0, 7) : "2026-07";
+  const first = m.find(x => x.month === lm), latest = lastM;
+  const pre = m.filter(x => x.month >= "2026-01" && x.month < lm), post = m.filter(x => x.month >= lm);
+  const preMean = Math.round(mean(pre.map(x => x.others))), postMean = Math.round(mean(post.map(x => x.others)));
+  const active = bt.by_status.active, finalN = bt.by_status.final;
+  const top = zips[0];
+  const pace = Math.round(mean(m.slice(-2).map(x => x.base)) / 10) * 10;
+  const openZ = [...zips].sort((x, y) => y.active - x.active).slice(0, 3);
+  const look = d.lookalikes ? d.lookalikes.zips.slice(0, 3) : [];
+  const card = (tag, q, big, text, todo, href, src) => `<div class="card bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:border-slate-300 transition-colors">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">${tag}</span>
+        <h3 class="text-base font-bold text-slate-800 mb-3">${q}</h3>
+        <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">${big}</div>
+        <p class="text-sm text-slate-600 leading-snug">${text}</p>
+      </div>
+      <div>
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-start gap-2">
+          <span class="text-[11px] font-bold uppercase text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded shrink-0" title="What to do with this">Do</span>
+          <p class="text-xs font-medium text-slate-700">${todo}</p>
+        </div>
+        <a class="block mt-3 text-[11px] text-slate-400 hover:text-slate-600 underline-offset-2 hover:underline" href="${esc(href)}" target="_blank" rel="noopener">Source: ${src}</a>
+      </div>
+    </div>`;
+  const cards = [
+    card("Pace &amp; Scale", "How fast?", `${Math.round(latest.base / first.base)}x`,
+      `${first.base} permits in ${MONL[mi(first.month)]}, ${latest.base} in ${MONL[mi(latest.month)]}${partial ? ` (counted to day ${+asof.slice(8,10)})` : ""}.`,
+      `Compare the recent pace of about ${pace} permits a month with actual staffing and completion records before planning capacity.`,
+      soql({"$select": "date_trunc_ym(issue_date) as m, count(*) as n", "$where": `${AUX} AND ${BASE}`, "$group": "m", "$order": "m"}), "city permits, live query"),
+    card("Market Dynamics", "Did other installers keep growing?", "Yes.",
+      `Others went from ${preMean} to ${postMean} a month.`,
+      `Compare the permit trend with other installers before attributing a change in market share.`,
+      soql({"$select": "date_trunc_ym(issue_date) as m, count(*) as n", "$where": `${AUX} AND issue_date >= '2026-01-01'`, "$group": "m", "$order": "m"}), "city permits, live query"),
+    card("Open permits", "How much is still open?", `${fmt(active)} of ${fmt(bt.total)}`,
+      `${pct(active / bt.total)} still open; median ${bt.median_days_applied_to_issued} days from application to issue.`,
+      `Check current city records in ${openZ.map(z => z.zip).join(", ")}. An open permit shows the work is still on file; city records give the reason.`,
+      soql({"$select": "status_current as s, count(*) as n", "$where": `${AUX} AND ${BASE}`, "$group": "s"}), "city permits, live query"),
+    card("Coverage", "Where next?", top.zip,
+      `${top.per_1000_owner_occupied} Base permits per 1,000 owner-occupied homes.`,
+      look.length ? `Compare coverage and property records in ${look.map(z => z.zip).join(", ")} before selecting outreach areas.` : `Compare coverage and property records in similar zips before selecting outreach areas.`,
+      "../data/market.json", "data/market.json"),
+  ];
+  $("#cards").innerHTML = cards.join("");
+  // Install stage strip: same numbers as recovery.html, surfaced on the permit page.
+  $("#install-stage-copy").textContent = `${fmt(bt.total)} Base Auxiliary Power permits issued in 2026 (${dlabel(asof)}). ${fmt(finalN)} final, ${fmt(active)} still active/open. Final is the city-record proxy for a finished inspection — not Base truck telemetry.`;
+  $("#install-stage-steps").innerHTML = [
+    ["Issued", fmt(bt.total), "2026 Auxiliary Power"],
+    ["Active", fmt(active), pct(active / bt.total) + " open"],
+    ["Final", fmt(finalN), pct(bt.final_rate) + " final"],
+    ["Median days", String(bt.median_days_applied_to_issued), "Applied → issued"],
+  ].map((s, i) => `<li class="rounded-xl border border-slate-200 bg-slate-50 p-3"><div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Step ${i + 1}</div><div class="text-2xl font-extrabold text-slate-900 tabular-nums mt-1">${s[1]}</div><div class="text-sm font-bold text-slate-800">${s[0]}</div><div class="text-xs text-slate-500">${s[2]}</div></li>`).join("");
+  $("#sub").textContent = `${latest.base} Base backup permits in ${MONL[mi(latest.month)]}${partial ? ` (to day ${+asof.slice(8,10)})` : ""}, ${Math.round(latest.base / first.base)}x ${MONL[mi(first.month)]}, since the ${launch ? launch.label.replace(/^Base /, "") : "launch"}. City of Austin permits, ${dlabel(asof)}.`;
+  $("#context-cards").innerHTML = `<p class="text-xs text-slate-500 md:col-span-2">Zip ${top.zip} has ${top.count} Base permits for ${fmt(top.owner_occupied)} owner-occupied homes, the highest rate of ${zips.length} zips. ${fmt(finalN)} Base permits have final status. Median application-to-issue time covers the permit step; installation follows.</p>` +
+    (look.length ? `<p class="text-xs text-slate-500 md:col-span-2">Similar zips: ${look.map(z => `${z.zip} (${fmt(z.owner_occupied)} homes, ${z.base_permits} permits)`).join(", ")}.</p>` : "");
+
+  // Monthly bars (HTML, Stitch style)
+  const draw = all => {
+    const rows = all ? m.filter(x => x.month >= "2024-01") : m.slice(-12);
+    const max = Math.max(...rows.map(x => x.base + x.others));
+    const step = max > 150 ? 50 : max > 60 ? 20 : 10, ceil = Math.ceil(max / step) * step, H = 256;
+    $("#grid").innerHTML = [4, 3, 2, 1, 0].map(i => `<div class="border-b ${i ? "border-slate-100" : "border-slate-200"} w-full flex text-[11px] text-slate-400 font-medium"><span>${Math.round(ceil * i / 4)}</span></div>`).join("");
+    $("#bars").style.setProperty("--n", rows.length);
+    const px = v => Math.round(v / ceil * (H - 40));
+    const lastI = rows.length - 1;
+    $("#bars").innerHTML = rows.map((x, i) => {
+      const hot = x.base > 0, isLast = i === lastI, lbl = all ? (x.month.endsWith("-01") ? x.month.slice(0, 4) : "") : MON[mi(x.month)];
+      return `<div class="flex flex-col items-center h-full justify-end group min-w-0">
+        <div class="text-[10px] font-${isLast ? "bold text-emerald-700" : "semibold text-slate-400 opacity-0 group-hover:opacity-100"} mb-1 transition-opacity text-center leading-tight" title="${mlabel(x.month)}: ${x.base} Base, ${x.base + x.others} all installers">${hot ? `${x.base} Base` : `${x.others} all`}</div>
+        <div class="w-full max-w-[38px] flex flex-col justify-end">
+          ${hot ? `<div class="w-full bg-emerald-600 rounded-t-sm transition-all hover:bg-emerald-500" style="height:${px(x.base)}px" title="${mlabel(x.month)} Base: ${x.base} permits"></div>` : ""}
+          <div class="w-full bg-slate-300 ${hot ? "border-t border-white/40" : "rounded-t-sm"} transition-all hover:bg-slate-400" style="height:${px(x.others)}px" title="${mlabel(x.month)} others: ${x.others} permits"></div>
+        </div>
+        <span class="text-[11px] ${isLast ? "font-bold text-emerald-800" : hot ? "font-semibold text-slate-800" : "font-medium text-slate-500"} mt-2 h-4 whitespace-nowrap">${lbl}</span>
+      </div>`;
+    }).join("");
+    const li = launch ? rows.findIndex(x => x.month === lm) : -1;
+    if (li >= 0) {
+      const bars = $("#bars"), col = bars.children[li], box = $("#monthly").getBoundingClientRect(), cb = col.getBoundingClientRect();
+      const frac = (+launch.date.slice(8, 10) - 0.5) / 31;
+      $("#launch").style.left = (cb.left - box.left + cb.width * frac) + "px";
+      $("#launchlbl").textContent = `${launch.label.replace(/^Base /, "")}, ${dlabel(launch.date)}`;
+      const near = box.width - (cb.left - box.left) < 170;
+      $("#launch").classList.toggle("items-center", !near); $("#launch").classList.toggle("items-end", near);
+      $("#launch").classList.remove("hidden");
+    } else $("#launch").classList.add("hidden");
+    $("#chartnote").textContent = `Backup power permits, ${mlabel(rows[0].month)} to ${mlabel(rows[lastI].month)}${partial ? ` (${MON[mi(lastM.month)]} to day ${+asof.slice(8,10)})` : ""}`;
+    $("#range").setAttribute("aria-pressed", all); $("#range").textContent = all ? "Show last 12 months" : "Show since 2024";
+  };
+  let all = false; draw(all);
+  $("#range").onclick = () => draw(all = !all);
+  addEventListener("resize", () => draw(all));
+
+  // Annual sparkline with storms (inside Details)
+  const a = d.annual, sm = storms ? storms.storms.map(s => ({ at: s.month.slice(0, 4), label: s.name })) : [];
+  const peak = a.reduce((p, x) => x.total > p.total ? x : p);
+  const prevY = a[a.length - 2];
+  if (window.Chart) { Chart.defaults.font.family = "'Plus Jakarta Sans', system-ui, sans-serif"; Chart.defaults.font.size = 11; Chart.defaults.color = "#64748b"; }
+  if (window.Chart) new Chart($("#annual"), {
+    type: "line",
+    data: { labels: a.map(x => String(x.year)), datasets: [{ data: a.map(x => x.total), borderColor: "#0f172a", backgroundColor: "#0f172a", borderWidth: 1.5,
+      pointRadius: a.map(x => sm.some(s => s.at === String(x.year)) ? 4 : 0), pointBackgroundColor: a.map(x => sm.some(s => s.at === String(x.year)) ? "#16a34a" : "#0f172a"), pointBorderWidth: 0, tension: 0 }] },
+    options: { maintainAspectRatio: false, animation: false,
+      scales: { x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } }, y: { display: false, beginAtZero: true } },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => fmt(c.parsed.y) + " permits" } } } }
+  });
+  $("#sparknote").innerHTML = `<b class="text-slate-800">${a[0].year} to ${a[a.length-1].year}.</b> ` +
+    (sm.length ? `Green dots: ${sm.map(s => `${s.at} ${esc(s.label)}`).join("; ")}. ` : "") +
+    `The market peaked at ${fmt(peak.total)} in ${peak.year} and fell to ${fmt(prevY.total)} in ${prevY.year}. ${a[a.length-1].year} is partial (${fmt(a[a.length-1].total)} so far).`;
+
+  // Zips
+  const t5 = zips.slice(0, 5), maxP = t5[0].per_1000_owner_occupied;
+  const op = ["", "/90", "/85", "/80", "/75"];
+  $("#zipbars").innerHTML = t5.map((z, i) => `<div class="space-y-1.5">
+      <div class="flex justify-between items-center text-sm font-semibold gap-3">
+        <span class="text-slate-800 font-bold">${z.zip} <span class="text-xs font-normal text-slate-500 ml-1.5">${z.count} permits</span></span>
+        <span class="text-slate-900 font-extrabold">${z.per_1000_owner_occupied}</span>
+      </div>
+      <div class="w-full h-4 bg-slate-100 rounded-full overflow-hidden flex"><div class="bg-emerald-600${op[i]} h-full rounded-full transition-all" style="width:${(100 * z.per_1000_owner_occupied / maxP * 0.985).toFixed(1)}%"></div></div>
+    </div>`).join("");
+  $("#zipsum").textContent = `All ${zips.length} zips`;
+  const th = "text-left font-medium text-slate-500 py-1.5 pr-2 border-b border-slate-200 sticky top-0 bg-white", td = "py-1.5 pr-2 border-b border-slate-100";
+  $("#zips").innerHTML = `<tr><th class="${th}">Zip</th><th class="${th} text-right">Permits</th><th class="${th} text-right">Per 1,000 homes</th><th class="${th} text-right">Final</th><th class="${th} text-right">Active</th><th class="${th} text-right">Median days</th></tr>` +
+    zips.map(z => `<tr><td class="${td}">${z.zip}</td><td class="${td} text-right tabular-nums">${z.count}</td><td class="${td} text-right tabular-nums">${z.per_1000_owner_occupied == null ? "n/a" : z.per_1000_owner_occupied.toFixed(2)}</td>
+      <td class="${td} text-right tabular-nums">${z.final}</td><td class="${td} text-right tabular-nums">${z.active}</td><td class="${td} text-right tabular-nums">${z.median_days_applied_to_issued ?? "n/a"}</td></tr>`).join("");
+
+  // Installer groups
+  const LABEL = { "battery": "Battery only", "solar-plus-battery": "Solar plus battery", "solar only": "Solar only", "generator": "Generator", "other": "Other" };
+  const cs = d.contractors_2026, groups = {};
+  cs.forEach(c => (groups[c.type] = groups[c.type] || []).push(c));
+  const gTot = g => g.reduce((s, c) => s + c.permits_2026, 0);
+  const order = Object.keys(groups).sort((x, y) => gTot(groups[y]) - gTot(groups[x]));
+  $("#instnote").textContent = `The ${cs.length} installers with the most permits in 2026, grouped by what their permit descriptions say they install.`;
+  $("#groups").innerHTML = order.map(k => {
+    const g = groups[k], tot = gTot(g), hasBase = g.some(c => c.contractor === "Base Power"), others = g.filter(c => c.contractor !== "Base Power").length;
+    const who = [hasBase ? "Base Power" : "", others ? `${others} other installer${others > 1 ? "s" : ""}` : ""].filter(Boolean).join(" and ");
+    return `<div class="py-2.5 border-b border-slate-100 last:border-0"><div class="flex justify-between items-baseline gap-3"><div><b class="text-sm text-slate-800">${LABEL[k] || k}</b><div class="text-xs text-slate-500">${who}</div></div><div class="text-xl font-extrabold text-slate-900 tabular-nums">${fmt(tot)}</div></div>
+      <div class="flex h-2 rounded-full overflow-hidden mt-1.5 bg-slate-100">${g.map(c => `<i class="block h-full border-r-2 border-white ${hasBase ? "bg-emerald-600" : "bg-slate-300"}" style="width:${100 * c.permits_2026 / gTot(cs)}%" title="${c.permits_2026}"></i>`).join("")}</div></div>`;
+  }).join("");
+
+  // Question chips
+  const chip = "inline-flex items-center min-h-[44px] px-4 rounded-full border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:border-emerald-600 hover:text-emerald-800";
+  const qs = ins && ins.insights ? ins.insights.map(i => i.question).filter(q => /Base|Auxiliary|contractor|installer/i.test(q)).slice(0, 6) : [];
+  $("#chips").innerHTML = qs.length ? qs.map(q => `<a class="${chip}" href="ask.html?q=${encodeURIComponent(q)}">${esc(q)}</a>`).join("")
+    : `<a class="${chip}" href="ask.html">Ask a question about this data</a>`;
+
+  $("#foot").innerHTML = `Source: City of Austin issued construction permits (open data, <a class="underline" href="${SOC.replace("/resource/", "/d/").replace(".json", "")}" target="_blank" rel="noopener">Socrata 3syk-w9eu</a>), aggregate queries in <a class="underline" href="../data/market.json">data/market.json</a>. Base rule: ${esc(d.base_rule)}. Homes: ACS 2024 5-year owner-occupied units by zip. Installer type is read from 5 sample permit descriptions each. Other installers appear as counts.`;
+})();
+</script>
+</body>
+</html>

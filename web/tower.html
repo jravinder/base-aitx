@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fleet operations | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="shell.css">
+<link rel="stylesheet" href="tower.css">
+<script defer src="shell.js"></script>
+</head>
+<body class="tw bg-surface text-ink-primary font-body-md text-body-md antialiased min-h-screen">
+<main id="main" class="wall">
+
+  <header id="status" class="card" aria-label="Fleet status">
+    <div class="title">
+      <h1 id="page-title">Fleet operations</h1>
+      <div class="flex flex-wrap items-center gap-2"><span class="tag"><i></i>Simulation · real ERCOT prices</span><details class="support pop left"><summary title="About the data"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">info</span><span class="sr">About the data</span></summary><div class="panel"><p id="banner-note"></p><p class="pt-2">Public ERCOT price history shapes the simulation. Nodes, workload and recovery are simulated for illustration, and recorded hours are scenario time. The grid page shows public ERCOT data, and this simulator runs on its own. Live controls run when <code>python3 -m sim.server</code> serves this page.</p><a id="replay-evidence" class="inline-block pt-2 text-primary-container font-semibold underline" href="data/tower_replay.json" hidden>Recorded frames and interruption schedule (JSON)</a></div></details></div>
+      <p id="lede" class="sr"></p>
+    </div>
+    <div class="flex items-center gap-2">
+      <div id="replay-controls" hidden aria-label="Replay controls">
+        <button id="replay-toggle" type="button" class="rbtn" aria-label="Pause replay" title="Pause replay"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">pause</span></button>
+        <button id="replay-next" type="button" class="rbtn" aria-label="Next recorded hour" title="Next recorded hour"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">skip_next</span></button>
+        <select id="speed" class="field" aria-label="Replay speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select>
+        <span id="replay-status" role="status" class="sr"></span>
+      </div>
+      <div class="kpi"><span class="lbl">Replay clock · <span id="banner" role="status">Connecting...</span></span><span id="clock"></span></div>
+    </div>
+    <div class="kpis ops-only" id="kpis">
+      <div class="kpi"><span class="lbl">ERCOT price now</span><b id="s-price"></b></div>
+      <span class="kpi-sep" aria-hidden="true"></span>
+      <div class="kpi"><span class="lbl">Nodes alive</span><b id="s-nodes"></b></div>
+      <span class="kpi-sep" aria-hidden="true"></span>
+      <div class="kpi"><span class="lbl">Jobs running by tier</span><div id="run-tiers"></div></div>
+      <span class="kpi-sep" aria-hidden="true"></span>
+      <div class="kpi"><span class="lbl">Backup reserve</span><b id="s-reserve"></b></div>
+    </div>
+    <nav aria-label="Tower views" class="vnav inline-flex gap-1 p-1 bg-surface-subtle border border-wire-border rounded-lg">
+      <a href="?track=compute&amp;persona=fleet" id="nav-ops"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">hub</span><span>Fleet operations</span></a><a href="?node=3&amp;track=compute&amp;persona=gpu&amp;from=fleet" id="nav-member"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">memory</span><span>Inspect node 3</span></a>
+    </nav>
+
+  </header>
+
+  <div id="ops">
+    <section id="ctl" class="card" aria-label="Controls">
+      <span class="lbl">Try it</span>
+      <div class="grp">
+        <button id="sim-off" type="button" class="act sim" aria-pressed="false" disabled><span class="material-symbols-outlined" aria-hidden="true">power_off</span><span id="sim-off-text">Take node 3 offline</span></button>
+        <button id="spike" type="button" class="act" aria-pressed="false" disabled><span class="material-symbols-outlined" aria-hidden="true">bolt</span><span>Spike the price</span></button>
+        <button id="drop" type="button" class="act" aria-pressed="false" disabled><span class="material-symbols-outlined" aria-hidden="true">battery_alert</span><span id="drop-text">Drop a node to reserve</span></button>
+        <button id="stop" type="button" class="act" aria-pressed="false" disabled><span class="material-symbols-outlined" aria-hidden="true">pause_circle</span><span id="stop-text">Stop the scheduler</span></button>
+      </div>
+      <div class="grp">
+        <span class="lbl">Recorded</span>
+        <button class="kill" data-kind="node" type="button" disabled>Node failure</button>
+        <select id="region" class="field" aria-label="Region"><option>north</option><option>south</option><option>east</option><option>west</option></select>
+        <button class="kill" data-kind="region" type="button" disabled>Region failure</button>
+        <button class="kill" data-kind="scheduler" type="button" disabled>Scheduler outage</button>
+      </div>
+      <p id="sim-out" role="status" class="sr"></p>
+      <div class="ctl-right">
+        <details class="pop more"><summary>Details</summary><div class="panel">
+          <div class="more-sec"><h3>Go deeper</h3><div class="more-links">
+            <a href="placement.html?track=compute&amp;persona=fleet">Compare capacity policies</a>
+            <a href="index.html?track=compute&amp;persona=fleet">Inspect fleet economics</a>
+            <a href="grid.html?track=compute&amp;persona=fleet">Inspect grid conditions</a>
+          </div></div>
+          <div class="more-sec"><h3>Failover so far <span id="fo-at" class="mono font-normal"></span></h3><p id="failover" class="text-ink-primary"></p></div>
+          <section id="outcomes" class="more-sec" aria-label="What the recording shows" hidden><h3>What the recording shows</h3>
+            <p><b id="o-lost" class="text-ink-primary"></b>. <span id="o-lost-note"></span> <span class="mono" id="o-lost-read"></span></p>
+            <p class="pt-1"><b id="o-sched" class="text-ink-primary"></b>: scheduler outage. Nodes still up: <span class="mono" id="o-sched-read"></span>. Every node holds its last action and its own 30% reserve until the scheduler returns.</p>
+            <p class="pt-1"><b id="o-soc" class="text-ink-primary"></b> across the recording. The floor is 30%.</p>
+          </section>
+          <div class="more-sec"><h3>Send a job</h3>
+            <div class="flex flex-wrap items-center gap-2"><select id="j-tier" aria-label="Buyer tier" class="field"></select>
+              <label class="flex items-center gap-2">data on node <input id="j-origin" type="number" value="3" min="0" class="field w-20"></label>
+              <button id="j-go" type="button" disabled class="act">Submit job</button></div>
+            <p id="j-out" role="status" class="pt-1"></p></div>
+          <div class="more-sec"><h3>Buyer tiers and earnings</h3><div class="overflow-x-auto"><table id="tiers"></table></div></div>
+          <div class="more-sec"><h3>Last 72 hours <small class="font-normal">bars: fleet margin per hour; line: grid price</small></h3>
+            <p class="mono text-[12px] pb-2">margin this hour $<span id="s-margin"></span> · power $<span id="s-power"></span> · compute $<span id="s-compute"></span></p>
+            <canvas id="strip" width="1100" height="130" aria-label="Simulated fleet margin and grid price history" role="img"></canvas></div>
+        </div></details>
+        <a class="tw-next" id="tw-next" href="pitch.html?track=compute&amp;persona=fleet">Next: the close <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+      </div>
+    </section>
+
+    <section id="nodes-panel" class="card" aria-labelledby="nodes-h">
+      <div class="panel-h">
+        <h2 id="nodes-h">Every node, by feeder <span id="nodes-sub" class="font-normal text-on-surface-variant"></span></h2>
+        <div class="legend" aria-label="Tile colours"><span><i class="running"></i>Running</span><span><i></i>Idle</span><span><i class="paused"></i>Paused</span><span><i class="held"></i>Holding (scheduler out)</span><span><i class="offline"></i>Offline</span><span class="mono">bar = battery, tick = 30% floor</span></div>
+      </div>
+      <div id="feeders"></div>
+    </section>
+
+    <section id="log-panel" class="card" aria-labelledby="log-h">
+      <div class="panel-h"><h2 id="log-h">Event log</h2><span class="lbl">newest first</span></div>
+      <ol id="log" aria-live="polite"></ol>
+      <p id="recovery-note" role="status"></p>
+    </section>
+
+    <section id="queue-panel" class="card" aria-labelledby="q-h">
+      <div class="panel-h"><h2 id="q-h">Dispatch queue</h2><span class="lbl">best value first: tier rate minus data move cost</span></div>
+      <div class="qwrap"><table id="q"></table></div>
+    </section>
+  </div>
+
+  <div id="member" class="member flex flex-col gap-6" hidden>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+      <section class="card p-6 flex flex-col justify-between min-w-0"><div class="flex items-start justify-between gap-2"><div class="flex flex-col"><span class="font-label-caps text-label-caps uppercase text-outline">Compute</span><h2 class="font-headline-sm text-headline-sm text-ink-primary">Node availability</h2></div><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">memory</span></div><div class="big my-3 font-headline-lg text-headline-lg text-ink-primary" id="m-gpu"></div><div class="pt-3 border-t border-wire-border font-body-sm text-body-sm text-on-surface-variant"><p id="m-id"></p><p id="m-job"></p><a id="m-fleet-link" class="text-primary-container font-semibold underline" href="?track=compute&amp;persona=fleet" hidden>Choose a node from the fleet</a></div></section>
+      <section class="card p-6 flex flex-col justify-between min-w-0"><div class="flex items-start justify-between gap-2"><div class="flex flex-col"><span class="font-label-caps text-label-caps uppercase text-outline">Battery</span><h2 class="font-headline-sm text-headline-sm text-ink-primary">Battery reserve</h2></div><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">battery_charging_full</span></div><div class="my-3"><div class="big font-headline-lg text-headline-lg text-ink-primary tabular-nums" id="m-kwh"></div><div class="socm"><i id="m-soc"></i><b title="30% simulated reserve"></b></div><div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant"><span>0%</span><span class="font-semibold text-ink-primary">Floor 30%</span><span>100%</span></div></div><div class="pt-3 border-t border-wire-border font-body-sm text-body-sm text-on-surface-variant">Battery: <span id="m-batt"></span></div></section>
+      <section class="card p-6 flex flex-col justify-between min-w-0"><div class="flex items-start justify-between gap-2"><div class="flex flex-col"><span class="font-label-caps text-label-caps uppercase text-outline">Grid</span><h2 class="font-headline-sm text-headline-sm text-ink-primary">Scenario grid price</h2></div><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">bolt</span></div><div class="big my-3 font-headline-lg text-headline-lg text-ink-primary tabular-nums" id="m-grid"></div><div class="pt-3 border-t border-wire-border font-body-sm text-body-sm text-on-surface-variant">$/kWh from historical ERCOT day-ahead prices, Austin Energy zone, at the scenario hour.</div></section>
+      <section class="card p-6 flex flex-col justify-between min-w-0"><div class="flex items-start justify-between gap-2"><div class="flex flex-col"><span class="font-label-caps text-label-caps uppercase text-outline">Feeder</span><h2 class="font-headline-sm text-headline-sm text-ink-primary">Export</h2></div><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">swap_horiz</span></div><p class="my-3 font-body-md text-body-md text-ink-primary tabular-nums" id="m-export"></p><div class="pt-3 border-t border-wire-border font-body-sm text-body-sm text-on-surface-variant">Simulated backup floor: 30%.</div></section>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <section class="lg:col-span-7 card p-6 flex flex-col gap-4 min-w-0">
+        <div class="flex items-center gap-2 pb-4 border-b border-wire-border"><span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">receipt_long</span><h2 id="m-jobs-title" class="font-headline-md text-headline-md text-ink-primary">Your jobs</h2></div>
+        <div class="flex flex-wrap gap-2">
+          <button id="m-run" disabled class="min-h-[44px] px-5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-evergreen-deep">Run job</button>
+          <button id="m-next-workload" type="button" hidden class="min-h-[44px] px-4 rounded-lg bg-surface-container-lowest border border-wire-border text-ink-primary font-label-md text-label-md hover:bg-surface-subtle">Find recorded workload</button>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant" id="m-out" role="status">Loading node state...</p>
+        <div class="overflow-x-auto"><table id="m-jobs"></table></div>
+        <details class="support font-body-sm text-body-sm border-t border-wire-border"><summary>Job limits</summary><p class="text-on-surface-variant pb-3">Member-tier simulation at $1.20 per GPU hour, shown for inspection. Model selection, quotas, installation requests and GPU jobs each have their own page.</p></details>
+      </section>
+      <section class="lg:col-span-5 card p-6 flex flex-col gap-4 min-w-0">
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-wire-border"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">hub</span><h2 class="font-headline-md text-headline-md text-ink-primary">Nearby nodes</h2></div><span class="font-label-caps text-label-caps uppercase px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed" id="m-feeder"></span></div>
+        <div class="nodes bg-surface-subtle border border-wire-border rounded-lg p-4" id="m-neighbors"></div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Nodes on the same feeder. Recovery depends on available capacity.</p>
+      </section>
+    </div>
+  </div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const fmt = (n, d = 2) => typeof n === "number" ? n.toLocaleString(undefined, {maximumFractionDigits: d}) : n;
+const esc = v => String(v).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"})[c]);
+const query = new URLSearchParams(location.search);
+const memberNode = query.get("node") ?? (query.get("persona") === "gpu" ? "3" : null);
+let liveReady = false, lastState = null, rawState = null;
+$("#page-title").textContent = memberNode === null ? "Break it and watch it recover." : "Your compute";
+$("#lede").textContent = memberNode === null ? "Every node on one wall. Take one offline, spike the price or stop the scheduler and watch the fleet respond." : "Is this node free to run your job?";
+if (memberNode !== null) { $("#lede").className = "font-body-sm text-body-sm text-on-surface-variant"; $("#main").classList.add("member-mode"); $("#kpis").hidden = true; }
+$("#tw-next").hidden = memberNode !== null;
+$("#nav-ops").hidden = memberNode !== null && query.get('from') !== 'fleet';
+if (memberNode !== null && query.get('from') === 'fleet') $("#nav-ops").lastElementChild.textContent = 'Back to fleet operations';
+$("#nav-member").hidden = true; // fleet view: every tile links to its node
+if (memberNode === null) $("#nav-ops").hidden = true;
+document.querySelector('nav[aria-label="Tower views"]').hidden = $("#nav-ops").hidden && $("#nav-member").hidden;
+if (memberNode !== null) { $("#ops").hidden = true; $("#member").hidden = false; $("#nav-member").classList.add("on"); } else $("#nav-ops").classList.add("on");
+
+// Tier constants mirror sim/fleet.py TIERS (rate $/GPU-hour, where a job may run).
+const TIERS = ["member", "business", "base", "partner", "external"];
+const TIER = {
+  member:   {label: "Member questions",   short: "Member",   rate: 1.20, rule: "Runs on its own node or feeder, up to 25% of node hours"},
+  business: {label: "Business inference", short: "Business", rate: 1.09, rule: "Best value first, on the feeder or farther"},
+  base:     {label: "Base jobs",          short: "Base",     rate: 0.79, rule: "Best value first, on any node"},
+  partner:  {label: "Grid partner batch", short: "Partner",  rate: 0.34, rule: "Best value first, on the feeder or farther"},
+  external: {label: "Marketplace batch",  short: "Market",   rate: 0.16, rule: "Fills idle GPU hours at the marketplace rate"}
+};
+const GPU_KW = 0.4, RESERVE = 0.30, RATE_KW = 10, CAP_KWH = 39.2, SPIKE_MWH = 1000;
+$("#j-tier").innerHTML = TIERS.map(t => `<option>${t}</option>`).join("");
+
+function nodeHref(n) {
+  return `?node=${n.id}&track=compute&persona=gpu${memberNode === null || query.get('from') === 'fleet' ? '&from=fleet' : ''}${REPLAY ? '&hour=' + lastState.t : ''}`;
+}
+function nodeEl(n) {
+  return `<a class="n ${n.battery} ${n.gpu} ${String(n.id) === memberNode ? "hl" : ""}" title="node ${n.id}, ${n.region}, ${n.kwh} kWh, battery ${n.battery}, GPU ${n.gpu}${n.job ? ", " + n.job.tier + " job " + n.job.hours_left + "h left" : ""}" href="${nodeHref(n)}" aria-label="Inspect node ${n.id}"></a>`;
+}
+function tileState(n, s) {
+  if (!n.alive) return "offline";
+  if (n.paused) return "paused";
+  if (!s.scheduler_alive) return "held";
+  return n.job ? "running" : "idle";
+}
+function tileEl(n, s) {
+  const st = tileState(n, s), pct = Math.round(100 * n.soc);
+  const what = !n.alive ? "Offline" : n.job ? TIER[n.job.tier]?.short ?? n.job.tier : n.gpu === "sell" ? "Market" : "Idle";
+  const title = `Node ${n.id} · ${n.feeder} · ${n.region} · ${st} · battery ${pct}% (${n.kwh} kWh, ${n.battery})${n.job ? ` · ${n.job.tier} ${n.job.id}, ${n.job.hours_left} h left` : ""}`;
+  return `<a class="t ${st} ${String(n.id) === memberNode ? "hl" : ""}" href="${nodeHref(n)}" aria-label="Inspect node ${n.id}" title="${esc(title)}"><span class="r1"><span>${n.id}</span><span>${pct}%</span></span><span class="job">${esc(what)}</span><span class="soc"><i style="width:${pct}%"></i><b></b></span></a>`;
+}
+
+function drawStrip(h) {
+  const c = $("#strip"), g = c.getContext("2d"), W = c.width, H = c.height;
+  g.clearRect(0, 0, W, H);
+  if (!h.length) return;
+  const w = W / 72, mmax = Math.max(...h.map(x => x.margin), 1), gmax = Math.max(...h.map(x => x.grid), 0.01);
+  h.forEach((x, i) => { g.fillStyle = "#cbf080"; const bh = Math.max(0, x.margin) / mmax * (H - 20); g.fillRect(i * w + 1, H - 10 - bh, w - 2, bh); });
+  g.strokeStyle = "#1e4d2b"; g.lineWidth = 2; g.beginPath();
+  h.forEach((x, i) => { const y = H - 10 - x.grid / gmax * (H - 20); i ? g.lineTo(i * w + w / 2, y) : g.moveTo(i * w + w / 2, y); });
+  g.stroke();
+}
+
+// ---------- event log ----------
+const hhmm = (day, h) => `D${day} ${String(h).padStart(2, "0")}:00`;
+const actions = [];
+function logAction(text) {
+  const s = lastState; if (!s) return;
+  actions.push({t: s.t, seq: actions.length, when: hhmm(s.day, s.hour_of_day), cls: "you", k: "ACTION", text});
+  if (memberNode === null) renderLog(s);
+}
+function recordedLog(upto) {
+  if (!REPLAY) return [];
+  const F = REPLAY.frames, out = [];
+  const add = (f, cls, k, text) => out.push({t: f.t, seq: -1, when: hhmm(f.day, f.hour_of_day), cls, k, text});
+  for (let i = 0; i <= upto; i++) {
+    const f = F[i], p = F[i - 1];
+    const mwh = fmt(f.grid_price * 1000, 1);
+    if (!p) { add(f, "ok", "START", `Replay starts. ${f.nodes.length} nodes on ${Object.keys(f.feeders).length} feeders, ERCOT $${mwh}/MWh.`); continue; }
+    const prev = Object.fromEntries(p.nodes.map(n => [n.id, n]));
+    for (const n of f.nodes) {
+      const q = prev[n.id]; if (!q) continue;
+      if (q.alive && !n.alive) {
+        const job = q.job, moved = job && f.nodes.find(x => x.job && x.job.id === job.id);
+        const handed = f.failover.ok - p.failover.ok;
+        add(f, "node", "NODE", `Node ${n.id} offline on ${n.feeder}. ` + (!job ? "No job to move."
+          : moved ? `${job.id} (${TIER[job.tier]?.short}) moved to node ${moved.id}.`
+          : handed > 0 ? `${job.id} (${TIER[job.tier]?.short}) handed to a neighbor on ${n.feeder}.`
+          : `${job.id} (${TIER[job.tier]?.short}) waits for the next free node.`));
+      } else if (!q.alive && n.alive) add(f, "ok", "NODE", `Node ${n.id} back online.`);
+    }
+    for (const [r, a] of Object.entries(f.region_alive)) {
+      if (p.region_alive[r] && !a) add(f, "region", "REGION", `Region ${r} cut off. Its batteries hold their charge.`);
+      if (!p.region_alive[r] && a) add(f, "ok", "REGION", `Region ${r} back.`);
+    }
+    if (p.scheduler_alive && !f.scheduler_alive) add(f, "sched", "SCHED", `Scheduler stopped. ${f.nodes.filter(n => n.alive).length} nodes hold their last action; reserve held.`);
+    if (!p.scheduler_alive && f.scheduler_alive) add(f, "ok", "SCHED", "Scheduler back. Dispatch resumes.");
+    const cnt = (fr, b) => fr.nodes.filter(n => n.alive && n.battery === b).length;
+    const d = cnt(f, "discharge"), c = cnt(f, "charge");
+    if (d && !cnt(p, "discharge")) {
+      add(f, "price", "PRICE", `$${mwh}/MWh peak. ${d === 1 ? "1 battery sells" : d + " batteries sell"} to the grid.`);
+      const hold = f.nodes.filter(n => n.alive && n.battery !== "discharge" && n.soc - RATE_KW / CAP_KWH < RESERVE).length;
+      if (hold) add(f, "reserve", "RESERVE", `${hold === 1 ? "1 battery holds" : hold + " batteries hold"} to keep the 30% backup.`);
+    }
+    if (c && !cnt(p, "charge")) add(f, "price", "PRICE", `$${mwh}/MWh low. ${c === 1 ? "1 battery charges" : c + " batteries charge"}.`);
+    const capped = f.discharges_capped - p.discharges_capped;
+    if (capped > 0) add(f, "reserve", "CAP", `Feeder line full: ${capped === 1 ? "1 battery export" : capped + " battery exports"} held back.`);
+  }
+  return out;
+}
+function renderLog(s) {
+  const rec = recordedLog(REPLAY ? frame : -1);
+  const all = rec.concat(actions).sort((a, b) => b.t - a.t || b.seq - a.seq).slice(0, 80);
+  $("#log").innerHTML = all.length ? all.map(e => `<li class="${e.cls}"><time>${e.when}</time><span class="k">${e.k}</span><span>${esc(e.text)}</span></li>`).join("")
+    : `<li><time>${hhmm(s.day, s.hour_of_day)}</time><span class="k">LIVE</span><span>All regions and nodes running.</span></li>`;
+}
+
+// ---------- in-page what-ifs, applied on top of each frame ----------
+const SIM_NODE = 3;
+let simOff = false, simResult = null, spikeOn = false, dropId = null, schedStop = false;
+function takeOffline(s) {
+  const nodes = s.nodes.map(n => ({...n})), n = nodes.find(x => x.id === SIM_NODE);
+  if (!n) return {state: s, job: null, to: null, near: []};
+  const job = n.alive ? n.job : null;
+  Object.assign(n, {alive: false, battery: "dead", gpu: "idle", job: null});
+  const near = (s.feeders[n.feeder]?.nodes || []).map(id => nodes.find(x => x.id === id)).filter(x => x && x.id !== SIM_NODE && x.alive);
+  const to = job ? (near.find(x => !x.job) || null) : null;
+  if (to) Object.assign(to, {job: {...job}, gpu: "local"});
+  const failover = {...s.failover, ok: s.failover.ok + (to ? 1 : 0), none: s.failover.none + (job && !to ? 1 : 0)};
+  return {state: {...s, nodes, failover}, job, to, near};
+}
+function simMessage(r) {
+  if (!r.job) return `Node ${SIM_NODE} is offline. It had no job this hour, so nothing needed to move. Nodes ${r.near.map(x => x.id).join(", ")} on its line keep running.`;
+  if (!r.to) return `Node ${SIM_NODE} is offline. Its ${r.job.tier} job ${r.job.id} waits in the queue for the next free node.`;
+  return `Node ${SIM_NODE} is offline. Its ${r.job.tier} job ${r.job.id} moved to node ${r.to.id} on the same line with ${r.job.hours_left} h left, so no work was lost. Node ${SIM_NODE} keeps its 30% backup reserve.`;
+}
+const spikePaused = () => TIERS.filter(k => TIER[k].rate < GPU_KW * SPIKE_MWH / 1000);
+function applyWhatIfs(s) {
+  if (simOff) { simResult = takeOffline(s); s = simResult.state; }
+  if (dropId !== null || spikeOn) {
+    const paused = spikeOn ? spikePaused() : [];
+    s = {...s, nodes: s.nodes.map(n => {
+      const m = {...n};
+      if (m.id === dropId && m.alive) Object.assign(m, {soc: RESERVE, kwh: +(RESERVE * CAP_KWH).toFixed(1), battery: m.battery === "discharge" ? "idle" : m.battery});
+      if (m.alive && m.job && paused.includes(m.job.tier)) m.paused = true;
+      return m;
+    })};
+    if (spikeOn) s.spike = true;
+  }
+  if (schedStop) s = {...s, scheduler_alive: false};
+  return s;
+}
+
+function renderOps(s) {
+  const alive = s.nodes.filter(n => n.alive).length;
+  $("#s-price").innerHTML = s.spike ? `$${fmt(SPIKE_MWH, 0)}<small>/MWh what-if</small>` : `$${fmt(s.grid_price * 1000, 1)}<small>/MWh</small>`;
+  $("#s-price").classList.toggle("spike", !!s.spike);
+  $("#s-nodes").innerHTML = `${alive}<small>/${s.nodes.length}</small>`;
+  const run = k => s.nodes.filter(n => n.alive && n.job && n.job.tier === k && !n.paused).length;
+  $("#run-tiers").innerHTML = TIERS.map(k => `<span title="${TIER[k].label}">${TIER[k].short} ${run(k)}</span>`).join("");
+  const seen = REPLAY ? REPLAY.frames.slice(0, frame + 1) : [s];
+  const breaches = seen.reduce((a, f) => a + f.nodes.filter(n => n.alive && n.soc < RESERVE - 1e-9).length, 0);
+  $("#s-reserve").innerHTML = `30%<small> floor</small> · ${breaches}<small> breaches</small>`;
+  $("#nodes-sub").textContent = `· ${s.nodes.length} nodes on ${Object.keys(s.feeders).length} feeders`;
+  const byId = Object.fromEntries(s.nodes.map(n => [n.id, n]));
+  $("#feeders").innerHTML = Object.entries(s.feeders).sort((a, b) => b[1].nodes.length - a[1].nodes.length || a[0].localeCompare(b[0])).map(([f, v]) =>
+    `<div class="fd" title="${esc(f)} · export ${v.export_kw} of ${v.cap_kw} kW"><div class="fd-h ${v.export_kw >= 0.8 * v.cap_kw ? "cap" : ""}"><span>${esc(f)}</span>${v.nodes.length > 1 ? `<span>${fmt(v.export_kw, 0)}/${fmt(v.cap_kw, 0)}kW</span>` : ""}</div><div class="fd-n">${v.nodes.map(id => tileEl(byId[id], s)).join("")}</div></div>`).join("");
+  // dispatch queue
+  const pausedTiers = s.spike ? spikePaused() : [];
+  const idle = s.nodes.filter(n => n.alive && !n.job).length;
+  $("#q").innerHTML = `<tr><th>Tier</th><th class="num">$/GPU-h</th><th class="num">Running</th><th class="num">Waiting</th><th class="num">Paused</th><th>Rule that fired</th></tr>` +
+    TIERS.map(k => {
+      const paused = s.nodes.filter(n => n.alive && n.job && n.job.tier === k && n.paused).length, isP = pausedTiers.includes(k);
+      const rule = isP ? `Paused: $${TIER[k].rate.toFixed(2)}/h is below $${(GPU_KW * SPIKE_MWH / 1000).toFixed(2)}/h of GPU power at $${fmt(SPIKE_MWH, 0)}/MWh`
+        : !s.scheduler_alive ? "Scheduler out: running jobs hold, new work waits"
+        : s.spike ? `Keeps running: $${TIER[k].rate.toFixed(2)}/h covers GPU power at $${fmt(SPIKE_MWH, 0)}/MWh` : TIER[k].rule;
+      return `<tr class="${isP ? "paused" : ""}"><td>${TIER[k].label}</td><td class="num">${TIER[k].rate.toFixed(2)}</td><td class="num">${run(k)}</td><td class="num">${s.queue.by_tier[k] ?? 0}</td><td class="num">${paused}</td><td class="rule">${rule}</td></tr>`;
+    }).join("") +
+    `<tr class="maybe"><td>Open-science batch <span class="text-[11px]">(protein folding)</span></td><td class="num">–</td><td class="num">–</td><td class="num">–</td><td class="num">–</td><td class="rule">Could run on the ${idle} idle GPUs this hour</td></tr>`;
+  renderLog(s);
+  // details panel
+  $("#s-margin").textContent = fmt(s.margin_this_hour);
+  $("#s-power").textContent = fmt(s.revenue.power, 0);
+  $("#s-compute").textContent = fmt(s.revenue.compute, 0);
+  $("#fo-at").textContent = `@ day ${s.day}, ${String(s.hour_of_day).padStart(2, "0")}:00`;
+  const tot = Object.values(s.revenue.by_tier).reduce((a, v) => a + v.hours, 0) || 1;
+  $("#tiers").innerHTML = `<tr><th>buyer</th><th class="r">waiting</th><th class="r">hours</th><th class="r">$/h net</th><th class="r">$</th></tr>` +
+    TIERS.map(k => { const v = s.revenue.by_tier[k]; return `<tr><td>${k}</td><td class="r">${s.queue.by_tier[k]}</td><td class="r">${Math.round(100 * v.hours / tot)}%</td><td class="r">${(v.revenue / Math.max(v.hours, 1)).toFixed(2)}</td><td class="r">${fmt(v.revenue, 0)}</td></tr>`; }).join("");
+  $("#failover").textContent = `${s.failover.ok} jobs moved to a neighbor on the same line, ${s.failover.none} started over, ${s.failover.gpu_hours_lost} GPU hours lost. ${s.discharges_capped} times a battery export was held back because the neighbourhood line was full.`;
+  drawStrip(s.history || []);
+}
+
+function renderMember(s) {
+  const n = s.nodes.find(x => String(x.id) === memberNode);
+  $("#m-fleet-link").hidden = !!n;
+  $("#m-run").disabled = !liveReady || !n || !n.alive;
+  $("#m-next-workload").disabled = !n || !REPLAY?.frames.some(f => f.nodes.some(x => String(x.id) === memberNode && x.job));
+  if (!n) { $("#m-gpu").textContent = "Node not found"; $("#m-out").textContent = "Choose a node from the fleet view."; $("#m-jobs").replaceChildren(); $("#m-neighbors").replaceChildren(); return; }
+  $("#m-id").textContent = `node ${n.id}, ${n.region}`;
+  $("#m-kwh").textContent = `${n.kwh} kWh`;
+  $("#m-soc").style.width = `${100 * n.soc}%`;
+  $("#m-batt").textContent = n.battery === "discharge" ? "selling to the grid" : n.battery === "charge" ? "charging" : n.battery === "dead" ? "offline" : "holding";
+  $("#m-gpu").textContent = !n.alive ? "Offline" : n.job ? "Running a job" : n.gpu === "sell" ? "Allocated this hour" : "Available";
+  $("#m-job").textContent = n.job ? `${n.job.tier} job ${n.job.id}, ${n.job.hours_left} h left` : "no job on it";
+  $("#m-grid").textContent = fmt(s.grid_price, 3);
+  const f = s.feeders[n.feeder];
+  $("#m-feeder").textContent = n.feeder;
+  const byId = Object.fromEntries(s.nodes.map(x => [x.id, x]));
+  $("#m-neighbors").innerHTML = f.nodes.map(id => nodeEl(byId[id])).join("");
+  $("#m-export").textContent = `Feeder export now ${f.export_kw} of ${f.cap_kw} kW.`;
+  if (REPLAY) {
+    $("#m-jobs").innerHTML = n.job
+      ? `<tr><th>Recorded job</th><th>Buyer tier</th><th>Time left</th></tr><tr><td>${n.job.id}</td><td>${n.job.tier}</td><td>${n.job.hours_left} h</td></tr>`
+      : `<tr><td class="muted">No job on this node at recorded hour ${s.t}.</td></tr>`;
+    $("#m-out").textContent = ($("#m-next-workload").disabled
+      ? "Nearby nodes carry recorded workloads. Pick one to inspect. "
+      : "Recorded node workload, shown for inspection. ") + RUN_OFF;
+    return;
+  }
+  fetch(`/node/${n.id}`).then(r => { if (!r.ok) throw new Error("jobs"); return r.json(); }).then(d => {
+    $("#m-jobs").innerHTML = `<tr><th>job</th><th>status</th><th>ran on</th></tr>` + (d.jobs.length ? d.jobs.slice().reverse().map(j => `<tr><td>${j.id}</td><td>${j.status}${j.hours_left ? ", " + j.hours_left + " h left" : ""}</td><td>${j.node ?? ""}</td></tr>`).join("") : `<tr><td colspan=3 class="muted">Jobs you run show here.</td></tr>`);
+  }).catch(() => { $("#m-jobs").innerHTML = `<tr><td>Job history loads when the simulator is live.</td></tr>`; });
+}
+
+let REPLAY = null, frame = 0, replayPlaying = true, replayEvent = null, speed = 1, timer = null;
+const RUN_OFF = "Run job turns on when the fleet simulator runs on this computer. This page is playing back a recorded day.";
+function replayHistory(i) { return REPLAY.frames.slice(Math.max(0, i - 71), i + 1).map(f => ({t: f.t, grid: f.grid_price, margin: f.margin_this_hour})); }
+function render(s) {
+  rawState = s;
+  s = applyWhatIfs(s);
+  lastState = s;
+  $("#clock").textContent = `D${s.day} ${String(s.hour_of_day).padStart(2, "0")}:00 · t${s.t}`;
+  memberNode === null ? renderOps(s) : renderMember(s);
+}
+function showReplay(index) {
+  frame = index;
+  const f = REPLAY.frames[frame];
+  render({...f, history: replayHistory(frame)});
+  const lbl = replayPlaying ? "Pause replay" : "Resume replay";
+  $("#replay-toggle").setAttribute("aria-label", lbl); $("#replay-toggle").title = lbl;
+  $("#replay-toggle").firstElementChild.textContent = replayPlaying ? "pause" : "play_arrow";
+  $("#replay-status").textContent = `${replayPlaying ? "Playing" : "Paused"} at recorded hour ${f.t}`;
+  $("#recovery-note").textContent = replayEvent
+    ? `Selected recorded event: ${replayEvent.kind}${replayEvent.target == null ? "" : " " + replayEvent.target} interrupted at hour ${replayEvent.t}. Viewing hour ${f.t}. Recorded view.` : '';
+  for (const id of ['nav-ops', 'm-fleet-link']) $("#" + id).href = `?track=compute&persona=fleet&hour=${f.t}`;
+  $("#nav-member").href = `?node=3&track=compute&persona=gpu&from=fleet&hour=${f.t}`;
+}
+function replayTick() { if (replayPlaying) showReplay((frame + 1) % REPLAY.frames.length); }
+function startTimer() { clearInterval(timer); timer = setInterval(replayTick, 800 / speed); }
+function rerender() { if (REPLAY) showReplay(frame); else if (rawState) render(rawState); }
+async function startReplay() {
+  const recording = await fetch("data/tower_replay.json").then(r => { if (!r.ok) throw new Error("recording"); return r.json(); });
+  if (!Array.isArray(recording.frames) || !recording.frames.length) throw new Error("empty recording");
+  REPLAY = recording;
+  $("#banner").textContent = "Recorded data";
+  $("#replay-controls").hidden = false; $("#replay-evidence").hidden = false;
+  enableWhatIfs();
+  $("#m-next-workload").hidden = false; $("#m-jobs-title").textContent = "Recorded workload";
+  $("#region").disabled = true; $("#region").hidden = true; // recorded failures have fixed targets
+  $("#m-out").textContent = RUN_OFF;
+  document.querySelectorAll("button.kill").forEach(b => {
+    const k = REPLAY.kills.find(x => x.kind === b.dataset.kind);
+    b.disabled = !k;
+    if (k) b.textContent = `${k.kind[0].toUpperCase() + k.kind.slice(1)}${k.target == null ? "" : " " + k.target} · h${k.t}`;
+  });
+  $("#banner-note").textContent = `${REPLAY.nodes} nodes on feeders, seed ${REPLAY.seed}, 72 hours on a loop. Kills in the recording: ` +
+    REPLAY.kills.map(k => `${k.kind}${k.target === null ? "" : " " + k.target} at hour ${k.t}`).join(", ") + ". The Recorded buttons jump to those hours.";
+  $("#j-go").disabled = true; $("#m-run").disabled = true;
+  $("#j-out").textContent = RUN_OFF.replace("Run job", "Submit job");
+  const requested = query.has('hour') ? REPLAY.frames.findIndex(f => String(f.t) === query.get('hour')) : -1;
+  replayPlaying = requested < 0;
+  showReplay(requested < 0 ? 0 : requested); startTimer();
+}
+$("#replay-toggle").addEventListener('click', () => { if (REPLAY) { replayPlaying = !replayPlaying; showReplay(frame); } });
+$("#replay-next").addEventListener('click', () => {
+  if (REPLAY) { replayPlaying = false; showReplay((frame + 1) % REPLAY.frames.length); }
+});
+$("#speed").addEventListener('change', e => { speed = +e.target.value || 1; if (REPLAY) startTimer(); });
+$("#m-next-workload").addEventListener('click', () => {
+  if (!REPLAY) return;
+  for (let offset = 1; offset <= REPLAY.frames.length; offset++) {
+    const index = (frame + offset) % REPLAY.frames.length;
+    if (REPLAY.frames[index].nodes.some(n => String(n.id) === memberNode && n.job)) {
+      replayPlaying = false; showReplay(index); break;
+    }
+  }
+});
+function enableWhatIfs() { for (const id of ["sim-off", "spike", "drop", "stop"]) $("#" + id).disabled = false; }
+async function liveTick() {
+  const s = await fetch("/state").then(r => r.json()).catch(() => null);
+  liveReady = !!(s && Array.isArray(s.nodes) && s.t >= 0);
+  $("#j-go").disabled = !liveReady;
+  $("#m-run").disabled = !liveReady;
+  document.querySelectorAll("button.kill").forEach(b => { b.disabled = !liveReady; });
+  $("#banner").textContent = liveReady ? "Simulation connected" : "Reconnecting. Actions resume when the simulator responds.";
+  if (liveReady) render(s);
+}
+// sim.server marks its static files with X-Content-Type-Options: nosniff. A plain static host
+// (Vercel, python3 -m http.server) has no /state, so skip the request and its console 404.
+fetch(location.pathname, {method: "HEAD"}).then(r => r.headers.get("x-content-type-options") === "nosniff" ? fetch("/state") : Promise.reject())
+.then(r => r.ok ? r.json() : Promise.reject()).then(s => {
+  if (!Array.isArray(s.nodes) || s.t < 0) throw new Error("invalid state");
+  liveReady = true; enableWhatIfs();
+  $("#banner").textContent = "Simulation connected";
+  $("#banner-note").textContent = "State and job requests use the simulator on this origin.";
+  $("#m-out").textContent = "Ready to submit a member-tier job.";
+  $("#j-go").disabled = false;
+  document.querySelectorAll("button.kill").forEach(b => { b.disabled = false; });
+  render(s);
+  setInterval(liveTick, 1000);
+}).catch(() => startReplay().catch(() => { $("#banner").textContent = "Data could not load. Reload to retry."; }));
+
+document.querySelectorAll("button.kill").forEach(b => b.addEventListener("click", async () => {
+  const kind = b.dataset.kind;
+  if (REPLAY) {
+    const k = REPLAY.kills.find(x => x.kind === kind);
+    const index = k ? REPLAY.frames.findIndex(f => f.t === k.t) : -1;
+    if (index >= 0) { replayEvent = k; replayPlaying = false; showReplay(index); }
+    return;
+  }
+  const target = kind === "node" ? lastState?.nodes.find(n => n.alive)?.id : kind === "region" ? $("#region").value : null;
+  if (!liveReady) return;
+  try {
+    const r = await fetch("/kill", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({kind, target})});
+    if (!r.ok) throw new Error("kill");
+    await liveTick();
+  } catch { $("#j-out").textContent = "Interruption not confirmed. Check the simulator connection."; }
+}));
+let submitting = false;
+async function submitJob(tier, origin, output, button) {
+  if (!liveReady || submitting) return;
+  submitting = true; button.disabled = true; output.textContent = "Submitting...";
+  try {
+    const r = await fetch("/jobs", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({tier, origin})});
+    const job = await r.json();
+    if (!r.ok || job.id == null) throw new Error("job");
+    output.textContent = `Simulation job ${job.id} queued at $${job.rate}/h.`;
+    await liveTick();
+  } catch { output.textContent = "Submission not confirmed. Check the connection before retrying."; }
+  finally {
+    submitting = false;
+    button.disabled = !liveReady || (button.id === "m-run" && !lastState?.nodes.some(n => String(n.id) === memberNode && n.alive));
+  }
+}
+$("#sim-off").addEventListener("click", () => {
+  if (!lastState) return;
+  simOff = !simOff;
+  $("#sim-off").setAttribute("aria-pressed", simOff);
+  $("#sim-off-text").textContent = simOff ? `Bring node ${SIM_NODE} back` : `Take node ${SIM_NODE} offline`;
+  if (REPLAY) {
+    replayPlaying = false;
+    // Show the handoff at an hour when node 3 carries work.
+    let index = frame;
+    if (simOff) for (let k = 0; k < REPLAY.frames.length; k++) {
+      const i = (frame + k) % REPLAY.frames.length;
+      if (REPLAY.frames[i].nodes.some(n => n.id === SIM_NODE && n.alive && n.job)) { index = i; break; }
+    }
+    showReplay(index);
+  } else rerender();
+  const msg = simOff ? simMessage(simResult) : `Node ${SIM_NODE} is back online.`;
+  $("#sim-out").textContent = msg; logAction(msg);
+});
+$("#spike").addEventListener("click", () => {
+  if (!lastState) return;
+  spikeOn = !spikeOn; $("#spike").setAttribute("aria-pressed", spikeOn);
+  rerender();
+  const p = spikePaused(), keep = TIERS.filter(k => !p.includes(k));
+  const n = lastState.nodes.filter(x => x.paused).length;
+  logAction(spikeOn
+    ? `Price spiked to $${fmt(SPIKE_MWH, 0)}/MWh (what-if). GPU power costs $${(GPU_KW * SPIKE_MWH / 1000).toFixed(2)}/h, so ${p.map(k => TIER[k].short).join(" and ")} pause (${n} nodes). ${keep.map(k => TIER[k].short).join(", ")} keep running.`
+    : `Price back to the recorded $${fmt(lastState.grid_price * 1000, 1)}/MWh. Every tier resumes.`);
+});
+$("#drop").addEventListener("click", () => {
+  if (!lastState) return;
+  if (dropId === null) {
+    const n = lastState.nodes.filter(x => x.alive && !(simOff && x.id === SIM_NODE)).sort((a, b) => b.soc - a.soc || a.id - b.id)[0];
+    if (!n) return;
+    dropId = n.id;
+    rerender();
+    logAction(`Node ${n.id} dropped from ${Math.round(n.soc * 100)}% to the 30% floor (what-if). Its battery stops selling and keeps the home's backup${n.job ? `; its ${TIER[n.job.tier]?.short} job keeps running` : ""}.`);
+  } else {
+    const id = dropId; dropId = null; rerender();
+    logAction(`Node ${id} charge back to the recorded level.`);
+  }
+  $("#drop").setAttribute("aria-pressed", dropId !== null);
+  $("#drop-text").textContent = dropId === null ? "Drop a node to reserve" : `Restore node ${dropId}`;
+});
+$("#stop").addEventListener("click", () => {
+  if (!lastState) return;
+  schedStop = !schedStop; $("#stop").setAttribute("aria-pressed", schedStop);
+  $("#stop-text").textContent = schedStop ? "Start the scheduler" : "Stop the scheduler";
+  rerender();
+  logAction(schedStop ? `Scheduler stopped (what-if). ${lastState.nodes.filter(n => n.alive).length} nodes hold their last action; running jobs continue, new work waits, 30% reserve held.`
+    : "Scheduler back. Dispatch resumes.");
+});
+$("#j-go").addEventListener("click", () => submitJob($("#j-tier").value, +$("#j-origin").value, $("#j-out"), $("#j-go")));
+$("#m-run").addEventListener("click", () => submitJob("member", +memberNode, $("#m-out"), $("#m-run")));
+// Close open popovers on outside click or Escape.
+document.addEventListener("click", e => document.querySelectorAll("details.pop[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }));
+document.addEventListener("keydown", e => { if (e.key === "Escape") document.querySelectorAll("details.pop[open]").forEach(d => { d.open = false; }); });
+
+fetch("data/tower_replay.json").then(r => r.ok ? r.json() : Promise.reject()).then(R => {
+  const F = R.frames, last = F[F.length - 1], down = F.filter(f => !f.scheduler_alive);
+  const soc = Math.min(...F.flatMap(f => f.nodes.filter(n => n.alive).map(n => n.soc)));
+  const node = R.kills.find(k => k.kind === "node");
+  $("#o-lost").textContent = `${last.failover.gpu_hours_lost} GPU-hours lost`;
+  $("#o-lost-note").textContent = node ? `Node ${node.target} stops at hour ${node.t}; a feeder neighbor takes its job and keeps the progress.` : "";
+  $("#o-lost-read").textContent = `${last.failover.ok} handed, ${last.failover.none} restarted`;
+  $("#o-sched").textContent = down.length ? `Hours ${down[0].t} to ${down[down.length - 1].t}` : "Stays up";
+  $("#o-sched-read").textContent = down.length ? `${down[0].nodes.filter(n => n.alive).length} of ${R.nodes}` : `${R.nodes}`;
+  $("#o-soc").textContent = `${Math.round(soc * 100)}% lowest charge`;
+  $("#outcomes").hidden = !Number.isFinite(soc);
+}).catch(() => {});
+</script>
+</body>
+</html>

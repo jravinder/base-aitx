@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Feeds, pages, tracks and agents, built from files, git and gh.">
+<title>Base Fleet admin</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="shell.css">
+<style>
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+#main{overflow-wrap:anywhere}
+:where(#main) :where(p,h1,h2,h3,dl,dd){margin:0}
+#main a{color:#1e4d2b}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:#fff;padding:6px 10px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:4px 10px;border-radius:8px;background:#F1F5F9;border:1px solid #E2E8F0;color:#717970;font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:#22C55E;display:inline-block}
+.caps{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970}
+.panel{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:24px;min-width:0}
+code,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:12px;background:#F1F5F9;border:1px solid #E2E8F0;border-radius:4px;padding:0 4px;color:#0F172A}
+
+  .pill { display:inline-flex; align-items:center; gap:4px; font-size:11.5px; line-height:18px; padding:1px 8px; border-radius:999px; white-space:nowrap; font-weight:600; text-decoration:none; border:1px solid transparent }
+  #main a.pill { text-decoration:none }
+  .ok { background:#ecfdf5; color:#1e4d2b; border-color:#bbefc1 }
+  .stale, .local, .watch { background:#fffbeb; color:#87591c; border-color:#fde68a }
+  .fail, .high { background:#fbe9f0; color:#a0184b; border-color:#f5c2d4 }
+  .manual, .info { background:#F1F5F9; color:#486077; border-color:#E2E8F0 }
+  .mo { display:none }
+  .judg { font-size:11px; color:#717970; font-style:italic }
+  .num { font-variant-numeric:tabular-nums }
+  .sec-h { font:600 20px/28px "Plus Jakarta Sans",sans-serif; color:#0F172A; margin:0 0 4px !important; display:flex; gap:10px; align-items:baseline; flex-wrap:wrap }
+  .sec-h small { font:400 12px/18px "Plus Jakarta Sans",sans-serif; color:#717970 }
+  .asof { color:#717970; font-size:12px }
+  /* summary tiles */
+  .strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px }
+  .tile { background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:24px; min-width:0 }
+  .tile .k { font:700 11px/16px "Plus Jakarta Sans",sans-serif; color:#717970; text-transform:uppercase; letter-spacing:.06em }
+  .tile .v { font:700 32px/38px "Plus Jakarta Sans",sans-serif; letter-spacing:-.02em; color:#0F172A; margin:8px 0 10px; font-variant-numeric:tabular-nums }
+  .tile .s { font-size:12px; color:#717970; display:flex; flex-wrap:wrap; gap:4px }
+  /* tables: light */
+  table { border-collapse:separate; border-spacing:0; width:100%; font-size:13px; background:#fff; border:1px solid #E2E8F0; border-radius:12px; overflow:hidden }
+  th, td { text-align:left; padding:12px 16px; border-bottom:1px solid #E2E8F0; vertical-align:top }
+  th { font:700 11px/16px "Plus Jakarta Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#717970; background:#F8FAFC }
+  tr:last-child td { border-bottom:0 }
+  td .sub { display:block; color:#717970; font-size:12px; overflow-wrap:anywhere }
+  /* cards */
+  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px }
+  .card { background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:24px; min-width:0; display:flex; flex-direction:column; gap:8px }
+  .card h3 { margin:0; font:600 16px/24px "Plus Jakarta Sans",sans-serif; color:#0F172A; display:flex; justify-content:space-between; gap:8px; align-items:baseline }
+  .card .meta, .meta { color:#717970; font-size:12px }
+  .thumb { display:block; aspect-ratio:16/10; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; overflow:hidden }
+  .thumb img { width:100%; height:100%; object-fit:cover; object-position:top; display:block }
+  .thumb.none { display:grid; place-items:center; color:#717970; font-size:12px }
+  .row { display:flex; flex-wrap:wrap; gap:4px }
+  .tracks { grid-template-columns:repeat(3,minmax(0,1fr)) }
+  .ev { list-style:none; margin:0; padding:0 }
+  .ev li { padding:8px 0; border-top:1px solid #E2E8F0 }
+  .ev b { font-size:17px; font-variant-numeric:tabular-nums; margin-right:6px }
+  .ev .meta a { font-weight:600 }
+  .dots { display:inline-flex; gap:3px; vertical-align:middle }
+  .dots i { width:10px; height:10px; border-radius:50%; border:1px solid #1e4d2b }
+  .dots i.on { background:#1e4d2b }
+  .weak { border:1px solid #fde68a; padding:8px 12px; background:#fffbeb; font-size:13px; border-radius:8px; color:#0F172A }
+  .stats { display:flex; gap:16px; flex-wrap:wrap }
+  .stats div { font-size:12px; color:#717970 }
+  .stats b { display:block; font-size:18px; color:#0F172A; font-variant-numeric:tabular-nums }
+  ul.plain, ol.plain { margin:0; padding-left:18px; font-size:13px }
+  ol.plain li, ul.plain li { padding:4px 0 }
+  .help { font-size:13px; color:#1e4d2b; font-weight:600 }
+  .note { color:#717970; font-size:12px; margin:8px 0 0 !important }
+  .notice { border:1px solid #f5c2d4; border-radius:12px; background:#fbe9f0; padding:12px 16px; display:none; color:#0F172A }
+  .admin-path { display:flex; flex-wrap:wrap; gap:4px 20px }
+  .admin-path a, .review-next, summary { min-height:44px; display:flex; align-items:center; padding:8px 0 }
+  #main .admin-path a { color:#414941; font-weight:500; border-bottom:2px solid transparent }
+  #main .admin-path [aria-current] { color:#1e4d2b; font-weight:600; border-bottom-color:#1e4d2b }
+  #main .review-next { color:#1e4d2b; font-weight:600 }
+  .rules .card { overflow-wrap:anywhere }
+  .rules details { margin-top:auto; border-top:1px solid #E2E8F0 }
+  summary { cursor:pointer; font-weight:600; color:#0F172A }
+  details.fold { background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:0 24px }
+  details.fold[open] { padding-bottom:24px }
+  details.fold > summary { font:600 16px/24px "Plus Jakarta Sans",sans-serif; min-height:56px }
+  details.fold > summary small { font:400 12px/18px "Plus Jakarta Sans",sans-serif; color:#717970; margin-left:8px }
+  a:focus-visible, summary:focus-visible { outline:3px solid #467bb0; outline-offset:3px }
+  .sig { display:grid; grid-template-columns:70px 1fr auto; gap:4px 12px; align-items:baseline }
+  .sig .msg { overflow-wrap:anywhere }
+  .sig .src { font-size:12px; color:#717970; overflow-wrap:anywhere }
+  .rules { grid-template-columns:repeat(5,minmax(0,1fr)); gap:16px; margin-bottom:16px }
+  .rules .card { gap:4px; font-size:12.5px; padding:20px }
+  .rules .card h3 { font-size:13px }
+  .rules .v { font:700 20px/28px "Plus Jakarta Sans",sans-serif; font-variant-numeric:tabular-nums; color:#0F172A }
+  .none { color:#717970; font-size:13px; padding:12px 16px; background:#fff; border:1px solid #E2E8F0; border-radius:12px }
+  .lrn-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:24px }
+  .bar { display:grid; grid-template-columns:110px 1fr 100px; gap:8px; align-items:center; font-size:13px; padding:4px 0 }
+  .bar .track { height:8px; background:#F1F5F9; border-radius:999px; overflow:hidden }
+  .bar .track i { display:block; height:100%; background:#1e4d2b; border-radius:999px }
+  .props td.q { max-width:360px; overflow-wrap:anywhere }
+  .props button { font:inherit; font-size:12px; font-weight:600; padding:4px 12px; border-radius:8px; border:1px solid #E2E8F0; background:#fff; color:#0F172A; cursor:pointer; margin:0 4px 4px 0 }
+  .props button.yes { background:#1e4d2b; border-color:#1e4d2b; color:#fff }
+  .props button:disabled { opacity:.45; cursor:not-allowed }
+  .srv { font-size:12.5px; padding:6px 12px; border-radius:8px; margin:0 0 12px; display:inline-block }
+  .who { font:inherit; font-size:12.5px; padding:4px 8px; border:1px solid #E2E8F0; border-radius:8px; width:120px; background:#fff; color:#0F172A }
+  #health.green { background:#ecfdf5; border-color:#bbefc1 }
+  #health.amber { background:#fffbeb; border-color:#fde68a }
+  #main .admin-path a, #main .review-next, #main .card h3 a { text-decoration:none }
+  @media (max-width:1100px) { .rules { grid-template-columns:repeat(3,minmax(0,1fr)) } }
+  @media (max-width:900px) { .lrn-grid, .tracks { grid-template-columns:1fr } .strip { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px } .rules { grid-template-columns:repeat(2,minmax(0,1fr)) } }
+  @media (max-width:640px) {
+    .sig, .rules { grid-template-columns:1fr }
+    .tile { padding:16px } .tile .v { font-size:24px; line-height:30px }
+    table, thead, tbody, tr, td { display:block; width:100% }
+    thead { display:none }
+    table { border:0; background:none; border-radius:0 }
+    tr { background:#fff; border:1px solid #E2E8F0; border-radius:12px; margin:0 0 8px; padding:12px 16px }
+    td { border:0; padding:2px 0 }
+    td[data-l]::before { content:attr(data-l) ": "; color:#717970; font-size:11.5px }
+    td.first .nm { display:flex; justify-content:space-between; gap:8px; align-items:baseline; font-weight:600 }
+    .mo { display:inline } .dk { display:none } td.st:not(:has(.sub)) { display:none }
+    .cards { grid-template-columns:1fr }
+    details.fold { padding:0 16px }
+  }
+</style>
+</head>
+<body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<a class="skip" href="#main">Skip to operations health</a>
+<div class="shell">
+<main id="main" class="max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
+<section class="panel flex flex-col md:flex-row md:items-center justify-between gap-6">
+  <div class="min-w-0 max-w-3xl">
+    <span class="eyebrow"><i></i>Operations health</span>
+    <h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight mt-3">Is everything running?</h1>
+    <p class="font-body-md text-body-md text-outline mt-2">Check source freshness and recorded signals before you choose a follow-up. Signals and repository health come from public data and are research inputs. Open a page to review the evidence before you assign work or save a decision.</p>
+    <p class="asof mt-3" id="asof">Loading web/data/admin.json</p>
+  </div>
+  <div id="health" class="shrink-0 flex items-center gap-4 border border-wire-border rounded-xl px-6 py-4 bg-surface-muted">
+    <span class="w-12 h-12 rounded-lg bg-primary-container text-white flex items-center justify-center"><span id="health-i" class="material-symbols-outlined text-[28px]" aria-hidden="true">task_alt</span></span>
+    <div><div id="health-v" class="font-display-sm text-display-sm text-ink-primary">...</div><div id="health-s" class="font-body-sm text-body-sm text-outline">Checking feeds</div></div>
+  </div>
+</section>
+<nav class="admin-path border-b border-wire-border" aria-label="Operations workflow" id="operations-path"></nav>
+<div class="notice" id="notice">Load data/admin.json: run <code>python3 admin/build.py</code>, then serve the repo root with <code>python3 -m http.server 8741</code>.</div>
+
+<div class="strip" id="strip"></div>
+
+<section id="signals-wrap" hidden>
+<h2 class="sec-h">Signals <small id="sigsub"></small></h2>
+<p class="note" style="margin:0 0 16px !important">Rule checks on the public data, with the current value of each rule.</p>
+<div class="cards rules" id="rules"></div>
+<div id="signals"></div>
+</section>
+
+<section id="learn-wrap" hidden>
+<h2 class="sec-h">Learning: Base Brain <small id="lrnsub"></small></h2>
+<div class="mt-4" id="lrnsrv"></div>
+<div class="strip" id="lrnstrip"></div>
+<div class="lrn-grid">
+  <div class="card"><span class="caps">Knowledge routing</span><h3>What members ask that only Base can answer</h3><ul class="plain" id="lrnbase"></ul>
+    <p class="note">Credits, cancelling, payments, contracts and eligibility are Base policy. The Base support team answers them directly.</p></div>
+  <div class="card"><span class="caps">Answer paths</span><h3>Answered share by path</h3><div id="lrnpaths"></div>
+    <p class="note">cache: a recorded answer. template: fixed query, no model. kb: the Base Brain knowledge base. agent: the four-role model agent. gap: outside the data and records. base_support: a Base policy question.</p></div>
+  <div class="card"><span class="caps">Open questions</span><h3>Top unanswered</h3><ol class="plain" id="lrnun"></ol></div>
+  <div class="card"><span class="caps">Knowledge base</span><h3>Base Brain knowledge base</h3><div id="lrnkb"></div></div>
+</div>
+<h2 class="sec-h mt-8">Proposals <small id="propsub"></small></h2>
+<div class="mt-4" id="lrnprops"></div>
+<p class="note">Each answer goes live after approval. Approve moves a cached answer into brain/insights.json and the knowledge base, with who and when. A cached answer is proposed when a template produces it and the critic passes.</p>
+</section>
+
+<section>
+<h2 class="sec-h">Scheduled jobs and data feeds <small id="feedsub"></small></h2>
+<div class="mt-4" id="feeds"></div>
+<p class="note">Status reflects the recorded build: ok is fresher than 2x cadence; stale is older, or waiting for its first fetch; fail is a FAIL as the last collect.log line; manual runs by hand. These checks measure collection health; source accuracy and customer status live with each source.</p>
+</section>
+
+<div class="space-y-4">
+<details class="fold"><summary>Page inventory</summary>
+<div class="cards" id="pages"></div>
+</details>
+
+<details class="fold"><summary>Submission readiness</summary>
+<div class="cards tracks" id="tracks"></div>
+</details>
+
+<details class="fold"><summary>Agent activity <small id="agentsub"></small></summary>
+<div class="cards" id="agents"></div>
+</details>
+</div>
+<footer class="font-body-sm text-body-sm text-outline pt-8 border-t border-wire-border">A Base Fleet design. Operations health for the Base Fleet team.</footer>
+</main></div>
+<script defer src="shell.js"></script>
+<script>
+const GH = "gaps.html#";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pill = (cls, t) => `<span class="pill ${cls}">${esc(t)}</span>`;
+const issue = i => `<a class="pill ${i.gap ? "stale" : "info"}" href="${GH}${i.n}" title="${esc(i.title)}">#${i.n}</a>`;
+const age = h => h == null ? "" : h < 1 ? `${Math.round(h * 60)} min ago` : h < 48 ? `${h.toFixed(1)} h ago` : `${Math.round(h / 24)} d ago`;
+const context = new URLSearchParams(location.search);
+const computeOps = context.get("track") === "compute" || (!context.has("track") && context.get("persona") === "fleet");
+const opsHref = page => `${page}?track=${computeOps ? "compute" : "home"}&persona=${computeOps ? "fleet" : "operations"}`;
+const workflow = computeOps
+  ? [["tower.html", "Fleet operations"], ["placement.html", "Capacity planning"], ["grid.html", "Energy insights"]]
+  : [["market.html", "Market priorities"], ["house.html", "Homes ready"]];
+document.getElementById("operations-path").innerHTML = [...workflow, ["admin.html", "Operations health"]]
+  .map(([page, label]) => `<a href="${opsHref(page)}"${page === "admin.html" ? ' aria-current="page"' : ''}>${label}</a>`).join("");
+function signalNext(name) {
+  const home = {base_week: ["market.html", "Review permit activity"], zip_surge: ["explorer.html", "Compare ZIP evidence"], storm_alert: ["explorer.html", "Review storm exposure"]};
+  return !computeOps && home[name] ? home[name]
+    : ["price_spike", "low_reserves", "storm_alert"].includes(name) ? ["grid.html", "Review energy conditions"]
+    : ["ask.html", "Inspect supporting records"];
+}
+
+function left(deadline) {
+  const ms = new Date(deadline) - new Date();
+  if (ms <= 0) return ["0 h", "deadline passed"];
+  const h = Math.floor(ms / 3.6e6), d = Math.floor(h / 24);
+  return [d ? `${d} d ${h % 24} h` : `${h} h ${Math.floor(ms / 6e4) % 60} m`, "Sun Sep 27, 11:00 CT"];
+}
+
+const srcLink = s => /^https?:/.test(s || "") ? `<a href="${esc(s)}">${esc(s.replace(/^https?:\/\//, "").slice(0, 70))}${s.length > 78 ? "..." : ""}</a>` : `<code>${esc(s)}</code>`;
+const nowVal = r => { const n = r.now || {}; if (n.value == null) return n.note || "no data";
+  const v = typeof n.value === "number" ? n.value.toLocaleString() : n.value;
+  return r.name === "base_week" ? `${v} vs ${n.baseline} mean (${n.ratio}x)` : r.name === "price_spike" ? `$${v} max` : `${v} ${n.unit || ""}`; };
+
+function renderSignals(g) {
+  if (!g) return;
+  document.getElementById("signals-wrap").hidden = false;
+  document.getElementById("sigsub").innerHTML = `${g.fired_now} fired on the last run, ${esc(g.built_at)} UTC · store/signals.py on data/fleet.db · <a href="data/signals.json">signals.json</a>`;
+  document.getElementById("signals").innerHTML = g.latest.length ? `<table><tbody>${g.latest.map(x => `<tr><td class="sig">
+      <span>${pill(x.severity, x.severity)}</span>
+      <span class="msg"><b>${esc(x.name)}</b> ${esc(x.message)}</span>
+      <span class="meta num">${esc(String(x.fired_at).slice(0, 16))}</span>
+      <span></span><span class="src">Source: ${srcLink(x.source_query)}</span></td></tr>`).join("")}</tbody></table>`
+      + (g.latest_total > g.latest.length ? `<p class="note">Showing ${g.latest.length} of ${g.latest_total}. All in web/data/signals.json.</p>` : "")
+    : `<div class="none">All rules are quiet. Rule values are shown above.</div>`;
+  document.getElementById("rules").innerHTML = g.rules.map(r => `<div class="card">
+    <h3>${esc(r.name)} ${pill(r.fired_now ? "watch" : "ok", r.fired_now ? `${r.fired_now} fired` : "quiet")}</h3>
+    <div class="v">${esc(nowVal(r))}</div>
+    <a class="review-next" href="${opsHref(signalNext(r.name)[0])}">${esc(signalNext(r.name)[1])}</a>
+    <details><summary>Rule and evidence</summary>
+    <div><b>Threshold:</b> ${esc(r.threshold)}</div>
+    <p class="meta">${esc(r.rule)}</p>
+    <p class="meta">Source: ${srcLink(r.source)}</p>
+    <p class="meta">${esc(r.now?.window || r.now?.as_of || "See the recorded build time above.")}</p></details>
+  </div>`).join("");
+}
+
+// ---------- learning (web/data/learning.json from store/learn.py) ----------
+let LRN = null, LSRV = null;
+const PORTS = [8742, 8752];
+async function findServer() {
+  if (!["localhost", "127.0.0.1"].includes(location.hostname)) return null;
+  for (const p of PORTS) {
+    try { const r = await fetch(`http://localhost:${p}/health`, {signal: AbortSignal.timeout(1500)}); const h = await r.json(); if (h.learn) return `http://localhost:${p}`; } catch (e) {}
+  }
+  return null;
+}
+function renderLearning(L) {
+  if (!L) return;
+  LRN = L;
+  document.getElementById("learn-wrap").hidden = false;
+  const w = L.week, sg = L.signal;
+  document.getElementById("lrnsub").innerHTML = `member questions, last 7 days · store/learn.py ran ${esc(String(L.generated).replace("T", " ").slice(0, 16))} UTC · <a href="data/learning.json">learning.json</a> · <a href="../docs/LEARNING.md">LEARNING.md</a>`;
+  document.getElementById("lrnsrv").innerHTML = LSRV
+    ? `<span class="srv ok">Local ask server at ${esc(LSRV)}. Approve and Reject work.</span> <label class="meta">Your name <input class="who" id="who" value="admin" maxlength="40"></label>`
+    : `<span class="srv manual">Approve and Reject run with the local ask server: <code>python3 -m brain.ask --serve 8742</code> on this machine.</span>`;
+  const share = w.asked ? Math.round(100 * w.answered / w.asked) : 0;
+  const pend = L.proposals.filter(p => p.status === "proposed").length;
+  document.getElementById("lrnstrip").innerHTML = [
+    ["Questions this week", w.asked, `<span>${L.total_logged} logged in all</span>`],
+    ["Answered", `${share}%`, `<span>${w.answered} of ${w.asked} · median ${w.median_seconds ?? "n/a"} s</span>`],
+    ["Unanswered", sg.unanswered_7d, `<span>${sg.unanswered_prev_7d} the week before (signal unanswered_spike)</span>`],
+    ["Proposals", L.proposals.length, pill(pend ? "stale" : "ok", `${pend} waiting`)],
+  ].map(([k, v, sub]) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${sub}</div></div>`).join("");
+  document.getElementById("lrnpaths").innerHTML = Object.entries(w.by_path).map(([p, v]) => {
+    const pc = v.asked ? Math.round(100 * v.answered / v.asked) : 0;
+    return `<div class="bar"><span><b>${esc(p)}</b></span><span class="track" title="${pc}% answered"><i style="width:${pc}%"></i></span><span class="num">${v.answered} of ${v.asked} (${pc}%)</span></div>`;
+  }).join("") || `<div class="none">No questions logged this week.</div>`;
+  document.getElementById("lrnun").innerHTML = L.top_unanswered.slice(0, 8).map(x => `<li>${esc(x.question)} <span class="meta">asked ${x.asked} · ${esc(Object.keys(x.paths).join(", "))}</span></li>`).join("") || "<li>none</li>";
+  document.getElementById("lrnbase").innerHTML = L.base_support.slice(0, 10).map(x => `<li>${esc(x.question)} <span class="meta">asked ${x.asked}</span></li>`).join("") || "<li>none</li>";
+  const kb = L.kb || {};
+  document.getElementById("lrnkb").innerHTML = `<p>Weekly summary node <code>member-questions</code> (type member_questions): ${esc(kb.member_questions || "not written")}.</p>
+    <p>Approved answers written as <code>learned_answer</code> nodes: <b>${kb.learned_answers || 0}</b>.</p>
+    <p class="note">Nodes go to kb_nodes and kb_edges in data/fleet.db. They hold public facts only; Base policy stays with Base.</p>`;
+  document.getElementById("propsub").textContent = `${L.proposals.length} ranked: unanswered or gap first, then critic fails, then slow agent answers (> 10 s)`;
+  const kindPill = k => pill(k === "base_support" ? "fail" : k === "cached_answer" ? "ok" : "info", k.replace("_", " "));
+  const draft = p => p.draft ? `<span class="sub">${esc(p.draft.kind)}: <code>${esc(typeof p.draft.query === "string" ? p.draft.query : JSON.stringify(p.draft.query))}</code></span>` : p.answer ? `<span class="sub">Answer: ${esc(p.answer.slice(0, 220))}</span>` : "";
+  document.getElementById("lrnprops").innerHTML = `<table class="props"><thead><tr><th>#</th><th>Kind</th><th>Question</th><th>Proposal</th><th>Asked</th><th>Status</th></tr></thead><tbody>${
+    L.proposals.slice(0, 20).map((p, i) => `<tr id="p-${esc(p.id)}">
+      <td class="num">${i + 1}</td><td data-l="Kind">${kindPill(p.kind)}</td>
+      <td class="q" data-l="Question">${esc(p.question)}<span class="sub">${esc(p.why)}</span></td>
+      <td data-l="Proposal">${esc(p.proposal)}${p.data_source ? `<span class="sub">source: ${esc(p.data_source)}${Object.keys(p.parameters || {}).length ? " · params: " + esc(JSON.stringify(p.parameters)) : ""}</span>` : ""}${draft(p)}</td>
+      <td data-l="Asked" class="num">${p.stats.asked}${p.stats.slow_agent ? `<span class="sub">${p.stats.slow_agent} slow</span>` : ""}</td>
+      <td data-l="Status" class="st">${p.status === "proposed"
+        ? `<button class="yes" data-act="approve" data-id="${esc(p.id)}" ${LSRV ? "" : "disabled title='needs the local ask server'"}>Approve</button><button data-act="reject" data-id="${esc(p.id)}" ${LSRV ? "" : "disabled title='needs the local ask server'"}>Reject</button>`
+        : pill(p.status === "approved" ? "ok" : "manual", p.status) + (p.decided ? `<span class="sub">${esc(p.decided.who)}, ${esc(p.decided.when.slice(0, 16).replace("T", " "))}</span>` : "")}</td></tr>`).join("")
+  }</tbody></table>`;
+}
+document.addEventListener("click", async e => {
+  const b = e.target.closest("button[data-act]");
+  if (!b || !LSRV) return;
+  b.disabled = true;
+  const who = (document.getElementById("who") || {}).value || "admin";
+  try {
+    const r = await fetch(`${LSRV}/learn/${b.dataset.act}`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({id: b.dataset.id, who})});
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.error || r.status);
+    const p = LRN.proposals.find(x => x.id === b.dataset.id);
+    p.status = j.action; p.decided = {who: j.who, when: j.when};
+    renderLearning(LRN);
+  } catch (err) { b.disabled = false; alert("Could not save: " + err.message); }
+});
+
+function render(d) {
+  renderSignals(d.signals);
+  const s = d.summary, f = s.feeds;
+  const okN = f.ok || 0, liveN = d.feeds.filter(r => r.status !== "manual").length, bad = (f.stale || 0) + (f.fail || 0);
+  document.getElementById("health-v").textContent = bad ? `${bad} to check` : "All green";
+  document.getElementById("health-s").textContent = `${okN} of ${liveN} scheduled feeds ok · ${f.manual || 0} manual`;
+  document.getElementById("health").classList.add(bad ? "amber" : "green");
+  if (bad) document.getElementById("health-i").textContent = "pending_actions";
+  document.getElementById("asof").innerHTML = `Built ${esc(d.built_at)} CT from repo files, git and gh. Rebuild: <code>python3 admin/build.py</code> · <a href="story.html">Story</a>`;
+  const [tl, tls] = left(s.deadline);
+  document.getElementById("strip").innerHTML = [
+    ["Feeds", `${f.ok || 0}/${d.feeds.length}`, ["ok", "stale", "fail", "manual"].map(k => pill(k, `${f[k] || 0} ${k}`)).join("")],
+    ["Pages", s.pages, pill("info", `${d.pages.filter(p => p.runs.startsWith("local")).length} local only`) + pill("info", `${d.pages.filter(p => !p.shot).length} no shot`)],
+    ["Open gaps", s.open_gaps.length, s.open_gaps.map(g => issue({...g, gap: true})).join("") + pill("info", `${s.gaps_found} found, ${s.gaps_fixed} fixed`)],
+    ["To submission", tl, `<span>${tls}</span>`],
+  ].map(([k, v, sub]) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${sub}</div></div>`).join("");
+
+  document.getElementById("feedsub").textContent = `${d.feeds.length} sources, launchd com.basefleet.ercot, daily, monthly`;
+  document.getElementById("feeds").innerHTML = `<table><thead><tr><th>Source</th><th>Status</th><th>Script</th><th>Cadence and job</th><th>Last fetched</th><th>Rows</th></tr></thead><tbody>${
+    d.feeds.map(r => `<tr>
+      <td class="first"><span class="nm">${esc(r.name)} <span class="mo">${pill(r.status, r.status)}</span></span><span class="sub">${esc(String(r.url || "").replace(/^https?:\/\//, ""))}</span></td>
+      <td class="st"><span class="dk">${pill(r.status, r.status)}</span>${r.note ? `<span class="sub">${esc(r.note)}</span>` : ""}</td>
+      <td data-l="Script"><code>${esc(r.script)}</code></td>
+      <td data-l="Cadence">${esc(r.cadence)}<span class="sub">${esc(r.job)}</span></td>
+      <td data-l="Fetched" class="num">${r.last_fetched ? esc(r.last_fetched.replace("T", " ")) : r.job === "one-time" ? "not stored" : "never"}<span class="sub">${esc(age(r.age_h))} · ${esc(r.fetched_from)}</span></td>
+      <td data-l="Rows" class="num">${r.rows == null ? "none" : r.rows.toLocaleString()}<span class="sub">${esc(r.rows_label)}</span></td></tr>`).join("")
+  }</tbody></table>`;
+
+  document.getElementById("pages").innerHTML = d.pages.map(p => `<div class="card">
+    <a class="thumb${p.shot ? "" : " none"}" href="${esc(p.file)}">${p.shot ? `<img loading="lazy" src="${esc(p.shot)}" alt="${esc(p.title)} screenshot">` : "Screenshot pending in docs/shots"}</a>
+    <h3><a href="${esc(p.file)}">${esc(p.file)}</a>${pill(p.runs.startsWith("local") ? "local" : p.runs === "static" ? "ok" : "info", p.runs.startsWith("local") ? "local only" : p.runs === "static" ? "static" : "static + Ollama")}</h3>
+    <p>${esc(p.purpose || p.title)}</p>
+    <div class="row">${p.beats.length ? p.beats.map(b => pill("info", "Beat " + b)).join("") : pill("manual", "Supporting page")}${p.gaps.map(g => issue({...g, gap: true})).join("")}</div>
+    <div class="meta">${esc(p.title)} · last commit ${esc(p.last_commit)}, ${esc(p.author)}${p.runs.startsWith("local") ? " · " + esc(p.runs) : ""}</div>
+  </div>`).join("");
+
+  document.getElementById("tracks").innerHTML = d.tracks.map(t => `<div class="card">
+    <h3>${esc(t.name)} <span class="dots" title="strength ${t.strength} of 5, judgment">${[1,2,3,4,5].map(i => `<i class="${i <= t.strength ? "on" : ""}"></i>`).join("")}</span></h3>
+    <div class="row">${t.entry.map(e => pill("ok", "Entry " + e)).join("")}<span class="judg">strength ${t.strength} of 5, judgment</span></div>
+    <ul class="ev">${t.evidence.map(e => `<li><b>${esc(e.value)}</b>${esc(e.label)}<div class="meta"><a href="${esc(e.page)}">${esc(e.page)}</a> · ${esc(e.source)}</div></li>`).join("")}</ul>
+    <div class="weak"><b>Weak spot.</b> ${esc(t.weak_spot)}</div>
+    <div class="row">${t.open_issues.length ? t.open_issues.map(issue).join("") : pill("ok", "All issues closed")}</div>
+  </div>`).join("");
+
+  const ia = Object.entries(d.issue_authors).map(([a, n]) => `${n} by ${a}`).join(", ");
+  document.getElementById("agentsub").textContent = `${d.commits_total} commits from git log. Issues opened (gh author): ${ia}. Agents file under one account, so gaps are counted from the Gap issues each agent's commits reference.`;
+  document.getElementById("agents").innerHTML = d.agents.map(a => `<div class="card">
+    <h3>${esc(a.label)}<span class="meta">last ${esc(a.last_active)}</span></h3>
+    <p class="help">${esc(a.help)}</p>
+    <div class="stats"><div><b>${a.commits}</b>commits</div><div><b>${a.files}</b>files</div><div><b>${a.gaps_referenced.length}</b>gap issues</div></div>
+    <div class="meta">Top folders: ${esc(a.top_folders.join(", ") || "none")}</div>
+    ${a.gaps_referenced.length ? `<div class="row">${a.gaps_referenced.map(n => `<a class="pill stale" href="${GH}${n}">#${n}</a>`).join("")}</div>` : ""}
+    <p class="meta">${esc(a.role)}</p>
+    ${a.notable.length ? `<ul class="plain">${a.notable.map(n => `<li>${esc(n)}</li>`).join("")}</ul>` : ""}
+    <span class="judg">Role and notes: ${esc(a.text_is)}</span>
+  </div>`).join("");
+}
+
+Promise.all([fetch("data/admin.json").then(r => { if (!r.ok) throw 0; return r.json(); }),
+  fetch("data/gaps.json").then(r => r.ok ? r.json() : null).catch(() => null)])
+.then(([d, g]) => {
+  if (g) {  // gap counts come from gaps.json, the same file gaps.html reads
+    const gs = g.issues.filter(i => !i.hunt);
+    d.summary.open_gaps = gs.filter(i => i.state === "open").map(i => ({n: i.number, title: i.title}));
+    d.summary.gaps_found = gs.length;
+    d.summary.gaps_fixed = gs.filter(i => i.state === "closed").length;
+  } else { d.summary.gaps_found = d.summary.gaps_total; d.summary.gaps_fixed = d.summary.gaps_total - d.summary.open_gaps.length; }
+  return d;
+}).then(render)
+  .catch(() => { document.getElementById("notice").style.display = "block"; document.getElementById("asof").textContent = ""; });
+// Learning loads on its own, so a missing learning.json never hides the rest of the page.
+(async () => {
+  try { const r = await fetch("data/learning.json"); if (!r.ok) return; const L = await r.json(); LSRV = await findServer(); renderLearning(L); } catch (e) {}
+})();
+</script>
+</body>
+</html>

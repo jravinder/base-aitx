@@ -1,0 +1,88 @@
+{
+ "built_at": "2026-09-26T22:43:38Z",
+ "db": "data/fleet.db",
+ "rules": [
+  {
+   "name": "base_week",
+   "threshold": "over 1.5x or under 0.5x",
+   "rule": "Base permits issued in the last 7 days vs the mean of the 4 prior weeks. Window ends on the newest issue_date in the mirror.",
+   "source": "permits (data/mirror/energy_permits.csv.gz, Socrata 3syk-w9eu)",
+   "now": {
+    "value": 25,
+    "baseline": 44.5,
+    "window": "2026-09-19 to 2026-09-25",
+    "prior_weeks": [
+     48,
+     48,
+     36,
+     46
+    ],
+    "ratio": 0.56
+   },
+   "fired_now": 0
+  },
+  {
+   "name": "zip_surge",
+   "threshold": "over 3x, min 5 permits",
+   "rule": "A zip's backup permits (generator, battery, solar_battery) in the last 30 days vs its trailing 12-month monthly mean.",
+   "source": "permits (data/mirror/energy_permits.csv.gz, Socrata 3syk-w9eu)",
+   "now": {
+    "value": 0,
+    "window": "2026-08-27 to 2026-09-25",
+    "zips_checked": 22,
+    "unit": "zips over threshold"
+   },
+   "fired_now": 0
+  },
+  {
+   "name": "price_spike",
+   "threshold": "over $200/MWh",
+   "rule": "LZ_AEN day-ahead or real-time settlement point price in the newest system-wide-prices snapshot.",
+   "source": "dam_prices, rt_prices (ERCOT system-wide-prices dashboard)",
+   "now": {
+    "value": 59.57,
+    "unit": "$/MWh",
+    "dam_max": {
+     "date": "2026-09-26",
+     "he": 19,
+     "price": 59.57
+    },
+    "rt_max": {
+     "ts": "2026-09-26T15:30:00-05:00",
+     "price": 36.25
+    },
+    "snapshot": "data/live/ercot/system-wide-prices/20260926T2113Z.json.gz",
+    "as_of": "2026-09-26T16:02:00-05:00"
+   },
+   "fired_now": 0
+  },
+  {
+   "name": "low_reserves",
+   "threshold": "under 3,000 MW",
+   "rule": "Physical responsive capability in the newest daily-prc snapshot (ERCOT conservation threshold).",
+   "source": "prc (ERCOT daily-prc dashboard)",
+   "now": {
+    "value": 18450.0,
+    "unit": "MW",
+    "as_of": "2026-09-26T16:13:04-05:00",
+    "snapshot": "data/ercot/daily-prc-2026-09-26.json"
+   },
+   "fired_now": 0
+  },
+  {
+   "name": "storm_alert",
+   "threshold": "any active alert",
+   "rule": "National Weather Service active alerts for Travis (TXC453) and Williamson (TXC491) counties.",
+   "source": "https://api.weather.gov/alerts/active?zone=TXC453,TXC491",
+   "now": {
+    "value": 0,
+    "unit": "active alerts",
+    "as_of": "2026-09-26T22:40:40+00:00",
+    "raw": "data/live/nws/20260926T2241Z.json.gz"
+   },
+   "fired_now": 0
+  }
+ ],
+ "fired_now": 0,
+ "latest": []
+}

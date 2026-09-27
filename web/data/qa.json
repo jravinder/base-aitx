@@ -1,0 +1,1971 @@
+{
+ "built": "2026-09-26",
+ "sources": [
+  "docs/qa/DRILL.md",
+  "docs/qa/business.md",
+  "docs/qa/grid-ai.md",
+  "docs/qa/data-skeptic.md"
+ ],
+ "sets": {
+  "business": "Business",
+  "grid": "Grid and AI",
+  "skeptic": "Skeptic"
+ },
+ "counts": {
+  "drill": 20,
+  "trap": 10,
+  "all": 90
+ },
+ "cards": [
+  {
+   "id": "business-1",
+   "deck": "all",
+   "set": "business",
+   "rank": 1,
+   "q": "Why do you say the limit is the path, not demand?",
+   "must": true,
+   "say": "On the factory tour, Base staff told us that demand is met and that permitting changes with each utility, state, and municipality. The public record agrees: of 316 Base backup permits in Austin this year, 264 are still open. So we start the path earlier and read the house before we ask the member for anything.",
+   "number": "264 of 316 open, 16.5% final, median 14 days applied to issued. `data/market.json` `base_totals`.",
+   "limit": "An open permit is not a stalled permit. 157 of the 316 were issued in September, so many are open because they are new. We see the count, not the cause. \"Demand is met\" is a spoken quote with no public source.",
+   "page": {
+    "label": "web/market.html",
+    "href": "market.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-2",
+   "deck": "all",
+   "set": "business",
+   "rank": 2,
+   "q": "Base already knows this. Why do we need you?",
+   "must": true,
+   "say": "Base knows its own funnel far better than we do, and we make no claim about what it does inside. What we can show is the public join funnel: it asks a lead to type what a permit record already says, then asks for a panel photo. We put the public records first, so the photo confirms and does not discover, and one confirmed house fills in its neighbours.",
+   "number": "22 of 40 houses in zip 78745 come out \"easy\" from public records alone. `house/cohort.json`.",
+   "limit": "If Base already reads permits before the photo, our value drops to block inheritance and the voice guide. We walked the public funnel on Sep 25; we did not see the internal one.",
+   "page": {
+    "label": "web/demo.html",
+    "href": "demo.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-3",
+   "deck": "all",
+   "set": "business",
+   "rank": 3,
+   "q": "Shovels sells permit data. What is new?",
+   "must": true,
+   "say": "The data is not new, and we say so in our own gap ledger. What is new is the decision on top of it: a fit call per house, a source and a confidence per field, a confirm tick under 70%, and one answer that teaches the block. Shovels sells rows; this changes the order of Base's funnel steps.",
+   "number": "Prior-art row in `docs/GAPS.md` (\"Shovels and Construction Monitor sell permit and installer data ... present both pages as evidence, not as products\").",
+   "limit": "Our permit reader covers City of Austin only. A permit vendor with national coverage could be the feed under our decision layer. We did not price that.",
+   "page": {
+    "label": "web/house.html",
+    "href": "house.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-4",
+   "deck": "all",
+   "set": "business",
+   "rank": 4,
+   "q": "What does this save us per install?",
+   "must": true,
+   "say": "We do not have that number, and we will not invent it. It needs two numbers only Base has: the cost of one engineer review and the real drop rate at the photo step. Give us one week of funnel counts (address, photo asked, photo received, review passed, install booked) and we turn it into dollars per install.",
+   "number": "The only dollar figure is a model with dials: 104 homes a month lost at the photo step, $21,646 a month, at 35% vs 15% drop. `out/report.md`. We keep it out of the pitch because both rates are ours.",
+   "limit": "No per-install saving exists in the repo. Say so plainly.",
+   "page": {
+    "label": "web/onboarding.html",
+    "href": "onboarding.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-5",
+   "deck": "all",
+   "set": "business",
+   "rank": 5,
+   "q": "Why should we trust 22 of 40?",
+   "must": true,
+   "say": "Every field on every house carries its source permit and a confidence. Anything under 70% goes back to the member as one tick, and an engineer still confirms. We rebuilt the 40 houses from live Austin data, and our own audit found two rule errors on demo houses (a teardown and a pool read as a new build), which we traced and fixed in the rules.",
+   "number": "22 easy, 18 needs love, 0 not now. `house/cohort.json`. Rule errors: `docs/GAPS.md`, gap hunt round 2.",
+   "limit": "40 houses, one zip, no ground truth. \"Easy\" is our rule, not Base's eligibility rule. The ceiling is Base's own rules and review outcomes in place of ours.",
+   "page": {
+    "label": "web/house.html",
+    "href": "house.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-6",
+   "deck": "all",
+   "set": "business",
+   "rank": 6,
+   "q": "How does this work outside Austin?",
+   "must": true,
+   "say": "Territory works across the region now: we checked all 59 zips against the Power to Choose API. Year built and deed dates work for Travis and Williamson counties from free bulk exports. Permits are the gap: we probed six cities and confirmed none without a browser session, so Base's install footprint is visible only in Austin.",
+   "number": "588,135 parcels with deed date and year built, Travis and Williamson. `docs/DEEDS.md`. Open gap #57, `house/PERMITS_OUTSIDE_AUSTIN.md`.",
+   "limit": "No permit reader outside the City of Austin. Other cities use other portals. Each one is new work.",
+   "page": {
+    "label": "web/star.html",
+    "href": "star.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-7",
+   "deck": "all",
+   "set": "business",
+   "rank": 7,
+   "q": "Isn't 'we know your house' a privacy problem?",
+   "must": true,
+   "say": "We only read records that are already public, and we strip owner names at read time. The member sees what the city record says and confirms or corrects it; nothing is guessed in secret. The voice guide keeps answers in the browser, and the neighbour link carries an anonymous code with no name, address, or answer.",
+   "number": "Owner names and mailing addresses dropped at read time for all 588,135 parcels. `docs/DEEDS.md` (Privacy rule).",
+   "limit": "A property id plus zip can be joined back to an owner on the county site, so we use parcel data for zip totals, not for per-person outreach. The copy must say \"your city record shows\", not \"we know your house\".",
+   "page": {
+    "label": "web/onboarding.html",
+    "href": "onboarding.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-8",
+   "deck": "all",
+   "set": "business",
+   "rank": 8,
+   "q": "What would you build first on Monday?",
+   "must": true,
+   "say": "The records read in front of the photo step, for one zip where Base already installs, with the confirm tick. Next to it, a counter for the five funnel stages so the dials in our model become Base numbers in one week. Nothing from Submission B until that is live.",
+   "number": "Test zip 78745 already has 9 Base permits since July. `data/market.json` `base_by_zip`.",
+   "limit": "We have no HubSpot link, no real members, and no Base eligibility rules. Monday is an integration with Base's funnel, which we have not seen.",
+   "page": {
+    "label": "web/demo.html",
+    "href": "demo.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-9",
+   "deck": "all",
+   "set": "business",
+   "rank": 9,
+   "q": "Is the rewards idea a real cost?",
+   "must": false,
+   "say": "Yes, and we keep it small. Every reward pays for a data event Base already needs: a confirmed field, a panel photo, or a neighbour who joins with a pre-filled fit. The credit is kWh of member energy, so it costs Base its marginal cost, not retail.",
+   "number": "10 kWh per confirmed field, 20 kWh per photo, 50 kWh per neighbour join, all labelled \"assumed\". `docs/adr/0015-rewards-are-data-not-points.md`.",
+   "limit": "We do not have Base's cost per acquired member or marginal $/kWh, so there is no break-even table. It is an ADR and a demo card, not a costed offer.",
+   "page": {
+    "label": "web/onboarding.html",
+    "href": "onboarding.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-10",
+   "deck": "all",
+   "set": "business",
+   "rank": 10,
+   "q": "What is the business model for Submission B?",
+   "must": false,
+   "say": "This is our design, not a Base product. A library or community hub hosts batteries and GPUs on the PC beside them, and sells local inference by tier to members and nearby businesses. At our utilisation dial the hub earns more than twice a house node.",
+   "number": "Library node $205.78 a week vs house node $84.71, at 40% GPU utilisation, LZ_AEN. `grid/LIBRARY_NODE.md`.",
+   "limit": "40% utilisation is a guess; the GPU line could move 2x either way. No hub, no buyer, no letter of intent. Speed is not measured on a Windows-class PC (#80).",
+   "page": {
+    "label": "web/block.html",
+    "href": "block.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-11",
+   "deck": "all",
+   "set": "business",
+   "rank": 11,
+   "q": "What is the market size?",
+   "must": false,
+   "say": "ERCOT counts 8 million premises in competitive choice areas, where Base sells energy and backup. Austin Energy territory adds the Backup Only offer.",
+   "number": "8 million premises, https://www.ercot.com/about, read 2026-09-26. Quoted in `docs/SUBMISSION.md`.",
+   "limit": "That is premises, not qualified homes. We did not size how many pass fit.",
+   "page": {
+    "label": "web/story.html",
+    "href": "story.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-12",
+   "deck": "all",
+   "set": "business",
+   "rank": 12,
+   "q": "Where do the next installs go?",
+   "must": false,
+   "say": "The star map ranks served zips by estimated easy-fit homes. Round Rock 78665 leads, and the served zips hold about 56,658 permit-ready homes in all.",
+   "number": "78665 has 6,530 estimated easy-fit homes; 56,658 in served zips. `data/funnel.json`.",
+   "limit": "Estimates from census aggregates and permit counts, not parcel checks. No public record says where the panel is.",
+   "page": {
+    "label": "web/star.html",
+    "href": "star.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-13",
+   "deck": "all",
+   "set": "business",
+   "rank": 13,
+   "q": "Did Base take share from other installers?",
+   "must": false,
+   "say": "Base is 69% of the backup permit class in Austin since July. Other contractors averaged 71 a month in 2025, 32 in January to June 2026, and 46 in July to September.",
+   "number": "314 of 453 permits since July. `data/market.json`.",
+   "limit": "An early page line said \"other contractors did not grow\". That was wrong; they went up from 32 to 46 a month after July, from a low 2026 base (`docs/GAPS.md`). Say the corrected version.",
+   "page": {
+    "label": "web/market.html",
+    "href": "market.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-14",
+   "deck": "all",
+   "set": "business",
+   "rank": 14,
+   "q": "Who inside Base buys this?",
+   "must": false,
+   "say": "The growth and ops lead who owns lead conversion. Every funnel feature in Submission A is a step in that person's pipe.",
+   "number": "Fit score, permits read, and photo gate are the top three features by pain removed (10, 9, 8). `docs/PERSONAS.md`.",
+   "limit": "The scores are our judgement, not a survey.",
+   "page": {
+    "label": "web/demo.html",
+    "href": "demo.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-15",
+   "deck": "all",
+   "set": "business",
+   "rank": 15,
+   "q": "Why not just run AI on the panel photo?",
+   "must": false,
+   "say": "We tried. A cloud model reads the photo type well, but no model gave a usable main breaker amps read. So the records give the service size, the photo confirms, and an engineer decides.",
+   "number": "Gemini read photo type 18 of 21 at 12.7 s median a photo; gemma4 16 of 21 at 129 s. `panel/BASELINE.md`.",
+   "limit": "21 Flickr photos, not member photos, no amps labels. The ceiling is a model tuned on about 200 labelled panel photos.",
+   "page": {
+    "label": "web/demo.html",
+    "href": "demo.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-16",
+   "deck": "all",
+   "set": "business",
+   "rank": 16,
+   "q": "What happens when the permit record is wrong?",
+   "must": false,
+   "say": "Low confidence goes back to the member, and the engineer review stays. The record starts the conversation; it does not end it.",
+   "number": "Confirm threshold 70%; inheritance only to houses built within 3 years with no upgrade on file. `web/house.html` computeInheritance.",
+   "limit": "Records miss work done without a permit. We cannot see that.",
+   "page": {
+    "label": "web/house.html",
+    "href": "house.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-17",
+   "deck": "all",
+   "set": "business",
+   "rank": 17,
+   "q": "Why build for older and disabled members?",
+   "must": false,
+   "say": "Some zips in Base territory have a high share of people who need help with a form and a photo. The voice guide asks one question at a time, speaks each step, and a caregiver can take over. It never asks for amps.",
+   "number": "Taylor 76574: 28% of people are 65 or older, or under 65 with a disability; score 27.7. `docs/STORM_RUSH.md` section 3.",
+   "limit": "Browser-only prototype on a sample house. Not tested with real members.",
+   "page": {
+    "label": "web/voice.html",
+    "href": "voice.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-18",
+   "deck": "all",
+   "set": "business",
+   "rank": 18,
+   "q": "Is there a compliance angle for Base?",
+   "must": false,
+   "say": "Texas rule 16 TAC §25.497 puts notice duties for critical care and chronic condition customers on the retail electric provider. Where Base is that provider, the assisted-onboarding ranking shows where those members are most likely.",
+   "number": "Quoted text of §25.497(d), fetched 2026-09-26. `docs/STORM_RUSH.md` section 4.",
+   "limit": "Our reading of the text, not legal advice. We do not claim how Base meets the rule today.",
+   "page": {
+    "label": "web/voice.html",
+    "href": "voice.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-19",
+   "deck": "all",
+   "set": "business",
+   "rank": 19,
+   "q": "Do storms drive demand?",
+   "must": false,
+   "say": "Yes, and it stays. After winter storm Uri, backup permits went to 4.5 times the 2020 month and never went back down. The 2023 ice storm was a 3-month spike on top of that.",
+   "number": "Feb 2021: 59 permits vs a 2020 mean of 13.2; peak 176 in Nov 2021. `data/storms.json`.",
+   "limit": "City of Austin permits only. The storm readiness figure (3.2 extra applications a week) is an estimate and a floor, not a forecast.",
+   "page": {
+    "label": "web/explorer.html",
+    "href": "explorer.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-20",
+   "deck": "all",
+   "set": "business",
+   "rank": 20,
+   "q": "How do you find new owners?",
+   "must": false,
+   "say": "The last deed date on a parcel. A recent deed means a new owner who makes decisions about the house now.",
+   "number": "13.5% of 588,135 parcels sold in the last 2 years. `docs/DEEDS.md`.",
+   "limit": "The July 2026 roll lags 2 to 14 months. \"Sold\" includes builder and family transfers. Texas does not disclose sale price.",
+   "page": {
+    "label": "web/star.html",
+    "href": "star.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-21",
+   "deck": "all",
+   "set": "business",
+   "rank": 21,
+   "q": "What about renters and homes with no address?",
+   "must": false,
+   "say": "In our funnel sim, almost every lead lands in a served zip, but only about two in three are owners with an address. Renters and new builds are the real loss, not territory.",
+   "number": "0.964 in a served zip; 0.641 also owners with an address (seed 7). `out/report.json`.",
+   "limit": "Sim leads, not Base leads. The split inside a mixed zip is not known.",
+   "page": {
+    "label": "web/star.html",
+    "href": "star.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-22",
+   "deck": "all",
+   "set": "business",
+   "rank": 22,
+   "q": "Does the battery fit the wall?",
+   "must": false,
+   "say": "A rule check flags homes where the battery cannot fit before a truck rolls. One demo home fails because the side yard is built out to the line.",
+   "number": "3 demo cases, demo c fails. `house/clearance.py`.",
+   "limit": "The 9 ft and 3 ft rules come from member reports, not a Base page. The footprint is our estimate, not a Base spec.",
+   "page": {
+    "label": "web/wall.html",
+    "href": "wall.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-23",
+   "deck": "all",
+   "set": "business",
+   "rank": 23,
+   "q": "What do your FAQ gaps tell us?",
+   "must": false,
+   "say": "The public pages answer \"what is this\" well and \"can I get one\" poorly. Most of the gaps are eligibility questions, which is exactly where leads stall.",
+   "number": "14 of 25 answered; 10 true gaps plus 1 retrieval miss; 7 are eligibility. `faq/FAQ.md`.",
+   "limit": "Public pages only. The logged-in help center may answer them.",
+   "page": {
+    "label": "web/onboarding.html",
+    "href": "onboarding.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-24",
+   "deck": "all",
+   "set": "business",
+   "rank": 24,
+   "q": "Is Submission B something Base does?",
+   "must": false,
+   "say": "No. It is our design and we do not speak for Base plans. It is hardware-neutral: it must run on a standard Windows-class PC, with or without a GPU.",
+   "number": "`docs/adr/0016-gpu-placement-community-hub.md`.",
+   "limit": "Not measured on a Windows-class PC (#80).",
+   "page": {
+    "label": "web/placement.html",
+    "href": "placement.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-25",
+   "deck": "all",
+   "set": "business",
+   "rank": 25,
+   "q": "Why a library and not every home?",
+   "must": false,
+   "say": "Density on one feeder is what keeps jobs alive. With one node per feeder a kill loses work; with two or more, a neighbour on the same feeder takes the job.",
+   "number": "120 nodes, 20% killed: 8 GPU hours lost at 1 per feeder, 0 at 2 or more. `out/density.json`.",
+   "limit": "Synthetic feeders and a 25 kW stub export cap.",
+   "page": {
+    "label": "web/placement.html",
+    "href": "placement.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-26",
+   "deck": "all",
+   "set": "business",
+   "rank": 26,
+   "q": "Does local AI actually answer?",
+   "must": false,
+   "say": "Yes, on two machines we measured. It answers from the member's own record and refuses Base policy questions with a GAP line.",
+   "number": "Laptop 14 of 16 correct plus 4 of 4 GAP, median 2.2 s. `brain/LOCAL_VS_CLOUD.md`.",
+   "limit": "The internet-off test has not run. Not measured on the target PC (#80).",
+   "page": {
+    "label": "web/member.html",
+    "href": "member.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-27",
+   "deck": "all",
+   "set": "business",
+   "rank": 27,
+   "q": "Would a small business pay?",
+   "must": false,
+   "say": "The price is not the point; the data leaving the zip is. We have no buyer yet, and one signed letter from a nearby business is the evidence we would get first.",
+   "number": "Cloud API about $8.40 a month vs library node about $0.67 at 2M tokens a day. `grid/LIBRARY_NODE.md`.",
+   "limit": "No letter of intent. Token rate is an assumption from `grid/RATES.md`.",
+   "page": {
+    "label": "web/block.html",
+    "href": "block.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-28",
+   "deck": "all",
+   "set": "business",
+   "rank": 28,
+   "q": "What does one battery earn from the grid?",
+   "must": false,
+   "say": "On a full year of real day-ahead prices, about $600 in Austin's load zone, energy only. A few price spikes carry a big share of that.",
+   "number": "$603.45 in 2025, LZ_AEN; top 10 days 24.8% of the last 365 days. `grid/YEAR.md`.",
+   "limit": "A floor: no real-time prices, no ancillary services. Not Base's dispatch.",
+   "page": {
+    "label": "web/grid.html",
+    "href": "grid.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-29",
+   "deck": "all",
+   "set": "business",
+   "rank": 29,
+   "q": "What did you get wrong?",
+   "must": false,
+   "say": "We tested our own claims against public data and logged each one. We found 17 gaps and fixed 14; three are open.",
+   "number": "Open: #57 (permits visible only in Austin), #80 (not measured on a Windows-class PC), #85 (PC power draw differs between the fleet sim, 0.4 kW, and the library model, 350 W). `docs/SUBMISSION.md`, `docs/VIDEO.md`.",
+   "limit": "The row table in `docs/GAPS.md` still says \"16 found, 13 fixed\" and lists #81 as open. #81 is closed and #85 is new. Say 17, 14, 3.",
+   "page": {
+    "label": "web/gaps.html",
+    "href": "gaps.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "business-30",
+   "deck": "all",
+   "set": "business",
+   "rank": 30,
+   "q": "Will this keep running after the weekend?",
+   "must": false,
+   "say": "The collectors are set to run on a schedule: ERCOT hourly, permits and market daily, census monthly. Each run rebuilds one store and checks five signal rules.",
+   "number": "5 signal rules, none fired on 2026-09-26. `web/data/signals.json`.",
+   "limit": "The hourly job first succeeded under launchd at 23:39 UTC on Sep 26, after moving it out of ~/Documents (earlier runs failed with 'Operation not permitted'). Say 'scheduled hourly since Saturday night', not 'a long history'. Runs on one Mac. Runs on one Mac through launchd. Williamson scraping depends on a public site staying up. The repo is private, so source links 404 for a judge until it is public.",
+   "page": {
+    "label": "web/admin.html",
+    "href": "admin.html"
+   },
+   "source": "docs/qa/business.md"
+  },
+  {
+   "id": "grid-1",
+   "deck": "all",
+   "set": "grid",
+   "rank": 1,
+   "q": "Why put compute beside a home battery at all?",
+   "must": true,
+   "say": "We do not put it in every home. Our design puts the PC at the library or community hub, beside its batteries, one hop from the member and the small business. The battery gives the hub power when the grid is stressed, and the hub keeps the data inside the zip.",
+   "number": "GPU electricity is about 2.8% of GPU revenue at the hub, so power cost is not the constraint (`grid/LIBRARY_NODE.md`, $4.48 cost on $159.94 revenue a week).",
+   "limit": "We did not run the hub on battery power with the grid off. Community nodes are in `sim/fleet.py` but not wired into `python3 -m sim`. The hub numbers come from `grid/library_node.py`, not the fleet sim.",
+   "page": {
+    "label": "web/placement.html",
+    "href": "placement.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-2",
+   "deck": "all",
+   "set": "grid",
+   "rank": 2,
+   "q": "Why not just use the cloud?",
+   "must": true,
+   "say": "On price, the cloud is fine at small volume. The reason is where the data goes and what happens when the link drops. At the hub, a member record or a small business invoice never leaves the zip.",
+   "number": "SMB example, 2 million tokens a day: $8.40 a month on a cloud API versus $0.67 on the hub at the external tier (`grid/RATES.md`, `grid/LIBRARY_NODE.md`).",
+   "limit": "The $0.67 uses an assumed 4,000 tokens a second for an 8B model. We did not measure it. Both bills are small, so price alone does not win. The cloud comparison for the member brain did not run: no API key, all 20 Gemini calls failed on auth (`brain/LOCAL_VS_CLOUD.md`).",
+   "page": {
+    "label": "grid/LIBRARY_NODE.md",
+    "href": "../grid/LIBRARY_NODE.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-3",
+   "deck": "all",
+   "set": "grid",
+   "rank": 3,
+   "q": "What if the internet is down? Does local AI still work?",
+   "must": true,
+   "say": "That is the design goal. We have not proven it yet, and we say so. Today the edge box answers over a direct link on the home network with no relay and no internet hop, but the unplug test has not run.",
+   "number": "`tailscale ping` to the edge box: pong in 16 ms on a direct LAN path, no relay (`brain/LOCAL_VS_CLOUD.md`, Offline independence).",
+   "limit": "Ollama on the edge box listens on the Tailscale interface only. A restart of either node with no internet can break that link. The fix is to bind Ollama to the LAN address. The unplug procedure is written in `brain/LOCAL_VS_CLOUD.md`; it needs a person to pull the WAN cable.",
+   "page": {
+    "label": "brain/LOCAL_VS_CLOUD.md",
+    "href": "../brain/LOCAL_VS_CLOUD.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-4",
+   "deck": "all",
+   "set": "grid",
+   "rank": 4,
+   "q": "$603 a year. Is that worth it?",
+   "must": true,
+   "say": "$603 is a floor, not the value. It is day-ahead energy only, one cycle a day, fixed 3-hour windows. It leaves out real-time prices and ancillary services, and a smarter dispatcher earns more on the days that matter.",
+   "number": "$603.45 in 2025 on LZ_AEN, one 39.2 kWh battery, 10 kW, 30% reserve kept (`grid/YEAR.md`).",
+   "limit": "We can not state the ceiling from this data. To get it, price the same battery against the real-time archive (ERCOT report 13061) and ancillary clearing prices. We did neither.",
+   "page": {
+    "label": "web/grid.html",
+    "href": "grid.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-5",
+   "deck": "all",
+   "set": "grid",
+   "rank": 5,
+   "q": "What happens on a scarcity day?",
+   "must": true,
+   "say": "That is where the money is. In the last 365 days, the 10 highest-price days earned about a quarter of the year. Our sim does not hold one of those days, and our dispatcher does not change mode for them. That is the next thing to build.",
+   "number": "2026-01-26 earned $53.01 on LZ_AEN, the same as 34 ordinary days. Top 10 days: 24.8% of the last 365 days (`grid/YEAR.md`).",
+   "limit": "No sim hour is over $109/MWh (`grid/YEAR.md`, \"What the three days in the sim miss\"). `simulate_day` cycles once in fixed windows. On 2026-01-26 the peak was HE8 and on 2026-01-25 it was HE23, so a dispatcher that holds charge for the peak gets more. The price_spike signal ($200/MWh) and low_reserves signal (3,000 MW) exist, but they do not drive the scheduler.",
+   "page": {
+    "label": "web/grid.html",
+    "href": "grid.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-6",
+   "deck": "all",
+   "set": "grid",
+   "rank": 6,
+   "q": "Why only day-ahead prices? What about ancillary services?",
+   "must": true,
+   "say": "Day-ahead hourly is the one full, public, no-login price history we could pull for 627 days. Ancillary services pay a battery for standing ready, and real-time 15-minute spikes are larger than hourly DAM prices. Both are missing, so every dollar we show is a floor.",
+   "number": "627 days, 15,046 hours of DAM prices from ERCOT report 13060, no login (`grid/YEAR.md`).",
+   "limit": "No RRS, ECRS, or regulation revenue anywhere in the repo (`grid/YEAR.md`, `grid/LIBRARY_NODE.md`). The signal layer reads a real-time snapshot, but only for an alert, not for revenue.",
+   "page": {
+    "label": "grid/YEAR.md",
+    "href": "../grid/YEAR.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-7",
+   "deck": "all",
+   "set": "grid",
+   "rank": 7,
+   "q": "The fleet sim assumes 40% utilisation. From where?",
+   "must": true,
+   "say": "It is a planning dial, not data. No utilisation telemetry exists. We said so in the code, and we show the result at 100% next to it so you can see how much rides on the dial.",
+   "number": "Fleet total $1,182.82 at 40% versus $2,885.71 at 100%, 50 nodes, 3 days (`grid/NUMBERS.md`). The sim achieved 39.7%.",
+   "limit": "The GPU line scales with the dial and could be off by 2x either way (`grid/LIBRARY_NODE.md`). The 25% member cap is also a dial. The fix: log job arrivals at one pilot hub for 30 days.",
+   "page": {
+    "label": "grid/NUMBERS.md",
+    "href": "../grid/NUMBERS.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-8",
+   "deck": "all",
+   "set": "grid",
+   "rank": 8,
+   "q": "Your community node gives no failover gain, so why a hub?",
+   "must": true,
+   "say": "Correct, and we published that. Failover comes from density: two nodes on a feeder already cover each other. The hub is for placement, power, cooling, and one ops surface, not for failover. Placed by risk, not by density, one hub node does help.",
+   "number": "Community arm: 2 GPU hours lost, same as baseline. One community node on the small feeder 78617-f0 takes it from 2 to 1 (`grid/COMMUNITY.md`).",
+   "limit": "Our placement rule was densest feeder first. That is the floor. The right form is a min-cost assignment over feeders with a risk term. We did not build it.",
+   "page": {
+    "label": "grid/COMMUNITY.md",
+    "href": "../grid/COMMUNITY.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-9",
+   "deck": "all",
+   "set": "grid",
+   "rank": 9,
+   "q": "Your sim uses a 25 kW feeder cap you made up?",
+   "must": false,
+   "say": "Yes, it is a stub, and it says STUB in the code. No utility in Base territory publishes feeder ids or hosting capacity, so we had nothing real to put there. It is likely very conservative.",
+   "number": "`hosting_capacity_kw: null` for every zip; 31 real OpenStreetMap substations pulled for 9 of 10 top zips (`grid/FEEDERS.md`).",
+   "limit": "Published maps in other states show hundreds of kW to a few MW per feeder, but we can not confirm Texas. With real substations, margin moved $8.78, and that came from our round-robin rule, not real topology. Do not quote it as a grid effect. Fastest path: Base, as retail provider, has the ESI ID; the TDU knows the feeder for each ESI ID.",
+   "page": {
+    "label": "grid/FEEDERS.md",
+    "href": "../grid/FEEDERS.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-10",
+   "deck": "all",
+   "set": "grid",
+   "rank": 10,
+   "q": "What does the scheduler do when it dies?",
+   "must": false,
+   "say": "Each node holds its last action. It takes no new jobs. The reserve check runs on the node, not in the scheduler, so a node that was discharging stops at the reserve on its own. When the scheduler returns, work goes on.",
+   "number": "Scheduler kill: recovery 1 interval, 0 jobs lost, 0 reserve breaches (`grid/NUMBERS.md`, `out/report.md`).",
+   "limit": "One scheduler, one kill, 3 intervals down. No leader election or second scheduler. The rule is in `sim/fleet.py` (node falls back to last action; discharge goes to idle when reserve would break).",
+   "page": {
+    "label": "web/tower.html",
+    "href": "tower.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-11",
+   "deck": "all",
+   "set": "grid",
+   "rank": 11,
+   "q": "Is the reserve ever breached?",
+   "must": false,
+   "say": "No. The sim asserts it on every node at every interval, so a breach would crash the run. It holds with the scheduler dead too.",
+   "number": "Reserve breaches: 0, asserted every node, every interval (`grid/NUMBERS.md`; assert in `sim/fleet.py`).",
+   "limit": "This is a sim guarantee, not a device test. The 30% is our dial in `sim/fleet.py`. We do not know Base's real backup reserve rule and do not claim it.",
+   "page": {
+    "label": "web/tower.html",
+    "href": "tower.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-12",
+   "deck": "all",
+   "set": "grid",
+   "rank": 12,
+   "q": "How does failover work?",
+   "must": false,
+   "say": "A running job on a dead node moves to a live neighbour on the same feeder, and progress is kept. With no neighbour, the job goes back to the queue and restarts from zero.",
+   "number": "120 nodes, 20% killed: 8 GPU hours lost at 1 node per feeder, 0 at 2 or more, 100% failover (`out/density.json`, `grid/NUMBERS.md`).",
+   "limit": "No checkpointing. The ceiling is min-cost assignment over the whole queue with checkpoints, so no hour is lost even with no neighbour.",
+   "page": {
+    "label": "web/index.html",
+    "href": "index.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-13",
+   "deck": "all",
+   "set": "grid",
+   "rank": 13,
+   "q": "What scheduler is it? Why not an optimiser?",
+   "must": false,
+   "say": "Greedy with a 24-hour day-ahead lookahead. It discharges only in the top 4 price hours of the coming day and charges only in the bottom 6. It is simple enough to explain and to fail safely.",
+   "number": "Power only: $142.14 over 3 days, 50 nodes (`grid/NUMBERS.md`).",
+   "limit": "The ceiling is a MILP on real telemetry. Ours is greedy on real prices and a synthetic queue. We did not measure the gap to an optimiser.",
+   "page": {
+    "label": "web/index.html",
+    "href": "index.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-14",
+   "deck": "all",
+   "set": "grid",
+   "rank": 14,
+   "q": "Do three sim days represent a year?",
+   "must": false,
+   "say": "For a typical day, yes. For the tail and the season, no. We checked the sim days against the full year.",
+   "number": "Sim mean $1.54 a day on LZ_AEN versus $1.65 a day in 2025 (`grid/YEAR.md`).",
+   "limit": "No sim hour is over $109/MWh. September is calm: 2026-09 to date $22.93 versus January 2026 $126.92 (`grid/YEAR.md`).",
+   "page": {
+    "label": "grid/YEAR.md",
+    "href": "../grid/YEAR.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-15",
+   "deck": "all",
+   "set": "grid",
+   "rank": 15,
+   "q": "What did you kill, and what did you lose?",
+   "must": false,
+   "say": "Three kills in one run: a node at hour 20, the east region link at hour 30, the scheduler at hour 40. Each came back in one interval and no job was lost.",
+   "number": "Recovery node 1, region 1, scheduler 1; jobs lost 0 (`grid/NUMBERS.md`). Kill list in `web/data/tower_replay.json`.",
+   "limit": "Kills are scripted, one at a time. A dead region can not sell power or compute; its nodes run local jobs only. No correlated failure such as a storm that takes a whole feeder and its link at once.",
+   "page": {
+    "label": "web/tower.html",
+    "href": "tower.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-16",
+   "deck": "all",
+   "set": "grid",
+   "rank": 16,
+   "q": "Where do the GPU prices come from?",
+   "must": false,
+   "say": "Public cloud price pages, checked on 2026-09-26. Each tier maps to one real rate. The member rate is our own local job rate, not a market rate.",
+   "number": "business $1.09 (Lambda A6000), base $0.79 (RunPod L40S), partner $0.34 (RunPod RTX 4090), external $0.16 (RunPod RTX A5000), member $1.20 fixed (`grid/RATES.md`).",
+   "limit": "Vast.ai and Akash are bid-based with no static page, so RunPod stands in. Tier shares of the queue are ours.",
+   "page": {
+    "label": "grid/RATES.md",
+    "href": "../grid/RATES.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-17",
+   "deck": "all",
+   "set": "grid",
+   "rank": 17,
+   "q": "Is compute revenue the pitch?",
+   "must": false,
+   "say": "No. It is a supporting line. The pitch is local AI that keeps member data close and keeps working when pieces fail.",
+   "number": "Power only $142.14 over 3 days, 50 nodes. Compute from outside buyers $394.08; the rest of the $1,040.68 compute line is members on their own node ($646.60) (`grid/NUMBERS.md`).",
+   "limit": "Compute rests on the 40% dial and a synthetic queue.",
+   "page": {
+    "label": "web/index.html",
+    "href": "index.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-18",
+   "deck": "all",
+   "set": "grid",
+   "rank": 18,
+   "q": "How good is the local model?",
+   "must": false,
+   "say": "Good enough for a member chat on their own record. The laptop got 18 of 20 and the edge box 16 of 20, same model.",
+   "number": "Laptop gemma4:e4b 14/16 correct plus 4/4 GAP, median 2.18 s; edge box 12/16 plus 4/4, median 3.01 s (`brain/LOCAL_VS_CLOUD.md`).",
+   "limit": "10 questions, 2 runs, one member (m001). Both miss q06 (a prompt gap). The edge box misses q07 in both runs, so the two builds with the same tag differ. Check by digest before a demo.",
+   "page": {
+    "label": "web/member.html",
+    "href": "member.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-19",
+   "deck": "all",
+   "set": "grid",
+   "rank": 19,
+   "q": "Does it make up Base policy?",
+   "must": false,
+   "say": "No. It answers from the member's own record only. Any Base policy question comes back as a GAP line, never a guess.",
+   "number": "4 of 4 policy questions refused with GAP on both local backends (`brain/LOCAL_VS_CLOUD.md`).",
+   "limit": "4 policy questions is a small test set.",
+   "page": {
+    "label": "web/member.html",
+    "href": "member.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-20",
+   "deck": "all",
+   "set": "grid",
+   "rank": 20,
+   "q": "Has it run on a normal Windows PC?",
+   "must": false,
+   "say": "Not yet. That is open gap #80. We measured a laptop and a small edge box. The design must run on a standard Windows-class PC, with or without a GPU.",
+   "number": "Measured: laptop 2.2 s median, edge box 3.0 s (`brain/LOCAL_VS_CLOUD.md`); gap #80 open (`docs/SUBMISSION.md`).",
+   "limit": "No number for the target hardware.",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-21",
+   "deck": "all",
+   "set": "grid",
+   "rank": 21,
+   "q": "Why use a model at all? Why not templates?",
+   "must": false,
+   "say": "For fixed-shape questions, a template is better, and we measured that. The model earns its cost only on free text.",
+   "number": "Rules answerer: 1.4 ms per answer, 8 of 10 (`brain/LOCAL_VS_CLOUD.md`).",
+   "limit": "We did not build the hybrid router yet.",
+   "page": {
+    "label": "brain/LOCAL_VS_CLOUD.md",
+    "href": "../brain/LOCAL_VS_CLOUD.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-22",
+   "deck": "all",
+   "set": "grid",
+   "rank": 22,
+   "q": "How fast does the member see an answer?",
+   "must": false,
+   "say": "We stream. The first token comes in well under a second on the laptop, before the full answer is done.",
+   "number": "First token 0.62 s laptop, 1.45 s edge box (`brain/LOCAL_VS_CLOUD.md`).",
+   "limit": "Long answers (q05, list all jobs) set a p90 of 9 to 16 s. A template removes that tail.",
+   "page": {
+    "label": "web/member.html",
+    "href": "member.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-23",
+   "deck": "all",
+   "set": "grid",
+   "rank": 23,
+   "q": "Why LZ_AEN? Does the result hold in other zones?",
+   "must": false,
+   "say": "The fleet is in Austin, so LZ_AEN is the home zone. We ran Dallas and Houston zones as a check. The order holds.",
+   "number": "2025: LZ_AEN $603.45, LZ_NORTH $546.22, LZ_HOUSTON $501.88 (`grid/YEAR.md`).",
+   "limit": "Same simple one-cycle dispatch in every zone.",
+   "page": {
+    "label": "grid/YEAR.md",
+    "href": "../grid/YEAR.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-24",
+   "deck": "all",
+   "set": "grid",
+   "rank": 24,
+   "q": "When should the battery discharge?",
+   "must": false,
+   "say": "In summer, 4 pm to 8 pm. That window holds most of the worst grid hours every year. But do not treat winter as safe.",
+   "number": "61 to 65 of the top 100 ERCOT load hours each year fall from 16:00 to 20:00 (`grid/LOAD.md`). SCENT (Austin) peaked on 2025-02-20 at 08:00, a cold event.",
+   "limit": "This is load, not price. Our sim scheduler uses price rank, not a load window.",
+   "page": {
+    "label": "grid/LOAD.md",
+    "href": "../grid/LOAD.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-25",
+   "deck": "all",
+   "set": "grid",
+   "rank": 25,
+   "q": "Which open grid data did you use?",
+   "must": false,
+   "say": "All public, no login, no key. ERCOT day-ahead prices and hourly load, a live ERCOT price and reserve snapshot, National Weather Service alerts, OpenStreetMap substations, and Austin permits.",
+   "number": "15,046 hours of ERCOT DAM prices, report 13060 (`grid/YEAR.md`).",
+   "limit": "No feeder data exists in the open. Outage maps give live counts only, no history (`grid/FEEDERS.md`).",
+   "page": {
+    "label": "web/grid.html",
+    "href": "grid.html"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-26",
+   "deck": "all",
+   "set": "grid",
+   "rank": 26,
+   "q": "What do the signals do? Did any fire?",
+   "must": false,
+   "say": "Five rules watch permits, price, reserves, and storms. None fired on 2026-09-26. The thresholds are ours.",
+   "number": "Physical responsive capability 18,450 MW against a 3,000 MW threshold; DAM max $59.57/MWh against $200 (`web/data/signals.json`).",
+   "limit": "Signals alert only. They do not change the scheduler yet.",
+   "page": {
+    "label": "web/data/signals.json",
+    "href": "data/signals.json"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-27",
+   "deck": "all",
+   "set": "grid",
+   "rank": 27,
+   "q": "Is the grid getting harder?",
+   "must": false,
+   "say": "Yes. 2026 already set a new ERCOT peak in this data before September.",
+   "number": "91,134 MW on 2026-07-22 versus 85,199 MW in 2024 (`grid/LOAD.md`).",
+   "limit": "2026 data runs to 08/31 only.",
+   "page": {
+    "label": "grid/LOAD.md",
+    "href": "../grid/LOAD.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-28",
+   "deck": "all",
+   "set": "grid",
+   "rank": 28,
+   "q": "Does the GPU fight the battery for power?",
+   "must": false,
+   "say": "Barely. The GPU draw is small next to the pack, and its power cost is a small line.",
+   "number": "GPU electricity $4.48 a week against $159.94 GPU revenue at the library node (`grid/LIBRARY_NODE.md`).",
+   "limit": "350 W is typical, not measured. The fleet sim uses a different figure, 0.4 kW (`GPU_KW` in `sim/fleet.py`). This is open gap #85. Say this if asked; do not hide it.",
+   "page": {
+    "label": "grid/LIBRARY_NODE.md",
+    "href": "../grid/LIBRARY_NODE.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-29",
+   "deck": "all",
+   "set": "grid",
+   "rank": 29,
+   "q": "Can I rerun it and get the same numbers?",
+   "must": false,
+   "say": "Yes. Seed 7 everywhere. Two reruns give byte-identical output.",
+   "number": "`out/report.json` (less `runtime_s`) and `out/density.json` are byte-identical on rerun (`grid/NUMBERS.md`).",
+   "limit": "Byte-identical means deterministic, not correct. The inputs have stubs, listed in `grid/NUMBERS.md`.",
+   "page": {
+    "label": "out/report.json",
+    "href": "../out/report.json"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "grid-30",
+   "deck": "all",
+   "set": "grid",
+   "rank": 30,
+   "q": "What about physical security of a box outside a home?",
+   "must": false,
+   "say": "It is an open question. We did not build anything for it.",
+   "number": "Listed as open in `docs/SUBMISSION.md`, Stubbed or estimated.",
+   "limit": "No design, no cost.",
+   "page": {
+    "label": "docs/SUBMISSION.md",
+    "href": "../docs/SUBMISSION.md"
+   },
+   "source": "docs/qa/grid-ai.md"
+  },
+  {
+   "id": "skeptic-1",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 1,
+   "q": "How do you know the permit categories are right?",
+   "must": true,
+   "say": "A rule classifies each permit from the keyword and the city work class, and each rule has a fixed confidence. 29,878 of 34,334 rows come from the three rules we trust most, where the keyword and the work class agree or the keyword is specific. We checked a seeded sample of 150 against the public descriptions and got 143 right, 95.3%. An AI agent labelled that sample, not a domain expert.",
+   "number": "`web/data/judgments.json` `permit_rules`: 18,100 rows at 0.95 (Auxiliary Power plus battery or PV keyword), 4,536 at 0.92, 7,242 at 0.87, 1,590 at 0.80, 1,402 at 0.75, 43 at 0.72, 1,421 at 0.40 (no rule matched). Rules in `docs/MIRROR_SCHEMA.md` and `store/judgments.py` RULE_CONFIDENCE. #81 fixed a real error: \"storage\" alone was a shed, not a battery (`house/permits.py` line 168). Category check: 143 of 150 (95.3%), about 97% weighted by category share; weakest other_electrical 14 of 17 and panel_upgrade 25 of 28 (`docs/MIRROR_SCHEMA.md` \"Category accuracy check\", `data/mirror/category_check.csv`).",
+   "limit": "Not done yet. Next week: Have a domain expert label 300 permits, 50 per rule, and report accuracy per rule, not one total.",
+   "page": {
+    "label": "web/data/judgments.json",
+    "href": "data/judgments.json"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-2",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 2,
+   "q": "Your checker passed wrong answers. Why trust any answer?",
+   "must": true,
+   "say": "Yes. The critic checks that every number in the answer appears in the query result. It does not check that the query asks the right thing. We found 8 model-path answers that passed the critic but were wrong or empty, and we removed them from the served set. The answers we serve are 64 templates, where code runs a fixed query and code writes the sentence, and 8 model answers that carry their query URL so you can replay them.",
+   "number": "`docs/ASK_REMOVED.md` (the 8 removed questions). `brain/insights.json`: 80 questions, 77 pass the critic, 72 served, 64 template and 8 agent.",
+   "limit": "Not done yet. Next week: Add a gold answer for each question and score the query result against it. A second check: run the model query and the template query for the same question and flag any difference.",
+   "page": {
+    "label": "docs/ASK_REMOVED.md",
+    "href": "../docs/ASK_REMOVED.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-3",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 3,
+   "q": "The photo models read 0 of 21 breaker amps. So what does the photo do?",
+   "must": true,
+   "say": "The photo answers the gate question: is this a usable panel photo, or do we ask for a retake. Gemini gets the photo type right on 18 of 21, gemma4 on 16 of 21. The amps guess comes from the permit record and the build year, and the member confirms it. The photo confirms. It does not discover.",
+   "number": "`panel/BASELINE.md`: Gemini 18/21 at 12.7 s median per photo, gemma4:e4b 16/21 at 129 s, amps read 0 and 1. The test set has no amps truth, so the one gemma4 read is not scored (`docs/GAPS.md`). Three of gemma4's five misses call a non-panel photo panel_open.",
+   "limit": "Not done yet. Next week: Label amps on the open-cover photos. Build a two-step read: find the main breaker, crop it, read the number. `panel/BASELINE.md` \"Ceiling\".",
+   "page": {
+    "label": "panel/BASELINE.md",
+    "href": "../panel/BASELINE.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-4",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 4,
+   "q": "Where does \"easy fit\" come from? 22 of 40 is tiny.",
+   "must": true,
+   "say": "It is 40 homes in one zip, 78745, pulled from the Austin permit record, and 22 of them sort as easy fit from the record alone. That is a sample, not a rate for Texas. The star map multiplies by 0.55 in every zip, so every star number carries that one-zip assumption. We say \"estimate\" on the map for this reason.",
+   "number": "`house/cohort.json` (40 rows, each with `fit.bucket` and `fit.reasons`). `docs/STAR_AREAS.md` stage 5: \"Today 22 of 40, so x 0.55\". Star 6,530 in 78665 and 56,658 in total (`docs/QA_ROUND2.md`).",
+   "limit": "Not done yet. Next week: Build the cohort in five zips with different build years. Use CAD parcel data (`docs/DEEDS.md` already reads 588,135 parcels) to replace the zip ratios with a per-parcel list.",
+   "page": {
+    "label": "house/cohort.json",
+    "href": "../house/cohort.json"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-5",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 5,
+   "q": "Your territory table was wrong twice tonight.",
+   "must": true,
+   "say": "Yes, and the gap hunt found both errors. First, we said Base does not serve Austin Energy; Base sells a Backup Only plan there and filed 323 Austin permits in 2026. Second, our zip guesses were wrong in 11 zips; we then checked all 59 zips against the Power to Choose API. The fix removed Cedar Park and Leander, which were our #1 and #3 star zips.",
+   "number": "`docs/GAPS.md` rows for Austin Energy, AEP, TNMP, 78613, 78641, 78621, 78653, 78626, 78628, 78734, 78750, 78666, 78746, 78617. `data/ptc_tdu.json`: 59 zips, fetched 2026-09-26, 44 with 0 plans. Issues #55, #56, #72, #74 closed.",
+   "limit": "Not done yet. Next week: Get the TDU service area files (PUCT) and assign territory per parcel, not per zip. The co-op and muni names in not-served zips are still LOW confidence (`house/territory.py` docstring).",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-6",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 6,
+   "q": "Are these confidences calibrated?",
+   "must": true,
+   "say": "No. We assign each confidence per rule, and we do not fit it to measured accuracy. The confidence only picks a route: 0.85 or more goes straight to the data, 0.70 to 0.85 goes to model review, under 0.70 goes to a human. The model's own confidence is worse: gemma4 gave 0.9 or more on 99 of 100 permits and disagreed with the rules on 92 of them.",
+   "number": "`store/judgments.py` ROUTES and RULE_CONFIDENCE. `docs/MIRROR_SCHEMA.md` \"Judgments\". `data/live/judge_compare.json`: sample 100, agree_with_rules 8, confidence_buckets 0.9: 99. Zip confidence HIGH, MEDIUM, LOW maps to 1.0, 0.7, 0.4 by hand (`house/funnel.py` CONF_WEIGHT).",
+   "limit": "Not done yet. Next week: Hand label a sample per rule, measure accuracy, and set each confidence to the measured accuracy. Plot a reliability curve.",
+   "page": {
+    "label": "store/judgments.py",
+    "href": "../store/judgments.py"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-7",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 7,
+   "q": "What did the model do, and what did code do?",
+   "must": true,
+   "say": "Code did almost all of it. Code pulls the data, classifies permits, builds the funnel, runs the simulation and writes 64 of the 72 served answers. The model does three jobs: it reads the photo type, it plans and writes the 8 model-path answers, and it re-judges low-confidence permits for comparison. No model output goes into a number on the pages without a rule or a human route.",
+   "number": "`brain/insights.json` (path: template 64, agent 8; median 0.0 s template, 23.16 s agent). `panel/BASELINE.md`. `store/judge.py` (writes a comparison only). `house/permits.py`, `house/mirror.py`, `house/funnel.py` are stdlib rules.",
+   "limit": "Not done yet. Next week: Add a \"made by\" tag on every number on every page: code, model, or human.",
+   "page": {
+    "label": "brain/insights.json",
+    "href": "../brain/insights.json"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-8",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 8,
+   "q": "What is fixture or simulated?",
+   "must": true,
+   "say": "The grid and fleet chapter is a simulation with dials. The 25 kW feeder export cap is a stub. The compute queue is synthetic. Lead volume, the 35% photo drop and the 15% guided rate are dials. The ERCOT prices are real, but they are a few saved days, not a live week. The permit, Census, Power to Choose and deed data are real.",
+   "number": "`sim/stages.py` DIALS; `sim/fleet.py` FEEDER_EXPORT_KW (STUB); `docs/GAPS.md` rows for the 25 kW cap, compute queue, 35% and 15% dials. Fixture files: `data/funnel.fixture.json`, `data/members.fixture.json`, `brain/questions.fixture.json`. `data/funnel.json` inputs: \"demographics=real, permits=real\".",
+   "limit": "Not done yet. Next week: Replace the 25 kW stub with a real feeder rating from the TDU. Put a \"simulated\" label next to each dial number on the page, not only in the doc.",
+   "page": {
+    "label": "sim/stages.py",
+    "href": "../sim/stages.py"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-9",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 9,
+   "q": "Is any of this real-time?",
+   "must": false,
+   "say": "Partly. Launchd jobs pull ERCOT prices, supply and fuel mix each hour, permits each morning, and Census each month, then update one SQLite store and re-run the signal rules. The deeds are the July 2026 roll, so they lag by 2 to 14 months. The signal layer has 5 rules and 0 fired at the last build.",
+   "number": "`collect/README.md`. `store/build.py --incremental`. `web/data/signals.json` (rules 5, fired_now 0). `docs/DEEDS.md` \"Limits\". Check `data/live/collect.log` first (see the pre-stage check).",
+   "limit": "Not done yet. Next week: Fix and watch the hourly job. Add a freshness stamp on each page that turns red when a feed is late.",
+   "page": {
+    "label": "collect/README.md",
+    "href": "../collect/README.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-10",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 10,
+   "q": "What happens when the city changes its data schema?",
+   "must": false,
+   "say": "Today the pull breaks or loads empty fields. We name the fields we read, so a renamed field gives nulls. The pages stay safe because the feed rebuild compares every value with the current page file and does not replace a file that differs. That protects the demo, but it does not tell us why the data changed.",
+   "number": "`store/feeds.py` docstring: \"A feed that differs from the current file is never replaced.\" `store/build.py` natural keys and upsert. Every number links to a replayable Socrata URL (`docs/MIRROR_SCHEMA.md` Rules).",
+   "limit": "Not done yet. Next week: Add a schema check on each pull: expected fields, types and row count range, with a stop and an alert when it fails.",
+   "page": {
+    "label": "store/feeds.py",
+    "href": "../store/feeds.py"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-11",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 11,
+   "q": "Did you use owner names?",
+   "must": false,
+   "say": "No. The deed script drops every owner name and mailing address at read time. For Travis it slices fixed columns and discards the rest of the line. For Williamson it asks the server for the kept columns only, so the names never leave the server.",
+   "number": "`docs/DEEDS.md` \"Fields kept and dropped\" and \"Privacy rule\". `house/mirror.py`: \"full rows (no owner names, no addresses)\". `docs/MIRROR_SCHEMA.md`: other contractors are anonymous ids.",
+   "limit": "Not done yet. Next week: Add a test that scans every output file for owner-name columns and fails the build.",
+   "page": {
+    "label": "docs/DEEDS.md",
+    "href": "../docs/DEEDS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-12",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 12,
+   "q": "Why SQLite and flat files?",
+   "must": false,
+   "say": "One person, one weekend, one laptop, and 24 MB of data. SQLite needs no server, and every load is an upsert, so a rebuild gives the same rows. The pages read static JSON, so they run from any file server.",
+   "number": "`store/build.py` docstring. `data/fleet.db` is about 24 MB. `store/feeds.py` rebuilds page feeds from the store.",
+   "limit": "Not done yet. Next week: Move the store to Postgres when more than one writer or a hosted page needs it. The table layout stays.",
+   "page": {
+    "label": "store/build.py",
+    "href": "../store/build.py"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-13",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 13,
+   "q": "How did you build this in a weekend?",
+   "must": false,
+   "say": "We used coding agents for the work and a gap hunt to check the work. Agents wrote the pullers and pages. Other agents then tested every claim against public data and filed an issue for each claim that did not hold. That is how we found 17 gaps and fixed 14.",
+   "number": "`docs/GAPS.md`, `docs/QA_ROUND2.md`, issue #54 (gap hunt) and the 16 \"Gap:\" issues.",
+   "limit": "Not done yet. Next week: Run the gap hunt on each commit, not at the end of the day.",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-14",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 14,
+   "q": "Your model re-judge disagreed with your rules 92 times out of 100. Which one is right?",
+   "must": false,
+   "say": "The saved check says the rules are more often right. The sample is the 100 permits with the lowest rule confidence, where the rules said \"other electrical\". The model called 91 of them panel upgrades, but our category check finds other_electrical right 14 of 17 times. So the model over-labels. Neither goes straight to the data; those rows go to an engineer by route.",
+   "number": "`data/live/judge_compare.json`: rules other_electrical on all 100; model panel_upgrade 91, other_electrical 8, solar_battery 1. 2.59 s median per permit on gemma4:e4b. Category check: other_electrical 14 of 17 correct (`docs/MIRROR_SCHEMA.md` \"Category accuracy check\"). Do not cite the model relabels as rule errors.",
+   "limit": "Not done yet. Next week: Hand label the 100 and score both. Run the jev backend on the same rows (`store/judge.py`).",
+   "page": {
+    "label": "data/live/judge_compare.json",
+    "href": "../data/live/judge_compare.json"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-15",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 15,
+   "q": "The star numbers look precise. 6,530 homes in 78665?",
+   "must": false,
+   "say": "It is a product of five zip-level ratios, so the last digits mean nothing. Read it as a rank, not a count. The territory and 200 A stages use judgment weights, and stage 5 uses the one-zip cohort ratio.",
+   "number": "`docs/STAR_AREAS.md` funnel table and \"The ceiling\". Offer weights 0.5 and 0.6 are marked as judgments.",
+   "limit": "Not done yet. Next week: Round the star numbers on the map. Replace ratios with parcel records.",
+   "page": {
+    "label": "docs/STAR_AREAS.md",
+    "href": "../docs/STAR_AREAS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-16",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 16,
+   "q": "How do you get 200 A service from a zip?",
+   "must": false,
+   "say": "From permits when the zip has at least 100 rows in the Austin feed: the share of new homes plus service upgrades. Otherwise from the median build year. No public record says the panel size, so this stage is a guess.",
+   "number": "`docs/STAR_AREAS.md` stage 4 and \"What no record says\".",
+   "limit": "Not done yet. Next week: Join permits to parcels for a per-home signal.",
+   "page": {
+    "label": "docs/STAR_AREAS.md",
+    "href": "../docs/STAR_AREAS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-17",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 17,
+   "q": "Your demo house had the wrong A/C age.",
+   "must": false,
+   "say": "Yes. The gap hunt found it. The A/C permit was on the house that the owner tore down in 2014; the new house was built in 2017. A second sample house took its build year from a pool permit. We fixed the rules to ignore permits before a demolition and to require new-home text for \"built\".",
+   "number": "`docs/GAPS.md` rows for 8402 Avocet Dr and 706 Huntingdon Pl. `house/permits.py` (demolition and built rules).",
+   "limit": "Not done yet. Next week: Test the rules on every cohort home against the CAD year built.",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-18",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 18,
+   "q": "The FAQ bot found 11 gaps. Is that the bot or the corpus?",
+   "must": false,
+   "say": "10 are true gaps in the public pages. One, \"what happens if I move\", is a retrieval miss: the corpus answers it, and the bot did not find the chunk. 7 of the gaps are eligibility questions.",
+   "number": "`faq/FAQ.md` (14 answered, 11 GAP, note on #17). `docs/GAPS.md` FAQ row. Issue #60 closed.",
+   "limit": "Not done yet. Next week: Score retrieval on its own (right chunk in the top 4) before the answer step.",
+   "page": {
+    "label": "faq/FAQ.md",
+    "href": "../faq/FAQ.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-19",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 19,
+   "q": "Does 0 plans on Power to Choose mean Base does not serve the zip?",
+   "must": false,
+   "say": "It means no competitive retail anywhere in the zip. Base can still serve it with Backup Only when Austin Energy is the utility, and our table says so for those zips. For co-op zips we found no Base offer.",
+   "number": "`data/ptc_tdu.json` rule field. `house/territory.py` statuses. 78746 and 78617: 0 plans, but Austin Energy with Base permits (`docs/GAPS.md`).",
+   "limit": "Not done yet. Next week: Check each co-op for a Base program with a public source.",
+   "page": {
+    "label": "data/ptc_tdu.json",
+    "href": "../data/ptc_tdu.json"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-20",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 20,
+   "q": "You only see Base installs in Austin.",
+   "must": false,
+   "say": "Correct, and it is an open gap. The City of Austin is the only feed we found that names the contractor. In Oncor and CenterPoint cities we have no open permit feed with the contractor name.",
+   "number": "Issue #57 (open). `docs/GAPS.md` Base permit rows: 323 in 2026, 35 zips.",
+   "limit": "Not done yet. Next week: Check Round Rock, Georgetown and Houston permit portals for contractor fields.",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-21",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 21,
+   "q": "Which Base permit count is right: 312, 316 or 323?",
+   "must": false,
+   "say": "All three, with different scopes. 323 is every Base row issued in 2026. 316 is the Auxiliary Power work class. 312 is the rows with a map location.",
+   "number": "`docs/GAPS.md` round 2 row \"Base permits\".",
+   "limit": "Not done yet. Next week: Put the scope in the label of every count.",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-22",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 22,
+   "q": "How much money does a battery earn from the grid, and is it real?",
+   "must": false,
+   "say": "The prices are real ERCOT prices. The dispatch is our simulation, not Base's. At 40% GPU use the fleet run gives $142.14 for power only and $1,182.82 with compute.",
+   "number": "`docs/QA_ROUND2.md` \"Numbers that hold\". `docs/GAPS.md` rows on 39.2 kWh, LZ_AEN and 100% vs 40% use. Issue #66 closed.",
+   "limit": "Not done yet. Next week: Replay a full year of day-ahead prices (`data/ercot_dam_hourly_2025_2026.csv`) through the same policy.",
+   "page": {
+    "label": "docs/QA_ROUND2.md",
+    "href": "../docs/QA_ROUND2.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-23",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 23,
+   "q": "The compute revenue assumed every GPU ran every hour.",
+   "must": false,
+   "say": "It did, and we changed it. The default is now 40% use. Any page that still shows the old run is a stale file, and the gap list names it.",
+   "number": "Issue #66 closed. `docs/GAPS.md` member week row (stale `data/members.json`).",
+   "limit": "Not done yet. Next week: Use a real job trace for the queue, not a synthetic one.",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-24",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 24,
+   "q": "Is the density finding real?",
+   "must": false,
+   "say": "No. It follows from the stub. With a 25 kW cap and a 10 kW battery, two batteries fill the wire by construction. We say \"with a 25 kW stub cap\".",
+   "number": "`docs/GAPS.md` feeder cap row. `sim/fleet.py` FEEDER_EXPORT_KW.",
+   "limit": "Not done yet. Next week: Get real feeder ratings and rerun `python3 -m sim.density --nodes 120`.",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-25",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 25,
+   "q": "How fast is local AI on the box a member would own?",
+   "must": false,
+   "say": "We do not know. We measured a Jetson at 3.0 s and an M2 laptop at 2.2 s. The likely node is a Windows-class PC, and we did not test one.",
+   "number": "Issue #80 (open). `docs/GAPS.md` local AI speed row. `brain/LOCAL_VS_CLOUD.md`.",
+   "limit": "Not done yet. Next week: Run `brain/score.py` on an x86 PC with Ollama.",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-26",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 26,
+   "q": "Local or cloud: which is better for the photo gate?",
+   "must": false,
+   "say": "Cloud is faster and a bit more correct: 18 of 21 at 12.7 s against 16 of 21 at 129 s per photo. Local keeps the photo on the node. Local also over-accepts non-panel photos, so it needs a second retake question.",
+   "number": "`panel/BASELINE.md`.",
+   "limit": "Not done yet. Next week: Test a second-pass retake prompt on gemma4 and rescore.",
+   "page": {
+    "label": "panel/BASELINE.md",
+    "href": "../panel/BASELINE.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-27",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 27,
+   "q": "21 photos from Flickr. Why should that predict member photos?",
+   "must": false,
+   "say": "It does not predict them well. Flickr photos are a stand-in for member photos, which we do not have. The set is small and hand labelled for photo type only.",
+   "number": "`panel/BASELINE.md` (private test set, not redistributed). `docs/GAPS.md` amps row.",
+   "limit": "Not done yet. Next week: Get 200 real member photos with labels, with consent.",
+   "page": {
+    "label": "panel/BASELINE.md",
+    "href": "../panel/BASELINE.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-28",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 28,
+   "q": "Deed dates as a lead signal: how fresh?",
+   "must": false,
+   "say": "Not fresh. It is the July 2026 certified roll, so a sale shows up 2 to 14 months late. \"Sold\" includes builder deeds and family transfers. Travis has no deed type in this export.",
+   "number": "`docs/DEEDS.md` \"Limits\" and \"Ceiling\". 588,135 parcels, deed date on 99.3% (Travis) and 98.5% (Williamson).",
+   "limit": "Not done yet. Next week: Check county clerk bulk access for a weekly warranty-deed pull.",
+   "page": {
+    "label": "docs/DEEDS.md",
+    "href": "../docs/DEEDS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-29",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 29,
+   "q": "Your market page said other contractors did not grow. Did they?",
+   "must": false,
+   "say": "That sentence was wrong. Other contractors averaged 71 a month in 2025, 32 in January to June 2026, and 46 in July to September 2026.",
+   "number": "`docs/GAPS.md` market row, from `data/market.json`.",
+   "limit": "Not done yet. Next week: Generate page sentences from the data, not by hand.",
+   "page": {
+    "label": "docs/GAPS.md",
+    "href": "../docs/GAPS.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "skeptic-30",
+   "deck": "all",
+   "set": "skeptic",
+   "rank": 30,
+   "q": "You show street addresses on some pages. Is that private data?",
+   "must": false,
+   "say": "The addresses come from public city permit records, not from owner records. We do not show owner names. The browser map files leave addresses out; only the sample cohort pages show a street address.",
+   "number": "`docs/MIRROR_SCHEMA.md` Rules (\"Addresses stay out of the browser files\"). `house/cohort.json`. `docs/DEEDS.md` privacy rule.",
+   "limit": "Not done yet. Next week: Replace cohort addresses on public pages with a house id.",
+   "page": {
+    "label": "docs/MIRROR_SCHEMA.md",
+    "href": "../docs/MIRROR_SCHEMA.md"
+   },
+   "source": "docs/qa/data-skeptic.md"
+  },
+  {
+   "id": "drill-1",
+   "deck": "drill",
+   "set": "business",
+   "rank": 1,
+   "q": "Why do you say the limit is the path, not demand?",
+   "must": false,
+   "say": "Base staff on the tour told us demand is met. The public record agrees: 264 of 316 Base permits in Austin are still open. We start the path earlier.",
+   "number": "264 of 316 Base permits open, 16.5% final (`data/market.json` base_totals)",
+   "limit": "Open is not stalled: 157 of the 316 were issued in September. \"Demand is met\" is a spoken quote with no public source.",
+   "never": "",
+   "page": {
+    "label": "web/market.html",
+    "href": "market.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-2",
+   "deck": "drill",
+   "set": "business",
+   "rank": 2,
+   "q": "Base already knows this. Why do we need you?",
+   "must": false,
+   "say": "Base knows its own funnel better than we do. The public funnel asks for a photo first. We read records first: 22 of 40 homes sort easy before any photo.",
+   "number": "22 of 40 homes in zip 78745 are \"easy\" from public records alone (`house/cohort.json`)",
+   "limit": "If Base already reads permits before the photo, our value drops to block inheritance and the voice guide. We did not see the internal funnel.",
+   "never": "",
+   "page": {
+    "label": "web/demo.html",
+    "href": "demo.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-3",
+   "deck": "drill",
+   "set": "business",
+   "rank": 3,
+   "q": "Is the hub compute a Base product? What is its business model?",
+   "must": false,
+   "say": "No. Submission B is our design, not a Base plan, and it is hardware-neutral. A library hub sells local inference and earns about twice a house node at our dial.",
+   "number": "Library node $205.78 a week vs house node $84.71, 40% GPU use, LZ_AEN (`grid/LIBRARY_NODE.md`)",
+   "limit": "40% use is a guess; the GPU line can move 2x either way. No hub, no buyer, no letter of intent.",
+   "never": "",
+   "page": {
+    "label": "web/placement.html",
+    "href": "placement.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-4",
+   "deck": "drill",
+   "set": "business",
+   "rank": 4,
+   "q": "What does this save us per install?",
+   "must": false,
+   "say": "We do not have that number. It needs your engineer review cost and your real photo drop rate. One week of funnel counts gives it.",
+   "number": "None per install. Our dial model only: 104 homes a month lost at the photo step (`out/report.md`)",
+   "limit": "Both drop rates (35% and 15%) are our dials, so the $21,646 a month stays out of the pitch.",
+   "never": "",
+   "page": {
+    "label": "web/onboarding.html",
+    "href": "onboarding.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-5",
+   "deck": "drill",
+   "set": "skeptic",
+   "rank": 5,
+   "q": "What did you get wrong?",
+   "must": false,
+   "say": "We tested our own claims against public data and logged each one. We found 17 gaps and fixed 14. Three are open, and the gap page names them.",
+   "number": "17 found, 14 fixed, open #57 #80 #85 (`docs/SUBMISSION.md`)",
+   "limit": "One row in `docs/GAPS.md` still says 16 and 13. The repo is private, so issue links 404 for a judge.",
+   "never": "",
+   "page": {
+    "label": "web/gaps.html",
+    "href": "gaps.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-6",
+   "deck": "drill",
+   "set": "skeptic",
+   "rank": 6,
+   "q": "22 of 40 is tiny. Why trust \"easy fit\"?",
+   "must": false,
+   "say": "It is 40 homes in one zip, so it is a sample, not a rate. Every field carries its source permit, and anything under 70% goes back to the member.",
+   "number": "The star map multiplies every zip by 0.55 (22 of 40) (`docs/STAR_AREAS.md` stage 5)",
+   "limit": "One zip, no ground truth. \"Easy\" is our rule, not Base's eligibility rule.",
+   "never": "",
+   "page": {
+    "label": "web/house.html",
+    "href": "house.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-7",
+   "deck": "drill",
+   "set": "skeptic",
+   "rank": 7,
+   "q": "How do you know the permit categories are right?",
+   "must": false,
+   "say": "Rules classify each permit from its keyword and city work class. We checked a seeded sample of 150 against the public descriptions and 143 were right.",
+   "number": "143 of 150 correct, 95.3% (`docs/MIRROR_SCHEMA.md` \"Category accuracy check\")",
+   "limit": "An AI agent labelled the sample, not a domain expert. Weakest: other_electrical 14 of 17.",
+   "never": "",
+   "page": {
+    "label": "web/judgments.html",
+    "href": "judgments.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-8",
+   "deck": "drill",
+   "set": "business",
+   "rank": 8,
+   "q": "Shovels sells permit data. What is new?",
+   "must": false,
+   "say": "The data is not new, and our gap ledger says so. What is new is the decision: a fit call per house, a confidence per field, a confirm tick.",
+   "number": "Confirm tick under 70% confidence (`web/house.html` computeInheritance)",
+   "limit": "Our permit reader covers the City of Austin only. A national permit vendor could be the feed under our layer.",
+   "never": "",
+   "page": {
+    "label": "web/house.html",
+    "href": "house.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-9",
+   "deck": "drill",
+   "set": "business",
+   "rank": 9,
+   "q": "How does this work outside Austin?",
+   "must": false,
+   "say": "Territory and deed data work across the region. Permits are the gap: the City of Austin is the only feed we found that names the contractor. Open gap 57.",
+   "number": "All 59 zips checked against the Power to Choose API (`data/ptc_tdu.json`)",
+   "limit": "Other cities use other portals. Each one is new work (`house/PERMITS_OUTSIDE_AUSTIN.md`).",
+   "never": "",
+   "page": {
+    "label": "web/star.html",
+    "href": "star.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-10",
+   "deck": "drill",
+   "set": "business",
+   "rank": 10,
+   "q": "Isn't \"we know your house\" a privacy problem?",
+   "must": false,
+   "say": "We read only public records and drop owner names at read time. The member sees what the city record shows and confirms or corrects it. Nothing is guessed in secret.",
+   "number": "Owner names dropped for all 588,135 parcels (`docs/DEEDS.md` Privacy rule)",
+   "limit": "A property id plus zip can join back to an owner, so parcel data is for zip totals, not per-person outreach.",
+   "never": "",
+   "page": {
+    "label": "web/onboarding.html",
+    "href": "onboarding.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-11",
+   "deck": "drill",
+   "set": "grid",
+   "rank": 11,
+   "q": "$603 a year. Is that worth it?",
+   "must": false,
+   "say": "It is a floor, not the value. It is day-ahead energy only, one cycle a day. It leaves out real-time prices and ancillary services. We priced neither.",
+   "number": "$603.45 in 2025 on LZ_AEN, one 39.2 kWh battery (`grid/YEAR.md`)",
+   "limit": "Not Base's dispatch. We cannot state the ceiling without the real-time archive (report 13061) and ancillary prices.",
+   "never": "",
+   "page": {
+    "label": "web/grid.html",
+    "href": "grid.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-12",
+   "deck": "drill",
+   "set": "grid",
+   "rank": 12,
+   "q": "Why not just use the cloud?",
+   "must": false,
+   "say": "On price, the cloud is fine at small volume. The reason is where the data goes and what happens when the link drops. Member data stays in the zip.",
+   "number": "$8.40 a month cloud vs $0.67 hub, 2 million tokens a day (`grid/LIBRARY_NODE.md`)",
+   "limit": "The $0.67 uses an assumed 4,000 tokens a second, not measured. The cloud comparison for the member brain did not run.",
+   "never": "",
+   "page": {
+    "label": "web/block.html",
+    "href": "block.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-13",
+   "deck": "drill",
+   "set": "grid",
+   "rank": 13,
+   "q": "If the internet is down, does local AI still work?",
+   "must": false,
+   "say": "That is the design goal, and we have not proven it yet. Today the edge box answers over a direct home network link, but the unplug test has not run.",
+   "number": "Ping 16 ms on a direct LAN path, no relay (`brain/LOCAL_VS_CLOUD.md`)",
+   "limit": "Ollama listens on the Tailscale interface only, so a restart with no internet can break the link.",
+   "never": "",
+   "page": {
+    "label": "web/member.html",
+    "href": "member.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-14",
+   "deck": "drill",
+   "set": "grid",
+   "rank": 14,
+   "q": "Why a hub, and how does failover work?",
+   "must": false,
+   "say": "Failover comes from density on one feeder. A job on a dead node moves to a live neighbour on the same feeder. The hub is for placement, power and operations.",
+   "number": "120 nodes, 20% killed: 8 GPU hours lost at 1 node per feeder, 0 at 2 or more (`out/density.json`)",
+   "limit": "Synthetic feeders and a 25 kW stub export cap. Our community node gave no failover gain (`grid/COMMUNITY.md`).",
+   "never": "",
+   "page": {
+    "label": "web/placement.html",
+    "href": "placement.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-15",
+   "deck": "drill",
+   "set": "grid",
+   "rank": 15,
+   "q": "The sim assumes 40% utilisation. Is compute revenue the pitch?",
+   "must": false,
+   "say": "No. Compute is a supporting line, and 40% is a planning dial, not data. The pitch is local AI that keeps member data close and keeps working when pieces fail.",
+   "number": "Power only $142.14, outside buyers $394.08, over 3 days, 50 nodes (`grid/NUMBERS.md`)",
+   "limit": "No utilisation telemetry exists. The GPU line could be off by 2x either way.",
+   "never": "",
+   "page": {
+    "label": "web/index.html",
+    "href": "index.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-16",
+   "deck": "drill",
+   "set": "skeptic",
+   "rank": 16,
+   "q": "Your checker passed wrong answers. Why trust any answer?",
+   "must": false,
+   "say": "The critic checks that numbers match the query result, not that the query is right. We removed 8 answers that passed but were wrong. Most served answers are templates.",
+   "number": "72 served: 64 template, 8 model with a replayable query (`brain/insights.json`)",
+   "limit": "No gold answers yet, so we cannot score the model path against truth (`docs/ASK_REMOVED.md`).",
+   "never": "",
+   "page": {
+    "label": "web/ask.html",
+    "href": "ask.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-17",
+   "deck": "drill",
+   "set": "business",
+   "rank": 17,
+   "q": "Why not just run AI on the panel photo?",
+   "must": false,
+   "say": "We tried. A cloud model reads the photo type well, but no model gave a usable amps read. So the records give the service size, and the photo confirms it.",
+   "number": "Gemini 18 of 21 photo type at 12.7 s; gemma4 16 of 21 at 129 s (`panel/BASELINE.md`)",
+   "limit": "21 Flickr photos with no amps labels, not member photos.",
+   "never": "",
+   "page": {
+    "label": "web/demo.html",
+    "href": "demo.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-18",
+   "deck": "drill",
+   "set": "skeptic",
+   "rank": 18,
+   "q": "What is real and what is simulated?",
+   "must": false,
+   "say": "Permits, Census, Power to Choose, deeds and ERCOT prices are real. The fleet is a simulation with dials: a stub feeder cap, a synthetic job queue, our drop rates.",
+   "number": "25 kW feeder export cap, marked STUB (`sim/fleet.py` FEEDER_EXPORT_KW)",
+   "limit": "The dials are named in the docs, not yet as a \"simulated\" label next to each number on the page.",
+   "never": "",
+   "page": {
+    "label": "web/index.html",
+    "href": "index.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-19",
+   "deck": "drill",
+   "set": "business",
+   "rank": 19,
+   "q": "Did Base take share from other installers?",
+   "must": false,
+   "say": "Base is 69% of the backup permit class in Austin since July. Other contractors did not shrink: they rose from 32 a month in early 2026 to 46 after July.",
+   "number": "Other installers 32 to 46 a month; Base 314 of 453 since July (`data/market.json` monthly)",
+   "limit": "Others averaged 71 a month in 2025, so the 2026 base is low. City of Austin permits only.",
+   "never": "",
+   "page": {
+    "label": "web/market.html",
+    "href": "market.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "drill-20",
+   "deck": "drill",
+   "set": "grid",
+   "rank": 20,
+   "q": "Has local AI run on a normal Windows PC?",
+   "must": false,
+   "say": "Not yet. That is open gap 80. We measured a laptop and a small edge box. The design must run on a standard Windows-class PC, with or without a GPU.",
+   "number": "Median answer 2.2 s laptop, 3.0 s edge box (`brain/LOCAL_VS_CLOUD.md`)",
+   "limit": "No number for the target hardware.",
+   "never": "",
+   "page": {
+    "label": "web/member.html",
+    "href": "member.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T1",
+   "deck": "trap",
+   "set": "business",
+   "rank": 1,
+   "q": "So the hub is what Base is building?",
+   "must": false,
+   "say": "No. Submission B is our design. We do not speak for Base plans or hardware. It must run on a standard Windows-class PC, with or without a GPU.",
+   "number": "",
+   "limit": "",
+   "never": "\"Base plans\", \"Base will deploy\", \"Base's hardware\", or any chip or vendor as the plan. Never read the ADR-0016 figures ($190 vs $81); they are old.",
+   "page": {
+    "label": "web/placement.html",
+    "href": "placement.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T2",
+   "deck": "trap",
+   "set": "business",
+   "rank": 2,
+   "q": "Do you know my home?",
+   "must": false,
+   "say": "Your city record shows these permits. You confirm or correct each one. We read public records only, and we drop owner names at read time.",
+   "number": "",
+   "limit": "",
+   "never": "\"we know your home\" or \"we know your house\". Never name an owner. Never use parcel data for per-person outreach.",
+   "page": {
+    "label": "web/onboarding.html",
+    "href": "onboarding.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T3",
+   "deck": "trap",
+   "set": "business",
+   "rank": 3,
+   "q": "Give me one dollar figure per install.",
+   "must": false,
+   "say": "We do not have that number, and we will not estimate it on stage. It needs your review cost and your real photo drop rate.",
+   "number": "",
+   "limit": "",
+   "never": "$21,646 as a saving. It is a model on our own dials. Never invent a per-install figure.",
+   "page": {
+    "label": "web/onboarding.html",
+    "href": "onboarding.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T4",
+   "deck": "trap",
+   "set": "grid",
+   "rank": 4,
+   "q": "How accurate is the member chat?",
+   "must": false,
+   "say": "18 of 20 on the laptop and 16 of 20 on the edge box. That is 10 questions, 2 runs, on one test member's record. Policy questions come back as GAP.",
+   "number": "",
+   "limit": "",
+   "never": "m001's GPU hours or dollars as real. m001 is a simulated member, and its week file (`data/members.json`) is stale (`docs/GAPS.md`). Never call m001 a Base member.",
+   "page": {
+    "label": "web/member.html",
+    "href": "member.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T5",
+   "deck": "trap",
+   "set": "business",
+   "rank": 5,
+   "q": "264 of 316 open. So Base is stuck?",
+   "must": false,
+   "say": "An open permit is not a stalled permit. 157 of the 316 were issued in September, so many are open because they are new. We see the count, not the cause.",
+   "number": "",
+   "limit": "",
+   "never": "\"stalled\", \"backlog\" or \"stuck\". Never name tour staff. Never give \"demand is met\" as a public fact; it is a spoken quote.",
+   "page": {
+    "label": "web/market.html",
+    "href": "market.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T6",
+   "deck": "trap",
+   "set": "skeptic",
+   "rank": 6,
+   "q": "Your model disagreed with your rules 92 times in 100. Are the rules wrong?",
+   "must": false,
+   "say": "The saved check finds other_electrical right 14 of 17 times, so the model over-labels. Neither goes straight to the data; those rows go to an engineer.",
+   "number": "",
+   "limit": "",
+   "never": "that the model relabels are rule errors. Never call our confidences calibrated; they are set per rule by hand.",
+   "page": {
+    "label": "web/judgments.html",
+    "href": "judgments.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T7",
+   "deck": "trap",
+   "set": "grid",
+   "rank": 7,
+   "q": "Is $603 what a Base battery earns?",
+   "must": false,
+   "say": "No. It is our one-cycle dispatch on real day-ahead prices, energy only. It is a floor, and it is not Base's dispatch.",
+   "number": "",
+   "limit": "",
+   "never": "\"Base earns\" or \"Base's revenue\". Never give a ceiling number; we did not price real-time or ancillary.",
+   "page": {
+    "label": "web/grid.html",
+    "href": "grid.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T8",
+   "deck": "trap",
+   "set": "skeptic",
+   "rank": 8,
+   "q": "Is the density result a grid finding?",
+   "must": false,
+   "say": "No. It follows from our 25 kW stub cap. With a 10 kW battery, two batteries fill that wire by construction. We say \"with a 25 kW stub cap\".",
+   "number": "",
+   "limit": "",
+   "never": "\"grid effect\" or \"feeder data\". Never quote the $8.78 margin move from real substations; it came from our round-robin rule.",
+   "page": {
+    "label": "web/placement.html",
+    "href": "placement.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T9",
+   "deck": "trap",
+   "set": "grid",
+   "rank": 9,
+   "q": "Does it work with the internet off?",
+   "must": false,
+   "say": "That is the design goal. The unplug test has not run. Today the edge box answers over a direct home network link with no internet hop.",
+   "number": "",
+   "limit": "",
+   "never": "\"works offline\" or \"proven offline\".",
+   "page": {
+    "label": "web/member.html",
+    "href": "member.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  },
+  {
+   "id": "trap-T10",
+   "deck": "trap",
+   "set": "skeptic",
+   "rank": 10,
+   "q": "Is this live? How often does it update?",
+   "must": false,
+   "say": "ERCOT runs hourly, permits daily, Census monthly, from a copy of the repo outside Documents (launchd cannot read Documents). The first scheduled run succeeded at 23:39 UTC on Sep 26. Five signal rules run on each build; none fired today.",
+   "number": "",
+   "limit": "",
+   "never": "\"it runs hourly\" as a fact, or \"real-time\". Never send a judge a GitHub link; the repo is private and it gives a 404.",
+   "page": {
+    "label": "web/admin.html",
+    "href": "admin.html"
+   },
+   "source": "docs/qa/DRILL.md"
+  }
+ ]
+}

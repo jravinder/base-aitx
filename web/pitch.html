@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Base Super Local AI pitch | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = {theme:{extend:{colors:{primary:"#1e4d2b","on-primary":"#ffffff","primary-container":"#d3f5d6","on-primary-container":"#0b3117",secondary:"#84cc16","on-secondary":"#1b3400","secondary-container":"#d9f99d","on-secondary-container":"#224800",tertiary:"#22c55e","on-tertiary":"#ffffff","tertiary-container":"#bbf7d0","on-tertiary-container":"#052e16",warning:"#f59e0b","on-warning":"#ffffff","warning-container":"#fef3c7","on-warning-container":"#78350f",critical:"#ef4444","on-critical":"#ffffff","critical-container":"#fee2e2","on-critical-container":"#7f1d1d",surface:"#f9f9ff","on-surface":"#0f172a","surface-container":"#ffffff","on-surface-container":"#0f172a","surface-container-low":"#f1f5f9","on-surface-container-low":"#1e293b","surface-container-high":"#e2e8f0","on-surface-container-high":"#0f172a","on-surface-variant":"#64748b",outline:"#cbd5e1"},fontFamily:{sans:["Plus Jakarta Sans","sans-serif"],body:["Plus Jakarta Sans","sans-serif"],headline:["Plus Jakarta Sans","sans-serif"]}}}};</script>
+<link rel="stylesheet" href="shell.css">
+<style>
+  .material-symbols-outlined { overflow:hidden; max-width:1.2em; line-height:1; display:inline-block }
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap }
+  #hiw-jobs [aria-current] { background:#1e4d2b; color:#fff }
+  #hiw-jobs span:not([aria-current]) { background:#e2e8f0; color:#64748b }
+  #hiw-dot { transition:none }
+  @media (prefers-reduced-motion: reduce) { * { transition:none!important; animation:none!important } }
+  .matrix-row[hidden] { display:none!important }
+  body { margin:0 }
+</style>
+<script defer src="shell.js"></script>
+<script defer src="speak.js"></script>
+<script defer src="pitch.js"></script>
+</head>
+<body class="st bg-surface font-sans text-on-surface antialiased">
+<main id="main" class="w-full bg-surface">
+<div class="flex flex-col w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-8 space-y-10 box-border">
+
+<section class="flex flex-col xl:flex-row xl:items-end justify-between gap-6 pb-2">
+<div class="space-y-3 max-w-4xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>Base Super Local AI &middot; Track 3
+</div>
+<h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface font-headline leading-tight m-0">
+Ask a question. <span class="text-primary underline decoration-secondary decoration-4 underline-offset-4">The station near you answers.</span>
+</h1>
+<p class="text-base sm:text-lg text-on-surface-variant font-medium leading-relaxed max-w-3xl m-0">
+Private AI next door, on Base&rsquo;s battery fleet. Ask below and the answer comes from the station on your street, even when a station goes offline or the grid price spikes.
+</p>
+<p class="text-sm text-on-surface-variant leading-relaxed max-w-3xl m-0">Base is building the stations; a member AI service is a Base Fleet proposal.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3 shrink-0">
+<a id="story-next" class="px-5 py-2.5 rounded-xl bg-primary text-on-primary font-semibold text-sm shadow-md hover:bg-primary/90 transition-all flex items-center gap-2 no-underline" href="models.html">
+<span>Next: how your home AI thinks</span><span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+</a>
+<a class="px-4 py-2.5 rounded-xl bg-surface-container text-on-surface font-semibold text-sm shadow-sm flex items-center gap-2 no-underline" href="#narrative-matrix">
+<span>9-step matrix</span><span class="material-symbols-outlined text-sm" aria-hidden="true">south</span>
+</a>
+<div class="px-3.5 py-2 rounded-xl bg-surface-container shadow-sm text-xs font-mono text-on-surface-variant flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span><span>Measured + simulated</span>
+</div>
+</div>
+</section>
+
+<section id="how-it-works" class="scroll-mt-20 space-y-5" aria-labelledby="hiw-title">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+<div>
+<div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary"><span class="material-symbols-outlined text-sm" aria-hidden="true">play_circle</span>How it works &bull; Why local AI</div>
+<h2 id="hiw-title" class="text-lg sm:text-xl font-bold text-on-surface font-headline mt-1 mb-0">Try it: ask, then take a station offline or spike the grid price and ask again.</h2>
+</div>
+<div class="self-start md:self-auto flex flex-wrap gap-2"><a id="hiw-models" href="models.html" class="px-3.5 py-2 rounded-xl bg-surface-container text-on-surface font-semibold text-sm shadow-sm flex items-center gap-1.5 no-underline"><span class="material-symbols-outlined text-sm" aria-hidden="true">neurology</span>Watch the local models work</a><a id="hiw-try" href="models.html#try" class="px-3.5 py-2 rounded-xl bg-primary text-on-primary font-semibold text-sm shadow-sm flex items-center gap-1.5 no-underline"><span class="material-symbols-outlined text-sm" aria-hidden="true">play_arrow</span>Try it on this device</a><a id="hiw-plans" href="plans.html" class="px-3.5 py-2 rounded-xl bg-surface-container text-on-surface font-semibold text-sm shadow-sm flex items-center gap-1.5 no-underline"><span class="material-symbols-outlined text-sm" aria-hidden="true">payments</span>Compute plans</a></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<div class="lg:col-span-7 bg-surface-container rounded-xl p-5 sm:p-6 shadow-sm space-y-4 min-w-0">
+<form id="hiw-form" class="flex gap-2" autocomplete="off">
+<label for="hiw-q" class="sr-only">Your question</label>
+<input id="hiw-q" class="flex-1 min-w-0 h-11 px-3 rounded-xl border border-outline bg-surface text-sm text-on-surface font-sans box-border" placeholder="Ask anything, e.g. how long does backup last?">
+<button id="hiw-ask" type="submit" class="h-11 px-4 rounded-xl bg-primary text-on-primary font-semibold text-sm border-0 cursor-pointer flex items-center gap-1.5 shrink-0"><span class="material-symbols-outlined text-base" aria-hidden="true">send</span>Ask</button>
+</form>
+<div id="hiw-chips" class="flex flex-wrap gap-2" aria-label="Example questions"></div>
+<div id="hiw-answer" class="rounded-xl border border-outline bg-surface p-4 space-y-2" hidden aria-live="polite">
+<div class="flex items-center justify-between gap-2 flex-wrap">
+<span id="hiw-where" class="text-[11px] font-bold px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container"></span>
+<button id="hiw-listen" type="button" aria-pressed="false" class="h-8 px-3 rounded-lg bg-surface-container-low text-on-surface text-xs font-semibold border border-outline cursor-pointer flex items-center gap-1"><span id="hiw-listen-icon" class="material-symbols-outlined text-sm" aria-hidden="true">headphones</span><span id="hiw-listen-text">Listen</span></button>
+</div>
+<p id="hiw-aq" class="text-sm font-semibold text-on-surface m-0"></p>
+<p id="hiw-aa" class="text-sm text-on-surface leading-relaxed m-0"></p>
+<p id="hiw-src" class="text-xs text-on-surface-variant m-0"></p>
+<p id="hiw-state" class="text-xs font-semibold text-on-primary-container bg-primary-container/60 rounded-lg px-3 py-2 m-0" hidden></p>
+</div>
+<div class="rounded-xl bg-surface-container-low p-3 sm:p-4">
+<svg id="hiw-map" viewBox="0 0 360 200" class="w-full h-auto block max-h-[300px]" role="img" aria-labelledby="hiw-map-title">
+<title id="hiw-map-title">Path of your question: home, station near you, local model, and back</title>
+<line x1="160" y1="44" x2="160" y2="156" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="4 5"/>
+<text x="170" y="104" font-size="9" fill="#64748b">same feeder</text>
+<path id="hiw-pa" d="M48 100 L160 44 L300 100" fill="none" stroke="#1e4d2b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="hiw-pb" d="M48 100 L160 156 L300 100" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+<g><circle cx="48" cy="100" r="20" fill="#d3f5d6" stroke="#1e4d2b" stroke-width="2"/><text x="48" y="106" text-anchor="middle" font-family="Material Symbols Outlined" font-size="18" fill="#1e4d2b">home</text><text x="48" y="136" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Your home</text></g>
+<g id="hiw-na"><circle cx="160" cy="44" r="20" fill="#d9f99d" stroke="#1e4d2b" stroke-width="2"/><text x="160" y="50" text-anchor="middle" font-family="Material Symbols Outlined" font-size="18" fill="#1e4d2b">battery_charging_full</text><text x="160" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a" id="hiw-na-label">Station near you</text><g id="hiw-na-x" style="display:none"><circle cx="175" cy="29" r="8" fill="#ef4444"/><text x="175" y="33" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">&#215;</text></g></g>
+<g id="hiw-nb" opacity=".55"><circle cx="160" cy="156" r="20" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/><text x="160" y="162" text-anchor="middle" font-family="Material Symbols Outlined" font-size="18" fill="#64748b">battery_charging_full</text><text x="160" y="193" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Next station</text></g>
+<g><rect x="272" y="76" width="56" height="48" rx="10" fill="#1e4d2b"/><text x="300" y="104" text-anchor="middle" font-family="Material Symbols Outlined" font-size="20" fill="#d9f99d">memory</text><text x="300" y="140" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Local model</text></g>
+<circle id="hiw-dot" r="6" fill="#84cc16" stroke="#1e4d2b" stroke-width="2" cx="48" cy="100" opacity="0"/>
+</svg>
+<p id="hiw-route" class="text-xs text-on-surface-variant m-0 mt-1" aria-live="polite">Your question goes to the station on your street, and the answer comes back.</p>
+</div>
+</div>
+<div class="lg:col-span-5 space-y-4 min-w-0">
+<div class="bg-surface-container rounded-xl p-5 shadow-sm space-y-3">
+<h3 class="text-base font-bold text-on-surface font-headline m-0">Try the fleet</h3>
+<label class="flex items-center justify-between gap-3 text-sm text-on-surface cursor-pointer"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-on-surface-variant" aria-hidden="true">power_off</span>Station goes offline</span><input id="hiw-off" data-sync="off" type="checkbox" class="w-5 h-5 accent-[#1e4d2b]"></label>
+<label class="flex items-center justify-between gap-3 text-sm text-on-surface cursor-pointer"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-on-surface-variant" aria-hidden="true">trending_up</span>Grid price spike</span><input id="hiw-spike" data-sync="spike" type="checkbox" class="w-5 h-5 accent-[#1e4d2b]"></label>
+<label class="flex items-center justify-between gap-3 text-sm text-on-surface cursor-pointer"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-on-surface-variant" aria-hidden="true">battery_2_bar</span>Battery at reserve</span><input id="hiw-reserve" data-sync="reserve" type="checkbox" class="w-5 h-5 accent-[#1e4d2b]"></label>
+<div id="hiw-move" class="rounded-lg bg-surface-container-low p-3 text-xs text-on-surface space-y-1.5" hidden>
+<div class="font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-primary" aria-hidden="true">alt_route</span>Moved to the next station</div>
+<p class="m-0 text-on-surface-variant">0 GPU-hours lost with 2+ nodes per feeder.</p>
+<span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulation</span>
+</div>
+<div class="rounded-lg bg-surface-container-low p-3 space-y-2">
+<div class="flex items-center justify-between gap-2 text-xs"><span class="font-semibold text-on-surface">Background jobs</span>
+<span class="flex gap-1 font-mono text-[11px]" id="hiw-jobs"><span data-s="RUN" class="px-1.5 py-0.5 rounded">RUN</span><span data-s="THROTTLE" class="px-1.5 py-0.5 rounded">THROTTLE</span><span data-s="PAUSE" class="px-1.5 py-0.5 rounded">PAUSE</span></span></div>
+<div class="flex items-center justify-between gap-2 text-xs"><span class="font-semibold text-on-surface">Your question</span><span id="hiw-member" class="font-semibold text-tertiary">Answered</span></div>
+<div>
+<div class="flex justify-between text-[11px] text-on-surface-variant mb-1"><span>Battery</span><span id="hiw-batt-label">Above reserve</span></div>
+<div class="relative h-3 rounded-full bg-surface-container-high overflow-hidden"><div id="hiw-batt" class="h-full rounded-full bg-tertiary" style="width:70%"></div><div class="absolute top-0 bottom-0 w-0.5 bg-critical" style="left:30%"></div></div>
+<div class="flex justify-between text-[11px] mt-1"><span class="text-on-surface-variant">0%</span><span class="font-semibold text-primary">30% backup reserve, protected</span><span class="text-on-surface-variant">100%</span></div>
+</div>
+<span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-primary-container text-on-primary-container">Our design</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-5 shadow-sm space-y-3">
+<h3 class="text-base font-bold text-on-surface font-headline m-0">What left your home</h3>
+<div class="rounded-lg bg-primary-container/60 p-3 flex gap-2.5"><span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">home_pin</span><div><div class="text-xs font-bold text-on-primary-container">Base Fleet, local</div><p class="text-xs text-on-primary-container m-0">Your question, to the station on your street.</p></div></div>
+<div class="rounded-lg bg-surface-container-low p-3 flex gap-2.5"><span class="material-symbols-outlined text-on-surface-variant text-lg" aria-hidden="true">cloud</span><div><div class="text-xs font-bold text-on-surface">Frontier AI</div><p class="text-xs text-on-surface-variant m-0">Your question and context, to a cloud data centre.</p></div></div>
+</div>
+</div>
+</div>
+<p class="text-base sm:text-lg font-bold text-primary leading-snug m-0 rounded-xl bg-primary/5 p-4">Base has the stations, the members and the crews. This is the software that makes them private AI for every member.</p>
+</section>
+
+<section id="mesh" class="scroll-mt-20 space-y-5" aria-labelledby="mesh-title">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+<div>
+<div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary"><span class="material-symbols-outlined text-sm" aria-hidden="true">hub</span>The mesh and the control tower</div>
+<h2 id="mesh-title" class="text-2xl sm:text-3xl font-extrabold text-on-surface font-headline mt-1 mb-0">One control tower, many stations, three kinds of work</h2>
+<p class="text-sm text-on-surface-variant mt-1 mb-0">Stations serve the member homes around them and cover for each other on the same feeder.</p>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="text-[11px] font-bold px-2 py-0.5 rounded bg-primary-container text-on-primary-container">Our design &middot; simulated</span>
+<a class="px-4 py-2 rounded-xl bg-primary text-on-primary font-semibold text-sm no-underline flex items-center gap-1.5" href="tower.html?track=compute&amp;persona=gpu"><span class="material-symbols-outlined text-base" aria-hidden="true">cell_tower</span>Open the control tower</a>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<div class="lg:col-span-7 bg-surface-container rounded-xl p-4 sm:p-6 shadow-sm space-y-3 min-w-0">
+<svg id="mesh-map" viewBox="0 0 360 250" class="w-full h-auto block max-h-[420px] mx-auto" role="img" aria-labelledby="mesh-map-title"><title id="mesh-map-title">Control tower dispatching work to stations on two feeders</title></svg>
+<div class="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-on-surface-variant" aria-label="Station states">
+<span class="flex items-center gap-1"><i class="inline-block w-2.5 h-2.5 rounded-full" style="background:#22c55e"></i>Running</span>
+<span class="flex items-center gap-1"><i class="inline-block w-2.5 h-2.5 rounded-full" style="background:#f59e0b"></i>Throttled</span>
+<span class="flex items-center gap-1"><i class="inline-block w-2.5 h-2.5 rounded-full" style="background:#94a3b8"></i>Paused</span>
+<span class="flex items-center gap-1"><i class="inline-block w-2.5 h-2.5 rounded-full" style="background:#ef4444"></i>Offline</span>
+<span class="flex items-center gap-1"><i class="inline-block w-2.5 h-2.5 rounded-full border-2" style="border-color:#84cc16"></i>Answering the member</span>
+</div>
+<p id="mesh-note" class="text-xs text-on-surface m-0" aria-live="polite"></p>
+</div>
+<div class="lg:col-span-5 space-y-4 min-w-0">
+<div class="bg-surface-container rounded-xl p-5 shadow-sm space-y-3">
+<h3 class="text-base font-bold text-on-surface font-headline m-0">Work queue, in priority order</h3>
+<ol id="mesh-queue" class="list-none m-0 p-0 space-y-2">
+<li class="rounded-lg bg-surface-container-low p-3" data-tier="1"><div class="flex items-center justify-between gap-2"><span class="flex items-center gap-2 text-sm font-semibold text-on-surface"><i class="inline-block w-2.5 h-2.5 rounded-full" style="background:#1e4d2b"></i>1. Member questions</span><span class="tier-state font-mono text-[11px] font-bold px-1.5 py-0.5 rounded"></span></div><p class="text-xs text-on-surface-variant m-0 mt-1">Interactive, always first. Answered by the station nearest the member. <span class="font-mono">sim tier: member</span></p></li>
+<li class="rounded-lg bg-surface-container-low p-3" data-tier="2"><div class="flex items-center justify-between gap-2"><span class="flex items-center gap-2 text-sm font-semibold text-on-surface"><i class="inline-block w-2.5 h-2.5 rounded-full" style="background:#0ea5e9"></i>2. Business inference</span><span class="tier-state font-mono text-[11px] font-bold px-1.5 py-0.5 rounded"></span></div><p class="text-xs text-on-surface-variant m-0 mt-1">Batch jobs for local businesses, on the feeder or further out. <span class="font-mono">sim tier: business</span></p></li>
+<li class="rounded-lg bg-surface-container-low p-3" data-tier="3"><div class="flex items-center justify-between gap-2"><span class="flex items-center gap-2 text-sm font-semibold text-on-surface"><i class="inline-block w-2.5 h-2.5 rounded-full" style="background:#a855f7"></i>3. Open-science batch</span><span class="tier-state font-mono text-[11px] font-bold px-1.5 py-0.5 rounded"></span></div><p class="text-xs text-on-surface-variant m-0 mt-1">Could run protein folding, Folding@home-style, on idle GPU time only. First to pause. <span class="font-mono">sim tiers: partner, external batch</span></p></li>
+</ol>
+</div>
+<div class="bg-surface-container rounded-xl p-5 shadow-sm space-y-3">
+<h3 class="text-base font-bold text-on-surface font-headline m-0">Change the fleet</h3>
+<label class="flex items-center justify-between gap-3 text-sm text-on-surface cursor-pointer"><span>Station near you goes offline</span><input data-sync="off" type="checkbox" class="w-5 h-5 accent-[#1e4d2b]"></label>
+<label class="flex items-center justify-between gap-3 text-sm text-on-surface cursor-pointer"><span>Grid price spike</span><input data-sync="spike" type="checkbox" class="w-5 h-5 accent-[#1e4d2b]"></label>
+<label class="flex items-center justify-between gap-3 text-sm text-on-surface cursor-pointer"><span>Battery at reserve</span><input data-sync="reserve" type="checkbox" class="w-5 h-5 accent-[#1e4d2b]"></label>
+<p class="text-xs text-on-surface-variant m-0">Every station keeps its 30% backup reserve.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" aria-label="Key numbers">
+<div class="bg-surface-container rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="flex items-center justify-between text-xs font-semibold text-on-surface-variant mb-2"><span>Revenue per 50 nodes</span><span class="material-symbols-outlined text-primary text-base" aria-hidden="true">payments</span></div>
+<div>
+<div class="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight font-headline">$142 &rarr; $1,041</div>
+<p class="text-xs text-on-surface-variant mt-1.5 mb-2 leading-normal">50 nodes over 3 days: $142 power alone vs $1,041 with compute. 40% GPU use assumed.</p>
+<span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulation</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="absolute top-0 left-0 w-full h-1 bg-tertiary"></div>
+<div class="flex items-center justify-between text-xs font-semibold text-on-surface-variant mb-2"><span>Local answer time</span><span class="material-symbols-outlined text-tertiary text-base" aria-hidden="true">speed</span></div>
+<div>
+<div class="text-2xl sm:text-3xl font-extrabold text-on-surface tracking-tight font-headline">2.2 s</div>
+<p class="text-xs text-on-surface-variant mt-1.5 mb-2 leading-normal">Measured on a laptop; Jetson 3.0 s.</p>
+<span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container">Measured</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<div class="flex items-center justify-between text-xs font-semibold text-on-surface-variant mb-2"><span>Workload reliability</span><span class="material-symbols-outlined text-primary text-base" aria-hidden="true">hub</span></div>
+<div>
+<div class="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight font-headline">0 GPU-hours lost</div>
+<p class="text-xs text-on-surface-variant mt-1.5 mb-2 leading-normal">With 2+ nodes per feeder when a node drops.</p>
+<span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulation</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="flex items-center justify-between text-xs font-semibold text-on-surface-variant mb-2"><span>Backup protection</span><span class="material-symbols-outlined text-primary text-base" aria-hidden="true">shield</span></div>
+<div>
+<div class="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight font-headline">0 breaches</div>
+<p class="text-xs text-on-surface-variant mt-1.5 mb-2 leading-normal">Of the 30% backup reserve floor.</p>
+<span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulation</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<div class="flex items-center justify-between text-xs font-semibold text-on-surface-variant mb-2"><span>Reach today</span><span class="material-symbols-outlined text-primary text-base" aria-hidden="true">domain</span></div>
+<div>
+<div class="text-2xl sm:text-3xl font-extrabold text-on-surface tracking-tight font-headline">3 metros &amp; 6 utility partners</div>
+<p class="text-xs text-on-surface-variant mt-1.5 mb-2 leading-normal">CoServ 100 MW, GVEC 50 MW. From Base’s utilities page.</p>
+<span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-surface-container-high text-primary">Base utilities page</span>
+</div>
+</div>
+</section>
+
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<div class="lg:col-span-7 bg-surface-container rounded-xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between gap-3 mb-4">
+<div class="space-y-1">
+<span class="text-xs font-bold uppercase tracking-wider text-primary">The shift</span>
+<h2 class="text-xl sm:text-2xl font-bold text-on-surface font-headline m-0">AI next door, on the battery fleet</h2>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold">Topology</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">
+From frontier cloud models that bill per question and need the internet, to stations on Base&rsquo;s battery fleet that answer the member homes around them. Base installs and services its fleet today (utilities page, CoServ press).
+</p>
+</div>
+<div class="relative w-full h-64 sm:h-72 rounded-xl overflow-hidden shadow-inner bg-surface-container-low group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="assets/stitch/pitch-1.jpg" alt="Illustration: a distant cloud data center on the left, a neighborhood battery station with solar serving nearby homes on the right">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end justify-between gap-3 p-4 sm:p-5">
+<div class="text-white text-xs font-mono space-y-1">
+<div class="font-bold flex items-center gap-1.5 text-secondary"><span class="material-symbols-outlined text-sm" aria-hidden="true">bolt</span> A station serves the homes on its feeder</div>
+<div class="text-slate-200 text-[11px]">Two or more stations per feeder keep work running</div>
+</div>
+<span class="shrink-0 text-[11px] font-bold px-2 py-0.5 rounded bg-white/85 text-on-surface">Illustration</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 flex flex-col justify-between gap-4">
+<div class="bg-surface-container rounded-xl p-6 shadow-sm flex-1 flex flex-col justify-between">
+<div class="space-y-2">
+<div class="flex items-center justify-between gap-2">
+<span class="text-xs font-mono uppercase tracking-wider text-on-surface-variant">Control tower rule 01</span>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-container text-on-primary-container">Our design</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface font-headline m-0">Price and outages come first</h3>
+<p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed m-0">
+Compute follows ERCOT price. When price spikes toward the $5,000/MWh cap or an outage starts, the tower pauses AI jobs and the battery serves the home.
+</p>
+</div>
+<div class="mt-4 bg-surface-container-low rounded-lg p-3 flex items-center justify-between gap-2 text-xs font-mono">
+<span class="text-on-surface-variant">Backup reserve floor (sim)</span><span class="font-bold text-primary">30% kept</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-6 shadow-sm flex-1 flex flex-col justify-between">
+<div class="space-y-2">
+<div class="flex items-center justify-between gap-2">
+<span class="text-xs font-mono uppercase tracking-wider text-on-surface-variant">Control tower rule 02</span>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-secondary-container text-on-secondary-container">Our design</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface font-headline m-0">Work moves on the feeder</h3>
+<p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed m-0">
+With two or more stations per distribution feeder, work moves to another station when one drops or goes into maintenance.
+</p>
+</div>
+<div class="mt-4 bg-surface-container-low rounded-lg p-3 flex items-center justify-between gap-2 text-xs font-mono">
+<span class="text-on-surface-variant">Node-drop runs (sim)</span><span class="font-bold text-tertiary">0 GPU-hours lost</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="space-y-6" id="narrative-matrix">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary"><span class="material-symbols-outlined text-sm" aria-hidden="true">view_timeline</span>Pitch progression</div>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface font-headline mt-1 mb-0">The 9-step pitch and evidence matrix</h2>
+<p class="text-sm text-on-surface-variant mt-1 mb-0">Each beat, who it speaks to, the page that shows it, and the evidence behind it.</p>
+</div>
+<div class="flex flex-wrap items-center gap-2 p-1.5 bg-surface-container rounded-xl shadow-sm" role="group" aria-label="Filter by audience">
+<button type="button" class="tab px-3 py-1.5 rounded-lg text-xs border-0 cursor-pointer font-bold bg-primary text-on-primary transition-all" id="btn-all" data-filter="all" aria-pressed="true">All 9 steps</button>
+<button type="button" class="tab px-3 py-1.5 rounded-lg text-xs border-0 cursor-pointer font-medium bg-transparent text-on-surface-variant hover:text-on-surface transition-all" id="btn-consumer" data-filter="Consumer" aria-pressed="false">Consumer</button>
+<button type="button" class="tab px-3 py-1.5 rounded-lg text-xs border-0 cursor-pointer font-medium bg-transparent text-on-surface-variant hover:text-on-surface transition-all" id="btn-judge" data-filter="Judge" aria-pressed="false">Judge</button>
+<button type="button" class="tab px-3 py-1.5 rounded-lg text-xs border-0 cursor-pointer font-medium bg-transparent text-on-surface-variant hover:text-on-surface transition-all" id="btn-member" data-filter="Installed member" aria-pressed="false">Installed member</button>
+<button type="button" class="tab px-3 py-1.5 rounded-lg text-xs border-0 cursor-pointer font-medium bg-transparent text-on-surface-variant hover:text-on-surface transition-all" id="btn-operator" data-filter="Base operator" aria-pressed="false">Base operator</button>
+<button type="button" class="tab px-3 py-1.5 rounded-lg text-xs border-0 cursor-pointer font-medium bg-transparent text-on-surface-variant hover:text-on-surface transition-all" id="btn-leadership" data-filter="Base leadership" aria-pressed="false">Base leadership</button>
+<button type="button" class="tab px-3 py-1.5 rounded-lg text-xs border-0 cursor-pointer font-medium bg-transparent text-on-surface-variant hover:text-on-surface transition-all" id="btn-base" data-filter="Base" aria-pressed="false">Base</button>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl shadow-sm overflow-hidden">
+<div class="hidden lg:grid lg:grid-cols-12 gap-4 px-6 py-4 bg-surface-container-low text-xs font-bold uppercase tracking-wider text-on-surface-variant font-mono">
+<div class="col-span-1">Step</div><div class="col-span-4">Beat</div><div class="col-span-2">Who</div><div class="col-span-2">Page</div><div class="col-span-3">Evidence</div>
+</div>
+<div class="divide-y divide-outline/30 text-sm" id="narrative-rows-container">
+<div class="matrix-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 p-5 lg:px-6 lg:py-4 items-start hover:bg-surface-container-low/50 transition-colors" data-audience="Consumer">
+<div class="lg:col-span-1 flex items-center lg:items-start gap-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container-high text-primary font-mono font-bold text-xs flex items-center justify-center">01</span>
+<span class="lg:hidden text-xs font-semibold text-on-surface-variant uppercase">Step 1</span>
+</div>
+<div class="lg:col-span-4"><p class="font-semibold text-on-surface leading-snug m-0">Frontier AI takes your data, bills per question, needs the internet.</p></div>
+<div class="lg:col-span-2 flex items-center"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-low text-on-surface-variant"><span class="material-symbols-outlined text-[13px]" aria-hidden="true">person</span> Consumer</span></div>
+<div class="lg:col-span-2 flex flex-wrap items-center gap-x-1"><a class="text-xs font-mono text-primary font-medium underline underline-offset-2 hover:text-secondary" href="#how-it-works">Why local AI</a></div>
+<div class="lg:col-span-3 flex flex-col gap-1.5">
+<p class="text-xs text-on-surface leading-snug m-0">Local answers measured at 2.2 s (laptop)</p>
+<span class="self-start text-[11px] font-bold px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container">Measured</span>
+</div>
+</div>
+<div class="matrix-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 p-5 lg:px-6 lg:py-4 items-start hover:bg-surface-container-low/50 transition-colors" data-audience="Judge">
+<div class="lg:col-span-1 flex items-center lg:items-start gap-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container-high text-primary font-mono font-bold text-xs flex items-center justify-center">02</span>
+<span class="lg:hidden text-xs font-semibold text-on-surface-variant uppercase">Step 2</span>
+</div>
+<div class="lg:col-span-4"><p class="font-semibold text-on-surface leading-snug m-0">Base is building compute stations on its battery fleet: “hundreds of small sites, each running GPU compute, spread across utility territories.”</p></div>
+<div class="lg:col-span-2 flex items-center"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-primary-container text-on-primary-container"><span class="material-symbols-outlined text-[13px]" aria-hidden="true">gavel</span> Judge</span></div>
+<div class="lg:col-span-2 flex flex-wrap items-center gap-x-1"><span class="text-xs font-mono text-primary font-medium">Story</span></div>
+<div class="lg:col-span-3 flex flex-col gap-1.5">
+<p class="text-xs text-on-surface leading-snug m-0">SIGNAL: Base Distributed Compute job posting</p>
+<span class="self-start text-[11px] font-bold px-2 py-0.5 rounded bg-surface-container-high text-primary">Signal</span>
+</div>
+</div>
+<div class="matrix-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 p-5 lg:px-6 lg:py-4 items-start hover:bg-surface-container-low/50 transition-colors" data-audience="Judge">
+<div class="lg:col-span-1 flex items-center lg:items-start gap-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container-high text-primary font-mono font-bold text-xs flex items-center justify-center">03</span>
+<span class="lg:hidden text-xs font-semibold text-on-surface-variant uppercase">Step 3</span>
+</div>
+<div class="lg:col-span-4"><p class="font-semibold text-on-surface leading-snug m-0">Base already reaches members: signup, install and service, in 3 metros with 6 utility partners (CoServ 100 MW, GVEC 50 MW).</p></div>
+<div class="lg:col-span-2 flex items-center"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-primary-container text-on-primary-container"><span class="material-symbols-outlined text-[13px]" aria-hidden="true">gavel</span> Judge</span></div>
+<div class="lg:col-span-2 flex flex-wrap items-center gap-x-1"><span class="text-xs font-mono text-primary font-medium">Story</span></div>
+<div class="lg:col-span-3 flex flex-col gap-1.5">
+<p class="text-xs text-on-surface leading-snug m-0">SIGNAL: Base utilities page, CoServ press</p>
+<span class="self-start text-[11px] font-bold px-2 py-0.5 rounded bg-surface-container-high text-primary">Signal</span>
+</div>
+</div>
+<div class="matrix-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 p-5 lg:px-6 lg:py-4 items-start hover:bg-surface-container-low/50 transition-colors" data-audience="Installed member">
+<div class="lg:col-span-1 flex items-center lg:items-start gap-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container-high text-primary font-mono font-bold text-xs flex items-center justify-center">04</span>
+<span class="lg:hidden text-xs font-semibold text-on-surface-variant uppercase">Step 4</span>
+</div>
+<div class="lg:col-span-4"><p class="font-semibold text-on-surface leading-snug m-0">The member gets “Your own AI, next door” through the same signup. Ask anything; the station near them answers.</p></div>
+<div class="lg:col-span-2 flex items-center"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container"><span class="material-symbols-outlined text-[13px]" aria-hidden="true">home</span> Installed member</span></div>
+<div class="lg:col-span-2 flex flex-wrap items-center gap-x-1"><a class="text-xs font-mono text-primary font-medium underline underline-offset-2 hover:text-secondary" href="copilot.html?track=compute&amp;persona=gpu">copilot.html</a></div>
+<div class="lg:col-span-3 flex flex-col gap-1.5">
+<p class="text-xs text-on-surface leading-snug m-0">Laptop and Jetson runs; Windows PC untested (#80)</p>
+<span class="self-start text-[11px] font-bold px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container">Measured</span>
+</div>
+</div>
+<div class="matrix-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 p-5 lg:px-6 lg:py-4 items-start hover:bg-surface-container-low/50 transition-colors" data-audience="Installed member">
+<div class="lg:col-span-1 flex items-center lg:items-start gap-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container-high text-primary font-mono font-bold text-xs flex items-center justify-center">05</span>
+<span class="lg:hidden text-xs font-semibold text-on-surface-variant uppercase">Step 5</span>
+</div>
+<div class="lg:col-span-4"><p class="font-semibold text-on-surface leading-snug m-0">Useful on day one: outage hours, the week’s battery activity, permit records.</p></div>
+<div class="lg:col-span-2 flex items-center"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container"><span class="material-symbols-outlined text-[13px]" aria-hidden="true">home</span> Installed member</span></div>
+<div class="lg:col-span-2 flex flex-wrap items-center gap-x-1"><a class="text-xs font-mono text-primary font-medium underline underline-offset-2 hover:text-secondary" href="copilot.html?track=compute&amp;persona=gpu">copilot.html</a></div>
+<div class="lg:col-span-3 flex flex-col gap-1.5">
+<p class="text-xs text-on-surface leading-snug m-0">Simulated member, real permits, live NWS alerts</p>
+<span class="self-start text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulated + real</span>
+</div>
+</div>
+<div class="matrix-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 p-5 lg:px-6 lg:py-4 items-start hover:bg-surface-container-low/50 transition-colors" data-audience="Base operator">
+<div class="lg:col-span-1 flex items-center lg:items-start gap-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container-high text-primary font-mono font-bold text-xs flex items-center justify-center">06</span>
+<span class="lg:hidden text-xs font-semibold text-on-surface-variant uppercase">Step 6</span>
+</div>
+<div class="lg:col-span-4"><p class="font-semibold text-on-surface leading-snug m-0">Each station serves the member homes around it; work moves to another station when one drops.</p></div>
+<div class="lg:col-span-2 flex items-center"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface"><span class="material-symbols-outlined text-[13px]" aria-hidden="true">tune</span> Base operator</span></div>
+<div class="lg:col-span-2 flex flex-wrap items-center gap-x-1"><a class="text-xs font-mono text-primary font-medium underline underline-offset-2 hover:text-secondary" href="placement.html?track=compute&amp;persona=fleet">placement.html</a>, <a class="text-xs font-mono text-primary font-medium underline underline-offset-2 hover:text-secondary" href="block.html?track=compute&amp;persona=fleet">block.html</a></div>
+<div class="lg:col-span-3 flex flex-col gap-1.5">
+<p class="text-xs text-on-surface leading-snug m-0">Sim: 0 GPU-hours lost with 2+ nodes per feeder</p>
+<span class="self-start text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulation</span>
+</div>
+</div>
+<div class="matrix-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 p-5 lg:px-6 lg:py-4 items-start hover:bg-surface-container-low/50 transition-colors" data-audience="Base operator">
+<div class="lg:col-span-1 flex items-center lg:items-start gap-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container-high text-primary font-mono font-bold text-xs flex items-center justify-center">07</span>
+<span class="lg:hidden text-xs font-semibold text-on-surface-variant uppercase">Step 7</span>
+</div>
+<div class="lg:col-span-4"><p class="font-semibold text-on-surface leading-snug m-0">The control tower runs jobs, slows or pauses with battery and price, and always protects the backup reserve.</p></div>
+<div class="lg:col-span-2 flex items-center"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface"><span class="material-symbols-outlined text-[13px]" aria-hidden="true">tune</span> Base operator</span></div>
+<div class="lg:col-span-2 flex flex-wrap items-center gap-x-1"><a class="text-xs font-mono text-primary font-medium underline underline-offset-2 hover:text-secondary" href="tower.html?track=compute&amp;persona=fleet">tower.html</a></div>
+<div class="lg:col-span-3 flex flex-col gap-1.5">
+<p class="text-xs text-on-surface leading-snug m-0">Sim: 0 breaches of the 30% floor</p>
+<span class="self-start text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulation</span>
+</div>
+</div>
+<div class="matrix-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 p-5 lg:px-6 lg:py-4 items-start hover:bg-surface-container-low/50 transition-colors" data-audience="Base leadership">
+<div class="lg:col-span-1 flex items-center lg:items-start gap-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container-high text-primary font-mono font-bold text-xs flex items-center justify-center">08</span>
+<span class="lg:hidden text-xs font-semibold text-on-surface-variant uppercase">Step 8</span>
+</div>
+<div class="lg:col-span-4"><p class="font-semibold text-on-surface leading-snug m-0">One unit-economics line.</p></div>
+<div class="lg:col-span-2 flex items-center"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-primary text-on-primary"><span class="material-symbols-outlined text-[13px]" aria-hidden="true">shield</span> Base leadership</span></div>
+<div class="lg:col-span-2 flex flex-wrap items-center gap-x-1"><a class="text-xs font-mono text-primary font-medium underline underline-offset-2 hover:text-secondary" href="index.html?track=compute&amp;persona=fleet">index.html</a></div>
+<div class="lg:col-span-3 flex flex-col gap-1.5">
+<p class="text-xs text-on-surface leading-snug m-0">Sim, 50 nodes, 3 days: $142 power only vs $1,041 with compute; 40% use is a dial</p>
+<span class="self-start text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulation</span>
+</div>
+</div>
+<div class="matrix-row grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 p-5 lg:px-6 lg:py-4 items-start bg-primary/5 hover:bg-primary/10 transition-colors" data-audience="Base">
+<div class="lg:col-span-1 flex items-center lg:items-start gap-2">
+<span class="w-7 h-7 rounded-lg bg-primary text-on-primary font-mono font-bold text-xs flex items-center justify-center">09</span>
+<span class="lg:hidden text-xs font-semibold text-primary uppercase">The close</span>
+</div>
+<div class="lg:col-span-4"><p id="close" class="font-bold text-primary leading-snug m-0 scroll-mt-24">Close: “Base has the stations, the members and the crews. This is the software that makes them private AI for every member.”</p></div>
+<div class="lg:col-span-2 flex items-center"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-primary text-on-primary"><span class="material-symbols-outlined text-[13px]" aria-hidden="true">bolt</span> Base</span></div>
+<div class="lg:col-span-2 flex flex-wrap items-center gap-x-1"><span class="text-xs font-mono text-primary font-medium">Close</span></div>
+<div class="lg:col-span-3 flex flex-col gap-1.5">
+<p class="text-xs text-on-surface leading-snug m-0 italic">SIGNAL: recruiter, “they don’t know how to manage that in a distributed computing environment”</p>
+<span class="self-start text-[11px] font-bold px-2 py-0.5 rounded bg-surface-container-high text-primary">Signal</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="space-y-6">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary"><span class="material-symbols-outlined text-sm" aria-hidden="true">analytics</span>The numbers behind the beats</div>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface font-headline m-0">Deep dive: 3 pillars of evidence</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="bg-surface-container rounded-xl p-6 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow">
+<div class="space-y-4">
+<div class="flex items-center justify-between gap-2"><span class="px-2.5 py-1 rounded-md text-xs font-bold font-mono bg-primary-container text-on-primary-container">Step 8</span><span class="text-xs font-semibold text-on-surface-variant">50 nodes &bull; 3 days</span></div>
+<h3 class="text-xl font-bold text-on-surface font-headline leading-tight m-0">Unit economics</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed m-0">The same 50 simulated battery nodes over 3 days, with and without compute.</p>
+<div class="space-y-3 pt-2">
+<div><div class="flex items-center justify-between text-xs font-mono mb-1"><span class="text-on-surface-variant">Power alone</span><span class="font-bold text-on-surface">$142</span></div>
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden"><div class="h-full bg-on-surface-variant/40 rounded-full" style="width:13.6%"></div></div></div>
+<div><div class="flex items-center justify-between text-xs font-mono mb-1"><span class="text-primary font-bold">Power + GPU compute</span><span class="font-bold text-primary">$1,041</span></div>
+<div class="w-full h-4 bg-surface-container-high rounded-full overflow-hidden p-0.5 box-border"><div class="h-full bg-gradient-to-r from-primary via-secondary to-tertiary rounded-full" style="width:100%"></div></div></div>
+</div>
+</div>
+<div class="p-3.5 bg-surface-container-low rounded-lg space-y-1">
+<div class="flex items-center gap-1.5 text-xs font-bold text-primary"><span class="material-symbols-outlined text-sm" aria-hidden="true">trending_up</span> 7.3&times; revenue per node <span class="ml-auto text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulation</span></div>
+<p class="text-[11px] text-on-surface-variant leading-normal m-0">40% GPU use is a dial in the sim; <a class="text-primary underline" href="index.html?track=compute&amp;persona=fleet">open fleet economics</a>.</p>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-6 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow">
+<div class="space-y-4">
+<div class="flex items-center justify-between gap-2"><span class="px-2.5 py-1 rounded-md text-xs font-bold font-mono bg-secondary-container text-on-secondary-container">Steps 6 &amp; 7</span><span class="text-[11px] font-bold px-2 py-0.5 rounded bg-warning-container text-on-warning-container">Simulation</span></div>
+<h3 class="text-xl font-bold text-on-surface font-headline leading-tight m-0">Stations cover for each other</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed m-0">Work moves to another station on the same feeder when one drops, and the reserve stays protected.</p>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div class="bg-surface-container-low p-3 rounded-lg text-center"><div class="text-2xl font-black text-primary font-headline">0</div><div class="text-[11px] font-semibold text-on-surface-variant mt-0.5">GPU-hours lost</div><div class="text-[10px] text-on-surface-variant/80">2+ nodes per feeder</div></div>
+<div class="bg-surface-container-low p-3 rounded-lg text-center"><div class="text-2xl font-black text-tertiary font-headline">0</div><div class="text-[11px] font-semibold text-on-surface-variant mt-0.5">Floor breaches</div><div class="text-[10px] text-on-surface-variant/80">30% reserve floor</div></div>
+</div>
+</div>
+<div class="p-3.5 bg-surface-container-low rounded-lg space-y-1">
+<div class="flex items-center gap-1.5 text-xs font-bold text-on-surface"><span class="material-symbols-outlined text-sm text-primary" aria-hidden="true">security</span> Control tower</div>
+<p class="text-[11px] text-on-surface-variant leading-normal m-0">The control tower runs jobs, slows or pauses with battery and price, and always protects the backup reserve. <a class="text-primary underline" href="tower.html?track=compute&amp;persona=fleet">Open the tower</a>.</p>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-6 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="space-y-4">
+<div class="flex items-center justify-between gap-2"><span class="px-2.5 py-1 rounded-md text-xs font-bold font-mono bg-primary text-on-primary">Step 9</span><span class="text-xs font-mono text-warning font-semibold">The opening</span></div>
+<h3 class="text-xl font-bold text-on-surface font-headline leading-tight m-0">The close</h3>
+<div class="relative bg-surface-container-low p-4 rounded-lg">
+<span class="material-symbols-outlined text-primary/20 text-3xl absolute top-1 right-2 pointer-events-none" aria-hidden="true">format_quote</span>
+<p class="text-xs italic text-on-surface font-medium leading-relaxed relative z-10 m-0">&ldquo;they don&rsquo;t know how to manage that in a distributed computing environment&rdquo;</p>
+<p class="text-[11px] font-mono text-on-surface-variant mt-2 mb-0">&mdash; Base recruiter, on distributed compute</p>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed m-0">Base installs and services its fleet today (utilities page, CoServ press). Base Fleet adds the software layer: placement, a control tower, and a member AI service.</p>
+</div>
+<div class="p-3.5 bg-primary/10 rounded-lg space-y-1">
+<div class="flex items-center gap-1.5 text-xs font-bold text-primary"><span class="material-symbols-outlined text-sm" aria-hidden="true">verified</span> The answer: Base Fleet</div>
+<p class="text-[11px] text-primary/90 leading-normal m-0">Base has the stations, the members and the crews. This is the software that makes them private AI for every member.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="rounded-xl bg-warning-container/60 p-4 sm:p-5 flex flex-col md:flex-row md:items-center gap-3 md:gap-6 text-xs text-on-warning-container" aria-labelledby="open-title">
+<h2 id="open-title" class="text-sm font-bold m-0 flex items-center gap-1.5 shrink-0"><span class="material-symbols-outlined text-base" aria-hidden="true">checklist</span>Open before we claim it</h2>
+<ul class="list-none m-0 p-0 flex flex-col sm:flex-row gap-2 sm:gap-6">
+<li><span class="font-mono font-bold">#80</span> Target PC untested</li>
+<li><span class="font-mono font-bold">#85</span> Power draw: 0.4 kW in the sim vs 350 W hub model</li>
+</ul>
+</section>
+
+<section class="pb-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant bg-surface-container-low/60 p-4 rounded-xl">
+<div class="flex flex-wrap items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary shrink-0"></span>
+<span class="font-bold text-on-surface">Base AITX Talent Hackathon &bull; Base Super Local AI pitch</span>
+<span class="hidden sm:inline text-outline">&bull;</span>
+<span>Laptop and Jetson runs, ERCOT price playback, and fleet simulation.</span>
+</div>
+<div class="flex items-center gap-4 font-mono text-[11px] shrink-0">
+<a class="hover:text-primary transition-colors flex items-center gap-1 text-on-surface-variant no-underline" href="#main"><span>Back to top</span><span class="material-symbols-outlined text-xs" aria-hidden="true">arrow_upward</span></a>
+</div>
+</section>
+</div>
+</main>
+<footer class="w-full bg-surface-container py-8 shadow-[0_-1px_8px_rgba(0,0,0,0.02)]">
+<div class="w-full px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant box-border">
+<div class="flex items-center gap-3"><span class="font-bold text-primary">Base Fleet</span><span>&bull;</span><span>Private AI on the battery fleet</span></div>
+<div>A Base Fleet design</div>
+</div>
+</footer>
+
+</body>
+</html>

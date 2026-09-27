@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Base Fleet demo flow</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<style>
+  :root { --paper:var(--bf-bg); --ink:var(--bf-ink); --muted:var(--bf-muted); --rule:var(--bf-line); --accent:#87591c; --tint:#fffbeb; --ok:#1e4d2b; --blue:#93b4fa; --gold:#F59E0B; --red:#87591c; }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--paper); color:var(--ink); font:14px/1.45 var(--bf-font); }
+  main { max-width:1180px; margin:0 auto; padding:20px 24px 60px }
+  header { display:flex; justify-content:space-between; align-items:baseline; gap:20px; flex-wrap:wrap; margin-bottom:10px }
+  h1 { font-size:22px; margin:0; font-weight:600 }
+  h1 small { color:var(--muted); font-weight:400; font-size:13px; margin-left:10px }
+  nav a { color:var(--muted); margin-left:14px; font-size:13px }
+  .notice { border-left:4px solid var(--accent); background:var(--tint); padding:10px 14px; font-size:13px; margin:10px 0; display:none }
+  .steps { display:flex; gap:14px; font-size:12px; color:var(--muted); margin:0 0 6px; flex-wrap:wrap }
+  .steps span { padding:2px 0; border-bottom:2px solid transparent }
+  .steps span.done { color:var(--ink) }
+  .steps span.on { color:var(--ink); font-weight:600; border-bottom-color:var(--ink) }
+  .hint { color:var(--muted); font-size:12px }
+  section { border-top:1px solid var(--rule); padding:14px 0; display:none }
+  section.show { display:block }
+  section h2 { font-size:14px; margin:0 0 8px; display:flex; gap:10px; align-items:baseline }
+  section h2 small { color:var(--muted); font-weight:400; font-size:12px }
+  .pain { color:var(--red); font-size:13px; margin:10px 0 0; opacity:0; transition:opacity .4s }
+  .pain.show { opacity:1 }
+  .card { border:1px solid var(--rule); background:var(--bf-surface); padding:14px 16px; border-radius:4px; max-width:420px }
+  .card h3 { font-size:19px; margin:0; font-weight:600 }
+  .yb { color:var(--muted); font-size:13px }
+  .fit-tag { font-size:12px; padding:3px 9px; border-radius:12px; font-weight:600; text-transform:uppercase; letter-spacing:.02em; background:#e5f0e6; color:var(--ok) }
+  .timeline { position:relative; height:70px; margin:18px 0 6px }
+  .timeline .axis { position:absolute; left:0; right:0; top:34px; height:1px; background:var(--rule) }
+  .timeline .yr { position:absolute; top:44px; font-size:11px; color:var(--muted); transform:translateX(-50%) }
+  .tick { position:absolute; top:24px; width:11px; height:11px; border-radius:50%; transform:translateX(-50%) scale(0); border:2px solid var(--paper); transition:transform .25s }
+  .tick.in { transform:translateX(-50%) scale(1) }
+  .tick.built { background:var(--ink) }
+  .tick.service_upgrade, .tick.sub_panel { background:var(--blue) }
+  .tick.solar, .tick.battery, .tick.generator { background:var(--accent) }
+  .tick.demolition { background:#b23 }
+  .tick.remodel { background:var(--gold) }
+  .tick.other, .tick.pool, .tick.addition, .tick.ac_changeout { background:#9a9a9a }
+  .legend { display:flex; gap:14px; font-size:11.5px; color:var(--muted); margin:10px 0 0; flex-wrap:wrap }
+  .legend i { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:4px; vertical-align:middle }
+  .evlist { font-size:12.5px; color:var(--muted); margin:8px 0 0; padding:0; list-style:none; columns:2; column-gap:24px }
+  .evlist li { opacity:0; transition:opacity .3s; break-inside:avoid; padding:2px 0 }
+  .evlist li.in { opacity:1 }
+  .evlist b { color:var(--ink); font-weight:500 }
+  table { border-collapse:collapse; font-size:13px; width:100%; margin-top:6px }
+  td, th { text-align:left; padding:6px 8px 6px 0; border-bottom:1px solid var(--rule); vertical-align:middle; font-variant-numeric:tabular-nums }
+  th { color:var(--muted); font-weight:500 }
+  td.r, th.r { text-align:right }
+  tr.row { opacity:0; transition:opacity .3s }
+  tr.row.in { opacity:1 }
+  .confbar { height:6px; width:70px; background:#eee; border-radius:3px; overflow:hidden; display:inline-block; vertical-align:middle }
+  .confbar i { display:block; height:100%; width:0; background:var(--ok); transition:width .6s }
+  .confbar.low i { background:var(--accent) }
+  .confirm { font-size:12px; color:var(--accent); white-space:nowrap }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start }
+  .photo { width:100%; max-width:360px; aspect-ratio:4/3; background:#e6e3dc; border:1px solid var(--rule); color:var(--muted); display:flex; align-items:center; justify-content:center; font-size:13px; border-radius:4px }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 }
+  .chip { font-size:12px; padding:3px 10px; border-radius:12px; border:1px solid var(--rule); color:var(--muted); background:var(--bf-surface); opacity:.35; transition:opacity .3s, background .3s, color .3s }
+  .chip.lit { opacity:1 }
+  .chip.pick { background:var(--ink); color:var(--paper); border-color:var(--ink) }
+  pre { background:var(--bf-surface); border:1px solid var(--rule); border-radius:4px; padding:10px 12px; font:12.5px/1.5 ui-monospace, Menlo, monospace; margin:0; min-height:150px; white-space:pre-wrap }
+  pre .k { color:var(--muted) }
+  .json-line { opacity:0; transition:opacity .3s; display:block }
+  .json-line.in { opacity:1 }
+  .node-grid { display:grid; grid-template-columns:repeat(12, 22px); gap:7px }
+  .gn { width:22px; height:22px; border-radius:4px; background:var(--ok); border:2px solid transparent; transition:background .3s }
+  .gn.busy { background:var(--gold); border-color:var(--ink) }
+  .grid-legend { display:flex; gap:14px; font-size:11.5px; color:var(--muted); margin:10px 0 0; flex-wrap:wrap }
+  .grid-legend i { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:4px; vertical-align:middle }
+  .job { border:1px solid var(--rule); background:var(--bf-surface); padding:10px 12px; border-radius:4px; font-size:13px; opacity:0; transition:opacity .4s; max-width:320px }
+  .job.in { opacity:1 }
+  .job .id { font-size:11px; color:var(--muted) }
+  .job .big { font-size:26px; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.1 }
+  .job .unit { color:var(--muted); font-size:12px }
+  .ask { font-size:34px; line-height:1.15; font-weight:650; margin:4px 0 14px; max-width:26ch; text-wrap:balance; letter-spacing:-.01em }
+  .steps button { font:inherit; background:none; border:0; border-bottom:2px solid transparent; padding:2px 0; color:inherit; cursor:pointer }
+  .steps button.done { color:var(--ink) }
+  .steps button.on { color:var(--ink); font-weight:600; border-bottom-color:var(--ink) }
+  section { padding:22px 0 14px }
+  .lbl { font-size:12px; font-weight:650; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin:0 0 8px }
+  .fact { font-size:52px; line-height:1.05; font-weight:650; color:var(--bf-brand); font-variant-numeric:tabular-nums; margin:0 0 10px; overflow-wrap:anywhere }
+  .one { font-size:18px; margin:0 0 18px; max-width:60ch }
+  details.more { border-top:1px solid var(--rule); padding-top:10px }
+  details.more > summary { cursor:pointer; color:var(--bf-blue); font-size:13px }
+  details.more[open] > summary { margin-bottom:12px }
+  .pain { opacity:1 }
+  .pager { display:flex; gap:10px; margin-top:18px }
+  .pager button { font:inherit; font-size:13px; padding:7px 14px; border-radius:var(--bf-radius); border:1px solid var(--bf-line-strong); background:var(--bf-surface); color:var(--ink); cursor:pointer }
+  .pager button.nx { background:var(--bf-brand); border-color:var(--bf-brand); color:var(--bf-on-brand) }
+  .pager button:disabled { opacity:.4; cursor:default }
+  @media (max-width:800px){ .ask { font-size:26px } .fact { font-size:38px } .one { font-size:16px } .node-grid { grid-template-columns:repeat(8, 22px) } }
+  footer { margin-top:26px; padding-top:12px; border-top:1px solid var(--rule); color:var(--muted); font-size:12px }
+  @media (max-width:800px){ .two { grid-template-columns:1fr } .evlist { columns:1 } }
+</style>
+<link rel="stylesheet" href="shell.css">
+<script defer src="shell.js"></script>
+<style>
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+#main{overflow-wrap:anywhere}
+:where(#main) :where(p,h1,h2,h3,dl,dd){margin:0}
+#main a{color:#1e4d2b}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:#fff;padding:6px 10px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:4px 10px;border-radius:8px;background:#F1F5F9;border:1px solid #E2E8F0;color:#717970;font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:#22C55E;display:inline-block}
+.caps{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970}
+.panel{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:24px;min-width:0}
+code,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:12px;background:#F1F5F9;border:1px solid #E2E8F0;border-radius:4px;padding:0 4px;color:#0F172A}
+
+  body { background:#F8FAFC }
+  main { max-width:1440px; padding:32px 24px 48px }
+  .intro { background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:24px; margin-bottom:24px }
+  .ask { font:700 32px/38px "Plus Jakarta Sans",sans-serif; letter-spacing:-.02em; color:#0F172A; margin:12px 0 16px !important; max-width:none }
+  .steps { gap:8px; margin:0 0 8px; font-size:13px }
+  .steps button { padding:6px 12px; border:1px solid #E2E8F0; border-radius:999px; background:#fff; color:#414941; min-height:36px }
+  .steps button.done { background:#ecfdf5; border-color:#bbefc1; color:#1e4d2b }
+  .steps button.on { background:#1e4d2b; border-color:#1e4d2b; color:#fff; font-weight:600 }
+  .hint { color:#717970 }
+  section.show { background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:24px }
+  .lbl { font:700 11px/16px "Plus Jakarta Sans",sans-serif; letter-spacing:.06em; color:#717970 }
+  .fact { font:700 40px/48px "Plus Jakarta Sans",sans-serif; letter-spacing:-.02em; color:#1e4d2b; margin:0 0 8px !important }
+  .one { font-size:16px; line-height:26px; color:#414941; margin:0 0 20px !important }
+  details.more { border-top:1px solid #E2E8F0; padding-top:12px }
+  details.more > summary { color:#1e4d2b; font-weight:600; font-size:14px; min-height:32px }
+  section h2 { font:600 16px/24px "Plus Jakarta Sans",sans-serif; margin:0 0 12px !important }
+  .card { border:1px solid #E2E8F0; border-radius:12px; padding:20px; background:#F8FAFC }
+  .card h3 { font:600 20px/28px "Plus Jakarta Sans",sans-serif }
+  .fit-tag { background:#cbf080; color:#141f00; border-radius:999px }
+  table { border:1px solid #E2E8F0; border-radius:12px; border-collapse:separate; border-spacing:0; overflow:hidden; background:#fff }
+  td, th { padding:10px 12px }
+  th { font:700 11px/16px "Plus Jakarta Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#717970; background:#F8FAFC }
+  tr:last-child td { border-bottom:0 }
+  .photo { background:#F1F5F9; border:1px solid #E2E8F0; border-radius:12px; padding:16px; text-align:center }
+  .chip { border-radius:999px }
+  .chip.pick { background:#1e4d2b; border-color:#1e4d2b; color:#fff }
+  pre { background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; color:#0F172A; font-family:"JetBrains Mono",ui-monospace,Menlo,monospace }
+  .gn { background:#1e4d2b; border-radius:6px }
+  .gn.busy { background:#cbf080; border-color:#1e4d2b }
+  .job { border:1px solid #E2E8F0; border-radius:12px; padding:16px 20px }
+  .pain { color:#87591c; background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:8px 12px; margin-top:16px }
+  .pager { margin-top:24px }
+  .pager button { border-radius:8px; border-color:#E2E8F0; padding:10px 20px; font-weight:600; min-height:44px }
+  .pager button.nx { background:#1e4d2b; border-color:#1e4d2b; color:#fff }
+  .notice { border:1px solid #fde68a; border-radius:8px; background:#fffbeb }
+  footer { border-top:1px solid #E2E8F0; color:#717970; margin-top:32px; padding-top:24px }
+  @media (max-width:800px){ main { padding:24px 16px 40px } .ask { font-size:26px; line-height:32px } .fact { font-size:32px; line-height:38px } }
+</style>
+</head>
+<body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<a class="skip" href="#main">Skip to walkthrough</a>
+<div class="shell">
+<main id="main">
+  <div class="intro">
+  <span class="eyebrow"><i></i>Walkthrough: one house, start to finish</span>
+  <h1 class="ask">What does Base learn about a home before anyone visits?</h1>
+  <div class="notice" id="notice">The walkthrough will load once its data files are available.</div>
+  <div class="steps" id="steps"></div>
+  <div class="hint">Arrow keys or click anywhere to move between steps.</div>
+  </div>
+
+  <section id="s1">
+    <p class="lbl">Step 1 of 6 · Lead in</p>
+    <p class="fact" id="f1"></p>
+    <p class="one" id="o1"></p>
+    <details class="more"><summary>More on this step</summary>
+    <h2>1. Lead in <small>a member address, nothing else</small></h2>
+    <div class="card">
+      <h3 id="addr"></h3>
+      <div class="yb" id="addr-meta"></div>
+    </div>
+    <div class="pain" id="p1">Public permits establish a starting point. Physical conditions still need review.</div>
+    </details>
+  </section>
+
+  <section id="s2">
+    <p class="lbl">Step 2 of 6 · Permits read</p>
+    <p class="fact" id="f2"></p>
+    <p class="one" id="o2"></p>
+    <details class="more"><summary>More on this step</summary>
+    <h2>2. Permits read <small>City of Austin issued construction permits, open data</small></h2>
+    <div id="timeline"></div>
+    <ul class="evlist" id="evlist"></ul>
+    <div class="pain" id="p2">Read the permit history alongside the inferred fields.</div>
+    </details>
+  </section>
+
+  <section id="s3">
+    <p class="lbl">Step 3 of 6 · Fit guess</p>
+    <p class="fact" id="f3"></p>
+    <p class="one" id="o3"></p>
+    <details class="more"><summary>More on this step</summary>
+    <h2>3. Fit guess <small>what we can already say, confidence below 70% asks to confirm with the member</small></h2>
+    <div style="margin-bottom:8px"><span class="fit-tag" id="fit"></span> <span class="yb" id="fit-reason"></span></div>
+    <table id="fit-table">
+      <tr><th>field</th><th>value</th><th>source permit</th><th>confidence</th><th></th></tr>
+    </table>
+    <div class="pain" id="p3">Ask about missing details; Base gives approval after confirming the fit.</div>
+    </details>
+  </section>
+
+  <section id="s4">
+    <p class="lbl">Step 4 of 6 · Photo gate</p>
+    <p class="fact" id="f4"></p>
+    <p class="one" id="o4"></p>
+    <details class="more"><summary>More on this step</summary>
+    <h2>4. Photo review <small>saved benchmark classification, for demonstration</small></h2>
+    <div class="two">
+      <div>
+        <div class="photo"><a href="onboarding.html?track=home&amp;persona=lead#extraction-gallery">Review photos with their extracted fields</a></div>
+        <div class="chips" id="chips">
+          <span class="chip" data-t="panel_open">panel_open</span>
+          <span class="chip" data-t="panel_closed">panel_closed</span>
+          <span class="chip" data-t="meter_exterior">meter_exterior</span>
+          <span class="chip" data-t="other">other</span>
+        </div>
+      </div>
+      <pre id="json"></pre>
+    </div>
+    <div class="pain" id="p4">Photo results add evidence; an electrician performs the assessment.</div>
+    </details>
+  </section>
+
+  <section id="s5">
+    <p class="lbl">Step 5 of 6 · Baseline</p>
+    <p class="fact" id="f5"></p>
+    <p class="one" id="o5"></p>
+    <details class="more"><summary>More on this step</summary>
+    <h2>5. Baseline <small>21 hand labeled photos, same prompt and schema for both models</small></h2>
+    <table>
+      <tr><th>model</th><th class="r">photo type correct</th><th class="r">median secs / photo</th></tr>
+      <tr><td>Gemini CLI 0.42 (cloud)</td><td class="r">18 / 21</td><td class="r">13</td></tr>
+      <tr><td>gemma4:e4b on node GPU (Ollama)</td><td class="r">16 / 21</td><td class="r">129</td></tr>
+    </table>
+    <div class="pain" id="p5">Recorded model evaluation from a saved benchmark run.</div>
+    </details>
+  </section>
+
+  <section id="s6">
+    <p class="lbl">Step 6 of 6 · Fleet</p>
+    <p class="fact" id="f6"></p>
+    <p class="one" id="o6"></p>
+    <details class="more"><summary>More on this step</summary>
+    <h2>6. Fleet <small>48 nodes, one takes the job</small></h2>
+    <div class="two">
+      <div>
+        <div class="node-grid" id="grid"></div>
+        <div class="grid-legend">
+          <span><i style="background:var(--ok)"></i>idle</span>
+          <span><i style="background:#cbf080;border:1px solid #1e4d2b"></i>gpu busy</span>
+        </div>
+      </div>
+      <div class="job" id="job">
+        <div class="id">job0 &middot; node 17 &middot; fit: node</div>
+        <div style="margin-top:4px">tier <b>member</b></div>
+        <div class="big">$1.20</div>
+        <div class="unit">per GPU hour, stub rate</div>
+      </div>
+    </div>
+    <div class="pain" id="p6">A separate compute scenario. <span class="chip lit" style="opacity:1">Simulated</span></div>
+    </details>
+  </section>
+
+  <div class="pager"><button id="prev" type="button">&larr; Back</button><button id="next" class="nx" type="button">Next step &rarr;</button></div>
+  <footer>Source: City of Austin Issued Construction Permits (open data). Photo values from panel/pred_gemini.jsonl. Rates are stubs from sim/fleet.py.</footer>
+</main></div>
+<script>
+const $ = s => document.querySelector(s);
+
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const KIND_LABEL = {built:"built", service_upgrade:"service upgrade", sub_panel:"sub panel", solar:"solar", battery:"battery", generator:"generator", ac_changeout:"A/C change out", remodel:"remodel", addition:"addition", pool:"pool", demolition:"demolition", other:"other"};
+const NAMES = ["Lead in", "Permits read", "Fit guess", "Photo gate", "Baseline", "Fleet"];
+const ADDRESS = "8402 AVOCET DR";
+
+let house = null, pred = null, step = 0;
+const done = new Set();
+const fact = (n, big, one) => { $(`#f${n}`).textContent = big; $(`#o${n}`).textContent = one; };
+
+function renderSteps() {
+  $("#steps").innerHTML = NAMES.map((n, i) => `<button type="button" data-n="${i + 1}" class="${i + 1 < step ? "done" : i + 1 === step ? "on" : ""}">${i + 1}. ${n}</button>`).join("");
+  $("#prev").disabled = step <= 1; $("#next").disabled = step >= NAMES.length;
+}
+
+async function step1() {
+  fact(1, house.address.replace(/\b\w+/g, w => w[0] + w.slice(1).toLowerCase()), `A sample address in ZIP ${house.zip} opens its recorded permit history. Present-day conditions still need confirmation.`);
+  $("#addr").textContent = house.address;
+  const yb = house.year_built;
+  $("#addr-meta").textContent = `${house.zip} · ` + (typeof yb === "number" ? `built ${yb}` : `standing by ${yb.lower_bound} (earliest permit), build year not on file`);
+  await wait(500); $("#p1").classList.add("show");
+}
+
+async function step2() {
+  const y0 = Math.min(...house.events.map(e => new Date(e.date).getFullYear()));
+  fact(2, `${house.events.length} permits`, `City of Austin records since ${y0} tell the story of this house. A machine reads them in seconds.`);
+  const yb0 = typeof house.year_built === "number" ? house.year_built : house.year_built.lower_bound;
+  const first = Math.min(yb0, ...house.events.map(e => new Date(e.date).getFullYear()));
+  const start = first, end = 2026, span = Math.max(end - start, 1);
+  const years = [];
+  for (let y = start; y <= end; y += Math.ceil(span / 6)) years.push(y);
+  if (years[years.length - 1] !== end) years.push(end);
+  const pos = y => `${((y - start) / span) * 100}%`;
+  const seen = {};
+  const ticks = house.events.map((e, i) => {
+    const y = new Date(e.date).getFullYear();
+    const n = (seen[y] = (seen[y] || 0) + 1);
+    return `<div class="tick ${e.kind}" data-i="${i}" style="left:${pos(y)};top:${24 - Math.min(n - 1, 6) * 4}px" title="${e.date.slice(0,10)} · ${KIND_LABEL[e.kind] || e.kind} · permit ${e.permit}"></div>`;
+  }).join("");
+  $("#timeline").innerHTML = `<div class="timeline"><div class="axis"></div>${ticks}${years.map(y => `<div class="yr" style="left:${pos(y)}">${y}</div>`).join("")}</div>
+    <div class="legend"><span><i style="background:var(--ink)"></i>new construction</span><span><i style="background:var(--blue)"></i>service upgrade</span><span><i style="background:var(--accent)"></i>solar / battery / generator</span><span><i style="background:#9a9a9a"></i>other permit</span><span><i style="background:var(--gold)"></i>remodel</span><span><i style="background:#b23"></i>demolition</span></div>`;
+  $("#evlist").innerHTML = house.events.map((e, i) => `<li data-i="${i}"><b>${e.date.slice(0,4)}</b> ${KIND_LABEL[e.kind] || e.kind} · ${e.permit}</li>`).join("");
+  for (let i = 0; i < house.events.length; i++) {
+    document.querySelector(`.tick[data-i="${i}"]`).classList.add("in");
+    document.querySelector(`.evlist li[data-i="${i}"]`).classList.add("in");
+    await wait(140);
+  }
+  await wait(300); $("#p2").classList.add("show");
+}
+
+async function step3() {
+  const ask = house.guessable.filter(g => g.confidence < 0.7).length;
+  const amps = house.guessable.find(g => g.field === "main_breaker_amps");
+  fact(3, house.fit.bucket === "easy" ? "Estimated fit" : house.fit.bucket.replace("_", " "), `${amps ? amps.value + " A inferred from permit " + amps.source : "Panel rating unknown"}. ${ask} of ${house.guessable.length} fields fall below the model's review threshold. Neither the inference nor a homeowner confirmation is installation approval.`);
+  $("#fit").textContent = house.fit.bucket.replace("_", " ");
+  $("#fit-reason").textContent = house.fit.reasons.join("; ");
+  const t = $("#fit-table");
+  t.querySelectorAll("tr.row").forEach(r => r.remove());
+  house.guessable.forEach(g => {
+    const pct = Math.round(g.confidence * 100);
+    const low = g.confidence < 0.7;
+    const ask = low && (house.confirm_with_member || []).includes(g.field) ? `<span class="confirm">confirm with member</span>` : "";
+    t.insertAdjacentHTML("beforeend", `<tr class="row"><td>${g.field}</td><td>${g.value}</td><td style="color:var(--muted)">${g.source}</td><td><span class="confbar ${low ? "low" : ""}"><i data-w="${pct}"></i></span> <span style="color:var(--muted);font-size:11.5px">${pct}%</span></td><td>${ask}</td></tr>`);
+  });
+  for (const r of t.querySelectorAll("tr.row")) {
+    r.classList.add("in");
+    await wait(60);
+    const bar = r.querySelector(".confbar i"); bar.style.width = bar.dataset.w + "%";
+    await wait(320);
+  }
+  await wait(300); $("#p3").classList.add("show");
+}
+
+async function step4() {
+  fact(4, pred.photo_type === "panel_open" ? `Open panel, ${pred.brand || "brand not read"}` : pred.photo_type, "Saved output from a benchmark photo (illustration). Keep covers closed; an electrician makes the electrical assessment.");
+  const chips = [...document.querySelectorAll("#chips .chip")];
+  chips.forEach(c => c.classList.remove("lit", "pick"));
+  $("#json").innerHTML = "";
+  await wait(500);
+  for (const c of chips) { c.classList.add("lit"); await wait(220); }
+  await wait(300);
+  chips.forEach(c => { if (c.dataset.t === pred.photo_type) c.classList.add("pick"); else c.classList.remove("lit"); });
+  await wait(500);
+  const fields = ["file", "photo_type", "brand", "free_slots", "location", "confidence"];
+  const lines = ['{', ...fields.map((k, i) => `  <span class="k">"${k}"</span>: ${JSON.stringify(pred[k])}${i < fields.length - 1 ? "," : ""}`), '}'];
+  $("#json").innerHTML = lines.map(l => `<span class="json-line">${l}</span>`).join("");
+  for (const l of $("#json").querySelectorAll(".json-line")) { l.classList.add("in"); await wait(180); }
+  await wait(300); $("#p4").classList.add("show");
+}
+
+async function step5() { fact(5, "18 of 21", "The cloud model reads the photo type right at 13 s a photo. Local AI gets 16 of 21 at 129 s, with no cloud."); await wait(600); $("#p5").classList.add("show"); }
+
+async function step6() {
+  fact(6, "$1.20 assumed rate", "A scripted 48-node animation highlights one node, for illustration; it is separate from the property's public records.");
+  $("#grid").innerHTML = Array.from({length: 48}, (_, i) => `<div class="gn" data-i="${i}"></div>`).join("");
+  $("#job").classList.remove("in");
+  await wait(600);
+  document.querySelector('.gn[data-i="17"]').classList.add("busy");
+  await wait(400); $("#job").classList.add("in");
+  await wait(400); $("#p6").classList.add("show");
+}
+
+const STEPS = [step1, step2, step3, step4, step5, step6];
+
+async function show(n) {
+  if (n < 1 || n > STEPS.length) return;
+  step = n;
+  renderSteps();
+  document.querySelectorAll("main > section").forEach(x => x.classList.toggle("show", x.id === `s${n}`));
+  if (!done.has(n)) { done.add(n); await STEPS[n - 1](); }
+}
+const advance = () => show(step + 1);
+window.go = n => show(n);
+
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); advance(); }
+  else if (e.key === "ArrowLeft") { e.preventDefault(); show(step - 1); }
+});
+document.addEventListener("click", e => {
+  const b = e.target.closest("#steps button");
+  if (b) return show(+b.dataset.n);
+  if (e.target.closest("#prev")) return show(step - 1);
+  if (e.target.closest("#next")) return advance();
+  if (e.target.closest("a, details, button")) return;
+  advance();
+});
+
+async function load() {
+  // panel/pred_gemini.jsonl (private Flickr test-set photo reads) is not part of this
+  // build; without it step 4's photo readout has no data, so show the notice instead.
+  $("#notice").style.display = "block";
+}
+load();
+</script>
+</body>
+</html>

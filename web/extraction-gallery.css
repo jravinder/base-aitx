@@ -1,0 +1,52 @@
+#extraction-gallery{max-width:1000px;margin:24px 0;font:16px/1.5 var(--bf-font,sans-serif);color:var(--bf-ink);letter-spacing:0;min-width:0}
+#extraction-gallery *,#extraction-gallery *::before,#extraction-gallery *::after{box-sizing:border-box}
+#extraction-gallery [hidden]{display:none!important}
+#extraction-gallery h2{font-size:24px;line-height:1.25;margin:0 0 8px}
+#extraction-gallery h3{font-size:20px;line-height:1.3;margin:0 0 16px}
+#extraction-gallery p{margin:6px 0 12px;overflow-wrap:anywhere}
+#extraction-gallery .eg-context,#extraction-gallery .eg-field-note,#extraction-gallery .eg-model,#extraction-gallery .eg-provenance,#extraction-gallery figcaption,#extraction-gallery .eg-safety{font-size:14px;color:var(--bf-muted)}
+#extraction-gallery .eg-thumbnails{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:16px 0 24px;max-width:1000px}
+#extraction-gallery button,#extraction-gallery input{font:inherit;min-height:44px;border:1px solid var(--bf-line-strong);border-radius:4px;background:var(--bf-surface);color:var(--bf-ink);padding:9px 12px;max-width:100%}
+#extraction-gallery button{cursor:pointer;touch-action:manipulation;overflow-wrap:anywhere}
+#extraction-gallery button:disabled{opacity:.55;cursor:default}
+#extraction-gallery .eg-thumbnail{padding:6px;text-align:left;display:flex;flex-direction:column;gap:4px}
+#extraction-gallery .eg-thumbnail[aria-pressed=true]{border-color:var(--bf-brand);background:var(--bf-brand-tint);box-shadow:inset 0 0 0 1px var(--bf-brand)}
+#extraction-gallery .eg-thumbnail img{width:100%;height:80px;object-fit:contain;background:var(--bf-sunk);border-radius:2px}
+#extraction-gallery .eg-thumb-title{font-size:14px;line-height:1.35;font-weight:600}
+#extraction-gallery .eg-thumb-status{font-size:12px;color:var(--bf-muted)}
+#extraction-gallery .eg-body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+#extraction-gallery .eg-visual,#extraction-gallery .eg-panel{min-width:0}
+#extraction-gallery .eg-visual{position:sticky;top:calc(var(--sh-top,0px) + 16px);align-self:start}
+#extraction-gallery .eg-panel{overflow-wrap:anywhere}
+#extraction-gallery figure{margin:0 0 8px}
+#extraction-gallery .eg-image{width:100%;height:360px;display:block;object-fit:contain;background:var(--bf-sunk);border:1px solid var(--bf-line);border-radius:4px}
+#extraction-gallery figcaption{margin-top:6px}
+#extraction-gallery .eg-provenance{margin-top:12px}
+#extraction-gallery a{color:var(--bf-link,var(--bf-brand-strong));text-underline-offset:3px;overflow-wrap:anywhere}
+#extraction-gallery .eg-fields{display:grid;gap:12px}
+#extraction-gallery .eg-field label{display:block;font-weight:500;margin-bottom:4px}
+#extraction-gallery input{width:100%;min-width:0}
+#extraction-gallery input::placeholder{color:var(--bf-muted);opacity:1}
+#extraction-gallery .eg-note{font-size:15px;margin-top:16px}
+#extraction-gallery .eg-status{font-size:14px;font-weight:600;margin-top:12px}
+#extraction-gallery .eg-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+#extraction-gallery .eg-actions button,#extraction-gallery .eg-zoom,#extraction-gallery .eg-own-photo{font-size:14px;padding:6px 10px;min-height:44px;border-color:transparent;background:transparent}
+#extraction-gallery .eg-actions button:hover:not(:disabled),#extraction-gallery .eg-zoom:hover:not(:disabled),#extraction-gallery .eg-own-photo:hover{text-decoration:underline;text-underline-offset:3px}
+#extraction-gallery .eg-actions .eg-confirm{background:var(--bf-brand);border-color:var(--bf-brand);color:var(--bf-on-brand)}
+#extraction-gallery .eg-message:empty{display:none}
+#extraction-gallery .eg-safety{border-top:1px solid var(--bf-line);padding-top:12px;margin-top:20px}
+#extraction-gallery :focus-visible{outline:3px solid var(--bf-focus);outline-offset:3px}
+#extraction-gallery .eg-dialog{width:min(1000px,calc(100% - 32px));max-height:90dvh;padding:20px;border:1px solid var(--bf-line);border-radius:8px;background:var(--bf-surface);color:var(--bf-ink)}
+#extraction-gallery .eg-dialog::backdrop{background:rgb(0 0 0 / .65)}
+#extraction-gallery .eg-dialog img{display:block;width:100%;max-height:65dvh;object-fit:contain;margin-top:12px}
+@media(max-width:640px){
+ #extraction-gallery .eg-body{grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:12px}
+ #extraction-gallery .eg-image{height:180px}
+ #extraction-gallery .eg-panel h3{font-size:17px}
+ #extraction-gallery .eg-field label{font-size:14px}
+ #extraction-gallery .eg-field-note,#extraction-gallery .eg-provenance{font-size:12px}
+ #extraction-gallery input{padding:8px 6px}
+ #extraction-gallery .eg-thumbnails{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ #extraction-gallery .eg-thumbnail img{height:64px}
+ #extraction-gallery .eg-thumb-title{font-size:13px}
+}

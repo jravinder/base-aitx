@@ -1,0 +1,1070 @@
+{
+ "built_at": "2026-09-27T09:33",
+ "sources": "files in repo, git log, gh issue list -R jravinder/base-fleet-archive",
+ "summary": {
+  "feeds": {
+   "stale": 4,
+   "manual": 11,
+   "ok": 3
+  },
+  "pages": 38,
+  "open_gaps": [
+   {
+    "n": 117,
+    "title": "Gap: the station map needed the network"
+   },
+   {
+    "n": 116,
+    "title": "Gap: tests/ux-redesign.cjs is stale"
+   },
+   {
+    "n": 115,
+    "title": "Gap: two answer paths disagree on where an answer ran"
+   },
+   {
+    "n": 114,
+    "title": "Gap: Base staff names and in-person quotes are in tracked docs and git history"
+   },
+   {
+    "n": 113,
+    "title": "Gap: Stitch screens carry invented facts (people, addresses, feeders, telemetry)"
+   },
+   {
+    "n": 85,
+    "title": "Gap: PC power draw is 0.4 kW in sim/fleet.py but 350 W in grid/library_node.py"
+   },
+   {
+    "n": 80,
+    "title": "Gap: local AI speed not measured on a Windows-class PC (with or without GPU)"
+   },
+   {
+    "n": 57,
+    "title": "Gap: Base's install footprint is visible only in Austin; no open contractor-named permit feed in its Oncor/CenterPoint cities"
+   }
+  ],
+  "gaps_total": 23,
+  "issues_open": 18,
+  "deadline": "2026-09-27T11:00:00-05:00",
+  "hours_left": 1.4,
+  "days_left": 0
+ },
+ "signals": {
+  "built_at": "2026-09-26T22:43:38Z",
+  "fired_now": 0,
+  "latest": [],
+  "latest_total": 0,
+  "rules": [
+   {
+    "name": "base_week",
+    "threshold": "over 1.5x or under 0.5x",
+    "rule": "Base permits issued in the last 7 days vs the mean of the 4 prior weeks. Window ends on the newest issue_date in the mirror.",
+    "source": "permits (data/mirror/energy_permits.csv.gz, Socrata 3syk-w9eu)",
+    "fired_now": 0,
+    "now": {
+     "value": 25,
+     "baseline": 44.5,
+     "window": "2026-09-19 to 2026-09-25",
+     "prior_weeks": [
+      48,
+      48,
+      36,
+      46
+     ],
+     "ratio": 0.56
+    }
+   },
+   {
+    "name": "zip_surge",
+    "threshold": "over 3x, min 5 permits",
+    "rule": "A zip's backup permits (generator, battery, solar_battery) in the last 30 days vs its trailing 12-month monthly mean.",
+    "source": "permits (data/mirror/energy_permits.csv.gz, Socrata 3syk-w9eu)",
+    "fired_now": 0,
+    "now": {
+     "value": 0,
+     "window": "2026-08-27 to 2026-09-25",
+     "zips_checked": 22,
+     "unit": "zips over threshold"
+    }
+   },
+   {
+    "name": "price_spike",
+    "threshold": "over $200/MWh",
+    "rule": "LZ_AEN day-ahead or real-time settlement point price in the newest system-wide-prices snapshot.",
+    "source": "dam_prices, rt_prices (ERCOT system-wide-prices dashboard)",
+    "fired_now": 0,
+    "now": {
+     "value": 59.57,
+     "unit": "$/MWh",
+     "dam_max": {
+      "date": "2026-09-26",
+      "he": 19,
+      "price": 59.57
+     },
+     "rt_max": {
+      "ts": "2026-09-26T15:30:00-05:00",
+      "price": 36.25
+     },
+     "snapshot": "data/live/ercot/system-wide-prices/20260926T2113Z.json.gz",
+     "as_of": "2026-09-26T16:02:00-05:00"
+    }
+   },
+   {
+    "name": "low_reserves",
+    "threshold": "under 3,000 MW",
+    "rule": "Physical responsive capability in the newest daily-prc snapshot (ERCOT conservation threshold).",
+    "source": "prc (ERCOT daily-prc dashboard)",
+    "fired_now": 0,
+    "now": {
+     "value": 18450.0,
+     "unit": "MW",
+     "as_of": "2026-09-26T16:13:04-05:00",
+     "snapshot": "data/ercot/daily-prc-2026-09-26.json"
+    }
+   },
+   {
+    "name": "storm_alert",
+    "threshold": "any active alert",
+    "rule": "National Weather Service active alerts for Travis (TXC453) and Williamson (TXC491) counties.",
+    "source": "https://api.weather.gov/alerts/active?zone=TXC453,TXC491",
+    "fired_now": 0,
+    "now": {
+     "value": 0,
+     "unit": "active alerts",
+     "as_of": "2026-09-26T22:40:40+00:00",
+     "raw": "data/live/nws/20260926T2241Z.json.gz"
+    }
+   }
+  ]
+ },
+ "learning": {
+  "generated": "2026-09-27T01:18:07Z",
+  "asked": 100,
+  "answered": 88,
+  "by_path": {
+   "cache": {
+    "asked": 73,
+    "answered": 73
+   },
+   "template": {
+    "asked": 4,
+    "answered": 3
+   },
+   "kb": {
+    "asked": 4,
+    "answered": 4
+   },
+   "agent": {
+    "asked": 10,
+    "answered": 8
+   },
+   "gap": {
+    "asked": 3,
+    "answered": 0
+   },
+   "base_support": {
+    "asked": 6,
+    "answered": 0
+   }
+  },
+  "signal": {
+   "name": "unanswered_spike",
+   "unanswered_7d": 12,
+   "unanswered_prev_7d": 0,
+   "ratio": null
+  },
+  "proposals": 18,
+  "pending": 17,
+  "base_support": 5
+ },
+ "feeds": [
+  {
+   "name": "ERCOT system-wide-prices",
+   "url": "https://www.ercot.com/api/1/services/read/dashboards/system-wide-prices.json",
+   "script": "collect/ercot_feeds.sh",
+   "cadence": "hourly at :07",
+   "job": "com.basefleet.ercot",
+   "last_fetched": null,
+   "fetched_from": "data/live/collect.log",
+   "age_h": null,
+   "rows": 0,
+   "rows_label": "snapshots in data/live/ercot/system-wide-prices",
+   "last_log": null,
+   "status": "stale",
+   "note": "No snapshot yet. Collector installed today; this feed runs once a day at 12 UTC."
+  },
+  {
+   "name": "ERCOT supply-demand",
+   "url": "https://www.ercot.com/api/1/services/read/dashboards/supply-demand.json",
+   "script": "collect/ercot_feeds.sh",
+   "cadence": "hourly at :07",
+   "job": "com.basefleet.ercot",
+   "last_fetched": null,
+   "fetched_from": "data/live/collect.log",
+   "age_h": null,
+   "rows": 0,
+   "rows_label": "snapshots in data/live/ercot/supply-demand",
+   "last_log": null,
+   "status": "stale",
+   "note": "No snapshot yet. Collector installed today; this feed runs once a day at 12 UTC."
+  },
+  {
+   "name": "ERCOT fuel-mix",
+   "url": "https://www.ercot.com/api/1/services/read/dashboards/fuel-mix.json",
+   "script": "collect/ercot_feeds.sh",
+   "cadence": "hourly at :07",
+   "job": "com.basefleet.ercot",
+   "last_fetched": null,
+   "fetched_from": "data/live/collect.log",
+   "age_h": null,
+   "rows": 0,
+   "rows_label": "snapshots in data/live/ercot/fuel-mix",
+   "last_log": null,
+   "status": "stale",
+   "note": "No snapshot yet. Collector installed today; this feed runs once a day at 12 UTC."
+  },
+  {
+   "name": "ERCOT daily-prc",
+   "url": "https://www.ercot.com/api/1/services/read/dashboards/daily-prc.json",
+   "script": "collect/ercot_feeds.sh",
+   "cadence": "daily at 12 UTC",
+   "job": "com.basefleet.ercot",
+   "last_fetched": null,
+   "fetched_from": "data/live/collect.log",
+   "age_h": null,
+   "rows": 0,
+   "rows_label": "snapshots in data/live/ercot/daily-prc",
+   "last_log": null,
+   "status": "stale",
+   "note": "No snapshot yet. Collector installed today; this feed runs once a day at 12 UTC."
+  },
+  {
+   "name": "ERCOT dashboards, full set",
+   "url": "https://www.ercot.com/gridmktinfo/dashboards",
+   "script": "grid/ercot_system.js",
+   "cadence": "one pull",
+   "job": "one-time",
+   "last_fetched": "2026-09-27T01:39",
+   "fetched_from": "file mtime",
+   "age_h": 7.9,
+   "rows": 11,
+   "rows_label": "feeds in data/ercot/",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "ERCOT DAM prices, daily snapshots",
+   "url": "https://www.ercot.com/api/1/services/read/dashboards/system-wide-prices.json",
+   "script": "grid/ercot_live.js",
+   "cadence": "one pull per day",
+   "job": "one-time",
+   "last_fetched": "2026-09-27T01:39",
+   "fetched_from": "file mtime",
+   "age_h": 7.9,
+   "rows": 4,
+   "rows_label": "days in data/ercot-dam-*.json",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "ERCOT DAM archive (report 13060)",
+   "url": "https://www.ercot.com/misapp/GetReports.do?reportTypeId=13060",
+   "script": "grid/ercot_archive.py",
+   "cadence": "annual archive",
+   "job": "one-time",
+   "last_fetched": "2026-09-27T01:39",
+   "fetched_from": "file mtime",
+   "age_h": 7.9,
+   "rows": 15046,
+   "rows_label": "hours",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "ERCOT load history",
+   "url": "https://www.ercot.com/gridinfo/load/load_hist",
+   "script": "none in repo (see grid/LOAD.md)",
+   "cadence": "annual",
+   "job": "one-time",
+   "last_fetched": "2026-09-27T01:39",
+   "fetched_from": "file mtime",
+   "age_h": 7.9,
+   "rows": 23375,
+   "rows_label": "hours",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "Austin permits by zip",
+   "url": "https://data.austintexas.gov/resource/3syk-w9eu.json",
+   "script": "house/permits_by_zip.py",
+   "cadence": "daily 06:15",
+   "job": "com.basefleet.daily",
+   "last_fetched": "2026-09-27T01:39",
+   "fetched_from": "data/live/collect.log",
+   "age_h": 7.9,
+   "rows": 27,
+   "rows_label": "zips",
+   "last_log": null,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "name": "Austin permits, Base market",
+   "url": "https://data.austintexas.gov/resource/3syk-w9eu.json",
+   "script": "house/market.py",
+   "cadence": "daily 06:15",
+   "job": "com.basefleet.daily",
+   "last_fetched": "2026-09-26T12:00",
+   "fetched_from": "data/live/collect.log",
+   "age_h": 21.6,
+   "rows": 316,
+   "rows_label": "Base permits 2026",
+   "last_log": null,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "name": "ACS demographics",
+   "url": "https://api.censusreporter.org",
+   "script": "house/demographics.py",
+   "cadence": "monthly, 2nd 06:30",
+   "job": "com.basefleet.monthly",
+   "last_fetched": "2026-09-26T12:00",
+   "fetched_from": "fetched_at",
+   "age_h": 21.6,
+   "rows": 59,
+   "rows_label": "zips",
+   "last_log": null,
+   "status": "ok",
+   "note": "ACS 2024 5-year"
+  },
+  {
+   "name": "Power to Choose, utility per zip",
+   "url": "http://api.powertochoose.org/api/PowerToChoose/plans",
+   "script": "house/territory.py",
+   "cadence": "one pull",
+   "job": "one-time",
+   "last_fetched": "2026-09-26T12:00",
+   "fetched_from": "fetched",
+   "age_h": 21.6,
+   "rows": 59,
+   "rows_label": "zips",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "ZCTA boundaries",
+   "url": "https://tigerweb.geo.census.gov (2020 ZCTA layer)",
+   "script": "none in repo (see docs/STAR_AREAS.md)",
+   "cadence": "static",
+   "job": "one-time",
+   "last_fetched": "2026-09-27T01:39",
+   "fetched_from": "file mtime",
+   "age_h": 7.9,
+   "rows": 59,
+   "rows_label": "zip polygons",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "Public buildings",
+   "url": "data.austintexas.gov tc36-hn4j, 8dff-2vkt; data.texas.gov hzek-udky",
+   "script": "house/public_buildings.py",
+   "cadence": "one pull",
+   "job": "one-time",
+   "last_fetched": "2026-09-27T01:39",
+   "fetched_from": "file mtime",
+   "age_h": 7.9,
+   "rows": 72,
+   "rows_label": "sites",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "OSM substations",
+   "url": "https://overpass-api.de (OpenStreetMap, ODbL)",
+   "script": "house/feeders.py",
+   "cadence": "one pull",
+   "job": "one-time",
+   "last_fetched": "2026-09-26T12:00",
+   "fetched_from": "source field",
+   "age_h": 21.6,
+   "rows": 31,
+   "rows_label": "substations",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "Outage snapshot (Kubra)",
+   "url": "https://kubra.io/stormcenter (Austin Energy, Oncor)",
+   "script": "none in repo",
+   "cadence": "live only, no history",
+   "job": "one-time",
+   "last_fetched": "2026-09-27T01:39",
+   "fetched_from": "file mtime",
+   "age_h": 7.9,
+   "rows": 2,
+   "rows_label": "snapshots",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "Base public pages (FAQ corpus)",
+   "url": "https://basepowercompany.com",
+   "script": "manual copy (see faq/FAQ.md)",
+   "cadence": "one pull",
+   "job": "one-time",
+   "last_fetched": "2026-09-27T01:39",
+   "fetched_from": "file mtime",
+   "age_h": 7.9,
+   "rows": 4,
+   "rows_label": "pages",
+   "last_log": null,
+   "status": "manual",
+   "note": ""
+  },
+  {
+   "name": "WCAD appraisal",
+   "url": "https://search.wcad.org",
+   "script": "house/wcad.js via house/appraisal.py",
+   "cadence": "on demand, per address",
+   "job": "one-time",
+   "last_fetched": null,
+   "fetched_from": "not stored",
+   "age_h": null,
+   "rows": null,
+   "rows_label": "local only, output not stored",
+   "last_log": null,
+   "status": "manual",
+   "note": "Manual, local only. Owner names stripped."
+  }
+ ],
+ "pages": [
+  {
+   "file": "admin.html",
+   "title": "Base Fleet admin",
+   "purpose": "Feeds, pages, tracks and agents, built from files, git and gh.",
+   "purpose_from": "web/admin.html meta description",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "ask.html",
+   "title": "Ask the data | Base Fleet",
+   "purpose": "Ask the data",
+   "purpose_from": "web/ask.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "block.html",
+   "title": "Neighborhood network | Base Fleet",
+   "purpose": "The homes around a station, and how they cover each other.",
+   "purpose_from": "web/block.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": [
+    {
+     "n": 117,
+     "title": "Gap: the station map needed the network"
+    }
+   ]
+  },
+  {
+   "file": "brain.html",
+   "title": "Help | Base Fleet",
+   "purpose": "Ask anything.",
+   "purpose_from": "web/brain.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "built.html",
+   "title": "What we built | Base Fleet",
+   "purpose": "What we built",
+   "purpose_from": "web/built.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "compute-home.html",
+   "title": "Your own AI | Base Fleet",
+   "purpose": "Your own private AI, on the PC beside your battery.",
+   "purpose_from": "web/compute-home.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "copilot.html",
+   "title": "Your home AI | Base Fleet",
+   "purpose": "Your own AI, next door.",
+   "purpose_from": "web/copilot.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": [
+    {
+     "n": 115,
+     "title": "Gap: two answer paths disagree on where an answer ran"
+    }
+   ]
+  },
+  {
+   "file": "data-qa.html",
+   "title": "Questions people ask",
+   "purpose": "Questions people ask",
+   "purpose_from": "web/data-qa.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "dataflow.html",
+   "title": "Base Fleet data flow",
+   "purpose": "Where every number on this site comes from: public records in, one database in the middle, small files out to the pages.",
+   "purpose_from": "web/dataflow.html meta description",
+   "beats": [],
+   "runs": "static; free text needs local Ollama",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "demo.html",
+   "title": "Base Fleet demo flow",
+   "purpose": "What does Base learn about a home before anyone visits?",
+   "purpose_from": "web/demo.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "energy.html",
+   "title": "Energy and credits | Base Fleet",
+   "purpose": "What your battery and PC did this week.",
+   "purpose_from": "web/energy.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "explorer.html",
+   "title": "Permit explorer | Base Fleet",
+   "purpose": "Where Base is installing, month by month.",
+   "purpose_from": "web/explorer.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "gaps.html",
+   "title": "Gap ledger | Base Fleet",
+   "purpose": "Claim verification",
+   "purpose_from": "web/gaps.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "grid.html",
+   "title": "Grid, for a Base battery",
+   "purpose": "What the grid asks a Base battery to do right now.",
+   "purpose_from": "web/grid.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "house.html",
+   "title": "Homes ready | Base Fleet",
+   "purpose": "Which homes are ready for a battery?",
+   "purpose_from": "web/house.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "index.html",
+   "title": "Fleet economics - Base Fleet",
+   "purpose": "What the fleet earns: power alone vs power plus compute.",
+   "purpose_from": "web/index.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "jobs.html",
+   "title": "Job rules | Base Fleet",
+   "purpose": "Jobs by priority, reserve always protected",
+   "purpose_from": "docs/SUBMISSION.md",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "journey.html",
+   "title": "Onboarding | Base Fleet",
+   "purpose": "Onboarding moved here",
+   "purpose_from": "web/journey.html first paragraph",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "judgments.html",
+   "title": "Model judgments | Base Fleet",
+   "purpose": "Only the uncertain ones reach a person.",
+   "purpose_from": "web/judgments.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "knowledge.html",
+   "title": "Base Brain | Base Fleet",
+   "purpose": "A member types it on Help, Ask or the member page",
+   "purpose_from": "web/knowledge.html first paragraph",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "market.html",
+   "title": "Market insights | Base Fleet",
+   "purpose": "Base permits are climbing fast in Austin.",
+   "purpose_from": "web/market.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "member.html",
+   "title": "Your home energy | Base Fleet",
+   "purpose": "Your home setup is in progress",
+   "purpose_from": "web/member.html h1",
+   "beats": [],
+   "runs": "static; free text needs local Ollama",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "models.html",
+   "title": "Local models | Base Fleet",
+   "purpose": "Small model, for a quick taste",
+   "purpose_from": "web/models.html first paragraph",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "onboarding.html",
+   "title": "Onboarding | Base Fleet",
+   "purpose": "Keep doors and covers closed",
+   "purpose_from": "web/onboarding.html first paragraph",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "overview.html",
+   "title": "Compute overview | Base Fleet",
+   "purpose": "A local AI layer on the battery fleet: members get private AI, Base sells spare GPU time, the control tower keeps backup first.",
+   "purpose_from": "web/overview.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "pitch.html",
+   "title": "Base Super Local AI pitch | Base Fleet",
+   "purpose": "Ask a question. The station near you answers.",
+   "purpose_from": "web/pitch.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "placement.html",
+   "title": "Physical siting | Base Fleet",
+   "purpose": "A station could sit here.",
+   "purpose_from": "web/placement.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "plans.html",
+   "title": "Compute plans | Base Fleet",
+   "purpose": "Compute plans",
+   "purpose_from": "web/plans.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "qa.html",
+   "title": "Judge drill",
+   "purpose": "Q&A drill",
+   "purpose_from": "web/qa.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "recovery.html",
+   "title": "Install readiness | Base Fleet",
+   "purpose": "Install readiness",
+   "purpose_from": "web/recovery.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "rewards.html",
+   "title": "Rewards | Base Fleet",
+   "purpose": "Your points, and how to earn more.",
+   "purpose_from": "web/rewards.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "star.html",
+   "title": "Explorer | Base Fleet",
+   "purpose": "This page moved to the permit map",
+   "purpose_from": "web/star.html first paragraph",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "start.html",
+   "title": "Base Home | Base Fleet",
+   "purpose": "Your home, or local AI",
+   "purpose_from": "docs/SUBMISSION.md",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "status.html",
+   "title": "Application status | Base Fleet",
+   "purpose": "Points opportunity: each home detail you confirm adds +10 pts and your panel photo adds +20 pts of Base Fleet points (proposal)",
+   "purpose_from": "web/status.html first paragraph",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "story.html",
+   "title": "Base Fleet story",
+   "purpose": "Home energy and compute decisions",
+   "purpose_from": "web/story.html h1",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "tower.html",
+   "title": "Fleet operations | Base Fleet",
+   "purpose": "Jobs by priority, reserve always protected",
+   "purpose_from": "docs/SUBMISSION.md",
+   "beats": [],
+   "runs": "local only (python3 -m sim.server)",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "voice.html",
+   "title": "Base Fleet | Voice guide",
+   "purpose": "Your application, and the one thing Base needs",
+   "purpose_from": "web/voice.html first paragraph",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  },
+  {
+   "file": "wall.html",
+   "title": "Will the battery fit",
+   "purpose": "Sources: house/clearance.py rules and the modeled demo cases it prints",
+   "purpose_from": "web/wall.html first paragraph",
+   "beats": [],
+   "runs": "static",
+   "last_commit": "uncommitted",
+   "author": "uncommitted",
+   "shot": null,
+   "shots": 0,
+   "gaps": []
+  }
+ ],
+ "tracks": [
+  {
+   "name": "Most Commercializable",
+   "entry": [],
+   "evidence": [
+    {
+     "page": "market.html",
+     "label": "Base backup permits in Austin 2026 still open",
+     "value": "264 of 316",
+     "source": "data/market.json"
+    },
+    {
+     "page": "house.html",
+     "label": "Houses in the 78745 cohort scored easy fit",
+     "value": "22 of 40",
+     "source": "house/cohort.json"
+    },
+    {
+     "page": "star.html",
+     "label": "Zips checked against Power to Choose for territory",
+     "value": "59",
+     "source": "data/ptc_tdu.json"
+    }
+   ],
+   "weak_spot": "\"Demand is met\" is spoken on the factory tour only; no public source. No model reads breaker amps from a photo.",
+   "open_issues": [
+    {
+     "n": 57,
+     "title": "Gap: Base's install footprint is visible only in Austin; no open contractor-named permit feed in its Oncor/CenterPoint cities",
+     "gap": true
+    },
+    {
+     "n": 54,
+     "title": "Gap hunt: test every shipped assumption against public data",
+     "gap": false
+    },
+    {
+     "n": 40,
+     "title": "Second battery fit from permit amps",
+     "gap": false
+    }
+   ],
+   "strength": 5,
+   "strength_is": "judgment"
+  },
+  {
+   "name": "Open Grid Data",
+   "entry": [],
+   "evidence": [
+    {
+     "page": "grid.html",
+     "label": "Days of ERCOT day-ahead prices on file",
+     "value": "627",
+     "source": "web/data/grid_year.json (daily)"
+    },
+    {
+     "page": "grid.html",
+     "label": "Energy arbitrage per battery, LZ_AEN, 2025",
+     "value": "$603 a year",
+     "source": "web/data/grid_year.json"
+    },
+    {
+     "page": "grid.html",
+     "label": "ERCOT dashboard feeds on file",
+     "value": "11",
+     "source": "data/ercot/*.json"
+    }
+   ],
+   "weak_spot": "Day-ahead energy only; no RTM or ancillary prices. No open feeder id or hosting capacity from any Texas utility.",
+   "open_issues": [],
+   "strength": 4,
+   "strength_is": "judgment"
+  },
+  {
+   "name": "Orchestration",
+   "entry": [],
+   "evidence": [
+    {
+     "page": "tower.html",
+     "label": "Reserve breaches with the scheduler killed",
+     "value": "0",
+     "source": "grid/NUMBERS.md"
+    },
+    {
+     "page": "member.html",
+     "label": "Member brain on laptop gemma4, correct plus GAP",
+     "value": "18 of 20, 2.2 s median",
+     "source": "brain/LOCAL_VS_CLOUD.md"
+    },
+    {
+     "page": "member.html",
+     "label": "Same questions on the Jetson over the home network",
+     "value": "16 of 20, 3.0 s median",
+     "source": "brain/LOCAL_VS_CLOUD.md"
+    }
+   ],
+   "weak_spot": "Internet-off test not run. The tower runs locally only (sim.server), so a judge cannot open it from the static deploy.",
+   "open_issues": [
+    {
+     "n": 31,
+     "title": "Local small business on local AI: the business tier is a product",
+     "gap": false
+    }
+   ],
+   "strength": 3,
+   "strength_is": "judgment"
+  }
+ ],
+ "agents": [],
+ "issue_authors": {
+  "jravinder": 75
+ },
+ "commits_total": 0
+}

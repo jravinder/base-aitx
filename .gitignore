@@ -1,0 +1,15 @@
+out/
+__pycache__/
+node_modules/
+.next/
+.venv/
+panel/photos/
+panel/flickr/
+house/local/
+.vercel
+data/live/
+admin/.gh_issues.json
+data/fleet.db
+*.store.json
+
+docs/evidence/

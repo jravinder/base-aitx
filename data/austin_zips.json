@@ -1,0 +1,348 @@
+{
+ "source": "Austin permits, Undervolt pipeline extract (Dec 2025), 49 zips",
+ "rows": [
+  {
+   "zip": "78660",
+   "permits": 2632,
+   "electrical_share": 4.41,
+   "new_share": 55.89,
+   "cluster": "Electrical & Roofing Work"
+  },
+  {
+   "zip": "78664",
+   "permits": 2209,
+   "electrical_share": 3.58,
+   "new_share": 54.32,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78634",
+   "permits": 1888,
+   "electrical_share": 2.38,
+   "new_share": 53.5,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78744",
+   "permits": 1827,
+   "electrical_share": 1.15,
+   "new_share": 35.3,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78724",
+   "permits": 1690,
+   "electrical_share": 2.25,
+   "new_share": 34.02,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78758",
+   "permits": 1477,
+   "electrical_share": 2.64,
+   "new_share": 20.92,
+   "cluster": "Window Installations & Multi-Trade Remodels"
+  },
+  {
+   "zip": "78704",
+   "permits": 1332,
+   "electrical_share": 1.2,
+   "new_share": 36.26,
+   "cluster": "Electrical & Roofing Work"
+  },
+  {
+   "zip": "78752",
+   "permits": 1235,
+   "electrical_share": 1.05,
+   "new_share": 21.13,
+   "cluster": "HVAC Installations"
+  },
+  {
+   "zip": "78754",
+   "permits": 1176,
+   "electrical_share": 2.89,
+   "new_share": 23.3,
+   "cluster": "HVAC Installations"
+  },
+  {
+   "zip": "78757",
+   "permits": 1135,
+   "electrical_share": 0.97,
+   "new_share": 18.24,
+   "cluster": "HVAC Installations"
+  },
+  {
+   "zip": "78728",
+   "permits": 1079,
+   "electrical_share": 5.1,
+   "new_share": 33.64,
+   "cluster": "Electrical & Roofing Work"
+  },
+  {
+   "zip": "78748",
+   "permits": 980,
+   "electrical_share": 2.86,
+   "new_share": 32.86,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78751",
+   "permits": 930,
+   "electrical_share": 0.86,
+   "new_share": 19.03,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78745",
+   "permits": 888,
+   "electrical_share": 3.6,
+   "new_share": 35.14,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78681",
+   "permits": 761,
+   "electrical_share": 3.55,
+   "new_share": 36.66,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78729",
+   "permits": 737,
+   "electrical_share": 2.17,
+   "new_share": 69.47,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78727",
+   "permits": 733,
+   "electrical_share": 0.82,
+   "new_share": 7.5,
+   "cluster": "HVAC Installations"
+  },
+  {
+   "zip": "78746",
+   "permits": 719,
+   "electrical_share": 3.06,
+   "new_share": 37.0,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78610",
+   "permits": 708,
+   "electrical_share": 4.8,
+   "new_share": 22.18,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78747",
+   "permits": 661,
+   "electrical_share": 3.48,
+   "new_share": 27.23,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78759",
+   "permits": 650,
+   "electrical_share": 4.15,
+   "new_share": 42.62,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78702",
+   "permits": 636,
+   "electrical_share": 3.77,
+   "new_share": 38.05,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78617",
+   "permits": 636,
+   "electrical_share": 4.56,
+   "new_share": 46.23,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78653",
+   "permits": 633,
+   "electrical_share": 3.48,
+   "new_share": 46.6,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78750",
+   "permits": 626,
+   "electrical_share": 1.44,
+   "new_share": 54.15,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78613",
+   "permits": 608,
+   "electrical_share": 1.64,
+   "new_share": 30.76,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78753",
+   "permits": 587,
+   "electrical_share": 6.13,
+   "new_share": 17.72,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78731",
+   "permits": 584,
+   "electrical_share": 0.68,
+   "new_share": 54.11,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78723",
+   "permits": 568,
+   "electrical_share": 1.41,
+   "new_share": 31.87,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78734",
+   "permits": 532,
+   "electrical_share": 3.01,
+   "new_share": 25.94,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78721",
+   "permits": 528,
+   "electrical_share": 1.7,
+   "new_share": 27.08,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78741",
+   "permits": 426,
+   "electrical_share": 7.51,
+   "new_share": 30.75,
+   "cluster": "Electrical & Roofing Work"
+  },
+  {
+   "zip": "78703",
+   "permits": 404,
+   "electrical_share": 2.23,
+   "new_share": 39.11,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78749",
+   "permits": 311,
+   "electrical_share": 2.25,
+   "new_share": 25.72,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78736",
+   "permits": 290,
+   "electrical_share": 5.52,
+   "new_share": 15.86,
+   "cluster": "HVAC Installations"
+  },
+  {
+   "zip": "78701",
+   "permits": 241,
+   "electrical_share": 5.39,
+   "new_share": 20.75,
+   "cluster": "Electrical & Roofing Work"
+  },
+  {
+   "zip": "78756",
+   "permits": 232,
+   "electrical_share": 0.86,
+   "new_share": 46.98,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78739",
+   "permits": 211,
+   "electrical_share": 1.42,
+   "new_share": 22.27,
+   "cluster": "Foundation Repairs"
+  },
+  {
+   "zip": "78737",
+   "permits": 201,
+   "electrical_share": 7.46,
+   "new_share": 51.24,
+   "cluster": "Electrical & Roofing Work"
+  },
+  {
+   "zip": "78738",
+   "permits": 183,
+   "electrical_share": 3.28,
+   "new_share": 50.27,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78735",
+   "permits": 167,
+   "electrical_share": 6.59,
+   "new_share": 29.94,
+   "cluster": "Electrical & Roofing Work"
+  },
+  {
+   "zip": "78726",
+   "permits": 154,
+   "electrical_share": 2.6,
+   "new_share": 27.27,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78732",
+   "permits": 151,
+   "electrical_share": 3.97,
+   "new_share": 63.58,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78705",
+   "permits": 146,
+   "electrical_share": 2.74,
+   "new_share": 21.92,
+   "cluster": "Electrical & Roofing Work"
+  },
+  {
+   "zip": "78730",
+   "permits": 142,
+   "electrical_share": 1.41,
+   "new_share": 35.92,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78722",
+   "permits": 133,
+   "electrical_share": 2.26,
+   "new_share": 45.86,
+   "cluster": "New Residential Construction"
+  },
+  {
+   "zip": "78725",
+   "permits": 129,
+   "electrical_share": 3.88,
+   "new_share": 51.16,
+   "cluster": "General Construction & Repairs"
+  },
+  {
+   "zip": "78733",
+   "permits": 50,
+   "electrical_share": 6.0,
+   "new_share": 26.0,
+   "cluster": "Electrical & Roofing Work"
+  },
+  {
+   "zip": "78742",
+   "permits": 28,
+   "electrical_share": 7.14,
+   "new_share": 7.14,
+   "cluster": "Electrical & Roofing Work"
+  }
+ ]
+}

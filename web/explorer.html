@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Permit explorer | Base Fleet</title>
+<script src="assets/stitch/tailwind-forms.js"></script>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script id="tailwind-config">
+    if (window.tailwind) tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed": "#bbefc1",
+            "surface-tint": "#396844",
+            "on-secondary-container": "#506e08",
+            "on-tertiary-fixed-variant": "#005323",
+            "surface-muted": "#F8FAFC",
+            "on-primary-fixed-variant": "#21502e",
+            "surface-container-highest": "#d8e3fb",
+            "surface-subtle": "#F1F5F9",
+            "on-background": "#111c2d",
+            "tertiary-fixed-dim": "#79db8d",
+            "evergreen-deep": "#004A31",
+            "surface-container": "#e7eeff",
+            "wire-border": "#E2E8F0",
+            "primary-container": "#1e4d2b",
+            "on-surface": "#111c2d",
+            "on-tertiary-fixed": "#00210a",
+            "secondary-fixed": "#cbf080",
+            "primary": "#023616",
+            "primary-fixed-dim": "#a0d3a6",
+            "solar-green": "#22C55E",
+            "on-secondary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "outline": "#717970",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#374e00",
+            "on-surface-variant": "#414941",
+            "surface": "#f9f9ff",
+            "on-secondary-fixed": "#141f00",
+            "surface-container-high": "#dee8ff",
+            "surface-container-low": "#f0f3ff",
+            "ink-primary": "#0F172A",
+            "inverse-primary": "#a0d3a6",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#95f8a7",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed-dim": "#afd367",
+            "outline-variant": "#c1c9be",
+            "background": "#f9f9ff",
+            "energy-lime": "#84CC16",
+            "on-primary-fixed": "#00210b",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "secondary": "#4a6700",
+            "warning-amber": "#F59E0B",
+            "surface-dim": "#cfdaf2",
+            "inverse-surface": "#263143",
+            "secondary-container": "#cbf080",
+            "on-tertiary-container": "#63c479",
+            "surface-variant": "#d8e3fb",
+            "on-primary-container": "#8bbd92",
+            "tertiary": "#003614",
+            "surface-bright": "#f9f9ff",
+            "inverse-on-surface": "#ecf1ff",
+            "critical-red": "#EF4444",
+            "tertiary-container": "#004f21",
+            "on-error": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin": "2rem",
+            "gutter-lg": "2rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "margin-xl": "3rem",
+            "space-xl": "2rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "display-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "telemetry-unit": ["Plus Jakarta Sans"],
+            "telemetry-metric": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<link rel="stylesheet" href="assets/leaflet/leaflet.css">
+<link rel="stylesheet" href="shell.css">
+<script defer src="shell.js"></script>
+<style>
+  :root { --base:#1e4d2b; --storm:#2f6db0; --gap:#c07a12; --market:#3a3f46; --ghost:#94a3b8; --tile-filter:grayscale(1) brightness(1.1) contrast(.8); --tile-op:.45 }
+  body { font-family:'Plus Jakarta Sans', system-ui, sans-serif }
+  .material-symbols-outlined { font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; font-size:20px; line-height:1; display:inline-block; vertical-align:middle }
+  input[type=range] { -webkit-appearance:none; appearance:none; background:transparent; height:24px }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; height:18px; width:18px; border-radius:50%; background:#1e4d2b; cursor:pointer; border:2px solid #fff; box-shadow:0 1px 3px rgba(0,0,0,.25); margin-top:-6px }
+  input[type=range]::-webkit-slider-runnable-track { height:6px; background:#E2E8F0; border-radius:9999px }
+  input[type=range]::-moz-range-thumb { height:14px; width:14px; border-radius:50%; background:#1e4d2b; border:2px solid #fff }
+  input[type=range]::-moz-range-track { height:6px; background:#E2E8F0; border-radius:9999px }
+  .leaflet-container { font:inherit; background:#F4F7F9 }
+  .leaflet-tile-pane { filter:var(--tile-filter); opacity:var(--tile-op) }
+  .leaflet-control-attribution { font-size:10px !important }
+  .zb { background:none; border:0 }
+  .zb span { display:flex; align-items:center; justify-content:center; transform:translate(-50%,-50%); border-radius:999px; background:#1e4d2b; color:#fff; border:2px solid #fff; font:700 11px/1 'Plus Jakarta Sans', sans-serif; box-shadow:0 0 0 8px rgba(16,185,129,.18), 0 2px 4px rgba(0,0,0,.2) }
+  #chips button[aria-pressed="true"] { background:#1e4d2b; color:#fff; border-color:#1e4d2b }
+  #chips button[aria-pressed="true"] .ic { display:inline-block }
+  .ic::before { content:"check_circle" }
+  #stamp small { display:block; font:400 12px/18px 'Plus Jakarta Sans', sans-serif; color:#414941; margin-top:2px }
+  #timebar[hidden] { display:none !important }
+  summary { list-style:none; cursor:pointer } summary::-webkit-details-marker { display:none }
+  details[open] summary .chev { transform:rotate(180deg) }
+  details[open] summary .xl { display:none } details:not([open]) summary .cl { display:none }
+  #cats td, #installers td { padding:6px 0; border-bottom:1px solid #E2E8F0; font-size:13px }
+  #cats td.v, #installers td.v { text-align:right; font-variant-numeric:tabular-nums; font-weight:600 }
+  #cats td i, #installers td i { width:9px; height:9px; border-radius:50%; display:inline-block; margin-right:7px }
+  tr.b td { color:#1e4d2b }
+  #chart { width:100%; height:180px; display:block }
+  button:focus-visible, summary:focus-visible, a:focus-visible, input:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
+  .admin-path [aria-current] { color:#023616; border-color:#023616; font-weight:700 }
+</style>
+</head>
+<body class="bg-surface-muted text-ink-primary font-body-md antialiased min-h-screen">
+<main class="flex-1 max-w-[1536px] w-full mx-auto px-4 sm:px-margin py-8 space-y-6">
+  <section class="space-y-2">
+    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-subtle border border-wire-border text-label-caps font-label-caps text-on-surface-variant tracking-wider uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>Permit map · City of Austin open data
+    </div>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div class="min-w-0">
+        <h1 id="h" class="text-display-sm font-display-sm text-ink-primary tracking-tight">Where Base is installing, month by month.</h1>
+        <p id="q" class="text-body-md font-body-md text-on-surface-variant mt-0.5">Base permits by month</p>
+      </div>
+      <a id="story-next" href="grid.html" class="shrink-0 inline-flex items-center justify-center gap-2 min-h-[44px] px-4 rounded-lg bg-primary-container text-white text-label-md font-label-md font-semibold hover:bg-evergreen-deep shadow-sm no-underline"><span>Next: what the grid asks</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+    </div>
+    <nav class="admin-path flex flex-wrap gap-x-6 text-label-md font-label-md text-on-surface-variant" aria-label="Market workflow"><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="market.html">Priorities</a><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="explorer.html" aria-current="page">Permit map</a><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="house.html">Homes ready</a></nav>
+  </section>
+  <div class="px-3 py-2 rounded-lg border border-warning-amber bg-amber-50 text-amber-800 text-body-sm font-semibold" id="banner" hidden></div>
+  <section id="chips" aria-label="Questions" role="group" class="flex flex-wrap items-center gap-2 pt-1 pb-1"></section>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+    <section class="lg:col-span-8 bg-surface-container-lowest border border-wire-border rounded-xl p-4 sm:p-5 shadow-sm space-y-4 min-w-0">
+      <div class="relative w-full h-[420px] sm:h-[520px] bg-[#F4F7F9] rounded-lg border border-wire-border overflow-hidden select-none">
+        <div id="map" class="absolute inset-0 z-0" role="region" aria-label="Permit map"></div>
+        <div id="stamp" aria-live="polite" class="absolute top-4 left-4 z-[500] pointer-events-none bg-surface-container-lowest/95 backdrop-blur-sm border border-wire-border px-4 py-3 rounded-lg shadow-sm text-headline-md font-headline-md text-ink-primary leading-tight font-bold max-w-[calc(100%-2rem)]"></div>
+        <div class="absolute bottom-6 right-4 z-[500] bg-surface-container-lowest/95 backdrop-blur-sm border border-wire-border px-3.5 py-2.5 rounded-lg shadow-sm flex flex-wrap items-center gap-x-4 gap-y-1" id="mlegend"></div>
+      </div>
+      <div class="pt-2 px-1 flex flex-col md:flex-row items-center gap-4" id="timebar">
+        <button id="play" type="button" class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-surface-subtle border border-wire-border hover:bg-wire-border/60 text-ink-primary font-label-md text-label-md transition-colors duration-150 shrink-0"><span class="material-symbols-outlined text-primary-container" style="font-variation-settings:'FILL' 1" id="playic">play_arrow</span><span id="playlbl">Play timeline</span></button>
+        <div class="flex-1 w-full space-y-1.5">
+          <input class="w-full cursor-pointer" id="slider" type="range" aria-label="Month">
+          <div class="flex justify-between text-label-caps font-label-caps text-on-surface-variant px-1 select-none" id="ticks"></div>
+        </div>
+      </div>
+    </section>
+    <aside class="lg:col-span-4 min-w-0">
+      <div id="card" aria-live="polite" class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm"><div class="text-body-md text-on-surface-variant">Loading permits...</div></div>
+      <div id="topzips" class="mt-gutter bg-primary-container text-white rounded-xl p-6 shadow-sm relative overflow-hidden" hidden></div>
+    </aside>
+  </div>
+
+  <details id="details" class="bg-surface-container-lowest border border-wire-border rounded-xl overflow-hidden shadow-sm">
+    <summary class="w-full px-5 py-4 min-h-[44px] flex items-center justify-between gap-3 hover:bg-surface-subtle/70 transition-colors duration-150">
+      <div class="flex items-center space-x-3"><span class="material-symbols-outlined text-on-surface-variant">query_stats</span><span class="text-body-md font-label-md text-ink-primary">Category counts, installers, monthly chart, source queries</span></div>
+      <div class="inline-flex items-center gap-1 text-body-sm font-label-md text-on-surface-variant shrink-0"><span class="xl">Expand details</span><span class="cl">Close details</span><span class="chev material-symbols-outlined transition-transform">keyboard_arrow_down</span></div>
+    </summary>
+    <div class="grid gap-6 px-5 pb-6 pt-4 border-t border-wire-border" style="grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))">
+      <div class="min-w-0"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">Permits by category, 2015 to now</h3><table class="w-full border-collapse" id="cats"></table></div>
+      <div class="min-w-0"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">Top installers, all categories</h3><table class="w-full border-collapse" id="installers"></table></div>
+      <div class="min-w-0" style="grid-column:1/-1"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">Permits per month, stacked by category</h3><canvas id="chart" role="img" aria-label="Monthly permits chart"></canvas></div>
+      <div class="min-w-0" style="grid-column:1/-1"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">Source queries (replay on data.austintexas.gov)</h3><ul class="list-disc pl-5 text-body-sm space-y-1 break-words [&_a]:text-primary [&_a]:underline" id="queries"></ul><p class="text-body-sm text-outline mt-2" id="note"></p></div>
+    </div>
+  </details>
+</main>
+<footer class="bg-surface-container-lowest border-t border-wire-border mt-8">
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-margin py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-body-sm font-body-sm text-on-surface-variant">
+    <div><span class="font-label-md text-ink-primary">Base Fleet</span> · Permit map · City of Austin</div>
+    <div>Sources: City of Austin issued construction permits (open data).</div>
+  </div>
+</footer>
+
+<script src="assets/leaflet/leaflet.js"></script>
+<script>
+(() => {
+"use strict";
+const SODA = "https://data.austintexas.gov/resource/3syk-w9eu.json";
+const CAT = {
+  battery: {label: "Battery", color: "#2f78b7"}, solar: {label: "Solar", color: "#d99a2b"},
+  solar_battery: {label: "Solar + battery", color: "#7654b0"}, generator: {label: "Generator", color: "#6b5847"},
+  panel_upgrade: {label: "Panel upgrade", color: "#3f8f86"}, ev_charger: {label: "EV charger", color: "#c8558a"},
+  other_electrical: {label: "Other electrical", color: "#8a8f96"}
+};
+// SoQL text rules that approximate the category classifier, for the replay links.
+const LIKE = w => `upper(description) like '%${w}%'`;
+const ANY = ws => "(" + ws.map(LIKE).join(" OR ") + ")";
+const BAT = ANY(["BATTER", "ENERGY STORAGE", "POWERWALL"]), SOL = ANY(["SOLAR", "PHOTOVOLTAIC", " PV "]);
+const SOQL = {
+  battery: `(${BAT} AND NOT ${SOL})`, solar: `(${SOL} AND NOT ${BAT})`, solar_battery: `(${BAT} AND ${SOL})`,
+  generator: LIKE("GENERATOR"), panel_upgrade: ANY(["SERVICE UPGRADE", "PANEL UPGRADE", "MAIN PANEL"]),
+  ev_charger: ANY(["EV CHARG", "ELECTRIC VEHICLE", "CAR CHARG"]), other_electrical: "permit_type_desc='Electrical Permit'"
+};
+const BASE_SOQL = "contractor_company_name='Base Power' AND issue_date >= '2026-01-01'";
+const soda = (select, where, group) => SODA + "?" + new URLSearchParams({"$select": select, "$where": where, "$group": group, "$order": group, "$limit": "500"});
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString("en-US");
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const mlabel = ym => `${MON[+ym.slice(5) - 1]} ${ym.slice(0, 4)}`;
+
+async function load(path) {
+  const real = await fetch(path).then(r => r.ok ? r.json() : null).catch(() => null);
+  if (real) return {data: real, fixture: !!(real._meta && real._meta.fixture)};
+  const fx = await fetch(path.replace(".json", ".fixture.json")).then(r => r.ok ? r.json() : null).catch(() => null);
+  return fx ? {data: fx, fixture: true} : null;
+}
+
+Promise.all([load("data/explorer_points.json"), load("data/explorer_zip.json"),
+  fetch("../data/zcta.geojson").then(r => r.json()), fetch("../data/storms.json").then(r => r.ok ? r.json() : null).catch(() => null)])
+  .then(([P, Z, zcta, S]) => { if (!P) throw new Error("no explorer_points.json and no fixture"); start(P, Z, zcta, S); })
+  .catch(e => { $("card").innerHTML = `<p class="text-body-md text-error">Could not load data: ${e.message}. Serve from the repo root.</p>`; });
+
+function start(P, Z, zcta, S) {
+  const D = P.data, meta = D._meta || {}, cats = D.categories, months = D.months, pts = D.points;
+  const byZip = Z ? Z.data.by_zip : {}, byMonth = Z ? Z.data.by_month : null;
+  const nM = months.length, mi = ym => months.indexOf(ym);
+  const fixtureParts = [P.fixture && "points", Z && Z.fixture && "zip totals"].filter(Boolean);
+  if (fixtureParts.length) { $("banner").hidden = false; $("banner").textContent = `Fixture data: the ${fixtureParts.join(" and ")} on this page are layout samples.`; }
+
+  // Facts for the cards.
+  const baseIdx = pts.map((p, i) => p[4] ? i : -1).filter(i => i >= 0);
+  const zipRows = Object.entries(byZip);
+  const baseTotal = zipRows.reduce((s, [, r]) => s + (r.base || 0), 0);
+  const topBase = zipRows.sort((a, b) => (b[1].base || 0) - (a[1].base || 0))[0] || ["n/a", {base: 0}];
+  const BACKUP = ["generator", "battery", "solar_battery"].map(c => cats.indexOf(c)).filter(i => i >= 0);
+  const gapZips = zipRows.map(([z, r]) => {
+    const sol = (r.solar || 0) + (r.solar_battery || 0), bat = (r.battery || 0) + (r.solar_battery || 0);
+    return {z, sol, bat, share: sol ? bat / sol : 1};
+  }).filter(g => g.sol >= 100 && g.share < 0.10).sort((a, b) => b.sol - a.sol);
+  const gapSet = new Map(gapZips.map(g => [g.z, g]));
+  const allTotal = meta.rows || zipRows.reduce((s, [, r]) => s + Object.entries(r).filter(([k]) => k !== "households" && k !== "base").reduce((a, [, v]) => a + v, 0), 0);
+  const peak = S && S.storms.slice().sort((a, b) => b.peak_count - a.peak_count)[0];
+
+  // Map with one canvas layer; each view decides what to draw.
+  const map = L.map("map", {zoomControl: false, attributionControl: true}).setView([30.31, -97.74], $("map").clientWidth < 600 ? 10 : 11);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, attribution: "&copy; OpenStreetMap contributors"}).addTo(map);
+  L.control.zoom({position: "topright"}).addTo(map);
+  const Dots = L.Layer.extend({
+    onAdd(m) { this._c = L.DomUtil.create("canvas", "leaflet-zoom-hide"); m.getPanes().overlayPane.appendChild(this._c); m.on("moveend zoomend resize", this.draw, this); this.draw(); },
+    onRemove(m) { this._c.remove(); m.off("moveend zoomend resize", this.draw, this); },
+    draw() {
+      const m = this._map; if (!m) return;
+      const s = m.getSize(), c = this._c, dpr = window.devicePixelRatio || 1;
+      L.DomUtil.setPosition(c, m.containerPointToLayerPoint([0, 0]));
+      c.width = s.x * dpr; c.height = s.y * dpr; c.style.width = s.x + "px"; c.style.height = s.y + "px";
+      const g = c.getContext("2d"); g.scale(dpr, dpr);
+      const z = m.getZoom(), b = m.getBounds().pad(0.05);
+      const vis = p => p[0] >= b.getSouth() && p[0] <= b.getNorth() && p[1] >= b.getWest() && p[1] <= b.getEast();
+      const dot = (p, r) => { const q = m.latLngToContainerPoint([p[0], p[1]]); g.beginPath(); g.arc(q.x, q.y, r, 0, 6.2832); g.fill(); };
+      VIEW[state.q].paint(g, dot, vis, Math.max(0.7, (z - 10) * 0.6));
+    }
+  });
+  const ghost = (g, dot, vis, r, skip) => {
+    g.fillStyle = css("--ghost"); g.globalAlpha = 0.28; r = Math.max(1.1, r);
+    for (const p of pts) if (!(skip && skip(p)) && vis(p)) dot(p, r);
+    g.globalAlpha = 1;
+  };
+  const zipLayer = L.geoJSON(zcta, {
+    style: f => { const gz = gapSet.get(f.properties.zip);
+      return gz ? {fillColor: css("--gap"), fillOpacity: 0.55, color: css("--gap"), weight: 2} : {fillOpacity: 0, color: css("--ghost"), weight: 0.6, opacity: 0.5}; },
+    onEachFeature: (f, l) => l.bindTooltip(() => { const r = byZip[f.properties.zip]; if (!r) return `${f.properties.zip}: 0 permits`;
+      const sol = r.solar + r.solar_battery, bat = r.battery + r.solar_battery; return `${f.properties.zip}: ${fmt(sol)} solar, ${fmt(bat)} battery permits`; }, {sticky: true})
+  });
+
+  const VIEW = {
+    base: {
+      h: "Where Base is installing, month by month.", get q() { return `${fmt(baseIdx.length)} Base permits on the map this year, most in ${topBase[0]}. Press Play to watch them spread.`; }, chip: "Base permits", accent: "--base",
+      range: [mi("2026-07"), mi("2026-09")], speed: 900, def: mi("2026-09"),
+      paint(g, dot, vis, r) {
+        ghost(g, dot, vis, r * 0.8, p => p[4]);
+        const cur = state.m;
+        for (const i of baseIdx) { const p = pts[i]; if (p[3] > cur || !vis(p)) continue;
+          const fresh = p[3] === cur && state.playing, big = map.getZoom() < 11 ? 0.6 : 1;
+          g.fillStyle = "#ffffff"; dot(p, (fresh ? 7 : 5.5) * big + 1.5);
+          g.fillStyle = css("--base"); dot(p, (fresh ? 7 : 5.5) * big); }
+      },
+      stamp() { const n = baseIdx.filter(i => pts[i][3] <= state.m).length; return `${mlabel(months[state.m])}<small>${fmt(n)} Base permits so far</small>`; },
+      card: () => ({n: fmt(baseIdx.length), what: "Base permits with a map location, 2026",
+        says: `Top zip: ${topBase[0]}, ${fmt(topBase[1].base || 0)} of ${fmt(baseTotal)} Base permits.`,
+        src: soda("original_zip, count(*) as n", BASE_SOQL, "original_zip")})
+    },
+    storms: {
+      h: "Where did storms push people to backup?", q: "Backup permits after storms", chip: "Post-storm backup", accent: "--storm",
+      range: [mi("2020-01"), mi("2023-12")], speed: 160, def: mi("2023-12"),
+      paint(g, dot, vis, r) {
+        ghost(g, dot, vis, r * 0.8, p => BACKUP.includes(p[2]) && !p[4]);
+        const lo = mi("2020-01"), cur = state.m; g.fillStyle = css("--storm");
+        for (const p of pts) { if (p[4] || !BACKUP.includes(p[2]) || p[3] < lo || p[3] > cur || !vis(p)) continue;
+          const now = p[3] === cur; g.globalAlpha = now ? 1 : 0.35; dot(p, now ? 5 : 2.6); }
+        g.globalAlpha = 1;
+      },
+      stamp() { let n = 0; for (const p of pts) if (p[3] === state.m && !p[4] && BACKUP.includes(p[2])) n++;
+        const st = S && S.storms.find(s => s.month === months[state.m]);
+        return `${mlabel(months[state.m])}<small>${fmt(n)} backup permits this month${st ? ", " + st.name : ""}</small>`; },
+      card: () => peak ? ({n: `${Math.round(peak.peak_multiple)}x`, what: `Backup permits, ${mlabel(peak.peak_month)} vs 2020`,
+        says: `Uri (Feb 2021) started it. Ice storm: ${S.storms[1] ? S.storms[1].peak_count : "a new high"} in Mar 2023.`,
+        src: soda("date_trunc_ym(issue_date) as month, count(*) as n", `issue_date >= '2020-01-01' AND issue_date < '2024-01-01' AND (${LIKE("GENERATOR")} OR ${BAT})`, "month")})
+        : ({n: "n/a", what: "data/storms.json did not load", says: "", src: SODA})
+    },
+    solar: {
+      h: "Where is solar but few batteries?", q: "Solar permits with low battery coverage", chip: "Solar / battery gaps", accent: "--gap",
+      range: null,
+      paint(g, dot, vis, r) { ghost(g, dot, vis, r * 0.8); },
+      stamp: () => `2015 to now<small>Zips with 100+ solar permits, battery under 10%</small>`,
+      card: () => { const t = gapZips[0] || {z: "n/a", sol: 0, bat: 0};
+        return {n: String(gapZips.length), what: "Zips with lots of solar, few batteries",
+          says: `Top: ${t.z}, ${fmt(t.sol)} solar, ${fmt(t.bat)} battery.`,
+          src: soda("original_zip, count(*) as n", `issue_date >= '2015-01-01' AND ${SOL}`, "original_zip")}; }
+    },
+    market: {
+      h: "How big is the energy permit market?", q: "All recorded energy permits", chip: "All energy permits", accent: "--market",
+      range: null,
+      paint(g, dot, vis, r) { g.fillStyle = css("--market"); g.globalAlpha = 0.4; r = Math.max(1.3, r); for (const p of pts) if (vis(p)) dot(p, r); g.globalAlpha = 1; },
+      stamp: () => `2015 to now<small>Every energy permit with a location</small>`,
+      card: () => { const sol = zipRows.reduce((s, [, r]) => s + (r.solar || 0), 0);
+        return {n: fmt(allTotal), what: "Energy permits in Austin since 2015",
+          says: `Solar is ${Math.round(sol / allTotal * 100)}%. Base: ${fmt(baseTotal)}, all 2026.`,
+          src: meta.soda_url || SODA}; }
+    }
+  };
+
+  const state = {q: "base", m: VIEW.base.def, playing: false};
+  const dots = new Dots().addTo(map);
+  let timer = null;
+  const chips = $("chips");
+  for (const [k, v] of Object.entries(VIEW)) {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.q = k;
+    b.className = "inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-surface-container-lowest border border-wire-border text-on-surface-variant hover:text-ink-primary hover:border-outline-variant hover:bg-surface-subtle transition-all duration-150 font-label-md text-label-md";
+    b.innerHTML = `<span class="ic hidden material-symbols-outlined text-solar-green" aria-hidden="true" style="font-variation-settings:'FILL' 1;font-size:16px"></span><span>${v.chip}</span>`;
+    b.addEventListener("click", () => show(k)); chips.append(b);
+  }
+  const slider = $("slider");
+  slider.addEventListener("input", () => { stop(); state.m = +slider.value; frame(); });
+  function stop() { if (timer) clearInterval(timer); timer = null; state.playing = false; $("playlbl").textContent = "Play timeline"; $("playic").textContent = "play_arrow"; }
+  $("play").addEventListener("click", () => {
+    const v = VIEW[state.q]; if (!v.range) return;
+    if (timer) { stop(); frame(); return; }
+    state.playing = true; $("playlbl").textContent = "Pause"; $("playic").textContent = "pause";
+    state.m = v.range[0]; frame();
+    timer = setInterval(() => { if (state.m >= v.range[1]) { stop(); frame(); return; } state.m++; frame(); }, v.speed);
+  });
+  // Base permit counts by zip, drawn as Stitch-style bubbles at the zip centre (totals, so only at the last month).
+  const centre = {}; zipLayer.eachLayer(l => { centre[l.feature.properties.zip] = l.getBounds().getCenter(); });
+  const bubbles = L.layerGroup().addTo(map);
+  function drawBubbles() {
+    bubbles.clearLayers();
+    const v = VIEW[state.q]; if (state.q !== "base" || state.playing || state.m !== v.range[1]) return;
+    zipRows.filter(([z, r]) => r.base >= 10 && centre[z]).forEach(([z, r]) => {
+      const d = r.base >= 40 ? 40 : r.base >= 25 ? 36 : 30;
+      L.marker(centre[z], {interactive: true, keyboard: false, icon: L.divIcon({className: "zb", html: `<span style="width:${d}px;height:${d}px">${r.base}</span>`, iconSize: [0, 0]})})
+        .bindTooltip(`${z}: ${r.base} Base permits`).addTo(bubbles);
+    });
+  }
+  function frame() { slider.value = state.m; $("stamp").innerHTML = VIEW[state.q].stamp(); dots.draw(); drawBubbles(); }
+  function show(k) {
+    stop(); state.q = k; const v = VIEW[k];
+    $("q").textContent = v.q; $("h").textContent = v.h;
+    for (const b of chips.children) b.setAttribute("aria-pressed", b.dataset.q === k);
+    $("timebar").hidden = !v.range;
+    if (v.range) { const ms = months.slice(v.range[0], v.range[1] + 1), yrs = ms.length > 12;
+      $("ticks").innerHTML = (yrs ? ms.filter(m => m.endsWith("-01")).map(m => m.slice(0, 4)) : ms.map(m => MON[+m.slice(5) - 1])).map(t => `<span>${t}</span>`).join(""); }
+    const dot = (c, l, big) => `<div class="flex items-center space-x-2"><span class="${big ? "w-3 h-3" : "w-2.5 h-2.5"} rounded-full border border-white shadow-sm" style="background:${c}"></span><span class="text-body-sm font-label-md ${big ? "text-ink-primary" : "text-on-surface-variant"}">${l}</span></div>`;
+    $("mlegend").innerHTML = ({base: dot(css("--base"), "Base Power", 1) + dot(css("--ghost"), "Other installers"),
+      storms: dot(css("--storm"), "Generator and battery permits", 1) + dot(css("--ghost"), "Other permits"),
+      solar: dot(css("--gap"), "100+ solar, battery under 10%", 1) + dot(css("--ghost"), "All permits"),
+      market: dot(css("--market"), "Energy permits", 1)})[k];
+    if (v.range) { slider.min = v.range[0]; slider.max = v.range[1]; state.m = v.def; }
+    if (k === "solar") { zipLayer.addTo(map); zipLayer.setStyle(zipLayer.options.style); } else map.removeLayer(zipLayer);
+    const c = v.card();
+    $("card").innerHTML = `<div class="flex flex-col space-y-2"><div class="text-telemetry-metric font-telemetry-metric text-ink-primary tracking-tight">${c.n}</div>
+      <div class="text-headline-sm font-headline-sm text-ink-primary">${c.what}</div>${c.says ? `<div class="text-body-md font-body-md text-on-surface-variant">${c.says}</div>` : ""}
+      <div class="pt-2"><a class="inline-flex items-center gap-1.5 text-body-sm font-label-md text-primary hover:text-evergreen-deep underline-offset-2 hover:underline transition-colors duration-150" href="${c.src}" target="_blank" rel="noopener">Source: City of Austin permits <span class="material-symbols-outlined text-primary" style="font-size:16px">arrow_outward</span></a></div></div>`;
+    frame();
+  }
+  show("base");
+
+  // Dark feature card: where Base permits concentrate (zip totals from data/explorer_zip.json).
+  const top5 = zipRows.filter(([, r]) => r.base).slice(0, 5);
+  if (top5.length) {
+    const tmax = top5[0][1].base;
+    $("topzips").innerHTML = `<div class="absolute -right-10 -top-10 w-40 h-40 bg-energy-lime/10 pointer-events-none" style="border-radius:9999px"></div>
+      <div class="flex items-center justify-between gap-3 mb-4 relative"><span class="text-label-caps font-label-caps uppercase tracking-wider text-inverse-primary">Where Base installs most</span>
+        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-energy-lime text-on-secondary-fixed text-[10px] font-bold uppercase tracking-wider">${fmt(baseTotal)} permits</span></div>
+      <div class="space-y-3 relative">${top5.map(([z, r], i) => `<div>
+        <div class="flex items-baseline justify-between text-body-sm"><span class="font-semibold">${i + 1}. ${z}</span><span class="font-mono text-[12px] text-secondary-fixed">${fmt(r.base)} &middot; ${Math.round(r.base / baseTotal * 100)}%</span></div>
+        <div class="mt-1 h-1.5 rounded-full bg-white/15 overflow-hidden"><div class="h-full rounded-full bg-energy-lime" style="width:${(r.base / tmax * 100).toFixed(1)}%"></div></div></div>`).join("")}</div>
+      <div class="mt-4 pt-3 border-t border-white/15 font-mono text-[11px] text-inverse-primary relative">TOP 5 ZIPS = ${Math.round(top5.reduce((a, [, r]) => a + r.base, 0) / baseTotal * 100)}% OF BASE PERMITS, 2026</div>`;
+    $("topzips").hidden = false;
+  }
+
+  // Details, built once.
+  const catTot = {};
+  if (byMonth) for (const r of Object.values(byMonth)) for (const c in r) catTot[c] = (catTot[c] || 0) + r[c];
+  else for (const p of pts) catTot[cats[p[2]]] = (catTot[cats[p[2]]] || 0) + 1;
+  const catKeys = Object.keys(CAT).filter(c => catTot[c]);
+  $("cats").innerHTML = catKeys.map(c => `<tr><td><i style="background:${CAT[c].color}"></i>${CAT[c].label}</td><td class="v">${fmt(catTot[c])}</td></tr>`).join("")
+    + `<tr class="b"><td><i style="background:var(--base)"></i>Base Power (inside battery)</td><td class="v">${fmt(catTot.base || baseTotal)}</td></tr>`;
+  let rank = 0; const cname = (D.contractors || []).map(n => n === "Base Power" ? n : `Installer ${++rank}`);
+  const con = new Map(); for (const p of pts) if (p[5] != null && p[5] >= 0) con.set(p[5], (con.get(p[5]) || 0) + 1);
+  $("installers").innerHTML = [...con].sort((a, b) => b[1] - a[1]).slice(0, 8)
+    .map(([k, n]) => `<tr class="${cname[k] === "Base Power" ? "b" : ""}"><td>${cname[k]}</td><td class="v">${fmt(n)}</td></tr>`).join("");
+  const Q = [
+    ["Base permits by zip, 2026", soda("original_zip, count(*) as n", BASE_SOQL, "original_zip")],
+    ["Base permits by month, 2026", soda("date_trunc_ym(issue_date) as month, count(*) as n", BASE_SOQL, "month")],
+    ["Generator and battery permits by month, 2020 to 2023", VIEW.storms.card().src],
+    ["Solar permits by zip", VIEW.solar.card().src],
+    ...catKeys.map(c => [`${CAT[c].label} permits by month`, soda("date_trunc_ym(issue_date) as month, count(*) as n", `issue_date >= '2015-01-01' AND ${SOQL[c]}`, "month")])
+  ];
+  if (meta.soda_url && !P.fixture) Q.push(["Query used to build the mirror file", meta.soda_url]);
+  $("queries").innerHTML = Q.map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${t}</a></li>`).join("");
+  $("note").textContent = `Source: ${meta.source || "City of Austin issued construction permits (Socrata 3syk-w9eu)"}. Fetched ${meta.fetched_at || "unknown"}. `
+    + `${fmt(meta.rows || pts.length)} rows, ${fmt(meta.rows_with_location || pts.length)} with a location. Categories come from permit text, so they are estimates. `
+    + "A permit records a filing; the linked city query shows its current status. Base rows count from 2026-01, when Base Power first files under this name. Storm multiples use applied date; the map uses issue date. The map shows permit points and zip totals only.";
+
+  function drawChart() {
+    const cv = $("chart"), w = cv.clientWidth, h = cv.clientHeight, dpr = window.devicePixelRatio || 1; if (!w) return;
+    cv.width = w * dpr; cv.height = h * dpr; const g = cv.getContext("2d"); g.scale(dpr, dpr);
+    const ink = css("--bf-muted"), line = css("--bf-line"), PAD = {l: 34, r: 6, t: 8, b: 18};
+    const rows = months.map(m => byMonth && byMonth[m] ? byMonth[m] : {});
+    const tot = rows.map(r => catKeys.reduce((s, c) => s + (r[c] || 0), 0));
+    const max = Math.max(1, ...tot), pw = w - PAD.l - PAD.r, ph = h - PAD.t - PAD.b, bw = pw / nM;
+    g.font = "10px " + css("--bf-font"); g.fillStyle = ink; g.strokeStyle = line;
+    for (const f of [0, 0.5, 1]) { const y = PAD.t + ph - f * ph; g.beginPath(); g.moveTo(PAD.l, y + 0.5); g.lineTo(w - PAD.r, y + 0.5); g.stroke(); g.textAlign = "right"; g.fillText(fmt(Math.round(max * f)), PAD.l - 4, y + 3); }
+    g.textAlign = "center";
+    rows.forEach((r, m) => {
+      const x = PAD.l + m * bw; let y = PAD.t + ph;
+      for (const c of catKeys) { const v = r[c] || 0; if (!v) continue; const bh = v / max * ph; g.fillStyle = CAT[c].color; g.fillRect(x + 0.5, y - bh, Math.max(1, bw - 1), bh); y -= bh; }
+      if (months[m].endsWith("-01") && (+months[m].slice(0, 4)) % (w < 500 ? 3 : 1) === 0) { g.fillStyle = ink; g.fillText(months[m].slice(0, 4), x + bw * 6, h - 4); }
+    });
+  }
+  $("details").addEventListener("toggle", drawChart);
+  window.addEventListener("resize", () => { map.invalidateSize(); if ($("details").open) drawChart(); });
+  new MutationObserver(() => { show(state.q); if ($("details").open) drawChart(); }).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+  window.__explorer = {ready: true, points: pts.length, fixture: P.fixture, show};
+}
+})();
+</script>
+</body>
+</html>

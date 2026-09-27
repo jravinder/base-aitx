@@ -1,0 +1,273 @@
+{
+ "source": "Power to Choose API, http://api.powertochoose.org/api/PowerToChoose/plans?zip_code=<zip>",
+ "fetched": "2026-09-26",
+ "rule": "0 plans = no competitive retail in the zip (municipal or co-op utility)",
+ "zips": {
+  "76574": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78602": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78610": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78613": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78617": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78621": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78626": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78628": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78634": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78640": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78641": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78653": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78660": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78664": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78665": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78666": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78681": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78701": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78702": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78703": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78704": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78705": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78721": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78722": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78723": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78724": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78725": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78726": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78727": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78728": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78729": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78730": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78731": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78732": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78733": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78734": {
+   "plans": 167,
+   "tdus": {
+    "AEP TEXAS NORTH": 167
+   }
+  },
+  "78735": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78736": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78737": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78738": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78739": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78741": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78742": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78744": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78745": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78746": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78747": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78748": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78749": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78750": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78751": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78752": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78753": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78754": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78756": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78757": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78758": {
+   "plans": 0,
+   "tdus": {}
+  },
+  "78759": {
+   "plans": 171,
+   "tdus": {
+    "ONCOR ELECTRIC DELIVERY COMPANY": 171
+   }
+  },
+  "78957": {
+   "plans": 0,
+   "tdus": {}
+  }
+ }
+}

@@ -1,0 +1,638 @@
+{
+ "built_from": [
+  "data/storms.json",
+  "data/mirror/energy_permits.csv.gz",
+  "data/funnel.json"
+ ],
+ "definition": "generator, battery and solar_battery permits applied in the storm month and the next 2 months, Base installs left out, per 1,000 owner-occupied single-family homes",
+ "storms": [
+  {
+   "name": "Winter storm Uri",
+   "months": [
+    "2021-02",
+    "2021-03",
+    "2021-04"
+   ]
+  },
+  {
+   "name": "Austin ice storm",
+   "months": [
+    "2023-02",
+    "2023-03",
+    "2023-04"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "zip": "76574",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 5941,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78602",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 9697,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78610",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 13900,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78613",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 21670,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78617",
+   "storm_permits": 1,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 1
+   },
+   "owner_sfd": 5177,
+   "per_1000_homes": 0.19
+  },
+  {
+   "zip": "78621",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 7685,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78626",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 10393,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78628",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 14403,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78634",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 12420,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78640",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 19434,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78641",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 27331,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78652",
+   "storm_permits": 5,
+   "by_storm": {
+    "Winter storm Uri": 5,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": null,
+   "per_1000_homes": null
+  },
+  {
+   "zip": "78653",
+   "storm_permits": 1,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 1
+   },
+   "owner_sfd": 12261,
+   "per_1000_homes": 0.08
+  },
+  {
+   "zip": "78660",
+   "storm_permits": 4,
+   "by_storm": {
+    "Winter storm Uri": 3,
+    "Austin ice storm": 1
+   },
+   "owner_sfd": 30168,
+   "per_1000_homes": 0.13
+  },
+  {
+   "zip": "78664",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 12603,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78665",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 14840,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78666",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 12927,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78681",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 14871,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78701",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 336,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78702",
+   "storm_permits": 13,
+   "by_storm": {
+    "Winter storm Uri": 10,
+    "Austin ice storm": 3
+   },
+   "owner_sfd": 5627,
+   "per_1000_homes": 2.31
+  },
+  {
+   "zip": "78703",
+   "storm_permits": 31,
+   "by_storm": {
+    "Winter storm Uri": 7,
+    "Austin ice storm": 24
+   },
+   "owner_sfd": 5748,
+   "per_1000_homes": 5.39
+  },
+  {
+   "zip": "78704",
+   "storm_permits": 51,
+   "by_storm": {
+    "Winter storm Uri": 26,
+    "Austin ice storm": 25
+   },
+   "owner_sfd": 9051,
+   "per_1000_homes": 5.63
+  },
+  {
+   "zip": "78705",
+   "storm_permits": 6,
+   "by_storm": {
+    "Winter storm Uri": 5,
+    "Austin ice storm": 1
+   },
+   "owner_sfd": 1580,
+   "per_1000_homes": 3.8
+  },
+  {
+   "zip": "78717",
+   "storm_permits": 13,
+   "by_storm": {
+    "Winter storm Uri": 9,
+    "Austin ice storm": 4
+   },
+   "owner_sfd": null,
+   "per_1000_homes": null
+  },
+  {
+   "zip": "78721",
+   "storm_permits": 1,
+   "by_storm": {
+    "Winter storm Uri": 1,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 2553,
+   "per_1000_homes": 0.39
+  },
+  {
+   "zip": "78722",
+   "storm_permits": 2,
+   "by_storm": {
+    "Winter storm Uri": 2,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 1694,
+   "per_1000_homes": 1.18
+  },
+  {
+   "zip": "78723",
+   "storm_permits": 16,
+   "by_storm": {
+    "Winter storm Uri": 6,
+    "Austin ice storm": 10
+   },
+   "owner_sfd": 7868,
+   "per_1000_homes": 2.03
+  },
+  {
+   "zip": "78724",
+   "storm_permits": 5,
+   "by_storm": {
+    "Winter storm Uri": 4,
+    "Austin ice storm": 1
+   },
+   "owner_sfd": 6292,
+   "per_1000_homes": 0.79
+  },
+  {
+   "zip": "78725",
+   "storm_permits": 2,
+   "by_storm": {
+    "Winter storm Uri": 1,
+    "Austin ice storm": 1
+   },
+   "owner_sfd": 3337,
+   "per_1000_homes": 0.6
+  },
+  {
+   "zip": "78726",
+   "storm_permits": 3,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 3
+   },
+   "owner_sfd": 2575,
+   "per_1000_homes": 1.17
+  },
+  {
+   "zip": "78727",
+   "storm_permits": 17,
+   "by_storm": {
+    "Winter storm Uri": 7,
+    "Austin ice storm": 10
+   },
+   "owner_sfd": 5994,
+   "per_1000_homes": 2.84
+  },
+  {
+   "zip": "78728",
+   "storm_permits": 1,
+   "by_storm": {
+    "Winter storm Uri": 1,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 3831,
+   "per_1000_homes": 0.26
+  },
+  {
+   "zip": "78729",
+   "storm_permits": 16,
+   "by_storm": {
+    "Winter storm Uri": 3,
+    "Austin ice storm": 13
+   },
+   "owner_sfd": 5576,
+   "per_1000_homes": 2.87
+  },
+  {
+   "zip": "78730",
+   "storm_permits": 14,
+   "by_storm": {
+    "Winter storm Uri": 2,
+    "Austin ice storm": 12
+   },
+   "owner_sfd": 2343,
+   "per_1000_homes": 5.98
+  },
+  {
+   "zip": "78731",
+   "storm_permits": 48,
+   "by_storm": {
+    "Winter storm Uri": 20,
+    "Austin ice storm": 28
+   },
+   "owner_sfd": 7087,
+   "per_1000_homes": 6.77
+  },
+  {
+   "zip": "78732",
+   "storm_permits": 10,
+   "by_storm": {
+    "Winter storm Uri": 4,
+    "Austin ice storm": 6
+   },
+   "owner_sfd": 5527,
+   "per_1000_homes": 1.81
+  },
+  {
+   "zip": "78733",
+   "storm_permits": 8,
+   "by_storm": {
+    "Winter storm Uri": 3,
+    "Austin ice storm": 5
+   },
+   "owner_sfd": 2880,
+   "per_1000_homes": 2.78
+  },
+  {
+   "zip": "78734",
+   "storm_permits": 8,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 8
+   },
+   "owner_sfd": 8042,
+   "per_1000_homes": 0.99
+  },
+  {
+   "zip": "78735",
+   "storm_permits": 14,
+   "by_storm": {
+    "Winter storm Uri": 8,
+    "Austin ice storm": 6
+   },
+   "owner_sfd": 4404,
+   "per_1000_homes": 3.18
+  },
+  {
+   "zip": "78736",
+   "storm_permits": 6,
+   "by_storm": {
+    "Winter storm Uri": 2,
+    "Austin ice storm": 4
+   },
+   "owner_sfd": 2932,
+   "per_1000_homes": 2.05
+  },
+  {
+   "zip": "78737",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 8017,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78738",
+   "storm_permits": 18,
+   "by_storm": {
+    "Winter storm Uri": 8,
+    "Austin ice storm": 10
+   },
+   "owner_sfd": 9086,
+   "per_1000_homes": 1.98
+  },
+  {
+   "zip": "78739",
+   "storm_permits": 16,
+   "by_storm": {
+    "Winter storm Uri": 10,
+    "Austin ice storm": 6
+   },
+   "owner_sfd": 6576,
+   "per_1000_homes": 2.43
+  },
+  {
+   "zip": "78741",
+   "storm_permits": 10,
+   "by_storm": {
+    "Winter storm Uri": 7,
+    "Austin ice storm": 3
+   },
+   "owner_sfd": 3648,
+   "per_1000_homes": 2.74
+  },
+  {
+   "zip": "78742",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 210,
+   "per_1000_homes": 0.0
+  },
+  {
+   "zip": "78744",
+   "storm_permits": 13,
+   "by_storm": {
+    "Winter storm Uri": 6,
+    "Austin ice storm": 7
+   },
+   "owner_sfd": 10696,
+   "per_1000_homes": 1.22
+  },
+  {
+   "zip": "78745",
+   "storm_permits": 19,
+   "by_storm": {
+    "Winter storm Uri": 4,
+    "Austin ice storm": 15
+   },
+   "owner_sfd": 14025,
+   "per_1000_homes": 1.35
+  },
+  {
+   "zip": "78746",
+   "storm_permits": 62,
+   "by_storm": {
+    "Winter storm Uri": 16,
+    "Austin ice storm": 46
+   },
+   "owner_sfd": 7368,
+   "per_1000_homes": 8.41
+  },
+  {
+   "zip": "78747",
+   "storm_permits": 10,
+   "by_storm": {
+    "Winter storm Uri": 7,
+    "Austin ice storm": 3
+   },
+   "owner_sfd": 6076,
+   "per_1000_homes": 1.65
+  },
+  {
+   "zip": "78748",
+   "storm_permits": 17,
+   "by_storm": {
+    "Winter storm Uri": 9,
+    "Austin ice storm": 8
+   },
+   "owner_sfd": 14312,
+   "per_1000_homes": 1.19
+  },
+  {
+   "zip": "78749",
+   "storm_permits": 8,
+   "by_storm": {
+    "Winter storm Uri": 2,
+    "Austin ice storm": 6
+   },
+   "owner_sfd": 9371,
+   "per_1000_homes": 0.85
+  },
+  {
+   "zip": "78750",
+   "storm_permits": 23,
+   "by_storm": {
+    "Winter storm Uri": 11,
+    "Austin ice storm": 12
+   },
+   "owner_sfd": 7711,
+   "per_1000_homes": 2.98
+  },
+  {
+   "zip": "78751",
+   "storm_permits": 5,
+   "by_storm": {
+    "Winter storm Uri": 1,
+    "Austin ice storm": 4
+   },
+   "owner_sfd": 2271,
+   "per_1000_homes": 2.2
+  },
+  {
+   "zip": "78752",
+   "storm_permits": 2,
+   "by_storm": {
+    "Winter storm Uri": 1,
+    "Austin ice storm": 1
+   },
+   "owner_sfd": 2251,
+   "per_1000_homes": 0.89
+  },
+  {
+   "zip": "78753",
+   "storm_permits": 15,
+   "by_storm": {
+    "Winter storm Uri": 7,
+    "Austin ice storm": 8
+   },
+   "owner_sfd": 8184,
+   "per_1000_homes": 1.83
+  },
+  {
+   "zip": "78754",
+   "storm_permits": 5,
+   "by_storm": {
+    "Winter storm Uri": 3,
+    "Austin ice storm": 2
+   },
+   "owner_sfd": 7136,
+   "per_1000_homes": 0.7
+  },
+  {
+   "zip": "78756",
+   "storm_permits": 8,
+   "by_storm": {
+    "Winter storm Uri": 3,
+    "Austin ice storm": 5
+   },
+   "owner_sfd": 1995,
+   "per_1000_homes": 4.01
+  },
+  {
+   "zip": "78757",
+   "storm_permits": 31,
+   "by_storm": {
+    "Winter storm Uri": 10,
+    "Austin ice storm": 21
+   },
+   "owner_sfd": 6791,
+   "per_1000_homes": 4.56
+  },
+  {
+   "zip": "78758",
+   "storm_permits": 8,
+   "by_storm": {
+    "Winter storm Uri": 4,
+    "Austin ice storm": 4
+   },
+   "owner_sfd": 6710,
+   "per_1000_homes": 1.19
+  },
+  {
+   "zip": "78759",
+   "storm_permits": 50,
+   "by_storm": {
+    "Winter storm Uri": 21,
+    "Austin ice storm": 29
+   },
+   "owner_sfd": 9896,
+   "per_1000_homes": 5.05
+  },
+  {
+   "zip": "78957",
+   "storm_permits": 0,
+   "by_storm": {
+    "Winter storm Uri": 0,
+    "Austin ice storm": 0
+   },
+   "owner_sfd": 3046,
+   "per_1000_homes": 0.0
+  }
+ ]
+}

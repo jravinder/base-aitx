@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Base Brain | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="shell.css">
+<script defer src="shell.js"></script>
+<script src="assets/d3.min.js"></script>
+<style>
+  :root { --kb-hub:#171717; --kb-dataset:#c63822; --kb-doc:#255c86; --kb-page:#2f7d5b; --kb-gap:#a0184b; --kb-persona:#87591c;
+    --kb-zip:#8a8a8a; --kb-signal:#6b3fa0; --kb-job:#0e7c86 }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) { --kb-hub:#f5f5f5; --kb-dataset:#ff8069; --kb-doc:#8cbde6;
+    --kb-page:#6fcf9f; --kb-gap:#ff97ba; --kb-persona:#e2b466; --kb-zip:#8a8a8a; --kb-signal:#b99be6; --kb-job:#5fd0d8 } }
+  :root[data-theme="dark"] { --kb-hub:#f5f5f5; --kb-dataset:#ff8069; --kb-doc:#8cbde6; --kb-page:#6fcf9f; --kb-gap:#ff97ba;
+    --kb-persona:#e2b466; --kb-zip:#8a8a8a; --kb-signal:#b99be6; --kb-job:#5fd0d8 }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--bf-bg); color:var(--bf-ink); font:14px/22px var(--bf-font); }
+  main { max-width:1280px; margin:0 auto; padding:32px 32px 40px }
+  a { color:var(--bf-brand-strong); text-underline-offset:3px }
+  :root[data-theme="dark"] a { color:var(--bf-brand) }
+  .caps { font:700 11px/16px var(--bf-font); letter-spacing:.06em!important; text-transform:uppercase; color:var(--bf-muted) }
+  .chip { display:inline-flex; align-items:center; gap:6px; padding:2px 10px; border:1px solid var(--bf-line); border-radius:999px; background:var(--bf-surface) }
+  .chip i { width:6px; height:6px; border-radius:50%; background:var(--bf-brand); display:block }
+  .hd { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:12px 24px; margin:0 0 20px }
+  h1 { font:700 32px/38px var(--bf-font); margin:10px 0 6px; color:var(--bf-ink) }
+  .lede { margin:0; color:var(--bf-muted); font-size:16px; line-height:26px; max-width:70ch }
+  .hd .help { font-weight:600; white-space:nowrap }
+  /* tabs */
+  .tabs { display:flex; gap:4px; border-bottom:1px solid var(--bf-line); margin:0 0 24px; overflow-x:auto; scrollbar-width:none }
+  .tabs button { font:600 14px/20px var(--bf-font); color:var(--bf-muted); background:none; border:0; border-bottom:2px solid transparent;
+    padding:12px 14px; min-height:44px; cursor:pointer; white-space:nowrap }
+  .tabs button:hover { color:var(--bf-ink) }
+  .tabs button[aria-selected=true] { color:var(--bf-brand-strong); border-bottom-color:var(--bf-brand-strong) }
+  :root[data-theme="dark"] .tabs button[aria-selected=true] { color:var(--bf-brand); border-bottom-color:var(--bf-brand) }
+  [role=tabpanel][hidden] { display:none }
+  h2.sec { font:600 20px/28px var(--bf-font); margin:0 0 4px }
+  p.sub { margin:0 0 16px; color:var(--bf-muted); max-width:80ch }
+  .card { background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:8px; padding:16px 18px }
+  /* health strip */
+  .health { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:0 0 20px }
+  .metric .v { font:700 28px/34px var(--bf-font); color:var(--bf-ink); font-variant-numeric:tabular-nums; margin:6px 0 2px }
+  .metric .d { color:var(--bf-muted); font-size:12.5px; line-height:18px }
+  .metric .d b { color:var(--bf-ink); font-weight:600 }
+  /* graph */
+  .bar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:0 0 12px }
+  .bar input[type=search] { flex:1 1 260px; min-width:0; min-height:44px; padding:8px 12px; font:14px var(--bf-font); color:var(--bf-ink);
+    background:var(--bf-surface); border:1px solid var(--bf-line-strong); border-radius:8px }
+  .bar button { min-height:44px; padding:8px 14px; font:600 13px var(--bf-font); color:var(--bf-ink); background:var(--bf-surface);
+    border:1px solid var(--bf-line-strong); border-radius:8px; cursor:pointer }
+  .bar button[aria-pressed=true] { background:var(--bf-brand-strong); color:#fff; border-color:var(--bf-brand-strong) }
+  .types { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 14px }
+  .types label { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; min-height:44px; border:1px solid var(--bf-line); border-radius:999px;
+    background:var(--bf-surface); font-size:13px; cursor:pointer; user-select:none }
+  .types input { margin:0 }
+  .dot { width:10px; height:10px; border-radius:50%; flex:none; display:inline-block }
+  .types .n { color:var(--bf-faint); font-variant-numeric:tabular-nums }
+  .filters>summary { min-height:44px; padding:10px 0; cursor:pointer; color:var(--bf-muted) }
+  #matches { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px }
+  #matches:empty { display:none }
+  #matches button { font:inherit; text-align:left; min-height:44px; padding:8px 12px; max-width:100%; overflow-wrap:anywhere; border:1px solid var(--bf-line);
+    border-radius:8px; background:var(--bf-surface); color:var(--bf-blue); cursor:pointer }
+  .wrap { display:grid; grid-template-columns:minmax(0,1fr) 360px; gap:16px; align-items:start }
+  .graph { position:relative; background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:8px; overflow:hidden }
+  .graph svg { display:block; width:100%; height:600px; cursor:grab }
+  .graph .count { position:absolute; left:12px; bottom:8px; font-size:12px; color:var(--bf-faint) }
+  .node circle { stroke:var(--bf-surface); stroke-width:1.5px; cursor:pointer }
+  .node.sel circle { stroke:var(--bf-ink); stroke-width:3px }
+  .node.hit circle { stroke:var(--bf-brand-strong); stroke-width:3px }
+  .node text { font:11.5px var(--bf-font); fill:var(--bf-ink); paint-order:stroke; stroke:var(--bf-surface); stroke-width:3px; pointer-events:none }
+  .link { stroke:var(--bf-line-strong); stroke-opacity:.55 }
+  .link.on { stroke:var(--bf-brand-strong); stroke-opacity:.9; stroke-width:1.8px }
+  aside { background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:8px; padding:16px 18px; min-height:200px; max-height:600px; overflow:auto }
+  aside h2 { margin:4px 0 6px; font:600 18px/26px var(--bf-font) }
+  aside .kind { display:flex; align-items:center; gap:6px }
+  aside .sum { margin:0 0 8px }
+  aside .path { font:12.5px var(--bf-mono); color:var(--bf-muted); overflow-wrap:anywhere; margin:0 0 8px }
+  aside .open a { display:inline-block; margin:0 10px 6px 0; font-weight:650; font-size:13.5px }
+  aside h3 { margin:14px 0 4px }
+  aside ul { margin:0; padding:0; list-style:none }
+  aside li { padding:3px 0; font-size:13.5px; border-top:1px solid var(--bf-line); display:flex; gap:8px; align-items:baseline }
+  aside li .et { flex:none; font:11px var(--bf-mono); color:var(--bf-faint); min-width:88px }
+  aside li button { all:unset; cursor:pointer; color:var(--bf-blue); overflow-wrap:anywhere }
+  aside li a { overflow-wrap:anywhere }
+  .hint { color:var(--bf-muted) }
+  .note { margin:12px 0 0; color:var(--bf-muted); font-size:13px }
+  button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible { outline:3px solid var(--bf-focus); outline-offset:2px }
+  aside li button:focus-visible { outline:2px solid var(--bf-focus) }
+  code, .mono { font:12.5px var(--bf-mono) }
+  /* FAQ entries */
+  .faqcols { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px }
+  .faqcols h3 { margin:0 0 8px; display:flex; justify-content:space-between; gap:8px }
+  .cat { border-top:1px solid var(--bf-line) }
+  .cat>summary { cursor:pointer; min-height:44px; display:flex; align-items:center; justify-content:space-between; gap:8px; font-weight:600 }
+  .cat>summary span { color:var(--bf-faint); font-weight:400; font-variant-numeric:tabular-nums }
+  .faq { border-left:2px solid var(--bf-line); margin:0 0 8px 2px; padding:0 0 0 12px }
+  .faq>summary { cursor:pointer; padding:6px 0; min-height:44px; display:flex; align-items:center }
+  .faq p { margin:0 0 6px }
+  .faq .src { color:var(--bf-muted); font-size:12.5px }
+  .faq.flash { border-left-color:var(--bf-brand-strong) }
+  .tag { display:inline-block; font:600 11px/16px var(--bf-font); padding:1px 8px; border-radius:999px; border:1px solid var(--bf-line); background:var(--bf-sunk); color:var(--bf-muted); white-space:nowrap }
+  .tag.ok { background:var(--bf-brand-tint); color:var(--bf-brand-strong); border-color:var(--bf-brand-soft) }
+  .tag.warn { background:var(--bf-amber-tint); color:var(--bf-amber); border-color:transparent }
+  .tag.no { background:var(--bf-danger-tint); color:var(--bf-danger); border-color:transparent }
+  :root[data-theme="dark"] .tag.ok { color:var(--bf-brand) }
+  /* architecture */
+  .arch { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:28px; position:relative }
+  .arch .col { position:relative }
+  .arch .col:not(:last-child)::after { content:"→"; position:absolute; right:-22px; top:40px; color:var(--bf-faint); font-size:18px }
+  .arch h3 { margin:6px 0 4px; font:600 16px/24px var(--bf-font) }
+  .arch .who { color:var(--bf-muted); font-size:12.5px; margin:0 0 10px; overflow-wrap:anywhere }
+  .arch ul, .arch ol { margin:0; padding:0; list-style:none }
+  .arch li { border-top:1px solid var(--bf-line); padding:8px 0; font-size:13.5px; line-height:20px }
+  .arch li .mono { color:var(--bf-muted); display:block; overflow-wrap:anywhere }
+  .arch ol { counter-reset:s }
+  .arch ol li { counter-increment:s; padding-left:26px; position:relative }
+  .arch ol li::before { content:counter(s); position:absolute; left:0; top:9px; width:18px; height:18px; border-radius:50%; background:var(--bf-brand-tint);
+    color:var(--bf-brand-strong); font:700 11px/18px var(--bf-font); text-align:center }
+  .arch .col.hl { border-color:var(--bf-brand-soft); box-shadow:inset 0 3px 0 var(--bf-brand-strong) }
+  .loop { margin-top:16px; display:flex; gap:12px; align-items:flex-start; background:var(--bf-brand-tint); border:1px dashed var(--bf-brand-soft); border-radius:8px; padding:12px 16px }
+  .loop b { color:var(--bf-brand-strong) }
+  :root[data-theme="dark"] .loop b { color:var(--bf-brand) }
+  /* flows */
+  .flow { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:22px; margin:0 0 12px; list-style:none; padding:0 }
+  .flow.five { grid-template-columns:repeat(5,minmax(0,1fr)) }
+  .flow li { position:relative; background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:8px; padding:12px 14px }
+  .flow li:not(:last-child)::after { content:"→"; position:absolute; right:-17px; top:14px; color:var(--bf-faint) }
+  .flow .n { font:700 11px/16px var(--bf-font); color:var(--bf-brand-strong) }
+  :root[data-theme="dark"] .flow .n { color:var(--bf-brand) }
+  .flow b { display:block; font:600 15px/22px var(--bf-font); margin:2px 0 4px }
+  .flow p { margin:0; color:var(--bf-muted); font-size:13px; line-height:19px; overflow-wrap:anywhere }
+  .flow li.back { border-style:dashed; border-color:var(--bf-brand-soft); background:var(--bf-brand-tint) }
+  .kblock { margin:0 0 32px }
+  table { width:100%; border-collapse:collapse; font-size:13.5px }
+  th { text-align:left; font:700 11px/16px var(--bf-font); letter-spacing:.06em!important; text-transform:uppercase; color:var(--bf-muted); padding:8px 10px; border-bottom:1px solid var(--bf-line-strong) }
+  td { padding:10px; border-bottom:1px solid var(--bf-line); vertical-align:top }
+  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums }
+  .tablewrap { background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:8px; overflow-x:auto }
+  .two { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2fr); gap:16px; align-items:start }
+  /* Stitch texture */
+  .hd { position:relative; padding:24px 24px 22px; border:1px solid var(--bf-line); border-radius:14px; overflow:hidden;
+    background:linear-gradient(120deg, rgba(203,240,128,.28), rgba(187,239,193,.18) 40%, var(--bf-surface) 75%) }
+  .hd h1 { letter-spacing:-.02em }
+  .hd-side { display:flex; flex-direction:column; align-items:flex-end; gap:10px }
+  .mono-ref { font:600 13px var(--bf-font); color:var(--bf-muted); display:inline-flex; align-items:center; gap:6px }
+  .mono-ref::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--bf-faint) }
+  .next-btn { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:10px 18px; border-radius:10px; background:#1e4d2b; color:#fff!important;
+    font:600 14px var(--bf-font); text-decoration:none; box-shadow:0 1px 2px rgba(0,0,0,.08) }
+  .next-btn:hover { background:#023616 }
+  .next-btn .material-symbols-outlined { font-size:18px }
+  .metric { position:relative }
+  .metric > .caps { display:block; padding-right:40px }
+  .metric .ic { position:absolute; top:14px; right:14px; width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+    background:rgba(34,197,94,.1); color:#1e4d2b; font-size:18px }
+  .metric.feat { background:#1e4d2b; border-color:#1e4d2b; color:#fff }
+  .metric.feat .caps, .metric.feat .d, .metric.feat .d b, .metric.feat .v { color:#fff } .metric.feat .d { opacity:.85 }
+  .metric.feat .ic { background:#cbf080; color:#1e4d2b }
+  .metric.feat a { color:#cbf080 }
+  .scard { background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:14px; padding:16px 18px; margin:0 0 16px }
+  .scard .bar { margin:0 0 10px }
+  .scard .bar input[type=search] { background:var(--bf-bg) }
+  .fl { display:flex; flex-wrap:wrap; align-items:center; gap:6px }
+  .fl > .caps { display:inline-flex; align-items:center; gap:4px; margin-right:4px; color:var(--bf-faint) }
+  .fl .types { margin:0 }
+  .types label { position:relative; font-weight:600; font-size:13px }
+  .types label input { position:absolute; opacity:0; width:1px; height:1px }
+  .types label:hover { border-color:#1e4d2b }
+  .types label:has(input:checked) { background:#1e4d2b; border-color:#1e4d2b; color:#fff }
+  .types label:has(input:focus-visible) { outline:2px solid var(--bf-focus); outline-offset:2px }
+  .types .n { display:inline-block; min-width:22px; padding:0 6px; border-radius:999px; background:var(--bf-bg); font:600 11px/18px var(--bf-mono); text-align:center }
+  .types label:has(input:checked) .n { background:rgba(255,255,255,.18); color:#fff }
+  .gcard { background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:14px; padding:16px 18px }
+  .gcard .gh { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; margin:0 0 12px }
+  .gcard .gh .t { display:inline-flex; align-items:center; gap:8px; font:700 12px/16px var(--bf-font); letter-spacing:.06em; text-transform:uppercase; color:var(--bf-ink) }
+  .gcard .gh .t i { width:8px; height:8px; border-radius:50%; background:#22c55e; display:block }
+  .hubchip { font:700 12px var(--bf-font); color:#1e4d2b; background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.3); padding:3px 9px; border-radius:6px }
+  .gcard .graph { background:#fbfdfc; border-color:var(--bf-line); border-radius:10px;
+    background-image:radial-gradient(circle, rgba(30,77,43,.09) 1px, transparent 1px); background-size:18px 18px }
+  .gfoot { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; margin-top:12px; padding-top:12px; border-top:1px solid var(--bf-line) }
+  .legend { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:12.5px; color:var(--bf-muted) }
+  .legend span { display:inline-flex; align-items:center; gap:6px }
+  .legend i { width:8px; height:8px; border-radius:50%; display:block }
+  .gfoot .count { position:static; font:11.5px var(--bf-mono); color:var(--bf-faint); letter-spacing:.03em; text-transform:uppercase }
+  aside#panel { border-radius:14px; padding:18px 20px; max-height:none }
+  #panel .ph { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:0 0 10px }
+  #panel .sel-pill { font:700 11px/16px var(--bf-font); letter-spacing:.06em; text-transform:uppercase; color:#1e4d2b; background:rgba(34,197,94,.12);
+    border:1px solid rgba(34,197,94,.35); border-radius:999px; padding:2px 10px }
+  #panel .ttype { font:11.5px var(--bf-mono); color:var(--bf-faint); text-transform:uppercase; letter-spacing:.05em }
+  #panel h2 { display:flex; align-items:center; gap:6px; font:700 21px/28px var(--bf-font); letter-spacing:-.01em }
+  #panel h2 .material-symbols-outlined { color:#22c55e; font-size:20px }
+  #panel .meta { display:grid; grid-template-columns:1fr 1fr; gap:10px 14px; padding:12px 14px; margin:10px 0 12px; border:1px solid var(--bf-line);
+    border-radius:10px; background:var(--bf-bg) }
+  #panel .meta span { display:block; font-size:12px; color:var(--bf-muted) }
+  #panel .meta b { display:block; font:600 13px var(--bf-font); color:var(--bf-ink); overflow-wrap:anywhere }
+  #panel .meta b.g { color:#1e7a3c }
+  #panel .open { display:flex; flex-direction:column; gap:8px; margin:0 0 6px }
+  #panel .open a { display:flex; align-items:center; justify-content:center; gap:8px; min-height:44px; margin:0; border-radius:10px; border:1px solid var(--bf-line);
+    text-decoration:none; font:600 14px var(--bf-font); color:var(--bf-ink) }
+  #panel .open a:first-child { background:#1e4d2b; border-color:#1e4d2b; color:#fff }
+  #panel ul.rows li { padding:0; border:0; margin:0 0 6px; display:block }
+  #panel ul.rows li button, #panel ul.rows li > a { all:unset; box-sizing:border-box; cursor:pointer; display:flex; align-items:center; gap:10px; width:100%; min-height:44px; padding:8px 10px;
+    border:1px solid var(--bf-line); border-radius:10px; background:var(--bf-surface) }
+  #panel ul.rows li button:hover, #panel ul.rows li > a:hover { border-color:#1e4d2b }
+  #panel ul.rows li button:focus-visible, #panel ul.rows li > a:focus-visible { outline:2px solid var(--bf-focus) }
+  #panel ul.rows .ic { flex:none; width:30px; height:30px; border-radius:8px; border:1px solid var(--bf-line); background:var(--bf-bg); display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--bf-muted) }
+  #panel ul.rows .tx { flex:1; min-width:0 }
+  #panel ul.rows .tx b { display:block; font:600 13.5px/18px var(--bf-font); color:var(--bf-ink); overflow-wrap:anywhere }
+  #panel ul.rows .tx small { display:block; font-size:11.5px; color:var(--bf-muted) }
+  #panel ul.rows .ar { flex:none; color:var(--bf-faint); font-size:18px }
+  #panel h3 { display:flex; justify-content:space-between; margin:16px 0 8px }
+  #panel .more-links { all:unset; cursor:pointer; display:block; padding:8px 2px; min-height:28px; font:600 13px var(--bf-font); color:#1e4d2b }
+  #panel .more-links:focus-visible { outline:2px solid var(--bf-focus) }
+  #panel h3 small { font:11.5px var(--bf-mono); color:var(--bf-faint); text-transform:none; letter-spacing:0 }
+  @media (max-width:900px) { #knowledge .how-steps { grid-template-columns:minmax(0,1fr) } #knowledge .health .metric:nth-child(3) { border-left:0 }
+    #knowledge .health .metric:nth-child(n+3) { border-top:1px solid var(--bf-line) } }
+  @media (max-width:640px) { #knowledge .howcard { padding:20px 16px } #knowledge .howcard h2 { font-size:23px; line-height:30px } .loopcard { padding:14px 16px } }
+  @media (max-width:640px) { .hd { padding:18px 16px } .hd-side { align-items:flex-start } #panel .meta { grid-template-columns:1fr } }
+  /* readable knowledge tab */
+  #knowledge h2.sec { font:700 24px/32px var(--bf-font); letter-spacing:-.01em; margin:0 0 4px }
+  .howcard { background:#1e4d2b; color:#fff; border-radius:14px; padding:28px 28px 26px; margin:0 0 16px }
+  .howcard .eyebrow { display:inline-flex; align-items:center; gap:6px; font:700 12px/16px var(--bf-font); letter-spacing:.06em; text-transform:uppercase;
+    color:#1e4d2b; background:#cbf080; border-radius:999px; padding:4px 12px }
+  .howcard .eyebrow .material-symbols-outlined { font-size:16px }
+  .howcard h2 { font:700 30px/38px var(--bf-font); letter-spacing:-.02em; margin:14px 0 4px; color:#fff; max-width:40ch }
+  .how-meta { margin:0 0 22px; color:#cfe6d4; font-size:14px }
+  .how-steps { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1.3fr) minmax(0,1fr); gap:14px }
+  .how-steps > li { min-width:0; overflow-wrap:anywhere; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:12px; padding:16px 18px; position:relative }
+  .how-steps .sn { display:inline-flex; width:24px; height:24px; border-radius:50%; background:#cbf080; color:#1e4d2b; font:700 12px/24px var(--bf-font); justify-content:center }
+  .how-steps h3 { display:inline; margin:0 0 0 8px; font:700 15px/24px var(--bf-font); color:#fff }
+  .how-src { list-style:none; margin:12px 0 0; padding:0; display:flex; flex-direction:column; gap:8px }
+  .how-src button { all:unset; box-sizing:border-box; cursor:pointer; display:flex; align-items:center; gap:10px; width:100%; min-height:44px; padding:8px 12px;
+    background:#fff; color:#111c2d; border-radius:10px; font:600 14px/19px var(--bf-font) }
+  .how-src button:hover { background:#f0f9e4 }
+  .how-src button:focus-visible { outline:3px solid #cbf080; outline-offset:2px }
+  .how-src button small { display:block; font:500 12px/16px var(--bf-font); color:#4b5563 }
+  .how-src .material-symbols-outlined { color:#1e4d2b; font-size:20px }
+  .how-ans { margin:12px 0 8px; font:600 19px/28px var(--bf-font); color:#fff }
+  .how-cite { margin:0; font-size:13px; color:#cfe6d4 }
+  .how-cite a, :root[data-theme] .how-cite a { color:#cbf080!important }
+  .how-then { list-style:none; margin:12px 0 0; padding:0; display:flex; flex-direction:column; gap:10px }
+  .how-then li { display:flex; align-items:center; gap:10px; font-size:14px; color:#fff }
+  .how-then .material-symbols-outlined { font-size:20px; color:#cbf080 }
+  .how-then li.wait .material-symbols-outlined { color:#fde68a }
+  .how-then small { display:block; color:#cfe6d4; font-size:12px; line-height:16px }
+  .loopcard { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 24px; background:var(--bf-surface); border:1px solid var(--bf-line);
+    border-radius:12px; padding:16px 20px; margin:0 0 40px; text-decoration:none; color:var(--bf-ink)!important }
+  .loopcard:hover { border-color:#1e4d2b }
+  .lc-t { display:inline-flex; align-items:center; gap:8px; font:700 13px/18px var(--bf-font); letter-spacing:.04em; text-transform:uppercase; color:var(--bf-muted) }
+  .lc-t .material-symbols-outlined { color:#1e4d2b; font-size:20px }
+  .lc-steps { display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px }
+  .lc { display:inline-flex; align-items:baseline; gap:6px; font-size:14px; color:var(--bf-muted) }
+  .lc b { font:700 22px/28px var(--bf-font); color:var(--bf-ink); font-variant-numeric:tabular-nums }
+  .lc-ar { color:var(--bf-faint) }
+  .lc-go { display:inline-flex; align-items:center; gap:4px; font:600 14px var(--bf-font); color:#1e4d2b }
+  .lc-go .material-symbols-outlined { font-size:18px }
+  .srchead { margin:0 0 12px }
+  .searchbar { max-width:560px }
+  .groups { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px }
+  .grp { background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:12px; padding:16px 16px 10px }
+  .grp h3 { display:flex; align-items:center; gap:8px; margin:0 0 2px; font:700 16px/22px var(--bf-font) }
+  .grp h3 .dot { width:10px; height:10px }
+  .grp h3 .n { margin-left:auto; font:600 13px var(--bf-font); color:var(--bf-muted); font-variant-numeric:tabular-nums }
+  .grp p { margin:0 0 8px; color:var(--bf-muted); font-size:13px; line-height:18px }
+  .grp ul { list-style:none; margin:0; padding:0 }
+  .grp li { border-top:1px solid var(--bf-line) }
+  .grp li button, .grp li a { all:unset; box-sizing:border-box; cursor:pointer; display:block; width:100%; min-height:44px; padding:11px 2px; font-size:14px; line-height:20px; color:var(--bf-ink); overflow-wrap:anywhere }
+  .grp li button:hover, .grp li a:hover { color:#1e4d2b; text-decoration:underline }
+  .grp li button:focus-visible, .grp li a:focus-visible { outline:2px solid var(--bf-focus) }
+  .grp li button[aria-current=true] { color:#1e4d2b; font-weight:700 }
+  .maptoggle { display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; margin:24px 0 16px }
+  #map-toggle { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:8px 16px; border:1px solid var(--bf-line-strong); border-radius:10px;
+    background:var(--bf-surface); color:var(--bf-ink); font:600 14px var(--bf-font); cursor:pointer }
+  #map-toggle[aria-expanded=true] { border-color:#1e4d2b; color:#1e4d2b }
+  #map { margin:0 0 24px }
+  #knowledge .health { margin:32px 0 8px; gap:0; border:1px solid var(--bf-line); border-radius:12px; background:var(--bf-surface) }
+  #knowledge .health .metric { padding:14px 18px; border-left:1px solid var(--bf-line) }
+  #knowledge .health .metric:first-child { border-left:0 }
+  #knowledge .health .metric .v { font-size:22px; line-height:28px; margin:4px 0 0 }
+  .foot { margin:40px 0 0; padding-top:16px; border-top:1px solid var(--bf-line); color:var(--bf-muted); font-size:12.5px }
+  @media (max-width:1000px) {
+    .arch { grid-template-columns:1fr 1fr } .arch .col:nth-child(2)::after { display:none }
+    .flow, .flow.five { grid-template-columns:1fr 1fr 1fr } .flow li::after { display:none }
+  }
+  @media (max-width:900px) {
+    .wrap, .faqcols, .two { grid-template-columns:1fr }
+    aside { max-height:none }
+    .health { grid-template-columns:1fr 1fr }
+  }
+  @media (max-width:640px) {
+    main { padding:20px 16px 32px }
+    h1 { font-size:27px; line-height:34px }
+    .graph svg { height:440px }
+    .arch { grid-template-columns:1fr; gap:22px } .arch .col:not(:last-child)::after { content:"↓"; display:block; right:auto; left:50%; top:auto; bottom:-22px }
+    .arch .col:last-child::after { display:none!important }
+    .flow, .flow.five { grid-template-columns:1fr; gap:18px } .flow li:not(:last-child)::after { display:block; content:"↓"; right:auto; left:20px; top:auto; bottom:-19px }
+    .metric .v { font-size:24px; line-height:30px }
+    .tabs { gap:0 } .tabs button { padding:12px 7px; font-size:13px }
+    .mtable thead { display:none }
+    .mtable tr { display:block; border-bottom:1px solid var(--bf-line); padding:8px 10px }
+    .mtable td { display:block; border:0; padding:2px 0 }
+    .mtable td.num { text-align:left }
+    .mtable td[data-l]::before { content:attr(data-l) ": "; color:var(--bf-muted); font-size:12px }
+  }
+</style>
+</head>
+<body class="st">
+<main id="main">
+  <div class="hd">
+    <div>
+      <span class="chip caps"><i></i>Base Brain</span>
+      <h1>The knowledge behind every answer.</h1>
+      <p class="lede">Every answer on Help comes from these sources. Every member question comes back here and makes the next answer better.</p>
+    </div>
+    <div class="hd-side">
+      <span class="mono-ref" id="hd-built">Base Brain</span>
+      <a class="next-btn" id="next-pitch" href="pitch.html">Next: why AI runs next door <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+      <a class="help" href="brain.html">Member view: Help</a>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Base Brain sections">
+    <button role="tab" id="tab-architecture" aria-controls="architecture" aria-selected="false" tabindex="-1">Architecture</button>
+    <button role="tab" id="tab-flows" aria-controls="flows" aria-selected="false" tabindex="-1">Data flows</button>
+    <button role="tab" id="tab-knowledge" aria-controls="knowledge" aria-selected="true" tabindex="0">Knowledge</button>
+    <button role="tab" id="tab-questions" aria-controls="questions" aria-selected="false" tabindex="-1">Questions</button>
+  </div>
+
+  <!-- 1. Architecture -->
+  <section role="tabpanel" id="architecture" aria-labelledby="tab-architecture" tabindex="0" hidden>
+    <h2 class="sec">How Base Brain is built</h2>
+    <p class="sub">Public sources go into one database. The ask server answers from it in a fixed order. Pages read small JSON files, so they work without the server.</p>
+    <div class="arch">
+      <div class="col card">
+        <span class="caps">1 · Sources</span>
+        <h3>Public records and our docs</h3>
+        <p class="who">No login needed for any source.</p>
+        <ul>
+          <li>City of Austin permits<span class="mono">Socrata 3syk-w9eu</span></li>
+          <li>ERCOT prices, supply-demand, fuel mix<span class="mono">ercot.com dashboards</span></li>
+          <li>National Weather Service alerts<span class="mono">Travis and Williamson zones</span></li>
+          <li>Census ACS, appraisal rolls<span class="mono">Census Reporter, TCAD, WCAD</span></li>
+          <li>Base public pages, copied by hand<span class="mono">faq/corpus/*.md</span></li>
+          <li>Repo docs, ADRs, pages, "Gap:" issues<span class="mono">docs/, web/, GitHub</span></li>
+        </ul>
+      </div>
+      <div class="col card">
+        <span class="caps">2 · Store</span>
+        <h3>One database</h3>
+        <p class="who mono">data/fleet.db (SQLite)</p>
+        <ul>
+          <li>Public data tables<span class="mono">permits, dam_prices, load_hourly, fuel_mix, nws_alerts, signals, judgments</span></li>
+          <li>Knowledge entries and links<span class="mono">kb_nodes, kb_edges · store/kb.py</span></li>
+          <li>Member questions<span class="mono">questions · store/learn.py</span></li>
+          <li>Loader, same rows on a second run<span class="mono">store/build.py</span></li>
+        </ul>
+      </div>
+      <div class="col card hl">
+        <span class="caps">3 · Ask server</span>
+        <h3>Answers in a fixed order</h3>
+        <p class="who mono">brain/ask.py · on the Mac, localhost only</p>
+        <ol>
+          <li>Recorded answer<span class="mono">cache · brain/insights.json</span></li>
+          <li>Base policy question: route to Base support<span class="mono">credits, cancelling, payments, contracts</span></li>
+          <li>Knowledge base, for questions about our data or methods<span class="mono">kb_search · store/kb.py</span></li>
+          <li>Template, a fixed query with no model call<span class="mono">brain/templates.py</span></li>
+          <li>Agent: planner, analyst, critic, reporter<span class="mono">local model gemma4:e4b (Ollama)</span></li>
+        </ol>
+      </div>
+      <div class="col card">
+        <span class="caps">4 · Pages</span>
+        <h3>Where answers show</h3>
+        <p class="who">Pages read files in web/data/.</p>
+        <ul>
+          <li><a href="brain.html">Help</a>, member FAQs<span class="mono">web/data/faq.json · store/faq.py</span></li>
+          <li><a href="ask.html">Ask</a>, typed questions<span class="mono">ask server, else stored answers</span></li>
+          <li><a href="member.html">Member page</a><span class="mono">POST /learn/log when the server runs</span></li>
+          <li>Base Brain, this page<span class="mono">kb_graph.json, faq.json, learning.json</span></li>
+          <li><a href="admin.html">Admin</a>, approve or reject proposals<span class="mono">POST /learn/approve, /learn/reject</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="loop"><span aria-hidden="true">↺</span><p style="margin:0"><b>The loop back.</b> Every question goes to <code>data/live/questions.jsonl</code>. Each night <code>store/learn.py</code> groups them and proposes a template, a cached answer or a route to Base support. After a person approves, the answer becomes a <code>learned_answer</code> entry in the knowledge base. Nothing goes live without approval. Source: <span id="loop-src"><a href="../docs/LEARNING.md">LEARNING.md</a>, <a href="../docs/KNOWLEDGE_BASE.md">KNOWLEDGE_BASE.md</a></span>.</p></div>
+  </section>
+
+  <!-- 2. Data flows -->
+  <section role="tabpanel" id="flows" aria-labelledby="tab-flows" tabindex="0" hidden>
+    <div class="kblock">
+      <h2 class="sec">How an answer is made</h2>
+      <p class="sub">One question, start to finish.</p>
+      <ol class="flow">
+        <li><span class="n">1</span><b>Question</b><p>A member types it on Help, Ask or the member page.</p></li>
+        <li><span class="n">2</span><b>Search entries</b><p>Recorded answers, Base policy, the knowledge base, templates, then the agent.</p></li>
+        <li><span class="n">3</span><b>Answer with sources</b><p>Each number gets a [n] tag. The critic checks each number is in the result.</p></li>
+        <li><span class="n">4</span><b>Logged</b><p>One line in questions.jsonl. Emails, phone numbers and street addresses are removed.</p></li>
+        <li><span class="n">5</span><b>Reviewed</b><p>store/learn.py proposes each night. A person approves or rejects on Admin.</p></li>
+        <li class="back"><span class="n">6</span><b>New entry</b><p>An approved answer goes to brain/insights.json and the knowledge base.</p></li>
+      </ol>
+    </div>
+    <div class="kblock">
+      <h2 class="sec">How data gets in</h2>
+      <p class="sub">Collectors on the Mac, one database in the middle, small files out to the pages. Full lineage: <a href="dataflow.html">Data lineage</a>.</p>
+      <ol class="flow five">
+        <li><span class="n">1</span><b>Collectors</b><p>launchd jobs: hourly, daily, monthly.</p></li>
+        <li><span class="n">2</span><b>Raw files</b><p>data/live/, data/mirror/, faq/corpus/.</p></li>
+        <li><span class="n">3</span><b>fleet.db</b><p>store/build.py loads each file with natural keys.</p></li>
+        <li><span class="n">4</span><b>Build</b><p>store/kb.py, store/faq.py, store/learn.py, store/signals.py, admin/build.py.</p></li>
+        <li><span class="n">5</span><b>Pages</b><p>JSON in web/data/ and data/. Pages read only these files.</p></li>
+      </ol>
+      <div class="tablewrap" style="margin-top:16px">
+        <table class="mtable">
+          <thead><tr><th>Job</th><th>When</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td data-l="Job" class="mono">com.basefleet.ercot</td><td data-l="When">Hourly at :07</td><td>ERCOT prices, supply-demand, fuel mix; NWS alerts; then store/build.py and store/signals.py</td></tr>
+            <tr><td data-l="Job" class="mono">com.basefleet.daily</td><td data-l="When">06:15</td><td>Austin permits (data/market.json, data/permits_by_zip.json); then store/build.py, store/signals.py; then store/kb.py, store/faq.py and store/learn.py</td></tr>
+            <tr><td data-l="Job" class="mono">com.basefleet.monthly</td><td data-l="When">2nd of the month, 06:30</td><td>Census demographics (data/demographics.json)</td></tr>
+            <tr><td data-l="Job" class="mono">com.basefleet.publish</td><td data-l="When">Every 3 hours at :20</td><td>Reruns the builders, then deploys the site</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Source: collect/README.md, docs/DATAFLOW.md. The ask server and the local model run only on the Mac. Without them, pages show stored answers only.</p>
+    </div>
+  </section>
+
+  <!-- 3. Knowledge -->
+  <section role="tabpanel" id="knowledge" aria-labelledby="tab-knowledge" tabindex="0">
+    <article class="howcard" id="how-one" aria-labelledby="how-q">
+      <span class="eyebrow"><span class="material-symbols-outlined" aria-hidden="true">auto_stories</span>How one answer was made</span>
+      <h2 id="how-q">Loading a real member question…</h2>
+      <p class="how-meta" id="how-meta"></p>
+      <ol class="how-steps">
+        <li><span class="sn">1</span><h3>Related sources in Base Brain</h3><ul class="how-src" id="how-src"></ul></li>
+        <li><span class="sn">2</span><h3>The answer</h3><p class="how-ans" id="how-ans"></p><p class="how-cite" id="how-cite"></p></li>
+        <li><span class="sn">3</span><h3>Then</h3><ol class="how-then" id="how-then"></ol></li>
+      </ol>
+    </article>
+
+    <a class="loopcard" id="loop-row" href="#questions" aria-label="Learning loop, last 7 days. Open the Questions tab">
+      <span class="lc-t"><span class="material-symbols-outlined" aria-hidden="true">autorenew</span>Learning loop, last 7 days</span>
+      <span class="lc-steps">
+        <span class="lc"><b id="lp-asked">…</b>Asked</span><span class="lc-ar" aria-hidden="true">→</span>
+        <span class="lc"><b id="lp-answered">…</b>Answered</span><span class="lc-ar" aria-hidden="true">→</span>
+        <span class="lc"><b id="lp-waiting">…</b>Waiting for review</span><span class="lc-ar" aria-hidden="true">→</span>
+        <span class="lc"><b id="lp-approved">…</b>Approved</span>
+      </span>
+      <span class="lc-go">See the questions <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></span>
+    </a>
+
+    <div class="srchead">
+      <div><h2 class="sec">Where answers come from</h2>
+      <p class="sub">Five kinds of sources. Choose any one to see what it says and where it is used.</p></div>
+    </div>
+    <div class="bar searchbar">
+      <input type="search" id="q" placeholder="Search sources: a zip, a page, a dataset, a gap number" aria-label="Search the sources">
+    </div>
+    <div id="matches" aria-label="Matching sources"></div>
+    <div class="wrap">
+      <div class="groups" id="groups" aria-label="Sources by kind"></div>
+      <aside id="panel" aria-live="polite"><p class="hint">Choose a source to see its summary and where it is used.</p></aside>
+    </div>
+
+    <div class="maptoggle">
+      <button type="button" id="map-toggle" aria-expanded="false" aria-controls="map"><span class="material-symbols-outlined" aria-hidden="true">hub</span><span id="map-toggle-t">See the full map</span></button>
+      <span class="hint">Every source and how they connect.</span>
+    </div>
+    <div id="map" hidden>
+      <div class="scard">
+        <div class="bar">
+          <button id="spine" aria-pressed="true">Key sources</button>
+          <button id="all" aria-pressed="false">All sources</button>
+        </div>
+        <div class="fl"><span class="caps">Show only</span><div class="types" id="types" aria-label="Show only these kinds"></div></div>
+      </div>
+      <div class="gcard">
+        <div class="gh"><span class="t"><i></i>Full map</span></div>
+        <div class="graph"><svg id="g" role="img" aria-label="Map of every source and its connections"></svg></div>
+        <div class="gfoot"><div class="legend" id="legend"></div><div class="count" id="count"></div></div>
+      </div>
+    </div>
+
+    <div class="health" id="health" aria-label="Base Brain at a glance">
+      <div class="metric"><span class="caps">Sources</span><div class="v" id="h-nodes">…</div><div class="d" id="h-built">Base Brain</div></div>
+      <div class="metric"><span class="caps">Connections</span><div class="v" id="h-edges">…</div><div class="d">Found in the app and its docs</div></div>
+      <div class="metric"><span class="caps">FAQs</span><div class="v" id="h-faq">…</div><div class="d" id="h-faq-d">Help answers</div></div>
+      <div class="metric"><span class="caps">Questions logged</span><div class="v" id="h-q">…</div><div class="d" id="h-q-d">All time</div></div>
+    </div>
+    <p class="note" id="src"></p>
+    <div class="faqcols" id="faqs" aria-label="FAQ entries"></div>
+  </section>
+
+  <!-- 4. Questions -->
+  <section role="tabpanel" id="questions" aria-labelledby="tab-questions" tabindex="0" hidden>
+    <h2 class="sec">Questions members asked</h2>
+    <p class="sub" id="q-sub">From web/data/learning.json.</p>
+    <div class="two kblock">
+      <div class="tablewrap">
+        <table class="mtable" aria-label="How questions were answered this week">
+          <thead><tr><th>How it was answered</th><th class="num">Asked</th><th class="num">Answered</th></tr></thead>
+          <tbody id="paths"></tbody>
+        </table>
+      </div>
+      <div class="tablewrap">
+        <table class="mtable" aria-label="Questions in review">
+          <thead><tr><th>Question</th><th>How it was answered</th><th class="num">Asked</th><th>Proposal</th><th>Status</th></tr></thead>
+          <tbody id="props"></tbody>
+        </table>
+      </div>
+    </div>
+    <p class="note" id="q-note"></p>
+  </section>
+
+  <p class="foot">A Base Fleet design. Answers stay in this browser.</p>
+</main>
+<script>
+/* Members (persona lead, gpu or none) see plain names; operations and fleet see raw files. */
+const RAW = ["operations", "fleet"].includes(new URLSearchParams(location.search).get("persona"));
+const NAMES = {"docs/LEARNING.md": "Learning loop", "docs/KNOWLEDGE_BASE.md": "Knowledge base guide", "data/market.json": "Market data", "docs/GAPS.md": "Claims we checked"};
+function plainName(path) {
+  if (NAMES[path]) return NAMES[path];
+  const base = String(path || "").split("/").pop().replace(/\.[a-z]+$/i, "").replace(/[_-]+/g, " ").toLowerCase();
+  const name = base.charAt(0).toUpperCase() + base.slice(1);
+  return /^(web\/)?data\//.test(path) ? name + " data" : name;
+}
+const fileName = path => RAW ? path : plainName(path);
+const FILE_PATH = /\b(?:web\/|data\/|docs\/|faq\/|store\/|brain\/)[\w./-]+/g;
+const sourceText = t => RAW ? t : String(t ?? "").replace(/\s*\([^)]*\/[^)]*\)/g, "").replace(FILE_PATH, m => plainName(m)).trim();
+const cleanTitle = t => /^GAPS\b.*claim audit/i.test(t) ? "Claims we checked" : t;
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $ = id => document.getElementById(id);
+const fmt = n => Number(n).toLocaleString("en-US");
+/* "2026-09-27T01:05Z" -> "today at 8:05 PM" in the reader's time zone */
+function when(iso) {
+  const d = new Date(iso), t = isNaN(d) ? null : d;
+  if (!t) return String(iso || "");
+  const day = x => x.toDateString(), now = new Date(), y = new Date(now - 864e5);
+  const time = t.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit"});
+  const date = day(t) === day(now) ? "today" : day(t) === day(y) ? "yesterday" : "on " + t.toLocaleDateString("en-US", {month: "short", day: "numeric"});
+  return `${date} at ${time}`;
+}
+const TYPE_NAME = {hub: "Base Brain index", dataset: "Public data", doc: "Our doc", page: "App page", gap: "Gap we checked",
+  persona: "Persona", zip: "Zip code", signal: "Signal", job: "Scheduled job"};
+const REL = {appears_in: "appears in", describes: "describes", cites_number: "uses a number from", references: "mentions", affects: "affects",
+  tours: "in a guided tour", feeds: "feeds", reads: "reads", serves: "serves", refreshes: "refreshes", spine: "key link", watches: "watches", writes: "writes"};
+const PAGE_NAME = {"ask.html": "Ask", ask: "Ask", "member.html": "the member page", member: "the member page", brain: "Help", "brain.html": "Help"};
+let LEARN = null;
+
+/* ---------- tabs ---------- */
+const TABS = ["architecture", "flows", "knowledge", "questions"];
+const tabBtn = t => $("tab-" + t);
+let graphReady = false, graphDrawn = false;
+function showTab(t, focus) {
+  if (!TABS.includes(t)) t = "knowledge";
+  for (const x of TABS) {
+    const on = x === t;
+    tabBtn(x).setAttribute("aria-selected", on); tabBtn(x).tabIndex = on ? 0 : -1;
+    $(x).hidden = !on;
+  }
+  if (focus) tabBtn(t).focus();
+  if (t === "knowledge" && graphReady && !graphDrawn) render();
+}
+document.querySelector('[role=tablist]').addEventListener("keydown", e => {
+  const i = TABS.indexOf(document.activeElement.id.replace("tab-", ""));
+  if (i < 0) return;
+  let j = null;
+  if (e.key === "ArrowRight") j = (i + 1) % TABS.length;
+  if (e.key === "ArrowLeft") j = (i + TABS.length - 1) % TABS.length;
+  if (e.key === "Home") j = 0;
+  if (e.key === "End") j = TABS.length - 1;
+  if (j === null) return;
+  e.preventDefault(); history.replaceState(null, "", "#" + TABS[j]); showTab(TABS[j], true);
+});
+TABS.forEach(t => tabBtn(t).onclick = () => { history.replaceState(null, "", "#" + t); showTab(t); });
+addEventListener("hashchange", () => showTab(location.hash.slice(1)));
+const params = new URLSearchParams(location.search);
+showTab(params.get("kb") ? "knowledge" : location.hash.slice(1));
+if (!RAW) $("loop-src").textContent = "Learning loop, Knowledge base guide";
+
+/* ---------- FAQs ---------- */
+let FAQ = null;
+const faqFor = n => {
+  if (!FAQ || !["dataset", "doc", "page"].includes(n.type)) return [];
+  const page = i => i.page && i.page.href ? "web/" + i.page.href.split(/[?#]/)[0] : "";
+  return FAQ.items.filter(i => (i.data || []).includes(n.path) || page(i) === n.path);
+};
+function openFaq(id) {
+  const d = document.getElementById("faq-" + id); if (!d) return;
+  d.open = true; d.closest(".cat").open = true; d.classList.add("flash");
+  d.scrollIntoView({block: "center"}); d.querySelector("summary").focus({preventScroll: true});
+  setTimeout(() => d.classList.remove("flash"), 1600);
+}
+function renderFaq(f) {
+  FAQ = f;
+  const items = f.items || [];
+  const mem = items.filter(i => i.audience === "member").length, team = items.filter(i => i.audience !== "member").length;
+  const routed = items.filter(i => i.route === "base_support").length;
+  $("h-faq").textContent = fmt(items.length);
+  $("h-faq-d").innerHTML = `<b>${mem}</b> for members · <b>${team}</b> for the Base team`;
+  const col = (aud, title) => {
+    const cats = (f.categories || {})[aud] || [];
+    const list = items.filter(i => i.audience === aud);
+    return `<div class="card"><h3><span class="caps">${esc(title)}</span><span class="caps">${list.length}</span></h3>${cats.map(c => {
+      const rows = list.filter(i => i.category === c);
+      if (!rows.length) return "";
+      return `<details class="cat"><summary>${esc(String(c).replace(/\s*\(assumed, not a Base offer\)/, ""))} <span>${rows.length}</span></summary>${rows.map(i => `
+        <details class="faq" id="faq-${esc(i.id)}"><summary>${esc(i.q)}</summary>
+          <p>${esc(i.a)}</p>
+          ${i.route === "base_support" ? `<p><span class="tag warn">Goes to Base support</span></p>` : ""}
+          <p class="src">Source: ${i.source_url ? `<a href="${esc(i.source_url)}">${esc(sourceText(i.source))}</a>` : esc(sourceText(i.source))}</p>
+        </details>`).join("")}</details>`;
+    }).join("")}</div>`;
+  };
+  $("faqs").innerHTML = col("member", "Member FAQs (shown on Help)") + col("internal", "Base team FAQs");
+  renderGroups();
+  if (selected) select(selected, false);
+}
+fetch("data/faq.json").then(r => r.json()).then(renderFaq).catch(() => {
+  $("h-faq").textContent = "—"; $("h-faq-d").textContent = "FAQs load when the page is online";
+});
+
+/* ---------- Questions ---------- */
+const PATH = {cache: ["Recorded answer (cache)", "ok"], template: ["Template", "ok"], kb: ["Knowledge base", "ok"],
+  agent: ["Local model (agent)", ""], gap: ["No answer yet (gap)", "no"], base_support: ["Routed to Base support", "warn"]};
+const pathTag = p => { const [l, c] = PATH[p] || [p, ""]; return `<span class="tag ${c}">${esc(l)}</span>`; };
+const STATUS = {proposed: "warn", approved: "ok", rejected: "no"};
+function renderLearning(L) {
+  const props = L.proposals || [];
+  const pending = props.filter(p => p.status === "proposed").length;
+  $("h-q").textContent = fmt(L.total_logged ?? 0);
+  $("h-q-d").innerHTML = `<b>${pending}</b> waiting for review · <a href="#questions">see questions</a>`;
+  const w = L.week || {};
+  const approved = Math.max(props.filter(p => p.status === "approved").length, (L.kb || {}).learned_answers || 0);
+  $("lp-asked").textContent = fmt(w.asked ?? 0); $("lp-answered").textContent = fmt(w.answered ?? 0);
+  $("lp-waiting").textContent = fmt(pending); $("lp-approved").textContent = fmt(approved);
+  LEARN = L; renderHow();
+  $("q-sub").textContent = `Last 7 days: ${fmt(w.asked ?? 0)} asked, ${fmt(w.answered ?? 0)} answered. All time logged: ${fmt(L.total_logged ?? 0)}. Built ${L.generated || "unknown"} from web/data/learning.json.`;
+  const bp = w.by_path || {};
+  $("paths").innerHTML = Object.keys(bp).length ? Object.entries(bp).map(([p, v]) =>
+    `<tr><td>${pathTag(p)}</td><td class="num" data-l="Asked">${fmt(v.asked)}</td><td class="num" data-l="Answered">${fmt(v.answered)}</td></tr>`).join("")
+    : `<tr><td colspan="3" class="hint">No questions logged this week.</td></tr>`;
+  $("props").innerHTML = props.length ? props.map(p => {
+    const paths = Object.keys((p.stats || {}).paths || {});
+    return `<tr><td>${esc(p.question)}</td><td data-l="Answered by">${paths.map(pathTag).join(" ") || "—"}</td>
+      <td class="num" data-l="Asked">${fmt((p.stats || {}).asked ?? 0)}</td><td data-l="Proposal">${esc(p.proposal)}</td>
+      <td data-l="Status"><span class="tag ${STATUS[p.status] || ""}">${esc(p.status)}</span></td></tr>`;
+  }).join("") : `<tr><td colspan="5" class="hint">No member questions in review yet. The first ones appear after the nightly store/learn.py run.</td></tr>`;
+  $("q-note").innerHTML = `A person approves or rejects each proposal on <a href="admin.html">Admin</a> (needs the ask server on the Mac). Nothing goes live without approval. Questions only Base can answer (credits, cancelling, payments, contracts) go to Base support.`;
+}
+fetch("data/learning.json").then(r => r.json()).then(renderLearning).catch(() => {
+  $("h-q").textContent = "—"; $("h-q-d").textContent = "Questions load when the page is online";
+  $("how-q").textContent = "Member questions load when the page is online.";
+  $("props").innerHTML = `<tr><td colspan="5" class="hint">Learning data is unavailable.</td></tr>`;
+});
+
+/* ---------- Graph ---------- */
+const TYPES = [["hub", "Index"], ["dataset", "Public data"], ["doc", "Our docs"], ["page", "App pages"], ["gap", "Gaps we checked"],
+  ["persona", "Personas"], ["zip", "Zip codes"], ["signal", "Signals"], ["job", "Scheduled jobs"]].map(([k, l]) => [k, l, "--kb-" + k]);
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim() || "#888";
+const color = t => css((TYPES.find(x => x[0] === t) || [, , "--bf-muted"])[2]);
+const ICON = {hub: "hub", dataset: "database", doc: "description", page: "web", gap: "flag", persona: "person", zip: "location_on", signal: "bolt", job: "work"};
+const R = {hub: 11, dataset: 10, doc: 7, page: 8, gap: 6, persona: 7, zip: 4.5, signal: 6, job: 7};
+
+let G, byId, adj, shown = new Set(), mode = "spine", selected = null, sim;
+/* Filter pills: none active shows every kind; active pills narrow the map to those kinds. */
+const active = new Set();
+const enabled = {has: t => !active.size || active.has(t), add: t => { if (active.size) active.add(t); }};
+if (!window.d3) $("panel").innerHTML = `<p class="hint">The map needs its drawing library (assets/d3.min.js).</p>`;
+const svg = d3.select("#g"), root = svg.append("g");
+const linkG = root.append("g"), nodeG = root.append("g");
+svg.call(d3.zoom().scaleExtent([0.2, 4]).on("zoom", e => root.attr("transform", e.transform)));
+
+function openLinks(n) {
+  const out = [];
+  if (n.type === "page") out.push([n.path.replace(/^web\//, ""), "Open page"]);
+  if (RAW && /\.md$/.test(n.path) && n.type !== "gap") out.push(["../" + n.path, "Open doc"]);
+  if (RAW && n.type === "dataset" && /\.(json|md)$/.test(n.path)) out.push(["../" + n.path, "Open data file"]);
+  if (RAW && n.type === "gap") out.push([`gaps.html#${n.short.split("-")[1]}`, "Open in gap ledger"],
+    [`https://github.com/jravinder/base-aitx/issues/${n.short.split("-")[1]}`, "Open issue (repo access)"]);
+  if (n.type === "zip") out.push(["explorer.html", "Open on permit map"]);
+  return out.map(([h, l]) => `<a href="${esc(h)}">${esc(l)}</a>`).join("");
+}
+
+function neighbours(slug) {
+  return [...(adj.out.get(slug) || []), ...(adj.in.get(slug) || [])].map(x => x.o);
+}
+
+function render() {
+  if ($("knowledge").hidden || $("map").hidden) return;
+  graphDrawn = true;
+  const nodes = G.nodes.filter(n => shown.has(n.slug) && enabled.has(n.type));
+  const ids = new Set(nodes.map(n => n.slug));
+  const links = G.edges.filter(e => ids.has(e.src) && ids.has(e.dst)).map(e => ({...e, source: e.src, target: e.dst}));
+  $("count").textContent = `Showing ${nodes.length} of ${G.nodes.length} sources · ${links.length} connections`;
+  const old = new Map(nodeG.selectAll("g.node").data().map(d => [d.slug, d]));
+  nodes.forEach(n => { const o = old.get(n.slug); if (o) { n.x = o.x; n.y = o.y; } });
+
+  const l = linkG.selectAll("line").data(links, d => d.src + ">" + d.dst + d.type);
+  l.exit().remove();
+  const lAll = l.enter().append("line").attr("class", "link").merge(l);
+  const g = nodeG.selectAll("g.node").data(nodes, d => d.slug);
+  g.exit().remove();
+  const gin = g.enter().append("g").attr("class", "node")
+    .on("click", (e, d) => select(d.slug))
+    .call(d3.drag().on("start", (e, d) => { if (!e.active) sim.alphaTarget(.2).restart(); d.fx = d.x; d.fy = d.y; })
+      .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; })
+      .on("end", (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+  gin.append("circle");
+  gin.append("title");
+  gin.on("mouseenter", function () { d3.select(this).select("text").text(d => short(d.title)); })
+     .on("mouseleave", function (e, d) { if (!label(d)) d3.select(this).select("text").text(""); });
+  gin.append("text").attr("dy", "0.32em");
+  const gAll = gin.merge(g);
+  gAll.select("circle").attr("r", d => R[d.type] || 6).attr("fill", d => color(d.type));
+  gAll.select("title").text(d => `${d.title}\n${d.summary}`);
+  const near = new Set(selected ? [selected, ...neighbours(selected)] : []);
+  const label = d => d.type === "hub" || d.type === "dataset" || G.spine.includes(d.slug) || d.slug === selected
+    || (selected && selected !== G.spine[G.spine.length - 1] && near.has(d.slug)) || nodes.length < 25;
+  gAll.select("text").attr("x", d => (R[d.type] || 6) + 4).text(d => label(d) ? short(d.title) : "");
+  gAll.classed("sel", d => d.slug === selected);
+  lAll.classed("on", d => selected && (d.src === selected || d.dst === selected));
+
+  const W = svg.node().clientWidth, H = svg.node().clientHeight;
+  if (sim) sim.stop();
+  sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.slug).distance(d => d.type === "appears_in" ? 45 : 95).strength(.2))
+    .force("charge", d3.forceManyBody().strength(nodes.length > 120 ? -90 : -340).distanceMax(420))
+    .force("center", d3.forceCenter(W / 2, H / 2))
+    .force("collide", d3.forceCollide(d => (R[d.type] || 6) + 3))
+    .force("x", d3.forceX(W / 2).strength(.03)).force("y", d3.forceY(H / 2).strength(.05))
+    .on("tick", () => {
+      lAll.attr("x1", d => d.source.x).attr("y1", d => d.source.y).attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+      gAll.attr("transform", d => `translate(${d.x},${d.y})`);
+    });
+}
+const short = t => t.length > 34 ? t.slice(0, 32) + "..." : t;
+
+function select(slug, expand = true, full = false, reveal = false) {
+  selected = slug;
+  document.querySelectorAll("#groups button[data-s], #how-src button[data-s]").forEach(b => b.setAttribute("aria-current", b.dataset.s === slug));
+  if (reveal && matchMedia("(max-width:900px)").matches) $("panel").scrollIntoView({block: "start"});
+  const n = byId.get(slug);
+  if (expand) { shown.add(slug); neighbours(slug).forEach(o => shown.add(o)); enabled.add(n.type); syncTypes(); }
+  const row = (x, dir) => { const o = byId.get(x.o); return o ? `<li><button data-s="${esc(o.slug)}"><span class="material-symbols-outlined ic" style="color:${color(o.type)}" aria-hidden="true">${ICON[o.type] || "circle"}</span><span class="tx"><b>${esc(o.title)}</b><small>${esc(REL[x.t] || x.t.replace(/_/g, " "))} · ${esc(TYPE_NAME[o.type] || o.type)}</small></span><span class="material-symbols-outlined ar" aria-hidden="true">arrow_forward</span></button></li>` : ""; };
+  const outs = adj.out.get(slug) || [], ins = adj.in.get(slug) || [];
+  const faqs = faqFor(n);
+  const faqHtml = !FAQ ? "" : ["dataset", "doc", "page"].includes(n.type)
+    ? (faqs.length ? `<h3 class="caps">Help answers that use it <small>${faqs.length}</small></h3><ul class="rows">${faqs.map(i => `<li><a href="#faq-${esc(i.id)}" data-f="${esc(i.id)}"><span class="material-symbols-outlined ic" aria-hidden="true">quiz</span><span class="tx"><b>${esc(i.q)}</b></span><span class="material-symbols-outlined ar" aria-hidden="true">arrow_forward</span></a></li>`).join("")}</ul>` : "")
+    : "";
+  $("panel").innerHTML = `
+    <div class="ph"><span class="sel-pill">Selected source</span><span class="ttype"><span class="dot" style="background:${color(n.type)};display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px"></span>${esc(TYPE_NAME[n.type] || n.type)}</span></div>
+    <h2>${esc(n.title)}<span class="material-symbols-outlined" aria-hidden="true">verified</span></h2><p class="sum">${esc(n.summary)}</p>
+    <div class="meta"><div><span>${RAW ? "Source file" : "Source"}</span><b>${esc(fileName(n.path))}</b></div><div><span>Connections</span><b class="g">${outs.length + ins.length}</b></div>${FAQ && ["dataset", "doc", "page"].includes(n.type) ? `<div><span>Help answers using it</span><b>${faqs.length}</b></div>` : ""}<div><span>Built</span><b class="g">${esc(when(G.built_at))}</b></div>${n.fixed_by ? `<div><span>Fixed by</span><b>${esc(n.fixed_by)}</b></div>` : ""}</div>
+    <div class="open">${openLinks(n)}</div>
+    ${faqHtml}
+    ${outs.length ? `<h3 class="caps">It points to <small>${outs.length}</small></h3><ul class="rows">${outs.slice(0, full ? 999 : 6).map(x => row(x, "→")).join("")}</ul>${!full && outs.length > 6 ? `<button type="button" class="more-links">Show all ${outs.length}</button>` : ""}` : ""}
+    ${ins.length ? `<h3 class="caps">Used in these answers <small>${ins.length}</small></h3><ul class="rows">${ins.slice(0, full ? 999 : 6).map(x => row(x, "←")).join("")}</ul>${!full && ins.length > 6 ? `<button type="button" class="more-links">Show all ${ins.length}</button>` : ""}` : ""}`;
+  document.querySelectorAll("#panel li button").forEach(b => b.onclick = () => select(b.dataset.s, true, false, true));
+  document.querySelectorAll("#panel .more-links").forEach(b => b.onclick = () => select(slug, false, true));
+  document.querySelectorAll("#panel a[data-f]").forEach(a => a.onclick = e => { e.preventDefault(); openFaq(a.dataset.f); });
+  render();
+}
+
+function spine() {
+  shown = new Set(G.spine);
+  G.spine.forEach(s => neighbours(s).forEach(o => { if (byId.get(o).type !== "zip") shown.add(o); }));
+}
+function setMode(m) {
+  mode = m;
+  $("spine").setAttribute("aria-pressed", m === "spine");
+  $("all").setAttribute("aria-pressed", m === "all");
+  if (m === "all") { shown = new Set(G.nodes.map(n => n.slug)); selected = null; render(); }
+  else { spine(); select(G.spine[G.spine.length - 1], false); }
+}
+function syncTypes() {
+  document.querySelectorAll("#types input").forEach(i => i.checked = active.has(i.value));
+}
+
+/* ---------- Sources by kind ---------- */
+const GROUPS = [["dataset", "Public data", "City, grid and weather records"], ["doc", "Our docs", "How we built it and why"],
+  ["page", "App pages", "Where answers show"], ["faq", "FAQs", "Written answers on Help"], ["gap", "Gaps we checked", "Claims we tested against data"]];
+const used = slug => (adj.in.get(slug) || []).length + (adj.out.get(slug) || []).length;
+function renderGroups() {
+  if (!G || !FAQ) return;
+  $("groups").innerHTML = GROUPS.map(([k, label, blurb]) => {
+    if (k === "faq") {
+      const list = (FAQ.items || []).filter(i => i.audience === "member");
+      return `<section class="grp"><h3><span class="dot" style="background:#84cc16"></span>${label}<span class="n">${fmt(list.length)}</span></h3><p>${blurb}</p><ul>${
+        list.slice(0, 5).map(i => `<li><a href="#faq-${esc(i.id)}" data-f="${esc(i.id)}">${esc(i.q)}</a></li>`).join("")}</ul></section>`;
+    }
+    const list = G.nodes.filter(n => n.type === k).sort((a, b) => used(b.slug) - used(a.slug));
+    return `<section class="grp"><h3><span class="dot" style="background:${color(k)}"></span>${label}<span class="n">${fmt(list.length)}</span></h3><p>${blurb}</p><ul>${
+      list.slice(0, 5).map(n => `<li><button type="button" data-s="${esc(n.slug)}" aria-current="${n.slug === selected}">${esc(n.title)}</button></li>`).join("")}</ul></section>`;
+  }).join("");
+  document.querySelectorAll("#groups button[data-s]").forEach(b => b.onclick = () => select(b.dataset.s, true, false, true));
+  document.querySelectorAll("#groups a[data-f]").forEach(a => a.onclick = e => { e.preventDefault(); openFaq(a.dataset.f); });
+}
+
+/* ---------- How one answer was made (a real logged answer from learning.json) ---------- */
+function renderHow() {
+  if (!G || !LEARN) return;
+  const props = LEARN.proposals || [];
+  const recs = Object.values(LEARN._records || {});
+  const rec = recs.find(r => r.critic?.pass && props.some(p => p.question === r.question && p.status !== "rejected")) || recs[0];
+  if (!rec) { $("how-one").hidden = true; return; }
+  const prop = props.find(p => p.question === rec.question);
+  $("how-q").textContent = `“${rec.question}”`;
+  const pages = ((prop || {}).stats || {}).pages || [];
+  const last = ((prop || {}).stats || {}).last;
+  $("how-meta").textContent = [`A member asked this${pages.length ? " on " + (PAGE_NAME[pages[0]] || pages[0].replace(/\.html$/, "")) : ""}`,
+    last ? when(last) : ""].filter(Boolean).join(", ") + ".";
+  const zip = (rec.question.match(/\b7\d{4}\b/) || [])[0];
+  const topic = String(rec.source || "").replace(/s$/, "");
+  const hits = G.nodes.filter(n => n.type === "dataset" && topic && (n.title + " " + n.path).toLowerCase().includes(topic)).sort((a, b) => used(b.slug) - used(a.slug)).slice(0, 2);
+  const z = zip && G.nodes.find(n => n.type === "zip" && n.short === "zip-" + zip);
+  const srcs = [...hits, ...(z ? [z] : [])];
+  $("how-src").innerHTML = srcs.map(n => `<li><button type="button" data-s="${esc(n.slug)}"><span class="material-symbols-outlined" aria-hidden="true">${ICON[n.type] || "circle"}</span><span>${esc(n.title)}<small>${esc(TYPE_NAME[n.type])}</small></span></button></li>`).join("");
+  document.querySelectorAll("#how-src button").forEach(b => b.onclick = () => select(b.dataset.s, true, false, true));
+  $("how-ans").textContent = String(rec.answer || "").replace(/\s*\[\d+\]/g, "");
+  const s1 = (rec.sources || [])[0];
+  const label = s1 ? (RAW ? s1.label : s1.label.replace(/\s*\([^)]*\)/, "")) : "";
+  $("how-cite").innerHTML = s1 ? `Source: ${s1.url ? `<a href="${esc(s1.url)}">${esc(label)}</a>` : esc(label)}${rec.critic?.pass ? " · every number checked against it" : ""}` : "";
+  const st = (prop || {}).status;
+  const steps = [["check_circle", "Logged", "Saved with personal details removed", ""],
+    ["check_circle", "Reviewed", prop ? "Proposal: " + (/^Cache/.test(prop.proposal) ? "keep this answer for the next member" : prop.proposal) : "In the nightly review", ""],
+    st === "approved" ? ["check_circle", "Approved", "Now part of Base Brain", ""] : ["schedule", "Waiting for approval", "A Base team member approves it on Admin", "wait"]];
+  $("how-then").innerHTML = steps.map(([ic, t, sub, c]) => `<li class="${c}"><span class="material-symbols-outlined" aria-hidden="true">${ic}</span><span>${esc(t)}<small>${esc(sub)}</small></span></li>`).join("");
+}
+
+fetch("data/kb_graph.json").then(r => r.json()).then(data => {
+  G = data;
+  G.nodes.forEach(n => n.title = cleanTitle(n.title));
+  G.nodes.forEach(n => n.short = n.short || n.slug.slice(G.prefix.length));
+  byId = new Map(G.nodes.map(n => [n.slug, n]));
+  adj = {out: new Map(), in: new Map()};
+  G.edges.forEach(e => {
+    if (!adj.out.has(e.src)) adj.out.set(e.src, []); adj.out.get(e.src).push({t: e.type, o: e.dst});
+    if (!adj.in.has(e.dst)) adj.in.set(e.dst, []); adj.in.get(e.dst).push({t: e.type, o: e.src});
+  });
+  $("h-nodes").textContent = fmt(G.nodes.length);
+  $("h-edges").textContent = fmt(G.edges.length);
+  $("h-built").textContent = RAW ? `Built ${when(G.built_at)} by store/kb.py` : `Built ${when(G.built_at)}`;
+  $("hd-built").textContent = `Built ${when(G.built_at)}`;
+  const counts = d3.rollup(G.nodes, v => v.length, n => n.type);
+  $("legend").innerHTML = TYPES.filter(t => counts.get(t[0])).slice(0, 5).map(([k, label]) => `<span><i style="background:${color(k)}"></i>${label}</span>`).join("");
+  $("types").innerHTML = TYPES.filter(t => counts.get(t[0])).map(([k, label]) =>
+    `<label><input type="checkbox" value="${k}"><span class="dot" style="background:${color(k)}"></span>${label} <span class="n">${counts.get(k)}</span></label>`).join("");
+  document.querySelectorAll("#types input").forEach(i => i.onchange = () => { i.checked ? active.add(i.value) : active.delete(i.value); render(); });
+  $("map-toggle").onclick = () => {
+    const open = $("map").hidden;
+    $("map").hidden = !open; $("map-toggle").setAttribute("aria-expanded", open);
+    $("map-toggle-t").textContent = open ? "Hide the full map" : "See the full map";
+    if (open) render();
+  };
+  $("spine").onclick = () => setMode("spine");
+  $("all").onclick = () => setMode("all");
+  const q = $("q");
+  q.oninput = () => {
+    const s = q.value.trim().toLowerCase();
+    nodeG.selectAll("g.node").classed("hit", d => s.length > 1 && (d.title + " " + d.short + " " + d.summary).toLowerCase().includes(s));
+    const matches = $("matches");
+    matches.replaceChildren();
+    if (!s) return;
+    const hits = G.nodes.filter(n => (n.title + " " + n.short + " " + n.summary).toLowerCase().includes(s));
+    if (!hits.length) matches.textContent = "No matching sources.";
+    for (const hit of hits.slice(0, 5)) {
+      const b = document.createElement("button"); b.type = "button"; b.textContent = hit.title;
+      b.onclick = () => select(hit.slug, true, false, true); matches.append(b);
+    }
+  };
+  q.onkeydown = e => {
+    if (e.key !== "Enter") return;
+    const s = q.value.trim().toLowerCase();
+    const hits = G.nodes.filter(n => (n.title + " " + n.short + " " + n.summary).toLowerCase().includes(s));
+    if (!hits.length) { $("panel").innerHTML = `<p class="hint">Try another word, a zip or a page name.</p>`; return; }
+    shown = new Set(hits.slice(0, 40).map(n => n.slug));
+    select(hits[0].slug);
+  };
+  $("src").innerHTML = `Connections show where a source is used. Number checks are in Gaps we checked. ${RAW ? `<a href="../docs/KNOWLEDGE_BASE.md">How the knowledge base is built</a>.` : ""}`;
+  spine();
+  graphReady = true;
+  renderGroups(); renderHow();
+  const want = params.get("kb");
+  const pick = want && G.nodes.find(n => n.short === want) || want && G.nodes.find(n => n.slug === want);
+  if (pick) select(pick.slug);
+  else if (want) render();
+  else select(G.nodes.find(n => n.type === "dataset" && n.path === "data/market.json")?.slug || G.spine[G.spine.length - 1], false);
+}).catch(err => {
+  $("panel").innerHTML = RAW ? `<p class="hint">Rebuild data/kb_graph.json with python3 store/kb.py (${esc(err.message)}).</p>` : `<p class="hint">Sources load when the page is online.</p>`;
+});
+</script>
+</body>
+</html>

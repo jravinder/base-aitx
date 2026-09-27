@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Onboarding | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="onboarding.css">
+<link rel="stylesheet" href="shell.css">
+<link rel="stylesheet" href="photo-checklist.css">
+<link rel="stylesheet" href="extraction-gallery.css">
+<link rel="stylesheet" href="milestones.css">
+<script defer src="extraction-gallery.js"></script>
+<script defer src="shell.js"></script><script defer src="speak.js"></script><script defer src="photo-checklist.js"></script><script defer src="photo-check.js"></script><script defer src="onboarding.js"></script><script defer src="network-demo.js"></script><script defer src="milestones.js"></script>
+</head>
+<body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<a class="skip" href="#main">Skip to workspace</a>
+<div class="shell">
+<header class="topbar st-top bg-surface-container-lowest border-b border-wire-border">
+ <div class="ob-top max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+  <div class="flex items-center gap-2 min-w-0">
+   <span class="w-2 h-2 rounded-full bg-energy-lime" aria-hidden="true"></span>
+   <span class="font-label-md text-label-md text-ink-primary font-semibold">Onboarding</span>
+   <strong id="view-label" class="sr-only">Home details</strong>
+   <span id="head-address" class="ob-head-address"></span>
+  </div>
+  <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+   <a class="jr-steps sr-only" href="#journey-milestones" aria-label="Onboarding step">
+    <span id="step-text" class="font-label-md text-label-md text-ink-primary font-semibold">Step 1 of 5: Public records</span>
+    <span id="step-bars" class="flex gap-1" aria-hidden="true"></span>
+   </a>
+   <div class="heading-actions flex items-center gap-2">
+    <button class="st-quiet font-label-md text-label-md text-outline hover:text-ink-primary px-2 rounded-xl" id="reset-progress" type="button">Start over</button>
+   </div>
+  </div>
+ </div>
+</header>
+<main id="main" class="ob-main max-w-[1440px] w-full mx-auto">
+<section id="home-view" class="ob-flow">
+ <h1 class="sr-only">Onboarding: your home, in three steps</h1>
+ <div data-milestones="compact" id="journey-milestones" class="ob-strip"></div>
+ <p class="ob-yours"><b>Steps 1 to 3 are yours.</b> Base does 4 and 5.</p>
+ <div class="ob-grid">
+  <!-- Step 1: the home from public records -->
+  <section class="ob-step" id="find-home" data-state="now" aria-labelledby="step1-title">
+   <header class="ob-step-head">
+    <span class="ob-num" aria-hidden="true">1</span>
+    <div class="ob-step-name"><div class="ob-eyebrow-row"><p class="ob-eyebrow">Step 1</p><a class="ob-voice" data-voice-step="records" href="voice.html?track=home&amp;persona=lead&amp;step=records"><span class="material-symbols-outlined" aria-hidden="true">record_voice_over</span>Talk me through it</a></div><h2 id="step1-title">Your home from records</h2></div>
+    <span class="ob-chip" data-step-chip></span>
+   </header>
+   <div class="ob-done-line" id="find-summary" hidden>
+    <span class="material-symbols-outlined ob-check" aria-hidden="true">check_circle</span>
+    <p id="find-summary-text"></p>
+    <button id="find-change" class="ob-link" type="button">Change</button>
+   </div>
+   <div class="ob-step-body" id="find-body">
+    <div class="ob-field">
+     <label id="find-title" class="ob-label" for="address-input">Type your address.</label>
+     <div class="ob-search">
+      <div class="relative flex-1 min-w-0">
+       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-outline flex items-center pointer-events-none"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">search</span></span>
+       <input id="address-input" class="jr-input ob-input" type="text" autocomplete="off" spellcheck="false" placeholder="Start typing, e.g. Mount Vernon" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="address-list" disabled>
+       <ul id="address-list" class="jr-list" role="listbox" aria-label="Homes in the permit records" hidden></ul>
+      </div>
+      <button id="address-search" class="ob-btn-2" type="button">Search</button>
+     </div>
+     <p id="address-hint" class="ob-hint" aria-live="polite"></p>
+     <select id="address-select" class="jr-sync" aria-hidden="true" tabindex="-1" disabled><option>Loading properties...</option></select>
+    </div>
+    <div class="ob-record" id="record-card">
+     <div class="ob-record-top">
+      <span class="ob-src"><span class="ob-src-dot" aria-hidden="true"></span>Found in City of Austin permits</span>
+      <span class="ob-muted" id="sample-zip">Austin</span>
+     </div>
+     <p class="ob-addr" id="record-address">...</p>
+     <div class="ob-facts" id="home-facts">
+      <div class="ob-fact"><span class="ob-k">Year built</span><b class="ob-v" id="fact-year">...</b><small id="fact-permits">...</small></div>
+      <div class="ob-fact" id="fact-amps-box"><span class="ob-k">Electric service</span><b class="ob-v" id="fact-amps">...</b><small id="fact-amps-src"></small></div>
+      <div class="ob-fact" id="fact-utility-box" hidden><span class="ob-k">Utility</span><b class="ob-v" id="fact-utility"></b><small id="fact-utility-src"></small></div>
+     </div>
+     <div class="ob-fit" id="fit-box" hidden>
+      <span class="ob-k">Fit notes from records</span>
+      <div class="ob-fit-list" id="fact-fit"></div>
+     </div>
+    </div>
+    <div class="ob-actions">
+     <button id="confirm-property" class="ob-primary" type="button" disabled><span id="confirm-label">Confirm this property</span><span aria-hidden="true">→</span></button>
+     <p id="confirm-note" class="ob-note" aria-live="polite"></p>
+    </div>
+   </div>
+   <button class="ob-open" type="button" data-drawer="permits" aria-controls="ob-drawer"><span class="material-symbols-outlined" aria-hidden="true">timeline</span>See the permit history<span class="ob-open-count" id="timeline-count-chip"></span><span class="material-symbols-outlined ob-open-arrow" aria-hidden="true">chevron_right</span></button>
+  </section>
+
+  <!-- Step 2: what records miss, one question at a time -->
+  <section class="ob-step" id="details" data-state="next" aria-labelledby="details-title">
+   <header class="ob-step-head">
+    <span class="ob-num" aria-hidden="true">2</span>
+    <div class="ob-step-name"><div class="ob-eyebrow-row"><p class="ob-eyebrow">Step 2</p><a class="ob-voice" data-voice-step="questions" href="voice.html?track=home&amp;persona=lead&amp;step=questions"><span class="material-symbols-outlined" aria-hidden="true">record_voice_over</span>Talk me through it</a></div><h2 id="details-title">What records miss</h2></div>
+    <span class="ob-chip" data-step-chip></span>
+   </header>
+   <div class="ob-house">
+    <div class="ob-house-top"><span class="ob-k" id="house-address">Your home</span><span class="ob-muted" id="house-zip">Austin</span></div>
+    <div class="hv-house relative w-full" id="house-wrap"><div id="house-art" aria-busy="true"></div><div id="part-tip" class="hv-tip" role="tooltip" hidden></div></div>
+    <ul class="hv-legend" aria-label="Legend"><li><i class="lg known"></i>Recorded</li><li><i class="lg guess"></i>Estimated</li><li><i class="lg unknown"></i>To confirm</li></ul>
+   </div>
+   <section class="hv-side ob-question" aria-label="Confirm home details">
+    <div class="ob-q-top"><span class="ob-k">Every answer earns points</span><p id="progress-line" class="hv-progress-line ob-count">Loading home details...</p></div>
+    <div id="questions"></div>
+    <details id="panel-help" class="panel-help" hidden><summary>Help with my electric panel</summary><p>Keep doors and covers closed. If a label is visible and access feels safe, read it; otherwise choose Not sure.</p><figure><img src="assets/guide-panel.png" alt="Example of a closed electrical panel enclosure" width="1536" height="1024" loading="lazy"><figcaption>Illustration</figcaption></figure><button class="secondary" id="open-electrical-photos" type="button" data-reward="photo">Open electrical photo checklist</button></details>
+    <p id="status-message" class="hv-status ob-hint" role="status" aria-live="polite">Answers are saved on this device.</p><button id="retry-load" class="quiet" type="button" hidden>Retry loading</button>
+   </section>
+   <div class="home-actions ob-q-actions">
+    <button id="back-question" class="ob-btn-2" type="button" hidden>Back</button>
+    <button id="continue-question" data-reward="field" class="ob-primary" type="button" disabled>Continue</button>
+   </div>
+   <button class="ob-open" type="button" data-drawer="records" aria-controls="ob-drawer"><span class="material-symbols-outlined" aria-hidden="true">fact_check</span>See what records say<span class="ob-open-count is-ask" id="record-count"></span><span class="material-symbols-outlined ob-open-arrow" aria-hidden="true">chevron_right</span></button>
+  </section>
+
+  <!-- Step 3: one guided photo -->
+  <section class="ob-step st-photos" id="photos" data-state="next" aria-labelledby="photos-title">
+   <header class="ob-step-head">
+    <span class="ob-num" aria-hidden="true">3</span>
+    <div class="ob-step-name"><div class="ob-eyebrow-row"><p class="ob-eyebrow">Step 3</p><a class="ob-voice" data-voice-step="photo" href="voice.html?track=home&amp;persona=lead&amp;step=photo"><span class="material-symbols-outlined" aria-hidden="true">record_voice_over</span>Talk me through it</a></div><h2 id="photos-title">One photo</h2></div>
+    <span class="ob-chip" data-step-chip></span>
+   </header>
+   <section id="photo-check" class="ob-pcheck"></section>
+   <section id="photo-checklist" class="ob-checklist" aria-label="More photos"></section>
+   <details class="ob-sample" id="sample-reading">
+    <summary><span class="material-symbols-outlined" aria-hidden="true">document_scanner</span>See a reading on a sample photo</summary>
+    <section id="extraction-gallery" aria-label="Try photo extraction"></section>
+   </details>
+   <div class="ob-next" id="journey-next">
+    <div><span class="ob-k">Next</span><p>Your application, and the one thing Base needs.</p></div>
+    <a class="ob-next-link" href="status.html">See your application <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+   </div>
+  </section>
+ </div>
+
+ <!-- Side drawer: permit history and the records table, on demand -->
+ <aside id="ob-drawer" class="ob-drawer" role="dialog" aria-modal="false" aria-labelledby="ob-drawer-title" hidden>
+  <div class="ob-drawer-head">
+   <div><p class="ob-eyebrow">Home records</p><h2 id="ob-drawer-title">What the City of Austin has on file</h2></div>
+   <button id="ob-drawer-close" class="ob-close" type="button" aria-label="Close home records"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
+  </div>
+  <div class="ob-tabs" role="tablist" aria-label="Home records">
+   <button id="tab-permits" role="tab" type="button" aria-selected="true" aria-controls="panel-permits">Permit history</button>
+   <button id="tab-records" role="tab" type="button" aria-selected="false" aria-controls="panel-records" tabindex="-1">What records say</button>
+  </div>
+  <div id="panel-permits" class="ob-panel" role="tabpanel" aria-labelledby="tab-permits">
+   <div class="ob-panel-top"><h3 id="timeline-title">Permit history</h3><span class="ob-muted" id="timeline-count"></span></div>
+   <ol id="permit-timeline" class="jr-tl" aria-live="polite"></ol>
+   <button id="timeline-more" class="jr-more ob-link" type="button" aria-controls="permit-timeline" aria-expanded="false" hidden>Show all permits</button>
+   <p class="ob-hint">From City of Austin permit records.</p>
+  </div>
+  <div id="panel-records" class="ob-panel" role="tabpanel" aria-labelledby="tab-records" hidden>
+   <div class="ob-panel-top"><div><h3 id="record-table-title">Recorded vs. Estimated vs. Confirmed</h3><p class="ob-hint">Permit records beside your answers.</p></div></div>
+   <div class="ob-table" id="record-table"></div>
+  </div>
+ </aside>
+</section>
+<section id="network-view" hidden>
+ <div class="page-heading"><div><p class="eyebrow">Installed-node scenario</p><h1>Keep the work moving.</h1><p class="subtitle">One job. A node interruption. A visible recovery.</p></div><span class="simulation-label">Interactive simulation</span></div>
+ <div class="simulation-disclosure">Illustrative state machine for this scenario, separate from your selected property.</div>
+ <div class="network-layout"><section class="network-stage"><div class="section-heading"><h2>Neighborhood compute</h2><div class="legend"><span><i class="dot available"></i>Available</span><span><i class="dot busy"></i>Working</span><span><i class="dot offline"></i>Offline</span></div></div><div class="network-plane"><div class="feeder-line"><span>Illustrative local network</span></div><div id="network-grid" class="network-grid"></div><div class="network-foundation"><span class="reserve-mark" aria-hidden="true">ϟ</span><div><strong>Member reserve protected</strong><p><span id="reserve-value">30%</span> simulated floor</p></div><span class="protected">Protected</span></div></div><div class="network-actions"><button id="submit-job" class="primary" type="button">Run a simulated job <span aria-hidden="true">→</span></button><button id="fail-node" class="danger" type="button">Interrupt a node</button><button id="reset-network" class="quiet" type="button">Reset</button></div><p id="network-summary" role="status">Ready for a simulated workload.</p></section>
+ <aside class="job-panel"><p class="eyebrow">Workload status</p><h2 id="job-status" role="status" aria-live="polite">Ready</h2><p class="small">Saved on this device.</p><h3>Activity</h3><ol id="network-log" aria-live="polite"></ol></aside></div>
+ <div class="network-bottom"><div><h2>Useful work, with visible limits.</h2><p>Recoverable compute is the scenario. Hardware, network topology, capacity and member points would require a real deployment and acceptance tests.</p></div><a class="secondary" href="member.html">Open My Battery <span aria-hidden="true">→</span></a></div>
+</section>
+<footer class="font-body-sm text-body-sm text-outline py-8">Public records and your saved home details</footer>
+</main></div>
+<script>
+function showView(){const network=location.hash==='#network';document.getElementById('home-view').hidden=network;document.getElementById('network-view').hidden=!network;document.getElementById('view-label').textContent=network?'My Network':'Home details';document.getElementById('head-address').hidden=network;document.querySelectorAll('.sh-nav [data-view]').forEach(a=>{const active=a.dataset.view===(network?'network':'home');a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});}
+window.addEventListener('hashchange',()=>{showView();window.scrollTo(0,0);});showView();
+</script>
+</body></html>

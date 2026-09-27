@@ -1,0 +1,803 @@
+{
+ "generated": "2026-09-27T01:18:07Z",
+ "log": "data/live/questions.jsonl",
+ "db_rows": 100,
+ "total_logged": 100,
+ "week": {
+  "asked": 100,
+  "answered": 88,
+  "median_seconds": 0.0,
+  "by_path": {
+   "cache": {
+    "asked": 73,
+    "answered": 73
+   },
+   "template": {
+    "asked": 4,
+    "answered": 3
+   },
+   "kb": {
+    "asked": 4,
+    "answered": 4
+   },
+   "agent": {
+    "asked": 10,
+    "answered": 8
+   },
+   "gap": {
+    "asked": 3,
+    "answered": 0
+   },
+   "base_support": {
+    "asked": 6,
+    "answered": 0
+   }
+  },
+  "pages": {
+   "market": 4,
+   "recovery": 5,
+   "admin": 2,
+   "story": 3,
+   "star": 8,
+   "house": 6,
+   "grid": 9,
+   "placement": 5,
+   "index": 1,
+   "explorer": 2,
+   "member": 9,
+   "block": 4,
+   "journey": 4,
+   "tower": 6,
+   "demo": 2,
+   "judgments": 1,
+   "wall": 2,
+   "gaps": 1,
+   "voice": 2,
+   "ask.html": 20,
+   "member.html": 3,
+   "unknown": 1
+  }
+ },
+ "signal": {
+  "name": "unanswered_spike",
+  "unanswered_7d": 12,
+  "unanswered_prev_7d": 0,
+  "ratio": null
+ },
+ "top_unanswered": [
+  {
+   "question": "Can I cancel my Base contract early?",
+   "asked": 2,
+   "paths": {
+    "base_support": 2
+   }
+  },
+  {
+   "question": "When will my first bill credit be paid out?",
+   "asked": 2,
+   "paths": {
+    "base_support": 1,
+    "gap": 1
+   }
+  },
+  {
+   "question": "Does Base work with my solar panels?",
+   "asked": 1,
+   "paths": {
+    "base_support": 1
+   }
+  },
+  {
+   "question": "I rent my house, can I still get a battery?",
+   "asked": 1,
+   "paths": {
+    "base_support": 1
+   }
+  },
+  {
+   "question": "Does my HOA need to approve the battery?",
+   "asked": 1,
+   "paths": {
+    "base_support": 1
+   }
+  },
+  {
+   "question": "What was the highest power price in Austin last week?",
+   "asked": 1,
+   "paths": {
+    "template": 1
+   }
+  },
+  {
+   "question": "What is the weather forecast for Austin this weekend?",
+   "asked": 1,
+   "paths": {
+    "agent": 1
+   }
+  },
+  {
+   "question": "Which zips have the most backup generators?",
+   "asked": 1,
+   "paths": {
+    "agent": 1
+   }
+  },
+  {
+   "question": "will my battery keep my AC on in an outage",
+   "asked": 1,
+   "paths": {
+    "gap": 1
+   }
+  },
+  {
+   "question": "what is my neighbor earning",
+   "asked": 1,
+   "paths": {
+    "gap": 1
+   }
+  }
+ ],
+ "base_support": [
+  {
+   "question": "Can I cancel my Base contract early?",
+   "asked": 2
+  },
+  {
+   "question": "When will my first bill credit be paid out?",
+   "asked": 2
+  },
+  {
+   "question": "Does Base work with my solar panels?",
+   "asked": 1
+  },
+  {
+   "question": "I rent my house, can I still get a battery?",
+   "asked": 1
+  },
+  {
+   "question": "Does my HOA need to approve the battery?",
+   "asked": 1
+  }
+ ],
+ "proposals": [
+  {
+   "id": "ne-f5c4194e",
+   "kind": "new_template",
+   "question": "Which zips have the most backup generators?",
+   "priority": 6.5,
+   "stats": {
+    "asked": 1,
+    "unanswered": 1,
+    "slow_agent": 1,
+    "critic_fail": 1,
+    "paths": {
+     "agent": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "Which zips have the most backup generators?"
+    ],
+    "last": "2026-09-27T01:16:43Z"
+   },
+   "proposal": "New template permits.zip_top_backup",
+   "why": "Unanswered 1 time.",
+   "intent": "zip_top_backup",
+   "parameters": {},
+   "data_source": "permits",
+   "draft": {
+    "kind": "soql",
+    "query": {
+     "$where": "work_class='Auxiliary Power'",
+     "$select": "original_zip, count(*) as permits",
+     "$group": "original_zip",
+     "$order": "permits DESC",
+     "$limit": 10
+    }
+   },
+   "status": "proposed"
+  },
+  {
+   "id": "ba-83ad9ff6",
+   "kind": "base_support",
+   "question": "Can I cancel my Base contract early?",
+   "priority": 6,
+   "stats": {
+    "asked": 2,
+    "unanswered": 2,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "base_support": 2
+    },
+    "pages": [
+     "ask.html",
+     "member"
+    ],
+    "examples": [
+     "Can I cancel my Base contract early?",
+     "can I cancel"
+    ],
+    "last": "2026-09-27T01:17:40Z"
+   },
+   "proposal": "Base policy question: route to Base support",
+   "why": "Credits, cancelling, payments, contracts and eligibility are Base policy. The data cannot answer them.",
+   "status": "proposed"
+  },
+  {
+   "id": "ba-e82833d1",
+   "kind": "base_support",
+   "question": "When will my first bill credit be paid out?",
+   "priority": 6,
+   "stats": {
+    "asked": 2,
+    "unanswered": 2,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "base_support": 1,
+     "gap": 1
+    },
+    "pages": [
+     "ask.html",
+     "member.html"
+    ],
+    "examples": [
+     "When will my first bill credit be paid out?",
+     "when is my next credit paid"
+    ],
+    "last": "2026-09-27T01:17:20Z"
+   },
+   "proposal": "Base policy question: route to Base support",
+   "why": "Credits, cancelling, payments, contracts and eligibility are Base policy. The data cannot answer them.",
+   "status": "proposed"
+  },
+  {
+   "id": "ne-4e60ab11",
+   "kind": "new_template",
+   "question": "What was the highest power price in Austin last week?",
+   "priority": 5.0,
+   "stats": {
+    "asked": 1,
+    "unanswered": 1,
+    "slow_agent": 0,
+    "critic_fail": 1,
+    "paths": {
+     "template": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "What was the highest power price in Austin last week?"
+    ],
+    "last": "2026-09-27T01:15:29Z"
+   },
+   "proposal": "New template dam.top_power_price",
+   "why": "Unanswered 1 time.",
+   "intent": "top_power_price",
+   "parameters": {},
+   "data_source": "dam",
+   "draft": {
+    "kind": "local filter",
+    "query": "sorted([r for r in rows if r['date'] >= TODAY_MINUS_7], key=lambda r: -float(r['aen']))[:5]"
+   },
+   "status": "proposed"
+  },
+  {
+   "id": "ne-c238e4f5",
+   "kind": "new_template",
+   "question": "What is the weather forecast for Austin this weekend?",
+   "priority": 5.0,
+   "stats": {
+    "asked": 1,
+    "unanswered": 1,
+    "slow_agent": 0,
+    "critic_fail": 1,
+    "paths": {
+     "agent": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "What is the weather forecast for Austin this weekend?"
+    ],
+    "last": "2026-09-27T01:16:14Z"
+   },
+   "proposal": "New template load.weather_forecast_austin",
+   "why": "Unanswered 1 time.",
+   "intent": "weather_forecast_austin",
+   "parameters": {},
+   "data_source": "load",
+   "draft": {
+    "kind": "local filter",
+    "query": "[r for r in rows if True]"
+   },
+   "status": "proposed"
+  },
+  {
+   "id": "ba-548c2a0d",
+   "kind": "base_support",
+   "question": "Does Base work with my solar panels?",
+   "priority": 3,
+   "stats": {
+    "asked": 1,
+    "unanswered": 1,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "base_support": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "Does Base work with my solar panels?"
+    ],
+    "last": "2026-09-27T01:15:09Z"
+   },
+   "proposal": "Base policy question: route to Base support",
+   "why": "Credits, cancelling, payments, contracts and eligibility are Base policy. The data cannot answer them.",
+   "status": "proposed"
+  },
+  {
+   "id": "ba-caf21834",
+   "kind": "base_support",
+   "question": "I rent my house, can I still get a battery?",
+   "priority": 3,
+   "stats": {
+    "asked": 1,
+    "unanswered": 1,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "base_support": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "I rent my house, can I still get a battery?"
+    ],
+    "last": "2026-09-27T01:15:09Z"
+   },
+   "proposal": "Base policy question: route to Base support",
+   "why": "Credits, cancelling, payments, contracts and eligibility are Base policy. The data cannot answer them.",
+   "status": "proposed"
+  },
+  {
+   "id": "ba-525afb04",
+   "kind": "base_support",
+   "question": "Does my HOA need to approve the battery?",
+   "priority": 3,
+   "stats": {
+    "asked": 1,
+    "unanswered": 1,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "base_support": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "Does my HOA need to approve the battery?"
+    ],
+    "last": "2026-09-27T01:15:09Z"
+   },
+   "proposal": "Base policy question: route to Base support",
+   "why": "Credits, cancelling, payments, contracts and eligibility are Base policy. The data cannot answer them.",
+   "status": "proposed"
+  },
+  {
+   "id": "ne-d715c7ad",
+   "kind": "new_template",
+   "question": "will my battery keep my AC on in an outage",
+   "priority": 3.0,
+   "stats": {
+    "asked": 1,
+    "unanswered": 1,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "gap": 1
+    },
+    "pages": [
+     "member.html"
+    ],
+    "examples": [
+     "will my battery keep my AC on in an outage"
+    ],
+    "last": "2026-09-27T01:17:20Z"
+   },
+   "proposal": "New template zips.battery_keep_ac",
+   "why": "Unanswered 1 time.",
+   "intent": "battery_keep_ac",
+   "parameters": {},
+   "data_source": "zips",
+   "draft": {
+    "kind": "local filter",
+    "query": "[r for r in rows if True]"
+   },
+   "status": "proposed"
+  },
+  {
+   "id": "ne-979786c6",
+   "kind": "new_template",
+   "question": "what is my neighbor earning",
+   "priority": 3.0,
+   "stats": {
+    "asked": 1,
+    "unanswered": 1,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "gap": 1
+    },
+    "pages": [
+     "member"
+    ],
+    "examples": [
+     "what is my neighbor earning"
+    ],
+    "last": "2026-09-27T01:17:46Z"
+   },
+   "proposal": "New template none.neighbor_earn",
+   "why": "Unanswered 1 time. No current data source covers it.",
+   "intent": "neighbor_earn",
+   "parameters": {},
+   "data_source": null,
+   "draft": null,
+   "status": "proposed"
+  },
+  {
+   "id": "ne-f0ce83bd",
+   "kind": "new_template",
+   "question": "How many Base batteries were installed in 78745 this year?",
+   "priority": 1.5,
+   "stats": {
+    "asked": 1,
+    "unanswered": 0,
+    "slow_agent": 1,
+    "critic_fail": 0,
+    "paths": {
+     "agent": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "How many Base batteries were installed in 78745 this year?"
+    ],
+    "last": "2026-09-27T01:15:28Z"
+   },
+   "proposal": "New template zips.base_battery_install",
+   "why": "Slow agent answer 1 time.",
+   "intent": "base_battery_install",
+   "parameters": {
+    "zip": [
+     "78745"
+    ],
+    "contractor": "Base Power"
+   },
+   "data_source": "zips",
+   "draft": {
+    "kind": "local filter",
+    "query": "[r for r in rows if r['zip'] in ['78745']]"
+   },
+   "status": "proposed"
+  },
+  {
+   "id": "ne-721434a9",
+   "kind": "new_template",
+   "question": "Will there be a power outage in my neighborhood tomorrow?",
+   "priority": 1.5,
+   "stats": {
+    "asked": 1,
+    "unanswered": 0,
+    "slow_agent": 1,
+    "critic_fail": 0,
+    "paths": {
+     "agent": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "Will there be a power outage in my neighborhood tomorrow?"
+    ],
+    "last": "2026-09-27T01:16:06Z"
+   },
+   "proposal": "New template none.power_outage_neighborhood",
+   "why": "Slow agent answer 1 time. No current data source covers it.",
+   "intent": "power_outage_neighborhood",
+   "parameters": {},
+   "data_source": null,
+   "draft": null,
+   "status": "proposed"
+  },
+  {
+   "id": "ne-6da58cab",
+   "kind": "new_template",
+   "question": "How many homes in 78745 have solar and a battery?",
+   "priority": 1.5,
+   "stats": {
+    "asked": 1,
+    "unanswered": 0,
+    "slow_agent": 1,
+    "critic_fail": 0,
+    "paths": {
+     "agent": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "How many homes in 78745 have solar and a battery?"
+    ],
+    "last": "2026-09-27T01:16:27Z"
+   },
+   "proposal": "New template zips.home_solar_battery",
+   "why": "Slow agent answer 1 time.",
+   "intent": "home_solar_battery",
+   "parameters": {
+    "zip": [
+     "78745"
+    ]
+   },
+   "data_source": "zips",
+   "draft": {
+    "kind": "local filter",
+    "query": "[r for r in rows if r['zip'] in ['78745']]"
+   },
+   "status": "proposed"
+  },
+  {
+   "id": "ne-3661508d",
+   "kind": "new_template",
+   "question": "What is my neighbor's battery earning?",
+   "priority": 1.5,
+   "stats": {
+    "asked": 1,
+    "unanswered": 0,
+    "slow_agent": 1,
+    "critic_fail": 0,
+    "paths": {
+     "agent": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "What is my neighbor's battery earning?"
+    ],
+    "last": "2026-09-27T01:16:58Z"
+   },
+   "proposal": "New template zips.neighbor_s_battery",
+   "why": "Slow agent answer 1 time.",
+   "intent": "neighbor_s_battery",
+   "parameters": {},
+   "data_source": "zips",
+   "draft": {
+    "kind": "local filter",
+    "query": "[r for r in rows if True]"
+   },
+   "status": "proposed"
+  },
+  {
+   "id": "ne-15443485",
+   "kind": "new_template",
+   "question": "How much money do Base members save on average?",
+   "priority": 1.5,
+   "stats": {
+    "asked": 1,
+    "unanswered": 0,
+    "slow_agent": 1,
+    "critic_fail": 0,
+    "paths": {
+     "agent": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "How much money do Base members save on average?"
+    ],
+    "last": "2026-09-27T01:17:11Z"
+   },
+   "proposal": "New template none.money_base_member",
+   "why": "Slow agent answer 1 time. No current data source covers it.",
+   "intent": "money_base_member",
+   "parameters": {
+    "contractor": "Base Power"
+   },
+   "data_source": null,
+   "draft": null,
+   "status": "proposed"
+  },
+  {
+   "id": "ca-1c054dc1",
+   "kind": "cached_answer",
+   "question": "How many Base permits in 78745 this year?",
+   "priority": 1.0,
+   "stats": {
+    "asked": 1,
+    "unanswered": 0,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "template": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "How many Base permits in 78745 this year?"
+    ],
+    "last": "2026-09-27T01:16:27Z"
+   },
+   "proposal": "Cache the answer from template permits.base.count",
+   "why": "A template answered it and the critic passed. Caching skips the server call.",
+   "answer": "9 [1] Base Power permits were issued in zip 78745, 2026.",
+   "template": "permits.base.count",
+   "source": "permits",
+   "status": "proposed"
+  },
+  {
+   "id": "ca-b1e5f19c",
+   "kind": "cached_answer",
+   "question": "How long does a Base install take from permit to final?",
+   "priority": 1.0,
+   "stats": {
+    "asked": 1,
+    "unanswered": 0,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "template": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "How long does a Base install take from permit to final?"
+    ],
+    "last": "2026-09-27T01:16:28Z"
+   },
+   "proposal": "Cache the answer from template permits.base.status",
+   "why": "A template answered it and the critic passed. Caching skips the server call.",
+   "answer": "Base Power permits in Austin, all years, by current status: Active (264 [1]), Final (78 [1]), Withdrawn (1 [1]) and Expired (1 [1]).",
+   "template": "permits.base.status",
+   "source": "permits",
+   "status": "rejected",
+   "decided": {
+    "who": "Ravi",
+    "when": "2026-09-27T01:18:01Z"
+   }
+  },
+  {
+   "id": "ne-af82e3f1",
+   "kind": "new_template",
+   "question": "Is the grid in an emergency right now?",
+   "priority": 0.5,
+   "stats": {
+    "asked": 1,
+    "unanswered": 0,
+    "slow_agent": 0,
+    "critic_fail": 0,
+    "paths": {
+     "agent": 1
+    },
+    "pages": [
+     "ask.html"
+    ],
+    "examples": [
+     "Is the grid in an emergency right now?"
+    ],
+    "last": "2026-09-27T01:17:20Z"
+   },
+   "proposal": "New template load.grid_emergency",
+   "why": "Agent path 1 time.",
+   "intent": "grid_emergency",
+   "parameters": {},
+   "data_source": "load",
+   "draft": {
+    "kind": "local filter",
+    "query": "[r for r in rows if True]"
+   },
+   "status": "proposed"
+  }
+ ],
+ "kb": {
+  "member_questions": "ok, hackathons/2026-09-base-fleet-data/member-questions, 24 edges",
+  "learned_restored": 1,
+  "learned_answers": 1
+ },
+ "_records": {
+  "ca-1c054dc1": {
+   "question": "How many Base permits in 78745 this year?",
+   "path": "template",
+   "template": "permits.base.count",
+   "answer": "9 [1] Base Power permits were issued in zip 78745, 2026.",
+   "source": "permits",
+   "sources": [
+    {
+     "n": 1,
+     "label": "City of Austin issued construction permits (Socrata 3syk-w9eu, live)",
+     "url": "https://data.austintexas.gov/resource/3syk-w9eu.json?%24select=count%28%2A%29%20as%20permits&%24where=contractor_company_name%3D%27Base%20Power%27%20AND%20original_zip%3D%2778745%27%20AND%20issue_date%20%3E%3D%20%272026-01-01T00%3A00%3A00%27%20AND%20issue_date%20%3C%20%272027-01-01T00%3A00%3A00%27&%24limit=50"
+    }
+   ],
+   "query_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?%24select=count%28%2A%29%20as%20permits&%24where=contractor_company_name%3D%27Base%20Power%27%20AND%20original_zip%3D%2778745%27%20AND%20issue_date%20%3E%3D%20%272026-01-01T00%3A00%3A00%27%20AND%20issue_date%20%3C%20%272027-01-01T00%3A00%3A00%27&%24limit=50",
+   "query": {
+    "$select": "count(*) as permits",
+    "$where": "contractor_company_name='Base Power' AND original_zip='78745' AND issue_date >= '2026-01-01T00:00:00' AND issue_date < '2027-01-01T00:00:00'"
+   },
+   "result": [
+    {
+     "permits": "9"
+    }
+   ],
+   "critic": {
+    "pass": true,
+    "revised": false,
+    "unsupported": []
+   },
+   "model_calls": 0,
+   "stop": "ok",
+   "attempts": [],
+   "seconds": 0.41
+  },
+  "ca-b1e5f19c": {
+   "question": "How long does a Base install take from permit to final?",
+   "path": "template",
+   "template": "permits.base.status",
+   "answer": "Base Power permits in Austin, all years, by current status: Active (264 [1]), Final (78 [1]), Withdrawn (1 [1]) and Expired (1 [1]).",
+   "source": "permits",
+   "sources": [
+    {
+     "n": 1,
+     "label": "City of Austin issued construction permits (Socrata 3syk-w9eu, live)",
+     "url": "https://data.austintexas.gov/resource/3syk-w9eu.json?%24select=status_current%20as%20status%2C%20count%28%2A%29%20as%20permits&%24where=contractor_company_name%3D%27Base%20Power%27&%24group=status&%24order=permits%20DESC&%24limit=10"
+    }
+   ],
+   "query_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?%24select=status_current%20as%20status%2C%20count%28%2A%29%20as%20permits&%24where=contractor_company_name%3D%27Base%20Power%27&%24group=status&%24order=permits%20DESC&%24limit=10",
+   "query": {
+    "$select": "status_current as status, count(*) as permits",
+    "$group": "status",
+    "$order": "permits DESC",
+    "$limit": 10,
+    "$where": "contractor_company_name='Base Power'"
+   },
+   "result": [
+    {
+     "status": "Active",
+     "permits": "264"
+    },
+    {
+     "status": "Final",
+     "permits": "78"
+    },
+    {
+     "status": "Withdrawn",
+     "permits": "1"
+    },
+    {
+     "status": "Expired",
+     "permits": "1"
+    }
+   ],
+   "critic": {
+    "pass": true,
+    "revised": false,
+    "unsupported": []
+   },
+   "model_calls": 0,
+   "stop": "ok",
+   "attempts": [],
+   "seconds": 0.26
+  }
+ }
+}

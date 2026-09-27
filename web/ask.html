@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ask the data | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="shell.css">
+<style>.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+#main{overflow-wrap:anywhere}
+body{margin:0}
+#main p,#main h1,#main h2,#main h3,#main h4,#main dl,#main dd,#main ol{margin:0}
+#main a,.shell nav[aria-label=Breadcrumb] a{text-decoration:none}
+.askbox{margin:0}
+.chip{display:inline-flex;align-items:center;gap:6px;font:600 12px/1.4 'Plus Jakarta Sans',sans-serif;background:#fff;color:#414941;border:1px solid #E2E8F0;border-radius:12px;padding:8px 14px;max-width:100%;min-height:44px;white-space:normal;overflow-wrap:anywhere;text-align:left;cursor:pointer}
+.chip:hover{border-color:#1e4d2b;color:#0F172A;background:#F8FAFC}
+.status{font-size:12.5px;color:#717970;margin-top:10px}
+.status code,.src code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:#F1F5F9;padding:1px 5px;border-radius:4px}
+#run:empty{display:none}
+.runhead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid #E2E8F0}
+.runhead h3{font-size:20px;line-height:28px;font-weight:700;color:#0F172A;margin:0;letter-spacing:-.01em}
+.mode{font-size:11.5px;font-weight:600;padding:2px 10px;border-radius:999px;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;white-space:nowrap}
+.mode.live{background:#fffbeb;color:#92400e;border-color:#fde68a}
+ol.trace{list-style:none;margin:12px 0 0 6px;padding:0;border-left:2px solid #E2E8F0}
+ol.trace li{position:relative;padding:8px 0 10px 18px}
+ol.trace li::before{content:"";position:absolute;left:-7px;top:13px;width:12px;height:12px;border-radius:50%;background:#22C55E;border:3px solid #fff;box-sizing:border-box}
+ol.trace li.running::before{background:#F59E0B;animation:pulse 1s infinite}
+ol.trace li.bad::before{background:#EF4444}
+@keyframes pulse{50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){ol.trace li.running::before{animation:none}}
+.st{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.role{font-weight:700;font-size:13px;min-width:64px;text-transform:capitalize;color:#0F172A}
+.by{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:4px}
+.by.model{background:#fffbeb;color:#92400e}
+.by.code{background:#ecfdf5;color:#065f46}
+.ttl{flex:1;min-width:180px;font-size:13px;color:#414941}
+.ms{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;font-weight:600;color:#717970;background:#F8FAFC;border:1px solid #F1F5F9;padding:1px 8px;border-radius:4px;white-space:nowrap}
+ol.trace details{margin:4px 0 0}
+.sum{font-size:12.5px;color:#717970;margin:12px 0 0;padding-top:12px;border-top:1px solid #F1F5F9;font-variant-numeric:tabular-nums}
+.sum b{color:#0F172A;font-weight:700}
+.answer{margin:0 0 4px;padding:18px 20px;background:#fff;border:1px solid #E2E8F0;border-radius:12px}
+.answer p{margin:0 0 8px;font-size:16px;line-height:26px;color:#0F172A}
+.near h4{font-size:13px;font-weight:700;margin:14px 0 4px}
+#run details,#list details,footer details{font-size:12.5px;color:#717970;margin-top:10px}
+#run summary,#list summary,footer summary,.cov summary{cursor:pointer;font-weight:600;color:#1e4d2b;min-height:32px;display:list-item}
+details pre{white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;background:#F1F5F9;border:1px solid #E2E8F0;padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#0F172A}
+details a,.meta a{color:#1e4d2b;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+ol.list{list-style:none;margin:0;padding:0}
+.card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:16px 20px;margin-bottom:10px}
+.card h3{font-size:15px;line-height:22px;margin:0 0 4px;font-weight:600}
+.card h3 button{all:unset;cursor:pointer;color:#0F172A}
+.card h3 button:hover{color:#1e4d2b;text-decoration:underline}
+.card h3 button:focus-visible{outline:2px solid #1e4d2b}
+.card p{margin:0 0 6px;color:#0F172A;font-size:14px}
+sup.c{font-size:10.5px;color:#1e4d2b;font-weight:700;margin-left:1px}
+.meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:12px;color:#717970;margin-top:6px}
+.badge{font-size:11.5px;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap;border:1px solid}
+.badge.pass{background:#ecfdf5;color:#065f46;border-color:#a7f3d0}
+.badge.fail{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+.badge.rev{background:#fffbeb;color:#92400e;border-color:#fde68a}
+.src{font-size:12px;color:#717970}
+.kpi{padding:12px;border-radius:8px;background:#F8FAFC;border:1px solid #E2E8F0}
+.kpi b{display:block;font-size:22px;line-height:28px;font-weight:700;color:#0F172A;font-variant-numeric:tabular-nums}
+.kpi span{color:#717970;font-size:12px}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #1e4d2b;outline-offset:2px}
+#go:disabled{opacity:.45;cursor:not-allowed}
+@media (max-width:700px){.ttl{min-width:0;flex-basis:100%}.chip:nth-child(n+7){display:none}.runhead h3{font-size:17px;line-height:24px}}</style>
+<script defer src="shell.js"></script>
+</head>
+<body class="bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
+ <div class="space-y-2">
+  <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-surface-subtle border border-wire-border">
+   <span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span>
+   <span class="font-label-caps text-label-caps text-evergreen-deep tracking-wider uppercase">Search &amp; analysis</span>
+  </div>
+  <h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight">Ask the data</h1>
+  <p class="font-body-lg text-body-lg text-outline max-w-3xl">Answers from public permits, demand and energy data, each with the query that produced it. <span id="asof" class="font-body-sm text-body-sm"></span></p>
+  <div class="notice p-3.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 font-body-sm text-body-sm" id="notice" style="display:none">Insights appear after <code>brain.ask --insights</code> runs.</div>
+ </div>
+
+ <form class="askbox space-y-4" id="askform">
+  <label for="q" class="font-label-caps text-label-caps text-outline uppercase tracking-wider block">Ask a question</label>
+  <div class="row flex flex-col sm:flex-row sm:items-center gap-3 w-full max-w-4xl bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm focus-within:border-primary-container focus-within:ring-2 focus-within:ring-primary-container/20 px-4 py-3">
+   <span class="material-symbols-outlined text-outline text-2xl hidden sm:inline-block" aria-hidden="true">search</span>
+   <input type="text" id="q" class="flex-1 min-w-0 w-full bg-transparent border-0 outline-none text-ink-primary font-body-lg text-body-lg font-medium placeholder:text-outline" placeholder="How many Base Power permits in zip 78731 this year?" autocomplete="off" maxlength="400">
+   <button type="submit" id="go" class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary-container hover:bg-evergreen-deep text-white font-label-md text-label-md font-semibold shadow-sm border-0 cursor-pointer"><span>Ask</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></button>
+  </div>
+  <div class="flex flex-wrap items-center gap-2.5">
+   <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider mr-1">Try</span>
+   <div class="chips flex flex-wrap gap-2.5 min-w-0" id="chips" aria-label="Example questions"></div>
+  </div>
+  <div class="status" id="status">Loading recorded answers...</div>
+ </form>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+  <div class="lg:col-span-8 min-w-0">
+   <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-5 sm:p-6 shadow-sm">
+    <div class="flex items-center gap-2 pb-4 mb-4 border-b border-wire-border">
+     <span class="w-2.5 h-2.5 rounded-full bg-solar-green"></span>
+     <span class="font-label-caps text-label-caps text-evergreen-deep uppercase tracking-wider">Answer</span>
+    </div>
+    <div id="run" aria-live="polite"></div>
+    <p class="font-body-md text-body-md text-outline" id="run-empty">Ask a question or pick one above. The answer, its source and the query appear here.</p>
+   </section>
+  </div>
+  <div class="lg:col-span-4 min-w-0 space-y-6">
+   <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm">
+    <div class="flex items-center gap-2 pb-3 mb-4 border-b border-wire-border">
+     <span class="material-symbols-outlined text-primary-container text-[18px]" aria-hidden="true">schema</span>
+     <h2 class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Answer coverage and timings</h2>
+    </div>
+    <div class="kpis grid grid-cols-2 gap-3" id="kpis"></div>
+   </section>
+   <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm">
+    <div class="flex items-center gap-2 pb-3 mb-3 border-b border-wire-border">
+     <span class="material-symbols-outlined text-solar-green text-[18px]" aria-hidden="true">verified_user</span>
+     <h2 class="font-label-caps text-label-caps text-outline uppercase tracking-wider">How answers are checked</h2>
+    </div>
+    <p class="font-body-sm text-body-sm text-outline">Each recorded answer shows its query and run date. A critic checks the numbers in each answer against the query result. Open the cited source for the current record; a permit shows the city's filing status. Live questions run on the local analysis service.</p>
+   </section>
+  </div>
+ </div>
+
+ <section>
+  <div class="filter flex flex-wrap items-center gap-3 pb-3 mb-4 border-b border-wire-border">
+   <h2 class="font-headline-sm text-headline-sm text-ink-primary whitespace-nowrap">Recorded answers</h2>
+   <input type="search" id="find" class="flex-1 min-w-[200px] font-body-md text-body-md text-ink-primary bg-surface-container-lowest border border-wire-border rounded-lg px-3 py-2 outline-none focus:border-primary-container" placeholder="Filter by word, zip, page, or source" aria-label="Filter recorded answers">
+   <span class="count text-xs text-outline bg-surface-subtle px-2 py-0.5 rounded whitespace-nowrap" id="count"></span>
+  </div>
+  <ol class="list" id="list"></ol>
+ </section>
+ <footer class="font-body-sm text-body-sm text-outline py-8 border-t border-wire-border">A Base Fleet design.</footer>
+</main>
+<script>
+(() => {
+  const API = "http://localhost:8742";
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const secs = ms => (ms / 1000).toFixed(ms < 10000 ? 2 : 1) + " s";
+  let items = [], doc = null, server = null, busy = false;
+
+  // ---------- cache matcher: TF-IDF cosine, with a guard on numbers ----------
+  const STOP = new Set("a an the of in on at to for by and or is are was were be been what which who how many much does do did it its this that there their with from as than per any all each give me show list".split(" "));
+  const SYN = {auxiliary:"backup", batteries:"battery", generators:"backup", zips:"zip", zipcode:"zip", highest:"top", most:"top", peak:"top", maximum:"top", max:"top", biggest:"top", utility:"tdu"};
+  function toks(s) {
+    return String(s).toLowerCase().replace(/(\d),(\d)/g, "$1$2").split(/[^a-z0-9.]+/).map(t => t.replace(/\.+$/, ""))
+      .filter(t => t && !STOP.has(t)).map(t => SYN[t] || t)
+      .map(t => /^\d/.test(t) ? t : t.replace(/(ing|ed|es|s)$/, ""));
+  }
+  let idf = {}, vecs = [];
+  function vec(ts) {
+    const v = {}; ts.forEach(t => v[t] = (v[t] || 0) + (idf[t] || Math.log(1 + items.length)));
+    const n = Math.sqrt(Object.values(v).reduce((a, x) => a + x * x, 0)) || 1;
+    Object.keys(v).forEach(k => v[k] /= n);
+    return {v, t: new Set(ts)};
+  }
+  function index() {
+    const df = {}, docs = items.map(it => toks(it.question));
+    docs.forEach(d => new Set(d).forEach(t => df[t] = (df[t] || 0) + 1));
+    idf = Object.fromEntries(Object.entries(df).map(([t, n]) => [t, Math.log(1 + docs.length / n)]));
+    vecs = docs.map(vec);
+  }
+  function score(q) {
+    const qt = toks(q), qv = vec(qt), nums = qt.filter(t => /^\d/.test(t));
+    return vecs.map((d, i) => {
+      let s = 0; for (const k in qv.v) if (d.v[k]) s += qv.v[k] * d.v[k];
+      // A zip, year, or amount in the question must also be in the recorded question.
+      if (nums.some(n => !d.t.has(n))) s *= 0.5;
+      if (!nums.length && [...d.t].some(t => /^\d/.test(t))) s *= 0.85;
+      return {i, s};
+    }).sort((a, b) => b.s - a.s);
+  }
+  const HIT = 0.65, MARGIN = 0.08;  // a hit must be close, and clearly closer than the runner-up
+  window.askScore = q => score(q).slice(0, 3).map(r => [+r.s.toFixed(2), items[r.i].question]);
+
+  // ---------- rendering ----------
+  function badge(c) {
+    if (!c) return "";
+    if (!c.pass) return `<span class="badge fail" title="Needs support: ${esc((c.unsupported||[]).join(", "))}">Critic: needs review</span>`;
+    return c.revised ? `<span class="badge rev">Critic: passed after 1 revision</span>` : `<span class="badge pass">Critic: passed</span>`;
+  }
+  const ansHTML = a => esc(a).replace(/ \[(\d)\]/g, '<sup class="c">[$1]</sup>');
+  function srcLine(it) {
+    const s = (it.sources || [])[0] || {};
+    const link = s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">Replay query</a>`
+      : s.file ? `<a href="../${esc(s.file)}" target="_blank" rel="noopener">Open data file</a>` : "";
+    return {label: s.label || "", link};
+  }
+
+  function stepHTML(st, recorded, running) {
+    const bits = [];
+    if (st.query) bits.push(`<pre>${esc(st.query.code || JSON.stringify(st.query, null, 1))}</pre>`);
+    if (st.url) bits.push(`<a href="${esc(st.url)}" target="_blank" rel="noopener">Open the Socrata query</a>`);
+    if (st.draft) bits.push(`<pre>${esc(st.draft)}</pre>`);
+    if (st.source_label) bits.push(`<div>Source: ${esc(st.source_label)}</div>`);
+    if (st.params && Object.keys(st.params).length) bits.push(`<pre>${esc(JSON.stringify(st.params))}</pre>`);
+    const bad = st.verdict && st.verdict !== "pass";
+    const ms = running ? `<span class="ms" data-t0="${Date.now()}">running</span>`
+      : `<span class="ms">${recorded ? "recorded " : ""}${st.ms} ms</span>`;
+    const what = st.query ? (st.query.code ? "Filter" : "SoQL") : st.draft ? "Text" : "Detail";
+    return `<li class="${running ? "running" : bad ? "bad" : ""}"><div class="st"><span class="role">${esc(st.role)}</span>
+      <span class="by ${st.by === "model" ? "model" : "code"}">${st.by === "model" ? "model" : "code"}</span><span class="ttl">${esc(st.title)}</span>${ms}</div>
+      ${bits.length && !running ? `<details><summary>${what}</summary>${bits.join("")}</details>` : ""}</li>`;
+  }
+
+  function summary(steps, total, recorded) {
+    const m = steps.filter(s => s.by === "model"), c = steps.filter(s => s.by !== "model");
+    const sum = a => a.reduce((x, s) => x + (s.ms || 0), 0);
+    return `<b>${secs(total)}</b> ${recorded ? "recorded total" : "total"} · model: <b>${m.length}</b> step${m.length == 1 ? "" : "s"}, ${secs(sum(m))} · code: <b>${c.length}</b> step${c.length == 1 ? "" : "s"}, ${secs(sum(c))}`;
+  }
+
+  function answerHTML(it) {
+    const {label, link} = srcLine(it);
+    return `<div class="answer"><p>${ansHTML(it.answer)}</p><div class="src">[1] ${esc(label)}</div>
+      <div class="meta">${badge(it.critic)}${link}</div></div>`;
+  }
+
+  const pathOf = it => it.path === "template" ? `template ${it.template}` : "full agent";
+
+  function showRecorded(it, how, ms) {
+    $("run").innerHTML = `<div class="runhead"><h3>${esc(it.question)}</h3><span class="mode">${esc(how)}, recorded ${esc(it.recorded || doc.generated)}</span></div>
+      ${answerHTML(it)}
+      <details><summary>Query and verification</summary>
+      <ol class="trace">${(it.steps || []).map(s => stepHTML(s, true)).join("")}</ol>
+      <div class="sum">${summary(it.steps || [], it.seconds * 1000, true)} · path: ${esc(pathOf(it))} · shown in ${ms.toFixed(1)} ms from the cache</div>
+      </details>`;
+  }
+
+  function card(it) {
+    const {label, link} = srcLine(it);
+    const path = it.path === "template" ? "template, 0 model calls" : `agent, ${it.model_calls ?? "?"} model calls`;
+    return `<li class="card"><h3><button type="button" data-q="${esc(it.question)}">${esc(it.question)}</button></h3>
+      <div class="src">[1] ${esc(label)}</div>
+      <details><summary>Answer and source</summary><p>${ansHTML(it.answer)}</p><div class="meta">${badge(it.critic)}<span>${esc(it.seconds)} s</span><span>${esc(path)}</span><span>page: ${esc(it.page || "")}</span>${link}</div></details></li>`;
+  }
+
+  function render() {
+    const f = $("find").value.trim().toLowerCase();
+    const hit = items.filter(it => !f || JSON.stringify([it.question, it.answer, it.sources, it.page]).toLowerCase().includes(f));
+    $("list").innerHTML = hit.map(card).join("");
+    $("count").textContent = `${hit.length} of ${items.length}`;
+  }
+
+  // ---------- live run over the NDJSON stream ----------
+  async function live(q) {
+    busy = true; $("go").disabled = true;
+    $("status").textContent = "Asking the local server. Each step shows when it starts and when it ends.";
+    const t0 = performance.now(), steps = [];
+    $("run").innerHTML = `<div class="runhead"><h3>${esc(q)}</h3><span class="mode live">live</span></div><ol class="trace" id="trace"></ol><div class="sum" id="sum"></div><div id="ans"></div>`;
+    const tick = setInterval(() => {
+      document.querySelectorAll("#trace .ms[data-t0]").forEach(e => e.textContent = `${Date.now() - +e.dataset.t0} ms`);
+      if ($("sum")) $("sum").innerHTML = summary(steps, performance.now() - t0) + " · running";
+    }, 100);
+    try {
+      const r = await fetch(API + "/ask?stream=1", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({q})});
+      if (!r.ok || !r.body) throw new Error(`server ${r.status}`);
+      const rd = r.body.getReader(), dec = new TextDecoder();
+      let buf = "", done = null;
+      for (;;) {
+        const {value, done: end} = await rd.read();
+        if (end) break;
+        buf += dec.decode(value, {stream: true});
+        let k;
+        while ((k = buf.indexOf("\n")) >= 0) {
+          const ev = JSON.parse(buf.slice(0, k)); buf = buf.slice(k + 1);
+          const tr = $("trace");
+          if (ev.ev === "begin") tr.insertAdjacentHTML("beforeend", stepHTML(ev, false, true));
+          else if (ev.ev === "step") {
+            steps.push(ev);
+            const run = tr.querySelector("li.running");
+            if (run) run.outerHTML = stepHTML(ev); else tr.insertAdjacentHTML("beforeend", stepHTML(ev));
+          } else if (ev.ev === "done") done = ev.result;
+          else if (ev.ev === "error") throw new Error(ev.error);
+        }
+      }
+      if (!done) throw new Error("the stream ended without an answer");
+      $("sum").innerHTML = summary(done.steps, done.seconds * 1000) + ` · path: ${esc(pathOf(done))}`;
+      $("ans").innerHTML = answerHTML(done);
+      $("status").textContent = "Done.";
+    } catch (err) {
+      $("status").textContent = "Live analysis paused: " + err.message;
+    } finally { clearInterval(tick); busy = false; $("go").disabled = false; }
+  }
+
+  function askQ(q) {
+    q = q.trim(); if (!q || busy) return;
+    $("q").value = q;
+    const t0 = performance.now();
+    const ranked = items.length ? score(q) : [];
+    if (ranked.length && ranked[0].s >= HIT && ranked[0].s - (ranked[1] ? ranked[1].s : 0) >= MARGIN) {
+      const it = items[ranked[0].i];
+      const exact = it.question.toLowerCase() === q.toLowerCase();
+      showRecorded(it, exact ? "cached" : `cached, close match ${ranked[0].s.toFixed(2)}`, performance.now() - t0);
+      window.__cachedMs = performance.now() - t0;
+      $("status").textContent = "Answered instantly from the recorded answers.";
+      return;
+    }
+    if (server) return live(q);
+    $("status").textContent = "Here are the closest recorded answers.";
+    $("run").innerHTML = `<p class="status">This is a new question. The closest recorded answers are below.</p>` +
+      (ranked.length ? `<div class="near"><h4>Closest recorded answers</h4><ol class="list">${ranked.slice(0, 3).map(r => card(items[r.i])).join("")}</ol></div>` : "");
+  }
+
+  // ---------- load ----------
+  const loaded = fetch("../brain/insights.json").then(r => { if (!r.ok) throw 0; return r.json(); }).then(d => {
+    doc = d; items = d.insights || [];
+    index();
+    $("asof").textContent = `${d.questions} recorded questions, run ${d.generated}`;
+    $("kpis").innerHTML = [
+      [`${d.template_count} of ${d.questions}`, "answered by a template, no model"],
+      [`${d.median_template_seconds} s`, "median template answer"],
+      [`${d.median_agent_seconds} s`, "median full-agent answer"],
+      [`${d.critic_pass} of ${d.questions}`, "answers pass the critic"]
+    ].map(([v, l]) => `<div class="kpi"><b>${v}</b><span>${l}</span></div>`).join("");
+    const seen = new Set(), pick = [];
+    for (const it of items) if (!seen.has(it.page) && it.critic.pass) { seen.add(it.page); pick.push(it); }
+    $("chips").innerHTML = pick.slice(0, 4).map(it => `<button type="button" class="chip" data-q="${esc(it.question)}" title="${esc(it.question)}">${esc(it.question)}</button>`).join("");
+    render();
+  }).catch(() => { $("notice").style.display = "block"; });
+  $("find").addEventListener("input", render);
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-q]");
+    if (b) { askQ(b.dataset.q); $("askform").scrollIntoView({block: "start", behavior: "smooth"}); }
+  });
+
+  const ctl = new AbortController();
+  setTimeout(() => ctl.abort(), 1500);
+  const health = (["localhost", "127.0.0.1"].includes(location.hostname)
+    ? fetch(API + "/health", {signal: ctl.signal}).then(r => r.json())
+    : Promise.reject(new Error("Hosted recorded answers"))).then(h => {
+    server = h;
+    $("status").textContent = `Local server is running (${h.model}). Template answers take about a second; full-agent answers take 10 to 60 seconds.`;
+  }).catch(() => {
+    $("status").textContent = "Search the recorded answers. Each one shows its query.";
+  });
+
+  new MutationObserver(() => { $("run-empty").hidden = !!$("run").innerHTML.trim(); }).observe($("run"), {childList: true});
+  $("askform").addEventListener("submit", e => { e.preventDefault(); askQ($("q").value); });
+
+  // ask.html?q=... answers on load: cache first, then the server.
+  const qp = new URLSearchParams(location.search).get("q");
+  if (qp) Promise.all([loaded, health.catch(() => {})]).then(() => askQ(qp));
+})();
+</script>
+</body>
+</html>

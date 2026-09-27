@@ -1,0 +1,2278 @@
+{
+ "generated": "2026-09-26",
+ "issue": 38,
+ "sources": [
+  "house/cohort.json (fit from house/permits.py fit())",
+  "house/clearance.py DEMO_CASES and estimate_clearance()",
+  "data/mirror/energy_permits.csv.gz (Base permit work class)",
+  "faq/corpus/how-it-works.md, faq/corpus/help-center.md"
+ ],
+ "cost_note": "No repo source prices these fixes, so each step says \"cost not estimated\". The only price on file is the Base install fee ($695, faq/corpus/home.md), which is not a fix cost.",
+ "cases": [
+  {
+   "id": "demo-a",
+   "kind": "clearance_demo",
+   "label": "Demo a: small lot, 2-storey, detached garage",
+   "source": "house/clearance.py DEMO_CASES",
+   "verdict": "clearance unclear (low confidence)",
+   "status": "not_today",
+   "facts": {
+    "lot_sqft": 3877,
+    "footprint_sqft": 868,
+    "wall_estimate_ft": 7.3,
+    "side_setback_ft_estimate": 11.2,
+    "year_built": 1962
+   },
+   "blockers": [
+    {
+     "reason": "Lot under 4,500 sq ft with a detached garage. The rule cannot decide without a site check.",
+     "rule": "house/clearance.py: lot < SMALL_LOT_SQFT and garage_detached -> unclear",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Take a photo from about 10 ft back, facing the side exterior wall nearest the electric meter and main panel, showing the ground clear of AC units, gas meters, and fencing.",
+       "who": "member",
+       "unblocks": "Replaces the lot-shape estimate with what is really on the wall.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Send a site tech to measure the side yard, the wall near the electric meter, and the distance to the gas meter, A/C unit, and fence.",
+       "who": "Base",
+       "unblocks": "Gives a measured answer in place of \"unclear\".",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base finds \"a clean, code-compliant spot for your system close to your electric meter\" (faq/corpus/how-it-works.md).",
+       "cost": "cost not estimated"
+      }
+     ]
+    },
+    {
+     "reason": "Usable wall estimate 7.3 ft is under the 9 ft one battery needs.",
+     "rule": "house/clearance.py: wall_estimate < WALL_FT_PER_BATTERY",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Send a site tech to measure the side yard, the wall near the electric meter, and the distance to the gas meter, A/C unit, and fence.",
+       "who": "Base",
+       "unblocks": "The estimate subtracts the garage from the short side. A tape measure can find more wall.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base finds \"a clean, code-compliant spot for your system close to your electric meter\" (faq/corpus/how-it-works.md).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "If no wall near the meter has room, move the electric meter and main panel to a wall that has 9 ft clear.",
+       "who": "electrician",
+       "unblocks": "Gives the battery a wall that passes the 9 ft and 3 ft rules.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit (number ends in EP); work class not confirmed in repo sources"
+       },
+       "record_after": "A new electrical permit for the address for the meter and panel move.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      }
+     ]
+    },
+    {
+     "reason": "Gas service unknown, so the rule assumes a gas meter and keeps 3 ft clear of it.",
+     "rule": "house/clearance.py: has_gas None -> assume gas meter present",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Tell Base if the house has gas service, or send a photo of the gas meter.",
+       "who": "member",
+       "unblocks": "If there is no gas, the 3 ft gas meter setback no longer applies.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Take a photo from about 10 ft back, facing the side exterior wall nearest the electric meter and main panel, showing the ground clear of AC units, gas meters, and fencing.",
+     "who": "member",
+     "unblocks": "Replaces the lot-shape estimate with what is really on the wall.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Tell Base if the house has gas service, or send a photo of the gas meter.",
+     "who": "member",
+     "unblocks": "If there is no gas, the 3 ft gas meter setback no longer applies.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      2
+     ]
+    },
+    {
+     "action": "Send a site tech to measure the side yard, the wall near the electric meter, and the distance to the gas meter, A/C unit, and fence.",
+     "who": "Base",
+     "unblocks": "Gives a measured answer in place of \"unclear\". The estimate subtracts the garage from the short side. A tape measure can find more wall.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base finds \"a clean, code-compliant spot for your system close to your electric meter\" (faq/corpus/how-it-works.md).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "If no wall near the meter has room, move the electric meter and main panel to a wall that has 9 ft clear.",
+     "who": "electrician",
+     "unblocks": "Gives the battery a wall that passes the 9 ft and 3 ft rules.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit (number ends in EP); work class not confirmed in repo sources"
+     },
+     "record_after": "A new electrical permit for the address for the meter and panel move.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      1
+     ]
+    }
+   ]
+  },
+  {
+   "id": "demo-b",
+   "kind": "clearance_demo",
+   "label": "Demo b: large lot, 1-storey, attached garage",
+   "source": "house/clearance.py DEMO_CASES",
+   "verdict": "clearance likely (medium confidence)",
+   "status": "fits",
+   "facts": {
+    "lot_sqft": 8000,
+    "footprint_sqft": 1800,
+    "wall_estimate_ft": 34.6,
+    "side_setback_ft_estimate": 16.0,
+    "year_built": 1995
+   },
+   "blockers": [],
+   "path": []
+  },
+  {
+   "id": "demo-c",
+   "kind": "clearance_demo",
+   "label": "Demo c: small lot, zero-lot-line",
+   "source": "house/clearance.py DEMO_CASES",
+   "verdict": "clearance unlikely (medium confidence)",
+   "status": "not_today",
+   "facts": {
+    "lot_sqft": 3000,
+    "footprint_sqft": 1400,
+    "wall_estimate_ft": 30.6,
+    "side_setback_ft_estimate": 5.1,
+    "year_built": 2005
+   },
+   "blockers": [
+    {
+     "reason": "The house covers 47% of the lot, over the 40% limit. The side yard is likely built out to the property line.",
+     "rule": "house/clearance.py: footprint / lot > HIGH_COVERAGE_RATIO -> unlikely",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Take a photo from about 10 ft back, facing the side exterior wall nearest the electric meter and main panel, showing the ground clear of AC units, gas meters, and fencing.",
+       "who": "member",
+       "unblocks": "Replaces the lot-shape estimate with what is really on the wall.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Send a site tech to measure the side yard, the wall near the electric meter, and the distance to the gas meter, A/C unit, and fence.",
+       "who": "Base",
+       "unblocks": "Confirms whether there is 3 ft to the fence and 9 ft of wall. The estimate cannot.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base finds \"a clean, code-compliant spot for your system close to your electric meter\" (faq/corpus/how-it-works.md).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "If no wall near the meter has room, move the electric meter and main panel to a wall that has 9 ft clear.",
+       "who": "electrician",
+       "unblocks": "Gives the battery a wall that passes the 9 ft and 3 ft rules.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit (number ends in EP); work class not confirmed in repo sources"
+       },
+       "record_after": "A new electrical permit for the address for the meter and panel move.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Take a photo from about 10 ft back, facing the side exterior wall nearest the electric meter and main panel, showing the ground clear of AC units, gas meters, and fencing.",
+     "who": "member",
+     "unblocks": "Replaces the lot-shape estimate with what is really on the wall.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Send a site tech to measure the side yard, the wall near the electric meter, and the distance to the gas meter, A/C unit, and fence.",
+     "who": "Base",
+     "unblocks": "Confirms whether there is 3 ft to the fence and 9 ft of wall. The estimate cannot.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base finds \"a clean, code-compliant spot for your system close to your electric meter\" (faq/corpus/how-it-works.md).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "If no wall near the meter has room, move the electric meter and main panel to a wall that has 9 ft clear.",
+     "who": "electrician",
+     "unblocks": "Gives the battery a wall that passes the 9 ft and 3 ft rules.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit (number ends in EP); work class not confirmed in repo sources"
+     },
+     "record_after": "A new electrical permit for the address for the meter and panel move.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4604-cactus-ln",
+   "kind": "house",
+   "label": "4604 Cactus Ln, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2009,
+    "permits_on_file": 21
+   },
+   "blockers": [
+    {
+     "reason": "No service upgrade on file since 2015. The panel may be an older, smaller one.",
+     "rule": "house/permits.py fit(): \"no electrical permit activity since 2015\" -> needs_love",
+     "evidence": [
+      {
+       "permit": "2009-096391 EP",
+       "date": "2009-08-26",
+       "kind": "service_upgrade",
+       "text": "upgrade existing electric service and add interior GFCI to residence"
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send one photo of the main breaker, close enough to read the amp number.",
+       "who": "member",
+       "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+       "who": "electrician",
+       "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+       },
+       "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Run the fit check again with the new permit or the photo.",
+       "who": "Base",
+       "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. Base reads the record; it does not add to it.",
+       "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send one photo of the main breaker, close enough to read the amp number.",
+     "who": "member",
+     "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Run the fit check again with the new permit or the photo.",
+     "who": "Base",
+     "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. Base reads the record; it does not add to it.",
+     "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+     "who": "electrician",
+     "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+     },
+     "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4508-lareina-dr",
+   "kind": "house",
+   "label": "4508 Lareina Dr, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2008,
+    "permits_on_file": 20
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2009-045790 EP",
+       "date": "2009-05-07",
+       "kind": "solar",
+       "text": "Install new solar elec system to exst res only"
+      },
+      {
+       "permit": "2016-155363 EP",
+       "date": "2016-12-28",
+       "kind": "solar",
+       "text": "Install roof mounted solar panels to existing residence."
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "5046-lansing-dr",
+   "kind": "house",
+   "label": "5046 Lansing Dr, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2023,
+    "permits_on_file": 17
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2024-039609 EP",
+       "date": "2024-04-04",
+       "kind": "solar",
+       "text": "Install new 10.080kW rooftop solar system for existing residential only."
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4423-jester-dr",
+   "kind": "house",
+   "label": "4423 Jester Dr, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2022,
+    "permits_on_file": 18
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2024-075852 EP",
+       "date": "2024-07-02",
+       "kind": "battery",
+       "text": "Homeowner will be installing (27) Roof mounted United Renewable Energy panels and (2) Tesla Powerwall 3s"
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4601-hank-ave",
+   "kind": "house",
+   "label": "4601 Hank Ave, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2007,
+    "permits_on_file": 18
+   },
+   "blockers": [
+    {
+     "reason": "No service upgrade on file since 2015. The panel may be an older, smaller one.",
+     "rule": "house/permits.py fit(): \"no electrical permit activity since 2015\" -> needs_love",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Send one photo of the main breaker, close enough to read the amp number.",
+       "who": "member",
+       "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+       "who": "electrician",
+       "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+       },
+       "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Run the fit check again with the new permit or the photo.",
+       "who": "Base",
+       "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. Base reads the record; it does not add to it.",
+       "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send one photo of the main breaker, close enough to read the amp number.",
+     "who": "member",
+     "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Run the fit check again with the new permit or the photo.",
+     "who": "Base",
+     "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. Base reads the record; it does not add to it.",
+     "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+     "who": "electrician",
+     "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+     },
+     "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4605-tejas-trl",
+   "kind": "house",
+   "label": "4605 Tejas Trl, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2018,
+    "permits_on_file": 16
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2022-144732 EP",
+       "date": "2022-10-12",
+       "kind": "solar",
+       "text": "Installation of an 11.06kW solar panel system on roof of dwelling."
+      },
+      {
+       "permit": "2023-160642 EP",
+       "date": "2023-12-21",
+       "kind": "solar",
+       "text": "Install 28 (405W) roof mounted solar panels 11.340 kW solar service system tying into existing 200 AMP main service panel"
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "1925-parkside-ln",
+   "kind": "house",
+   "label": "1925 Parkside Ln, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2019,
+    "permits_on_file": 16
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2019-088408 EP",
+       "date": "2019-06-07",
+       "kind": "solar",
+       "text": "Installation of solar on roof"
+      },
+      {
+       "permit": "2021-087445 EP",
+       "date": "2021-06-11",
+       "kind": "solar",
+       "text": "Addition to existing solar array"
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4610-banister-ln",
+   "kind": "house",
+   "label": "4610 Banister Ln, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2025,
+    "permits_on_file": 16
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2026-104000 EP",
+       "date": "2026-08-25",
+       "kind": "battery",
+       "text": "BASE: Installing a backup battery system and additional meter socket."
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4601-clawson-rd",
+   "kind": "house",
+   "label": "4601 Clawson Rd, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2020,
+    "permits_on_file": 15
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2021-101961 EP",
+       "date": "2021-07-12",
+       "kind": "solar",
+       "text": "INSTALL ROOF-MOUNTED SOLAR AND ENERGY STORAGE SYSTEM TO EXISTING RESIDENCE"
+      },
+      {
+       "permit": "2021-101964 EP",
+       "date": "2021-09-03",
+       "kind": "battery",
+       "text": "Utility shutdown needed for installation of new energy storage system. Overhead service. Meter Can DOES NOT require replacement - NO ESPA attached"
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2209-falcon-hill-dr",
+   "kind": "house",
+   "label": "2209 Falcon Hill Dr, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2010,
+    "permits_on_file": 15
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2017-108546 EP",
+       "date": "2017-09-01",
+       "kind": "solar",
+       "text": "New solar installation to existing residence."
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "1609-sylvan-glade",
+   "kind": "house",
+   "label": "1609 Sylvan Glade, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2019,
+    "permits_on_file": 15
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2021-119493 EP",
+       "date": "2021-08-06",
+       "kind": "solar",
+       "text": "Install roof-mounted solar and energy storage to existing residence"
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "706-huntingdon-pl",
+   "kind": "house",
+   "label": "706 Huntingdon Pl, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2009,
+    "permits_on_file": 14
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2015-085245 EP",
+       "date": "2015-07-15",
+       "kind": "solar",
+       "text": "Install solar system to existing residence"
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "1301-rambling-rose-rd",
+   "kind": "house",
+   "label": "1301 Rambling Rose Rd, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2025,
+    "permits_on_file": 14
+   },
+   "blockers": [
+    {
+     "reason": "Existing solar or battery on the permit record. It adds interconnect work.",
+     "rule": "house/permits.py fit(): has_solar or has_battery -> needs_love",
+     "evidence": [
+      {
+       "permit": "2026-102084 EP",
+       "date": "2026-08-20",
+       "kind": "solar",
+       "text": "INSTALLTION OF A 9.2 SOLAR SYSTEAM WITH 20 PANELS AND 20 MICRO-INVERTERS"
+      }
+     ],
+     "steps": [
+      {
+       "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+       "who": "member",
+       "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+       "who": "Base",
+       "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Install the Base battery with the interconnect to the existing system.",
+       "who": "Base",
+       "unblocks": "The house is backed up.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+       },
+       "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+       "base_can": "Base pulls the permit and does the install.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send a photo of the existing solar inverter or battery label, and a photo of the main panel with the door open.",
+     "who": "member",
+     "unblocks": "Lets Base engineers see the make and how it ties into the panel.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Engineers review how a Base battery can connect next to the existing system, and for how many batteries (0, 1, or 2).",
+     "who": "Base",
+     "unblocks": "Turns \"interconnect complexity\" into a yes or no with a plan.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": "Base lists solar and generator integrations in its help center, and its engineers confirm each home (faq/corpus).",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Install the Base battery with the interconnect to the existing system.",
+     "who": "Base",
+     "unblocks": "The house is backed up.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Auxiliary Power (number ends in EP)"
+     },
+     "record_after": "A new Auxiliary Power electrical permit for the address. Base permits in Austin read \"BASE: Installing a backup battery system\" (316 of 324 Base permits in data/mirror use this work class).",
+     "base_can": "Base pulls the permit and does the install.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "7805-cooper-ln",
+   "kind": "house",
+   "label": "7805 Cooper Ln, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2015,
+    "permits_on_file": 88
+   },
+   "blockers": [
+    {
+     "reason": "No service upgrade on file since 2015. The panel may be an older, smaller one.",
+     "rule": "house/permits.py fit(): \"no electrical permit activity since 2015\" -> needs_love",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Send one photo of the main breaker, close enough to read the amp number.",
+       "who": "member",
+       "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+       "who": "electrician",
+       "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+       },
+       "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Run the fit check again with the new permit or the photo.",
+       "who": "Base",
+       "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. Base reads the record; it does not add to it.",
+       "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send one photo of the main breaker, close enough to read the amp number.",
+     "who": "member",
+     "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Run the fit check again with the new permit or the photo.",
+     "who": "Base",
+     "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. Base reads the record; it does not add to it.",
+     "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+     "who": "electrician",
+     "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+     },
+     "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4619-jinx-ave",
+   "kind": "house",
+   "label": "4619 Jinx Ave, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2008,
+    "permits_on_file": 22
+   },
+   "blockers": [
+    {
+     "reason": "No service upgrade on file since 2015. The panel may be an older, smaller one.",
+     "rule": "house/permits.py fit(): \"no electrical permit activity since 2015\" -> needs_love",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Send one photo of the main breaker, close enough to read the amp number.",
+       "who": "member",
+       "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+       "who": "electrician",
+       "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+       },
+       "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Run the fit check again with the new permit or the photo.",
+       "who": "Base",
+       "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. Base reads the record; it does not add to it.",
+       "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send one photo of the main breaker, close enough to read the amp number.",
+     "who": "member",
+     "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Run the fit check again with the new permit or the photo.",
+     "who": "Base",
+     "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. Base reads the record; it does not add to it.",
+     "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+     "who": "electrician",
+     "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+     },
+     "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "7337-manchaca-rd",
+   "kind": "house",
+   "label": "7337 Manchaca Rd, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2011,
+    "permits_on_file": 21
+   },
+   "blockers": [
+    {
+     "reason": "No service upgrade on file since 2015. The panel may be an older, smaller one.",
+     "rule": "house/permits.py fit(): \"no electrical permit activity since 2015\" -> needs_love",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Send one photo of the main breaker, close enough to read the amp number.",
+       "who": "member",
+       "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+       "who": "electrician",
+       "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+       },
+       "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Run the fit check again with the new permit or the photo.",
+       "who": "Base",
+       "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. Base reads the record; it does not add to it.",
+       "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send one photo of the main breaker, close enough to read the amp number.",
+     "who": "member",
+     "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Run the fit check again with the new permit or the photo.",
+     "who": "Base",
+     "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. Base reads the record; it does not add to it.",
+     "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+     "who": "electrician",
+     "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+     },
+     "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "1204-gingerlily-cove-a",
+   "kind": "house",
+   "label": "1204 Gingerlily Cove A, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 1984,
+    "permits_on_file": 19
+   },
+   "blockers": [
+    {
+     "reason": "No service upgrade on file since 2015. The panel may be an older, smaller one.",
+     "rule": "house/permits.py fit(): \"no electrical permit activity since 2015\" -> needs_love",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Send one photo of the main breaker, close enough to read the amp number.",
+       "who": "member",
+       "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+       "who": "electrician",
+       "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+       },
+       "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Run the fit check again with the new permit or the photo.",
+       "who": "Base",
+       "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. Base reads the record; it does not add to it.",
+       "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send one photo of the main breaker, close enough to read the amp number.",
+     "who": "member",
+     "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Run the fit check again with the new permit or the photo.",
+     "who": "Base",
+     "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. Base reads the record; it does not add to it.",
+     "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+     "who": "electrician",
+     "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+     },
+     "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4300-mount-vernon-dr",
+   "kind": "house",
+   "label": "4300 Mount Vernon Dr, 78745",
+   "source": "house/cohort.json fit bucket needs_love",
+   "verdict": "fit: needs love",
+   "status": "not_today",
+   "facts": {
+    "year_built": 2012,
+    "permits_on_file": 18
+   },
+   "blockers": [
+    {
+     "reason": "No service upgrade on file since 2015. The panel may be an older, smaller one.",
+     "rule": "house/permits.py fit(): \"no electrical permit activity since 2015\" -> needs_love",
+     "evidence": [],
+     "steps": [
+      {
+       "action": "Send one photo of the main breaker, close enough to read the amp number.",
+       "who": "member",
+       "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. This step does not go on the city permit record.",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+       "who": "electrician",
+       "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+       "permit": {
+        "needed": true,
+        "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+       },
+       "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+       "base_can": null,
+       "cost": "cost not estimated"
+      },
+      {
+       "action": "Run the fit check again with the new permit or the photo.",
+       "who": "Base",
+       "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+       "permit": {
+        "needed": false,
+        "type": null
+       },
+       "record_after": "Nothing new. Base reads the record; it does not add to it.",
+       "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+       "cost": "cost not estimated"
+      }
+     ]
+    }
+   ],
+   "path": [
+    {
+     "action": "Send one photo of the main breaker, close enough to read the amp number.",
+     "who": "member",
+     "unblocks": "If it reads 200 A, the house needs no upgrade and Base can clear it from the photo.",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. This step does not go on the city permit record.",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "Run the fit check again with the new permit or the photo.",
+     "who": "Base",
+     "unblocks": "Moves the house from \"needs love\" to \"easy\".",
+     "permit": {
+      "needed": false,
+      "type": null
+     },
+     "record_after": "Nothing new. Base reads the record; it does not add to it.",
+     "base_can": "Base's own amp limit is not public (help-center gap in faq/corpus), so Base confirms it at review.",
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    },
+    {
+     "action": "If the main breaker is under 200 A, upgrade the electric service to 200 A.",
+     "who": "electrician",
+     "unblocks": "Removes \"no electrical permit activity since 2015\". The fit rule treats a service upgrade since 2010 as the easy case.",
+     "permit": {
+      "needed": true,
+      "type": "Electrical Permit, work class Upgrade (number ends in EP)"
+     },
+     "record_after": "A service upgrade event with a date after 2015. The fit rule then reads \"easy\".",
+     "base_can": null,
+     "cost": "cost not estimated",
+     "fixes": [
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

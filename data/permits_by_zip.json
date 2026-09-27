@@ -1,0 +1,249 @@
+{
+  "source": "https://data.austintexas.gov/resource/3syk-w9eu.json",
+  "window": "2016-2026",
+  "rows": [
+    {
+      "zip": "76574",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78602",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78610",
+      "covered": true,
+      "permits": 1487,
+      "service_upgrade": 7,
+      "solar": 2,
+      "battery": 1,
+      "new_sfr": 0
+    },
+    {
+      "zip": "78613",
+      "covered": true,
+      "permits": 7,
+      "service_upgrade": 0,
+      "solar": 0,
+      "battery": 0,
+      "new_sfr": 0
+    },
+    {
+      "zip": "78617",
+      "covered": true,
+      "permits": 11065,
+      "service_upgrade": 69,
+      "solar": 374,
+      "battery": 315,
+      "new_sfr": 1023
+    },
+    {
+      "zip": "78621",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78626",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78628",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78634",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78640",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78641",
+      "covered": true,
+      "permits": 6,
+      "service_upgrade": 0,
+      "solar": 0,
+      "battery": 4,
+      "new_sfr": 0
+    },
+    {
+      "zip": "78653",
+      "covered": true,
+      "permits": 9735,
+      "service_upgrade": 24,
+      "solar": 802,
+      "battery": 146,
+      "new_sfr": 1488
+    },
+    {
+      "zip": "78660",
+      "covered": true,
+      "permits": 19894,
+      "service_upgrade": 111,
+      "solar": 1175,
+      "battery": 145,
+      "new_sfr": 2185
+    },
+    {
+      "zip": "78664",
+      "covered": true,
+      "permits": 1,
+      "service_upgrade": 0,
+      "solar": 0,
+      "battery": 1,
+      "new_sfr": 0
+    },
+    {
+      "zip": "78665",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78666",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78681",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    },
+    {
+      "zip": "78701",
+      "covered": true,
+      "permits": 371,
+      "service_upgrade": 8,
+      "solar": 3,
+      "battery": 65,
+      "new_sfr": 7
+    },
+    {
+      "zip": "78704",
+      "covered": true,
+      "permits": 33074,
+      "service_upgrade": 588,
+      "solar": 705,
+      "battery": 2961,
+      "new_sfr": 3635
+    },
+    {
+      "zip": "78734",
+      "covered": true,
+      "permits": 2457,
+      "service_upgrade": 239,
+      "solar": 291,
+      "battery": 121,
+      "new_sfr": 51
+    },
+    {
+      "zip": "78745",
+      "covered": true,
+      "permits": 27979,
+      "service_upgrade": 1135,
+      "solar": 1050,
+      "battery": 3491,
+      "new_sfr": 1868
+    },
+    {
+      "zip": "78746",
+      "covered": true,
+      "permits": 14270,
+      "service_upgrade": 611,
+      "solar": 588,
+      "battery": 1381,
+      "new_sfr": 966
+    },
+    {
+      "zip": "78748",
+      "covered": true,
+      "permits": 19719,
+      "service_upgrade": 317,
+      "solar": 1082,
+      "battery": 2068,
+      "new_sfr": 1718
+    },
+    {
+      "zip": "78749",
+      "covered": true,
+      "permits": 12525,
+      "service_upgrade": 419,
+      "solar": 615,
+      "battery": 1897,
+      "new_sfr": 311
+    },
+    {
+      "zip": "78750",
+      "covered": true,
+      "permits": 10111,
+      "service_upgrade": 229,
+      "solar": 339,
+      "battery": 1471,
+      "new_sfr": 286
+    },
+    {
+      "zip": "78753",
+      "covered": true,
+      "permits": 10274,
+      "service_upgrade": 516,
+      "solar": 637,
+      "battery": 1517,
+      "new_sfr": 446
+    },
+    {
+      "zip": "78957",
+      "covered": false,
+      "permits": null,
+      "service_upgrade": null,
+      "solar": null,
+      "battery": null,
+      "new_sfr": null
+    }
+  ]
+}

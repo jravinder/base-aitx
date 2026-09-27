@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Base Fleet | Voice guide</title>
+<link rel="stylesheet" href="voice.tw.css">
+<link rel="stylesheet" href="shell.css">
+<link rel="stylesheet" href="milestones.css">
+<script defer src="shell.js"></script><script defer src="milestones.js"></script><script defer src="speak.js"></script><script defer src="voice.js"></script>
+<style>
+/* Stitch "Installation guidance" screen. Fonts are local copies of the Stitch fonts. */
+@font-face{font-family:"Plus Jakarta Sans";font-weight:400;font-display:swap;src:url("assets/plus-jakarta-sans-400.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-weight:500;font-display:swap;src:url("assets/plus-jakarta-sans-500.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-weight:600;font-display:swap;src:url("assets/plus-jakarta-sans-600.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-weight:700;font-display:swap;src:url("assets/plus-jakarta-sans-700.woff2") format("woff2")}
+@font-face{font-family:"Material Symbols Outlined";font-style:normal;font-weight:100 700;font-display:block;src:url("assets/stitch/material-symbols-outlined.woff2") format("woff2")}
+.material-symbols-outlined,.ms{font-family:"Material Symbols Outlined";font-weight:normal;font-style:normal;letter-spacing:normal;text-transform:none;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:"liga";font-feature-settings:"liga";-webkit-font-smoothing:antialiased;
+  font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;display:inline-block;vertical-align:middle;line-height:1;overflow:hidden}
+.ms-fill{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
+body{font-family:"Plus Jakarta Sans",var(--bf-font);background:#F8FAFC;color:#0F172A}
+[hidden]{display:none!important}
+:focus-visible{outline:4px solid #1e4d2b;outline-offset:3px}
+.skip{position:fixed;top:-80px;left:0;z-index:60;background:#fff;padding:12px}.skip:focus{top:0}
+button,summary,select,label[role="button"]{cursor:pointer;touch-action:manipulation}
+button:disabled,select:disabled{opacity:.55;cursor:default}
+.vg-tool,.vg-result,.vg-card,.vg-foot,.vg-note{min-width:0;overflow-wrap:anywhere}
+
+/* Controls row */
+.vg-tool{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:10px 16px;border-radius:.5rem;border:1px solid #E2E8F0;background:#fff;color:#0F172A;font-size:16px;line-height:24px;font-weight:600}
+.vg-tool:hover:not(:disabled){background:#F1F5F9}
+.vg-tool[data-icon]::before{content:attr(data-icon) / "";font-family:"Material Symbols Outlined";font-weight:400;font-size:20px;line-height:1;width:20px;overflow:hidden;-webkit-font-feature-settings:"liga";font-feature-settings:"liga"}
+.vg-tool.primary{background:#023616;border-color:#023616;color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.vg-tool.primary:hover:not(:disabled){background:#004A31}
+.vg-tool.primary[data-icon]::before{font-variation-settings:'FILL' 1}
+.vg-switch{justify-content:space-between;gap:12px}
+.vg-knob{position:relative;flex:none;width:44px;height:24px;border-radius:.75rem;background:#cbd5e1;transition:background .2s}
+.vg-knob::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .2s}
+[aria-checked="true"] .vg-knob{background:#023616}
+[aria-checked="true"] .vg-knob::after{left:22px}
+.vg-options>summary{min-height:44px;display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:600;color:#414941}
+.vg-speed select{min-height:48px;padding:8px 36px 8px 12px;border:1px solid #E2E8F0;border-radius:.5rem;background:#fff;font:inherit;font-size:16px}
+.vg-note{font-size:18px;line-height:28px;color:#414941;margin:0}
+.vg-note:empty{display:none}
+.vg-note.warn{padding:12px 16px;border-radius:.5rem;background:#fffbeb;border:1px solid #fde68a;color:#0F172A}
+
+/* Step card, built by voice.js */
+.vg-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #E2E8F0;padding-bottom:20px}
+.vg-step{display:inline-flex;align-items:center;margin:0;padding:4px 14px;border-radius:.75rem;background:#023616;color:#fff;font-size:13px;line-height:18px;font-weight:700;letter-spacing:.01em}
+.vg-spoken{display:inline-flex;align-items:center;gap:6px;font-size:13px;line-height:18px;font-weight:600;color:#414941}
+.vg-spoken .ms{font-size:18px;color:#22C55E;font-variation-settings:'FILL' 1}
+.vg-q{font-size:24px;line-height:32px;letter-spacing:-.015em;font-weight:700;margin:0;color:#0F172A;scroll-margin-top:calc(var(--sh-top) + 24px)}
+@media (min-width:768px){.vg-q{font-size:32px;line-height:38px;letter-spacing:-.02em}}
+.vg-q:focus{outline:none}
+.vg-help{font-size:18px;line-height:28px;color:#414941;margin:0}
+.vg-help strong{color:#0F172A;font-weight:600}
+.vg-answers{display:flex;flex-direction:column;gap:16px;padding-top:8px}
+.vg-big{display:flex;align-items:center;justify-content:center;min-height:56px;padding:12px 20px;border-radius:.5rem;border:1px solid #E2E8F0;background:#fff;color:#0F172A;font-size:18px;line-height:26px;font-weight:600;text-align:center;text-decoration:none;transition:background .15s,border-color .15s}
+.vg-big:hover{background:#F1F5F9;border-color:#0F172A}
+.vg-big.yes{background:#023616;border-color:#023616;color:#fff}
+.vg-big.yes:hover{background:#004A31}
+/* Stacked answer rows: icon, label, helper, arrow (Stitch comfort buttons) */
+.vg-answers .vg-big{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:16px;align-items:center;justify-content:stretch;text-align:left;
+  width:100%;padding:20px 60px 20px 20px;border-radius:.5rem;background:#fff no-repeat right 20px center/24px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23717970'%3E%3Cpath d='M16.2 13H4v-2h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4z'/%3E%3C/svg%3E");
+  color:#0F172A;font-size:20px;line-height:28px;font-weight:600;letter-spacing:-.01em}
+.vg-answers .vg-big::before{content:attr(data-icon) / "";grid-row:1 / span 2;grid-column:1;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+  font-family:"Material Symbols Outlined";font-size:22px;font-weight:400;line-height:1;overflow:hidden;background:#F1F5F9;border:1px solid #E2E8F0;color:#414941;-webkit-font-feature-settings:"liga";font-feature-settings:"liga"}
+.vg-answers .vg-big::after{content:attr(data-help);grid-row:2;grid-column:2;font-size:14px;line-height:22px;font-weight:400;letter-spacing:0;color:#414941}
+.vg-answers .vg-big:not([data-help])::before{grid-row:1}
+.vg-answers .vg-big.yes{border:2px solid #023616;padding:19px 59px 19px 19px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23023616'%3E%3Cpath d='M16.2 13H4v-2h12.2l-5.6-5.6L12 4l8 8-8 8-1.4-1.4z'/%3E%3C/svg%3E");background-size:28px;font-size:24px;line-height:32px;font-weight:700}
+.vg-answers .vg-big.yes::before{background:#023616;border-color:#023616;color:#fff;font-size:24px}
+.vg-answers .vg-big:hover{background-color:#F1F5F9;border-color:#0F172A}
+.vg-answers .vg-big.yes:hover{background-color:rgba(236,253,245,.4);border-color:#023616}
+.vg-answers .vg-big[aria-pressed="true"]{background-color:#ecfdf5;box-shadow:0 0 0 4px #bbefc1}
+/* One arrow per row in every state: other hover rules reset the background shorthand and tile the arrow. */
+.vg-answers .vg-big,.vg-answers .vg-big:hover,.vg-answers .vg-big:focus-visible,.vg-answers .vg-big[aria-pressed="true"]{background-repeat:no-repeat!important;background-position:right 20px center!important}
+@media (min-width:768px){.vg-answers .vg-big{padding:24px 60px 24px 24px}.vg-answers .vg-big.yes{padding:23px 59px 23px 23px}}
+.vg-mic{width:100%}
+.vg-mic::before{content:"mic" / "";font-family:"Material Symbols Outlined";font-weight:400;font-size:22px;margin-right:8px;width:22px;overflow:hidden;-webkit-font-feature-settings:"liga";font-feature-settings:"liga"}
+.vg-heard{font-size:16px;color:#414941;margin:0;min-height:1em}
+.vg-heard:empty{display:none}
+.vg-cite{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:24px;border-top:1px solid #E2E8F0;font-size:12px;line-height:18px;color:#414941}
+.vg-cite span{display:inline-flex;align-items:center;gap:8px}
+.vg-cite .ms{font-size:18px}
+.vg-cite .calm{color:#023616;font-weight:500}
+.vg-back{align-self:flex-start}
+.vg-steps{margin:0;padding-left:28px;font-size:18px;line-height:28px;list-style:decimal}
+.vg-steps li{margin-bottom:10px}
+.vg-example{margin:0;font-size:14px;line-height:22px;color:#414941}
+.vg-example img{display:block;width:100%;max-width:320px;aspect-ratio:3/2;object-fit:contain;background:#F1F5F9;border:1px solid #E2E8F0;border-radius:.5rem;margin-bottom:8px}
+.vg-file{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.vg-row{display:flex;flex-wrap:wrap;gap:12px}
+.vg-row>*{flex:1 1 220px}
+.vg-photo{display:block;max-width:220px;max-height:220px;border-radius:.5rem;border:1px solid #E2E8F0;margin:16px 0}
+.vg-result{padding:16px;border-radius:.5rem;border:1px solid #E2E8F0;background:#F8FAFC;font-size:16px;line-height:26px}
+.vg-result p{margin:8px 0 0}
+.vg-result dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;margin:10px 0 0}
+.vg-result dt{font-weight:700}.vg-result dd{margin:0;overflow-wrap:anywhere}
+.vg-tag{display:inline-block;font-size:13px;font-weight:700;padding:3px 10px;border-radius:.75rem;background:#fffbeb;color:#0F172A;border:1px solid #F59E0B}
+.vg-tag.live{background:#ecfdf5;border-color:#22C55E}
+.vg-sum h3{font-size:20px;line-height:28px;font-weight:600;margin:20px 0 8px}
+.vg-sum ul{margin:0;padding-left:24px;list-style:disc;font-size:16px;line-height:26px}
+.vg-sum li{margin-bottom:6px}
+.vg-sum .none{color:#414941;list-style:none;margin-left:-24px}
+.vg-call{margin-top:24px;padding:16px;border-radius:.5rem;background:#F1F5F9;border:1px solid #E2E8F0;font-size:18px;font-weight:600}
+.vg-call small{display:block;font-size:16px;font-weight:400;color:#414941;margin-top:6px}
+
+/* Caregiver list */
+.vg-cg{list-style:none;margin:0;padding:0;counter-reset:cg}
+.vg-cg>li{counter-increment:cg;border-top:1px solid #E2E8F0;padding:20px 0;display:flex;flex-direction:column;gap:12px}
+.vg-cg>li:first-child{border-top:0}
+.vg-cg>li>p:first-child{font-size:20px;line-height:28px;font-weight:600}
+.vg-cg>li>p:first-child::before{content:counter(cg) ". ";font-weight:700}
+.vg-cg p{margin:0;font-size:18px;line-height:28px}
+
+/* Right rail */
+.vg-rail li{display:flex;align-items:center;gap:12px;padding:10px;border-radius:.25rem;color:#414941;font-size:14px;line-height:22px}
+.vg-rail .dot{width:24px;height:24px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:12px;border:1px solid #E2E8F0}
+.vg-rail .lbl{flex:1;min-width:0}
+.vg-rail li.done{background:rgba(241,245,249,.6);color:#0F172A}
+.vg-rail li.done .dot{border:0;background:#d1fae5;color:#22C55E}
+.vg-rail li.done .dot .ms{font-size:18px;font-variation-settings:'FILL' 1}
+.vg-rail li.done .lbl{text-decoration:line-through;color:#414941;font-weight:500}
+.vg-rail li.done .end{font-size:11px;line-height:16px;letter-spacing:.06em;font-weight:700;color:#22C55E;text-transform:uppercase}
+.vg-rail li.now{padding:12px;background:rgba(236,253,245,.8);border:2px solid #023616;color:#0F172A;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.vg-rail li.now .dot{border:0;background:#023616;color:#fff;font-weight:700}
+.vg-rail li.now .lbl{font-weight:700}
+.vg-rail li.now .lbl small{display:block;font-size:12px;line-height:18px;color:#023616;font-weight:500}
+.vg-rail li.now .end{width:10px;height:10px;border-radius:50%;background:#023616;animation:vgpulse 2s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes vgpulse{50%{opacity:.5}}
+@media (prefers-reduced-motion:reduce){.vg-rail li.now .end{animation:none}}
+
+.vg-caption>summary,.vg-foot>summary{min-height:44px;display:flex;align-items:center;font-size:16px;font-weight:600;color:#0F172A}
+.vg-caption>summary::after,.vg-foot>summary::after,.vg-options>summary::after{content:"expand_more" / "";font-family:"Material Symbols Outlined";font-weight:400;font-size:22px;margin-left:auto;width:22px;overflow:hidden;-webkit-font-feature-settings:"liga";font-feature-settings:"liga"}
+.vg-options>summary::after{margin-left:2px}
+details[open]>summary::after{content:"expand_less" / ""}
+summary{list-style:none}summary::-webkit-details-marker{display:none}
+.vg-caption p,.vg-foot p{margin:8px 0 0;font-size:16px;line-height:26px;color:#414941}
+.vg-link{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 16px;border-radius:.5rem;border:1px solid #E2E8F0;background:#F1F5F9;color:#0F172A;font-size:16px;line-height:24px;font-weight:600;text-decoration:none;text-align:center}
+.vg-link:hover{background:#f0f3ff}
+.vg-hero{background:radial-gradient(ellipse 45% 100% at 0% 0%,rgba(203,240,128,.35),rgba(248,250,252,0) 70%);border-radius:.75rem;padding:8px 4px}
+.vg-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.vg-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:.5rem;background:#fff;border:1px solid #E2E8F0;font-size:14px;line-height:20px;font-weight:600;color:#0F172A}
+.vg-chip .ms{font-size:18px;color:#1e4d2b}
+.vg-chip.lime{background:#cbf080;border-color:#afd367}
+.vg-next{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:24px;border-radius:.75rem;background:#1e4d2b;color:#fff}
+.vg-next p{margin:8px 0 0;font-size:18px;line-height:26px;font-weight:600;color:#fff}
+.vg-next .tag{display:inline-flex;padding:2px 8px;border-radius:.25rem;background:#cbf080;color:#0F172A;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.vg-next a{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:.5rem;background:#cbf080;color:#0F172A;font-size:16px;font-weight:700;text-decoration:none}
+.vg-next a:hover{background:#bfe673}
+</style>
+</head>
+<body class="bg-surface-muted text-ink-primary font-body-md antialiased min-h-screen">
+<a class="skip" href="#main">Skip to the guide</a>
+<main id="main" class="vg flex-1 max-w-[1440px] w-full mx-auto px-4 md:px-8 py-8 flex flex-col gap-8">
+ <!-- Screen header -->
+ <section class="flex flex-col gap-2">
+  <div class="vg-hero flex flex-wrap items-center justify-between gap-4">
+   <div>
+    <h1 class="text-display-sm md:text-display-lg font-display-lg text-ink-primary tracking-tight">Talk me through it.</h1>
+    <p class="text-body-lg font-body-lg text-on-surface-variant mt-1">One question at a time, spoken aloud. Anything you are not sure of can stay open.</p>
+    <div class="vg-chips" aria-label="What stays the same"><span class="vg-chip"><span class="ms" aria-hidden="true">checklist</span>Same questions as Onboarding</span><span class="vg-chip lime"><span class="ms" aria-hidden="true">bolt</span>Same points for your photo</span><span class="vg-chip"><span class="ms" aria-hidden="true">touch_app</span>Big buttons</span><span class="vg-chip"><span class="ms" aria-hidden="true">diversity_1</span>Caregiver view</span></div>
+   </div>
+  </div>
+  <!-- Controls row: voice, repeat, caregiver -->
+  <div class="flex flex-wrap items-center justify-between gap-4 pt-4 mt-2 border-t border-wire-border">
+   <div class="flex flex-wrap items-center gap-3">
+    <button type="button" class="vg-tool primary" id="vg-voice" data-icon="volume_up" aria-pressed="false" disabled>Start voice</button>
+    <button type="button" class="vg-tool" id="vg-repeat" data-icon="replay" disabled>Repeat</button>
+   </div>
+   <button type="button" class="vg-tool vg-switch" id="vg-caregiver" role="switch" aria-checked="false">Hand this to a caregiver<span class="vg-knob" aria-hidden="true"></span></button>
+  </div>
+  <p class="vg-note mt-2" id="vg-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  <details class="vg-options">
+   <summary>Voice and caregiver options</summary>
+   <div class="vg-speed flex flex-wrap items-center gap-3 pt-2 text-body-lg"><label for="vg-speed">Speaking speed</label><select id="vg-speed" disabled><option value="0.8">Slower</option><option value="1">Normal</option></select></div>
+  </details>
+ </section>
+
+ <!-- Two-column main content -->
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+  <div class="lg:col-span-8 flex flex-col gap-6 min-w-0">
+   <section id="vg-guided" class="vg-card bg-surface-container-lowest rounded-xl border border-wire-border p-6 md:p-10 shadow-sm flex flex-col gap-8" aria-live="polite"></section>
+   <section id="vg-caregiver-view" class="bg-surface-container-lowest rounded-xl border border-wire-border p-6 md:p-10 shadow-sm flex flex-col gap-4" hidden>
+    <p class="vg-help">Caregiver view. All steps are on one page as text. Voice is off. Read each step to the member and press their answer.</p>
+    <ol class="vg-cg" id="vg-cg-list"></ol>
+   </section>
+   <details class="vg-caption bg-surface-container-lowest rounded-xl border border-wire-border px-6 py-2"><summary id="vg-caption-label">Spoken text</summary><p id="vg-caption" class="pb-3">Loading the guide.</p></details>
+  </div>
+
+  <!-- Right column: milestones and guide steps -->
+  <aside class="lg:col-span-4 bg-surface-container-lowest rounded-xl border border-wire-border p-6 shadow-sm flex flex-col gap-6 min-w-0" aria-label="Guide progress">
+   <div data-milestones="compact"></div>
+   <div class="flex flex-col gap-2">
+    <div class="flex items-center justify-between gap-3">
+     <h3 class="text-headline-sm font-headline-sm text-ink-primary">Guide steps</h3>
+     <span class="text-label-caps font-label-caps uppercase tracking-wider text-on-surface-variant" id="vg-rail-pct">0% complete</span>
+    </div>
+    <div class="w-full bg-surface-subtle rounded-full h-2 overflow-hidden border border-wire-border"><div class="bg-primary h-2 rounded-full transition-all duration-300" id="vg-rail-bar" style="width:0%"></div></div>
+    <p class="text-body-sm font-body-sm text-on-surface-variant" id="vg-rail-count"></p>
+   </div>
+   <ol class="vg-rail space-y-3" id="vg-rail"></ol>
+  </aside>
+ </div>
+
+ <!-- Safety strip -->
+ <section class="w-full bg-surface-container-lowest rounded-xl border border-wire-border p-6 shadow-sm">
+  <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+   <div class="flex items-start gap-4 max-w-3xl">
+    <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 text-warning-amber flex items-center justify-center shrink-0 mt-0.5"><span class="ms ms-fill text-[22px]" aria-hidden="true">shield</span></div>
+    <div class="space-y-1">
+     <p class="text-body-md font-body-md text-ink-primary font-medium"><strong>Safety first:</strong> Keep all doors and covers closed. Take the photo only in good light, dry conditions, and when you feel safe doing so.</p>
+     <p class="text-body-sm font-body-sm text-on-surface-variant">The closed box is all you need to show.</p>
+    </div>
+   </div>
+   <div class="shrink-0 flex items-center gap-3 w-full md:w-auto">
+    <a class="vg-link w-full md:w-auto" href="brain.html?track=home&amp;persona=lead&amp;q=how%20do%20I%20talk%20to%20Base">Contact and support information</a>
+   </div>
+  </div>
+ </section>
+
+ <section class="vg-next" aria-label="Next step">
+  <div><span class="tag">Next</span><p>Your application, and the one thing Base needs.</p></div>
+  <a href="status.html" id="vg-next-status">See your application <span class="ms" aria-hidden="true">arrow_forward</span></a>
+ </section>
+
+ <details class="vg-foot bg-surface-container-lowest rounded-xl border border-wire-border px-6 py-2"><summary>Data and privacy</summary><p class="pb-3">Uses a house from Austin public records. This is browser speech, not a hosted voice agent. Browser speech and microphone recognition may use browser-provider services; neither is guaranteed offline. Local photo checks send the selected image to Ollama on this computer. Answers remain in this page; a completion flag may be stored in this browser. No application, human review, or callback is requested.</p></details>
+</main>
+</body>
+</html>

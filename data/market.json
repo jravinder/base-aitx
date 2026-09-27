@@ -1,0 +1,733 @@
+{
+ "source": "City of Austin Issued Construction Permits, Socrata 3syk-w9eu (aggregate queries)",
+ "fetched_at": "2026-09-26",
+ "base_rule": "contractor 'Base Power', work class Auxiliary Power, issued 2026 or later",
+ "monthly": [
+  {
+   "month": "2024-01",
+   "base": 0,
+   "others": 119
+  },
+  {
+   "month": "2024-02",
+   "base": 0,
+   "others": 80
+  },
+  {
+   "month": "2024-03",
+   "base": 0,
+   "others": 153
+  },
+  {
+   "month": "2024-04",
+   "base": 0,
+   "others": 161
+  },
+  {
+   "month": "2024-05",
+   "base": 0,
+   "others": 116
+  },
+  {
+   "month": "2024-06",
+   "base": 0,
+   "others": 61
+  },
+  {
+   "month": "2024-07",
+   "base": 0,
+   "others": 131
+  },
+  {
+   "month": "2024-08",
+   "base": 0,
+   "others": 110
+  },
+  {
+   "month": "2024-09",
+   "base": 0,
+   "others": 98
+  },
+  {
+   "month": "2024-10",
+   "base": 0,
+   "others": 76
+  },
+  {
+   "month": "2024-11",
+   "base": 0,
+   "others": 62
+  },
+  {
+   "month": "2024-12",
+   "base": 0,
+   "others": 70
+  },
+  {
+   "month": "2025-01",
+   "base": 0,
+   "others": 66
+  },
+  {
+   "month": "2025-02",
+   "base": 0,
+   "others": 69
+  },
+  {
+   "month": "2025-03",
+   "base": 0,
+   "others": 41
+  },
+  {
+   "month": "2025-04",
+   "base": 0,
+   "others": 53
+  },
+  {
+   "month": "2025-05",
+   "base": 0,
+   "others": 63
+  },
+  {
+   "month": "2025-06",
+   "base": 0,
+   "others": 50
+  },
+  {
+   "month": "2025-07",
+   "base": 0,
+   "others": 81
+  },
+  {
+   "month": "2025-08",
+   "base": 0,
+   "others": 78
+  },
+  {
+   "month": "2025-09",
+   "base": 0,
+   "others": 100
+  },
+  {
+   "month": "2025-10",
+   "base": 0,
+   "others": 102
+  },
+  {
+   "month": "2025-11",
+   "base": 0,
+   "others": 94
+  },
+  {
+   "month": "2025-12",
+   "base": 0,
+   "others": 56
+  },
+  {
+   "month": "2026-01",
+   "base": 0,
+   "others": 29
+  },
+  {
+   "month": "2026-02",
+   "base": 0,
+   "others": 33
+  },
+  {
+   "month": "2026-03",
+   "base": 1,
+   "others": 21
+  },
+  {
+   "month": "2026-04",
+   "base": 1,
+   "others": 46
+  },
+  {
+   "month": "2026-05",
+   "base": 0,
+   "others": 24
+  },
+  {
+   "month": "2026-06",
+   "base": 0,
+   "others": 39
+  },
+  {
+   "month": "2026-07",
+   "base": 19,
+   "others": 45
+  },
+  {
+   "month": "2026-08",
+   "base": 138,
+   "others": 56
+  },
+  {
+   "month": "2026-09",
+   "base": 157,
+   "others": 38
+  }
+ ],
+ "contractors_2026": [
+  {
+   "contractor": "Base Power",
+   "permits_2026": 316,
+   "type": "battery"
+  },
+  {
+   "contractor": "Installer 1",
+   "permits_2026": 69,
+   "type": "solar only"
+  },
+  {
+   "contractor": "Installer 2",
+   "permits_2026": 57,
+   "type": "solar only"
+  },
+  {
+   "contractor": "Installer 3",
+   "permits_2026": 46,
+   "type": "solar-plus-battery"
+  },
+  {
+   "contractor": "Installer 4",
+   "permits_2026": 18,
+   "type": "solar-plus-battery"
+  },
+  {
+   "contractor": "Installer 5",
+   "permits_2026": 16,
+   "type": "solar-plus-battery"
+  },
+  {
+   "contractor": "Installer 6",
+   "permits_2026": 16,
+   "type": "solar-plus-battery"
+  },
+  {
+   "contractor": "Installer 7",
+   "permits_2026": 8,
+   "type": "solar-plus-battery"
+  },
+  {
+   "contractor": "Installer 8",
+   "permits_2026": 7,
+   "type": "solar-plus-battery"
+  },
+  {
+   "contractor": "Installer 9",
+   "permits_2026": 6,
+   "type": "solar-plus-battery"
+  }
+ ],
+ "base_totals": {
+  "total": 316,
+  "by_status": {
+   "active": 264,
+   "final": 52
+  },
+  "final_rate": 0.165,
+  "median_days_applied_to_issued": 14.0
+ },
+ "base_by_zip": [
+  {
+   "zip": "78731",
+   "count": 45,
+   "final": 3,
+   "active": 42,
+   "other": 0,
+   "median_days_applied_to_issued": 13.0,
+   "final_rate": 0.067,
+   "owner_occupied": 7620,
+   "per_1000_owner_occupied": 5.91
+  },
+  {
+   "zip": "78746",
+   "count": 35,
+   "final": 7,
+   "active": 28,
+   "other": 0,
+   "median_days_applied_to_issued": 14.0,
+   "final_rate": 0.2,
+   "owner_occupied": 7368,
+   "per_1000_owner_occupied": 4.75
+  },
+  {
+   "zip": "78757",
+   "count": 29,
+   "final": 3,
+   "active": 26,
+   "other": 0,
+   "median_days_applied_to_issued": 14.0,
+   "final_rate": 0.103,
+   "owner_occupied": 6791,
+   "per_1000_owner_occupied": 4.27
+  },
+  {
+   "zip": "78730",
+   "count": 11,
+   "final": 5,
+   "active": 6,
+   "other": 0,
+   "median_days_applied_to_issued": 13.0,
+   "final_rate": 0.455,
+   "owner_occupied": 2697,
+   "per_1000_owner_occupied": 4.08
+  },
+  {
+   "zip": "78756",
+   "count": 6,
+   "final": 1,
+   "active": 5,
+   "other": 0,
+   "median_days_applied_to_issued": 16.0,
+   "final_rate": 0.167,
+   "owner_occupied": 1995,
+   "per_1000_owner_occupied": 3.01
+  },
+  {
+   "zip": "78735",
+   "count": 13,
+   "final": 2,
+   "active": 11,
+   "other": 0,
+   "median_days_applied_to_issued": 13.0,
+   "final_rate": 0.154,
+   "owner_occupied": 4549,
+   "per_1000_owner_occupied": 2.86
+  },
+  {
+   "zip": "78751",
+   "count": 6,
+   "final": 0,
+   "active": 6,
+   "other": 0,
+   "median_days_applied_to_issued": 15.5,
+   "final_rate": 0.0,
+   "owner_occupied": 2271,
+   "per_1000_owner_occupied": 2.64
+  },
+  {
+   "zip": "78703",
+   "count": 14,
+   "final": 6,
+   "active": 8,
+   "other": 0,
+   "median_days_applied_to_issued": 12.0,
+   "final_rate": 0.429,
+   "owner_occupied": 6088,
+   "per_1000_owner_occupied": 2.3
+  },
+  {
+   "zip": "78704",
+   "count": 19,
+   "final": 6,
+   "active": 13,
+   "other": 0,
+   "median_days_applied_to_issued": 15.0,
+   "final_rate": 0.316,
+   "owner_occupied": 9214,
+   "per_1000_owner_occupied": 2.06
+  },
+  {
+   "zip": "78759",
+   "count": 21,
+   "final": 1,
+   "active": 20,
+   "other": 0,
+   "median_days_applied_to_issued": 14.0,
+   "final_rate": 0.048,
+   "owner_occupied": 10354,
+   "per_1000_owner_occupied": 2.03
+  },
+  {
+   "zip": "78723",
+   "count": 12,
+   "final": 2,
+   "active": 10,
+   "other": 0,
+   "median_days_applied_to_issued": 12.0,
+   "final_rate": 0.167,
+   "owner_occupied": 8107,
+   "per_1000_owner_occupied": 1.48
+  },
+  {
+   "zip": "78747",
+   "count": 9,
+   "final": 0,
+   "active": 9,
+   "other": 0,
+   "median_days_applied_to_issued": 15.0,
+   "final_rate": 0.0,
+   "owner_occupied": 6076,
+   "per_1000_owner_occupied": 1.48
+  },
+  {
+   "zip": "78724",
+   "count": 9,
+   "final": 2,
+   "active": 7,
+   "other": 0,
+   "median_days_applied_to_issued": 14.0,
+   "final_rate": 0.222,
+   "owner_occupied": 6292,
+   "per_1000_owner_occupied": 1.43
+  },
+  {
+   "zip": "78733",
+   "count": 4,
+   "final": 1,
+   "active": 3,
+   "other": 0,
+   "median_days_applied_to_issued": 14.5,
+   "final_rate": 0.25,
+   "owner_occupied": 2880,
+   "per_1000_owner_occupied": 1.39
+  },
+  {
+   "zip": "78749",
+   "count": 12,
+   "final": 0,
+   "active": 12,
+   "other": 0,
+   "median_days_applied_to_issued": 12.5,
+   "final_rate": 0.0,
+   "owner_occupied": 9371,
+   "per_1000_owner_occupied": 1.28
+  },
+  {
+   "zip": "78702",
+   "count": 7,
+   "final": 0,
+   "active": 7,
+   "other": 0,
+   "median_days_applied_to_issued": 14.0,
+   "final_rate": 0.0,
+   "owner_occupied": 5627,
+   "per_1000_owner_occupied": 1.24
+  },
+  {
+   "zip": "78727",
+   "count": 7,
+   "final": 1,
+   "active": 6,
+   "other": 0,
+   "median_days_applied_to_issued": 11.0,
+   "final_rate": 0.143,
+   "owner_occupied": 5994,
+   "per_1000_owner_occupied": 1.17
+  },
+  {
+   "zip": "78738",
+   "count": 9,
+   "final": 1,
+   "active": 8,
+   "other": 0,
+   "median_days_applied_to_issued": 17.0,
+   "final_rate": 0.111,
+   "owner_occupied": 9086,
+   "per_1000_owner_occupied": 0.99
+  },
+  {
+   "zip": "78752",
+   "count": 2,
+   "final": 0,
+   "active": 2,
+   "other": 0,
+   "median_days_applied_to_issued": 11.5,
+   "final_rate": 0.0,
+   "owner_occupied": 2251,
+   "per_1000_owner_occupied": 0.89
+  },
+  {
+   "zip": "78753",
+   "count": 6,
+   "final": 1,
+   "active": 5,
+   "other": 0,
+   "median_days_applied_to_issued": 15.0,
+   "final_rate": 0.167,
+   "owner_occupied": 8184,
+   "per_1000_owner_occupied": 0.73
+  },
+  {
+   "zip": "78732",
+   "count": 4,
+   "final": 1,
+   "active": 3,
+   "other": 0,
+   "median_days_applied_to_issued": 16.5,
+   "final_rate": 0.25,
+   "owner_occupied": 5527,
+   "per_1000_owner_occupied": 0.72
+  },
+  {
+   "zip": "78736",
+   "count": 2,
+   "final": 1,
+   "active": 1,
+   "other": 0,
+   "median_days_applied_to_issued": 11.5,
+   "final_rate": 0.5,
+   "owner_occupied": 2932,
+   "per_1000_owner_occupied": 0.68
+  },
+  {
+   "zip": "78745",
+   "count": 9,
+   "final": 6,
+   "active": 3,
+   "other": 0,
+   "median_days_applied_to_issued": 13.0,
+   "final_rate": 0.667,
+   "owner_occupied": 14025,
+   "per_1000_owner_occupied": 0.64
+  },
+  {
+   "zip": "78741",
+   "count": 2,
+   "final": 0,
+   "active": 2,
+   "other": 0,
+   "median_days_applied_to_issued": 12.5,
+   "final_rate": 0.0,
+   "owner_occupied": 3648,
+   "per_1000_owner_occupied": 0.55
+  },
+  {
+   "zip": "78729",
+   "count": 3,
+   "final": 0,
+   "active": 3,
+   "other": 0,
+   "median_days_applied_to_issued": 12.0,
+   "final_rate": 0.0,
+   "owner_occupied": 5576,
+   "per_1000_owner_occupied": 0.54
+  },
+  {
+   "zip": "78721",
+   "count": 1,
+   "final": 0,
+   "active": 1,
+   "other": 0,
+   "median_days_applied_to_issued": 7.0,
+   "final_rate": 0.0,
+   "owner_occupied": 2553,
+   "per_1000_owner_occupied": 0.39
+  },
+  {
+   "zip": "78734",
+   "count": 3,
+   "final": 0,
+   "active": 3,
+   "other": 0,
+   "median_days_applied_to_issued": 13.0,
+   "final_rate": 0.0,
+   "owner_occupied": 8255,
+   "per_1000_owner_occupied": 0.36
+  },
+  {
+   "zip": "78748",
+   "count": 5,
+   "final": 1,
+   "active": 4,
+   "other": 0,
+   "median_days_applied_to_issued": 16.0,
+   "final_rate": 0.2,
+   "owner_occupied": 14312,
+   "per_1000_owner_occupied": 0.35
+  },
+  {
+   "zip": "78744",
+   "count": 3,
+   "final": 1,
+   "active": 2,
+   "other": 0,
+   "median_days_applied_to_issued": 11.0,
+   "final_rate": 0.333,
+   "owner_occupied": 10696,
+   "per_1000_owner_occupied": 0.28
+  },
+  {
+   "zip": "78754",
+   "count": 2,
+   "final": 0,
+   "active": 2,
+   "other": 0,
+   "median_days_applied_to_issued": 12.5,
+   "final_rate": 0.0,
+   "owner_occupied": 7290,
+   "per_1000_owner_occupied": 0.27
+  },
+  {
+   "zip": "78750",
+   "count": 2,
+   "final": 0,
+   "active": 2,
+   "other": 0,
+   "median_days_applied_to_issued": 14.5,
+   "final_rate": 0.0,
+   "owner_occupied": 7711,
+   "per_1000_owner_occupied": 0.26
+  },
+  {
+   "zip": "78758",
+   "count": 1,
+   "final": 0,
+   "active": 1,
+   "other": 0,
+   "median_days_applied_to_issued": 13.0,
+   "final_rate": 0.0,
+   "owner_occupied": 6729,
+   "per_1000_owner_occupied": 0.15
+  },
+  {
+   "zip": "78617",
+   "count": 1,
+   "final": 0,
+   "active": 1,
+   "other": 0,
+   "median_days_applied_to_issued": 10.0,
+   "final_rate": 0.0,
+   "owner_occupied": 7155,
+   "per_1000_owner_occupied": 0.14
+  },
+  {
+   "zip": "78653",
+   "count": 1,
+   "final": 0,
+   "active": 1,
+   "other": 0,
+   "median_days_applied_to_issued": 15.0,
+   "final_rate": 0.0,
+   "owner_occupied": 12261,
+   "per_1000_owner_occupied": 0.08
+  },
+  {
+   "zip": "78660",
+   "count": 1,
+   "final": 0,
+   "active": 1,
+   "other": 0,
+   "median_days_applied_to_issued": 10.0,
+   "final_rate": 0.0,
+   "owner_occupied": 30168,
+   "per_1000_owner_occupied": 0.03
+  }
+ ],
+ "annual": [
+  {
+   "year": 2013,
+   "total": 421
+  },
+  {
+   "year": 2014,
+   "total": 1180
+  },
+  {
+   "year": 2015,
+   "total": 1168
+  },
+  {
+   "year": 2016,
+   "total": 1325
+  },
+  {
+   "year": 2017,
+   "total": 1884
+  },
+  {
+   "year": 2018,
+   "total": 1393
+  },
+  {
+   "year": 2019,
+   "total": 1938
+  },
+  {
+   "year": 2020,
+   "total": 2010
+  },
+  {
+   "year": 2021,
+   "total": 2253
+  },
+  {
+   "year": 2022,
+   "total": 2070
+  },
+  {
+   "year": 2023,
+   "total": 1574
+  },
+  {
+   "year": 2024,
+   "total": 1237
+  },
+  {
+   "year": 2025,
+   "total": 853
+  },
+  {
+   "year": 2026,
+   "total": 647
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-07-15",
+   "label": "Base Backup Only launch"
+  }
+ ],
+ "lookalikes": {
+  "rule": {
+   "min_home_value": 600000,
+   "min_owner_occupied": 5000,
+   "max_base_per_1000": 1.0
+  },
+  "zips": [
+   {
+    "zip": "78738",
+    "territory": "backup_only",
+    "owner_occupied": 9086,
+    "median_home_value": 916300,
+    "base_permits": 9,
+    "per_1000_owner_occupied": 0.99
+   },
+   {
+    "zip": "78734",
+    "territory": "mixed",
+    "owner_occupied": 8255,
+    "median_home_value": 677300,
+    "base_permits": 3,
+    "per_1000_owner_occupied": 0.36
+   },
+   {
+    "zip": "78750",
+    "territory": "mixed",
+    "owner_occupied": 7711,
+    "median_home_value": 601800,
+    "base_permits": 2,
+    "per_1000_owner_occupied": 0.26
+   },
+   {
+    "zip": "78739",
+    "territory": "backup_only",
+    "owner_occupied": 6576,
+    "median_home_value": 808600,
+    "base_permits": 0,
+    "per_1000_owner_occupied": 0
+   },
+   {
+    "zip": "78732",
+    "territory": "backup_only",
+    "owner_occupied": 5527,
+    "median_home_value": 853900,
+    "base_permits": 4,
+    "per_1000_owner_occupied": 0.72
+   }
+  ]
+ }
+}

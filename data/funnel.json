@@ -1,0 +1,2663 @@
+{
+ "note": "Estimates from public aggregates (ACS, permit counts, TDU table). Not surveys, not parcel counts. No public record says where the panel is.",
+ "inputs": "demographics=real, permits=real",
+ "easy_share": {
+  "easy": 22,
+  "total": 40
+ },
+ "territory_zips": [
+  "76574",
+  "78634",
+  "78664",
+  "78665",
+  "78681",
+  "78728"
+ ],
+ "mixed_zips": [
+  "78621",
+  "78626",
+  "78628",
+  "78653",
+  "78660",
+  "78727",
+  "78734",
+  "78750",
+  "78759"
+ ],
+ "backup_only_zips": [
+  "78617",
+  "78701",
+  "78702",
+  "78703",
+  "78704",
+  "78705",
+  "78721",
+  "78722",
+  "78723",
+  "78724",
+  "78725",
+  "78726",
+  "78729",
+  "78730",
+  "78731",
+  "78732",
+  "78733",
+  "78735",
+  "78736",
+  "78738",
+  "78739",
+  "78741",
+  "78742",
+  "78744",
+  "78745",
+  "78746",
+  "78747",
+  "78748",
+  "78749",
+  "78751",
+  "78752",
+  "78753",
+  "78754",
+  "78756",
+  "78757",
+  "78758"
+ ],
+ "rows": [
+  {
+   "zip": "78665",
+   "city": "Round Rock",
+   "county": "Williamson",
+   "tdu": "Oncor",
+   "status": "energy_and_backup",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 6530,
+   "assisted_priority": 20.3,
+   "assisted_why": "6,909 people 65+ and 6,509 under 65 with a disability of 66,171 (ACS B01001, B18101) = 20%; x energy_and_backup weight 1.0 -> 20.3",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 24162,
+     "why": "ACS households in 78665 (Round Rock, Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 14840,
+     "why": "min of owner-occupied (14840) and single-family detached (18566)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 14840,
+     "why": "Oncor is energy_and_backup: Base can be the energy provider (Energy + Backup) [1.0]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only) -> weight 1.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 11872,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2010 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 6530,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78634",
+   "city": "Hutto",
+   "county": "Williamson",
+   "tdu": "Oncor",
+   "status": "energy_and_backup",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 5465,
+   "assisted_priority": 14.4,
+   "assisted_why": "3,471 people 65+ and 3,220 under 65 with a disability of 46,413 (ACS B01001, B18101) = 14%; x energy_and_backup weight 1.0 -> 14.4",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 15808,
+     "why": "ACS households in 78634 (Hutto, Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 12420,
+     "why": "min of owner-occupied (12420) and single-family detached (14124)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 12420,
+     "why": "Oncor is energy_and_backup: Base can be the energy provider (Energy + Backup) [1.0]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only) -> weight 1.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 9936,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2009 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 5465,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78681",
+   "city": "Round Rock",
+   "county": "Williamson",
+   "tdu": "Oncor",
+   "status": "energy_and_backup",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 4090,
+   "assisted_priority": 16.5,
+   "assisted_why": "6,396 people 65+ and 2,972 under 65 with a disability of 56,691 (ACS B01001, B18101) = 17%; x energy_and_backup weight 1.0 -> 16.5",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 20135,
+     "why": "ACS households in 78681 (Round Rock, Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 14871,
+     "why": "min of owner-occupied (14871) and single-family detached (16914)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 14871,
+     "why": "Oncor is energy_and_backup: Base can be the energy provider (Energy + Backup) [1.0]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only) -> weight 1.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 7436,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1999 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 4090,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78664",
+   "city": "Round Rock",
+   "county": "Williamson",
+   "tdu": "Oncor",
+   "status": "energy_and_backup",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 3466,
+   "assisted_priority": 18.6,
+   "assisted_why": "6,716 people 65+ and 4,816 under 65 with a disability of 62,060 (ACS B01001, B18101) = 19%; x energy_and_backup weight 1.0 -> 18.6",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 23484,
+     "why": "ACS households in 78664 (Round Rock, Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 12603,
+     "why": "min of owner-occupied (12603) and single-family detached (15366)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 12603,
+     "why": "Oncor is energy_and_backup: Base can be the energy provider (Energy + Backup) [1.0]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only) -> weight 1.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 6302,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1997 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 3466,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78628",
+   "city": "Georgetown",
+   "county": "Williamson",
+   "tdu": "Oncor + Georgetown Utility Systems",
+   "status": "mixed",
+   "eligible": true,
+   "confidence": "MEDIUM",
+   "star": 2662,
+   "assisted_priority": 13.8,
+   "assisted_why": "8,761 people 65+ and 2,951 under 65 with a disability of 50,822 (ACS B01001, B18101) = 23%; x mixed weight 0.6 -> 13.8",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 19084,
+     "why": "ACS households in 78628 (Georgetown, Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 14403,
+     "why": "min of owner-occupied (14403) and single-family detached (15648)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 6049,
+     "why": "Oncor + Georgetown Utility Systems is mixed: part of the zip is a competitive TDU (Energy + Backup), the rest is another utility; offer weight 0.6 is a judgment, no public source gives the split inside the zip [0.6]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 171 plans, TDU Oncor; mixed: Georgetown Utility Systems from the old table, general knowledge); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only; rest of zip: Georgetown Utility Systems) -> weight 0.42"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 4839,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2011 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 2662,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78744",
+   "city": "Austin (Southeast)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 2353,
+   "assisted_priority": 9.4,
+   "assisted_why": "3,924 people 65+ and 5,647 under 65 with a disability of 50,986 (ACS B01001, B18101) = 19%; x backup_only weight 0.5 -> 9.4",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 20976,
+     "why": "ACS households in 78744 (Austin (Southeast), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 10696,
+     "why": "min of owner-occupied (10696) and single-family detached (11178)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 5348,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 3 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 4278,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2005 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 2353,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78738",
+   "city": "Bee Cave",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 1999,
+   "assisted_priority": 10.5,
+   "assisted_why": "5,026 people 65+ and 1,493 under 65 with a disability of 31,019 (ACS B01001, B18101) = 21%; x backup_only weight 0.5 -> 10.5",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 12063,
+     "why": "ACS households in 78738 (Bee Cave, Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 9086,
+     "why": "min of owner-occupied (9086) and single-family detached (9665)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 4543,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 9 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 3634,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2011 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1999,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78626",
+   "city": "Georgetown",
+   "county": "Williamson",
+   "tdu": "Oncor + Georgetown Utility Systems",
+   "status": "mixed",
+   "eligible": true,
+   "confidence": "MEDIUM",
+   "star": 1921,
+   "assisted_priority": 9.6,
+   "assisted_why": "4,861 people 65+ and 2,845 under 65 with a disability of 48,072 (ACS B01001, B18101) = 16%; x mixed weight 0.6 -> 9.6",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 16813,
+     "why": "ACS households in 78626 (Georgetown, Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 10393,
+     "why": "min of owner-occupied (10393) and single-family detached (11972)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 4365,
+     "why": "Oncor + Georgetown Utility Systems is mixed: part of the zip is a competitive TDU (Energy + Backup), the rest is another utility; offer weight 0.6 is a judgment, no public source gives the split inside the zip [0.6]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 171 plans, TDU Oncor; mixed: Georgetown Utility Systems from the old table, general knowledge); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only; rest of zip: Georgetown Utility Systems) -> weight 0.42"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 3492,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2010 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1921,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "76574",
+   "city": "Taylor",
+   "county": "Williamson",
+   "tdu": "Oncor",
+   "status": "energy_and_backup",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 1634,
+   "assisted_priority": 27.7,
+   "assisted_why": "3,936 people 65+ and 1,678 under 65 with a disability of 20,242 (ACS B01001, B18101) = 28%; x energy_and_backup weight 1.0 -> 27.7",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 7752,
+     "why": "ACS households in 76574 (Taylor, Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 5941,
+     "why": "min of owner-occupied (5941) and single-family detached (7055)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 5941,
+     "why": "Oncor is energy_and_backup: Base can be the energy provider (Energy + Backup) [1.0]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only) -> weight 1.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 2970,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1981 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1634,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78759",
+   "city": "Austin (Arboretum)",
+   "county": "Travis",
+   "tdu": "Oncor + Austin Energy",
+   "status": "mixed",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 1633,
+   "assisted_priority": 12.8,
+   "assisted_why": "6,771 people 65+ and 2,442 under 65 with a disability of 43,182 (ACS B01001, B18101) = 21%; x mixed weight 0.6 -> 12.8",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 21985,
+     "why": "ACS households in 78759 (Austin (Arboretum), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 9896,
+     "why": "min of owner-occupied (10354) and single-family detached (9896)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 5938,
+     "why": "Oncor + Austin Energy is mixed: part of the zip is a competitive TDU (Energy + Backup), the rest is another utility; offer weight 0.6 is a judgment, no public source gives the split inside the zip [0.6]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor; mixed: 21 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only; rest of zip: Austin Energy) -> weight 0.60"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 2969,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1985 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1633,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78754",
+   "city": "Austin (Harris Branch)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 1570,
+   "assisted_priority": 7.0,
+   "assisted_why": "2,498 people 65+ and 2,098 under 65 with a disability of 32,690 (ACS B01001, B18101) = 14%; x backup_only weight 0.5 -> 7.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 13345,
+     "why": "ACS households in 78754 (Austin (Harris Branch), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 7136,
+     "why": "min of owner-occupied (7290) and single-family detached (7136)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3568,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 2 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 2854,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2009 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1570,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78621",
+   "city": "Elgin",
+   "county": "Bastrop",
+   "tdu": "Oncor + Bluebonnet Electric Cooperative",
+   "status": "mixed",
+   "eligible": true,
+   "confidence": "MEDIUM",
+   "star": 1420,
+   "assisted_priority": 12.7,
+   "assisted_why": "3,800 people 65+ and 2,631 under 65 with a disability of 30,411 (ACS B01001, B18101) = 21%; x mixed weight 0.6 -> 12.7",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 10175,
+     "why": "ACS households in 78621 (Elgin, Bastrop County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 7685,
+     "why": "min of owner-occupied (8256) and single-family detached (7685)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3228,
+     "why": "Oncor + Bluebonnet Electric Cooperative is mixed: part of the zip is a competitive TDU (Energy + Backup), the rest is another utility; offer weight 0.6 is a judgment, no public source gives the split inside the zip [0.6]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 171 plans, TDU Oncor; mixed: Bluebonnet Electric Cooperative from the old table, general knowledge); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only; rest of zip: Bluebonnet Electric Cooperative) -> weight 0.42"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 2582,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2000 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1420,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78724",
+   "city": "Austin (Northeast)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 1384,
+   "assisted_priority": 8.0,
+   "assisted_why": "1,828 people 65+ and 3,179 under 65 with a disability of 31,103 (ACS B01001, B18101) = 16%; x backup_only weight 0.5 -> 8.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 10379,
+     "why": "ACS households in 78724 (Austin (Northeast), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 6292,
+     "why": "min of owner-occupied (6292) and single-family detached (6700)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3146,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 9 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 2517,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2007 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1384,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78747",
+   "city": "Austin (Far South)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 1337,
+   "assisted_priority": 9.1,
+   "assisted_why": "2,249 people 65+ and 1,807 under 65 with a disability of 22,180 (ACS B01001, B18101) = 18%; x backup_only weight 0.5 -> 9.1",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 9096,
+     "why": "ACS households in 78747 (Austin (Far South), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 6076,
+     "why": "min of owner-occupied (6076) and single-family detached (6099)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3038,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 9 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 2430,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2008 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1337,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78702",
+   "city": "Austin (East)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 1238,
+   "assisted_priority": 8.2,
+   "assisted_why": "2,584 people 65+ and 1,668 under 65 with a disability of 25,985 (ACS B01001, B18101) = 16%; x backup_only weight 0.5 -> 8.2",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 13759,
+     "why": "ACS households in 78702 (Austin (East), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 5627,
+     "why": "min of owner-occupied (5627) and single-family detached (7072)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 2814,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 7 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 2251,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2004 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1238,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78732",
+   "city": "Austin (Steiner Ranch)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 1216,
+   "assisted_priority": 6.4,
+   "assisted_why": "2,050 people 65+ and 667 under 65 with a disability of 21,087 (ACS B01001, B18101) = 13%; x backup_only weight 0.5 -> 6.4",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 7580,
+     "why": "ACS households in 78732 (Austin (Steiner Ranch), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 5527,
+     "why": "min of owner-occupied (5527) and single-family detached (5595)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 2764,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 4 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 2211,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2005 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1216,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78660",
+   "city": "Pflugerville",
+   "county": "Travis",
+   "tdu": "Oncor + Austin Energy",
+   "status": "mixed",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 1149,
+   "assisted_priority": 8.4,
+   "assisted_why": "8,971 people 65+ and 8,500 under 65 with a disability of 124,834 (ACS B01001, B18101) = 14%; x mixed weight 0.6 -> 8.4",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 45630,
+     "why": "ACS households in 78660 (Pflugerville, Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 30168,
+     "why": "min of owner-occupied (30168) and single-family detached (33474)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 18101,
+     "why": "Oncor + Austin Energy is mixed: part of the zip is a competitive TDU (Energy + Backup), the rest is another utility; offer weight 0.6 is a judgment, no public source gives the split inside the zip [0.6]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor; mixed: 1 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only; rest of zip: Austin Energy) -> weight 0.60"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 2089,
+     "why": "permit feed covers this zip: 2185 new SFR + 111 service upgrades of 19894 permits = 12% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1149,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78723",
+   "city": "Austin (Windsor Park)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 1082,
+   "assisted_priority": 10.7,
+   "assisted_why": "4,428 people 65+ and 3,742 under 65 with a disability of 38,129 (ACS B01001, B18101) = 21%; x backup_only weight 0.5 -> 10.7",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 16669,
+     "why": "ACS households in 78723 (Austin (Windsor Park), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 7868,
+     "why": "min of owner-occupied (8107) and single-family detached (7868)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3934,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 12 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1967,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1983 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1082,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78728",
+   "city": "Austin (Wells Branch)",
+   "county": "Travis",
+   "tdu": "Oncor",
+   "status": "energy_and_backup",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 1054,
+   "assisted_priority": 15.0,
+   "assisted_why": "2,180 people 65+ and 1,835 under 65 with a disability of 26,777 (ACS B01001, B18101) = 15%; x energy_and_backup weight 1.0 -> 15.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 13169,
+     "why": "ACS households in 78728 (Austin (Wells Branch), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 3831,
+     "why": "min of owner-occupied (3831) and single-family detached (5097)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3831,
+     "why": "Oncor is energy_and_backup: Base can be the energy provider (Energy + Backup) [1.0]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only) -> weight 1.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1916,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1996 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1054,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78739",
+   "city": "Austin (Circle C)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "MEDIUM",
+   "star": 1013,
+   "assisted_priority": 6.5,
+   "assisted_why": "2,189 people 65+ and 504 under 65 with a disability of 20,659 (ACS B01001, B18101) = 13%; x backup_only weight 0.5 -> 6.5",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 7090,
+     "why": "ACS households in 78739 (Austin (Circle C), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 6576,
+     "why": "min of owner-occupied (6576) and single-family detached (7091)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 2302,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 0 plans (no competitive retail); City of Austin zip, no Base permit yet); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.35"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1841,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2003 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 1013,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78727",
+   "city": "Austin (Scofield)",
+   "county": "Travis",
+   "tdu": "Oncor + Austin Energy",
+   "status": "mixed",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 989,
+   "assisted_priority": 10.3,
+   "assisted_why": "3,532 people 65+ and 1,589 under 65 with a disability of 29,958 (ACS B01001, B18101) = 17%; x mixed weight 0.6 -> 10.3",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 14204,
+     "why": "ACS households in 78727 (Austin (Scofield), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 5994,
+     "why": "min of owner-occupied (5994) and single-family detached (7326)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3596,
+     "why": "Oncor + Austin Energy is mixed: part of the zip is a competitive TDU (Energy + Backup), the rest is another utility; offer weight 0.6 is a judgment, no public source gives the split inside the zip [0.6]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor; mixed: 7 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only; rest of zip: Austin Energy) -> weight 0.60"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1798,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1994 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 989,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78731",
+   "city": "Austin (Northwest Hills)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 974,
+   "assisted_priority": 12.0,
+   "assisted_why": "5,300 people 65+ and 1,293 under 65 with a disability of 27,507 (ACS B01001, B18101) = 24%; x backup_only weight 0.5 -> 12.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 14343,
+     "why": "ACS households in 78731 (Austin (Northwest Hills), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 7087,
+     "why": "min of owner-occupied (7620) and single-family detached (7087)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3544,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 45 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1772,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1980 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 974,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78735",
+   "city": "Austin (Barton Creek)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 969,
+   "assisted_priority": 10.7,
+   "assisted_why": "3,470 people 65+ and 1,038 under 65 with a disability of 20,996 (ACS B01001, B18101) = 21%; x backup_only weight 0.5 -> 10.7",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 9791,
+     "why": "ACS households in 78735 (Austin (Barton Creek), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 4404,
+     "why": "min of owner-occupied (4549) and single-family detached (4404)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 2202,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 13 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1762,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2004 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 969,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78758",
+   "city": "Austin (North Burnet)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 923,
+   "assisted_priority": 8.1,
+   "assisted_why": "4,859 people 65+ and 3,182 under 65 with a disability of 49,617 (ACS B01001, B18101) = 16%; x backup_only weight 0.5 -> 8.1",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 25676,
+     "why": "ACS households in 78758 (Austin (North Burnet), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 6710,
+     "why": "min of owner-occupied (6729) and single-family detached (6710)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3355,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 1 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1678,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1987 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 923,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78729",
+   "city": "Austin (Anderson Mill)",
+   "county": "Williamson",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 767,
+   "assisted_priority": 8.1,
+   "assisted_why": "2,717 people 65+ and 2,204 under 65 with a disability of 30,460 (ACS B01001, B18101) = 16%; x backup_only weight 0.5 -> 8.1",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 14500,
+     "why": "ACS households in 78729 (Austin (Anderson Mill), Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 5576,
+     "why": "min of owner-occupied (5576) and single-family detached (6415)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 2788,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 3 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1394,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1994 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 767,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78653",
+   "city": "Manor",
+   "county": "Travis",
+   "tdu": "Oncor + Bluebonnet Electric Cooperative + Austin Energy",
+   "status": "mixed",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 628,
+   "assisted_priority": 8.3,
+   "assisted_why": "2,497 people 65+ and 3,240 under 65 with a disability of 41,291 (ACS B01001, B18101) = 14%; x mixed weight 0.6 -> 8.3",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 14612,
+     "why": "ACS households in 78653 (Manor, Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 12261,
+     "why": "min of owner-occupied (12261) and single-family detached (13007)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 7357,
+     "why": "Oncor + Bluebonnet Electric Cooperative + Austin Energy is mixed: part of the zip is a competitive TDU (Energy + Backup), the rest is another utility; offer weight 0.6 is a judgment, no public source gives the split inside the zip [0.6]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor; mixed: 1 Base permit(s) in the Austin feed, Bluebonnet Electric Cooperative from the old table, general knowledge); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only; rest of zip: Bluebonnet Electric Cooperative + Austin Energy) -> weight 0.60"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1143,
+     "why": "permit feed covers this zip: 1488 new SFR + 24 service upgrades of 9735 permits = 16% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 628,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78757",
+   "city": "Austin (Allandale)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 560,
+   "assisted_priority": 9.6,
+   "assisted_why": "3,367 people 65+ and 1,218 under 65 with a disability of 23,856 (ACS B01001, B18101) = 19%; x backup_only weight 0.5 -> 9.6",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 11335,
+     "why": "ACS households in 78757 (Austin (Allandale), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 6791,
+     "why": "min of owner-occupied (6791) and single-family detached (6812)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3396,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 29 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 1019,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1967 -> 30% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 560,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78725",
+   "city": "Austin (Southeast)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "MEDIUM",
+   "star": 514,
+   "assisted_priority": 7.0,
+   "assisted_why": "779 people 65+ and 732 under 65 with a disability of 10,746 (ACS B01001, B18101) = 14%; x backup_only weight 0.5 -> 7.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 4349,
+     "why": "ACS households in 78725 (Austin (Southeast), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 3337,
+     "why": "min of owner-occupied (3337) and single-family detached (4253)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 1168,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 0 plans (no competitive retail); City of Austin zip, no Base permit yet); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.35"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 934,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2010 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 514,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78741",
+   "city": "Austin (Riverside)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 502,
+   "assisted_priority": 7.2,
+   "assisted_why": "1,888 people 65+ and 4,750 under 65 with a disability of 45,951 (ACS B01001, B18101) = 14%; x backup_only weight 0.5 -> 7.2",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 23867,
+     "why": "ACS households in 78741 (Austin (Riverside), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 3648,
+     "why": "min of owner-occupied (3648) and single-family detached (3894)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 1824,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 2 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 912,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1996 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 502,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78703",
+   "city": "Austin (Tarrytown)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 474,
+   "assisted_priority": 8.8,
+   "assisted_why": "3,420 people 65+ and 692 under 65 with a disability of 23,483 (ACS B01001, B18101) = 18%; x backup_only weight 0.5 -> 8.8",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 11375,
+     "why": "ACS households in 78703 (Austin (Tarrytown), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 5748,
+     "why": "min of owner-occupied (6088) and single-family detached (5748)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 2874,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 14 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 862,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1973 -> 30% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 474,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78745",
+   "city": "Austin (South)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 414,
+   "assisted_priority": 10.2,
+   "assisted_why": "8,198 people 65+ and 4,286 under 65 with a disability of 61,219 (ACS B01001, B18101) = 20%; x backup_only weight 0.5 -> 10.2",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 30293,
+     "why": "ACS households in 78745 (Austin (South), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 14025,
+     "why": "min of owner-occupied (14025) and single-family detached (17086)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 7012,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 9 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 753,
+     "why": "permit feed covers this zip: 1868 new SFR + 1135 service upgrades of 27979 permits = 11% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 414,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78748",
+   "city": "Austin (Southpark Meadows)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 406,
+   "assisted_priority": 9.3,
+   "assisted_why": "6,815 people 65+ and 3,521 under 65 with a disability of 55,631 (ACS B01001, B18101) = 19%; x backup_only weight 0.5 -> 9.3",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 25231,
+     "why": "ACS households in 78748 (Austin (Southpark Meadows), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 14312,
+     "why": "min of owner-occupied (14312) and single-family detached (15666)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 7156,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 5 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 738,
+     "why": "permit feed covers this zip: 1718 new SFR + 317 service upgrades of 19719 permits = 10% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 406,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78736",
+   "city": "Austin (Oak Hill West)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 403,
+   "assisted_priority": 9.2,
+   "assisted_why": "1,443 people 65+ and 338 under 65 with a disability of 9,651 (ACS B01001, B18101) = 18%; x backup_only weight 0.5 -> 9.2",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 4443,
+     "why": "ACS households in 78736 (Austin (Oak Hill West), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 2932,
+     "why": "min of owner-occupied (2932) and single-family detached (2982)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 1466,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 2 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 733,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1996 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 403,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78726",
+   "city": "Austin (Four Points)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "MEDIUM",
+   "star": 397,
+   "assisted_priority": 7.0,
+   "assisted_why": "1,494 people 65+ and 527 under 65 with a disability of 14,506 (ACS B01001, B18101) = 14%; x backup_only weight 0.5 -> 7.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 6453,
+     "why": "ACS households in 78726 (Austin (Four Points), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 2575,
+     "why": "min of owner-occupied (2575) and single-family detached (2773)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 901,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 0 plans (no competitive retail); City of Austin zip, no Base permit yet); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.35"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 721,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2002 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 397,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78733",
+   "city": "Austin (Rob Roy)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 396,
+   "assisted_priority": 9.9,
+   "assisted_why": "1,406 people 65+ and 381 under 65 with a disability of 9,029 (ACS B01001, B18101) = 20%; x backup_only weight 0.5 -> 9.9",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 3171,
+     "why": "ACS households in 78733 (Austin (Rob Roy), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 2880,
+     "why": "min of owner-occupied (2880) and single-family detached (3155)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 1440,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 4 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 720,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1994 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 396,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78721",
+   "city": "Austin (East MLK)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 351,
+   "assisted_priority": 8.4,
+   "assisted_why": "948 people 65+ and 894 under 65 with a disability of 10,997 (ACS B01001, B18101) = 17%; x backup_only weight 0.5 -> 8.4",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 4973,
+     "why": "ACS households in 78721 (Austin (East MLK), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 2553,
+     "why": "min of owner-occupied (2553) and single-family detached (3201)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 1276,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 1 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 638,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1985 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 351,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78730",
+   "city": "Austin (River Place)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 322,
+   "assisted_priority": 11.5,
+   "assisted_why": "1,631 people 65+ and 480 under 65 with a disability of 9,142 (ACS B01001, B18101) = 23%; x backup_only weight 0.5 -> 11.5",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 4090,
+     "why": "ACS households in 78730 (Austin (River Place), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 2343,
+     "why": "min of owner-occupied (2697) and single-family detached (2343)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 1172,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 11 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 586,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1998 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 322,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78704",
+   "city": "Austin (South Congress)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 318,
+   "assisted_priority": 6.6,
+   "assisted_why": "3,992 people 65+ and 2,739 under 65 with a disability of 50,688 (ACS B01001, B18101) = 13%; x backup_only weight 0.5 -> 6.6",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 27940,
+     "why": "ACS households in 78704 (Austin (South Congress), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 9051,
+     "why": "min of owner-occupied (9214) and single-family detached (9051)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 4526,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 19 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 578,
+     "why": "permit feed covers this zip: 3635 new SFR + 588 service upgrades of 33074 permits = 13% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 318,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78751",
+   "city": "Austin (Hyde Park)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 312,
+   "assisted_priority": 6.7,
+   "assisted_why": "1,037 people 65+ and 1,236 under 65 with a disability of 16,961 (ACS B01001, B18101) = 13%; x backup_only weight 0.5 -> 6.7",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 9917,
+     "why": "ACS households in 78751 (Austin (Hyde Park), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 2271,
+     "why": "min of owner-occupied (2271) and single-family detached (3758)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 1136,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 6 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 568,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1980 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 312,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78752",
+   "city": "Austin (North Lamar)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 310,
+   "assisted_priority": 8.0,
+   "assisted_why": "1,770 people 65+ and 1,968 under 65 with a disability of 23,317 (ACS B01001, B18101) = 16%; x backup_only weight 0.5 -> 8.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 11160,
+     "why": "ACS households in 78752 (Austin (North Lamar), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 2251,
+     "why": "min of owner-occupied (2251) and single-family detached (2606)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 1126,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 2 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 563,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1983 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 310,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78746",
+   "city": "West Lake Hills",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 224,
+   "assisted_priority": 9.9,
+   "assisted_why": "4,837 people 65+ and 764 under 65 with a disability of 28,256 (ACS B01001, B18101) = 20%; x backup_only weight 0.5 -> 9.9",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 11202,
+     "why": "ACS households in 78746 (West Lake Hills, Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 7368,
+     "why": "min of owner-occupied (7368) and single-family detached (7801)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3684,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 35 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 407,
+     "why": "permit feed covers this zip: 966 new SFR + 611 service upgrades of 14270 permits = 11% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 224,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78734",
+   "city": "Lakeway",
+   "county": "Travis",
+   "tdu": "AEP Texas North + Pedernales Electric Cooperative (PEC) + Austin Energy",
+   "status": "mixed",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 219,
+   "assisted_priority": 16.2,
+   "assisted_why": "5,003 people 65+ and 977 under 65 with a disability of 22,145 (ACS B01001, B18101) = 27%; x mixed weight 0.6 -> 16.2",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 9881,
+     "why": "ACS households in 78734 (Lakeway, Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 8042,
+     "why": "min of owner-occupied (8255) and single-family detached (8042)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 3378,
+     "why": "AEP Texas North + Pedernales Electric Cooperative (PEC) + Austin Energy is mixed: part of the zip is a competitive TDU (Energy + Backup), the rest is another utility; offer weight 0.6 is a judgment, no public source gives the split inside the zip [0.6]; zip confidence HIGH [1.0] (PTC 2026-09-26: 167 plans, TDU AEP Texas North; mixed: 3 Base permit(s) in the Austin feed, Pedernales Electric Cooperative (PEC) from the old table, general knowledge); TDU confidence MEDIUM [0.7] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists the TDU ('See plans'); plan mix not read; rest of zip: Pedernales Electric Cooperative (PEC) + Austin Energy) -> weight 0.42"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 399,
+     "why": "permit feed covers this zip: 51 new SFR + 239 service upgrades of 2457 permits = 12% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 219,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78753",
+   "city": "Austin (North)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 211,
+   "assisted_priority": 8.9,
+   "assisted_why": "4,983 people 65+ and 5,098 under 65 with a disability of 56,920 (ACS B01001, B18101) = 18%; x backup_only weight 0.5 -> 8.9",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 24538,
+     "why": "ACS households in 78753 (Austin (North), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 8184,
+     "why": "min of owner-occupied (8184) and single-family detached (8479)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 4092,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 6 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 383,
+     "why": "permit feed covers this zip: 446 new SFR + 516 service upgrades of 10274 permits = 9% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 211,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78756",
+   "city": "Austin (Brentwood)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 165,
+   "assisted_priority": 10.3,
+   "assisted_why": "1,053 people 65+ and 836 under 65 with a disability of 9,197 (ACS B01001, B18101) = 21%; x backup_only weight 0.5 -> 10.3",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 4637,
+     "why": "ACS households in 78756 (Austin (Brentwood), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 1995,
+     "why": "min of owner-occupied (1995) and single-family detached (2192)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 998,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 6 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 299,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1970 -> 30% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 165,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78705",
+   "city": "Austin (West Campus)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "MEDIUM",
+   "star": 152,
+   "assisted_priority": 4.5,
+   "assisted_why": "881 people 65+ and 2,128 under 65 with a disability of 33,238 (ACS B01001, B18101) = 9%; x backup_only weight 0.5 -> 4.5",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 12136,
+     "why": "ACS households in 78705 (Austin (West Campus), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 1580,
+     "why": "min of owner-occupied (1592) and single-family detached (1580)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 553,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 0 plans (no competitive retail); City of Austin zip, no Base permit yet); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.35"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 276,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1991 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 152,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78749",
+   "city": "Austin (Southwest)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 150,
+   "assisted_priority": 9.5,
+   "assisted_why": "5,348 people 65+ and 1,234 under 65 with a disability of 34,562 (ACS B01001, B18101) = 19%; x backup_only weight 0.5 -> 9.5",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 15989,
+     "why": "ACS households in 78749 (Austin (Southwest), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 9371,
+     "why": "min of owner-occupied (9371) and single-family detached (11036)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 4686,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 12 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 273,
+     "why": "permit feed covers this zip: 311 new SFR + 419 service upgrades of 12525 permits = 6% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 150,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78617",
+   "city": "Del Valle",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "HIGH",
+   "star": 141,
+   "assisted_priority": 7.7,
+   "assisted_why": "2,616 people 65+ and 2,139 under 65 with a disability of 30,756 (ACS B01001, B18101) = 15%; x backup_only weight 0.5 -> 7.7",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 8950,
+     "why": "ACS households in 78617 (Del Valle, Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 5177,
+     "why": "min of owner-occupied (7155) and single-family detached (5177)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 2588,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence HIGH [1.0] (PTC 2026-09-26: 0 plans (no competitive retail); 1 Base permit(s) in the Austin feed; Bluebonnet Electric Cooperative also present per old table); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.50"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 255,
+     "why": "permit feed covers this zip: 1023 new SFR + 69 service upgrades of 11065 permits = 10% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 141,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78750",
+   "city": "Austin (Jollyville)",
+   "county": "Travis",
+   "tdu": "Oncor + Austin Energy",
+   "status": "mixed",
+   "eligible": true,
+   "confidence": "HIGH",
+   "star": 130,
+   "assisted_priority": 12.6,
+   "assisted_why": "4,711 people 65+ and 1,456 under 65 with a disability of 29,277 (ACS B01001, B18101) = 21%; x mixed weight 0.6 -> 12.6",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 11875,
+     "why": "ACS households in 78750 (Austin (Jollyville), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 7711,
+     "why": "min of owner-occupied (7711) and single-family detached (8226)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 4627,
+     "why": "Oncor + Austin Energy is mixed: part of the zip is a competitive TDU (Energy + Backup), the rest is another utility; offer weight 0.6 is a judgment, no public source gives the split inside the zip [0.6]; zip confidence HIGH [1.0] (PTC 2026-09-26: 171 plans, TDU Oncor; mixed: 2 Base permit(s) in the Austin feed); TDU confidence HIGH [1.0] (basepowercompany.com/pricing (faq/corpus/pricing.md) lists Energy + backup, Energy only; rest of zip: Austin Energy) -> weight 0.60"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 236,
+     "why": "permit feed covers this zip: 286 new SFR + 229 service upgrades of 10111 permits = 5% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 130,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78722",
+   "city": "Austin (Cherrywood)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "MEDIUM",
+   "star": 98,
+   "assisted_priority": 6.9,
+   "assisted_why": "617 people 65+ and 322 under 65 with a disability of 6,767 (ACS B01001, B18101) = 14%; x backup_only weight 0.5 -> 6.9",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 3242,
+     "why": "ACS households in 78722 (Austin (Cherrywood), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 1694,
+     "why": "min of owner-occupied (1694) and single-family detached (2005)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 593,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 0 plans (no competitive retail); City of Austin zip, no Base permit yet); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.35"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 178,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1958 -> 30% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 98,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78742",
+   "city": "Austin (Montopolis)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "MEDIUM",
+   "star": 20,
+   "assisted_priority": 12.8,
+   "assisted_why": "87 people 65+ and 129 under 65 with a disability of 847 (ACS B01001, B18101) = 26%; x backup_only weight 0.5 -> 12.8",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 365,
+     "why": "ACS households in 78742 (Austin (Montopolis), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 210,
+     "why": "min of owner-occupied (210) and single-family detached (223)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 74,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 0 plans (no competitive retail); City of Austin zip, no Base permit yet); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.35"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 37,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1982 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 20,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78701",
+   "city": "Austin (downtown)",
+   "county": "Travis",
+   "tdu": "Austin Energy",
+   "status": "backup_only",
+   "eligible": false,
+   "confidence": "MEDIUM",
+   "star": 3,
+   "assisted_priority": 11.8,
+   "assisted_why": "2,074 people 65+ and 710 under 65 with a disability of 11,824 (ACS B01001, B18101) = 24%; x backup_only weight 0.5 -> 11.8",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 7949,
+     "why": "ACS households in 78701 (Austin (downtown), Travis County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 336,
+     "why": "min of owner-occupied (3601) and single-family detached (336)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 118,
+     "why": "Austin Energy is backup_only: battery only, utility stays the provider; offer weight 0.5 because the 40 MW program is capacity-limited and backup-only has no rate savings to offset $695 + $19/mo [0.5]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 0 plans (no competitive retail); City of Austin zip, no Base permit yet); TDU confidence HIGH [1.0] (Austin Energy release 2026-05-19 + Base launch 2026-07-15: battery only, billed at normal Austin Energy rates) -> weight 0.35"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 5,
+     "why": "permit feed covers this zip: 7 new SFR + 8 service upgrades of 371 permits = 4% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 3,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78602",
+   "city": "Bastrop",
+   "county": "Bastrop",
+   "tdu": "Bluebonnet Electric Cooperative",
+   "status": "not_served",
+   "eligible": false,
+   "confidence": "LOW",
+   "star": 0,
+   "assisted_priority": 0.0,
+   "assisted_why": "5,667 people 65+ and 3,176 under 65 with a disability of 38,190 (ACS B01001, B18101) = 23%; x not_served weight 0.0 -> 0.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 13705,
+     "why": "ACS households in 78602 (Bastrop, Bastrop County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 9697,
+     "why": "min of owner-occupied (9697) and single-family detached (9944)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 0,
+     "why": "Bluebonnet Electric Cooperative is not_served: no Base offer found [0.0]; zip confidence LOW [0.4] (PTC 2026-09-26: 0 plans (no competitive retail, HIGH); utility name from general knowledge); TDU confidence MEDIUM [0.7] (not on basepowercompany.com/pricing (faq/corpus/pricing.md); no partnership found 2026-09-26) -> weight 0.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 0,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2003 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 0,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78610",
+   "city": "Buda",
+   "county": "Hays",
+   "tdu": "Pedernales Electric Cooperative (PEC)",
+   "status": "not_served",
+   "eligible": false,
+   "confidence": "LOW",
+   "star": 0,
+   "assisted_priority": 0.0,
+   "assisted_why": "4,452 people 65+ and 3,364 under 65 with a disability of 48,319 (ACS B01001, B18101) = 16%; x not_served weight 0.0 -> 0.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 17640,
+     "why": "ACS households in 78610 (Buda, Hays County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 13900,
+     "why": "min of owner-occupied (13900) and single-family detached (14907)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 0,
+     "why": "Pedernales Electric Cooperative (PEC) is not_served: no Base offer found [0.0]; zip confidence LOW [0.4] (PTC 2026-09-26: 0 plans (no competitive retail, HIGH); utility name from general knowledge); TDU confidence MEDIUM [0.7] (not on basepowercompany.com/pricing (faq/corpus/pricing.md); no partnership found 2026-09-26) -> weight 0.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 0,
+     "why": "permit feed covers this zip: 0 new SFR + 7 service upgrades of 1487 permits = 0% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 0,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78613",
+   "city": "Cedar Park",
+   "county": "Williamson",
+   "tdu": "Pedernales Electric Cooperative (PEC)",
+   "status": "not_served",
+   "eligible": false,
+   "confidence": "MEDIUM",
+   "star": 0,
+   "assisted_priority": 0.0,
+   "assisted_why": "10,241 people 65+ and 6,193 under 65 with a disability of 89,956 (ACS B01001, B18101) = 18%; x not_served weight 0.0 -> 0.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 33919,
+     "why": "ACS households in 78613 (Cedar Park, Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 21670,
+     "why": "min of owner-occupied (21670) and single-family detached (23921)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 0,
+     "why": "Pedernales Electric Cooperative (PEC) is not_served: no Base offer found [0.0]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 0 plans (no competitive retail, HIGH); utility name from general knowledge); TDU confidence MEDIUM [0.7] (not on basepowercompany.com/pricing (faq/corpus/pricing.md); no partnership found 2026-09-26) -> weight 0.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 0,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2004 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 0,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78640",
+   "city": "Kyle",
+   "county": "Hays",
+   "tdu": "Pedernales Electric Cooperative (PEC)",
+   "status": "not_served",
+   "eligible": false,
+   "confidence": "LOW",
+   "star": 0,
+   "assisted_priority": 0.0,
+   "assisted_why": "5,786 people 65+ and 6,702 under 65 with a disability of 77,531 (ACS B01001, B18101) = 16%; x not_served weight 0.0 -> 0.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 27375,
+     "why": "ACS households in 78640 (Kyle, Hays County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 19434,
+     "why": "min of owner-occupied (19434) and single-family detached (19830)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 0,
+     "why": "Pedernales Electric Cooperative (PEC) is not_served: no Base offer found [0.0]; zip confidence LOW [0.4] (PTC 2026-09-26: 0 plans (no competitive retail, HIGH); utility name from general knowledge); TDU confidence MEDIUM [0.7] (not on basepowercompany.com/pricing (faq/corpus/pricing.md); no partnership found 2026-09-26) -> weight 0.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 0,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2010 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 0,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78641",
+   "city": "Leander",
+   "county": "Williamson",
+   "tdu": "Pedernales Electric Cooperative (PEC)",
+   "status": "not_served",
+   "eligible": false,
+   "confidence": "MEDIUM",
+   "star": 0,
+   "assisted_priority": 0.0,
+   "assisted_why": "9,715 people 65+ and 6,085 under 65 with a disability of 99,865 (ACS B01001, B18101) = 16%; x not_served weight 0.0 -> 0.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 35410,
+     "why": "ACS households in 78641 (Leander, Williamson County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 27331,
+     "why": "min of owner-occupied (27331) and single-family detached (30373)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 0,
+     "why": "Pedernales Electric Cooperative (PEC) is not_served: no Base offer found [0.0]; zip confidence MEDIUM [0.7] (PTC 2026-09-26: 0 plans (no competitive retail, HIGH); utility name from general knowledge); TDU confidence MEDIUM [0.7] (not on basepowercompany.com/pricing (faq/corpus/pricing.md); no partnership found 2026-09-26) -> weight 0.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 0,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2011 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 0,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78666",
+   "city": "San Marcos",
+   "county": "Hays",
+   "tdu": "San Marcos Electric Utility",
+   "status": "not_served",
+   "eligible": false,
+   "confidence": "LOW",
+   "star": 0,
+   "assisted_priority": 0.0,
+   "assisted_why": "10,654 people 65+ and 9,443 under 65 with a disability of 88,583 (ACS B01001, B18101) = 23%; x not_served weight 0.0 -> 0.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 33949,
+     "why": "ACS households in 78666 (San Marcos, Hays County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 12927,
+     "why": "min of owner-occupied (12927) and single-family detached (14339)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 0,
+     "why": "San Marcos Electric Utility is not_served: no Base offer found [0.0]; zip confidence LOW [0.4] (PTC 2026-09-26: 0 plans (no competitive retail, HIGH); utility name from general knowledge); TDU confidence MEDIUM [0.7] (not on basepowercompany.com/pricing (faq/corpus/pricing.md); no partnership found 2026-09-26) -> weight 0.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 0,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1999 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 0,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78737",
+   "city": "Austin (Dripping Springs edge)",
+   "county": "Hays",
+   "tdu": "Pedernales Electric Cooperative (PEC)",
+   "status": "not_served",
+   "eligible": false,
+   "confidence": "LOW",
+   "star": 0,
+   "assisted_priority": 0.0,
+   "assisted_why": "3,868 people 65+ and 684 under 65 with a disability of 27,023 (ACS B01001, B18101) = 17%; x not_served weight 0.0 -> 0.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 9145,
+     "why": "ACS households in 78737 (Austin (Dripping Springs edge), Hays County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 8017,
+     "why": "min of owner-occupied (8017) and single-family detached (8357)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 0,
+     "why": "Pedernales Electric Cooperative (PEC) is not_served: no Base offer found [0.0]; zip confidence LOW [0.4] (PTC 2026-09-26: 0 plans (no competitive retail, HIGH); utility name from general knowledge); TDU confidence MEDIUM [0.7] (not on basepowercompany.com/pricing (faq/corpus/pricing.md); no partnership found 2026-09-26) -> weight 0.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 0,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 2008 -> 80% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 0,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  },
+  {
+   "zip": "78957",
+   "city": "Smithville",
+   "county": "Bastrop",
+   "tdu": "Bluebonnet Electric Cooperative",
+   "status": "not_served",
+   "eligible": false,
+   "confidence": "LOW",
+   "star": 0,
+   "assisted_priority": 0.0,
+   "assisted_why": "2,112 people 65+ and 759 under 65 with a disability of 10,543 (ACS B01001, B18101) = 27%; x not_served weight 0.0 -> 0.0",
+   "stages": [
+    {
+     "key": "households",
+     "label": "Households",
+     "count": 4198,
+     "why": "ACS households in 78957 (Smithville, Bastrop County)"
+    },
+    {
+     "key": "owner_sfd",
+     "label": "Owner-occupied single-family",
+     "count": 3046,
+     "why": "min of owner-occupied (3046) and single-family detached (3523)"
+    },
+    {
+     "key": "in_territory",
+     "label": "In Base territory",
+     "count": 0,
+     "why": "Bluebonnet Electric Cooperative is not_served: no Base offer found [0.0]; zip confidence LOW [0.4] (PTC 2026-09-26: 0 plans (no competitive retail, HIGH); utility name from general knowledge); TDU confidence MEDIUM [0.7] (not on basepowercompany.com/pricing (faq/corpus/pricing.md); no partnership found 2026-09-26) -> weight 0.00"
+    },
+    {
+     "key": "likely_200a",
+     "label": "Likely 200A service",
+     "count": 0,
+     "why": "permit feed has under 100 rows for this zip; build-year proxy: median year built 1987 -> 50% likely 200A"
+    },
+    {
+     "key": "easy_fit",
+     "label": "Easy fit",
+     "count": 0,
+     "why": "22 of 40 cohort homes were easy fit -> x 0.55"
+    }
+   ]
+  }
+ ]
+}

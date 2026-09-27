@@ -1,0 +1,102 @@
+/* Base Fleet milestone tracker (web/milestones.js). Stitch "Decentralized Energy Console" look. */
+.bf-ms{--ms-green:#1e4d2b;--ms-ink:#111c2d;--ms-muted:#414941;--ms-line:#e2e8f0;--ms-tint:#f0f3ff;--ms-soft:#bbefc1;
+  box-sizing:border-box;background:#fff;border:1px solid var(--ms-line);border-radius:8px;padding:20px 24px;
+  font:14px/1.5 "Plus Jakarta Sans",var(--bf-font,system-ui,sans-serif);color:var(--ms-ink);min-width:0;overflow-wrap:anywhere;letter-spacing:0}
+.bf-ms *{box-sizing:border-box}
+.bf-ms p{margin:0}
+.bf-ms-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 16px}
+.bf-ms-kicker{font-size:11px;line-height:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ms-muted)}
+.bf-ms-step{font-size:16px;line-height:24px;font-weight:600}
+.bf-ms-total{font-size:13px;color:var(--ms-muted)}
+.bf-ms-credit{font-size:24px;line-height:32px;font-weight:700;color:var(--ms-green);font-variant-numeric:tabular-nums}
+.bf-ms-bar{height:8px;border-radius:99px;background:var(--ms-tint);overflow:hidden;margin:14px 0 16px}
+.bf-ms-bar i{display:block;height:100%;background:var(--ms-green);border-radius:99px;transition:width .3s}
+.bf-ms-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.bf-ms-steps li{display:flex;align-items:flex-start;gap:8px;min-width:0}
+.bf-ms-dot{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;
+  border:1.5px solid var(--ms-line);color:var(--ms-muted);background:#fff}
+.bf-ms-done .bf-ms-dot{background:var(--ms-green);border-color:var(--ms-green);color:#fff}
+.bf-ms-now .bf-ms-dot{border-color:var(--ms-green);color:var(--ms-green);box-shadow:0 0 0 3px var(--ms-soft)}
+.bf-ms-name{display:flex;flex-direction:column;min-width:0}
+.bf-ms-label{font-size:13px;line-height:18px;font-weight:600}
+.bf-ms-name small{font-size:12px;line-height:18px;color:var(--ms-muted)}
+.bf-ms-base .bf-ms-label{color:var(--ms-muted)}
+.bf-ms-rewards{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--ms-line)}
+.bf-ms-rewards li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--ms-line);font-size:13px}
+.bf-ms-rewards li b{font-weight:600;color:var(--ms-muted);text-align:right;white-space:nowrap}
+.bf-ms-rewards li.bf-ms-got b{color:var(--ms-green)}
+.bf-ms-rewards li.bf-ms-note{border-bottom:0;color:var(--ms-muted);font-size:12px}
+.bf-ms-more{margin-top:12px}
+.bf-ms-more>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600;font-size:13px;color:var(--ms-green)}
+.bf-ms-ref{margin-top:14px;padding:12px 14px;border-radius:8px;background:var(--ms-tint);display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.bf-ms-ref p{flex:1 1 240px;font-size:13px}
+.bf-ms-btn{min-height:44px;padding:8px 14px;border-radius:8px;border:0;background:var(--ms-green);color:#fff;font:600 13px/1 inherit;font-family:inherit;cursor:pointer}
+.bf-ms-btn:focus-visible,.bf-ms-more>summary:focus-visible{outline:3px solid var(--bf-focus,#467bb0);outline-offset:2px}
+.bf-ms-ref-out{flex-basis:100%;font-size:12px;color:var(--ms-muted)}
+.bf-ms-ref-out:empty{display:none}
+/* Step cards: the Stitch H8/H9/H10 tracker. One look for every variant. */
+.bf-ms{--ms-amber:#b45309;--ms-amber-tint:#fffbeb;--ms-amber-line:#fcd34d;--ms-done-tint:#f0fdf4;--ms-done-line:#bbf7d0}
+.bf-ms-hint{font-size:12px;line-height:18px;color:var(--ms-muted);margin:-6px 0 14px}
+.bf-ms-bar{height:10px}
+.bf-ms-steps li{flex-direction:column;align-items:stretch;gap:6px;padding:12px 14px;border:1px solid var(--ms-line);border-radius:8px;background:#fff}
+.bf-ms-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.bf-ms-num{font-size:11px;line-height:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ms-muted)}
+.bf-ms-dot{width:22px;height:22px;font-size:11px}
+.bf-ms-foot{margin-top:auto;padding-top:8px;border-top:1px solid var(--ms-line);font-size:12px;line-height:16px;font-weight:700;color:var(--ms-muted);font-variant-numeric:tabular-nums}
+.bf-ms-steps li.bf-ms-done{background:var(--ms-done-tint);border-color:var(--ms-done-line)}
+.bf-ms-done .bf-ms-num,.bf-ms-done .bf-ms-name small,.bf-ms-done .bf-ms-foot{color:var(--ms-green)}
+.bf-ms-done .bf-ms-foot{border-color:var(--ms-done-line)}
+.bf-ms-steps li.bf-ms-now{background:var(--ms-amber-tint);border:2px solid var(--ms-amber-line);padding:11px 13px}
+.bf-ms-now .bf-ms-num,.bf-ms-now .bf-ms-name small,.bf-ms-now .bf-ms-foot{color:var(--ms-amber)}
+.bf-ms-now .bf-ms-dot{border-color:var(--ms-amber);color:var(--ms-amber);box-shadow:none;background:#fff}
+.bf-ms-now .bf-ms-foot{border-color:var(--ms-amber-line)}
+.bf-ms-steps li.bf-ms-base{background:var(--ms-tint)}
+/* Reward chip on any call to action marked data-reward. */
+.bf-rw{display:inline-flex;align-items:center;margin-left:8px;padding:2px 8px;border-radius:99px;background:#cbf080;color:#1e4d2b;
+  font:700 11px/16px "Plus Jakarta Sans",system-ui,sans-serif;white-space:nowrap;vertical-align:middle;letter-spacing:0;text-transform:none}
+.bf-ms-compact .bf-ms-steps{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.bf-ms-compact{padding:18px 20px}
+@media (max-width:720px){
+  .bf-ms{padding:16px}
+  .bf-ms-steps{grid-template-columns:1fr;gap:10px}
+}
+:root[data-theme="dark"] .bf-ms{--ms-ink:#f5f5f5;--ms-muted:#bdbdbd;--ms-line:#393939;--ms-tint:#262626;--ms-soft:#28583a;--ms-green:#86efac;background:#1b1b1b}
+:root[data-theme="dark"] .bf-ms-dot{background:#1b1b1b}
+:root[data-theme="dark"] .bf-ms-done .bf-ms-dot{color:#171717}
+:root[data-theme="dark"] .bf-ms-btn{color:#171717}
+:root[data-theme="dark"] .bf-ms{--ms-amber:#fbbf24;--ms-amber-tint:#2a2210;--ms-amber-line:#92400e;--ms-done-tint:#132a1b;--ms-done-line:#28583a}
+:root[data-theme="dark"] .bf-ms-steps li{background:#1b1b1b}
+:root[data-theme="dark"] .bf-ms-steps li.bf-ms-done{background:var(--ms-done-tint)}
+:root[data-theme="dark"] .bf-ms-steps li.bf-ms-now{background:var(--ms-amber-tint)}
+:root[data-theme="dark"] .bf-ms-steps li.bf-ms-base{background:var(--ms-tint)}
+/* Stitch H8 tracker richness: icon, live chip, total box with percent, two-colour bar, tip strip. */
+.bf-ms-head{align-items:center}
+.bf-ms-icon{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--ms-done-tint);color:#22c55e;border:1px solid var(--ms-done-line)}
+.bf-ms-title{flex:1 1 220px;min-width:0}
+.bf-ms-live{display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding:1px 8px;border-radius:99px;background:var(--ms-done-tint);color:var(--ms-green);font-size:10px;letter-spacing:.04em}
+.bf-ms-live::before{content:"";width:6px;height:6px;border-radius:50%;background:#22c55e}
+.bf-ms-box{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:var(--ms-tint);border:1px solid var(--ms-line)}
+.bf-ms-pct{flex:none;min-width:44px;height:44px;padding:0 6px;border-radius:10px;display:grid;place-items:center;background:var(--ms-green);color:#fff;font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
+.bf-ms-bar{display:flex;border:1px solid var(--ms-line)}
+.bf-ms-bar i{border-radius:0}
+.bf-ms-bar i:first-child{background:#22c55e}
+.bf-ms-bar .bf-ms-pend{background:#f59e0b;opacity:.85}
+.bf-ms-tip{margin:0 0 14px;padding:8px 12px;border-radius:8px;background:var(--ms-amber-tint);border:1px solid var(--ms-amber-line);color:#78350f}
+:root[data-theme="dark"] .bf-ms-tip{color:#fcd34d}
+:root[data-theme="dark"] .bf-ms-pct{color:#171717}
+/* Next reward line: the single next thing and what it pays. */
+.bf-ms-next{margin:0 0 10px;font-size:14px;line-height:20px;font-weight:700;color:var(--ms-green)}
+/* Earn moment: toast bottom-right (lime chip, dark green text) and a pulse on the total. */
+.bf-ms-toast{position:fixed;right:16px;bottom:16px;z-index:60;display:inline-flex;align-items:center;gap:8px;max-width:calc(100vw - 32px);
+  padding:10px 16px;border-radius:99px;background:#cbf080;color:#1e4d2b;border:1px solid #a3d65c;box-shadow:0 8px 24px -8px rgba(17,28,45,.35);
+  font:700 14px/20px "Plus Jakarta Sans",system-ui,sans-serif;letter-spacing:0;font-variant-numeric:tabular-nums;
+  opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s}
+.bf-ms-toast svg{flex:none}
+.bf-ms-toast.bf-ms-toast-on{opacity:1;visibility:visible;transform:none}
+@keyframes bf-ms-pulse{0%{transform:scale(1)}40%{transform:scale(1.18);color:#22c55e}100%{transform:scale(1)}}
+.bf-ms-credit{display:inline-block}
+.bf-ms-pulse{animation:bf-ms-pulse .6s ease-out 2}
+@media (prefers-reduced-motion:reduce){
+  .bf-ms-toast{transition:none;transform:none}
+  .bf-ms-pulse{animation:none}
+}

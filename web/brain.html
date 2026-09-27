@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-container": "#004f21", "warning-amber": "#F59E0B", "surface-subtle": "#F1F5F9", "inverse-primary": "#a0d3a6", "tertiary-fixed": "#95f8a7", "primary-container": "#1e4d2b", "surface-variant": "#d8e3fb", "primary-fixed": "#bbefc1", "secondary-container": "#cbf080", "on-tertiary": "#ffffff", "on-error-container": "#93000a", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "critical-red": "#EF4444", "tertiary-fixed-dim": "#79db8d", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "on-tertiary-fixed-variant": "#005323", "primary-fixed-dim": "#a0d3a6", "surface": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "primary": "#023616", "outline-variant": "#c1c9be", "on-error": "#ffffff", "on-primary-fixed": "#00210b", "on-secondary-fixed-variant": "#374e00", "surface-container-low": "#f0f3ff", "on-primary": "#ffffff", "inverse-surface": "#263143", "secondary-fixed-dim": "#afd367", "outline": "#717970", "surface-bright": "#f9f9ff", "on-secondary-fixed": "#141f00", "secondary-fixed": "#cbf080", "surface-container-highest": "#d8e3fb", "surface-muted": "#F8FAFC", "on-primary-fixed-variant": "#21502e", "ink-primary": "#0F172A", "surface-tint": "#396844", "surface-container-high": "#dee8ff", "secondary": "#4a6700", "evergreen-deep": "#004A31", "on-primary-container": "#8bbd92", "on-secondary": "#ffffff", "on-surface-variant": "#414941", "on-surface": "#111c2d", "on-tertiary-fixed": "#00210a", "surface-dim": "#cfdaf2", "tertiary": "#003614", "background": "#f9f9ff", "on-secondary-container": "#506e08", "energy-lime": "#84CC16", "wire-border": "#E2E8F0", "solar-green": "#22C55E", "on-background": "#111c2d" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-md": "1rem", "gutter-lg": "2rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem", "gutter": "1.5rem", "space-xs": "0.25rem", "margin": "2rem" }, "fontFamily": { "headline-lg": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "telemetry-metric": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"] }, "fontSize": { "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "0em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "0em", "fontWeight": "700" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "0em", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }] } }, }, };</script>
+<link rel="stylesheet" href="shell.css">
+<script defer src="shell.js"></script>
+<script defer src="milestones.js"></script>
+<script src="speak.js"></script>
+<style>
+  body{margin:0;overscroll-behavior:none;font-family:"Plus Jakarta Sans",var(--bf-font)}
+  [hidden]{display:none!important}
+  img{max-width:100%;height:auto}
+  button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #396844;outline-offset:2px}
+  button,input{min-height:44px}
+  .kb-list{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}
+  .kb-list a,#ans-src a{color:#1e4d2b;font-weight:600;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+  .msg-you{align-self:flex-end;max-width:85%;background:#1e4d2b;color:#fff;padding:12px;border-radius:12px 2px 12px 12px;font-size:12px;line-height:18px;overflow-wrap:anywhere}
+  .msg-brain{max-width:100%;background:rgba(241,245,249,.7);border:1px solid #E2E8F0;padding:12px;border-radius:2px 12px 12px 12px;font-size:12px;line-height:18px;color:#0F172A;overflow-wrap:anywhere}
+  .msg-brain p{margin:0 0 6px}
+  .msg-brain .who{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#023616;margin-bottom:4px}
+  .msg-brain .srch{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#717970}
+  .speak{min-height:32px;min-width:32px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid #E2E8F0;background:#fff;color:#023616;cursor:pointer}
+  .speak:hover{background:#F1F5F9}
+  .chip[aria-pressed="true"]{background:#1e4d2b;color:#fff;border-color:#1e4d2b}
+  .tabbtn[aria-selected="true"]{background:#1e4d2b;color:#fff}
+</style>
+</head>
+<body class="bg-surface-muted text-ink-primary font-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-secondary-container selection:text-ink-primary">
+<main class="flex-grow max-w-[1360px] w-full mx-auto px-4 sm:px-6 py-8">
+
+<!-- Title and subtitle -->
+<div class="mb-8 text-center max-w-2xl mx-auto">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-solar-green/10 text-primary border border-wire-border mb-3"><span class="material-symbols-outlined text-sm text-solar-green" aria-hidden="true">verified</span><span class="text-label-caps font-label-caps uppercase tracking-wider text-primary">Answers with sources</span></div>
+<h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight font-bold">Ask anything.</h1>
+<p class="font-body-md text-body-md text-outline mt-2 leading-relaxed" id="subtitle">Every answer shows where it came from.</p>
+</div>
+
+<!-- Search bar with mic -->
+<div class="max-w-2xl mx-auto mb-10">
+<form id="searchf" role="search" class="relative flex items-center bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm focus-within:border-primary-container focus-within:ring-2 focus-within:ring-primary-container/20 transition-all p-1">
+<span class="material-symbols-outlined text-outline pl-3 sm:pl-4 pr-2 text-xl" aria-hidden="true">search</span>
+<input class="w-full min-w-0 py-3 pr-12 bg-transparent text-ink-primary font-body-md text-body-md border-0 focus:ring-0 placeholder:text-outline outline-none" id="q" type="search" placeholder="Search outages, permits, installation..." aria-label="Search the answers" autocomplete="off">
+<button class="absolute right-2 sm:right-3 w-11 h-11 rounded-lg hover:bg-surface-subtle text-outline hover:text-ink-primary transition-colors flex items-center justify-center" id="mic" title="Speak your question" aria-label="Speak your question" type="button" hidden><span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span></button>
+</form>
+<div class="flex flex-wrap items-center justify-center gap-2 mt-4" id="chips" role="group" aria-label="Suggested questions"></div>
+</div>
+
+<!-- Two columns -->
+<div class="grid grid-cols-12 gap-6 lg:gap-8 items-start">
+<div class="col-span-12 lg:col-span-8 min-w-0">
+<section class="bg-surface-container-lowest border border-wire-border rounded-xl p-5 sm:p-8 shadow-sm" id="answer" aria-live="polite">
+<div class="flex flex-wrap items-center justify-between gap-2 pb-6 border-b border-wire-border">
+<div class="flex flex-wrap items-center gap-2 min-w-0">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#22C55E]/15 text-primary border border-[#22C55E]/30"><span class="w-1.5 h-1.5 rounded-full bg-solar-green mr-1.5" aria-hidden="true"></span><span id="ans-cat">Answer</span></span>
+<span class="text-body-sm font-body-sm text-outline" id="ans-where"></span>
+</div>
+<div class="tabs inline-flex rounded-full bg-surface-subtle p-1" role="tablist" aria-label="Who is asking" hidden>
+<button role="tab" data-tab="member" aria-selected="false" class="tabbtn px-3 rounded-full font-label-md text-label-md text-outline">Members</button>
+<button role="tab" data-tab="internal" aria-selected="true" class="tabbtn px-3 rounded-full font-label-md text-label-md text-outline">Base team</button>
+</div>
+</div>
+<div class="mt-6 mb-4"><h2 class="font-headline-lg text-headline-lg text-ink-primary font-bold tracking-tight" id="ans-q">Loading answers...</h2></div>
+<div class="max-w-none text-ink-primary font-body-lg text-body-lg leading-relaxed"><p class="m-0" id="ans-a"></p></div>
+<p class="mt-4 mb-0 font-body-md text-body-md text-outline leading-relaxed" id="ans-more" hidden></p>
+<div class="mt-8 p-5 sm:p-6 rounded-lg bg-surface-subtle/50 border border-wire-border grid grid-cols-1 gap-4 text-center" id="ans-stats" hidden></div>
+<div class="mt-8 pt-6 border-t border-wire-border flex flex-col sm:flex-row sm:items-center justify-between gap-4" id="ans-foot" hidden>
+<button class="self-start inline-flex items-center gap-2 bg-secondary-container hover:bg-[#bfe673] px-4 rounded-lg font-label-md text-label-md transition-all active:scale-[0.98]" id="listen" type="button" aria-pressed="false"><span class="material-symbols-outlined text-base text-ink-primary" aria-hidden="true" id="listen-icon">headphones</span><span class="font-semibold text-ink-primary" id="listen-text">Listen</span></button>
+<div class="flex items-start gap-1.5 text-body-sm font-body-sm text-outline min-w-0"><span class="material-symbols-outlined text-sm mt-0.5 shrink-0" aria-hidden="true">verified_user</span><span id="ans-src" class="min-w-0" style="overflow-wrap:anywhere"></span></div>
+</div>
+</section>
+<div class="mt-6 rounded-xl bg-primary-container text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4" id="brain-next">
+<div class="min-w-0"><span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-secondary-container text-ink-primary text-[11px] font-semibold uppercase tracking-wider">Next</span><p class="m-0 mt-2 font-headline-sm text-headline-sm text-white">The knowledge behind every answer.</p><p class="m-0 mt-1 text-body-sm text-white/80">See the entries and links Base Brain answers from.</p></div>
+<a class="inline-flex items-center justify-center gap-2 min-h-[44px] px-6 rounded-xl bg-secondary-container hover:bg-[#bfe673] text-ink-primary font-label-md text-label-md font-semibold no-underline whitespace-nowrap" id="brain-next-link" href="knowledge.html#knowledge">Open Base Brain <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+</div>
+</div>
+
+<div class="col-span-12 lg:col-span-4 min-w-0">
+<div class="flex flex-col gap-6">
+<section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm" id="local-ask" aria-labelledby="askh">
+<div class="flex items-start justify-between gap-2 pb-3 border-b border-wire-border mb-3">
+<div>
+<div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">smart_toy</span><h3 class="m-0 font-headline-sm text-headline-sm text-ink-primary font-bold" id="askh">Base Brain assistant</h3></div>
+<span class="inline-flex items-center text-[11px] font-label-caps uppercase tracking-wider text-primary font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-solar-green mr-1.5" aria-hidden="true"></span>Ready · every answer shows its source</span>
+</div>
+<span class="shrink-0 px-2 py-0.5 rounded bg-secondary-container text-ink-primary text-[11px] font-semibold">Sourced</span>
+</div>
+<p class="text-xs text-outline leading-relaxed mb-4">Ask about outages, installation, your battery or your zip. Base Brain answers with its sources, and the Base team answers account questions.</p>
+<div class="flex flex-col gap-3 mb-4" id="askout" aria-live="polite"></div>
+<div class="mb-4">
+<div class="text-[11px] font-label-caps text-outline uppercase tracking-wider mb-2 font-semibold">Suggested prompts</div>
+<div class="flex flex-wrap gap-1.5" id="ask-prompts"></div>
+</div>
+<form id="askf" class="relative flex items-center bg-surface-subtle border border-wire-border rounded-lg p-1 focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container/20">
+<input id="askq" type="text" class="w-full min-w-0 py-2 pl-3 pr-12 bg-transparent text-xs text-ink-primary border-0 focus:ring-0 placeholder:text-outline outline-none" placeholder="Ask Base Brain about your home or battery" aria-label="Your question">
+<button class="absolute right-1 w-11 h-11 rounded-md bg-primary-container hover:bg-evergreen-deep text-white transition-colors flex items-center justify-center" type="submit" title="Send" aria-label="Ask"><span class="material-symbols-outlined text-sm" aria-hidden="true">send</span></button>
+</form>
+</section>
+<section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm" id="home-card" aria-labelledby="home-title">
+<div class="flex items-center justify-between gap-2 pb-3 border-b border-wire-border mb-4">
+<h2 class="m-0 font-label-caps text-label-caps uppercase text-outline font-semibold tracking-wider" id="home-title">Your home and support</h2>
+<span class="inline-flex items-center text-xs font-medium text-primary bg-solar-green/10 px-2 py-0.5 rounded-full whitespace-nowrap" id="home-origin" hidden></span>
+</div>
+<div id="home-body" hidden>
+<div class="w-full h-44 bg-surface-subtle/50 rounded-lg overflow-hidden relative mb-4 border border-wire-border flex items-center justify-center">
+<img alt="Illustrated house" class="w-full h-full object-contain p-3" src="assets/stitch/brain-1.jpg" width="1200" height="896">
+<div class="absolute bottom-2 left-2 bg-ink-primary/80 text-white px-2 py-0.5 rounded text-[11px] font-label-caps">Illustration</div>
+</div>
+<div class="p-3.5 bg-surface-subtle/50 rounded-lg border border-wire-border mb-4 text-body-sm space-y-1.5">
+<div class="text-ink-primary font-semibold" id="home-addr"></div>
+<div class="text-outline" id="home-meta"></div>
+</div>
+<a class="w-full min-h-[44px] px-4 mb-4 bg-surface-container-lowest hover:bg-surface-subtle border border-wire-border text-ink-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 shadow-sm" id="home-link" href="#" hidden><span class="material-symbols-outlined text-sm text-outline" aria-hidden="true">hub</span><span>Open your node</span></a>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-subtle border border-wire-border mb-4 flex items-center gap-2 text-xs">
+<span class="w-2 h-2 rounded-full bg-solar-green shrink-0" aria-hidden="true"></span>
+<span class="font-medium text-ink-primary" id="talk-line">Talk to Base: the Base team answers account, contract and bill questions directly.</span>
+</div>
+<a class="w-full min-h-[44px] px-4 bg-surface-container-lowest hover:bg-surface-subtle border border-wire-border text-ink-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 shadow-sm" id="help-center" href="https://help.basepowercompany.com/"><span class="material-symbols-outlined text-sm text-outline" aria-hidden="true">support_agent</span><span>Open Base Help Center</span></a>
+<a class="mt-3 w-full min-h-[44px] px-4 bg-primary-container hover:bg-evergreen-deep text-white font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 shadow-sm" id="call-base" href="tel:+15125181009"><span class="material-symbols-outlined text-sm" aria-hidden="true">call</span><span>Call Base 512-518-1009</span></a>
+<p class="mt-2 mb-0 text-center text-[11px] text-outline">New customers call · members email support@basepowercompany.com</p>
+</section>
+
+
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full bg-surface-container-lowest border-t border-wire-border mt-12 py-6">
+<div class="max-w-[1360px] mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between text-body-sm text-outline gap-2 text-center">
+<div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1"><span class="font-headline-sm text-headline-sm text-primary font-bold">Base Fleet</span><span class="hidden md:inline text-wire-border" aria-hidden="true">|</span><span>Help for Austin homes</span><span class="hidden md:inline text-wire-border" aria-hidden="true">|</span><a class="text-outline hover:text-primary" href="knowledge.html">Base Brain entries</a></div>
+<span>A Base Fleet design. Saved on this device.</span>
+</div>
+</footer>
+<script>
+(() => {
+  "use strict";
+  const ASK = "http://localhost:8742/ask";
+  const QLOG = "base-fleet:questions:v1";
+  const CHAT = "base-fleet:help-chat:v1";
+  const HELP = "https://help.basepowercompany.com/";
+  const KB_STOP = new Set("not get happens goes out need much many long base home".split(" "));
+  const CHIP_IDS = ["outage", "zip-time", "where-battery"];
+  // Compute members already have a battery and host a node: their questions are about the battery and the grid.
+  const COMPUTE_TOPICS = ["My battery and the grid", "Storms and backup"];
+  const PROMPT_IDS = ["not-full", "private", "contact"];
+  const STOP = new Set("a an and are as at be by can do does for from how i if in is it my of on or the to what when where which who why will with you your me".split(" "));
+  const $ = id => document.getElementById(id);
+  const params = new URLSearchParams(location.search);
+  const roleTracks = {lead:'home',operations:'home',gpu:'compute',fleet:'compute'};
+  const requestedRole = params.get('persona') === 'customer' ? 'lead' : params.get('persona');
+  const track = ['home','compute'].includes(params.get('track')) ? params.get('track') : roleTracks[requestedRole] || 'home';
+  const persona = roleTracks[requestedRole] === track ? requestedRole : track === 'compute' ? 'gpu' : 'lead';
+  const teamContext = ['operations','fleet'].includes(persona);
+  const computeMember = track === 'compute' && !teamContext;
+  const nodeId = computeMember ? (params.get('node') || '3') : null;
+  function contextHref(raw) {
+    const url = new URL(raw, location.href);
+    if (!['http:','https:'].includes(url.protocol)) return '#';
+    if (url.origin === location.origin && url.pathname.endsWith('.html')) {
+      if (!url.searchParams.has('track') && !url.searchParams.has('persona')) {
+        url.searchParams.set('track', track); url.searchParams.set('persona', persona);
+      }
+      const destinationTrack = url.searchParams.get('track');
+      const keys = destinationTrack === 'compute' ? ['node','from'] : ['address'];
+      if (destinationTrack === 'compute') url.searchParams.delete('address');
+      for (const key of keys) {
+        if (params.has(key) && !url.searchParams.has(key)) url.searchParams.set(key, params.get(key));
+      }
+    }
+    return url.href;
+  }
+
+  let timer = null;
+  let data = null, kb = null, zipQa = null, zip = null, current = null, tab = teamContext ? 'internal' : 'member';
+  try { const t = params.get("tab"); if (teamContext && ["member", "internal"].includes(t)) tab = t; } catch (e) {}
+  document.querySelector('.tabs').hidden = !teamContext;
+
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+  const toks = s => String(s || "").toLowerCase().match(/[a-z0-9$%.]+/g)?.filter(t => !STOP.has(t)) || [];
+  const catLabel = c => c === 'Ask Base support' ? 'Base team answers' : String(c).replace(/\s*\(assumed, not a Base offer\)/, '');
+
+  // One shape for both kinds of answer: written answers (faq.json) and zip answers (data_qa.json zip_cards).
+  function fromItem(it) {
+    const v = it.zip_aware && it.by_zip && zip && it.by_zip[zip] ? it.by_zip[zip] : it;
+    return {key: 'faq:' + it.id, id: it.id, q: it.q, a: v.a, number: v.number || it.number || '', cat: catLabel(it.category),
+      where: it.zip_aware ? 'Zip ' + zip : '', source: it.source, source_url: it.source_url, route: it.route, item: it};
+  }
+  function fromZip(c) {
+    return {key: 'zip:' + c.id, id: c.id, q: c.q, a: c.say, number: c.number || '', cat: 'Your zip',
+      where: 'Zip ' + (c.zip || zip) + zipCity(c.zip || zip), source: c.source, source_url: null, route: null};
+  }
+  function zipCity(z) { const r = data && data.zips.find(x => x.zip === z); return r ? ' · ' + r.city : ''; }
+  function pool() {
+    const items = data ? data.items.filter(it => it.audience === tab).map(fromItem) : [];
+    const zips = tab === 'member' && zipQa && zipQa.zip_cards[zip] ? zipQa.zip_cards[zip].map(fromZip) : [];
+    return items.concat(zips);
+  }
+  const hay = e => (e.q + ' ' + e.a + ' ' + e.cat + ' ' + e.number).toLowerCase();
+  function rank(text, k = 3) {
+    const q = toks(text);
+    if (!q.length) return [];
+    const nums = q.filter(t => /^\d/.test(t));
+    return pool().filter(e => nums.every(t => hay(e).includes(t)))
+      .map(e => { const h = hay(e), qq = e.q.toLowerCase(); return [q.reduce((s, t) => s + (qq.includes(t) ? 3 : 0) + (h.includes(t) ? 1 : 0), 0), e]; })
+      .filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, k).map(x => x[1]);
+  }
+
+  // Base Brain entries (web/data/kb_graph.json): links to knowledge.html?kb=<short>.
+  function kbHref(n) { return contextHref('knowledge.html?kb=' + encodeURIComponent(n.short) + '#knowledge'); }
+  function kbSearch(text, k = 3) {
+    if (!kb) return [];
+    const q = [...new Set(toks(text).filter(t => !KB_STOP.has(t) && t.length > 2))];
+    if (!q.length) return [];
+    const need = Math.min(2, q.length);
+    const nums = q.filter(t => /^\d/.test(t));
+    return kb.nodes.filter(n => !['gap','job','persona'].includes(n.type)).map(n => {
+      const t = n.title.toLowerCase(), s = (n.summary || "").toLowerCase();
+      const hit = q.filter(x => t.includes(x) || s.includes(x));
+      if (hit.length < need || !nums.every(x => hit.includes(x)) || !q.some(x => t.includes(x))) return [0, n];
+      return [q.reduce((a, x) => a + (t.includes(x) ? 3 : 0) + (s.includes(x) ? 1 : 0), 0), n];
+    }).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, k).map(x => x[1]);
+  }
+  function kbFor(e) {
+    if (!kb) return [];
+    const seen = new Set(), out = [];
+    const add = n => { if (n && !seen.has(n.slug) && out.length < 3) { seen.add(n.slug); out.push(n); } };
+    kb.nodes.filter(n => n.path && e.source && e.source.includes(n.path)).forEach(add);
+    kbSearch(e.q, 3).forEach(add);
+    return out;
+  }
+  // Show sources as names, not file paths: "Base How it works page (faq/corpus/x.md)" -> "Base How it works page".
+  const cleanSource = s => String(s || '').replace(/\s*\([^)]*\.(?:md|json|py|csv|js)\b[^)]*\)/g, '').replace(/\s+in\s+[\w./-]+\.(?:md|json|py|csv|js)\b/g, '').replace(/\s{2,}/g, ' ').trim();
+  function srcHtml(e) {
+    return e.source_url ? `${esc(cleanSource(e.source))} (<a href="${esc(contextHref(e.source_url))}" target="_blank" rel="noopener">page</a>)` : esc(cleanSource(e.source));
+  }
+
+  // Speech goes through speak.js (window.BaseVoice).
+  let speaking = null;
+  function stopVoice() {
+    speaking = null;
+    if (window.BaseVoice) window.BaseVoice.stop();
+    $('listen').setAttribute('aria-pressed', 'false'); $('listen-text').textContent = 'Listen'; $('listen-icon').textContent = 'headphones';
+    document.querySelectorAll('#askout .speak[aria-pressed="true"]').forEach(b => { b.setAttribute('aria-pressed', 'false'); b.firstElementChild.textContent = 'volume_up'; });
+  }
+  function speak(text, who, onStart) {
+    stopVoice();
+    if (!window.BaseVoice) return;
+    speaking = who; onStart();
+    window.BaseVoice.speak(text, {onend: () => { if (speaking === who) stopVoice(); }});
+  }
+  $('listen').addEventListener('click', () => {
+    if (speaking === 'answer') return stopVoice();
+    if (!current) return;
+    speak([current.q, current.a, 'Source: ' + cleanSource(current.source)].join('. '), 'answer', () => {
+      $('listen').setAttribute('aria-pressed', 'true'); $('listen-text').textContent = 'Stop'; $('listen-icon').textContent = 'stop_circle';
+    });
+  });
+  $('askout').addEventListener('click', ev => {
+    const b = ev.target.closest('.speak');
+    if (!b) return;
+    const msg = b.closest('.msg-brain');
+    if (speaking === msg) return stopVoice();
+    speak([...msg.querySelectorAll('p.say')].map(p => p.textContent).join(' '), msg, () => { b.setAttribute('aria-pressed', 'true'); b.firstElementChild.textContent = 'stop_circle'; });
+  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stopVoice(); });
+  window.addEventListener('pagehide', stopVoice);
+
+  // The answer card.
+  function show(e) {
+    stopVoice();
+    current = e;
+    $('ans-foot').hidden = !e;
+    $('ans-stats').hidden = true;
+    $('ans-more').hidden = true;
+    if (!e) {
+      $('ans-cat').textContent = 'Base Brain';
+      $('ans-where').textContent = '';
+      $('ans-q').textContent = 'Ask Base Brain in your own words';
+      $('ans-a').textContent = 'Try a shorter phrase, or pick a suggested question. The Base Brain assistant on this page and the Base team are ready to help.';
+      return;
+    }
+    $('ans-cat').textContent = e.cat;
+    $('ans-where').textContent = e.where;
+    $('ans-q').textContent = e.q;
+    $('ans-a').textContent = e.a;
+    // Stat strip: the source number, the topic and where to see it. All real fields of the answer.
+    const parts = e.number ? e.number.split(/;\s*/).filter(Boolean).slice(0, 3) : [];
+    const tiles = parts.map(p => { const m = p.match(/^(.*?)\s*\((.*)\)\s*$/); return {value: m ? m[1] : p, label: 'From the source', note: m ? m[2] : ''}; });
+    if (tiles.length < 3 && e.cat) tiles.push({value: e.cat, label: 'Topic', note: e.where || 'Member answer'});
+    const pg = e.item && e.item.page;
+    if (tiles.length < 3 && pg && pg.label) tiles.push({value: pg.label, label: 'See it on', note: 'Base Fleet page', href: pg.href});
+    if (tiles.length) {
+      $('ans-stats').className = `mt-8 p-5 sm:p-6 rounded-lg bg-surface-subtle/50 border border-wire-border grid grid-cols-1 gap-4 text-center ${tiles.length > 1 ? 'sm:grid-cols-' + tiles.length : ''}`;
+      $('ans-stats').innerHTML = tiles.map((t, i) => {
+        const v = t.href ? `<a class="text-primary hover:underline" href="${esc(contextHref(t.href))}">${esc(t.value)}</a>` : esc(t.value);
+        return `<div class="stat min-w-0 ${i < tiles.length - 1 ? 'sm:border-r border-wire-border/80 sm:pr-4' : ''}"><span class="font-headline-md text-headline-md text-primary font-bold block" style="overflow-wrap:anywhere">${v}</span><span class="font-label-caps text-label-caps uppercase text-outline block mt-1">${esc(t.label)}</span>${t.note ? `<span class="font-body-sm text-body-sm text-outline block mt-0.5">${esc(t.note)}</span>` : ''}</div>`;
+      }).join('');
+      $('ans-stats').hidden = false;
+    }
+    const more = e.item && e.item.page && e.item.page.label ? `Every answer here comes from ${cleanSource(e.source).replace(/\.$/, '')}. Open ${e.item.page.label} to see it with your own home, or ask the Base Brain assistant a follow-up.` : '';
+    $('ans-more').textContent = more; $('ans-more').hidden = !more;
+    const nodes = kbFor(e);
+    $('ans-src').innerHTML = 'Source: ' + srcHtml(e) + (e.route === 'base_support' ? ` · <a href="${HELP}">Open Base Help Center</a>` : '')
+      + (nodes.length ? ` · Base Brain: <a class="kb" href="${esc(kbHref(nodes[0]))}">${esc(nodes[0].title)}</a>` : '');
+    document.querySelectorAll('#chips .chip').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.key === e.key)));
+  }
+  function search(text) {
+    const hit = rank(text, 1)[0];
+    if (hit) show(hit); else if (text.trim()) show(null);
+  }
+  function chipItems() {
+    const member = data.items.filter(it => it.audience === 'member');
+    if (tab === 'internal') return data.items.filter(it => it.audience === 'internal').slice(0, 3);
+    if (computeMember) return member.filter(it => COMPUTE_TOPICS.includes(it.category)).slice(0, 3);
+    return CHIP_IDS.map(id => member.find(it => it.id === id)).filter(Boolean);
+  }
+  function renderChips() {
+    const box = $('chips'); box.textContent = '';
+    chipItems().forEach(it => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip text-body-sm font-body-sm px-3.5 bg-surface-container-lowest hover:bg-surface-subtle border border-wire-border rounded-full text-ink-primary shadow-sm transition-colors';
+      b.textContent = it.q; b.dataset.key = 'faq:' + it.id; b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', () => { clearTimeout(timer); $('q').value = ''; show(fromItem(it)); });
+      box.append(b);
+    });
+  }
+  function first() {
+    const q = $('q').value.trim();
+    const hit = q ? rank(q, 1)[0] : null;
+    if (hit) return show(hit);
+    const c = chipItems()[0];
+    show(c ? fromItem(c) : null);
+  }
+  function refresh() {
+    if (!data) return;
+    if (current && current.item) { const it = current.item; if (it.audience === tab) return show(fromItem(it)); }
+    first();
+  }
+
+  // Search, chips and the mic.
+  $('q').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(() => { if (data) { if ($('q').value.trim()) search($('q').value); else first(); } }, 150); });
+  $('searchf').addEventListener('submit', ev => { ev.preventDefault(); if (data) search($('q').value); });
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (Rec) {
+    $('mic').hidden = false;
+    $('mic').addEventListener('click', () => {
+      const r = new Rec(); r.lang = 'en-US'; r.interimResults = false;
+      r.onresult = ev => { $('q').value = ev.results[0][0].transcript; if (data) search($('q').value); };
+      try { r.start(); } catch (e) {}
+    });
+  }
+  document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => {
+    tab = b.dataset.tab;
+    document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+    renderChips(); first();
+  }));
+  document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', String(x.dataset.tab === tab)));
+
+  // The assistant chat.
+  function logLocal(text) {
+    try {
+      const prev = JSON.parse(localStorage.getItem(QLOG) || "[]");
+      const rows = Array.isArray(prev) ? prev : [];
+      rows.push({q: text, at: new Date().toISOString(), page: "brain.html", answered: "browser"});
+      localStorage.setItem(QLOG, JSON.stringify(rows.slice(-200)));
+    } catch (e) {}
+  }
+  function kbFromServer(sources) {
+    return (sources || []).slice(0, 5).map(s => {
+      const key = typeof s === "string" ? s : (s.slug || s.path || s.file || s.label || s.title || "");
+      const n = kb && key ? kb.nodes.find(n => n.slug === key || n.short === key || n.path === key || n.title === key || (n.path && key.includes(n.path))) : null;
+      return n ? {n} : {text: typeof s === "string" ? s : (s.label || s.title || s.file || s.slug || s.path || "")};
+    }).filter(x => x.n || x.text);
+  }
+  const who = `<span class="who"><span>Base Brain</span><button type="button" class="speak" aria-pressed="false" aria-label="Read this reply aloud" title="Read aloud"><span class="material-symbols-outlined text-sm" aria-hidden="true">volume_up</span></button></span>`;
+  const sourcesHtml = rows => rows.length ? `<span class="srch">Sources</span><ul class="kb-list">${rows.join('')}</ul>` : '';
+  async function ask(ev) {
+    ev.preventDefault();
+    const text = $("askq").value.trim(), out = $("askout");
+    if (!text) return;
+    $("askq").value = "";
+    const you = document.createElement("div"); you.className = "msg-you"; you.textContent = text;
+    const reply = document.createElement("div"); reply.className = "msg-brain";
+    reply.innerHTML = `<span class="who"><span>Base Brain</span></span><p>Finding your answer...</p>`;
+    out.append(you, reply);
+    let r = null;
+    try {
+      const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 45000);
+      const res = await fetch(ASK, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({q: text, page: "brain.html"}), signal: ctl.signal});
+      clearTimeout(t);
+      if (res.ok) r = await res.json();
+    } catch (err) { r = null; }
+    if (r && r.answer) {
+      const rows = kbFromServer(r.sources).map(x => x.n ? `<li><a class="kb" href="${esc(kbHref(x.n))}">${esc(x.n.title)}</a></li>` : `<li><span>${esc(x.text)}</span></li>`);
+      reply.innerHTML = who + `<p class="say">${esc(r.answer)}</p>` + sourcesHtml(rows);
+      saveChat(); return;
+    }
+    logLocal(text);
+    reply.innerHTML = localReply(text);
+    saveChat();
+  }
+  // The browser answer path: the best written answer plus its Base Brain entries.
+  function localReply(text) {
+    const top = data ? rank(text, 1)[0] : null;
+    const nodes = kbSearch(text, 3);
+    const kbNodes = nodes.length ? nodes : (top ? kbFor(top) : []);
+    const rows = [];
+    let body;
+    if (top && top.route === 'base_support') {
+      body = `<p class="say">The Base team answers account, contract and bill questions directly.</p><p><a href="${HELP}">Open Base Help Center</a></p>`;
+    } else if (top) {
+      body = `<p class="say"><b>${esc(top.q)}</b> ${esc(top.a)}</p>`;
+    } else if (kbNodes.length) {
+      body = `<p class="say">These Base Brain entries cover your question.</p>`;
+    } else {
+      body = `<p class="say">The Base team can answer this one directly.</p><p><a href="${HELP}">Open Base Help Center</a></p>`;
+    }
+    if (top) rows.push(`<li><span>${srcHtml(top)}</span></li>`);
+    kbNodes.forEach(n => rows.push(`<li><a class="kb" href="${esc(kbHref(n))}">${esc(n.title)}</a></li>`));
+    return who + body + sourcesHtml(rows);
+  }
+  // First view: the first suggested prompt, answered through the same browser path. Not saved to the chat history.
+  let seeded = null;
+  function seed() {
+    const out = $("askout");
+    if (!data || out.children.length) return;
+    const it = PROMPT_IDS.map(id => data.items.find(x => x.id === id && x.audience === 'member')).find(Boolean);
+    if (!it) return;
+    const you = document.createElement("div"); you.className = "msg-you"; you.dataset.seed = "1"; you.textContent = it.q;
+    const reply = document.createElement("div"); reply.className = "msg-brain"; reply.dataset.seed = "1";
+    out.append(you, reply);
+    seeded = {q: it.q, reply};
+    reply.innerHTML = localReply(it.q);
+  }
+  // The conversation lives in sessionStorage only; it ends when the tab closes.
+  function saveChat() {
+    try {
+      const turns = [...$("askout").children].filter(n => !n.dataset.seed).map(n => ({cls: n.className, html: n.className === "msg-you" ? esc(n.textContent) : n.innerHTML}));
+      sessionStorage.setItem(CHAT, JSON.stringify(turns.slice(-40)));
+    } catch (e) {}
+  }
+  function restoreChat() {
+    try {
+      const turns = JSON.parse(sessionStorage.getItem(CHAT) || "[]");
+      for (const t of Array.isArray(turns) ? turns : []) {
+        if (!["msg-you", "msg-brain"].includes(t.cls)) continue;
+        const n = document.createElement("div"); n.className = t.cls; n.innerHTML = String(t.html || ""); $("askout").append(n);
+      }
+    } catch (e) {}
+  }
+  restoreChat();
+  $("askf").addEventListener("submit", ask);
+
+  function init(d) {
+    data = d;
+    if (!zip || !d.zips.some(z => z.zip === zip)) zip = d.default_zip;
+    $("q").value = params.get("q") || "";
+    const prompts = $("ask-prompts"); prompts.textContent = "";
+    PROMPT_IDS.map(id => d.items.find(it => it.id === id && it.audience === 'member')).filter(Boolean).forEach(it => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = it.q;
+      b.className = "text-[12px] font-body-sm px-2.5 bg-surface-subtle hover:bg-wire-border/40 text-ink-primary rounded-full border border-wire-border transition-colors";
+      b.addEventListener("click", () => { $("askq").value = it.q; $("askf").requestSubmit(); });
+      prompts.append(b);
+    });
+    renderChips();
+    first();
+    seed();
+  }
+
+  async function loadZipQa() {
+    try {
+      const r = await fetch('data/data_qa.json');
+      if (!r.ok) throw new Error('unavailable');
+      const d = await r.json();
+      if (d.zip_cards) zipQa = d;
+    } catch {}
+    if (data && $('q').value.trim()) first();
+  }
+  async function loadKb() {
+    try {
+      const r = await fetch('data/kb_graph.json');
+      if (!r.ok) throw new Error('unavailable');
+      const g = await r.json();
+      g.nodes.forEach(n => { n.short = n.short || n.slug.slice(g.prefix.length); });
+      kb = g;
+      if (current) show(current);
+      if (seeded && seeded.reply.isConnected) seeded.reply.innerHTML = localReply(seeded.q);
+    } catch {}
+  }
+
+  // Your home: saved address (milestones.js), else the first public-record home in house/cohort.json.
+  async function loadHome() {
+    if (teamContext) { $('home-title').textContent = 'Support'; return; }
+    if (computeMember) {
+      // Node hosts are past onboarding: show the node.
+      $("home-title").textContent = 'Your node and support';
+      $("home-origin").textContent = 'Simulated'; $("home-origin").hidden = false;
+      $("home-addr").textContent = 'Node ' + nodeId;
+      $("home-meta").textContent = 'Local AI on the PC beside your battery.';
+      $("home-link").href = contextHref('tower.html?track=compute&persona=gpu&node=' + encodeURIComponent(nodeId));
+      $("home-link").hidden = false;
+      $("home-body").hidden = false;
+      return;
+    }
+    const st = window.BaseMilestones && window.BaseMilestones.state ? window.BaseMilestones.state() : null;
+    let cohort = [];
+    try { const r = await fetch('../house/cohort.json'); if (r.ok) cohort = await r.json(); } catch {}
+    const addr = st && st.addr;
+    const rec = Array.isArray(cohort) ? (addr ? cohort.find(h => h.address === addr) : cohort[0]) : null;
+    if (!addr && !rec) return;
+    $("home-addr").textContent = addr || rec.address;
+    $("home-origin").textContent = addr ? 'Your home' : 'Public-record home'; $("home-origin").hidden = false;
+    const bits = [];
+    if (rec && rec.zip) bits.push('Zip ' + rec.zip);
+    if (rec && rec.year_built) bits.push('Built ' + rec.year_built);
+    bits.push('Public records');
+    $("home-meta").textContent = bits.join(' · ');
+    $("home-body").hidden = false;
+    if (rec && rec.zip && rec.zip !== zip) { zip = rec.zip; refresh(); }
+  }
+
+  async function loadAnswers() {
+    try {
+      const response = await fetch('data/faq.json');
+      if (!response.ok) throw new Error('unavailable');
+      const d = await response.json();
+      if (!Array.isArray(d.items) || !d.items.length || !Array.isArray(d.zips)) throw new Error('invalid answers');
+      init(d);
+    } catch {
+      $('ans-q').textContent = 'Ask Base Brain';
+      $('ans-a').textContent = 'The Base Brain assistant on this page and the Base Help Center are ready for your question.';
+    }
+  }
+  $('brain-next-link').href = contextHref('knowledge.html#knowledge');
+  loadAnswers();
+  loadKb();
+  loadZipQa();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadHome); else loadHome();
+})();
+</script>
+</body>
+</html>

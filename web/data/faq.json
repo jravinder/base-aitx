@@ -1,0 +1,3425 @@
+{
+ "built_at": "2026-09-27T01:05:20Z",
+ "builder": "store/faq.py",
+ "label": "Base Brain is a prototype, not a Base product.",
+ "default_zip": "78745",
+ "zips": [
+  {
+   "zip": "76574",
+   "city": "Taylor",
+   "status": "energy_and_backup"
+  },
+  {
+   "zip": "78602",
+   "city": "Bastrop",
+   "status": "not_served"
+  },
+  {
+   "zip": "78610",
+   "city": "Buda",
+   "status": "not_served"
+  },
+  {
+   "zip": "78613",
+   "city": "Cedar Park",
+   "status": "not_served"
+  },
+  {
+   "zip": "78617",
+   "city": "Del Valle",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78621",
+   "city": "Elgin",
+   "status": "mixed"
+  },
+  {
+   "zip": "78626",
+   "city": "Georgetown",
+   "status": "mixed"
+  },
+  {
+   "zip": "78628",
+   "city": "Georgetown",
+   "status": "mixed"
+  },
+  {
+   "zip": "78634",
+   "city": "Hutto",
+   "status": "energy_and_backup"
+  },
+  {
+   "zip": "78640",
+   "city": "Kyle",
+   "status": "not_served"
+  },
+  {
+   "zip": "78641",
+   "city": "Leander",
+   "status": "not_served"
+  },
+  {
+   "zip": "78653",
+   "city": "Manor",
+   "status": "mixed"
+  },
+  {
+   "zip": "78660",
+   "city": "Pflugerville",
+   "status": "mixed"
+  },
+  {
+   "zip": "78664",
+   "city": "Round Rock",
+   "status": "energy_and_backup"
+  },
+  {
+   "zip": "78665",
+   "city": "Round Rock",
+   "status": "energy_and_backup"
+  },
+  {
+   "zip": "78666",
+   "city": "San Marcos",
+   "status": "not_served"
+  },
+  {
+   "zip": "78681",
+   "city": "Round Rock",
+   "status": "energy_and_backup"
+  },
+  {
+   "zip": "78701",
+   "city": "Austin (downtown)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78702",
+   "city": "Austin (East)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78703",
+   "city": "Austin (Tarrytown)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78704",
+   "city": "Austin (South Congress)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78705",
+   "city": "Austin (West Campus)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78721",
+   "city": "Austin (East MLK)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78722",
+   "city": "Austin (Cherrywood)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78723",
+   "city": "Austin (Windsor Park)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78724",
+   "city": "Austin (Northeast)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78725",
+   "city": "Austin (Southeast)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78726",
+   "city": "Austin (Four Points)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78727",
+   "city": "Austin (Scofield)",
+   "status": "mixed"
+  },
+  {
+   "zip": "78728",
+   "city": "Austin (Wells Branch)",
+   "status": "energy_and_backup"
+  },
+  {
+   "zip": "78729",
+   "city": "Austin (Anderson Mill)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78730",
+   "city": "Austin (River Place)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78731",
+   "city": "Austin (Northwest Hills)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78732",
+   "city": "Austin (Steiner Ranch)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78733",
+   "city": "Austin (Rob Roy)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78734",
+   "city": "Lakeway",
+   "status": "mixed"
+  },
+  {
+   "zip": "78735",
+   "city": "Austin (Barton Creek)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78736",
+   "city": "Austin (Oak Hill West)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78737",
+   "city": "Austin (Dripping Springs edge)",
+   "status": "not_served"
+  },
+  {
+   "zip": "78738",
+   "city": "Bee Cave",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78739",
+   "city": "Austin (Circle C)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78741",
+   "city": "Austin (Riverside)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78742",
+   "city": "Austin (Montopolis)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78744",
+   "city": "Austin (Southeast)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78745",
+   "city": "Austin (South)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78746",
+   "city": "West Lake Hills",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78747",
+   "city": "Austin (Far South)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78748",
+   "city": "Austin (Southpark Meadows)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78749",
+   "city": "Austin (Southwest)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78750",
+   "city": "Austin (Jollyville)",
+   "status": "mixed"
+  },
+  {
+   "zip": "78751",
+   "city": "Austin (Hyde Park)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78752",
+   "city": "Austin (North Lamar)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78753",
+   "city": "Austin (North)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78754",
+   "city": "Austin (Harris Branch)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78756",
+   "city": "Austin (Brentwood)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78757",
+   "city": "Austin (Allandale)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78758",
+   "city": "Austin (North Burnet)",
+   "status": "backup_only"
+  },
+  {
+   "zip": "78759",
+   "city": "Austin (Arboretum)",
+   "status": "mixed"
+  },
+  {
+   "zip": "78957",
+   "city": "Smithville",
+   "status": "not_served"
+  }
+ ],
+ "categories": {
+  "member": [
+   "Getting started",
+   "My home and the photo",
+   "My battery and the grid",
+   "Storms and backup",
+   "Credits (assumed, not a Base offer)",
+   "Privacy",
+   "Help",
+   "Ask Base support"
+  ],
+  "internal": [
+   "Ops",
+   "Installers",
+   "Support",
+   "Growth",
+   "Grid and fleet",
+   "Data"
+  ]
+ },
+ "counts": {
+  "member": {
+   "Getting started": 11,
+   "My home and the photo": 6,
+   "My battery and the grid": 7,
+   "Storms and backup": 6,
+   "Credits (assumed, not a Base offer)": 1,
+   "Privacy": 2,
+   "Help": 4,
+   "Ask Base support": 10
+  },
+  "internal": {
+   "Ops": 7,
+   "Installers": 7,
+   "Support": 6,
+   "Growth": 7,
+   "Grid and fleet": 8,
+   "Data": 6
+  }
+ },
+ "items": [
+  {
+   "id": "what-is-base",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "What is Base?",
+   "a": "Base is a power company in Texas and Illinois. It puts a large backup battery at your home. In some areas it is also your electricity provider. Base says 30,000+ homes use it.",
+   "number": "30,000+ homes (Base's own number)",
+   "source": "Base home page, quoted (faq/corpus/home.md)",
+   "source_url": "https://basepowercompany.com/",
+   "page": {
+    "label": "Story overview",
+    "href": "story.html"
+   },
+   "data": [
+    "faq/corpus/home.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "signup-steps",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "How does sign-up work?",
+   "a": "Three steps on Base's page. 1: check your zip or talk to an energy advisor. 2: Base engineers review your setup and say if the home fits, and for 0, 1 or 2 batteries. 3: install in two visits.",
+   "number": "3 steps",
+   "source": "Base How it works page, paraphrased (faq/corpus/how-it-works.md)",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "My Home",
+    "href": "onboarding.html#home"
+   },
+   "data": [
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "zip-territory",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "Can Base serve my home here?",
+   "a": "Yes, for a backup battery. Austin Energy delivers power in 78745 (Austin (South)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+   "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)",
+   "source": "Power to Choose plan list for the zip, and Base's public pricing page. Base confirms service at your address.",
+   "source_url": null,
+   "page": {
+    "label": "Next areas",
+    "href": "star.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "SELECT tdu, status, ptc_plans, mixed_with FROM territory WHERE zip='<zip>' (data/fleet.db, from data/ptc_tdu.json)",
+   "zip_aware": true,
+   "default_zip": "78745",
+   "by_zip": {
+    "76574": {
+     "a": "Yes, the public record points that way. Oncor delivers power in 76574 (Taylor), and Base can be your electricity provider there, with or without a battery.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78602": {
+     "a": "Not today, from the public record. Bluebonnet Electric Cooperative serves 78602 (Bastrop), and no Base offer was found for it.",
+     "number": "Bluebonnet Electric Cooperative; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78610": {
+     "a": "Not today, from the public record. Pedernales Electric Cooperative (PEC) serves 78610 (Buda), and no Base offer was found for it.",
+     "number": "Pedernales Electric Cooperative (PEC); 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78613": {
+     "a": "Not today, from the public record. Pedernales Electric Cooperative (PEC) serves 78613 (Cedar Park), and no Base offer was found for it.",
+     "number": "Pedernales Electric Cooperative (PEC); 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78617": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78617 (Del Valle) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78621": {
+     "a": "Part of 78621 (Elgin), yes. Oncor serves part of the zip, where Base can be your provider. Bluebonnet Electric Cooperative serves the rest, where no Base offer was found. Your bill shows which one you have.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78626": {
+     "a": "Part of 78626 (Georgetown), yes. Oncor serves part of the zip, where Base can be your provider. Georgetown Utility Systems serves the rest, where no Base offer was found. Your bill shows which one you have.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78628": {
+     "a": "Part of 78628 (Georgetown), yes. Oncor serves part of the zip, where Base can be your provider. Georgetown Utility Systems serves the rest, where no Base offer was found. Your bill shows which one you have.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78634": {
+     "a": "Yes, the public record points that way. Oncor delivers power in 78634 (Hutto), and Base can be your electricity provider there, with or without a battery.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78640": {
+     "a": "Not today, from the public record. Pedernales Electric Cooperative (PEC) serves 78640 (Kyle), and no Base offer was found for it.",
+     "number": "Pedernales Electric Cooperative (PEC); 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78641": {
+     "a": "Not today, from the public record. Pedernales Electric Cooperative (PEC) serves 78641 (Leander), and no Base offer was found for it.",
+     "number": "Pedernales Electric Cooperative (PEC); 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78653": {
+     "a": "Part of 78653 (Manor), yes. Oncor serves part of the zip, where Base can be your provider. Bluebonnet Electric Cooperative + Austin Energy serves the rest, where no Base offer was found. Your bill shows which one you have.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78660": {
+     "a": "Part of 78660 (Pflugerville), yes. Oncor serves part of the zip, where Base can be your provider. Austin Energy serves the rest, where no Base offer was found. Your bill shows which one you have.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78664": {
+     "a": "Yes, the public record points that way. Oncor delivers power in 78664 (Round Rock), and Base can be your electricity provider there, with or without a battery.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78665": {
+     "a": "Yes, the public record points that way. Oncor delivers power in 78665 (Round Rock), and Base can be your electricity provider there, with or without a battery.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78666": {
+     "a": "Not today, from the public record. San Marcos Electric Utility serves 78666 (San Marcos), and no Base offer was found for it.",
+     "number": "San Marcos Electric Utility; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78681": {
+     "a": "Yes, the public record points that way. Oncor delivers power in 78681 (Round Rock), and Base can be your electricity provider there, with or without a battery.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78701": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78701 (Austin (downtown)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78702": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78702 (Austin (East)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78703": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78703 (Austin (Tarrytown)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78704": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78704 (Austin (South Congress)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78705": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78705 (Austin (West Campus)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78721": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78721 (Austin (East MLK)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78722": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78722 (Austin (Cherrywood)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78723": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78723 (Austin (Windsor Park)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78724": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78724 (Austin (Northeast)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78725": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78725 (Austin (Southeast)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78726": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78726 (Austin (Four Points)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78727": {
+     "a": "Part of 78727 (Austin (Scofield)), yes. Oncor serves part of the zip, where Base can be your provider. Austin Energy serves the rest, where no Base offer was found. Your bill shows which one you have.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78728": {
+     "a": "Yes, the public record points that way. Oncor delivers power in 78728 (Austin (Wells Branch)), and Base can be your electricity provider there, with or without a battery.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78729": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78729 (Austin (Anderson Mill)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78730": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78730 (Austin (River Place)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78731": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78731 (Austin (Northwest Hills)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78732": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78732 (Austin (Steiner Ranch)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78733": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78733 (Austin (Rob Roy)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78734": {
+     "a": "Part of 78734 (Lakeway), yes. AEP Texas North serves part of the zip, where Base can be your provider. Pedernales Electric Cooperative (PEC) + Austin Energy serves the rest, where no Base offer was found. Your bill shows which one you have.",
+     "number": "AEP Texas North; 167 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78735": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78735 (Austin (Barton Creek)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78736": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78736 (Austin (Oak Hill West)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78737": {
+     "a": "Not today, from the public record. Pedernales Electric Cooperative (PEC) serves 78737 (Austin (Dripping Springs edge)), and no Base offer was found for it.",
+     "number": "Pedernales Electric Cooperative (PEC); 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78738": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78738 (Bee Cave) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78739": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78739 (Austin (Circle C)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78741": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78741 (Austin (Riverside)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78742": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78742 (Austin (Montopolis)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78744": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78744 (Austin (Southeast)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78745": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78745 (Austin (South)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78746": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78746 (West Lake Hills) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78747": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78747 (Austin (Far South)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78748": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78748 (Austin (Southpark Meadows)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78749": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78749 (Austin (Southwest)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78750": {
+     "a": "Part of 78750 (Austin (Jollyville)), yes. Oncor serves part of the zip, where Base can be your provider. Austin Energy serves the rest, where no Base offer was found. Your bill shows which one you have.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78751": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78751 (Austin (Hyde Park)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78752": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78752 (Austin (North Lamar)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78753": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78753 (Austin (North)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78754": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78754 (Austin (Harris Branch)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78756": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78756 (Austin (Brentwood)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78757": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78757 (Austin (Allandale)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78758": {
+     "a": "Yes, for a backup battery. Austin Energy delivers power in 78758 (Austin (North Burnet)) and stays your electricity provider. Base installs a battery only (Backup Only plan).",
+     "number": "Austin Energy; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78759": {
+     "a": "Part of 78759 (Austin (Arboretum)), yes. Oncor serves part of the zip, where Base can be your provider. Austin Energy serves the rest, where no Base offer was found. Your bill shows which one you have.",
+     "number": "Oncor; 171 retail plans on Power to Choose (0 means a city utility or co-op)"
+    },
+    "78957": {
+     "a": "Not today, from the public record. Bluebonnet Electric Cooperative serves 78957 (Smithville), and no Base offer was found for it.",
+     "number": "Bluebonnet Electric Cooperative; 0 retail plans on Power to Choose (0 means a city utility or co-op)"
+    }
+   }
+  },
+  {
+   "id": "plans",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "What plans are there?",
+   "a": "Three on Base's page. Energy: a fixed rate, where you can choose your provider. Backup + Energy: the battery plus energy. Backup Only: the battery with your current utility, in some areas only.",
+   "number": "3 plans",
+   "source": "Base home page and pricing page (faq/corpus/home.md, pricing.md)",
+   "source_url": "https://basepowercompany.com/pricing",
+   "page": {
+    "label": "Next areas",
+    "href": "star.html"
+   },
+   "data": [
+    "faq/corpus/home.md",
+    "faq/corpus/pricing.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "cost",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "What does it cost?",
+   "a": "It depends on your address. Base's sample plan for Oncor areas is a $695 one-time install, a $19 monthly membership and an all-in rate of 13.9 cents per kWh. Enter your zip on Base's site for your price.",
+   "number": "$695 install, $19 a month (Oncor sample)",
+   "source": "Base home page sample plan (faq/corpus/home.md)",
+   "source_url": "https://basepowercompany.com/pricing",
+   "page": {
+    "label": "Next areas",
+    "href": "star.html"
+   },
+   "data": [
+    "faq/corpus/home.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "switch-provider",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "Do I have to switch my electricity provider?",
+   "a": "Not always. It depends on who delivers your power. In co-op and city utility areas (Austin Energy is one), your utility stays and Base adds only the battery.",
+   "number": null,
+   "source": "Base How it works page (faq/corpus/how-it-works.md)",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "Next areas",
+    "href": "star.html"
+   },
+   "data": [
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "what-to-do",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "What do I need to do?",
+   "a": "Check 5 short answers about your home, then add one photo of your panel if you can. City permits fill in most of it first; you only confirm or correct.",
+   "number": "5 questions and 1 photo",
+   "source": "The My Home steps. Each answer starts from the city permit record for the home.",
+   "source_url": null,
+   "page": {
+    "label": "My Home",
+    "href": "onboarding.html#home"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "web/onboarding.js ORDER (the questions) and the photo task",
+   "label": null
+  },
+  {
+   "id": "install-visits",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "How long does the install take?",
+   "a": "Two visits. The first puts in the electrical equipment. Base comes back within three weeks to put the battery outside near your meter. No one needs to be home, and your power stays on.",
+   "number": "2 visits, within 3 weeks",
+   "source": "Base How it works page (faq/corpus/how-it-works.md)",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "Path to yes",
+    "href": "recovery.html"
+   },
+   "data": [
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "zip-time",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "How long does a permit take?",
+   "a": "About 13 days from application to permit, the median for 9 Base permits in 78745 (Austin (South)). After the permit comes the install and the final inspection.",
+   "number": "13 days median (9 Base permits)",
+   "source": "Applied date and issued date on each City of Austin permit.",
+   "source_url": null,
+   "page": {
+    "label": "Market",
+    "href": "market.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "median(julianday(issue_date) - julianday(applied_date)) over Base permits in the zip (data/fleet.db permits)",
+   "zip_aware": true,
+   "default_zip": "78745",
+   "by_zip": {
+    "76574": {
+     "a": "The Austin feed has too few permits in 76574 (Taylor) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78602": {
+     "a": "The Austin feed has too few permits in 78602 (Bastrop) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78610": {
+     "a": "The Austin feed has too few permits in 78610 (Buda) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78613": {
+     "a": "The Austin feed has too few permits in 78613 (Cedar Park) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78617": {
+     "a": "About 9 days, the median for 9 backup permits in 78617 (Del Valle) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "9 days median (9 backup permits)"
+    },
+    "78621": {
+     "a": "The Austin feed has too few permits in 78621 (Elgin) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78626": {
+     "a": "The Austin feed has too few permits in 78626 (Georgetown) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78628": {
+     "a": "The Austin feed has too few permits in 78628 (Georgetown) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78634": {
+     "a": "The Austin feed has too few permits in 78634 (Hutto) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78640": {
+     "a": "The Austin feed has too few permits in 78640 (Kyle) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78641": {
+     "a": "The Austin feed has too few permits in 78641 (Leander) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78653": {
+     "a": "About 4 days, the median for 19 backup permits in 78653 (Manor) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "4 days median (19 backup permits)"
+    },
+    "78660": {
+     "a": "About 6 days, the median for 14 backup permits in 78660 (Pflugerville) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "6 days median (14 backup permits)"
+    },
+    "78664": {
+     "a": "The Austin feed has too few permits in 78664 (Round Rock) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78665": {
+     "a": "The Austin feed has too few permits in 78665 (Round Rock) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78666": {
+     "a": "The Austin feed has too few permits in 78666 (San Marcos) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78681": {
+     "a": "The Austin feed has too few permits in 78681 (Round Rock) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78701": {
+     "a": "About 54 days, the median for 6 backup permits in 78701 (Austin (downtown)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "54 days median (6 backup permits)"
+    },
+    "78702": {
+     "a": "About 14 days from application to permit, the median for 7 Base permits in 78702 (Austin (East)). After the permit comes the install and the final inspection.",
+     "number": "14 days median (7 Base permits)"
+    },
+    "78703": {
+     "a": "About 12 days from application to permit, the median for 14 Base permits in 78703 (Austin (Tarrytown)). After the permit comes the install and the final inspection.",
+     "number": "12 days median (14 Base permits)"
+    },
+    "78704": {
+     "a": "About 15 days from application to permit, the median for 19 Base permits in 78704 (Austin (South Congress)). After the permit comes the install and the final inspection.",
+     "number": "15 days median (19 Base permits)"
+    },
+    "78705": {
+     "a": "About 3 days, the median for 6 backup permits in 78705 (Austin (West Campus)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "3 days median (6 backup permits)"
+    },
+    "78721": {
+     "a": "About 6 days, the median for 12 backup permits in 78721 (Austin (East MLK)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "6 days median (12 backup permits)"
+    },
+    "78722": {
+     "a": "About 14 days, the median for 5 backup permits in 78722 (Austin (Cherrywood)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "14 days median (5 backup permits)"
+    },
+    "78723": {
+     "a": "About 12 days from application to permit, the median for 12 Base permits in 78723 (Austin (Windsor Park)). After the permit comes the install and the final inspection.",
+     "number": "12 days median (12 Base permits)"
+    },
+    "78724": {
+     "a": "About 14 days from application to permit, the median for 9 Base permits in 78724 (Austin (Northeast)). After the permit comes the install and the final inspection.",
+     "number": "14 days median (9 Base permits)"
+    },
+    "78725": {
+     "a": "About 5 days, the median for 5 backup permits in 78725 (Austin (Southeast)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "5 days median (5 backup permits)"
+    },
+    "78726": {
+     "a": "About 8 days, the median for 20 backup permits in 78726 (Austin (Four Points)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "8 days median (20 backup permits)"
+    },
+    "78727": {
+     "a": "About 11 days from application to permit, the median for 7 Base permits in 78727 (Austin (Scofield)). After the permit comes the install and the final inspection.",
+     "number": "11 days median (7 Base permits)"
+    },
+    "78728": {
+     "a": "About 40 days, the median for 4 backup permits in 78728 (Austin (Wells Branch)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "40 days median (4 backup permits)"
+    },
+    "78729": {
+     "a": "About 12 days from application to permit, the median for 3 Base permits in 78729 (Austin (Anderson Mill)). After the permit comes the install and the final inspection.",
+     "number": "12 days median (3 Base permits)"
+    },
+    "78730": {
+     "a": "About 13 days from application to permit, the median for 11 Base permits in 78730 (Austin (River Place)). After the permit comes the install and the final inspection.",
+     "number": "13 days median (11 Base permits)"
+    },
+    "78731": {
+     "a": "About 13 days from application to permit, the median for 45 Base permits in 78731 (Austin (Northwest Hills)). After the permit comes the install and the final inspection.",
+     "number": "13 days median (45 Base permits)"
+    },
+    "78732": {
+     "a": "About 16 days from application to permit, the median for 4 Base permits in 78732 (Austin (Steiner Ranch)). After the permit comes the install and the final inspection.",
+     "number": "16 days median (4 Base permits)"
+    },
+    "78733": {
+     "a": "About 14 days from application to permit, the median for 4 Base permits in 78733 (Austin (Rob Roy)). After the permit comes the install and the final inspection.",
+     "number": "14 days median (4 Base permits)"
+    },
+    "78734": {
+     "a": "About 13 days from application to permit, the median for 3 Base permits in 78734 (Lakeway). After the permit comes the install and the final inspection.",
+     "number": "13 days median (3 Base permits)"
+    },
+    "78735": {
+     "a": "About 13 days from application to permit, the median for 13 Base permits in 78735 (Austin (Barton Creek)). After the permit comes the install and the final inspection.",
+     "number": "13 days median (13 Base permits)"
+    },
+    "78736": {
+     "a": "About 7 days, the median for 9 backup permits in 78736 (Austin (Oak Hill West)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "7 days median (9 backup permits)"
+    },
+    "78737": {
+     "a": "The Austin feed has too few permits in 78737 (Austin (Dripping Springs edge)) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78738": {
+     "a": "About 17 days from application to permit, the median for 9 Base permits in 78738 (Bee Cave). After the permit comes the install and the final inspection.",
+     "number": "17 days median (9 Base permits)"
+    },
+    "78739": {
+     "a": "About 4 days, the median for 14 backup permits in 78739 (Austin (Circle C)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "4 days median (14 backup permits)"
+    },
+    "78741": {
+     "a": "About 34 days, the median for 14 backup permits in 78741 (Austin (Riverside)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "34 days median (14 backup permits)"
+    },
+    "78742": {
+     "a": "The Austin feed has too few permits in 78742 (Austin (Montopolis)) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    },
+    "78744": {
+     "a": "About 11 days from application to permit, the median for 3 Base permits in 78744 (Austin (Southeast)). After the permit comes the install and the final inspection.",
+     "number": "11 days median (3 Base permits)"
+    },
+    "78745": {
+     "a": "About 13 days from application to permit, the median for 9 Base permits in 78745 (Austin (South)). After the permit comes the install and the final inspection.",
+     "number": "13 days median (9 Base permits)"
+    },
+    "78746": {
+     "a": "About 14 days from application to permit, the median for 35 Base permits in 78746 (West Lake Hills). After the permit comes the install and the final inspection.",
+     "number": "14 days median (35 Base permits)"
+    },
+    "78747": {
+     "a": "About 15 days from application to permit, the median for 9 Base permits in 78747 (Austin (Far South)). After the permit comes the install and the final inspection.",
+     "number": "15 days median (9 Base permits)"
+    },
+    "78748": {
+     "a": "About 16 days from application to permit, the median for 5 Base permits in 78748 (Austin (Southpark Meadows)). After the permit comes the install and the final inspection.",
+     "number": "16 days median (5 Base permits)"
+    },
+    "78749": {
+     "a": "About 12 days from application to permit, the median for 12 Base permits in 78749 (Austin (Southwest)). After the permit comes the install and the final inspection.",
+     "number": "12 days median (12 Base permits)"
+    },
+    "78750": {
+     "a": "About 8 days, the median for 31 backup permits in 78750 (Austin (Jollyville)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "8 days median (31 backup permits)"
+    },
+    "78751": {
+     "a": "About 16 days from application to permit, the median for 6 Base permits in 78751 (Austin (Hyde Park)). After the permit comes the install and the final inspection.",
+     "number": "16 days median (6 Base permits)"
+    },
+    "78752": {
+     "a": "About 12 days, the median for 6 backup permits in 78752 (Austin (North Lamar)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "12 days median (6 backup permits)"
+    },
+    "78753": {
+     "a": "About 15 days from application to permit, the median for 6 Base permits in 78753 (Austin (North)). After the permit comes the install and the final inspection.",
+     "number": "15 days median (6 Base permits)"
+    },
+    "78754": {
+     "a": "About 4 days, the median for 16 backup permits in 78754 (Austin (Harris Branch)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "4 days median (16 backup permits)"
+    },
+    "78756": {
+     "a": "About 16 days from application to permit, the median for 6 Base permits in 78756 (Austin (Brentwood)). After the permit comes the install and the final inspection.",
+     "number": "16 days median (6 Base permits)"
+    },
+    "78757": {
+     "a": "About 14 days from application to permit, the median for 29 Base permits in 78757 (Austin (Allandale)). After the permit comes the install and the final inspection.",
+     "number": "14 days median (29 Base permits)"
+    },
+    "78758": {
+     "a": "About 13 days, the median for 18 backup permits in 78758 (Austin (North Burnet)) since 2025 (all installers). Base's own Austin median is 14 days.",
+     "number": "13 days median (18 backup permits)"
+    },
+    "78759": {
+     "a": "About 14 days from application to permit, the median for 21 Base permits in 78759 (Austin (Arboretum)). After the permit comes the install and the final inspection.",
+     "number": "14 days median (21 Base permits)"
+    },
+    "78957": {
+     "a": "The Austin feed has too few permits in 78957 (Smithville) to say. Across Austin, Base's median is 14 days from application to permit. Your city may differ.",
+     "number": "14 days, Austin-wide Base median"
+    }
+   }
+  },
+  {
+   "id": "zip-base",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "How busy is Base near me?",
+   "a": "Base has 9 backup battery permits in 78745 (Austin (South)) this year, rank 13 of 35 zips. 6 are final and 3 are still open. The newest was issued 2026-09-18.",
+   "number": "9 Base permits in 2026, rank 13 of 35",
+   "source": "City of Austin permits with contractor Base Power and work class Auxiliary Power, issued in 2026.",
+   "source_url": null,
+   "page": {
+    "label": "Market",
+    "href": "market.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "SELECT COUNT(*) FROM permits WHERE is_base=1 AND work_class='Auxiliary Power' AND issue_date>='2026' AND zip='<zip>'",
+   "zip_aware": true,
+   "default_zip": "78745",
+   "by_zip": {
+    "76574": {
+     "a": "We cannot tell. The Austin permit feed does not cover 76574 (Taylor), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78602": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78602 (Bastrop), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78610": {
+     "a": "The Austin permit record shows no Base backup permits in 78610 (Buda) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78613": {
+     "a": "The Austin permit record shows no Base backup permits in 78613 (Cedar Park) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78617": {
+     "a": "Base has 1 backup battery permits in 78617 (Del Valle) this year, rank 31 of 35 zips. 0 are final and 1 are still open. The newest was issued 2026-09-18.",
+     "number": "1 Base permits in 2026, rank 31 of 35"
+    },
+    "78621": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78621 (Elgin), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78626": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78626 (Georgetown), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78628": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78628 (Georgetown), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78634": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78634 (Hutto), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78640": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78640 (Kyle), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78641": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78641 (Leander), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78653": {
+     "a": "Base has 1 backup battery permits in 78653 (Manor) this year, rank 32 of 35 zips. 0 are final and 1 are still open. The newest was issued 2026-08-28.",
+     "number": "1 Base permits in 2026, rank 32 of 35"
+    },
+    "78660": {
+     "a": "Base has 1 backup battery permits in 78660 (Pflugerville) this year, rank 33 of 35 zips. 0 are final and 1 are still open. The newest was issued 2026-09-18.",
+     "number": "1 Base permits in 2026, rank 33 of 35"
+    },
+    "78664": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78664 (Round Rock), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78665": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78665 (Round Rock), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78666": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78666 (San Marcos), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78681": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78681 (Round Rock), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    },
+    "78701": {
+     "a": "The Austin permit record shows no Base backup permits in 78701 (Austin (downtown)) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78702": {
+     "a": "Base has 7 backup battery permits in 78702 (Austin (East)) this year, rank 15 of 35 zips. 0 are final and 7 are still open. The newest was issued 2026-09-10.",
+     "number": "7 Base permits in 2026, rank 15 of 35"
+    },
+    "78703": {
+     "a": "Base has 14 backup battery permits in 78703 (Austin (Tarrytown)) this year, rank 6 of 35 zips. 6 are final and 8 are still open. The newest was issued 2026-09-22.",
+     "number": "14 Base permits in 2026, rank 6 of 35"
+    },
+    "78704": {
+     "a": "Base has 19 backup battery permits in 78704 (Austin (South Congress)) this year, rank 5 of 35 zips. 6 are final and 13 are still open. The newest was issued 2026-09-22.",
+     "number": "19 Base permits in 2026, rank 5 of 35"
+    },
+    "78705": {
+     "a": "The Austin permit record shows no Base backup permits in 78705 (Austin (West Campus)) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78721": {
+     "a": "Base has 1 backup battery permits in 78721 (Austin (East MLK)) this year, rank 34 of 35 zips. 0 are final and 1 are still open. The newest was issued 2026-08-07.",
+     "number": "1 Base permits in 2026, rank 34 of 35"
+    },
+    "78722": {
+     "a": "The Austin permit record shows no Base backup permits in 78722 (Austin (Cherrywood)) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78723": {
+     "a": "Base has 12 backup battery permits in 78723 (Austin (Windsor Park)) this year, rank 8 of 35 zips. 2 are final and 10 are still open. The newest was issued 2026-09-18.",
+     "number": "12 Base permits in 2026, rank 8 of 35"
+    },
+    "78724": {
+     "a": "Base has 9 backup battery permits in 78724 (Austin (Northeast)) this year, rank 11 of 35 zips. 2 are final and 7 are still open. The newest was issued 2026-09-22.",
+     "number": "9 Base permits in 2026, rank 11 of 35"
+    },
+    "78725": {
+     "a": "The Austin permit record shows no Base backup permits in 78725 (Austin (Southeast)) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78726": {
+     "a": "The Austin permit record shows no Base backup permits in 78726 (Austin (Four Points)) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78727": {
+     "a": "Base has 7 backup battery permits in 78727 (Austin (Scofield)) this year, rank 16 of 35 zips. 1 are final and 6 are still open. The newest was issued 2026-09-18.",
+     "number": "7 Base permits in 2026, rank 16 of 35"
+    },
+    "78728": {
+     "a": "The Austin permit record shows no Base backup permits in 78728 (Austin (Wells Branch)) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78729": {
+     "a": "Base has 3 backup battery permits in 78729 (Austin (Anderson Mill)) this year, rank 23 of 35 zips. 0 are final and 3 are still open. The newest was issued 2026-09-23.",
+     "number": "3 Base permits in 2026, rank 23 of 35"
+    },
+    "78730": {
+     "a": "Base has 11 backup battery permits in 78730 (Austin (River Place)) this year, rank 10 of 35 zips. 5 are final and 6 are still open. The newest was issued 2026-09-22.",
+     "number": "11 Base permits in 2026, rank 10 of 35"
+    },
+    "78731": {
+     "a": "Base has 45 backup battery permits in 78731 (Austin (Northwest Hills)) this year, rank 1 of 35 zips. 3 are final and 42 are still open. The newest was issued 2026-09-22.",
+     "number": "45 Base permits in 2026, rank 1 of 35"
+    },
+    "78732": {
+     "a": "Base has 4 backup battery permits in 78732 (Austin (Steiner Ranch)) this year, rank 21 of 35 zips. 1 are final and 3 are still open. The newest was issued 2026-09-22.",
+     "number": "4 Base permits in 2026, rank 21 of 35"
+    },
+    "78733": {
+     "a": "Base has 4 backup battery permits in 78733 (Austin (Rob Roy)) this year, rank 22 of 35 zips. 1 are final and 3 are still open. The newest was issued 2026-09-07.",
+     "number": "4 Base permits in 2026, rank 22 of 35"
+    },
+    "78734": {
+     "a": "Base has 3 backup battery permits in 78734 (Lakeway) this year, rank 24 of 35 zips. 0 are final and 3 are still open. The newest was issued 2026-09-18.",
+     "number": "3 Base permits in 2026, rank 24 of 35"
+    },
+    "78735": {
+     "a": "Base has 13 backup battery permits in 78735 (Austin (Barton Creek)) this year, rank 7 of 35 zips. 2 are final and 11 are still open. The newest was issued 2026-09-22.",
+     "number": "13 Base permits in 2026, rank 7 of 35"
+    },
+    "78736": {
+     "a": "Base has 2 backup battery permits in 78736 (Austin (Oak Hill West)) this year, rank 26 of 35 zips. 1 are final and 1 are still open. The newest was issued 2026-09-18.",
+     "number": "2 Base permits in 2026, rank 26 of 35"
+    },
+    "78737": {
+     "a": "The Austin permit record shows no Base backup permits in 78737 (Austin (Dripping Springs edge)) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78738": {
+     "a": "Base has 9 backup battery permits in 78738 (Bee Cave) this year, rank 12 of 35 zips. 1 are final and 8 are still open. The newest was issued 2026-09-22.",
+     "number": "9 Base permits in 2026, rank 12 of 35"
+    },
+    "78739": {
+     "a": "The Austin permit record shows no Base backup permits in 78739 (Austin (Circle C)) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78741": {
+     "a": "Base has 2 backup battery permits in 78741 (Austin (Riverside)) this year, rank 27 of 35 zips. 0 are final and 2 are still open. The newest was issued 2026-08-25.",
+     "number": "2 Base permits in 2026, rank 27 of 35"
+    },
+    "78742": {
+     "a": "The Austin permit record shows no Base backup permits in 78742 (Austin (Montopolis)) in 2026. You could be one of the first on your street.",
+     "number": "0 Base permits in 2026"
+    },
+    "78744": {
+     "a": "Base has 3 backup battery permits in 78744 (Austin (Southeast)) this year, rank 25 of 35 zips. 1 are final and 2 are still open. The newest was issued 2026-09-04.",
+     "number": "3 Base permits in 2026, rank 25 of 35"
+    },
+    "78745": {
+     "a": "Base has 9 backup battery permits in 78745 (Austin (South)) this year, rank 13 of 35 zips. 6 are final and 3 are still open. The newest was issued 2026-09-18.",
+     "number": "9 Base permits in 2026, rank 13 of 35"
+    },
+    "78746": {
+     "a": "Base has 35 backup battery permits in 78746 (West Lake Hills) this year, rank 2 of 35 zips. 7 are final and 28 are still open. The newest was issued 2026-09-22.",
+     "number": "35 Base permits in 2026, rank 2 of 35"
+    },
+    "78747": {
+     "a": "Base has 9 backup battery permits in 78747 (Austin (Far South)) this year, rank 14 of 35 zips. 0 are final and 9 are still open. The newest was issued 2026-09-18.",
+     "number": "9 Base permits in 2026, rank 14 of 35"
+    },
+    "78748": {
+     "a": "Base has 5 backup battery permits in 78748 (Austin (Southpark Meadows)) this year, rank 20 of 35 zips. 1 are final and 4 are still open. The newest was issued 2026-09-21.",
+     "number": "5 Base permits in 2026, rank 20 of 35"
+    },
+    "78749": {
+     "a": "Base has 12 backup battery permits in 78749 (Austin (Southwest)) this year, rank 9 of 35 zips. 0 are final and 12 are still open. The newest was issued 2026-09-22.",
+     "number": "12 Base permits in 2026, rank 9 of 35"
+    },
+    "78750": {
+     "a": "Base has 2 backup battery permits in 78750 (Austin (Jollyville)) this year, rank 28 of 35 zips. 0 are final and 2 are still open. The newest was issued 2026-09-07.",
+     "number": "2 Base permits in 2026, rank 28 of 35"
+    },
+    "78751": {
+     "a": "Base has 6 backup battery permits in 78751 (Austin (Hyde Park)) this year, rank 17 of 35 zips. 0 are final and 6 are still open. The newest was issued 2026-09-10.",
+     "number": "6 Base permits in 2026, rank 17 of 35"
+    },
+    "78752": {
+     "a": "Base has 2 backup battery permits in 78752 (Austin (North Lamar)) this year, rank 29 of 35 zips. 0 are final and 2 are still open. The newest was issued 2026-09-07.",
+     "number": "2 Base permits in 2026, rank 29 of 35"
+    },
+    "78753": {
+     "a": "Base has 6 backup battery permits in 78753 (Austin (North)) this year, rank 18 of 35 zips. 1 are final and 5 are still open. The newest was issued 2026-09-22.",
+     "number": "6 Base permits in 2026, rank 18 of 35"
+    },
+    "78754": {
+     "a": "Base has 2 backup battery permits in 78754 (Austin (Harris Branch)) this year, rank 30 of 35 zips. 0 are final and 2 are still open. The newest was issued 2026-09-18.",
+     "number": "2 Base permits in 2026, rank 30 of 35"
+    },
+    "78756": {
+     "a": "Base has 6 backup battery permits in 78756 (Austin (Brentwood)) this year, rank 19 of 35 zips. 1 are final and 5 are still open. The newest was issued 2026-09-22.",
+     "number": "6 Base permits in 2026, rank 19 of 35"
+    },
+    "78757": {
+     "a": "Base has 29 backup battery permits in 78757 (Austin (Allandale)) this year, rank 3 of 35 zips. 3 are final and 26 are still open. The newest was issued 2026-09-23.",
+     "number": "29 Base permits in 2026, rank 3 of 35"
+    },
+    "78758": {
+     "a": "Base has 1 backup battery permits in 78758 (Austin (North Burnet)) this year, rank 35 of 35 zips. 0 are final and 1 are still open. The newest was issued 2026-09-22.",
+     "number": "1 Base permits in 2026, rank 35 of 35"
+    },
+    "78759": {
+     "a": "Base has 21 backup battery permits in 78759 (Austin (Arboretum)) this year, rank 4 of 35 zips. 1 are final and 20 are still open. The newest was issued 2026-09-22.",
+     "number": "21 Base permits in 2026, rank 4 of 35"
+    },
+    "78957": {
+     "a": "We cannot tell. The Austin permit feed does not cover 78957 (Smithville), so Base work there is not visible to us.",
+     "number": "No data in the Austin feed"
+    }
+   }
+  },
+  {
+   "id": "zip-neighbours",
+   "audience": "member",
+   "category": "Getting started",
+   "q": "How many neighbours have backup already?",
+   "a": "The City of Austin permit record shows 196 backup permits in 78745 (Austin (South)) since 2015: 90 generators, 30 batteries, 76 solar plus battery. That is about 14 for every 1,000 owner homes.",
+   "number": "196 backup permits; also 894 solar only",
+   "source": "City of Austin issued construction permits (open data), classified by type. Contractor names other than Base are hidden.",
+   "source_url": null,
+   "page": {
+    "label": "Permit explorer",
+    "href": "explorer.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "SELECT category, COUNT(*) FROM permits WHERE zip='<zip>' AND status not void or withdrawn GROUP BY category",
+   "zip_aware": true,
+   "default_zip": "78745",
+   "by_zip": {
+    "76574": {
+     "a": "The City of Austin permit feed has no rows for 76574 (Taylor). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78602": {
+     "a": "The City of Austin permit feed has no rows for 78602 (Bastrop). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78610": {
+     "a": "The City of Austin permit record shows 0 backup permits in 78610 (Buda) since 2015: 0 generators, 0 batteries, 0 solar plus battery. That is about 0 for every 1,000 owner homes.",
+     "number": "0 backup permits; also 2 solar only"
+    },
+    "78613": {
+     "a": "The City of Austin permit record shows 1 backup permits in 78613 (Cedar Park) since 2015: 1 generators, 0 batteries, 0 solar plus battery. That is about 0 for every 1,000 owner homes.",
+     "number": "1 backup permits; also 1 solar only"
+    },
+    "78617": {
+     "a": "The City of Austin permit record shows 26 backup permits in 78617 (Del Valle) since 2015: 10 generators, 5 batteries, 11 solar plus battery. That is about 4 for every 1,000 owner homes.",
+     "number": "26 backup permits; also 360 solar only"
+    },
+    "78621": {
+     "a": "The City of Austin permit feed has no rows for 78621 (Elgin). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78626": {
+     "a": "The City of Austin permit feed has no rows for 78626 (Georgetown). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78628": {
+     "a": "The City of Austin permit feed has no rows for 78628 (Georgetown). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78634": {
+     "a": "The City of Austin permit feed has no rows for 78634 (Hutto). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78640": {
+     "a": "The City of Austin permit feed has no rows for 78640 (Kyle). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78641": {
+     "a": "The City of Austin permit feed has no rows for 78641 (Leander). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78653": {
+     "a": "The City of Austin permit record shows 56 backup permits in 78653 (Manor) since 2015: 4 generators, 10 batteries, 42 solar plus battery. That is about 5 for every 1,000 owner homes.",
+     "number": "56 backup permits; also 745 solar only"
+    },
+    "78660": {
+     "a": "The City of Austin permit record shows 52 backup permits in 78660 (Pflugerville) since 2015: 13 generators, 7 batteries, 32 solar plus battery. That is about 2 for every 1,000 owner homes.",
+     "number": "52 backup permits; also 1,138 solar only"
+    },
+    "78664": {
+     "a": "The City of Austin permit feed has no rows for 78664 (Round Rock). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78665": {
+     "a": "The City of Austin permit feed has no rows for 78665 (Round Rock). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78666": {
+     "a": "The City of Austin permit feed has no rows for 78666 (San Marcos). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78681": {
+     "a": "The City of Austin permit feed has no rows for 78681 (Round Rock). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    },
+    "78701": {
+     "a": "The City of Austin permit record shows 25 backup permits in 78701 (Austin (downtown)) since 2015: 22 generators, 2 batteries, 1 solar plus battery. That is about 7 for every 1,000 owner homes.",
+     "number": "25 backup permits; also 9 solar only"
+    },
+    "78702": {
+     "a": "The City of Austin permit record shows 111 backup permits in 78702 (Austin (East)) since 2015: 44 generators, 20 batteries, 47 solar plus battery. That is about 20 for every 1,000 owner homes.",
+     "number": "111 backup permits; also 361 solar only"
+    },
+    "78703": {
+     "a": "The City of Austin permit record shows 385 backup permits in 78703 (Austin (Tarrytown)) since 2015: 285 generators, 38 batteries, 62 solar plus battery. That is about 63 for every 1,000 owner homes.",
+     "number": "385 backup permits; also 224 solar only"
+    },
+    "78704": {
+     "a": "The City of Austin permit record shows 427 backup permits in 78704 (Austin (South Congress)) since 2015: 214 generators, 74 batteries, 139 solar plus battery. That is about 46 for every 1,000 owner homes.",
+     "number": "427 backup permits; also 552 solar only"
+    },
+    "78705": {
+     "a": "The City of Austin permit record shows 23 backup permits in 78705 (Austin (West Campus)) since 2015: 10 generators, 7 batteries, 6 solar plus battery. That is about 14 for every 1,000 owner homes.",
+     "number": "23 backup permits; also 53 solar only"
+    },
+    "78721": {
+     "a": "The City of Austin permit record shows 37 backup permits in 78721 (Austin (East MLK)) since 2015: 10 generators, 6 batteries, 21 solar plus battery. That is about 14 for every 1,000 owner homes.",
+     "number": "37 backup permits; also 236 solar only"
+    },
+    "78722": {
+     "a": "The City of Austin permit record shows 24 backup permits in 78722 (Austin (Cherrywood)) since 2015: 11 generators, 2 batteries, 11 solar plus battery. That is about 14 for every 1,000 owner homes.",
+     "number": "24 backup permits; also 115 solar only"
+    },
+    "78723": {
+     "a": "The City of Austin permit record shows 169 backup permits in 78723 (Austin (Windsor Park)) since 2015: 54 generators, 34 batteries, 81 solar plus battery. That is about 21 for every 1,000 owner homes.",
+     "number": "169 backup permits; also 983 solar only"
+    },
+    "78724": {
+     "a": "The City of Austin permit record shows 64 backup permits in 78724 (Austin (Northeast)) since 2015: 16 generators, 22 batteries, 26 solar plus battery. That is about 10 for every 1,000 owner homes.",
+     "number": "64 backup permits; also 582 solar only"
+    },
+    "78725": {
+     "a": "The City of Austin permit record shows 32 backup permits in 78725 (Austin (Southeast)) since 2015: 11 generators, 5 batteries, 16 solar plus battery. That is about 10 for every 1,000 owner homes.",
+     "number": "32 backup permits; also 345 solar only"
+    },
+    "78726": {
+     "a": "The City of Austin permit record shows 54 backup permits in 78726 (Austin (Four Points)) since 2015: 34 generators, 2 batteries, 18 solar plus battery. That is about 21 for every 1,000 owner homes.",
+     "number": "54 backup permits; also 56 solar only"
+    },
+    "78727": {
+     "a": "The City of Austin permit record shows 141 backup permits in 78727 (Austin (Scofield)) since 2015: 61 generators, 25 batteries, 55 solar plus battery. That is about 24 for every 1,000 owner homes.",
+     "number": "141 backup permits; also 406 solar only"
+    },
+    "78728": {
+     "a": "The City of Austin permit record shows 17 backup permits in 78728 (Austin (Wells Branch)) since 2015: 13 generators, 1 batteries, 3 solar plus battery. That is about 4 for every 1,000 owner homes.",
+     "number": "17 backup permits; also 114 solar only"
+    },
+    "78729": {
+     "a": "The City of Austin permit record shows 115 backup permits in 78729 (Austin (Anderson Mill)) since 2015: 56 generators, 10 batteries, 49 solar plus battery. That is about 21 for every 1,000 owner homes.",
+     "number": "115 backup permits; also 265 solar only"
+    },
+    "78730": {
+     "a": "The City of Austin permit record shows 173 backup permits in 78730 (Austin (River Place)) since 2015: 104 generators, 25 batteries, 44 solar plus battery. That is about 64 for every 1,000 owner homes.",
+     "number": "173 backup permits; also 166 solar only"
+    },
+    "78731": {
+     "a": "The City of Austin permit record shows 614 backup permits in 78731 (Austin (Northwest Hills)) since 2015: 430 generators, 79 batteries, 105 solar plus battery. That is about 81 for every 1,000 owner homes.",
+     "number": "614 backup permits; also 421 solar only"
+    },
+    "78732": {
+     "a": "The City of Austin permit record shows 97 backup permits in 78732 (Austin (Steiner Ranch)) since 2015: 37 generators, 18 batteries, 42 solar plus battery. That is about 18 for every 1,000 owner homes.",
+     "number": "97 backup permits; also 240 solar only"
+    },
+    "78733": {
+     "a": "The City of Austin permit record shows 115 backup permits in 78733 (Austin (Rob Roy)) since 2015: 51 generators, 23 batteries, 41 solar plus battery. That is about 40 for every 1,000 owner homes.",
+     "number": "115 backup permits; also 205 solar only"
+    },
+    "78734": {
+     "a": "The City of Austin permit record shows 121 backup permits in 78734 (Lakeway) since 2015: 52 generators, 24 batteries, 45 solar plus battery. That is about 15 for every 1,000 owner homes.",
+     "number": "121 backup permits; also 260 solar only"
+    },
+    "78735": {
+     "a": "The City of Austin permit record shows 191 backup permits in 78735 (Austin (Barton Creek)) since 2015: 119 generators, 31 batteries, 41 solar plus battery. That is about 42 for every 1,000 owner homes.",
+     "number": "191 backup permits; also 228 solar only"
+    },
+    "78736": {
+     "a": "The City of Austin permit record shows 43 backup permits in 78736 (Austin (Oak Hill West)) since 2015: 12 generators, 8 batteries, 23 solar plus battery. That is about 15 for every 1,000 owner homes.",
+     "number": "43 backup permits; also 154 solar only"
+    },
+    "78737": {
+     "a": "The City of Austin permit record shows 5 backup permits in 78737 (Austin (Dripping Springs edge)) since 2015: 4 generators, 0 batteries, 1 solar plus battery. That is about 1 for every 1,000 owner homes.",
+     "number": "5 backup permits; also 11 solar only"
+    },
+    "78738": {
+     "a": "The City of Austin permit record shows 194 backup permits in 78738 (Bee Cave) since 2015: 80 generators, 35 batteries, 79 solar plus battery. That is about 21 for every 1,000 owner homes.",
+     "number": "194 backup permits; also 332 solar only"
+    },
+    "78739": {
+     "a": "The City of Austin permit record shows 120 backup permits in 78739 (Austin (Circle C)) since 2015: 55 generators, 22 batteries, 43 solar plus battery. That is about 18 for every 1,000 owner homes.",
+     "number": "120 backup permits; also 185 solar only"
+    },
+    "78741": {
+     "a": "The City of Austin permit record shows 50 backup permits in 78741 (Austin (Riverside)) since 2015: 19 generators, 10 batteries, 21 solar plus battery. That is about 14 for every 1,000 owner homes.",
+     "number": "50 backup permits; also 229 solar only"
+    },
+    "78742": {
+     "a": "The City of Austin permit record shows 1 backup permits in 78742 (Austin (Montopolis)) since 2015: 1 generators, 0 batteries, 0 solar plus battery. That is about 5 for every 1,000 owner homes.",
+     "number": "1 backup permits; also 10 solar only"
+    },
+    "78744": {
+     "a": "The City of Austin permit record shows 175 backup permits in 78744 (Austin (Southeast)) since 2015: 41 generators, 31 batteries, 103 solar plus battery. That is about 16 for every 1,000 owner homes.",
+     "number": "175 backup permits; also 1,272 solar only"
+    },
+    "78745": {
+     "a": "The City of Austin permit record shows 196 backup permits in 78745 (Austin (South)) since 2015: 90 generators, 30 batteries, 76 solar plus battery. That is about 14 for every 1,000 owner homes.",
+     "number": "196 backup permits; also 894 solar only"
+    },
+    "78746": {
+     "a": "The City of Austin permit record shows 584 backup permits in 78746 (West Lake Hills) since 2015: 394 generators, 71 batteries, 119 solar plus battery. That is about 79 for every 1,000 owner homes.",
+     "number": "584 backup permits; also 525 solar only"
+    },
+    "78747": {
+     "a": "The City of Austin permit record shows 116 backup permits in 78747 (Austin (Far South)) since 2015: 48 generators, 26 batteries, 42 solar plus battery. That is about 19 for every 1,000 owner homes.",
+     "number": "116 backup permits; also 641 solar only"
+    },
+    "78748": {
+     "a": "The City of Austin permit record shows 181 backup permits in 78748 (Austin (Southpark Meadows)) since 2015: 62 generators, 39 batteries, 80 solar plus battery. That is about 13 for every 1,000 owner homes.",
+     "number": "181 backup permits; also 986 solar only"
+    },
+    "78749": {
+     "a": "The City of Austin permit record shows 192 backup permits in 78749 (Austin (Southwest)) since 2015: 98 generators, 27 batteries, 67 solar plus battery. That is about 20 for every 1,000 owner homes.",
+     "number": "192 backup permits; also 525 solar only"
+    },
+    "78750": {
+     "a": "The City of Austin permit record shows 186 backup permits in 78750 (Austin (Jollyville)) since 2015: 90 generators, 25 batteries, 71 solar plus battery. That is about 24 for every 1,000 owner homes.",
+     "number": "186 backup permits; also 219 solar only"
+    },
+    "78751": {
+     "a": "The City of Austin permit record shows 76 backup permits in 78751 (Austin (Hyde Park)) since 2015: 30 generators, 14 batteries, 32 solar plus battery. That is about 33 for every 1,000 owner homes.",
+     "number": "76 backup permits; also 145 solar only"
+    },
+    "78752": {
+     "a": "The City of Austin permit record shows 29 backup permits in 78752 (Austin (North Lamar)) since 2015: 17 generators, 8 batteries, 4 solar plus battery. That is about 13 for every 1,000 owner homes.",
+     "number": "29 backup permits; also 109 solar only"
+    },
+    "78753": {
+     "a": "The City of Austin permit record shows 119 backup permits in 78753 (Austin (North)) since 2015: 56 generators, 25 batteries, 38 solar plus battery. That is about 15 for every 1,000 owner homes.",
+     "number": "119 backup permits; also 541 solar only"
+    },
+    "78754": {
+     "a": "The City of Austin permit record shows 109 backup permits in 78754 (Austin (Harris Branch)) since 2015: 31 generators, 31 batteries, 47 solar plus battery. That is about 15 for every 1,000 owner homes.",
+     "number": "109 backup permits; also 639 solar only"
+    },
+    "78756": {
+     "a": "The City of Austin permit record shows 78 backup permits in 78756 (Austin (Brentwood)) since 2015: 44 generators, 15 batteries, 19 solar plus battery. That is about 39 for every 1,000 owner homes.",
+     "number": "78 backup permits; also 126 solar only"
+    },
+    "78757": {
+     "a": "The City of Austin permit record shows 244 backup permits in 78757 (Austin (Allandale)) since 2015: 115 generators, 50 batteries, 79 solar plus battery. That is about 36 for every 1,000 owner homes.",
+     "number": "244 backup permits; also 393 solar only"
+    },
+    "78758": {
+     "a": "The City of Austin permit record shows 104 backup permits in 78758 (Austin (North Burnet)) since 2015: 48 generators, 16 batteries, 40 solar plus battery. That is about 15 for every 1,000 owner homes.",
+     "number": "104 backup permits; also 353 solar only"
+    },
+    "78759": {
+     "a": "The City of Austin permit record shows 399 backup permits in 78759 (Austin (Arboretum)) since 2015: 249 generators, 62 batteries, 88 solar plus battery. That is about 39 for every 1,000 owner homes.",
+     "number": "399 backup permits; also 432 solar only"
+    },
+    "78957": {
+     "a": "The City of Austin permit feed has no rows for 78957 (Smithville). Your city or county keeps its own permits, and we do not read them yet.",
+     "number": "No data in the Austin feed"
+    }
+   }
+  },
+  {
+   "id": "breaker",
+   "audience": "member",
+   "category": "My home and the photo",
+   "q": "Do I need to read my breaker?",
+   "a": "No. The guide does not ask you to. For 32 of 40 sample homes the records give a starting point: 9 from a panel permit, 23 from the year the home was built. An engineer confirms the size. A photo only makes it faster.",
+   "number": "32 of 40 sample homes have a record to start from",
+   "source": "City permits for each sample home (panel and service work) and the build year. The voice guide says: we will not ask you to read the breaker.",
+   "source_url": null,
+   "page": {
+    "label": "Voice guide",
+    "href": "voice.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "data/members.json fields.main_breaker_amps.source (permit number or 'built <year>')",
+   "label": null
+  },
+  {
+   "id": "no-photo",
+   "audience": "member",
+   "category": "My home and the photo",
+   "q": "What if I can't do the photo?",
+   "a": "Skip it. The voice guide reads each step out loud and has a Skip the photo button. Hand this to a caregiver shows every step on one page as text. Some fix steps are done by Base or an electrician, not by you.",
+   "number": "41 of 62 fix steps in our cases are done by Base or an electrician, not you",
+   "source": "The voice guide and caregiver view, and the fix steps in Path to yes.",
+   "source_url": null,
+   "page": {
+    "label": "Voice guide",
+    "href": "voice.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "web/recovery.json cases[].blockers[].steps[].who; web/voice.html caregiver switch",
+   "label": null
+  },
+  {
+   "id": "zip-ready",
+   "audience": "member",
+   "category": "My home and the photo",
+   "q": "Are homes here likely ready (200 A)?",
+   "a": "Likely, for many. About 11% of owner homes in 78745 (Austin (South)) probably have 200 A service, about 753 of 14,025. Our estimate of easy-fit homes is 414. The public record does not show your panel; an engineer confirms it.",
+   "number": "753 likely 200 A of 14,025 owner homes; 414 easy fit",
+   "source": "Census (ACS) home counts and build year, plus permit history. An estimate, not a count of real panels.",
+   "source_url": null,
+   "page": {
+    "label": "Next areas",
+    "href": "star.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "data/funnel.json rows[zip=78745].stages likely_200a, easy_fit (built by house/funnel.py)",
+   "zip_aware": true,
+   "default_zip": "78745",
+   "by_zip": {
+    "76574": {
+     "a": "Likely, for many. About 50% of owner homes in 76574 (Taylor) probably have 200 A service, about 2,970 of 5,941. Our estimate of easy-fit homes is 1,634. The public record does not show your panel; an engineer confirms it.",
+     "number": "2,970 likely 200 A of 5,941 owner homes; 1,634 easy fit"
+    },
+    "78602": {
+     "a": "The estimate for 78602 (Bastrop) is zero, because no Base offer was found there, not because of the panels. Build-year rule: median year built 2003 -> 80% likely 200A.",
+     "number": "0 likely 200 A of 9,697 owner homes; 0 easy fit"
+    },
+    "78610": {
+     "a": "The estimate for 78610 (Buda) is zero, because no Base offer was found there, not because of the panels. Build-year rule: permit feed covers this zip: 0 new SFR + 7 service upgrades of 1487 permits = 0% likely 200A.",
+     "number": "0 likely 200 A of 13,900 owner homes; 0 easy fit"
+    },
+    "78613": {
+     "a": "The estimate for 78613 (Cedar Park) is zero, because no Base offer was found there, not because of the panels. Build-year rule: median year built 2004 -> 80% likely 200A.",
+     "number": "0 likely 200 A of 21,670 owner homes; 0 easy fit"
+    },
+    "78617": {
+     "a": "Likely, for many. About 10% of owner homes in 78617 (Del Valle) probably have 200 A service, about 255 of 5,177. Our estimate of easy-fit homes is 141. The public record does not show your panel; an engineer confirms it.",
+     "number": "255 likely 200 A of 5,177 owner homes; 141 easy fit"
+    },
+    "78621": {
+     "a": "Likely, for many. About 80% of owner homes in 78621 (Elgin) probably have 200 A service, about 2,582 of 7,685. Our estimate of easy-fit homes is 1,420. The public record does not show your panel; an engineer confirms it.",
+     "number": "2,582 likely 200 A of 7,685 owner homes; 1,420 easy fit"
+    },
+    "78626": {
+     "a": "Likely, for many. About 80% of owner homes in 78626 (Georgetown) probably have 200 A service, about 3,492 of 10,393. Our estimate of easy-fit homes is 1,921. The public record does not show your panel; an engineer confirms it.",
+     "number": "3,492 likely 200 A of 10,393 owner homes; 1,921 easy fit"
+    },
+    "78628": {
+     "a": "Likely, for many. About 80% of owner homes in 78628 (Georgetown) probably have 200 A service, about 4,839 of 14,403. Our estimate of easy-fit homes is 2,662. The public record does not show your panel; an engineer confirms it.",
+     "number": "4,839 likely 200 A of 14,403 owner homes; 2,662 easy fit"
+    },
+    "78634": {
+     "a": "Likely, for many. About 80% of owner homes in 78634 (Hutto) probably have 200 A service, about 9,936 of 12,420. Our estimate of easy-fit homes is 5,465. The public record does not show your panel; an engineer confirms it.",
+     "number": "9,936 likely 200 A of 12,420 owner homes; 5,465 easy fit"
+    },
+    "78640": {
+     "a": "The estimate for 78640 (Kyle) is zero, because no Base offer was found there, not because of the panels. Build-year rule: median year built 2010 -> 80% likely 200A.",
+     "number": "0 likely 200 A of 19,434 owner homes; 0 easy fit"
+    },
+    "78641": {
+     "a": "The estimate for 78641 (Leander) is zero, because no Base offer was found there, not because of the panels. Build-year rule: median year built 2011 -> 80% likely 200A.",
+     "number": "0 likely 200 A of 27,331 owner homes; 0 easy fit"
+    },
+    "78653": {
+     "a": "Likely, for many. About 16% of owner homes in 78653 (Manor) probably have 200 A service, about 1,143 of 12,261. Our estimate of easy-fit homes is 628. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,143 likely 200 A of 12,261 owner homes; 628 easy fit"
+    },
+    "78660": {
+     "a": "Likely, for many. About 12% of owner homes in 78660 (Pflugerville) probably have 200 A service, about 2,089 of 30,168. Our estimate of easy-fit homes is 1,149. The public record does not show your panel; an engineer confirms it.",
+     "number": "2,089 likely 200 A of 30,168 owner homes; 1,149 easy fit"
+    },
+    "78664": {
+     "a": "Likely, for many. About 50% of owner homes in 78664 (Round Rock) probably have 200 A service, about 6,302 of 12,603. Our estimate of easy-fit homes is 3,466. The public record does not show your panel; an engineer confirms it.",
+     "number": "6,302 likely 200 A of 12,603 owner homes; 3,466 easy fit"
+    },
+    "78665": {
+     "a": "Likely, for many. About 80% of owner homes in 78665 (Round Rock) probably have 200 A service, about 11,872 of 14,840. Our estimate of easy-fit homes is 6,530. The public record does not show your panel; an engineer confirms it.",
+     "number": "11,872 likely 200 A of 14,840 owner homes; 6,530 easy fit"
+    },
+    "78666": {
+     "a": "The estimate for 78666 (San Marcos) is zero, because no Base offer was found there, not because of the panels. Build-year rule: median year built 1999 -> 50% likely 200A.",
+     "number": "0 likely 200 A of 12,927 owner homes; 0 easy fit"
+    },
+    "78681": {
+     "a": "Likely, for many. About 50% of owner homes in 78681 (Round Rock) probably have 200 A service, about 7,436 of 14,871. Our estimate of easy-fit homes is 4,090. The public record does not show your panel; an engineer confirms it.",
+     "number": "7,436 likely 200 A of 14,871 owner homes; 4,090 easy fit"
+    },
+    "78701": {
+     "a": "Likely, for many. About 4% of owner homes in 78701 (Austin (downtown)) probably have 200 A service, about 5 of 336. Our estimate of easy-fit homes is 3. The public record does not show your panel; an engineer confirms it.",
+     "number": "5 likely 200 A of 336 owner homes; 3 easy fit"
+    },
+    "78702": {
+     "a": "Likely, for many. About 80% of owner homes in 78702 (Austin (East)) probably have 200 A service, about 2,251 of 5,627. Our estimate of easy-fit homes is 1,238. The public record does not show your panel; an engineer confirms it.",
+     "number": "2,251 likely 200 A of 5,627 owner homes; 1,238 easy fit"
+    },
+    "78703": {
+     "a": "Likely, for many. About 30% of owner homes in 78703 (Austin (Tarrytown)) probably have 200 A service, about 862 of 5,748. Our estimate of easy-fit homes is 474. The public record does not show your panel; an engineer confirms it.",
+     "number": "862 likely 200 A of 5,748 owner homes; 474 easy fit"
+    },
+    "78704": {
+     "a": "Likely, for many. About 13% of owner homes in 78704 (Austin (South Congress)) probably have 200 A service, about 578 of 9,051. Our estimate of easy-fit homes is 318. The public record does not show your panel; an engineer confirms it.",
+     "number": "578 likely 200 A of 9,051 owner homes; 318 easy fit"
+    },
+    "78705": {
+     "a": "Likely, for many. About 50% of owner homes in 78705 (Austin (West Campus)) probably have 200 A service, about 276 of 1,580. Our estimate of easy-fit homes is 152. The public record does not show your panel; an engineer confirms it.",
+     "number": "276 likely 200 A of 1,580 owner homes; 152 easy fit"
+    },
+    "78721": {
+     "a": "Likely, for many. About 50% of owner homes in 78721 (Austin (East MLK)) probably have 200 A service, about 638 of 2,553. Our estimate of easy-fit homes is 351. The public record does not show your panel; an engineer confirms it.",
+     "number": "638 likely 200 A of 2,553 owner homes; 351 easy fit"
+    },
+    "78722": {
+     "a": "Likely, for many. About 30% of owner homes in 78722 (Austin (Cherrywood)) probably have 200 A service, about 178 of 1,694. Our estimate of easy-fit homes is 98. The public record does not show your panel; an engineer confirms it.",
+     "number": "178 likely 200 A of 1,694 owner homes; 98 easy fit"
+    },
+    "78723": {
+     "a": "Likely, for many. About 50% of owner homes in 78723 (Austin (Windsor Park)) probably have 200 A service, about 1,967 of 7,868. Our estimate of easy-fit homes is 1,082. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,967 likely 200 A of 7,868 owner homes; 1,082 easy fit"
+    },
+    "78724": {
+     "a": "Likely, for many. About 80% of owner homes in 78724 (Austin (Northeast)) probably have 200 A service, about 2,517 of 6,292. Our estimate of easy-fit homes is 1,384. The public record does not show your panel; an engineer confirms it.",
+     "number": "2,517 likely 200 A of 6,292 owner homes; 1,384 easy fit"
+    },
+    "78725": {
+     "a": "Likely, for many. About 80% of owner homes in 78725 (Austin (Southeast)) probably have 200 A service, about 934 of 3,337. Our estimate of easy-fit homes is 514. The public record does not show your panel; an engineer confirms it.",
+     "number": "934 likely 200 A of 3,337 owner homes; 514 easy fit"
+    },
+    "78726": {
+     "a": "Likely, for many. About 80% of owner homes in 78726 (Austin (Four Points)) probably have 200 A service, about 721 of 2,575. Our estimate of easy-fit homes is 397. The public record does not show your panel; an engineer confirms it.",
+     "number": "721 likely 200 A of 2,575 owner homes; 397 easy fit"
+    },
+    "78727": {
+     "a": "Likely, for many. About 50% of owner homes in 78727 (Austin (Scofield)) probably have 200 A service, about 1,798 of 5,994. Our estimate of easy-fit homes is 989. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,798 likely 200 A of 5,994 owner homes; 989 easy fit"
+    },
+    "78728": {
+     "a": "Likely, for many. About 50% of owner homes in 78728 (Austin (Wells Branch)) probably have 200 A service, about 1,916 of 3,831. Our estimate of easy-fit homes is 1,054. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,916 likely 200 A of 3,831 owner homes; 1,054 easy fit"
+    },
+    "78729": {
+     "a": "Likely, for many. About 50% of owner homes in 78729 (Austin (Anderson Mill)) probably have 200 A service, about 1,394 of 5,576. Our estimate of easy-fit homes is 767. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,394 likely 200 A of 5,576 owner homes; 767 easy fit"
+    },
+    "78730": {
+     "a": "Likely, for many. About 50% of owner homes in 78730 (Austin (River Place)) probably have 200 A service, about 586 of 2,343. Our estimate of easy-fit homes is 322. The public record does not show your panel; an engineer confirms it.",
+     "number": "586 likely 200 A of 2,343 owner homes; 322 easy fit"
+    },
+    "78731": {
+     "a": "Likely, for many. About 50% of owner homes in 78731 (Austin (Northwest Hills)) probably have 200 A service, about 1,772 of 7,087. Our estimate of easy-fit homes is 974. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,772 likely 200 A of 7,087 owner homes; 974 easy fit"
+    },
+    "78732": {
+     "a": "Likely, for many. About 80% of owner homes in 78732 (Austin (Steiner Ranch)) probably have 200 A service, about 2,211 of 5,527. Our estimate of easy-fit homes is 1,216. The public record does not show your panel; an engineer confirms it.",
+     "number": "2,211 likely 200 A of 5,527 owner homes; 1,216 easy fit"
+    },
+    "78733": {
+     "a": "Likely, for many. About 50% of owner homes in 78733 (Austin (Rob Roy)) probably have 200 A service, about 720 of 2,880. Our estimate of easy-fit homes is 396. The public record does not show your panel; an engineer confirms it.",
+     "number": "720 likely 200 A of 2,880 owner homes; 396 easy fit"
+    },
+    "78734": {
+     "a": "Likely, for many. About 12% of owner homes in 78734 (Lakeway) probably have 200 A service, about 399 of 8,042. Our estimate of easy-fit homes is 219. The public record does not show your panel; an engineer confirms it.",
+     "number": "399 likely 200 A of 8,042 owner homes; 219 easy fit"
+    },
+    "78735": {
+     "a": "Likely, for many. About 80% of owner homes in 78735 (Austin (Barton Creek)) probably have 200 A service, about 1,762 of 4,404. Our estimate of easy-fit homes is 969. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,762 likely 200 A of 4,404 owner homes; 969 easy fit"
+    },
+    "78736": {
+     "a": "Likely, for many. About 50% of owner homes in 78736 (Austin (Oak Hill West)) probably have 200 A service, about 733 of 2,932. Our estimate of easy-fit homes is 403. The public record does not show your panel; an engineer confirms it.",
+     "number": "733 likely 200 A of 2,932 owner homes; 403 easy fit"
+    },
+    "78737": {
+     "a": "The estimate for 78737 (Austin (Dripping Springs edge)) is zero, because no Base offer was found there, not because of the panels. Build-year rule: median year built 2008 -> 80% likely 200A.",
+     "number": "0 likely 200 A of 8,017 owner homes; 0 easy fit"
+    },
+    "78738": {
+     "a": "Likely, for many. About 80% of owner homes in 78738 (Bee Cave) probably have 200 A service, about 3,634 of 9,086. Our estimate of easy-fit homes is 1,999. The public record does not show your panel; an engineer confirms it.",
+     "number": "3,634 likely 200 A of 9,086 owner homes; 1,999 easy fit"
+    },
+    "78739": {
+     "a": "Likely, for many. About 80% of owner homes in 78739 (Austin (Circle C)) probably have 200 A service, about 1,841 of 6,576. Our estimate of easy-fit homes is 1,013. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,841 likely 200 A of 6,576 owner homes; 1,013 easy fit"
+    },
+    "78741": {
+     "a": "Likely, for many. About 50% of owner homes in 78741 (Austin (Riverside)) probably have 200 A service, about 912 of 3,648. Our estimate of easy-fit homes is 502. The public record does not show your panel; an engineer confirms it.",
+     "number": "912 likely 200 A of 3,648 owner homes; 502 easy fit"
+    },
+    "78742": {
+     "a": "Likely, for many. About 50% of owner homes in 78742 (Austin (Montopolis)) probably have 200 A service, about 37 of 210. Our estimate of easy-fit homes is 20. The public record does not show your panel; an engineer confirms it.",
+     "number": "37 likely 200 A of 210 owner homes; 20 easy fit"
+    },
+    "78744": {
+     "a": "Likely, for many. About 80% of owner homes in 78744 (Austin (Southeast)) probably have 200 A service, about 4,278 of 10,696. Our estimate of easy-fit homes is 2,353. The public record does not show your panel; an engineer confirms it.",
+     "number": "4,278 likely 200 A of 10,696 owner homes; 2,353 easy fit"
+    },
+    "78745": {
+     "a": "Likely, for many. About 11% of owner homes in 78745 (Austin (South)) probably have 200 A service, about 753 of 14,025. Our estimate of easy-fit homes is 414. The public record does not show your panel; an engineer confirms it.",
+     "number": "753 likely 200 A of 14,025 owner homes; 414 easy fit"
+    },
+    "78746": {
+     "a": "Likely, for many. About 11% of owner homes in 78746 (West Lake Hills) probably have 200 A service, about 407 of 7,368. Our estimate of easy-fit homes is 224. The public record does not show your panel; an engineer confirms it.",
+     "number": "407 likely 200 A of 7,368 owner homes; 224 easy fit"
+    },
+    "78747": {
+     "a": "Likely, for many. About 80% of owner homes in 78747 (Austin (Far South)) probably have 200 A service, about 2,430 of 6,076. Our estimate of easy-fit homes is 1,337. The public record does not show your panel; an engineer confirms it.",
+     "number": "2,430 likely 200 A of 6,076 owner homes; 1,337 easy fit"
+    },
+    "78748": {
+     "a": "Likely, for many. About 10% of owner homes in 78748 (Austin (Southpark Meadows)) probably have 200 A service, about 738 of 14,312. Our estimate of easy-fit homes is 406. The public record does not show your panel; an engineer confirms it.",
+     "number": "738 likely 200 A of 14,312 owner homes; 406 easy fit"
+    },
+    "78749": {
+     "a": "Likely, for many. About 6% of owner homes in 78749 (Austin (Southwest)) probably have 200 A service, about 273 of 9,371. Our estimate of easy-fit homes is 150. The public record does not show your panel; an engineer confirms it.",
+     "number": "273 likely 200 A of 9,371 owner homes; 150 easy fit"
+    },
+    "78750": {
+     "a": "Likely, for many. About 5% of owner homes in 78750 (Austin (Jollyville)) probably have 200 A service, about 236 of 7,711. Our estimate of easy-fit homes is 130. The public record does not show your panel; an engineer confirms it.",
+     "number": "236 likely 200 A of 7,711 owner homes; 130 easy fit"
+    },
+    "78751": {
+     "a": "Likely, for many. About 50% of owner homes in 78751 (Austin (Hyde Park)) probably have 200 A service, about 568 of 2,271. Our estimate of easy-fit homes is 312. The public record does not show your panel; an engineer confirms it.",
+     "number": "568 likely 200 A of 2,271 owner homes; 312 easy fit"
+    },
+    "78752": {
+     "a": "Likely, for many. About 50% of owner homes in 78752 (Austin (North Lamar)) probably have 200 A service, about 563 of 2,251. Our estimate of easy-fit homes is 310. The public record does not show your panel; an engineer confirms it.",
+     "number": "563 likely 200 A of 2,251 owner homes; 310 easy fit"
+    },
+    "78753": {
+     "a": "Likely, for many. About 9% of owner homes in 78753 (Austin (North)) probably have 200 A service, about 383 of 8,184. Our estimate of easy-fit homes is 211. The public record does not show your panel; an engineer confirms it.",
+     "number": "383 likely 200 A of 8,184 owner homes; 211 easy fit"
+    },
+    "78754": {
+     "a": "Likely, for many. About 80% of owner homes in 78754 (Austin (Harris Branch)) probably have 200 A service, about 2,854 of 7,136. Our estimate of easy-fit homes is 1,570. The public record does not show your panel; an engineer confirms it.",
+     "number": "2,854 likely 200 A of 7,136 owner homes; 1,570 easy fit"
+    },
+    "78756": {
+     "a": "Likely, for many. About 30% of owner homes in 78756 (Austin (Brentwood)) probably have 200 A service, about 299 of 1,995. Our estimate of easy-fit homes is 165. The public record does not show your panel; an engineer confirms it.",
+     "number": "299 likely 200 A of 1,995 owner homes; 165 easy fit"
+    },
+    "78757": {
+     "a": "Likely, for many. About 30% of owner homes in 78757 (Austin (Allandale)) probably have 200 A service, about 1,019 of 6,791. Our estimate of easy-fit homes is 560. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,019 likely 200 A of 6,791 owner homes; 560 easy fit"
+    },
+    "78758": {
+     "a": "Likely, for many. About 50% of owner homes in 78758 (Austin (North Burnet)) probably have 200 A service, about 1,678 of 6,710. Our estimate of easy-fit homes is 923. The public record does not show your panel; an engineer confirms it.",
+     "number": "1,678 likely 200 A of 6,710 owner homes; 923 easy fit"
+    },
+    "78759": {
+     "a": "Likely, for many. About 50% of owner homes in 78759 (Austin (Arboretum)) probably have 200 A service, about 2,969 of 9,896. Our estimate of easy-fit homes is 1,633. The public record does not show your panel; an engineer confirms it.",
+     "number": "2,969 likely 200 A of 9,896 owner homes; 1,633 easy fit"
+    },
+    "78957": {
+     "a": "The estimate for 78957 (Smithville) is zero, because no Base offer was found there, not because of the panels. Build-year rule: median year built 1987 -> 50% likely 200A.",
+     "number": "0 likely 200 A of 3,046 owner homes; 0 easy fit"
+    }
+   }
+  },
+  {
+   "id": "where-battery",
+   "audience": "member",
+   "category": "My home and the photo",
+   "q": "Where does the battery go?",
+   "a": "Outside, near your electric meter. Base says it finds a clean, code-compliant spot close to the meter, and adds a soft start for a large air conditioner if needed.",
+   "number": null,
+   "source": "Base How it works page, quoted (faq/corpus/how-it-works.md)",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "Clearance",
+    "href": "wall.html"
+   },
+   "data": [
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "wall-space",
+   "audience": "member",
+   "category": "My home and the photo",
+   "q": "Why might my wall not fit?",
+   "a": "Our rule of thumb, from installer reports: a battery needs about 9 ft of clear outside wall, and 3 ft from the gas meter, the A/C unit and the fence. This is our estimate, not Base's rule. A Base engineer makes the real check.",
+   "number": "9 ft of wall, 3 ft clear",
+   "source": "house/clearance.py (our rule-only estimate)",
+   "source_url": null,
+   "page": {
+    "label": "Clearance",
+    "href": "wall.html"
+   },
+   "data": [
+    "house/clearance.py"
+   ],
+   "computed": null
+  },
+  {
+   "id": "path-to-yes",
+   "audience": "member",
+   "category": "My home and the photo",
+   "q": "What would make my home a yes?",
+   "a": "Usually one or two steps. The most common reason in our sample is: existing solar or battery on the permit record. The fix is a photo of the label and the panel, then an engineer check. Each step says who does it and if it needs a permit.",
+   "number": "11 of 18 sample homes share that reason",
+   "source": "Sample homes in 78745 and the fit rules. Costs are not estimated.",
+   "source_url": null,
+   "page": {
+    "label": "Path to yes",
+    "href": "recovery.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "web/data/recovery.json cases[].blockers[].reason (built by house/recovery.py)",
+   "label": "Sample homes, not your home"
+  },
+  {
+   "id": "battery-size",
+   "audience": "member",
+   "category": "My battery and the grid",
+   "q": "How big is the battery?",
+   "a": "39.2 kWh in each Base Core. Base says that is one of the largest home batteries.",
+   "number": "39.2 kWh",
+   "source": "Base home page (faq/corpus/home.md)",
+   "source_url": "https://basepowercompany.com/",
+   "page": {
+    "label": "My Battery",
+    "href": "member.html"
+   },
+   "data": [
+    "faq/corpus/home.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "battery-today",
+   "audience": "member",
+   "category": "My battery and the grid",
+   "q": "What will my battery do today?",
+   "a": "On 2026-09-26 the plan is to charge from 8 am to 11 am, when power is cheapest, and send power back from 6 pm to 9 pm, when it is dearest. 30% of the 39.2 kWh always stays in for your backup.",
+   "number": "Net $0.95 for the day on one battery (LZ_AEN)",
+   "source": "Today's ERCOT day-ahead prices for the Austin zone, one charge and one discharge a day. Our plan, not Base's real dispatch.",
+   "source_url": null,
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "web/data/grid_today.json battery (built by grid/today.py from the ERCOT system-wide-prices feed)",
+   "label": "Our model, not Base's dispatch"
+  },
+  {
+   "id": "not-full",
+   "audience": "member",
+   "category": "My battery and the grid",
+   "q": "Why is my battery not full?",
+   "a": "That is expected. The battery charges when power is cheap and may send some back when the grid is stressed. Base always keeps backup in reserve, and the charge rarely drops to that minimum.",
+   "number": "30% kept for backup in our plan",
+   "source": "Base How it works page (faq/corpus/how-it-works.md); 30% is our plan in grid/earned.py",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "My Battery",
+    "href": "member.html"
+   },
+   "data": [
+    "faq/corpus/how-it-works.md",
+    "web/data/grid_today.json"
+   ],
+   "computed": null
+  },
+  {
+   "id": "battery-year",
+   "audience": "member",
+   "category": "My battery and the grid",
+   "q": "What did one battery earn last year?",
+   "a": "About $603 for all of 2025, or $1.65 a day, on real Austin prices. This is a floor: day-ahead prices and one cycle a day only. It is the value to the grid, not a payment to you.",
+   "number": "$603.45 in 2025; best 10 days gave $85.04",
+   "source": "ERCOT day-ahead price archive (report 13060), Austin zone, 39.2 kWh battery, 30% kept for backup.",
+   "source_url": null,
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "web/data/grid_year.json years.2025.aen (built by grid/year.py)",
+   "label": "Our estimate, not a Base offer"
+  },
+  {
+   "id": "grid-stress",
+   "audience": "member",
+   "category": "My battery and the grid",
+   "q": "When is the grid most stressed?",
+   "a": "Late afternoon and evening. Texas uses the most power from 5 pm to 6 pm, and Austin prices are highest from 6 pm to 10 pm. Solar fades then while air conditioning is still on.",
+   "number": "Peak load hour ends 6 pm (63,116 MW average); top price hours 6 pm to 10 pm",
+   "source": "ERCOT hourly load 2024-01-01 to 2026-08-31 and day-ahead prices for the Austin zone.",
+   "source_url": null,
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "SELECT he, AVG(ercot) FROM load_hourly GROUP BY he; SELECT he, AVG(price) FROM dam_prices WHERE point='LZ_AEN' GROUP BY he",
+   "label": null
+  },
+  {
+   "id": "how-rates-low",
+   "audience": "member",
+   "category": "My battery and the grid",
+   "q": "How does Base keep rates low?",
+   "a": "Base says: we earn from the grid, not you. The battery helps balance the grid at peak demand.",
+   "number": null,
+   "source": "Base home page, quoted (faq/corpus/home.md)",
+   "source_url": "https://basepowercompany.com/",
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "faq/corpus/home.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "safe",
+   "audience": "member",
+   "category": "My battery and the grid",
+   "q": "Is the battery safe?",
+   "a": "Base says the battery is certified to UL 1973, UL 1741, UL 9540 and UL 9540A. It is tested from -22 to 122 F, for flash floods, and under 3 ft of water.",
+   "number": "4 UL standards",
+   "source": "Base home and How it works pages (faq/corpus/home.md, how-it-works.md)",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "My Battery",
+    "href": "member.html"
+   },
+   "data": [
+    "faq/corpus/home.md",
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "outage",
+   "audience": "member",
+   "category": "Storms and backup",
+   "q": "What happens when the power goes out?",
+   "a": "The battery takes over by itself, usually in under half a second. Base says most members do not notice.",
+   "number": "Under 1 second",
+   "source": "Base How it works and home pages (faq/corpus/how-it-works.md, home.md)",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "how-long",
+   "audience": "member",
+   "category": "Storms and backup",
+   "q": "How long does backup last?",
+   "a": "Up to 36 hours on one battery, and about 36 to 72 hours with 1 or 2. It depends on how much power you use.",
+   "number": "Up to 36 hours, 1 battery",
+   "source": "Base home and How it works pages",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "My Battery",
+    "href": "member.html"
+   },
+   "data": [
+    "faq/corpus/home.md",
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "longer-outage",
+   "audience": "member",
+   "category": "Storms and backup",
+   "q": "What if the outage lasts longer than the battery?",
+   "a": "Base's page says you can recharge the battery with a generator through the built-in port, or with connected solar. Neither is required.",
+   "number": null,
+   "source": "Base home page (faq/corpus/home.md)",
+   "source_url": "https://basepowercompany.com/",
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "faq/corpus/home.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "no-turn-on",
+   "audience": "member",
+   "category": "Storms and backup",
+   "q": "Why did my battery not turn on?",
+   "a": "The home must use under 20 kW for the battery to start. If large devices push use higher, turn some off, then turn the battery on in the Base App.",
+   "number": "Under 20 kW",
+   "source": "Base How it works page (faq/corpus/how-it-works.md)",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "My Battery",
+    "href": "member.html"
+   },
+   "data": [
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "storm-now",
+   "audience": "member",
+   "category": "Storms and backup",
+   "q": "Is a storm coming?",
+   "a": "No weather alert is active for Travis or Williamson county right now. The grid has 18,450 MW of reserve; ERCOT asks people to save power under 3,000 MW.",
+   "number": "0 active alerts; 0 of 5 alarms firing",
+   "source": "National Weather Service active alerts and ERCOT reserves, checked every hour. Active alerts only, no forecast.",
+   "source_url": null,
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "web/data/signals.json (built by store/signals.py from nws_alerts and prc in data/fleet.db)",
+   "label": "As of 2026-09-26 22:43 UTC"
+  },
+  {
+   "id": "zip-storms",
+   "audience": "member",
+   "category": "Storms and backup",
+   "q": "How often do storms push people to backup here?",
+   "a": "In 78745 (Austin (South)), backup permits jumped after big storms: 4 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 15 after the 2023 ice storm, against 0.2 a month in 2020. That is 5.3 times the 2020 monthly rate. Last 12 months: 23.",
+   "number": "Uri 4, ice storm 15, 2020 average 0.2 a month; a 2023-size storm adds about 0.02 a week here (estimate)",
+   "source": "City of Austin permits for generators and batteries, by the month people applied. Austin only.",
+   "source_url": null,
+   "page": {
+    "label": "Market",
+    "href": "market.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "COUNT(*) FROM permits WHERE zip='<zip>' AND category IN backup AND applied month in 2020, 2021-02..04, 2023-02..04; data/storms.json readiness",
+   "zip_aware": true,
+   "default_zip": "78745",
+   "by_zip": {
+    "76574": {
+     "a": "We cannot tell for 76574 (Taylor). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78602": {
+     "a": "We cannot tell for 78602 (Bastrop). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78610": {
+     "a": "In 78610 (Buda), backup permits jumped after big storms: 0 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 0 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 0.",
+     "number": "Uri 0, ice storm 0, 2020 average 0.0 a month"
+    },
+    "78613": {
+     "a": "In 78613 (Cedar Park), backup permits jumped after big storms: 0 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 0 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 0.",
+     "number": "Uri 0, ice storm 0, 2020 average 0.0 a month"
+    },
+    "78617": {
+     "a": "In 78617 (Del Valle), backup permits jumped after big storms: 0 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 1 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 7.",
+     "number": "Uri 0, ice storm 1, 2020 average 0.0 a month; a 2023-size storm adds about 0.01 a week here (estimate)"
+    },
+    "78621": {
+     "a": "We cannot tell for 78621 (Elgin). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78626": {
+     "a": "We cannot tell for 78626 (Georgetown). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78628": {
+     "a": "We cannot tell for 78628 (Georgetown). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78634": {
+     "a": "We cannot tell for 78634 (Hutto). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78640": {
+     "a": "We cannot tell for 78640 (Kyle). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78641": {
+     "a": "We cannot tell for 78641 (Leander). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78653": {
+     "a": "In 78653 (Manor), backup permits jumped after big storms: 0 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 1 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 9.",
+     "number": "Uri 0, ice storm 1, 2020 average 0.0 a month; a 2023-size storm adds about 0.04 a week here (estimate)"
+    },
+    "78660": {
+     "a": "In 78660 (Pflugerville), backup permits jumped after big storms: 3 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 1 after the 2023 ice storm, against 0.2 a month in 2020. That is 4.0 times the 2020 monthly rate. Last 12 months: 9.",
+     "number": "Uri 3, ice storm 1, 2020 average 0.2 a month; a 2023-size storm adds about 0.06 a week here (estimate)"
+    },
+    "78664": {
+     "a": "We cannot tell for 78664 (Round Rock). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78665": {
+     "a": "We cannot tell for 78665 (Round Rock). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78666": {
+     "a": "We cannot tell for 78666 (San Marcos). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78681": {
+     "a": "We cannot tell for 78681 (Round Rock). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    },
+    "78701": {
+     "a": "In 78701 (Austin (downtown)), backup permits jumped after big storms: 0 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 0 after the 2023 ice storm, against 0.2 a month in 2020. That is 0.0 times the 2020 monthly rate. Last 12 months: 3.",
+     "number": "Uri 0, ice storm 0, 2020 average 0.2 a month; a 2023-size storm adds about 0.0 a week here (estimate)"
+    },
+    "78702": {
+     "a": "In 78702 (Austin (East)), backup permits jumped after big storms: 10 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 3 after the 2023 ice storm, against 0.1 a month in 2020. That is 40.0 times the 2020 monthly rate. Last 12 months: 28.",
+     "number": "Uri 10, ice storm 3, 2020 average 0.1 a month; a 2023-size storm adds about 0.07 a week here (estimate)"
+    },
+    "78703": {
+     "a": "In 78703 (Austin (Tarrytown)), backup permits jumped after big storms: 7 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 24 after the 2023 ice storm, against 0.7 a month in 2020. That is 3.5 times the 2020 monthly rate. Last 12 months: 40.",
+     "number": "Uri 7, ice storm 24, 2020 average 0.7 a month; a 2023-size storm adds about 0.03 a week here (estimate)"
+    },
+    "78704": {
+     "a": "In 78704 (Austin (South Congress)), backup permits jumped after big storms: 26 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 25 after the 2023 ice storm, against 0.8 a month in 2020. That is 11.6 times the 2020 monthly rate. Last 12 months: 48.",
+     "number": "Uri 26, ice storm 25, 2020 average 0.8 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78705": {
+     "a": "In 78705 (Austin (West Campus)), backup permits jumped after big storms: 5 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 1 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 3.",
+     "number": "Uri 5, ice storm 1, 2020 average 0.0 a month; a 2023-size storm adds about 0.01 a week here (estimate)"
+    },
+    "78721": {
+     "a": "In 78721 (Austin (East MLK)), backup permits jumped after big storms: 1 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 0 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 7.",
+     "number": "Uri 1, ice storm 0, 2020 average 0.0 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78722": {
+     "a": "In 78722 (Austin (Cherrywood)), backup permits jumped after big storms: 2 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 0 after the 2023 ice storm, against 0.3 a month in 2020. That is 2.0 times the 2020 monthly rate. Last 12 months: 2.",
+     "number": "Uri 2, ice storm 0, 2020 average 0.3 a month; a 2023-size storm adds about 0.01 a week here (estimate)"
+    },
+    "78723": {
+     "a": "In 78723 (Austin (Windsor Park)), backup permits jumped after big storms: 6 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 10 after the 2023 ice storm, against 0.2 a month in 2020. That is 12.0 times the 2020 monthly rate. Last 12 months: 21.",
+     "number": "Uri 6, ice storm 10, 2020 average 0.2 a month; a 2023-size storm adds about 0.06 a week here (estimate)"
+    },
+    "78724": {
+     "a": "In 78724 (Austin (Northeast)), backup permits jumped after big storms: 4 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 1 after the 2023 ice storm, against 0.4 a month in 2020. That is 3.2 times the 2020 monthly rate. Last 12 months: 13.",
+     "number": "Uri 4, ice storm 1, 2020 average 0.4 a month; a 2023-size storm adds about 0.08 a week here (estimate)"
+    },
+    "78725": {
+     "a": "In 78725 (Austin (Southeast)), backup permits jumped after big storms: 1 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 1 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 1.",
+     "number": "Uri 1, ice storm 1, 2020 average 0.0 a month; a 2023-size storm adds about 0.03 a week here (estimate)"
+    },
+    "78726": {
+     "a": "In 78726 (Austin (Four Points)), backup permits jumped after big storms: 0 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 3 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 12.",
+     "number": "Uri 0, ice storm 3, 2020 average 0.0 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78727": {
+     "a": "In 78727 (Austin (Scofield)), backup permits jumped after big storms: 7 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 10 after the 2023 ice storm, against 0.3 a month in 2020. That is 7.0 times the 2020 monthly rate. Last 12 months: 20.",
+     "number": "Uri 7, ice storm 10, 2020 average 0.3 a month; a 2023-size storm adds about 0.06 a week here (estimate)"
+    },
+    "78728": {
+     "a": "In 78728 (Austin (Wells Branch)), backup permits jumped after big storms: 1 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 0 after the 2023 ice storm, against 0.1 a month in 2020. That is 4.0 times the 2020 monthly rate. Last 12 months: 3.",
+     "number": "Uri 1, ice storm 0, 2020 average 0.1 a month; a 2023-size storm adds about 0.06 a week here (estimate)"
+    },
+    "78729": {
+     "a": "In 78729 (Austin (Anderson Mill)), backup permits jumped after big storms: 3 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 13 after the 2023 ice storm, against 0.2 a month in 2020. That is 6.0 times the 2020 monthly rate. Last 12 months: 7.",
+     "number": "Uri 3, ice storm 13, 2020 average 0.2 a month; a 2023-size storm adds about 0.04 a week here (estimate)"
+    },
+    "78730": {
+     "a": "In 78730 (Austin (River Place)), backup permits jumped after big storms: 2 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 12 after the 2023 ice storm, against 0.4 a month in 2020. That is 1.6 times the 2020 monthly rate. Last 12 months: 32.",
+     "number": "Uri 2, ice storm 12, 2020 average 0.4 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78731": {
+     "a": "In 78731 (Austin (Northwest Hills)), backup permits jumped after big storms: 20 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 28 after the 2023 ice storm, against 1.1 a month in 2020. That is 6.2 times the 2020 monthly rate. Last 12 months: 97.",
+     "number": "Uri 20, ice storm 28, 2020 average 1.1 a month; a 2023-size storm adds about 0.05 a week here (estimate)"
+    },
+    "78732": {
+     "a": "In 78732 (Austin (Steiner Ranch)), backup permits jumped after big storms: 4 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 6 after the 2023 ice storm, against 0.6 a month in 2020. That is 2.3 times the 2020 monthly rate. Last 12 months: 7.",
+     "number": "Uri 4, ice storm 6, 2020 average 0.6 a month; a 2023-size storm adds about 0.07 a week here (estimate)"
+    },
+    "78733": {
+     "a": "In 78733 (Austin (Rob Roy)), backup permits jumped after big storms: 3 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 5 after the 2023 ice storm, against 0.2 a month in 2020. That is 4.0 times the 2020 monthly rate. Last 12 months: 18.",
+     "number": "Uri 3, ice storm 5, 2020 average 0.2 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78734": {
+     "a": "In 78734 (Lakeway), backup permits jumped after big storms: 0 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 8 after the 2023 ice storm, against 0.3 a month in 2020. That is 0.0 times the 2020 monthly rate. Last 12 months: 15.",
+     "number": "Uri 0, ice storm 8, 2020 average 0.3 a month; a 2023-size storm adds about 0.01 a week here (estimate)"
+    },
+    "78735": {
+     "a": "In 78735 (Austin (Barton Creek)), backup permits jumped after big storms: 8 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 6 after the 2023 ice storm, against 0.2 a month in 2020. That is 10.7 times the 2020 monthly rate. Last 12 months: 27.",
+     "number": "Uri 8, ice storm 6, 2020 average 0.2 a month; a 2023-size storm adds about 0.05 a week here (estimate)"
+    },
+    "78736": {
+     "a": "In 78736 (Austin (Oak Hill West)), backup permits jumped after big storms: 2 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 4 after the 2023 ice storm, against 0.2 a month in 2020. That is 4.0 times the 2020 monthly rate. Last 12 months: 3.",
+     "number": "Uri 2, ice storm 4, 2020 average 0.2 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78737": {
+     "a": "In 78737 (Austin (Dripping Springs edge)), backup permits jumped after big storms: 0 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 0 after the 2023 ice storm, against 0.1 a month in 2020. That is 0.0 times the 2020 monthly rate. Last 12 months: 1.",
+     "number": "Uri 0, ice storm 0, 2020 average 0.1 a month"
+    },
+    "78738": {
+     "a": "In 78738 (Bee Cave), backup permits jumped after big storms: 8 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 10 after the 2023 ice storm, against 0.6 a month in 2020. That is 4.6 times the 2020 monthly rate. Last 12 months: 24.",
+     "number": "Uri 8, ice storm 10, 2020 average 0.6 a month; a 2023-size storm adds about 0.11 a week here (estimate)"
+    },
+    "78739": {
+     "a": "In 78739 (Austin (Circle C)), backup permits jumped after big storms: 10 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 6 after the 2023 ice storm, against 0.1 a month in 2020. That is 40.0 times the 2020 monthly rate. Last 12 months: 10.",
+     "number": "Uri 10, ice storm 6, 2020 average 0.1 a month; a 2023-size storm adds about 0.06 a week here (estimate)"
+    },
+    "78741": {
+     "a": "In 78741 (Austin (Riverside)), backup permits jumped after big storms: 7 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 3 after the 2023 ice storm, against 0.2 a month in 2020. That is 14.0 times the 2020 monthly rate. Last 12 months: 4.",
+     "number": "Uri 7, ice storm 3, 2020 average 0.2 a month; a 2023-size storm adds about 0.03 a week here (estimate)"
+    },
+    "78742": {
+     "a": "In 78742 (Austin (Montopolis)), backup permits jumped after big storms: 0 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 0 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 0.",
+     "number": "Uri 0, ice storm 0, 2020 average 0.0 a month; a 2023-size storm adds about 0.0 a week here (estimate)"
+    },
+    "78744": {
+     "a": "In 78744 (Austin (Southeast)), backup permits jumped after big storms: 6 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 7 after the 2023 ice storm, against 0.4 a month in 2020. That is 4.8 times the 2020 monthly rate. Last 12 months: 17.",
+     "number": "Uri 6, ice storm 7, 2020 average 0.4 a month; a 2023-size storm adds about 0.13 a week here (estimate)"
+    },
+    "78745": {
+     "a": "In 78745 (Austin (South)), backup permits jumped after big storms: 4 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 15 after the 2023 ice storm, against 0.2 a month in 2020. That is 5.3 times the 2020 monthly rate. Last 12 months: 23.",
+     "number": "Uri 4, ice storm 15, 2020 average 0.2 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78746": {
+     "a": "In 78746 (West Lake Hills), backup permits jumped after big storms: 16 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 46 after the 2023 ice storm, against 0.7 a month in 2020. That is 8.0 times the 2020 monthly rate. Last 12 months: 80.",
+     "number": "Uri 16, ice storm 46, 2020 average 0.7 a month; a 2023-size storm adds about 0.01 a week here (estimate)"
+    },
+    "78747": {
+     "a": "In 78747 (Austin (Far South)), backup permits jumped after big storms: 7 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 3 after the 2023 ice storm, against 0.2 a month in 2020. That is 14.0 times the 2020 monthly rate. Last 12 months: 21.",
+     "number": "Uri 7, ice storm 3, 2020 average 0.2 a month; a 2023-size storm adds about 0.08 a week here (estimate)"
+    },
+    "78748": {
+     "a": "In 78748 (Austin (Southpark Meadows)), backup permits jumped after big storms: 9 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 8 after the 2023 ice storm, against 0.7 a month in 2020. That is 4.5 times the 2020 monthly rate. Last 12 months: 19.",
+     "number": "Uri 9, ice storm 8, 2020 average 0.7 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78749": {
+     "a": "In 78749 (Austin (Southwest)), backup permits jumped after big storms: 2 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 6 after the 2023 ice storm, against 0.2 a month in 2020. That is 2.7 times the 2020 monthly rate. Last 12 months: 26.",
+     "number": "Uri 2, ice storm 6, 2020 average 0.2 a month; a 2023-size storm adds about 0.01 a week here (estimate)"
+    },
+    "78750": {
+     "a": "In 78750 (Austin (Jollyville)), backup permits jumped after big storms: 11 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 12 after the 2023 ice storm, against 0.7 a month in 2020. That is 5.5 times the 2020 monthly rate. Last 12 months: 12.",
+     "number": "Uri 11, ice storm 12, 2020 average 0.7 a month; a 2023-size storm adds about 0.01 a week here (estimate)"
+    },
+    "78751": {
+     "a": "In 78751 (Austin (Hyde Park)), backup permits jumped after big storms: 1 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 4 after the 2023 ice storm, against 0.0 a month in 2020. Last 12 months: 15.",
+     "number": "Uri 1, ice storm 4, 2020 average 0.0 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78752": {
+     "a": "In 78752 (Austin (North Lamar)), backup permits jumped after big storms: 1 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 1 after the 2023 ice storm, against 0.1 a month in 2020. That is 4.0 times the 2020 monthly rate. Last 12 months: 4.",
+     "number": "Uri 1, ice storm 1, 2020 average 0.1 a month; a 2023-size storm adds about 0.02 a week here (estimate)"
+    },
+    "78753": {
+     "a": "In 78753 (Austin (North)), backup permits jumped after big storms: 7 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 8 after the 2023 ice storm, against 0.2 a month in 2020. That is 9.3 times the 2020 monthly rate. Last 12 months: 13.",
+     "number": "Uri 7, ice storm 8, 2020 average 0.2 a month; a 2023-size storm adds about 0.01 a week here (estimate)"
+    },
+    "78754": {
+     "a": "In 78754 (Austin (Harris Branch)), backup permits jumped after big storms: 3 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 2 after the 2023 ice storm, against 0.8 a month in 2020. That is 1.3 times the 2020 monthly rate. Last 12 months: 8.",
+     "number": "Uri 3, ice storm 2, 2020 average 0.8 a month; a 2023-size storm adds about 0.09 a week here (estimate)"
+    },
+    "78756": {
+     "a": "In 78756 (Austin (Brentwood)), backup permits jumped after big storms: 3 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 5 after the 2023 ice storm, against 0.2 a month in 2020. That is 6.0 times the 2020 monthly rate. Last 12 months: 11.",
+     "number": "Uri 3, ice storm 5, 2020 average 0.2 a month; a 2023-size storm adds about 0.01 a week here (estimate)"
+    },
+    "78757": {
+     "a": "In 78757 (Austin (Allandale)), backup permits jumped after big storms: 10 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 21 after the 2023 ice storm, against 0.2 a month in 2020. That is 20.0 times the 2020 monthly rate. Last 12 months: 54.",
+     "number": "Uri 10, ice storm 21, 2020 average 0.2 a month; a 2023-size storm adds about 0.03 a week here (estimate)"
+    },
+    "78758": {
+     "a": "In 78758 (Austin (North Burnet)), backup permits jumped after big storms: 4 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 4 after the 2023 ice storm, against 0.1 a month in 2020. That is 16.0 times the 2020 monthly rate. Last 12 months: 10.",
+     "number": "Uri 4, ice storm 4, 2020 average 0.1 a month; a 2023-size storm adds about 0.05 a week here (estimate)"
+    },
+    "78759": {
+     "a": "In 78759 (Austin (Arboretum)), backup permits jumped after big storms: 21 in the 3 months after Winter Storm Uri (Feb to Apr 2021) and 29 after the 2023 ice storm, against 0.5 a month in 2020. That is 14.0 times the 2020 monthly rate. Last 12 months: 41.",
+     "number": "Uri 21, ice storm 29, 2020 average 0.5 a month; a 2023-size storm adds about 0.09 a week here (estimate)"
+    },
+    "78957": {
+     "a": "We cannot tell for 78957 (Smithville). Storm history comes from the City of Austin permit feed, which does not cover this zip.",
+     "number": "Austin only"
+    }
+   }
+  },
+  {
+   "id": "credit",
+   "audience": "member",
+   "category": "Credits (assumed, not a Base offer)",
+   "q": "What credit do I get?",
+   "a": "In this design, Base Fleet points (proposal), not cash: 10 pts for each answer you confirm, 20 pts for the panel photo, 30 pts when you finish, and 50 pts when a neighbour you told joins. Base has not offered this.",
+   "number": "Up to 100 pts for your own home, plus 50 pts a neighbour",
+   "source": "The reward rules in the My Home page. Amounts are assumed.",
+   "source_url": null,
+   "page": {
+    "label": "My Home credits",
+    "href": "onboarding.html#credits"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "web/onboarding.js PAY",
+   "label": "Assumed, not a Base offer"
+  },
+  {
+   "id": "private",
+   "audience": "member",
+   "category": "Privacy",
+   "q": "Is my information private?",
+   "a": "Yes. We read 588,023 appraisal records and drop every owner name and address when the file is read. Other installers show as numbers, not names. Your answers on My Home stay in your browser; nothing is sent.",
+   "number": "588,023 parcels, 0 names kept; 1,231 installers made anonymous",
+   "source": "Appraisal district exports and City of Austin permits, cleaned at read time.",
+   "source_url": null,
+   "page": {
+    "label": "Data flow",
+    "href": "dataflow.html"
+   },
+   "data": [
+    "web/data/data_qa.json"
+   ],
+   "computed": "SUM(parcels) in data/deeds_by_zip.json; SELECT COUNT(DISTINCT contractor) FROM permits WHERE is_base=0",
+   "label": null
+  },
+  {
+   "id": "answers-stay",
+   "audience": "member",
+   "category": "Privacy",
+   "q": "Where do my My Home answers go?",
+   "a": "They stay in your browser. The page sends nothing. The city permit record only gives a starting point; you confirm or correct it.",
+   "number": "0 answers sent",
+   "source": "web/onboarding.js (answers kept in the browser)",
+   "source_url": null,
+   "page": {
+    "label": "My Home",
+    "href": "onboarding.html#home"
+   },
+   "data": [
+    "web/onboarding.js"
+   ],
+   "computed": null
+  },
+  {
+   "id": "voice-guide",
+   "audience": "member",
+   "category": "Help",
+   "q": "Can someone read the steps to me?",
+   "a": "Yes. The voice guide reads each step out loud, one at a time. You can skip the photo.",
+   "number": null,
+   "source": "The voice guide page (web/voice.html)",
+   "source_url": null,
+   "page": {
+    "label": "Voice guide",
+    "href": "voice.html"
+   },
+   "data": [
+    "web/voice.html"
+   ],
+   "computed": null
+  },
+  {
+   "id": "caregiver",
+   "audience": "member",
+   "category": "Help",
+   "q": "Can a caregiver do this for me?",
+   "a": "Yes. Hand this to a caregiver shows every step on one page as text, so a family member or helper can do it with you or for you.",
+   "number": null,
+   "source": "The voice guide caregiver view (web/voice.html)",
+   "source_url": null,
+   "page": {
+    "label": "Voice guide",
+    "href": "voice.html"
+   },
+   "data": [
+    "web/voice.html"
+   ],
+   "computed": null
+  },
+  {
+   "id": "contact",
+   "audience": "member",
+   "category": "Help",
+   "q": "How do I talk to Base?",
+   "a": "New customers: 512-518-1009. Members: support@basepowercompany.com. This app is a prototype and is not Base.",
+   "number": null,
+   "source": "Base home page (faq/corpus/home.md)",
+   "source_url": "https://basepowercompany.com/",
+   "page": {
+    "label": "Story overview",
+    "href": "story.html"
+   },
+   "data": [
+    "faq/corpus/home.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "move",
+   "audience": "member",
+   "category": "Help",
+   "q": "What happens if I move?",
+   "a": "Base says the battery agreement runs with the home. If the new owner signs up, it transfers. If not, Base removes the system.",
+   "number": null,
+   "source": "Base How it works page, quoted (faq/corpus/how-it-works.md)",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "pay-billing",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "How and when do I pay?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "Billing is in Base's Help Center (17 Texas energy articles), which a public crawl cannot read."
+  },
+  {
+   "id": "cancel",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "Can I cancel, and is there a fee?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "No public Base page states cancel terms."
+  },
+  {
+   "id": "contract",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "How long is the contract?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "Contract length is a gap in the public pages (faq/FAQ.md #14)."
+  },
+  {
+   "id": "credit-payout",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "When is a credit paid out?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "The credits on this site are assumed. Base has not offered them, so no payout date exists."
+  },
+  {
+   "id": "final-eligibility",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "Will my home qualify for sure?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "Base engineers decide. Public records give a starting point only (faq/FAQ.md #1 to #4)."
+  },
+  {
+   "id": "own-battery",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "Do I own the battery?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "The page lists this as a video title only, with no answer text (faq/FAQ.md #22)."
+  },
+  {
+   "id": "second-battery",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "Can I add a second battery later?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "Video title only on Base's page (faq/FAQ.md #24)."
+  },
+  {
+   "id": "solar",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "Does it work with my solar panels?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "Video title only; Help Center articles on solar are not public text (faq/FAQ.md #19)."
+  },
+  {
+   "id": "hoa",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "Does Base handle my HOA?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "Only a member review on Base's page says so. That is not a policy (faq/FAQ.md #6)."
+  },
+  {
+   "id": "renter",
+   "audience": "member",
+   "category": "Ask Base support",
+   "q": "Can I get Base if I rent?",
+   "a": "Ask Base support.",
+   "number": null,
+   "source": "Not in Base's public pages (faq/FAQ.md gap list). Members: support@basepowercompany.com. New customers: 512-518-1009 (faq/corpus/home.md).",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md",
+    "faq/corpus/home.md"
+   ],
+   "computed": null,
+   "route": "base_support",
+   "reason": "Not stated on any public Base page (faq/FAQ.md #7)."
+  },
+  {
+   "id": "permit-status",
+   "audience": "internal",
+   "category": "Ops",
+   "q": "What does each permit status mean?",
+   "a": "Active: issued, work not yet passed final inspection. Final: passed final inspection, the job is done. Expired: no inspection in time, the permit lapsed. Withdrawn, VOID, Cancelled, Aborted: stopped, no work. Pending: applied, not yet issued.",
+   "number": "29,137 Final, 870 Active of 34,334 energy permits; Base: 264 Active, 59 Final",
+   "source": "City of Austin permit field status_current, in the permits table",
+   "source_url": null,
+   "page": {
+    "label": "Permit explorer",
+    "href": "explorer.html"
+   },
+   "data": [
+    "data/mirror/energy_permits.csv.gz"
+   ],
+   "computed": "SELECT status, COUNT(*), SUM(is_base) FROM permits GROUP BY status"
+  },
+  {
+   "id": "base-2026",
+   "audience": "internal",
+   "category": "Ops",
+   "q": "How many Base permits this year, and how many are still open?",
+   "a": "316 Base permits in Austin in 2026. 264 are open (Active) and 52 are final.",
+   "number": "16% final",
+   "source": "data/market.json base_totals (rule: contractor 'Base Power', work class Auxiliary Power, issued 2026 or later)",
+   "source_url": null,
+   "page": {
+    "label": "Market",
+    "href": "market.html"
+   },
+   "data": [
+    "data/market.json"
+   ],
+   "computed": "data/market.json base_totals (house/market.py)"
+  },
+  {
+   "id": "open-to-chase",
+   "audience": "internal",
+   "category": "Ops",
+   "q": "Which zips have the most open Base permits to chase?",
+   "a": "Most open permits: 78731 (42), 78746 (28), 78757 (26), 78759 (20), 78704 (13). Open means issued but no final inspection yet.",
+   "number": "129 open in the top 5 zips",
+   "source": "data/market.json base_by_zip",
+   "source_url": null,
+   "page": {
+    "label": "Market",
+    "href": "market.html"
+   },
+   "data": [
+    "data/market.json"
+   ],
+   "computed": "sort base_by_zip by active, top 5"
+  },
+  {
+   "id": "median-days",
+   "audience": "internal",
+   "category": "Ops",
+   "q": "How long from application to permit?",
+   "a": "The median Base permit takes 14 days from applied to issued in Austin.",
+   "number": "14 days (median)",
+   "source": "data/market.json base_totals",
+   "source_url": null,
+   "page": {
+    "label": "Market",
+    "href": "market.html"
+   },
+   "data": [
+    "data/market.json"
+   ],
+   "computed": "median(issued - applied) over Base 2026 permits"
+  },
+  {
+   "id": "slow-zips",
+   "audience": "internal",
+   "category": "Ops",
+   "q": "Which zips are slowest to permit?",
+   "a": "Slowest medians (zips with 5 or more Base permits): 78738 (17 days), 78756 (16 days), 78748 (16 days).",
+   "number": "17 days in 78738",
+   "source": "data/market.json base_by_zip",
+   "source_url": null,
+   "page": {
+    "label": "Market",
+    "href": "market.html"
+   },
+   "data": [
+    "data/market.json"
+   ],
+   "computed": "base_by_zip, count >= 5, sort by median days"
+  },
+  {
+   "id": "aux-share",
+   "audience": "internal",
+   "category": "Ops",
+   "q": "What share of Auxiliary Power permits is Base since Backup Only launched?",
+   "a": "313 of 431 Auxiliary Power permits issued since 2026-07-15 are Base's.",
+   "number": "73%",
+   "source": "permits table (City of Austin feed)",
+   "source_url": null,
+   "page": {
+    "label": "Market",
+    "href": "market.html"
+   },
+   "data": [
+    "data/mirror/energy_permits.csv.gz"
+   ],
+   "computed": "SELECT SUM(is_base), COUNT(*) FROM permits WHERE work_class='Auxiliary Power' AND issue_date>='2026-07-15'"
+  },
+  {
+   "id": "base-rule",
+   "audience": "internal",
+   "category": "Ops",
+   "q": "What counts as a Base permit?",
+   "a": "Contractor 'Base Power', work class Auxiliary Power, issued 2026 or later. Other contractors show as numbers, not names.",
+   "number": null,
+   "source": "data/market.json base_rule; docs/MIRROR_SCHEMA.md",
+   "source_url": null,
+   "page": {
+    "label": "Permit explorer",
+    "href": "explorer.html"
+   },
+   "data": [
+    "data/market.json",
+    "docs/MIRROR_SCHEMA.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "clearance-rule",
+   "audience": "internal",
+   "category": "Installers",
+   "q": "What is the clearance rule?",
+   "a": "About 9 ft of clear outside wall per battery, next to the electric meter and main panel, with 3 ft from the gas meter, 3 ft from the A/C condenser and 3 ft from the fence. A rule-only estimate for triage, not a site plan.",
+   "number": "9 ft wall, 3 ft setbacks",
+   "source": "house/clearance.py constants",
+   "source_url": null,
+   "page": {
+    "label": "Clearance",
+    "href": "wall.html"
+   },
+   "data": [
+    "house/clearance.py"
+   ],
+   "computed": "house/clearance.py WALL_FT_PER_BATTERY and *_SETBACK_FT"
+  },
+  {
+   "id": "why-wall-fails",
+   "audience": "internal",
+   "category": "Installers",
+   "q": "Why does a wall fail the check?",
+   "a": "Four reasons in the rule: the usable wall is under 9 ft; the lot is under 4,500 sq ft with a detached garage (unclear, send a tech); the house covers over 40% of the lot, so the side yard is thin; or gas is unknown, so the rule keeps 3 ft clear for a meter that may exist.",
+   "number": "4 fail reasons",
+   "source": "house/clearance.py estimate_clearance(); web/data/recovery.json",
+   "source_url": null,
+   "page": {
+    "label": "Clearance",
+    "href": "wall.html"
+   },
+   "data": [
+    "house/clearance.py",
+    "web/data/recovery.json"
+   ],
+   "computed": null
+  },
+  {
+   "id": "record-after-fix",
+   "audience": "internal",
+   "category": "Installers",
+   "q": "What will the permit record show after a fix?",
+   "a": "Most fix steps add nothing to the city record. A battery install adds an Electrical Permit, work class Auxiliary Power. A panel upgrade adds an Electrical Permit, work class Upgrade, and the fit rule then reads easy. A meter and panel move adds an Electrical Permit.",
+   "number": "42 of 62 fix steps add no permit",
+   "source": "web/data/recovery.json cases[].blockers[].steps[].record_after",
+   "source_url": null,
+   "page": {
+    "label": "Path to yes",
+    "href": "recovery.html"
+   },
+   "data": [
+    "web/data/recovery.json"
+   ],
+   "computed": "count steps where permit.type is null"
+  },
+  {
+   "id": "top-blocker",
+   "audience": "internal",
+   "category": "Installers",
+   "q": "What blocks homes most often?",
+   "a": "Existing solar or battery on the permit record. The fix is a photo of the label and the panel, then an engineer check.",
+   "number": "11 of 21 cases in Path to yes",
+   "source": "web/data/recovery.json (built by house/recovery.py)",
+   "source_url": null,
+   "page": {
+    "label": "Path to yes",
+    "href": "recovery.html"
+   },
+   "data": [
+    "web/data/recovery.json"
+   ],
+   "computed": "Counter of blocker reasons"
+  },
+  {
+   "id": "who-fixes",
+   "audience": "internal",
+   "category": "Installers",
+   "q": "Who does the fix steps?",
+   "a": "Base does 32, an electrician 9, the member 21. Each step says if it needs a permit.",
+   "number": "41 of 62 steps not by the member",
+   "source": "web/data/recovery.json steps[].who",
+   "source_url": null,
+   "page": {
+    "label": "Path to yes",
+    "href": "recovery.html"
+   },
+   "data": [
+    "web/data/recovery.json"
+   ],
+   "computed": "Counter of steps[].who"
+  },
+  {
+   "id": "fix-cost",
+   "audience": "internal",
+   "category": "Installers",
+   "q": "What does a fix cost?",
+   "a": "Not estimated. No repo source prices these fixes. The only price on file is the $695 Base install fee, which is not a fix cost.",
+   "number": null,
+   "source": "web/data/recovery.json cost_note",
+   "source_url": null,
+   "page": {
+    "label": "Path to yes",
+    "href": "recovery.html"
+   },
+   "data": [
+    "web/data/recovery.json"
+   ],
+   "computed": null
+  },
+  {
+   "id": "draw-limit",
+   "audience": "internal",
+   "category": "Installers",
+   "q": "Why does a battery not start in an outage?",
+   "a": "The home must draw under 20 kW. A soft start is added for large HVAC if needed. The member can turn the battery on in the Base App after cutting use.",
+   "number": "Under 20 kW",
+   "source": "Base How it works page (faq/corpus/how-it-works.md)",
+   "source_url": "https://basepowercompany.com/how-it-works",
+   "page": {
+    "label": "My Battery",
+    "href": "member.html"
+   },
+   "data": [
+    "faq/corpus/how-it-works.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "only-base",
+   "audience": "internal",
+   "category": "Support",
+   "q": "What do members ask that only Base can answer?",
+   "a": "From the gap list: Photo requirements for eligibility review; How long the eligibility review takes; What disqualifies a home; Max panel amps allowed; Gas meter effect on install; Does Base handle HOA approval; Renter vs. owner eligibility; Contract or commitment length; Solar panel compatibility; Do I own the battery; Can I add a second battery later; Portable generator compatibility. The live question log is not on disk yet.",
+   "number": "12 test questions marked GAP",
+   "source": "faq/FAQ.md gap list (data/live/questions.jsonl not present)",
+   "source_url": null,
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md"
+   ],
+   "computed": "rows marked GAP in faq/FAQ.md"
+  },
+  {
+   "id": "public-coverage",
+   "audience": "internal",
+   "category": "Support",
+   "q": "How much can the public pages answer?",
+   "a": "12 of 25 test member questions, plus the move question that retrieval missed. They cover what Base is and what it costs, but not who can get it.",
+   "number": "12 of 25",
+   "source": "faq/FAQ.md table rows",
+   "source_url": null,
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md"
+   ],
+   "computed": "rows marked Answered in the faq/FAQ.md table"
+  },
+  {
+   "id": "help-center",
+   "audience": "internal",
+   "category": "Support",
+   "q": "Why not use the Help Center?",
+   "a": "Its article text needs JavaScript or a login. A plain fetch sees only the index: 62 battery articles, 17 Texas energy articles.",
+   "number": "62 + 17 articles, 0 readable",
+   "source": "faq/corpus/help-center.md",
+   "source_url": "https://help.basepowercompany.com/",
+   "page": {
+    "label": "Gaps",
+    "href": "gaps.html"
+   },
+   "data": [
+    "faq/corpus/help-center.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "policy-route",
+   "audience": "internal",
+   "category": "Support",
+   "q": "What does Base Brain say to a policy question?",
+   "a": "It does not guess. Questions on credits, cancelling, payments, contracts or eligibility get: Ask Base support.",
+   "number": "10 member questions routed",
+   "source": "brain/ask.py BASE_SUPPORT; this FAQ",
+   "source_url": null,
+   "page": {
+    "label": "Ask the data",
+    "href": "ask.html"
+   },
+   "data": [
+    "brain/ask.py"
+   ],
+   "computed": null
+  },
+  {
+   "id": "contacts",
+   "audience": "internal",
+   "category": "Support",
+   "q": "Where do we send people?",
+   "a": "New customers: 512-518-1009. Existing members: support@basepowercompany.com.",
+   "number": null,
+   "source": "Base home page (faq/corpus/home.md)",
+   "source_url": "https://basepowercompany.com/",
+   "page": {
+    "label": "Story overview",
+    "href": "story.html"
+   },
+   "data": [
+    "faq/corpus/home.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "move-miss",
+   "audience": "internal",
+   "category": "Support",
+   "q": "Why did the model say gap for the move question?",
+   "a": "Retrieval missed the chunk. The page does answer it: the agreement runs with the home, or Base removes the system.",
+   "number": "1 retrieval miss of 25",
+   "source": "faq/FAQ.md note on #17",
+   "source_url": null,
+   "page": {
+    "label": "Questions people ask",
+    "href": "data-qa.html"
+   },
+   "data": [
+    "faq/FAQ.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "knock-next",
+   "audience": "internal",
+   "category": "Growth",
+   "q": "Where should we knock next?",
+   "a": "Zips like Base's best ones (home value, owner homes) with few Base permits: 78738 (9 permits), 78734 (3 permits), 78750 (2 permits), 78739 (0 permits), 78732 (4 permits).",
+   "number": "5 lookalike zips",
+   "source": "data/market.json lookalikes (rule: min_home_value 600,000, min_owner_occupied 5,000, max_base_per_1000 1.0)",
+   "source_url": null,
+   "page": {
+    "label": "Next areas",
+    "href": "star.html"
+   },
+   "data": [
+    "data/market.json"
+   ],
+   "computed": "market.json lookalikes"
+  },
+  {
+   "id": "easy-fit",
+   "audience": "internal",
+   "category": "Growth",
+   "q": "Which zips have the most easy-fit homes?",
+   "a": "Estimated easy-fit homes: 78665 Round Rock (6,530), 78634 Hutto (5,465), 78681 Round Rock (4,090), 78664 Round Rock (3,466), 78628 Georgetown (2,662). Estimates from public totals, not a count of homes.",
+   "number": "6,530 in 78665",
+   "source": "data/funnel.json rows[].star (house/funnel.py)",
+   "source_url": null,
+   "page": {
+    "label": "Next areas",
+    "href": "star.html"
+   },
+   "data": [
+    "data/funnel.json"
+   ],
+   "computed": "sort funnel rows by star (easy_fit stage)"
+  },
+  {
+   "id": "assisted",
+   "audience": "internal",
+   "category": "Growth",
+   "q": "Which zips need assisted onboarding first?",
+   "a": "Highest share of people 65+ or with a disability, weighted by offer: 76574 (27.7), 78665 (20.3), 78664 (18.6), 78681 (16.5), 78734 (16.2). Send the voice guide and caregiver view there.",
+   "number": "score 27.7 in 76574",
+   "source": "data/funnel.json assisted_priority (ACS B01001, B18101)",
+   "source_url": null,
+   "page": {
+    "label": "Voice guide",
+    "href": "voice.html"
+   },
+   "data": [
+    "data/funnel.json",
+    "data/demographics.json"
+   ],
+   "computed": "assisted_priority = share x offer weight x 100"
+  },
+  {
+   "id": "recent-buyers",
+   "audience": "internal",
+   "category": "Growth",
+   "q": "Where are the recent buyers?",
+   "a": "Highest share of homes with a deed in the last 2 years: 78610 (34%), 78628 (22%), 78701 (17%), 78738 (17%), 78634 (16%). A deed is any transfer, not only a sale. No owner names are kept.",
+   "number": "34% in 78610",
+   "source": "data/deeds_by_zip.json (Travis and Williamson CAD)",
+   "source_url": null,
+   "page": {
+    "label": "My Street",
+    "href": "house.html"
+   },
+   "data": [
+    "data/deeds_by_zip.json"
+   ],
+   "computed": "zips in the 59-zip set with 1,000+ parcels, sort by share_sold_last_2y"
+  },
+  {
+   "id": "storm-zips",
+   "audience": "internal",
+   "category": "Growth",
+   "q": "Where did storms push people to backup most?",
+   "a": "Backup permits per 1,000 owner homes after Uri and the 2023 ice storm: 78746 (8.41), 78731 (6.77), 78730 (5.98). Base installs left out.",
+   "number": "8.41 per 1,000 in 78746",
+   "source": "web/data/star_cards.json",
+   "source_url": null,
+   "page": {
+    "label": "Next areas",
+    "href": "star.html"
+   },
+   "data": [
+    "web/data/star_cards.json",
+    "data/storms.json"
+   ],
+   "computed": "sort star_cards rows by per_1000_homes"
+  },
+  {
+   "id": "territory-count",
+   "audience": "internal",
+   "category": "Growth",
+   "q": "Where can Base be the energy provider?",
+   "a": "6 of our zips are Energy + Backup, 9 are mixed, and 36 are Backup Only (Austin Energy and co-ops).",
+   "number": "6 Energy + Backup zips",
+   "source": "data/funnel.json (from data/ptc_tdu.json)",
+   "source_url": null,
+   "page": {
+    "label": "Next areas",
+    "href": "star.html"
+   },
+   "data": [
+    "data/funnel.json",
+    "data/ptc_tdu.json"
+   ],
+   "computed": "len of each zip list"
+  },
+  {
+   "id": "vs-others",
+   "audience": "internal",
+   "category": "Growth",
+   "q": "How does Base compare to other installers in Austin?",
+   "a": "Base has 316 permits in 2026. The next installer has 69. Other installers show as numbers, not names.",
+   "number": "316 vs 69",
+   "source": "data/market.json contractors_2026",
+   "source_url": null,
+   "page": {
+    "label": "Market",
+    "href": "market.html"
+   },
+   "data": [
+    "data/market.json"
+   ],
+   "computed": "market.json contractors_2026"
+  },
+  {
+   "id": "signal-base_week",
+   "audience": "internal",
+   "category": "Grid and fleet",
+   "q": "What does the base week signal mean?",
+   "a": "Base week: are Base permits up or down against the last 4 weeks? Rule: Base permits issued in the last 7 days vs the mean of the 4 prior weeks. Window ends on the newest issue_date in the mirror. It fires at over 1.5x or under 0.5x.",
+   "number": "Now 25 permits in 7 days (baseline 44.5); firing: no",
+   "source": "store/signals.py RULES; permits (data/mirror/energy_permits.csv.gz, Socrata 3syk-w9eu)",
+   "source_url": null,
+   "page": {
+    "label": "Admin",
+    "href": "admin.html"
+   },
+   "data": [
+    "web/data/signals.json",
+    "store/signals.py"
+   ],
+   "computed": "store/signals.py (web/data/signals.json)"
+  },
+  {
+   "id": "signal-zip_surge",
+   "audience": "internal",
+   "category": "Grid and fleet",
+   "q": "What does the zip surge signal mean?",
+   "a": "Zip surge: is one zip getting many backup permits all at once? Rule: A zip's backup permits (generator, battery, solar_battery) in the last 30 days vs its trailing 12-month monthly mean. It fires at over 3x, min 5 permits.",
+   "number": "Now 0 zips over threshold; firing: no",
+   "source": "store/signals.py RULES; permits (data/mirror/energy_permits.csv.gz, Socrata 3syk-w9eu)",
+   "source_url": null,
+   "page": {
+    "label": "Admin",
+    "href": "admin.html"
+   },
+   "data": [
+    "web/data/signals.json",
+    "store/signals.py"
+   ],
+   "computed": "store/signals.py (web/data/signals.json)"
+  },
+  {
+   "id": "signal-price_spike",
+   "audience": "internal",
+   "category": "Grid and fleet",
+   "q": "What does the price spike signal mean?",
+   "a": "Price spike: is Austin power very expensive right now? Rule: LZ_AEN day-ahead or real-time settlement point price in the newest system-wide-prices snapshot. It fires at over $200/MWh.",
+   "number": "Now 59.57 $/MWh; firing: no",
+   "source": "store/signals.py RULES; dam_prices, rt_prices (ERCOT system-wide-prices dashboard)",
+   "source_url": null,
+   "page": {
+    "label": "Admin",
+    "href": "admin.html"
+   },
+   "data": [
+    "web/data/signals.json",
+    "store/signals.py"
+   ],
+   "computed": "store/signals.py (web/data/signals.json)"
+  },
+  {
+   "id": "signal-low_reserves",
+   "audience": "internal",
+   "category": "Grid and fleet",
+   "q": "What does the low reserves signal mean?",
+   "a": "Low reserves: is the grid close to asking people to save power? Rule: Physical responsive capability in the newest daily-prc snapshot (ERCOT conservation threshold). It fires at under 3,000 MW.",
+   "number": "Now 18,450 MW; firing: no",
+   "source": "store/signals.py RULES; prc (ERCOT daily-prc dashboard)",
+   "source_url": null,
+   "page": {
+    "label": "Admin",
+    "href": "admin.html"
+   },
+   "data": [
+    "web/data/signals.json",
+    "store/signals.py"
+   ],
+   "computed": "store/signals.py (web/data/signals.json)"
+  },
+  {
+   "id": "signal-storm_alert",
+   "audience": "internal",
+   "category": "Grid and fleet",
+   "q": "What does the storm alert signal mean?",
+   "a": "Storm alert: is there a weather alert for Travis or Williamson county? Rule: National Weather Service active alerts for Travis (TXC453) and Williamson (TXC491) counties. It fires at any active alert.",
+   "number": "Now 0 active alerts; firing: no",
+   "source": "store/signals.py RULES; https://api.weather.gov/alerts/active?zone=TXC453,TXC491",
+   "source_url": null,
+   "page": {
+    "label": "Admin",
+    "href": "admin.html"
+   },
+   "data": [
+    "web/data/signals.json",
+    "store/signals.py"
+   ],
+   "computed": "store/signals.py (web/data/signals.json)"
+  },
+  {
+   "id": "battery-now",
+   "audience": "internal",
+   "category": "Grid and fleet",
+   "q": "What does the battery do today?",
+   "a": "Plan for 2026-09-26: charge from 8 am to 11 am, discharge from 6 pm to 9 pm. 30% of 39.2 kWh stays for backup. Our plan, not Base's dispatch.",
+   "number": "Net $0.95 today on one battery (LZ_AEN)",
+   "source": "web/data/grid_today.json battery (grid/today.py)",
+   "source_url": null,
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "web/data/grid_today.json"
+   ],
+   "computed": "Day-ahead plan from grid/earned.py: charge in the 3 cheapest hours, discharge in the 3 priciest hours, one cycle a day, 30% of the 39.2 kWh always kept for the member's backup."
+  },
+  {
+   "id": "battery-year",
+   "audience": "internal",
+   "category": "Grid and fleet",
+   "q": "What did one battery earn for the grid last year?",
+   "a": "About $603 for all of 2025, or $1.65 a day, on real Austin prices. This is a floor: day-ahead prices and one cycle a day only. It is the value to the grid, not a payment to you.",
+   "number": "$603.45 in 2025; best 10 days gave $85.04",
+   "source": "ERCOT day-ahead price archive (report 13060), Austin zone, 39.2 kWh battery, 30% kept for backup.",
+   "source_url": null,
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "web/data/grid_year.json"
+   ],
+   "computed": "web/data/grid_year.json years.2025.aen (built by grid/year.py)"
+  },
+  {
+   "id": "peak-hours",
+   "audience": "internal",
+   "category": "Grid and fleet",
+   "q": "When is the grid under most stress?",
+   "a": "Late afternoon and evening. Texas uses the most power from 5 pm to 6 pm, and Austin prices are highest from 6 pm to 10 pm. Solar fades then while air conditioning is still on.",
+   "number": "Peak load hour ends 6 pm (63,116 MW average); top price hours 6 pm to 10 pm",
+   "source": "ERCOT hourly load 2024-01-01 to 2026-08-31 and day-ahead prices for the Austin zone.",
+   "source_url": null,
+   "page": {
+    "label": "Grid",
+    "href": "grid.html"
+   },
+   "data": [
+    "data/ercot_load_hourly_2024_2026.csv"
+   ],
+   "computed": "SELECT he, AVG(ercot) FROM load_hourly GROUP BY he; SELECT he, AVG(price) FROM dam_prices WHERE point='LZ_AEN' GROUP BY he"
+  },
+  {
+   "id": "where-number",
+   "audience": "internal",
+   "category": "Data",
+   "q": "Where does a number come from?",
+   "a": "Seven steps: public sources, collectors, raw and mirror files, one database (data/fleet.db), derived tables, small page files, then pages. Each page reads only page files.",
+   "number": "8 public sources, no login",
+   "source": "docs/DATAFLOW.md",
+   "source_url": null,
+   "page": {
+    "label": "Data flow",
+    "href": "dataflow.html"
+   },
+   "data": [
+    "docs/DATAFLOW.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "category-accuracy",
+   "audience": "internal",
+   "category": "Data",
+   "q": "How accurate are the permit categories?",
+   "a": "143 of 150 sample permits had the right category. Weighted by the mirror mix, about 97%. An AI labelled the sample, not a domain expert.",
+   "number": "143 of 150 (95.3%)",
+   "source": "docs/MIRROR_SCHEMA.md category accuracy check",
+   "source_url": null,
+   "page": {
+    "label": "Permit explorer",
+    "href": "explorer.html"
+   },
+   "data": [
+    "docs/MIRROR_SCHEMA.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "open-gaps",
+   "audience": "internal",
+   "category": "Data",
+   "q": "What are the open gaps?",
+   "a": "#85 PC power draw is 0.4 kW in sim/fleet.py but 350 W in grid/library_node.py; #80 local AI speed not measured on a Windows-class PC (with or without GPU); #57 Base's install footprint is visible only in Austin; no open contractor-named permit feed in its Oncor/CenterPoint cities.",
+   "number": "3 open, 14 of 17 fixed",
+   "source": "web/data/gaps.json (GitHub issues)",
+   "source_url": null,
+   "page": {
+    "label": "Gaps",
+    "href": "gaps.html"
+   },
+   "data": [
+    "web/data/gaps.json"
+   ],
+   "computed": "issues where state is open"
+  },
+  {
+   "id": "freshness",
+   "audience": "internal",
+   "category": "Data",
+   "q": "How fresh is the permit data?",
+   "a": "The newest permit on file was issued 2026-09-25. The daily job pulls new rows each morning at 06:15.",
+   "number": "34,334 energy permits on file",
+   "source": "permits table; collect/daily.sh",
+   "source_url": null,
+   "page": {
+    "label": "Data flow",
+    "href": "dataflow.html"
+   },
+   "data": [
+    "data/mirror/energy_permits.csv.gz",
+    "collect/daily.sh"
+   ],
+   "computed": "SELECT MAX(issue_date), COUNT(*) FROM permits"
+  },
+  {
+   "id": "names-kept",
+   "audience": "internal",
+   "category": "Data",
+   "q": "Do we keep any owner names?",
+   "a": "No. Owner names and addresses are dropped when the appraisal file is read. Other installers show as numbers.",
+   "number": "0 names kept",
+   "source": "house/cad_deeds.py; docs/DEEDS.md",
+   "source_url": null,
+   "page": {
+    "label": "Data flow",
+    "href": "dataflow.html"
+   },
+   "data": [
+    "data/deeds_by_zip.json",
+    "docs/DEEDS.md"
+   ],
+   "computed": null
+  },
+  {
+   "id": "fleet-db",
+   "audience": "internal",
+   "category": "Data",
+   "q": "What is in data/fleet.db?",
+   "a": "One SQLite file with permits, ERCOT prices, load, reserves, demographics, territory, signals, judgments and the Base Brain knowledge base.",
+   "number": null,
+   "source": "docs/DATAFLOW.md database table",
+   "source_url": null,
+   "page": {
+    "label": "Data flow",
+    "href": "dataflow.html"
+   },
+   "data": [
+    "docs/DATAFLOW.md"
+   ],
+   "computed": null
+  }
+ ]
+}

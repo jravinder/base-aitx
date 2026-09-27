@@ -1,0 +1,220 @@
+/* Base Fleet shared shell and design tokens (Stitch "Decentralized Energy Console").
+   Every page links this file once and loads shell.js once.
+   Plus Jakarta Sans is self-hosted (SIL OFL, assets/plus-jakarta-sans-OFL.txt). */
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:400;font-display:swap;src:url("assets/plus-jakarta-sans-400.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:500;font-display:swap;src:url("assets/plus-jakarta-sans-500.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:600;font-display:swap;src:url("assets/plus-jakarta-sans-600.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:700;font-display:swap;src:url("assets/plus-jakarta-sans-700.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url("assets/plus-jakarta-sans-800.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url("assets/jetbrains-mono-400.ttf") format("truetype")}
+:root{
+  /* Type: Stitch scale (display-lg 40, display-sm 32, headline-lg 24, headline-md 20, headline-sm 16,
+     body-lg 16, body-md 14, label-md 13, body-sm 12, label-caps 11) */
+  --bf-font:"Plus Jakarta Sans","Segoe UI",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --bf-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --bf-text-display:700 40px/48px var(--bf-font);--bf-text-display-sm:700 32px/38px var(--bf-font);
+  --bf-text-h1:600 24px/32px var(--bf-font);--bf-text-h2:600 20px/28px var(--bf-font);--bf-text-h3:600 16px/24px var(--bf-font);
+  --bf-text-body-lg:400 16px/26px var(--bf-font);--bf-text-body:400 14px/22px var(--bf-font);--bf-text-small:400 12px/18px var(--bf-font);
+  --bf-text-label:600 13px/18px var(--bf-font);--bf-text-caps:700 11px/16px var(--bf-font);--bf-text-metric:700 36px/40px var(--bf-font);
+  /* Colour: light surfaces, deep green accent */
+  --bf-bg:#f9f9ff;--bf-surface:#fff;--bf-sunk:#f1f5f9;
+  --bf-ink:#0f172a;--bf-muted:#414941;--bf-faint:#596158;
+  --bf-line:#e2e8f0;--bf-line-strong:#c1c9be;
+  --bf-brand:#1e4d2b;--bf-brand-strong:#023616;--bf-brand-soft:#bbefc1;--bf-brand-tint:#ecfdf5;--bf-on-brand:#fff;
+  --bf-solar:#22c55e;--bf-lime:#e6e6e6;--bf-energy-lime:#84cc16;
+  --bf-blue:#2563eb;--bf-blue-line:#93b4fa;--bf-blue-tint:#eff6ff;
+  --bf-info-ink:#486077;--bf-info-tint:#edf0f5;
+  --bf-amber:#87591c;--bf-amber-tint:#f6eddd;
+  --bf-danger:#a0184b;--bf-danger-line:#a0184b;--bf-danger-tint:#fbe9f0;
+  --bf-focus:#467bb0;
+  /* Shape and space: Stitch radii (sm 2, 4, card 8, pill 12) and 4-8-16-24-32-48 spacing */
+  --bf-radius-sm:2px;--bf-radius:4px;--bf-radius-lg:8px;--bf-radius-pill:12px;
+  --bf-shadow-card:0 4px 20px -4px rgba(15,23,42,.06);
+  --bf-s1:4px;--bf-s2:8px;--bf-s3:12px;--bf-s4:16px;--bf-s5:24px;--bf-s6:32px;--bf-s7:48px;
+  --sh-navh:72px;--sh-tour:0px;--sh-top:calc(var(--sh-navh) + var(--sh-tour));--sh-left:0px;--sh-max:1440px;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bf-bg:#111;--bf-surface:#1b1b1b;--bf-sunk:#262626;
+  --bf-ink:#f5f5f5;--bf-muted:#bdbdbd;--bf-faint:#aaa;
+  --bf-line:#393939;--bf-line-strong:#737373;
+  --bf-brand:#86efac;--bf-brand-strong:#bbf7d0;--bf-brand-soft:#28583a;--bf-brand-tint:#14291d;--bf-on-brand:#171717;
+  --bf-solar:#4ade80;--bf-lime:#e6e6e6;--bf-energy-lime:#a3e635;
+  --bf-blue:#8cbde6;--bf-blue-line:#4b86b3;--bf-blue-tint:#1a2835;
+  --bf-info-ink:#a6bcd2;--bf-info-tint:#1d2530;
+  --bf-amber:#e2b466;--bf-amber-tint:#33291a;
+  --bf-danger:#ff97ba;--bf-danger-line:#e36c99;--bf-danger-tint:#361e27;
+  --bf-shadow-card:0 4px 20px -4px rgba(0,0,0,.4);
+  --bf-focus:#7fb0e0;color-scheme:dark;
+}
+
+/* Shared components for pages (plain CSS translation of the Stitch Tailwind classes). */
+.bf-card{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:28px;box-sizing:border-box}
+.bf-card:hover{box-shadow:var(--bf-shadow-card)}
+.bf-card-sunk{background:var(--bf-sunk);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:var(--bf-s4)}
+.bf-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 24px;border-radius:var(--bf-radius-lg);
+  font:600 16px/24px var(--bf-font);text-decoration:none;cursor:pointer;border:1px solid var(--bf-line);background:var(--bf-surface);color:var(--bf-ink);box-sizing:border-box}
+.bf-btn:hover{background:var(--bf-sunk)}
+.bf-btn-primary{background:var(--bf-brand);border-color:var(--bf-brand);color:var(--bf-on-brand)}
+.bf-btn-primary:hover{background:var(--bf-brand-strong);border-color:var(--bf-brand-strong)}
+.bf-btn:focus-visible{outline:3px solid var(--bf-focus);outline-offset:2px}
+.bf-pill{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:var(--bf-radius-pill);border:1px solid var(--bf-line);background:var(--bf-sunk);color:var(--bf-muted);font:var(--bf-text-caps);text-transform:uppercase}
+.bf-pill-brand{background:var(--bf-brand-tint);border-color:var(--bf-brand-soft);color:var(--bf-brand)}
+.bf-caps{font:var(--bf-text-caps);text-transform:uppercase;color:var(--bf-muted)}
+.bf-metric{font:var(--bf-text-metric);color:var(--bf-ink)}
+
+html.sh body{padding-top:var(--sh-top);box-sizing:border-box;min-width:0}
+html.sh,html.sh body *{letter-spacing:0}
+/* External source references stay distinct from navigation and brand actions. */
+html.sh a[href^="https://"]:not([class]),html.sh a[href^="http://"]:not([class]),
+html.sh .sh-tour-src a{color:var(--bf-blue);text-underline-offset:3px}
+
+/* Slim top navigation (Stitch header: 72px, white, one hairline, brand + track pill, page links, role on the right).
+   Class selectors only, so page rules (and Tailwind preflight) for nav/header/a/button do not leak in. */
+.sh-nav{position:fixed;top:0;left:0;right:0;height:var(--sh-navh);z-index:50;background:var(--bf-surface);border-bottom:1px solid var(--bf-line);
+  font:400 14px/1.4 var(--bf-font);color:var(--bf-ink);box-sizing:border-box;letter-spacing:0;text-align:left}
+.sh-nav *{box-sizing:border-box;min-width:0;letter-spacing:0}
+.sh-bar{height:100%;max-width:var(--sh-max);margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.sh-head{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.sh-brand{display:inline-flex;align-items:center;min-height:44px;text-decoration:none!important;color:var(--bf-ink)!important;border-radius:var(--bf-radius-lg)}
+.sh-name{font:700 16px/24px var(--bf-font);color:var(--bf-ink);white-space:nowrap}
+.sh-group{display:inline-flex;align-items:center;padding:2px 8px;border-radius:var(--bf-radius-sm);border:1px solid var(--bf-line);background:var(--bf-sunk);
+  color:var(--bf-muted);font:600 12px/16px var(--bf-font);white-space:nowrap}
+.sh-toggle{display:none}
+.sh-groups{display:flex;align-items:stretch;gap:32px;height:100%;flex:0 1 auto;min-width:0}
+.sh-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;padding:0;border:0;border-bottom:2px solid transparent;
+  background:none;text-decoration:none!important;color:var(--bf-muted)!important;font:600 13px/18px var(--bf-font);white-space:nowrap;margin:0}
+.sh-link:hover{color:var(--bf-brand-strong)!important}
+.sh-link[aria-current="page"]{color:var(--bf-brand-strong)!important;border-bottom-color:var(--bf-brand-strong)}
+:root[data-theme="dark"] .sh-link:hover,:root[data-theme="dark"] .sh-link[aria-current="page"]{color:var(--bf-brand)!important;border-bottom-color:var(--bf-brand)}
+.sh-link .sh-full{display:none}
+.sh-tag{font:700 10px/14px var(--bf-font);padding:1px 5px;border-radius:var(--bf-radius-sm);background:var(--bf-info-tint);color:var(--bf-info-ink);white-space:nowrap}
+.sh-more{position:relative;display:flex;align-items:stretch}
+.sh-more>summary{list-style:none;display:inline-flex;align-items:center;gap:4px;cursor:pointer;min-height:44px;min-width:44px;padding:0;border-bottom:2px solid transparent;
+  color:var(--bf-muted);font:600 13px/18px var(--bf-font);white-space:nowrap}
+.sh-more>summary::-webkit-details-marker{display:none}
+.sh-more>summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);margin-left:4px}
+.sh-more>summary:hover{color:var(--bf-brand-strong)}
+.sh-more.sh-has-current>summary{color:var(--bf-brand-strong);border-bottom-color:var(--bf-brand-strong)}
+.sh-more-list{position:absolute;top:100%;right:-12px;margin-top:1px;min-width:240px;padding:8px;display:flex;flex-direction:column;background:var(--bf-surface);
+  border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:0 12px 32px -8px rgba(15,23,42,.18)}
+.sh-more-list .sh-link{justify-content:flex-start;padding:0 12px;border-bottom:0;border-radius:var(--bf-radius);font-weight:500}
+.sh-more-list .sh-link:hover{background:var(--bf-sunk)}
+.sh-more-list .sh-link[aria-current="page"]{background:var(--bf-brand-tint);font-weight:600}
+.sh-more-list .sh-link .sh-short{display:none}.sh-more-list .sh-link .sh-full{display:inline}
+.sh-foot{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.sh-theme{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;cursor:pointer;border-radius:var(--bf-radius-lg);color:var(--bf-muted)}
+.sh-theme:hover{color:var(--bf-brand-strong);background:var(--bf-sunk)}
+.sh-theme svg{width:20px;height:20px;display:block}
+.sh-theme .sh-theme-text{display:none}
+.sh-sep{width:1px;height:20px;background:var(--bf-line);margin:0 4px}
+.sh-role{display:inline-flex;align-items:center;gap:2px;padding:2px;border-radius:var(--bf-radius-pill);border:1px solid var(--bf-line);background:var(--bf-sunk)}
+.sh-role-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;min-width:44px;padding:0 12px;border-radius:10px;
+  font:600 13px/18px var(--bf-font);color:var(--bf-muted)!important;text-decoration:none!important;white-space:nowrap}
+.sh-role-link:hover{color:var(--bf-ink)!important}
+.sh-role-link[aria-current="true"]{background:var(--bf-surface);color:var(--bf-ink)!important;box-shadow:0 1px 2px rgba(15,23,42,.08)}
+.sh-role-link[aria-current="true"]::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--bf-solar)}
+.sh-nav a:focus-visible,.sh-nav button:focus-visible,.sh-nav summary:focus-visible,.sh-beats a:focus-visible{outline:3px solid var(--bf-focus);outline-offset:2px}
+@media (max-width:1240px) and (min-width:861px){.sh-bar{padding:0 20px;gap:16px}.sh-groups{gap:20px}.sh-group{display:none}}
+
+/* Previous / next beat bar */
+.sh-beats{display:flex;align-items:stretch;gap:12px;margin:40px auto 0;padding:18px 24px 26px;border-top:1px solid var(--bf-line);
+  background:var(--bf-bg);font:13px/1.35 var(--bf-font);color:var(--bf-ink);box-sizing:border-box;width:100%;max-width:1450px;letter-spacing:0;clear:both}
+.sh-beats[hidden]{display:none}
+.sh-beats a{flex:1 1 0;min-width:0;display:block;text-decoration:none!important;color:var(--bf-ink)!important;border:1px solid var(--bf-line);
+  border-radius:var(--bf-radius);padding:10px 14px;background:var(--bf-surface)}
+.sh-beats a:hover{border-color:var(--bf-brand)}
+.sh-beats a small{display:block;font-size:11px;color:var(--bf-muted);margin-bottom:2px}
+.sh-beats a b{font-weight:650;color:var(--bf-brand)}
+.sh-beats .sh-next{text-align:right}
+.sh-beats .sh-pos{flex:none;align-self:center;font-size:11px;color:var(--bf-muted);white-space:nowrap}
+/* Pages that fill the viewport (overflow hidden) get a floating bar */
+.sh-beats.sh-float{position:fixed;right:14px;bottom:var(--sh-float-bottom,14px);width:auto;margin:0;padding:0;border:0;background:none;z-index:40;max-width:min(440px,calc(100vw - var(--sh-left) - 28px))}
+.sh-beats.sh-float a{flex:1 1 0;white-space:normal;overflow-wrap:anywhere;padding:7px 11px}
+.sh-beats.sh-float .sh-pos{display:none}
+
+/* Persona tour banner (?tour=<id>). Fixed under the top navigation.
+   shell.js writes its height to --sh-tour, so body padding and pages that read --sh-top move down. */
+html.sh-touring body{padding-top:var(--sh-top)}
+.sh-tour{position:fixed;top:var(--sh-navh);left:var(--sh-left);right:0;z-index:45;display:flex;align-items:center;gap:8px 18px;
+  padding:9px 18px;background:var(--bf-brand-tint);border-bottom:1px solid var(--bf-line-strong);color:var(--bf-ink);
+  font:13px/1.35 var(--bf-font);letter-spacing:0;text-align:left;box-sizing:border-box}
+.sh-tour *{box-sizing:border-box}
+.sh-tour p{margin:0;max-width:none}
+.sh-tour-who{flex:none;display:flex;flex-direction:column;gap:1px;min-width:0}
+.sh-tour-who b{font-weight:650;color:var(--bf-brand)}
+.sh-tour-who span{font-size:11px;color:var(--bf-muted);font-variant-numeric:tabular-nums}
+.sh-tour-body{flex:1 1 auto;min-width:0;border-left:1px solid var(--bf-line-strong);padding-left:18px}
+.sh-tour-head{font-weight:600}
+.sh-tour-num{color:var(--bf-muted);font-size:12.5px;font-variant-numeric:tabular-nums}
+.sh-tour-num b{color:var(--bf-ink);font-weight:650}
+.sh-tour-src{color:var(--bf-faint);font:11px/1.3 var(--bf-mono);overflow-wrap:anywhere;white-space:normal}
+.sh-tour-btns{flex:none;display:flex;gap:6px}
+.sh-tour-btn{all:unset;cursor:pointer;font:600 12px/1 var(--bf-font);padding:7px 10px;border-radius:var(--bf-radius);border:1px solid var(--bf-line-strong);
+  background:var(--bf-surface);color:var(--bf-ink)!important;text-decoration:none!important;white-space:nowrap}
+.sh-tour-btn:hover{border-color:var(--bf-brand)}
+.sh-tour-go{background:var(--bf-brand);border-color:var(--bf-brand);color:var(--bf-on-brand)!important}
+.sh-tour-btn[aria-disabled="true"]{cursor:default;opacity:.45}
+.sh-tour-exit{color:var(--bf-muted)!important}
+.sh-tour-btn:focus-visible{outline:3px solid var(--bf-focus);outline-offset:2px}
+.sh-tour-btn,.sh-beats a{min-height:44px;min-width:44px;box-sizing:border-box}
+.sh-tour-btn{display:inline-flex;align-items:center;justify-content:center}
+.sh-beats a,.sh-tour-body{overflow-wrap:anywhere}
+@media (max-width:1100px){.sh-tour{flex-wrap:wrap}.sh-tour-body{flex-basis:100%;order:3;border-left:0;padding-left:0}.sh-tour-btns{margin-left:auto}}
+
+@media (max-width:860px){
+  :root{--sh-navh:56px}
+  .sh-nav{height:var(--sh-navh)}
+  .sh-bar{flex-wrap:wrap;align-content:flex-start;gap:0;padding:0 12px 0 16px;height:auto}
+  .sh-head{height:var(--sh-navh);width:100%;justify-content:space-between;gap:8px}
+  .sh-head .sh-brand{margin-right:auto}
+  .sh-group{padding:1px 6px;font-size:10px}
+  .sh-toggle{all:unset;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font:600 13px/1.2 var(--bf-font);color:var(--bf-ink);
+    border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:8px 12px;white-space:normal;max-width:48vw;min-height:44px;min-width:44px;box-sizing:border-box;flex-shrink:0}
+  .sh-toggle span{overflow-wrap:anywhere;min-width:0}
+  .sh-toggle svg{width:18px;height:18px;flex:none}
+  .sh-groups,.sh-foot{display:none}
+  .sh-nav.sh-open{height:100vh;height:100dvh;overflow-y:auto}
+  .sh-nav.sh-open .sh-groups{display:flex;flex-direction:column;align-items:stretch;gap:0;width:100%;height:auto;padding:8px 0 12px;border-top:1px solid var(--bf-line)}
+  .sh-nav.sh-open .sh-foot{display:flex;width:100%;justify-content:space-between;padding:12px 0 16px;border-top:1px solid var(--bf-line)}
+  .sh-link{justify-content:flex-start;padding:0 8px;border-bottom:0;border-radius:var(--bf-radius);font-size:15px;font-weight:500}
+  .sh-link[aria-current="page"]{background:var(--bf-brand-tint);font-weight:600}
+  .sh-link .sh-short{display:none}.sh-link .sh-full{display:inline}
+  .sh-more{flex-direction:column;margin-top:8px;border-top:1px solid var(--bf-line);padding-top:4px}
+  .sh-more>summary{padding:0 8px;border-bottom:0;font-size:14px}
+  .sh-more.sh-has-current>summary{border-bottom:0}
+  .sh-more-list{position:static;min-width:0;padding:0 0 0 8px;border:0;box-shadow:none;background:none;margin:0}
+  .sh-sep{display:none}
+  .sh-beats{padding:14px 16px 20px;gap:8px;flex-wrap:wrap}
+  .sh-beats .sh-pos{order:-1;flex-basis:100%;text-align:center}
+  .sh-beats a{padding:9px 11px}
+  .sh-tour{padding:8px 16px;gap:6px 10px}
+  .sh-tour-src{white-space:normal}
+  .sh-tour-btns{order:4;flex-basis:100%;margin-left:0}
+  .sh-tour-btn{flex:1 1 0;text-align:center;padding:8px 6px}
+  .sh-beats.sh-float{left:10px;right:10px;bottom:var(--sh-float-bottom,10px);max-width:none;flex-wrap:nowrap}
+}
+@media print{.sh-nav,.sh-beats,.sh-tour{display:none}html.sh body{padding:0}}
+
+/* Stitch pages turn off Tailwind's base styles (preflight: false), which also drops its border reset:
+   outlined buttons then show no border. Restore just that reset, at zero specificity, on Tailwind pages only. */
+:where(:root:has(#tailwind-config)) :where(*, *::before, *::after) { border-width: 0; border-style: solid; border-color: #e2e8f0; }
+
+/* Story bar: where this page sits in the story, and the next beat (shell.js storyBar). */
+.sh-story{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;max-width:var(--sh-max);margin:32px auto 0;padding:16px 24px;
+  border-top:1px solid #e2e8f0;font:600 13px/20px "Plus Jakarta Sans",system-ui,sans-serif;color:#414941;box-sizing:border-box}
+.sh-story a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:8px;background:#1e4d2b;color:#fff;text-decoration:none}
+.sh-story a:hover{background:#004a31}
+.sh-story a:focus-visible{outline:3px solid #467bb0;outline-offset:2px}
+:root[data-theme="dark"] .sh-story{border-color:#393939;color:#bdbdbd}
+/* Earned points chip (member pages): lime chip, dark green text, links to Rewards. */
+.sh-points{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 12px;border-radius:var(--bf-radius-pill,99px);background:#cbf080;color:#1e4d2b!important;
+  border:1px solid #a3d65c;font:700 13px/18px var(--bf-font);white-space:nowrap;text-decoration:none!important;font-variant-numeric:tabular-nums;position:relative}
+.sh-points[hidden]{display:none}
+.sh-points::after{content:"";position:absolute;inset:-6px 0}
+.sh-points:hover{background:#bde46a}
+.sh-points svg{flex:none;width:16px;height:16px}
+@media (max-width:860px){.sh-points{padding:3px 10px;font-size:12px}.sh-head:has(.sh-points:not([hidden])) .sh-group{display:none}}
+/* Entry name and track chip beside the brand (subtle). */
+.sh-group .sh-entry{font-weight:600}
+.sh-group .sh-entry-track{opacity:.7;font-weight:500}

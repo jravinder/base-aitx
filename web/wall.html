@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will the battery fit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script src="assets/stitch/tailwind-forms.js"></script>
+<script>
+  if (window.tailwind) tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'] },
+    colors: { brand: { 50:'#ecfdf5', 100:'#d1fae5', 600:'#16a34a', 700:'#15803d', 800:'#166534', 900:'#14532d', 950:'#052e16' } }
+  } } };
+</script>
+<link rel="stylesheet" href="shell.css">
+<script defer src="shell.js"></script>
+<style>
+  .bg-dot-pattern { background-image:radial-gradient(#cbd5e1 1px, transparent 1px); background-size:20px 20px }
+  body { font-family:"Plus Jakarta Sans", system-ui, -apple-system, sans-serif }
+  #view { position:relative; width:100%; height:460px; overflow:hidden; background:#f8fafc }
+  #view canvas { display:block }
+  #chips::-webkit-scrollbar { display:none }
+  button:focus-visible, summary:focus-visible, a:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
+  @media (max-width:767px) { #view { height:360px } }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen antialiased">
+<main class="flex-1 max-w-[1440px] w-full mx-auto px-4 md:px-6 py-8">
+  <div class="mb-3 flex flex-wrap items-center gap-2">
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-slate-200/80 text-slate-700">
+      <span class="w-1.5 h-1.5 rounded-full bg-amber-500" id="eyeDot"></span>
+      Austin residential clearance · Site check
+    </span>
+    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-lime-200 text-lime-900">Simulation</span>
+    <span class="text-xs text-slate-500">Base admin · member growth and installs</span>
+  </div>
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+    <div class="min-w-0">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-950">Will the battery fit on this wall?</h1>
+      <p class="text-slate-600 text-sm mt-1" id="lede">Three modeled homes, checked against the clearance rule: 9 ft of clear wall at the meter, 3 ft from the gas meter and the fence.</p>
+      <a id="story-next" href="recovery.html?track=home&amp;persona=operations" class="mt-3 inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-lg bg-[#1e4d2b] text-white text-sm font-semibold hover:bg-[#004A31] shadow-sm">Next: the path to yes <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+    </div>
+    <div class="flex items-center gap-2 overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0 pb-1 md:pb-0 shrink-0" id="chips" role="group" aria-label="Pick a home" style="scrollbar-width:none">
+      <button type="button" data-case="a" class="min-h-[44px] px-4 py-2 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">Small lot with a short wall?</button>
+      <button type="button" data-case="b" class="min-h-[44px] px-4 py-2 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">Big lot with a long wall?</button>
+      <button type="button" data-case="c" class="min-h-[44px] px-4 py-2 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap">Home built to the lot line?</button>
+    </div>
+  </div>
+
+  <div id="readout" class="grid grid-cols-2 md:grid-cols-4 gap-px bg-slate-200 border border-slate-200 rounded-xl overflow-hidden mb-6 font-mono" aria-label="Case readout"></div>
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col min-w-0">
+      <div class="px-6 py-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3 bg-slate-50/50">
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" id="modelDot"></span>
+          <span class="text-xs font-bold tracking-wide text-slate-800 uppercase" id="viewTitle">Side wall model</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500" id="pills"></div>
+      </div>
+      <div class="relative p-4 md:p-8 bg-dot-pattern flex items-center justify-center overflow-hidden">
+        <div class="w-full max-w-[860px] drop-shadow-sm rounded-lg overflow-hidden border border-slate-200/60 bg-white">
+          <div id="view">
+            <span class="absolute left-3 bottom-3 inline-flex items-center gap-2 bg-white border border-slate-300 rounded-full px-3 py-1 text-[11px] font-semibold text-slate-700 shadow-sm pointer-events-none"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Drag to turn. Scroll to zoom. Arrow keys move the battery.</span>
+          </div>
+        </div>
+      </div>
+      <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-full" style="background:#2f6f3e"></span>9 ft clear space at the meter</span>
+          <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500"></span>3 ft from the gas meter</span>
+          <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-full" style="background:#3b6ea8"></span>Property line (dashed: 3 ft from the fence)</span>
+          <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Battery turns amber to flag a clearance conflict</span>
+        </div>
+        <span class="font-mono text-[11px] text-slate-400">Rule source: house/clearance.py</span>
+      </div>
+    </div>
+
+    <div class="lg:col-span-4 flex flex-col gap-6 min-w-0">
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col" id="card" aria-live="polite">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Clearance status</span>
+          <span id="state" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border"></span>
+        </div>
+        <div class="py-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span id="ic" aria-hidden="true" class="inline-flex items-center justify-center w-7 h-7 rounded-full font-bold text-base"></span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-900" id="fit"></h2>
+          </div>
+          <p class="text-slate-600 text-sm leading-relaxed mt-2" id="why"></p>
+        </div>
+        <div class="space-y-3 py-4 border-y border-slate-100 bg-slate-50/60 -mx-6 px-6">
+          <div>
+            <div class="flex justify-between gap-2 text-xs font-semibold text-slate-700 mb-1">
+              <span>Required clear wall</span>
+              <span class="text-slate-900 text-right" id="wallReq"></span>
+            </div>
+            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden flex" id="wallBar"></div>
+            <p class="text-[11px] text-slate-500 mt-1" id="wallNote"></p>
+          </div>
+          <div class="flex items-center justify-between gap-2 text-xs pt-1">
+            <span class="text-slate-600 font-medium">Gas meter setback:</span>
+            <span id="gasVal"></span>
+          </div>
+          <div class="flex items-center justify-between gap-2 text-xs">
+            <span class="text-slate-600 font-medium">Property fence setback:</span>
+            <span id="fenceVal"></span>
+          </div>
+        </div>
+        <div class="pt-5 mt-auto">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">What to do</span>
+          <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200/80 mb-4">
+            <p class="text-xs font-semibold text-emerald-950 mb-1">Next check</p>
+            <p class="text-xs text-emerald-800 leading-snug" id="todo"></p>
+          </div>
+          <a id="go" class="inline-flex w-full min-h-[44px] items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-950 text-white text-sm font-semibold hover:bg-emerald-900 transition-colors shadow-sm" href="recovery.html">
+            <span>See the path to yes</span>
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-[#1e4d2b] text-white p-5 shadow-sm overflow-hidden">
+        <div class="flex items-center gap-2 mb-3"><span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-[#cbf080]"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" stroke-linejoin="round"></path></svg></span><span class="text-xs font-bold uppercase tracking-wider text-[#a0d3a6]">Where the battery goes</span></div>
+        <div class="relative rounded-lg overflow-hidden mb-3"><img src="assets/stitch/wall-raceway.jpg" alt="Illustration of conduit on an exterior wall beside electrical boxes" class="w-full h-[130px] object-cover block"><span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-white/90 text-[10px] font-semibold text-slate-600">Illustration</span></div>
+        <p class="text-sm leading-relaxed text-[#e7eeff]">The battery sits next to the electric meter and main panel. The rule reads the wall right there: <span class="font-mono text-[#cbf080]">9 ft</span> clear, <span class="font-mono text-[#cbf080]">3 ft</span> from the gas meter and the fence.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex items-start gap-4">
+      <div class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 text-slate-700">
+        <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 6l3 12h12l3-12H3z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 9h2m-2 3h3m-3 3h2m4-6h2m-2 3h3m-3 3h2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-2 mb-1.5">
+          <h3 class="text-base font-bold text-slate-900">Rule</h3>
+          <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-slate-100 text-slate-600 rounded">Model</span>
+        </div>
+        <p class="text-sm text-slate-600 leading-relaxed font-normal">9 ft clear wall per battery, 3 ft setback from the gas meter and the fence, checked on every case.</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex items-start justify-between gap-4 hover:border-slate-300 transition-colors">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center shrink-0 text-emerald-700">
+          <svg class="w-6 h-6 text-emerald-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 mb-1.5">
+            <h3 class="text-base font-bold text-slate-900">Next step</h3>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded">Checks</span>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed">Suggested checks for this case, and who does each one</p>
+        </div>
+      </div>
+      <a id="more" class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-semibold text-emerald-700 hover:text-emerald-900 shrink-0 self-center" href="recovery.html">
+        <span>View</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+    </div>
+  </section>
+
+  <details class="mt-6 bg-white rounded-2xl border border-slate-200 shadow-sm px-6 group">
+    <summary class="cursor-pointer min-h-[52px] flex items-center text-sm font-semibold text-slate-600">Details: the numbers for this home, every check, the rules, and what is an estimate</summary>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 pt-2 text-sm">
+      <div class="min-w-0"><h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2" id="caseTitle"></h3><table class="w-full text-xs"><tbody id="caseTable"></tbody></table></div>
+      <div class="min-w-0"><h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Every check at this spot</h3><ul class="list-disc pl-5 space-y-1 text-xs text-slate-700" id="reasons"></ul></div>
+      <div class="min-w-0"><h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">What is an estimate</h3><p class="text-xs text-slate-500 leading-relaxed">Rule numbers come from house/clearance.py: 9 ft of wall per battery, 3 ft from the gas meter and from the fence. The battery size of 4 x 2 x 5 ft is an estimate. Property lines and wall lengths are modeled. Photos add context, and a qualified site assessment confirms the fit.</p></div>
+    </div>
+  </details>
+</main>
+<footer class="bg-white border-t border-slate-200 mt-12 py-6">
+  <div class="max-w-[1440px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+    <div class="flex items-center gap-2"><span class="font-bold text-slate-800">Base Fleet</span><span>·</span><span>Site check</span></div>
+    <div><p>Sources: house/clearance.py rules and the modeled demo cases it prints.</p></div>
+  </div>
+</footer>
+
+<script type="module">
+import * as THREE from "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.module.min.js";
+// Numbers from house/clearance.py
+const WALL_FT_PER_BATTERY = 9.0, GAS_METER_SETBACK_FT = 3.0, FENCE_SETBACK_FT = 3.0;
+const CLEAR_DEPTH_FT = 3.0;                       // clear box depth in front of the meter
+const BAT = { w: 4, d: 2, h: 5, est: true };      // estimate; no public dims found
+const WALL_L = 40, WALL_H = 10, METER_X = 0, METER_H = 5, GAS_X = 4;
+
+// Demo cases: values printed by `python3 house/clearance.py --demo`.
+// Property line distance = side_setback_ft_estimate, except (c) where the
+// model says the side yard is built out to the line (zero-lot-line), drawn at 1 ft.
+const CASES = {
+  a: { title: "(a) small lot, 2-storey, detached garage", verdict: "unclear", conf: "low",
+       lot: 3877, foot: 868, wall: 7.3, setback: 11.2, line: 7.3, gas: "unknown, assumed present",
+       note: "Property line drawn at the 7.3 ft usable-wall estimate so the fence setback bites; model setback estimate is 11.2 ft." },
+  b: { title: "(b) large lot, 1-storey, attached garage", verdict: "likely", conf: "medium",
+       lot: 8000, foot: 1800, wall: 34.6, setback: 16.0, line: 16.0, gas: "present",
+       note: "Lot over 7,000 sq ft: likely enough room." },
+  c: { title: "(c) small lot, 1-storey, zero-lot-line", verdict: "unlikely", conf: "medium",
+       lot: 3000, foot: 1400, wall: 30.6, setback: 5.1, line: 1.0, gas: "present",
+       note: "Footprint covers 47% of the lot (over 40%); side clearance is usually built out to the property line, drawn here at 1 ft." },
+};
+
+const view = document.getElementById('view');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 500);
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+view.prepend(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x998877, 0.9));
+const sun = new THREE.DirectionalLight(0xffffff, 0.8); sun.position.set(-20, 30, 25); scene.add(sun);
+
+// Coordinates: x along the wall, y up, z outward from the wall face (wall face at z=0).
+const mat = (c, o) => new THREE.MeshLambertMaterial({ color: c, transparent: o < 1, opacity: o, depthWrite: o >= 1 });
+const box = (w, h, d, m) => new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m);
+
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(80, 60), mat(0xdcfce7, 1));
+ground.rotation.x = -Math.PI / 2; ground.position.set(0, -0.01, 20); scene.add(ground);
+const grid = new THREE.GridHelper(80, 80, 0xbbf7d0, 0xe2f5e8); grid.position.set(0, 0, 20); scene.add(grid);
+
+const wall = box(WALL_L, WALL_H, 1, mat(0xf1f5f9, 1)); wall.position.set(0, WALL_H / 2, -0.5); scene.add(wall);
+const roof = box(WALL_L + 1, 0.4, 2, mat(0x334155, 1)); roof.position.set(0, WALL_H + 0.2, 0); scene.add(roof);
+
+const meter = box(1, 1.2, 0.5, mat(0x5b6470, 1)); meter.position.set(METER_X, METER_H, 0.25); scene.add(meter);
+const gas = box(1, 1, 0.8, mat(0x8a5d1a, 1)); gas.position.set(GAS_X, 2, 0.4); scene.add(gas);
+
+const clearBox = box(WALL_FT_PER_BATTERY, 0.2, CLEAR_DEPTH_FT, mat(0x2f6f3e, 0.35));
+clearBox.position.set(METER_X, 0.1, CLEAR_DEPTH_FT / 2); scene.add(clearBox);
+scene.add(new THREE.LineSegments(new THREE.EdgesGeometry(clearBox.geometry), new THREE.LineBasicMaterial({ color: 0x2f6f3e })).translateX(METER_X).translateY(0.1).translateZ(CLEAR_DEPTH_FT / 2));
+
+const gasCyl = new THREE.Mesh(new THREE.CylinderGeometry(GAS_METER_SETBACK_FT, GAS_METER_SETBACK_FT, 6, 48), mat(0xbb2233, 0.3));
+gasCyl.position.set(GAS_X, 3, 0); scene.add(gasCyl);
+
+const lineMat = new THREE.LineBasicMaterial({ color: 0x3b6ea8 });
+const dashMat = new THREE.LineDashedMaterial({ color: 0x3b6ea8, dashSize: 1, gapSize: 0.6 });
+const propLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-40, 0.05, 0), new THREE.Vector3(40, 0.05, 0)]), lineMat);
+const fence = box(WALL_L + 10, 4, 0.15, mat(0x3b6ea8, 0.18));
+const setbackLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-40, 0.05, 0), new THREE.Vector3(40, 0.05, 0)]), dashMat);
+setbackLine.computeLineDistances();
+scene.add(propLine, fence, setbackLine);
+
+const batMat = mat(0x2f6f3e, 0.85);
+const battery = box(BAT.w, BAT.h, BAT.d, batMat); scene.add(battery);
+const batEdge = new THREE.LineSegments(new THREE.EdgesGeometry(battery.geometry), new THREE.LineBasicMaterial({ color: 0x1f2328 })); scene.add(batEdge);
+
+// Label sprites
+function label(text, x, y, z, scale = 6) {
+  const c = document.createElement('canvas'); c.width = 512; c.height = 96;
+  const g = c.getContext('2d'); g.fillStyle = 'rgba(251,250,247,.9)'; g.fillRect(0, 0, 512, 96);
+  g.fillStyle = '#1f2328'; g.font = '600 40px -apple-system, Helvetica Neue, Arial, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillText(text, 256, 48);
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(c), depthTest: false }));
+  s.scale.set(scale, scale * 96 / 512, 1); s.position.set(x, y, z); scene.add(s); return s;
+}
+label('electric meter', METER_X, METER_H + 1.2, 0.6, 7);
+label('gas meter', GAS_X, 3.6, 0.9, 5);
+label('9 ft clear box', METER_X, 0.6, CLEAR_DEPTH_FT + 0.8, 6);
+const lineLabel = label('property line', 14, 0.6, 0, 7);
+const batLabel = label('battery 4x2x5 ft (est)', 0, BAT.h + 0.9, 1, 9);
+
+// Simple orbit control (no addons; keeps the page to one script tag)
+let theta = -0.55, phi = 1.12, dist = 42; const target = new THREE.Vector3(3, 3, 3);
+function placeCamera() {
+  camera.position.set(target.x + dist * Math.sin(phi) * Math.sin(theta), target.y + dist * Math.cos(phi), target.z + dist * Math.sin(phi) * Math.cos(theta));
+  camera.lookAt(target);
+}
+let drag = null;
+renderer.domElement.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY }; });
+window.addEventListener('pointerup', () => drag = null);
+window.addEventListener('pointermove', e => {
+  if (!drag) return;
+  theta -= (e.clientX - drag.x) * 0.006; phi = Math.min(1.5, Math.max(0.2, phi - (e.clientY - drag.y) * 0.006));
+  drag = { x: e.clientX, y: e.clientY }; placeCamera();
+});
+renderer.domElement.addEventListener('wheel', e => { e.preventDefault(); dist = Math.min(120, Math.max(12, dist + e.deltaY * 0.05)); placeCamera(); }, { passive: false });
+
+// State
+let cur = 'c', batX = -5;
+function apply() {
+  const c = CASES[cur];
+  propLine.position.z = c.line; fence.position.set(0, 2, c.line);
+  setbackLine.position.z = Math.max(c.line - FENCE_SETBACK_FT, 0.05);
+  lineLabel.position.z = c.line;
+  battery.position.set(batX, BAT.h / 2, BAT.d / 2); batEdge.position.copy(battery.position);
+  batLabel.position.set(batX, BAT.h + 0.9, 1);
+
+  // Fit check: battery footprint rectangle vs gas cylinder (circle in plan) and property line with fence setback.
+  const bx0 = batX - BAT.w / 2, bx1 = batX + BAT.w / 2, bz0 = 0, bz1 = BAT.d;
+  const nx = Math.max(bx0, Math.min(GAS_X, bx1)), nz = Math.max(bz0, Math.min(0, bz1));
+  const gasHit = Math.hypot(nx - GAS_X, nz) < GAS_METER_SETBACK_FT;
+  const lineHit = bz1 > c.line;
+  const fenceHit = !lineHit && bz1 > c.line - FENCE_SETBACK_FT;
+  const wallHit = bx0 < -WALL_L / 2 || bx1 > WALL_L / 2;
+  const reasons = [];
+  if (gasHit) reasons.push(`Battery is inside the ${GAS_METER_SETBACK_FT} ft gas meter setback.`);
+  if (lineHit) reasons.push(`Battery crosses the property line (${c.line} ft from the wall).`);
+  if (fenceHit) reasons.push(`Battery back edge at ${bz1} ft is inside the ${FENCE_SETBACK_FT} ft fence setback (line at ${c.line} ft).`);
+  if (wallHit) reasons.push('Battery is off the end of the wall.');
+  const ok = reasons.length === 0;
+  const spare = c.line - FENCE_SETBACK_FT - bz1;
+  const shortWall = c.wall < WALL_FT_PER_BATTERY;
+  const state = !ok ? 'no' : (shortWall || spare < 1.5) ? 'tight' : 'yes';
+  if (ok) reasons.push(`Clear of the gas meter setback, ${(c.line - bz1).toFixed(1)} ft from the property line.`);
+  reasons.push(`Rule: ${WALL_FT_PER_BATTERY} ft of clear wall per battery, ${GAS_METER_SETBACK_FT} ft from gas meter, ${FENCE_SETBACK_FT} ft from fence.`);
+  reasons.push(`Model verdict for this home: ${c.verdict} (${c.conf} confidence). ${c.note}`);
+  batMat.color.set(ok ? 0x2f6f3e : 0xe0a04a);
+  const V = {
+    yes:   { fit: 'Fits', ic: '✓', icCls: 'bg-emerald-100 text-emerald-700', pill: 'Clears in the model', pillCls: 'bg-emerald-100 text-emerald-800 border-emerald-200', dot: 'bg-emerald-600', eye: 'bg-emerald-500' },
+    tight: { fit: 'Tight', ic: '!', icCls: 'bg-amber-100 text-amber-700', pill: 'Tight in the model', pillCls: 'bg-amber-100 text-amber-800 border-amber-200', dot: 'bg-amber-500', eye: 'bg-amber-500' },
+    no:    { fit: 'Does not fit', ic: '✕', icCls: 'bg-red-100 text-red-600', pill: 'Conflict in the model', pillCls: 'bg-red-100 text-red-800 border-red-200', dot: 'bg-red-600', eye: 'bg-red-500' },
+  }[state];
+  const $id = id => document.getElementById(id);
+  $id('fit').textContent = V.fit;
+  $id('ic').textContent = V.ic; $id('ic').className = 'inline-flex items-center justify-center w-7 h-7 rounded-full font-bold text-base ' + V.icCls;
+  $id('state').className = 'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ' + V.pillCls;
+  $id('state').innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${V.dot}"></span>${V.pill}`;
+  $id('eyeDot').className = 'w-1.5 h-1.5 rounded-full ' + V.eye;
+  $id('modelDot').className = 'w-2.5 h-2.5 rounded-full shrink-0 ' + V.eye;
+  $id('why').textContent = !ok ? reasons[0]
+    : shortWall ? `The battery clears the gas meter and fence here, but the usable wall is about ${c.wall} ft and one battery needs ${WALL_FT_PER_BATTERY} ft.`
+    : spare < 1.5 ? `It fits with only ${spare.toFixed(1)} ft to spare before the fence setback.`
+    : `It clears the gas meter and the fence, with ${spare.toFixed(1)} ft to spare. The wall has about ${c.wall} ft, more than the ${WALL_FT_PER_BATTERY} ft one battery needs.`;
+  const wallGap = +(c.wall - WALL_FT_PER_BATTERY).toFixed(1);
+  $id('wallReq').innerHTML = `${WALL_FT_PER_BATTERY} ft` + (wallGap < 0 ? ` <span class="text-red-600 font-bold">(Shortfall ${wallGap} ft)</span>` : ` <span class="text-emerald-700 font-bold">(+${wallGap} ft)</span>`);
+  const have = Math.min(c.wall / WALL_FT_PER_BATTERY, 1) * 100;
+  $id('wallBar').innerHTML = wallGap < 0 ? `<div class="bg-amber-500 h-full" style="width:${have.toFixed(0)}%"></div><div class="bg-red-400 h-full" style="width:${(100 - have).toFixed(0)}%"></div>` : `<div class="bg-emerald-600 h-full" style="width:100%"></div>`;
+  $id('wallNote').textContent = `Usable wall estimate: ${c.wall} ft (modeled)`;
+  const good = 'font-semibold text-slate-900', bad = 'font-semibold text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-200', warn = 'font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200';
+  $id('gasVal').className = gasHit ? bad : good;
+  $id('gasVal').textContent = `${GAS_METER_SETBACK_FT} ft required` + (gasHit ? ' (battery inside)' : ' (clear)');
+  $id('fenceVal').className = lineHit || fenceHit ? bad : spare < 1.5 ? warn : good;
+  $id('fenceVal').textContent = `${FENCE_SETBACK_FT} ft required` + (lineHit ? ' (crosses the line)' : fenceHit ? ' (pinched)' : ` (${spare.toFixed(1)} ft spare)`);
+  const pill = (t, cl) => `<span class="px-2.5 py-1 rounded font-semibold border ${cl}">${t}</span>`;
+  $id('pills').innerHTML = [
+    wallGap < 0 ? pill(`Shortfall: ${wallGap} ft`, 'bg-red-50 text-red-700 border-red-200') : '',
+    gasHit ? pill('Gas meter setback', 'bg-amber-50 text-amber-800 border-amber-200') : '',
+    lineHit || fenceHit ? pill('Fence setback', 'bg-amber-50 text-amber-800 border-amber-200') : '',
+    ok && !shortWall ? pill('No modeled conflict', 'bg-emerald-50 text-emerald-800 border-emerald-200') : '',
+  ].join('');
+  $id('viewTitle').textContent = 'Side wall model · ' + c.title.replace(/^\([a-c]\) /, '');
+  const href = `recovery.html#demo-${cur}`;
+  $id('go').href = href; $id('more').href = href;
+  $id('todo').textContent = state === 'yes'
+    ? 'Confirm the wall, equipment and property-line clearances on site, then plan the installation.'
+    : state === 'tight' ? 'An on-site measurement settles the tight estimate.'
+    : 'See the checks that turn this home into a yes.';
+  const cell = (k, v, u) => `<div class="bg-white px-4 py-3"><div class="text-[10px] font-sans font-bold uppercase tracking-wider text-slate-400">${k}</div><div class="text-lg font-semibold text-slate-900">${v}<span class="text-xs text-slate-500 ml-1">${u}</span></div></div>`;
+  $id('readout').innerHTML = cell('Lot', c.lot.toLocaleString(), 'sq ft') + cell('House footprint', c.foot.toLocaleString(), 'sq ft') + cell('Usable wall', c.wall, 'ft') + cell('Side yard', c.setback, 'ft');
+  document.getElementById('reasons').innerHTML = reasons.map(r => `<li>${r}</li>`).join('');
+  document.getElementById('caseTitle').textContent = c.title.replace(/^\([a-c]\) /, '');
+  document.getElementById('caseTable').innerHTML = [
+    ['Model verdict', c.verdict + ' (' + c.conf + ' confidence)'], ['Usable wall (estimate)', c.wall + ' ft'], ['Side yard (estimate)', c.setback + ' ft'],
+    ['Property line drawn at', c.line + ' ft'], ['Lot / house footprint', `${c.lot.toLocaleString()} / ${c.foot.toLocaleString()} sq ft`],
+    ['Gas service', c.gas], ['Battery along the wall', batX.toFixed(1) + ' ft from the meter'],
+  ].map(([k, v]) => `<tr class="border-b border-slate-100"><th class="text-left font-medium text-slate-500 py-1.5 pr-2">${k}</th><td class="py-1.5 text-slate-800">${v}</td></tr>`).join('');
+  document.querySelectorAll('#chips button').forEach(b => { const on = b.dataset.case === cur; b.setAttribute('aria-pressed', on);
+    b.className = 'min-h-[44px] px-4 py-2 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm whitespace-nowrap ' + (on ? 'bg-emerald-950 text-white border border-emerald-950' : 'border border-slate-300 bg-white text-slate-600 hover:bg-slate-50');
+    b.innerHTML = (on ? `<span class="w-1.5 h-1.5 rounded-full ${V.eye.replace('500','400')}"></span>` : '') + b.textContent.trim(); });
+}
+document.querySelectorAll('#chips button').forEach(b => b.onclick = () => { cur = b.dataset.case; batX = -5; apply(); });
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') { batX -= 0.5; apply(); e.preventDefault(); }
+  if (e.key === 'ArrowRight') { batX += 0.5; apply(); e.preventDefault(); }
+});
+
+function resize() {
+  const w = view.clientWidth, h = view.clientHeight;
+  renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+resize(); placeCamera(); apply();
+(function loop() { renderer.render(scene, camera); requestAnimationFrame(loop); })();
+</script>
+</body>
+</html>

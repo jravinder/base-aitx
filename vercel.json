@@ -1,0 +1,30 @@
+{
+  "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/home",
+      "permanent": false
+    },
+    {
+      "source": "/myhome",
+      "destination": "/web/onboarding.html#home",
+      "permanent": false
+    },
+    {
+      "source": "/onboarding",
+      "destination": "/web/onboarding.html#home",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/home",
+      "destination": "/web/start.html"
+    },
+    {
+      "source": "/compute",
+      "destination": "/web/start.html"
+    }
+  ]
+}

@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your home energy | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<style>
+  :root { --ink:var(--bf-ink); --muted:var(--bf-muted); --rule:var(--bf-line); --accent:var(--bf-danger); --tint:var(--bf-danger-tint); --ok:var(--bf-brand); --gold:#e0a04a; --amber:var(--bf-amber-tint); --amber-ink:var(--bf-amber); --chg:#3b6ea8; --dis:#2f6f3e }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--bf-bg); color:var(--ink); font:15px/1.5 var(--bf-font) }
+  main { max-width:1000px; margin:0 auto; padding:24px 24px 60px }
+  .kicker { font-size:11px; font-weight:650; letter-spacing:0; text-transform:uppercase; color:var(--muted); margin:0 0 4px }
+  h1 { font-size:30px; line-height:1.15; margin:0; font-weight:650; letter-spacing:0 }
+  .lede { color:var(--muted); margin:6px 0 16px; font-size:15px; max-width:720px }
+  .notice { border-left:4px solid var(--accent); background:var(--tint); padding:10px 14px; font-size:13px; margin:10px 0; display:none }
+  .ans { display:flex; flex-direction:column; gap:8px; min-width:0 }
+  .ans .q { font-size:13px; font-weight:650; color:var(--muted); margin:0; text-transform:uppercase; letter-spacing:0 }
+  .ans .big { font-size:36px; line-height:1.1; font-weight:600; letter-spacing:0; font-variant-numeric:tabular-nums; color:var(--ok); margin:4px 0 0 }
+  .ans .big small { display:block; font-size:15px; font-weight:500; color:var(--muted); letter-spacing:0; margin-top:6px }
+  .ans .why { font-size:17px; margin:0 }
+  .days { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px; margin:6px 0 12px }
+  .day { border:1px solid var(--rule); border-radius:var(--bf-radius); padding:8px 8px 7px; min-width:0; background:var(--bf-bg) }
+  .day .d { font-size:12px; font-weight:650; color:var(--muted) }
+  .day .v { font-size:17px; font-weight:650; font-variant-numeric:tabular-nums; margin:1px 0 4px }
+  .day .ev { display:flex; align-items:center; gap:5px; font-size:12px; font-variant-numeric:tabular-nums; overflow-wrap:anywhere }
+  .day .ev svg { flex:none }
+  .daykey { display:flex; gap:14px; flex-wrap:wrap; font-size:12px; color:var(--muted) }
+  .daykey span { display:inline-flex; gap:5px; align-items:center }
+  .member-overview { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:32px; align-items:start; margin-top:24px }
+  .ans { border:0; border-radius:0; padding:0 0 20px; background:transparent }
+  .home-visual { margin:0 0 12px; background:var(--bf-surface); border:1px solid var(--rule); border-radius:8px; padding:12px 16px }
+  .home-visual figcaption { display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px 12px; font-size:13px; color:var(--muted) }
+  .home-visual figcaption strong { color:var(--ink); font-weight:600 }
+  .home-visual img { display:block; width:100%; height:240px; object-fit:contain; margin:8px auto }
+  .home-visual p { font-size:12px; color:var(--muted); margin:0 }
+  .member-links { display:flex; flex-wrap:wrap; gap:4px 20px; margin:0 0 12px; border-bottom:1px solid var(--rule) }
+  .member-links a { display:inline-flex; align-items:center; min-height:44px; color:var(--ink); text-decoration:none; border-bottom:2px solid transparent }
+  .member-links a[aria-current] { color:var(--ok); border-color:var(--ok); font-weight:600 }
+  .member-links a:hover { text-decoration:underline; text-underline-offset:4px }
+  .member-links a:focus-visible { outline:3px solid var(--bf-focus); outline-offset:2px }
+  .asksec { min-width:0; border-top:1px solid var(--rule); padding:20px 0 }
+  .daily-detail { margin-top:12px; border-top:1px solid var(--rule) }
+  .help-links { display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:12px }
+  .help-links a { display:inline-flex; align-items:center; min-height:44px; color:var(--bf-link,var(--chg)); text-underline-offset:3px }
+  .asksec h2 { font-size:16px; margin:0; font-weight:650 }
+  .asksec .note { color:var(--muted); font-size:13px; margin:2px 0 10px }
+  .chips { display:grid; gap:8px; margin:0 0 10px }
+  .chip { all:unset; cursor:pointer; font:500 14px/1.4 var(--bf-font); padding:10px 12px; min-height:44px; border-radius:4px; border:1px solid var(--bf-line-strong); background:var(--bf-surface); color:var(--ink); max-width:100%; box-sizing:border-box; overflow-wrap:anywhere }
+  .chip:hover { border-color:var(--ink) }
+  .chip[aria-pressed="true"] { background:var(--ink); color:var(--bf-bg); border-color:var(--ink) }
+  .chip:focus-visible { outline:3px solid var(--bf-focus); outline-offset:2px }
+  .ask { display:flex; gap:8px }
+  .ask input { flex:1; min-width:0; font:inherit; padding:8px 10px; border:1px solid var(--bf-line-strong); border-radius:4px; background:var(--bf-surface); color:var(--ink) }
+  .ask button { font:inherit; padding:8px 16px; border:1px solid var(--ink); background:var(--ink); color:var(--bf-bg); border-radius:4px; cursor:pointer }
+  .answers { margin-top:12px }
+  .answer { border:1px solid var(--rule); border-radius:6px; background:var(--bf-bg); padding:10px 12px; margin-bottom:10px }
+  .answer .q { font-weight:600; margin-bottom:4px }
+  .answer .a { font-size:14.5px }
+  .answer .meta { color:var(--muted); font-size:11.5px; margin-top:6px }
+  .answer.gap { background:var(--amber); border-color:var(--gold) }
+  .answer.gap .a { color:var(--amber-ink); font-weight:500 }
+  .answer.err { border-color:var(--accent) } .answer.err .a { color:var(--accent) }
+  .verdict { font-size:11px; padding:1px 6px; border-radius:8px; margin-left:6px; font-weight:500 }
+  .verdict.correct, .verdict.gap_correct { background:#e5f0e6; color:#2f6f3e }
+  .verdict.wrong { background:var(--tint); color:var(--accent) }
+  details.detail { margin-top:26px; border-top:1px solid var(--rule) }
+  details.detail > summary { cursor:pointer; list-style:none; padding:16px 0 4px; display:flex; align-items:baseline; gap:4px 10px; flex-wrap:wrap }
+  details.detail > summary::-webkit-details-marker { display:none }
+  details.detail > summary h2 { font-size:18px; margin:0; font-weight:650 }
+  details.detail > summary h2::before { content:"\25B8"; display:inline-block; margin-right:8px; color:var(--muted); transition:transform .15s }
+  details.detail[open] > summary h2::before { transform:rotate(90deg) }
+  details.detail > summary span { color:var(--muted); font-size:13px }
+  .picker { display:flex; gap:10px; align-items:center; font-size:13px; color:var(--muted); margin:10px 0 4px; flex-wrap:wrap }
+  select { font:inherit; padding:4px 8px; border:1px solid var(--rule); border-radius:4px; background:var(--bf-surface); color:var(--ink) }
+  section.rs { border-top:1px solid var(--rule); padding:14px 0 }
+  section.rs h3 { font-size:14px; margin:0 0 8px }
+  section.rs h3 small { color:var(--muted); font-weight:400; font-size:12px; margin-left:6px }
+  .reasons { margin:6px 0 0; padding-left:18px; font-size:12.5px; color:var(--muted) }
+  .tw { overflow-x:auto }
+  table { border-collapse:collapse; font-size:13px; width:100%; margin-top:6px }
+  td, th { text-align:left; padding:6px 8px 6px 0; border-bottom:1px solid var(--rule); vertical-align:top }
+  th { color:var(--muted); font-weight:500 }
+  td.num, th.num { text-align:right; padding-right:10px }
+  .confbar { height:6px; width:70px; background:#eee; border-radius:3px; overflow:hidden; display:inline-block; vertical-align:middle }
+  .confbar i { display:block; height:100%; background:var(--ok) } .confbar.low i { background:var(--accent) }
+  .confirm { font-size:12px; color:var(--accent); white-space:nowrap }
+  .events { margin:0; padding-left:16px; font-size:12px; color:var(--muted) }
+  .kv { display:grid; grid-template-columns:auto 1fr; gap:3px 14px; font-size:13px }
+  .kv b { font-weight:500; color:var(--muted) }
+  footer { margin-top:22px; color:var(--muted); font-size:12px }
+  @media (max-width:760px){
+    main { padding:16px 16px 40px } h1 { font-size:23px } .ans { padding:0 0 16px } .ans .big { font-size:32px } .ans .why { font-size:15.5px }
+    .home-visual img { height:180px }
+    .member-overview { grid-template-columns:minmax(0,1fr); gap:8px; margin-top:20px }
+    td, th { overflow-wrap:anywhere } .confirm { white-space:normal }
+  }
+  @media (max-width:420px){ .days { grid-template-columns:repeat(2, minmax(0,1fr)) } }
+  .ask[hidden]{display:none}
+  summary{cursor:pointer;min-height:44px;padding:10px 0}
+  summary:focus-visible{outline:3px solid var(--bf-focus);outline-offset:3px}
+
+  /* Stitch port: H10 Customer home. Tailwind runs without preflight. */
+  body.st { background:#F8FAFC; color:#0F172A; font-family:"Plus Jakarta Sans",var(--bf-font) }
+  .st [class~="border"],.st [class*=" border-"],.st [class^="border-"] { border-style:solid; border-width:0 }
+  .st .border { border-width:1px } .st .border-b { border-bottom-width:1px } .st .border-t { border-top-width:1px }
+  .st h1,.st h2,.st h3,.st p,.st figure { margin:0 }
+  .st main { max-width:80rem; padding:0 }
+  .st a { color:inherit }
+  .st .ans { padding:0 }
+  .st .ans .q { text-transform:uppercase; font-size:11px; line-height:16px; letter-spacing:.06em; font-weight:700; color:#414941 }
+  .st .ans .big { font-size:36px; line-height:40px; font-weight:700; color:#0F172A; margin:0 }
+  .st .ans .big small { font-size:12px; line-height:18px; font-weight:400; color:#414941; margin-top:2px }
+  .st .ans .why { font-size:14px; line-height:22px; color:#414941 }
+  .st .asksec { border:1px solid #E2E8F0; padding:1.5rem }
+  .st .asksec h2 { font-size:16px; line-height:24px; font-weight:600 }
+  .st .chip { border-radius:.5rem; border:1px solid #E2E8F0; background:#F1F5F9; padding:8px 12px; font:600 13px/18px "Plus Jakarta Sans",var(--bf-font) }
+  .st .chip:hover { background:#E2E8F0 }
+  .st .chip[aria-pressed="true"] { background:#1e4d2b; color:#fff; border-color:#1e4d2b }
+  .st .member-links { border:0; margin:0; gap:4px }
+  .st .member-links a { padding:0 12px; border-radius:.25rem; border:0; font-size:13px; font-weight:600; color:#717970 }
+  .st .member-links a[aria-current] { background:#F1F5F9; color:#0F172A }
+  .st .help-links a { color:#1e4d2b; font-weight:600; font-size:13px }
+  .st details.detail { border-top:1px solid #E2E8F0 }
+  .st .daily-detail summary { min-height:44px; display:flex; align-items:center; cursor:pointer; font-weight:600; font-size:13px; color:#1e4d2b }
+  .price-bars { display:flex; align-items:flex-end; gap:2px; height:56px }
+  .price-bars i { flex:1 1 0; min-width:0; background:#d8e3fb; border-radius:2px 2px 0 0 }
+  .price-bars i.peak { background:#1e4d2b }
+  .twin { position:relative; min-height:460px }
+  .twin::before { content:""; position:absolute; inset:0; background-image:radial-gradient(#0F172A 1px, transparent 1px); background-size:16px 16px; opacity:.05; pointer-events:none }
+  .twin .badge { position:absolute; z-index:2; width:15rem }
+  .twin .b-solar { top:2rem; left:2rem } .twin .b-home { top:2rem; right:2rem } .twin .b-store { bottom:2rem; left:2rem; width:16rem }
+  .st .btn { display:inline-flex; align-items:center; justify-content:center; gap:4px; min-height:44px; text-decoration:none }
+  @media (max-width:767px) {
+    .twin { min-height:0; display:flex; flex-direction:column; align-items:stretch; gap:12px; padding:16px }
+    .twin .badge { position:static; width:auto }
+    .twin .twin-img { order:-1 }
+  }
+</style>
+<link rel="stylesheet" href="shell.css">
+<link rel="stylesheet" href="milestones.css">
+<script defer src="shell.js"></script>
+<script defer src="milestones.js"></script>
+</head>
+<body class="st font-body-md text-body-md antialiased">
+<main>
+<div class="max-w-7xl mx-auto w-full px-4 sm:px-space-xl py-space-xl flex flex-col gap-space-xl">
+
+  <section id="setup-banner" class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg shadow-sm">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+      <div class="space-y-1 min-w-0">
+        <div class="flex items-center gap-2 text-warning-amber font-label-caps text-label-caps uppercase">
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">hourglass_top</span>
+          <span id="banner-kicker">Setup in progress</span>
+        </div>
+        <h1 class="font-headline-lg text-headline-lg text-ink-primary">Your home setup is in progress</h1>
+        <p class="text-outline font-body-md text-body-md max-w-3xl" id="next-step-text">Checking your saved progress in this browser.</p>
+      </div>
+      <div class="flex items-center gap-space-sm self-start md:self-center shrink-0">
+        <a class="btn px-4 bg-surface-subtle hover:bg-wire-border text-ink-primary font-label-md text-label-md rounded-xl border border-wire-border" href="status.html">Application status</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-1 font-body-sm text-body-sm" aria-label="Home energy sections">
+    <div class="member-links flex flex-wrap">
+      <a href="#ans" aria-current="location">Home</a>
+      <a href="#daily-activity">Energy</a>
+      <a href="brain.html?track=home&persona=lead&q=how%20and%20when%20do%20I%20pay">Billing help</a>
+      <a href="#member-help">Help</a>
+    </div>
+    <span class="inline-flex items-center gap-1.5 self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-surface-container-highest text-ink-primary font-label-caps text-[11px] font-semibold border border-wire-border"><span class="w-1.5 h-1.5 rounded-full bg-warning-amber"></span><span id="setup-pill">Setup in progress</span></span>
+  </nav>
+  <div class="notice" id="notice">Home details are loading. Refresh the page if this stays empty.</div>
+
+  <section class="bg-surface-container-lowest border border-wire-border rounded-xl overflow-hidden shadow-sm" aria-labelledby="res-title">
+    <div class="p-space-lg border-b border-wire-border flex flex-wrap items-center justify-between gap-2">
+      <div class="min-w-0">
+        <span class="font-label-caps text-label-caps text-outline uppercase block">Residence</span>
+        <h2 id="res-title" class="font-headline-sm text-headline-sm text-ink-primary">Your home</h2>
+      </div>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle text-outline font-label-md text-label-md"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">sensors</span>Readings start after installation</span>
+    </div>
+    <div class="twin bg-surface-muted flex items-center justify-center p-6 overflow-hidden">
+      <div class="twin-img relative z-10 max-w-xl w-full flex items-center justify-center">
+        <img alt="Illustration of a house with rooftop solar and an outdoor battery" class="w-full h-auto object-contain select-none max-h-[400px] rounded-lg" src="assets/stitch/member-1.jpg">
+        <span class="absolute right-2 bottom-2 text-[11px] font-bold px-2 py-0.5 rounded bg-white/85 text-ink-primary">Illustration</span>
+      </div>
+      <div class="badge b-solar bg-surface-container-lowest/95 border border-wire-border rounded-xl p-3 shadow-md">
+        <div class="flex items-center justify-between pb-1.5 border-b border-wire-border/60">
+          <div class="flex items-center gap-1.5 text-outline"><span class="material-symbols-outlined text-[16px] text-amber-500" aria-hidden="true">solar_power</span><span class="font-label-caps text-label-caps uppercase">Solar inflow</span></div>
+          <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+        </div>
+        <div class="pt-2"><div class="flex items-baseline gap-1"><span class="font-telemetry-metric text-telemetry-metric text-ink-primary">--</span><span class="font-telemetry-unit text-telemetry-unit text-outline">kW</span></div>
+        <p class="font-body-sm text-body-sm text-outline mt-0.5">Starts after installation</p></div>
+      </div>
+      <div class="badge b-home bg-surface-container-lowest/95 border border-wire-border rounded-xl p-3 shadow-md">
+        <div class="flex items-center justify-between pb-1.5 border-b border-wire-border/60">
+          <div class="flex items-center gap-1.5 text-outline"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">home</span><span class="font-label-caps text-label-caps uppercase">Home consumption</span></div>
+          <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+        </div>
+        <div class="pt-2"><div class="flex items-baseline gap-1"><span class="font-telemetry-metric text-telemetry-metric text-ink-primary">--</span><span class="font-telemetry-unit text-telemetry-unit text-outline">kW</span></div>
+        <p class="font-body-sm text-body-sm text-outline mt-0.5">Starts after installation</p></div>
+      </div>
+      <div class="badge b-store bg-surface-container-lowest/95 border border-wire-border rounded-xl p-3 shadow-md">
+        <div class="flex items-center justify-between pb-1.5 border-b border-wire-border/60">
+          <div class="flex items-center gap-1.5 text-primary-container"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">battery_charging_full</span><span class="font-label-caps text-label-caps uppercase">Storage</span></div>
+          <span class="font-label-caps text-[10px] font-bold text-primary-container bg-secondary-container/60 px-2 py-0.5 rounded uppercase">Planned</span>
+        </div>
+        <div class="pt-2"><p class="font-headline-sm text-headline-sm text-ink-primary">Sized by Base after engineering review</p></div>
+      </div>
+    </div>
+    <div class="bg-surface-subtle px-space-lg py-2.5 flex items-start gap-1.5 font-body-sm text-body-sm text-outline border-t border-wire-border">
+      <span class="material-symbols-outlined text-[16px]" aria-hidden="true">info</span>
+      <span id="res-source">Home facts come from Austin permit records.</span>
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-2" aria-label="Onboarding rewards">
+    <div data-milestones="ribbon"></div>
+    <a class="btn self-end gap-1 text-primary-container hover:text-ink-primary font-label-md text-label-md font-semibold" href="rewards.html"><span>View rewards</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></a>
+  </section>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+    <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg flex flex-col justify-between shadow-sm min-w-0">
+      <div>
+        <div class="flex items-center justify-between pb-space-sm border-b border-wire-border">
+          <span class="font-label-caps text-label-caps text-outline uppercase">Outage preparedness</span>
+          <span class="material-symbols-outlined text-outline text-[18px]" aria-hidden="true">shield</span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-ink-primary mt-space-md">Storms and grid reserves</h3>
+        <div class="my-space-md p-space-sm rounded-lg bg-surface-subtle border border-wire-border">
+          <span class="font-body-sm text-body-sm text-outline block">Weather alerts, Travis and Williamson counties</span>
+          <div class="font-headline-md text-headline-md text-ink-primary font-bold" id="out-alerts">...</div>
+          <span class="inline-block mt-1 font-label-caps text-[10px] text-primary-container bg-primary-fixed/40 px-2 py-0.5 rounded uppercase">National Weather Service</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-outline leading-relaxed" id="out-reserve"></p>
+      </div>
+      <div class="pt-space-md mt-space-md border-t border-wire-border flex flex-wrap items-center justify-between gap-2">
+        <span class="font-body-sm text-body-sm text-outline" id="out-asof"></span>
+        <a class="btn text-ink-primary font-label-md text-label-md gap-1 hover:underline" href="brain.html?track=home&persona=lead&q=backup%20during%20an%20outage">Ask Base Brain<span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span></a>
+      </div>
+    </div>
+
+    <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg flex flex-col justify-between shadow-sm min-w-0">
+      <div>
+        <div class="flex items-center justify-between pb-space-sm border-b border-wire-border">
+          <span class="font-label-caps text-label-caps text-outline uppercase" id="grid-title">Grid today</span>
+          <span class="material-symbols-outlined text-outline text-[18px]" aria-hidden="true">bolt</span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-ink-primary mt-space-md" id="grid-cond">ERCOT grid</h3>
+        <div class="my-space-md p-space-sm rounded-lg bg-surface-subtle border border-wire-border">
+          <span class="font-body-sm text-body-sm text-outline block" id="plan-sub">Day-ahead price, Austin load zone</span>
+          <div class="font-headline-md text-headline-md text-ink-primary font-bold" id="grid-peak">...</div>
+          <div class="price-bars mt-2" id="price-bars" role="img" aria-label="Hourly day-ahead prices"></div>
+          <div class="flex justify-between font-label-caps text-[10px] text-outline mt-1"><span>00:00</span><span>12:00</span><span>24:00</span></div>
+        </div>
+        <p class="font-body-sm text-body-sm text-outline leading-relaxed" id="grid-note"></p>
+      </div>
+      <div class="pt-space-md mt-space-md border-t border-wire-border flex flex-wrap items-center justify-between gap-2">
+        <span class="font-body-sm text-body-sm text-outline" id="grid-asof"></span>
+        <a class="btn text-ink-primary font-label-md text-label-md gap-1 hover:underline" href="grid.html">Grid detail<span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span></a>
+      </div>
+    </div>
+
+    <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg flex flex-col justify-between shadow-sm min-w-0">
+      <div>
+        <div class="flex items-center justify-between pb-space-sm border-b border-wire-border">
+          <span class="font-label-caps text-label-caps text-outline uppercase">Your next step</span>
+          <span class="material-symbols-outlined text-outline text-[18px]" aria-hidden="true">task_alt</span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-ink-primary mt-space-md">Next action</h3>
+        <div class="my-space-md p-space-sm rounded-lg bg-emerald-50/60 border border-emerald-200">
+          <div class="flex items-center gap-1.5 text-primary-container font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">check_circle</span><span id="na-done">Public records found</span></div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1" id="na-done-text"></p>
+        </div>
+        <p class="font-body-sm text-body-sm text-outline leading-relaxed" id="na-text"></p>
+        <a class="btn mt-2 text-primary-container font-label-md text-label-md font-semibold hover:underline" id="na-cta" hidden></a>
+      </div>
+      <div class="pt-space-md mt-space-md border-t border-wire-border">
+        <a class="btn w-full bg-secondary-container hover:bg-secondary-fixed text-ink-primary font-label-md text-label-md rounded-xl font-semibold" href="status.html"><span>View application status</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="flex flex-col gap-space-md" aria-labelledby="week-title">
+    <div>
+      <h2 id="week-title" class="font-headline-md text-headline-md text-ink-primary">What a battery week can look like</h2>
+      <p class="font-body-sm text-body-sm text-outline">A modeled example account using ERCOT prices. Your own numbers start after installation.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+      <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg shadow-sm min-w-0">
+        <div class="flex items-center gap-2 mb-space-md"><span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">payments</span><h3 class="font-headline-sm text-headline-sm text-ink-primary">Modeled battery earnings</h3></div>
+        <section class="ans" id="ans" aria-live="polite"><p class="q">Loading the example week</p></section>
+      </div>
+      <section class="asksec bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg flex flex-col gap-space-md shadow-sm min-w-0" id="member-help">
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">psychology</span><h2>Questions about the week</h2></div>
+        <p class="note font-body-sm text-body-sm text-outline">Recorded answers from this example account.</p>
+        <div class="chips flex flex-wrap gap-space-xs" id="chips" role="group" aria-label="Questions to ask"></div>
+        <details id="local-questions"><summary>Ask a local model</summary>
+        <p class="note">Requires Ollama running on this device.</p>
+        <div class="ask">
+          <input id="q" placeholder="Ask about your house, battery or week" aria-label="Your question">
+          <button id="go">Ask</button>
+        </div>
+        </details>
+        <div class="answers" id="answers" aria-live="polite"></div>
+        <nav class="help-links" aria-label="Member help">
+          <a href="brain.html?track=home&persona=lead">Search all answers</a>
+          <a href="brain.html?track=home&persona=lead&q=how%20do%20I%20talk%20to%20Base">Contact and support information</a>
+        </nav>
+      </section>
+    </div>
+  </section>
+
+  <div>
+  <details class="detail" id="detail">
+    <summary><h2>Source record and sample members</h2></summary><p class="note">Permit-derived home fields are joined to simulated battery and compute activity, using an example record. Compute is tracked separately from the battery totals above.</p>
+    <div class="picker">Member <select id="member" aria-label="Pick a member"></select> <span id="src"></span></div>
+    <div id="record"></div>
+  </details>
+  <details class="detail"><summary>Answer sources and connection</summary><footer>Answers come from a local AI model running on this machine. No addresses, no names. The week is a test run on three real ERCOT price days, repeated.</footer></details>
+  </div>
+  <p class="font-body-sm text-body-sm text-outline">A Base Fleet design. Answers saved on this device.</p>
+</div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const LOCAL_MODEL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+$(".ask").hidden = !LOCAL_MODEL;
+$("#local-questions").hidden = !LOCAL_MODEL;
+const GAP = "GAP: not in your record. Ask Base support.";
+const SYSTEM = "You answer one question for one Base member. Use only the RECORD below. The record is the member's own house, node, and weekly earnings. Answer in one or two short sentences with the numbers from the record. Plain text, no markdown. For home energy earnings give battery_usd only. For a best or worst battery day compare battery_usd across days. Only include GPU earnings if the question explicitly asks about compute. Never state Base policy, fees, contracts, credit dates, or eligibility rules. If the record does not contain the answer, reply exactly: " + GAP;
+const STOP = new Set("the a an my me i is was did do does what why when how on at in of to for and or it this that you your are am be can will there much many which pm".split(" "));
+const SYN = {earn:["usd","totals","week"],earned:["usd","totals","week"],earnings:["usd","totals"],money:["usd","totals"],paid:["usd"],discharge:["discharged"],discharged:["discharge"],charge:["charged"],reserve:["reserve_min_pct"],amps:["main_breaker_amps"],amperage:["main_breaker_amps"],panel:["main_breaker_amps"],confirm:["confirm_with_member"],feeder:["node"],gpu:["gpu_hours","gpu_usd"],hours:["gpu_hours"],battery:["battery_usd","battery_kwh"],built:["year_built"],year:["year_built"],solar:["has_solar"],generator:["has_generator"],"5":["17:00","18:00"],week:["totals"],total:["totals"],node:["node"],zip:["zip"],fit:["fit"],house:["house","field","zip","year_built"],home:["house","field"],know:["house","field"],best:["day"],worst:["day"],job:["gpu","day"],jobs:["gpu","day"],ran:["gpu","day"],run:["gpu","day"],sell:["gpu_hours","totals"],sold:["gpu_hours","totals"],floor:["reserve_min_pct","node"],confirmation:["confirm_with_member"],need:["confirm_with_member"],fields:["field","confirm_with_member"],field:["field"]};
+
+let members = {}, ids = [], preds = {}, questions = [], selected = null;
+
+const tokens = s => new Set((String(s).toLowerCase().match(/[a-z0-9_:%]+/g) || []).filter(t => !STOP.has(t)));
+function qtokens(q) { const t = tokens(q), out = new Set(t); t.forEach(w => { (SYN[w] || []).forEach(x => out.add(x)); if (w.endsWith("s") && w.length > 3) out.add(w.slice(0, -1)); }); return out; }
+function fitLabel(f) { return typeof f === "object" && f ? f.bucket : f; }
+function sections(m) {
+  const out = [];
+  const f = m.fit, fit = typeof f === "object" && f ? `${f.bucket} (${(f.reasons || []).join("; ")})` : f;
+  out.push(["house", `house zip ${m.zip} year_built ${m.year_built} fit ${fit}`]);
+  Object.entries(m.fields || {}).forEach(([k, v]) => out.push([`field ${k}`, `${k} value ${v.value} confidence ${v.confidence} source ${v.source}`]));
+  out.push(["confirm_with_member", "confirm_with_member " + ((m.confirm_with_member || []).join(", ") || "none")]);
+  out.push(["node", Object.entries(m.node || {}).map(([k, v]) => `${k} ${v}`).join(" ")]);
+  (m.week || []).forEach(d => out.push([`day ${d.day}`, `day ${d.day} date ${d.date || ""} battery_usd ${d.battery_usd} gpu_usd ${d.gpu_usd} day_total_usd ${(d.battery_usd + d.gpu_usd).toFixed(2)} gpu_hours ${d.gpu_hours} reserve_min_pct ${d.reserve_min_pct} events: ${(d.events || []).join("; ") || "none"}`]));
+  out.push(["totals", "totals " + Object.entries(m.totals || {}).map(([k, v]) => `${k} ${v}`).join(" ")]);
+  return out;
+}
+function retrieve(m, q, k = 8) {
+  const qt = qtokens(q);
+  return sections(m).map(([key, text]) => { const st = new Set([...tokens(key), ...tokens(text)]); let s = 0; qt.forEach(t => { if (st.has(t)) s++; }); return [s, key, text]; })
+    .filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]).slice(0, k);
+}
+async function askOllama(m, q) {
+  if (!LOCAL_MODEL) throw new Error("local model unavailable on hosted pages");
+  const ctx = retrieve(m, q);
+  const prompt = "RECORD:\n" + ctx.map(([, k, t]) => `- [${k}] ${t}`).join("\n") + `\n\nQUESTION: ${q}\nANSWER:`;
+  const r = await fetch("http://localhost:11434/api/generate", {method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({model:"gemma4:e4b", think:false, system:SYSTEM, prompt, stream:false, options:{temperature:0, num_predict:200}})});
+  if (!r.ok) throw new Error("ollama " + r.status);
+  let a = (await r.json()).response.trim().replace(/\\/g, "").replace(/\*\*/g, "");
+  if (!a || a.slice(0, 20).includes("GAP")) a = GAP;
+  return {answer:a, sections:ctx.map(x => x[1])};
+}
+
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+function confBar(c) { const pct = Math.round(c * 100); return `<span class="confbar ${c < 0.7 ? "low" : ""}"><i style="width:${pct}%"></i></span> <span style="color:var(--muted);font-size:11.5px">${pct}%</span>`; }
+
+const LABEL = {main_breaker_amps: "main breaker size", has_solar: "solar panels", has_battery: "another battery", has_generator: "a generator", ac_age_years: "age of the air conditioner"};
+const ICON = {
+  c: `<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="7" fill="var(--chg)"/><path d="M7 3v7M4 7l3 3 3-3" stroke="#fff" stroke-width="1.8" fill="none"/></svg>`,
+  d: `<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="7" fill="var(--dis)"/><path d="M7 11V4M4 7l3-3 3 3" stroke="#fff" stroke-width="1.8" fill="none"/></svg>`
+};
+const span = (evs, verb) => { const e = evs.find(x => x.startsWith(verb)); const m = e && e.match(/(\d\d:\d\d)-(\d\d:\d\d)/); return m ? `${m[1]} to ${m[2]}` : null; };
+
+function renderAnswer() {
+  const m = members[selected]; if (!m) return;
+  const t = m.totals || {}, wk = m.week || [], n = m.node || {};
+  const total = t.battery_usd || 0;
+  const minRes = Math.min(...wk.map(d => d.reserve_min_pct));
+  const discharges = wk.filter(d => (d.events || []).some(e => e.startsWith("discharged"))).length;
+  const days = wk.map(d => {
+    const ch = span(d.events || [], "charged"), dis = span(d.events || [], "discharged");
+    return `<div class="day"><div class="d">Day ${d.day}</div><div class="v">$${(d.battery_usd || 0).toFixed(2)}</div>
+      ${ch ? `<div class="ev" title="Charged when power was cheap">${ICON.c}${ch}</div>` : ""}
+      ${dis ? `<div class="ev" title="Sold power when the grid paid most">${ICON.d}${dis}</div>` : ""}</div>`;
+  }).join("");
+  $("#ans").innerHTML = `
+    <p class="q">Modeled battery earnings, ${wk.length} days${selected !== "m001" ? ` (member ${esc(selected)})` : ""}</p>
+    <div class="big">$${total.toFixed(2)}<small>battery only, not an issued payment</small></div>
+    <p class="why">Sold power on ${discharges} of ${wk.length} days. Lowest charge: ${minRes}%. Backup floor: ${n.reserve_pct}%.</p>
+    <details class="daily-detail" id="daily-activity"><summary>Daily battery activity</summary>
+    <div class="days">${days}</div>
+    <div class="daykey"><span>${ICON.c}charged, power cheap</span><span>${ICON.d}sold power, grid paid most</span></div>
+    </details>`;
+  syncMemberNav();
+}
+
+// Customer home cards: address, next step, outage signals, grid today. Real sources only.
+const HH = he => `${String(he - 1).padStart(2, "0")}:00`;
+const fmtTime = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleString("en-US", {month:"short", day:"numeric", hour:"numeric", minute:"2-digit", timeZone:"America/Chicago"}) + " CT"; };
+const setText = (id, t) => { const e = document.getElementById(id); if (e) e.textContent = t; };
+
+async function loadHome() {
+  const ms = window.BaseMilestones;
+  const s = ms ? ms.state() : null;
+  let house = null;
+  try {
+    const r = await fetch("../house/cohort.json");
+    if (r.ok) { const list = await r.json(); house = (s && s.addr && list.find(h => h.address === s.addr)) || (s && s.addr ? null : list[0]); }
+  } catch (e) {}
+  const addr = (s && s.addr) || (house && house.address);
+  if (addr) setText("res-title", addr + (house && house.zip ? `, ${house.zip}` : ""));
+  if (house) {
+    const permits = (house.events || []).length;
+    setText("res-source", `From Austin permit records: ${house.year_built ? `built ${house.year_built}, ` : ""}${permits} permit${permits === 1 ? "" : "s"} on file. Base uses them to plan your install so you answer fewer questions.`);
+  }
+  const cta = document.getElementById("na-cta");
+  const show = (label, href, reward) => { cta.textContent = label; cta.href = href; cta.hidden = false; if (reward) cta.dataset.reward = reward; else delete cta.dataset.reward; if (ms && ms.chips) ms.chips(cta.parentNode); };
+  const st = s ? s.status : ["done", "next", "next", "base", "base"];
+  setText("na-done-text", addr ? `Austin permit records for ${addr} are loaded.` : "Pick your home to load its Austin permit records.");
+  if (!addr) {
+    setText("next-step-text", "Next: pick your home so we can load its public records.");
+    setText("na-text", "Choose your address. The records fill in most answers for you.");
+    show("Pick your home", "onboarding.html#home");
+  } else if (st[1] !== "done") {
+    const left = s && Number.isInteger(s.open) ? Math.max(0, s.open - s.answered) : null;
+    setText("next-step-text", `Next: confirm your home details${left ? ` (${left} left)` : ""}. Then add a photo of your electric panel.`);
+    setText("na-text", "A few quick questions finish your home details. Not sure is a fine answer.");
+    show("Continue your details", "onboarding.html#home", "field");
+  } else if (st[2] !== "done") {
+    setText("na-done", "Home details confirmed");
+    setText("next-step-text", "Next: add a photo of your electric panel. After that, Base does the engineering review.");
+    setText("na-text", "One clear photo of your main panel helps Base plan the install.");
+    show("Add your panel photo", "onboarding.html#home", "photo");
+  } else {
+    setText("na-done", "Your tasks are done");
+    setText("banner-kicker", "Waiting on Base");
+    setText("next-step-text", "Your part is done. Next, Base does the engineering review, then schedules installation.");
+    setText("na-text", "Nothing to do now. Base support can answer account or contract questions.");
+    show("Ask Base Brain", "brain.html?track=home&persona=lead");
+  }
+}
+
+async function loadSignals() {
+  try {
+    const r = await fetch("data/signals.json"); if (!r.ok) throw 0;
+    const d = await r.json(), rule = n => (d.rules || []).find(x => x.name === n) || {};
+    const storm = rule("storm_alert").now || {}, prc = rule("low_reserves").now || {};
+    const n = Number(storm.value) || 0;
+    setText("out-alerts", n ? `${n} active alert${n === 1 ? "" : "s"}` : "No active alerts");
+    if (prc.value != null) setText("out-reserve", `ERCOT responsive reserve: ${Math.round(prc.value).toLocaleString()} MW. ERCOT asks for conservation under 3,000 MW. Your battery keeps a backup reserve once installed.`);
+    const t = fmtTime(storm.as_of || d.built_at);
+    setText("out-asof", t ? `As of ${t}` : "");
+  } catch (e) { setText("out-alerts", "Signals not available"); }
+}
+
+async function loadGrid() {
+  try {
+    const r = await fetch("data/grid_today.json"); if (!r.ok) throw 0;
+    const g = await r.json(), zone = (g.battery && g.battery.zone) || "LZ_AEN";
+    const dam = (g.prices && g.prices.dam) || [];
+    const vals = dam.map(h => Number(h[zone]) || 0);
+    if (g.conditions) { setText("grid-cond", `ERCOT: ${g.conditions.title}`); setText("grid-note", `${g.conditions.note} Prices are wholesale, not your bill.`); }
+    if (dam.length) {
+      const max = Math.max(...vals), min = Math.min(...vals), peak = dam[vals.indexOf(max)];
+      setText("grid-peak", `Peak ${"$" + max.toFixed(2)}/MWh at ${HH(peak.he)}`);
+      setText("plan-sub", `Day-ahead price for ${g.date}, Austin load zone (${zone}). Low ${"$" + min.toFixed(2)}/MWh.`);
+      const bars = document.getElementById("price-bars");
+      bars.replaceChildren(...dam.map((h, i) => {
+        const el = document.createElement("i");
+        el.style.height = `${Math.max(4, vals[i] / Math.max(1, max) * 100)}%`;
+        if (vals[i] === max) el.className = "peak";
+        el.title = `${HH(h.he)}: ${vals[i].toFixed(2)} per MWh`;
+        return el;
+      }));
+    }
+    const t = fmtTime(g.as_of || (g.prices && g.prices.updated));
+    setText("grid-asof", t ? `As of ${t}` : "");
+  } catch (e) { setText("grid-peak", "Grid data will appear when available"); }
+}
+window.addEventListener("DOMContentLoaded", () => { loadHome(); });
+loadSignals();
+loadGrid();
+
+function renderRecord() {
+  const m = members[selected];
+  if (!m) { $("#record").innerHTML = `<p>No record for ${esc(selected)}.</p>`; return; }
+  const fit = fitLabel(m.fit), reasons = (m.fit && m.fit.reasons) || [];
+  const confirmSet = new Set(m.confirm_with_member || []);
+  const fields = Object.entries(m.fields || {}).map(([k, v]) => `<tr><td>${LABEL[k] || k}</td><td>${v.value === null || v.value === undefined ? "<span style='color:var(--muted)'>unknown</span>" : esc(v.value)}</td><td style="color:var(--muted)">${esc(v.source || "")}</td><td>${confBar(v.confidence)}</td><td>${confirmSet.has(k) ? '<span class="confirm">please confirm</span>' : ""}</td></tr>`).join("");
+  const node = Object.entries(m.node || {}).map(([k, v]) => `<b>${k}</b><span>${esc(v)}</span>`).join("");
+  const week = (m.week || []).map(d => `<tr><td>Day ${d.day}</td><td class="num">${d.battery_usd.toFixed(2)}</td><td class="num">${d.gpu_usd.toFixed(2)}</td><td class="num">${d.reserve_min_pct}%</td><td><ul class="events">${(d.events || []).map(e => `<li>${esc(e)}</li>`).join("")}</ul></td></tr>`).join("");
+  const t = m.totals || {};
+  $("#record").innerHTML = `
+    <section class="rs"><h3>House <small>zip ${esc(m.zip)}, built ${esc(m.year_built)}, install fit: ${esc(String(fit).replace("_", " "))}</small></h3>
+      ${reasons.length ? `<ul class="reasons">${reasons.map(r => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}</section>
+    <section class="rs"><h3>Home fields <small>permit-derived values and estimates, not current verified conditions</small></h3>
+      <div class="tw"><table><tr><th>fact</th><th>value</th><th>source</th><th>how sure</th><th></th></tr>${fields}</table></div></section>
+    <section class="rs"><h3>Battery and PC setup <small>raw fields</small></h3><div class="kv">${node}</div></section>
+    <section class="rs"><h3>Every event this week</h3>
+      <div class="tw"><table><tr><th>day</th><th class="num">battery $</th><th class="num">PC $</th><th class="num">lowest charge</th><th>events</th></tr>${week}
+      <tr><td><b>total</b></td><td class="num"><b>${(t.battery_usd ?? 0).toFixed(2)}</b></td><td class="num"><b>${(t.gpu_usd ?? 0).toFixed(2)}</b></td><td></td><td></td></tr></table></div></section>
+    <p style="color:var(--muted);font-size:11.5px">Built from: ${(m.scaffolded_from || []).map(esc).join(", ")}</p>`;
+}
+
+let shownQs = [];
+function renderChips() {
+  const want = ["q01", "q03", "q09"];
+  shownQs = questions.filter(q => want.includes(q.id));
+  if (shownQs.length < 3) shownQs = questions.filter(q => !/gpu/i.test(q.question)).slice(0, 3);
+  $("#chips").innerHTML = shownQs.map((q, i) => `<button class="chip" data-i="${i}">${esc(q.question[0].toUpperCase() + q.question.slice(1))}?</button>`).join("");
+  $("#chips").querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => onChip(+c.dataset.i, c)));
+}
+
+function pushAnswer({question, answer, meta, verdict, err}) {
+  const cls = err ? "err" : (answer.startsWith("GAP") ? "gap" : "");
+  const v = verdict ? `<span class="verdict ${verdict}">${verdict === "correct" ? "checked: right" : verdict.replace("_", " ")}</span>` : "";
+  const div = document.createElement("div");
+  div.className = "answer " + cls;
+  div.innerHTML = `<div class="q">${esc(question)}${v}</div><div class="a">${esc(answer)}</div>${meta ? `<div class="meta">${esc(meta)}</div>` : ""}`;
+  $("#answers").prepend(div);
+}
+
+async function onChip(i, el) {
+  $("#chips").querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === el));
+  const q = shownQs[i];
+  const p = preds[selected] && preds[selected][q.question];
+  if (p) { pushAnswer({question: q.question, answer: p.answer, verdict: p.verdict, meta: `stored answer, read from: ${(p.sections || []).join(", ")}`}); return; }
+  await ask(q.question);
+}
+
+// Log typed questions for the learning loop (store/learn.py), only when a local ask server runs. No names, no addresses.
+const LOG_API = "http://localhost:" + (new URL(location).searchParams.get("ask") || "8742") + "/learn/log";
+function logQuestion(q, answer, ok, t0) {
+  if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;
+  fetch(LOG_API, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({question:q, page:"member.html",
+    member_id:selected, path: !ok ? "agent" : answer.startsWith("GAP") ? "gap" : "agent", answered: ok && !answer.startsWith("GAP"),
+    seconds:(performance.now() - t0) / 1000, answer})}).catch(() => {});
+}
+
+async function ask(q) {
+  const m = members[selected];
+  if (!q.trim() || !m) return;
+  if (!LOCAL_MODEL) {
+    pushAnswer({question: q, answer: "Live questions are available only when this page runs locally with Ollama. Recorded answers above remain available.", err: true});
+    return;
+  }
+  const t0 = performance.now();
+  try {
+    const r = await askOllama(m, q);
+    pushAnswer({question: q, answer: r.answer, meta: `Base Brain: your record, live gemma4:e4b, read from: ${r.sections.join(", ")}`});
+    logQuestion(q, r.answer, true, t0);
+  } catch (e) {
+    pushAnswer({question: q, answer: "Typed questions need Ollama running on this machine (http://localhost:11434 with gemma4:e4b). Try a question above instead.", err: true});
+    logQuestion(q, "", false, t0);
+  }
+}
+$("#go").addEventListener("click", () => { ask($("#q").value); $("#q").value = ""; });
+$("#q").addEventListener("keydown", e => { if (e.key === "Enter") { ask($("#q").value); $("#q").value = ""; } });
+
+function pickMember(id) {
+  selected = id; $("#answers").innerHTML = "";
+  $("#chips").querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", "false"));
+  renderAnswer(); renderRecord();
+  const u = new URL(location); if (id === "m001") u.searchParams.delete("m"); else u.searchParams.set("m", id); history.replaceState(null, "", u);
+}
+
+async function load() {
+  let data = null, src = "";
+  for (const path of ["../data/members.json", "../data/members.fixture.json"]) {
+    try { const r = await fetch(path); if (r.ok) { data = await r.json(); src = path.split("/").pop(); break; } } catch (e) {}
+  }
+  if (!data) { $("#notice").style.display = "block"; $("#ans").style.display = "none"; return; }
+  const list = Array.isArray(data) ? data : data.members;
+  list.forEach(m => { members[m.member_id] = m; });
+  ids = list.map(m => m.member_id);
+  $("#src").textContent = `${ids.length} members from ${src}`;
+  $("#member").innerHTML = ids.map(id => `<option value="${id}">${id}</option>`).join("");
+  $("#member").addEventListener("change", e => pickMember(e.target.value));
+  try { const r = await fetch("../brain/questions.json"); if (r.ok) { const d = await r.json(); questions = Array.isArray(d) ? d : d.questions; } } catch (e) {}
+  if (!questions.length) { try { const r = await fetch("../brain/questions.fixture.json"); if (r.ok) { const d = await r.json(); questions = Array.isArray(d) ? d : d.questions; } } catch (e) {} }
+  try {
+    const r = await fetch("../brain/pred.jsonl");
+    if (r.ok) (await r.text()).trim().split("\n").filter(Boolean).map(l => JSON.parse(l)).forEach(p => { (preds[p.member_id] ||= {})[p.question] = p; });
+  } catch (e) {}
+  renderChips();
+  const want = new URL(location).searchParams.get("m");
+  pickMember(ids.includes(want) ? want : (ids.includes("m001") ? "m001" : ids[0]));
+  $("#member").value = selected;
+  // Open with one real exchange: the first suggested question, answered from the recorded answers.
+  const first = $("#chips .chip");
+  if (first && preds[selected] && preds[selected][shownQs[0].question]) onChip(0, first);
+}
+function syncMemberNav() {
+  const target = ['#daily-activity', '#member-help'].includes(location.hash) ? location.hash : '#ans';
+  document.querySelectorAll('.member-links a').forEach(link => {
+    if (new URL(link.href).hash === target) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+  const detail = document.getElementById('daily-activity');
+  if (target === '#daily-activity' && detail) detail.open = true;
+}
+window.addEventListener('hashchange', syncMemberNav);
+load();
+document.querySelector('.member-links a[href="#daily-activity"]').addEventListener('click', () => {
+  const detail = document.getElementById('daily-activity');
+  if (detail) detail.open = true;
+});
+</script>
+</body>
+</html>

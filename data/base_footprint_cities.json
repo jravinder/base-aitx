@@ -1,0 +1,163 @@
+{
+  "issue": "#54 track 4",
+  "generated": "2026-09-26",
+  "method": "Aggregate queries only (count / group by) against each city's public permit feed. No bulk row downloads.",
+  "cities": [
+    {
+      "city": "Austin",
+      "utility": "Austin Energy",
+      "feed_exists": true,
+      "feed_url": "https://data.austintexas.gov/resource/3syk-w9eu.json",
+      "feed_type": "Socrata",
+      "keyless": true,
+      "names_contractor": true,
+      "contractor_field": "contractor_trade",
+      "base_power_2026_note": "About 300 backup-battery permits filed Aug-Sep 2026 (from prior work in this repo, house/permits.py).",
+      "status": "confirmed"
+    },
+    {
+      "city": "Houston",
+      "utility": "CenterPoint Energy",
+      "feed_exists": true,
+      "feed_url": "https://data.houstontx.gov/dataset/residential-building-permits",
+      "feed_type": "CKAN (Socrata-style, pre-aggregated)",
+      "keyless": true,
+      "names_contractor": false,
+      "contractor_field": null,
+      "base_power_2026_note": "Only open dataset is 'Residential Building Permits by Month and Year', a pre-aggregated count with no per-permit contractor field. Base Power cannot be counted from Houston's open data.",
+      "status": "no contractor field"
+    },
+    {
+      "city": "Dallas",
+      "utility": "Oncor",
+      "feed_exists": true,
+      "feed_url": "https://www.dallasopendata.com/resource/e7gq-4sah.json",
+      "feed_type": "Socrata",
+      "keyless": true,
+      "names_contractor": true,
+      "contractor_field": "contractor",
+      "base_power_2026_note": "Feed has a contractor field, but the dataset is stale (max issued_date seen: 2019-12-31). 0 rows match contractor LIKE '%BASE POWER%' in the whole dataset. Cannot answer 2026.",
+      "status": "feed stale, not usable for 2026"
+    },
+    {
+      "city": "Fort Worth",
+      "utility": "Oncor",
+      "feed_exists": false,
+      "feed_url": null,
+      "feed_type": null,
+      "keyless": null,
+      "names_contractor": null,
+      "contractor_field": null,
+      "base_power_2026_note": "Socrata catalog listed 'Development Permits' at data.fortworthtexas.gov, but the domain now 302-redirects to hub.arcgis.com/legacy. No working endpoint found within the time budget.",
+      "status": "no open feed found"
+    },
+    {
+      "city": "Arlington",
+      "utility": "Oncor",
+      "feed_exists": true,
+      "feed_url": "https://gis2.arlingtontx.gov/agsext2/rest/services/OpenData/OD_Property/MapServer/1",
+      "feed_type": "ArcGIS FeatureServer (Issued Permits)",
+      "keyless": true,
+      "names_contractor": false,
+      "contractor_field": null,
+      "base_power_2026_note": "Schema has FOLDERTYPE, WORKDESC, NameofBusiness, no contractor field. 0 hits searching NameofBusiness for 'BASE POWER', but that field is not documented as the installing contractor, so this is inconclusive rather than a confirmed zero.",
+      "status": "no contractor field"
+    },
+    {
+      "city": "Plano",
+      "utility": "Oncor",
+      "feed_exists": false,
+      "feed_url": null,
+      "feed_type": null,
+      "keyless": null,
+      "names_contractor": null,
+      "contractor_field": null,
+      "base_power_2026_note": "Plano has a GIS open-data hub (data-planogis.opendata.arcgis.com) but its dataset catalog feed errored and no permits dataset was found within the time budget.",
+      "status": "no open feed found"
+    },
+    {
+      "city": "Frisco",
+      "utility": "Oncor",
+      "feed_exists": false,
+      "feed_url": null,
+      "feed_type": null,
+      "keyless": null,
+      "names_contractor": null,
+      "contractor_field": null,
+      "base_power_2026_note": "Frisco Hub (geodata-frisco.hub.arcgis.com) catalog has 35 datasets, none of them a permits dataset.",
+      "status": "no open feed found"
+    },
+    {
+      "city": "McKinney",
+      "utility": "Oncor",
+      "feed_exists": false,
+      "feed_url": null,
+      "feed_type": null,
+      "keyless": null,
+      "names_contractor": null,
+      "contractor_field": null,
+      "base_power_2026_note": "McKinney's GIS open-data site has 56 datasets. The only permit-related ones are Health Food Permits and Permitted Hunting Areas; no building/electrical permit dataset.",
+      "status": "no open feed found"
+    },
+    {
+      "city": "San Antonio",
+      "utility": "CPS Energy",
+      "feed_exists": true,
+      "feed_url": "https://data.sanantonio.gov/dataset/building-permits",
+      "feed_type": "CKAN datastore (datastore_search_sql, native Postgres SQL)",
+      "keyless": true,
+      "names_contractor": false,
+      "contractor_field": "PRIMARY CONTACT (not documented as contractor, likely an applicant/person name)",
+      "base_power_2026_note": "0 rows match PRIMARY CONTACT, PROJECT NAME, or WORK TYPE LIKE '%BASE POWER%' or '%BATTERY%'. Feed exists but does not clearly name the contractor and shows no Base Power activity by any of the fields checked.",
+      "status": "feed works, no confirmed contractor field, 0 matches"
+    },
+    {
+      "city": "Round Rock",
+      "utility": "Oncor",
+      "feed_exists": false,
+      "feed_url": "permits.roundrocktexas.gov",
+      "feed_type": "Custom portal (Timmons Group)",
+      "keyless": null,
+      "names_contractor": null,
+      "contractor_field": null,
+      "base_power_2026_note": "Prior research (this file's earlier section) found the portal in maintenance/login mode with no confirmed anonymous search. Re-checked within budget, no change.",
+      "status": "no open feed found"
+    },
+    {
+      "city": "Georgetown",
+      "utility": "Oncor",
+      "feed_exists": false,
+      "feed_url": null,
+      "feed_type": null,
+      "keyless": null,
+      "names_contractor": null,
+      "contractor_field": null,
+      "base_power_2026_note": "georgetown.org TLS failed in prior research. No open feed found within budget.",
+      "status": "no open feed found"
+    },
+    {
+      "city": "Pflugerville",
+      "utility": "Oncor",
+      "feed_exists": false,
+      "feed_url": null,
+      "feed_type": null,
+      "keyless": null,
+      "names_contractor": null,
+      "contractor_field": null,
+      "base_power_2026_note": "No permit portal link surfaced in prior research or this pass.",
+      "status": "no open feed found"
+    },
+    {
+      "city": "Cedar Park",
+      "utility": "Oncor",
+      "feed_exists": false,
+      "feed_url": null,
+      "feed_type": null,
+      "keyless": null,
+      "names_contractor": null,
+      "contractor_field": null,
+      "base_power_2026_note": "cedarparktexas.gov Forms & Permits page 404'd / ID-collided in prior research. No open feed found within budget.",
+      "status": "no open feed found"
+    }
+  ]
+}

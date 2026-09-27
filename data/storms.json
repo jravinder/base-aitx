@@ -1,0 +1,1595 @@
+{
+ "source": "data/mirror/energy_permits.csv.gz (City of Austin permits, applied_date)",
+ "built": "2026-09-26",
+ "categories": [
+  "generator",
+  "battery",
+  "solar_battery"
+ ],
+ "baseline_2020_monthly": 13.2,
+ "storms": [
+  {
+   "month": "2021-02",
+   "name": "Winter storm Uri",
+   "count": 59,
+   "multiple": 4.5,
+   "pre_storm_3mo_mean": 18.0,
+   "pre_storm_multiple": 3.3,
+   "peak_month": "2021-11",
+   "peak_count": 176,
+   "peak_multiple": 13.3,
+   "surge_months": 68,
+   "surge_window": [
+    "2021-02",
+    "2026-09"
+   ],
+   "still_elevated": true,
+   "lead_category": "solar_battery"
+  },
+  {
+   "month": "2023-02",
+   "name": "Austin ice storm",
+   "count": 94,
+   "multiple": 7.1,
+   "pre_storm_3mo_mean": 68.0,
+   "pre_storm_multiple": 1.4,
+   "peak_month": "2023-03",
+   "peak_count": 148,
+   "peak_multiple": 11.2,
+   "surge_months": 3,
+   "surge_window": [
+    "2023-03",
+    "2023-05"
+   ],
+   "still_elevated": false,
+   "lead_category": "generator"
+  }
+ ],
+ "months_over_4x": [
+  {
+   "month": "2021-02",
+   "count": 59,
+   "multiple": 4.5,
+   "base": 0
+  },
+  {
+   "month": "2021-03",
+   "count": 86,
+   "multiple": 6.5,
+   "base": 0
+  },
+  {
+   "month": "2021-04",
+   "count": 114,
+   "multiple": 8.6,
+   "base": 0
+  },
+  {
+   "month": "2021-05",
+   "count": 105,
+   "multiple": 7.9,
+   "base": 0
+  },
+  {
+   "month": "2021-06",
+   "count": 112,
+   "multiple": 8.5,
+   "base": 0
+  },
+  {
+   "month": "2021-07",
+   "count": 125,
+   "multiple": 9.4,
+   "base": 0
+  },
+  {
+   "month": "2021-08",
+   "count": 143,
+   "multiple": 10.8,
+   "base": 0
+  },
+  {
+   "month": "2021-09",
+   "count": 146,
+   "multiple": 11.0,
+   "base": 0
+  },
+  {
+   "month": "2021-10",
+   "count": 147,
+   "multiple": 11.1,
+   "base": 0
+  },
+  {
+   "month": "2021-11",
+   "count": 176,
+   "multiple": 13.3,
+   "base": 0
+  },
+  {
+   "month": "2021-12",
+   "count": 166,
+   "multiple": 12.5,
+   "base": 0
+  },
+  {
+   "month": "2022-01",
+   "count": 126,
+   "multiple": 9.5,
+   "base": 0
+  },
+  {
+   "month": "2022-02",
+   "count": 106,
+   "multiple": 8.0,
+   "base": 0
+  },
+  {
+   "month": "2022-03",
+   "count": 90,
+   "multiple": 6.8,
+   "base": 0
+  },
+  {
+   "month": "2022-04",
+   "count": 121,
+   "multiple": 9.1,
+   "base": 0
+  },
+  {
+   "month": "2022-05",
+   "count": 76,
+   "multiple": 5.7,
+   "base": 0
+  },
+  {
+   "month": "2022-06",
+   "count": 99,
+   "multiple": 7.5,
+   "base": 0
+  },
+  {
+   "month": "2022-07",
+   "count": 90,
+   "multiple": 6.8,
+   "base": 0
+  },
+  {
+   "month": "2022-08",
+   "count": 106,
+   "multiple": 8.0,
+   "base": 0
+  },
+  {
+   "month": "2022-09",
+   "count": 101,
+   "multiple": 7.6,
+   "base": 0
+  },
+  {
+   "month": "2022-10",
+   "count": 83,
+   "multiple": 6.3,
+   "base": 0
+  },
+  {
+   "month": "2022-12",
+   "count": 62,
+   "multiple": 4.7,
+   "base": 0
+  },
+  {
+   "month": "2023-01",
+   "count": 90,
+   "multiple": 6.8,
+   "base": 0
+  },
+  {
+   "month": "2023-02",
+   "count": 94,
+   "multiple": 7.1,
+   "base": 0
+  },
+  {
+   "month": "2023-03",
+   "count": 148,
+   "multiple": 11.2,
+   "base": 0
+  },
+  {
+   "month": "2023-04",
+   "count": 115,
+   "multiple": 8.7,
+   "base": 0
+  },
+  {
+   "month": "2023-05",
+   "count": 105,
+   "multiple": 7.9,
+   "base": 0
+  },
+  {
+   "month": "2023-06",
+   "count": 93,
+   "multiple": 7.0,
+   "base": 0
+  },
+  {
+   "month": "2023-07",
+   "count": 117,
+   "multiple": 8.8,
+   "base": 0
+  },
+  {
+   "month": "2023-08",
+   "count": 134,
+   "multiple": 10.1,
+   "base": 0
+  },
+  {
+   "month": "2023-09",
+   "count": 143,
+   "multiple": 10.8,
+   "base": 0
+  },
+  {
+   "month": "2023-10",
+   "count": 189,
+   "multiple": 14.3,
+   "base": 0
+  },
+  {
+   "month": "2023-11",
+   "count": 134,
+   "multiple": 10.1,
+   "base": 0
+  },
+  {
+   "month": "2023-12",
+   "count": 113,
+   "multiple": 8.5,
+   "base": 0
+  },
+  {
+   "month": "2024-01",
+   "count": 106,
+   "multiple": 8.0,
+   "base": 0
+  },
+  {
+   "month": "2024-02",
+   "count": 62,
+   "multiple": 4.7,
+   "base": 0
+  },
+  {
+   "month": "2024-03",
+   "count": 79,
+   "multiple": 6.0,
+   "base": 0
+  },
+  {
+   "month": "2024-04",
+   "count": 80,
+   "multiple": 6.0,
+   "base": 0
+  },
+  {
+   "month": "2024-05",
+   "count": 55,
+   "multiple": 4.2,
+   "base": 0
+  },
+  {
+   "month": "2024-06",
+   "count": 64,
+   "multiple": 4.8,
+   "base": 0
+  },
+  {
+   "month": "2024-07",
+   "count": 67,
+   "multiple": 5.1,
+   "base": 0
+  },
+  {
+   "month": "2024-08",
+   "count": 99,
+   "multiple": 7.5,
+   "base": 0
+  },
+  {
+   "month": "2024-09",
+   "count": 96,
+   "multiple": 7.2,
+   "base": 0
+  },
+  {
+   "month": "2024-10",
+   "count": 113,
+   "multiple": 8.5,
+   "base": 0
+  },
+  {
+   "month": "2024-11",
+   "count": 67,
+   "multiple": 5.1,
+   "base": 0
+  },
+  {
+   "month": "2024-12",
+   "count": 60,
+   "multiple": 4.5,
+   "base": 0
+  },
+  {
+   "month": "2025-01",
+   "count": 77,
+   "multiple": 5.8,
+   "base": 0
+  },
+  {
+   "month": "2025-06",
+   "count": 73,
+   "multiple": 5.5,
+   "base": 0
+  },
+  {
+   "month": "2025-07",
+   "count": 80,
+   "multiple": 6.0,
+   "base": 0
+  },
+  {
+   "month": "2025-08",
+   "count": 92,
+   "multiple": 6.9,
+   "base": 0
+  },
+  {
+   "month": "2025-09",
+   "count": 66,
+   "multiple": 5.0,
+   "base": 0
+  },
+  {
+   "month": "2025-10",
+   "count": 105,
+   "multiple": 7.9,
+   "base": 0
+  },
+  {
+   "month": "2025-11",
+   "count": 63,
+   "multiple": 4.8,
+   "base": 0
+  },
+  {
+   "month": "2026-07",
+   "count": 71,
+   "multiple": 5.4,
+   "base": 39
+  },
+  {
+   "month": "2026-08",
+   "count": 256,
+   "multiple": 19.3,
+   "base": 227
+  },
+  {
+   "month": "2026-09",
+   "count": 64,
+   "multiple": 4.8,
+   "base": 43
+  }
+ ],
+ "note_over_4x": "After Uri the monthly count never went back to the 2020 level. Most months from 2021-02 on are over 4x the 2020 baseline. 2026-08 is Base Backup Only installs (is_base=1), not a storm.",
+ "readiness": {
+  "label": "ESTIMATE",
+  "method": "permit-ready homes = funnel star (easy-fit) in served zips; March 2023 excess permits over the pre-storm 3-month mean, divided by owner-occupied single-family homes in the permit-feed zips, gives a per-home monthly rate; per week = x 7/31",
+  "march_2023_count": 148,
+  "march_2023_excess": 80.0,
+  "feed_owner_sfd_homes": 320783,
+  "rate_per_home_month": 0.000249,
+  "total_permit_ready": 56658,
+  "total_surge_per_week_est": 3.2,
+  "zips": [
+   {
+    "zip": "78665",
+    "city": "Round Rock",
+    "status": "energy_and_backup",
+    "permit_ready_homes": 6530,
+    "surge_per_week_est": 0.37
+   },
+   {
+    "zip": "78634",
+    "city": "Hutto",
+    "status": "energy_and_backup",
+    "permit_ready_homes": 5465,
+    "surge_per_week_est": 0.31
+   },
+   {
+    "zip": "78681",
+    "city": "Round Rock",
+    "status": "energy_and_backup",
+    "permit_ready_homes": 4090,
+    "surge_per_week_est": 0.23
+   },
+   {
+    "zip": "78664",
+    "city": "Round Rock",
+    "status": "energy_and_backup",
+    "permit_ready_homes": 3466,
+    "surge_per_week_est": 0.2
+   },
+   {
+    "zip": "78628",
+    "city": "Georgetown",
+    "status": "mixed",
+    "permit_ready_homes": 2662,
+    "surge_per_week_est": 0.15
+   },
+   {
+    "zip": "78744",
+    "city": "Austin (Southeast)",
+    "status": "backup_only",
+    "permit_ready_homes": 2353,
+    "surge_per_week_est": 0.13
+   },
+   {
+    "zip": "78738",
+    "city": "Bee Cave",
+    "status": "backup_only",
+    "permit_ready_homes": 1999,
+    "surge_per_week_est": 0.11
+   },
+   {
+    "zip": "78626",
+    "city": "Georgetown",
+    "status": "mixed",
+    "permit_ready_homes": 1921,
+    "surge_per_week_est": 0.11
+   },
+   {
+    "zip": "76574",
+    "city": "Taylor",
+    "status": "energy_and_backup",
+    "permit_ready_homes": 1634,
+    "surge_per_week_est": 0.09
+   },
+   {
+    "zip": "78759",
+    "city": "Austin (Arboretum)",
+    "status": "mixed",
+    "permit_ready_homes": 1633,
+    "surge_per_week_est": 0.09
+   },
+   {
+    "zip": "78754",
+    "city": "Austin (Harris Branch)",
+    "status": "backup_only",
+    "permit_ready_homes": 1570,
+    "surge_per_week_est": 0.09
+   },
+   {
+    "zip": "78621",
+    "city": "Elgin",
+    "status": "mixed",
+    "permit_ready_homes": 1420,
+    "surge_per_week_est": 0.08
+   },
+   {
+    "zip": "78724",
+    "city": "Austin (Northeast)",
+    "status": "backup_only",
+    "permit_ready_homes": 1384,
+    "surge_per_week_est": 0.08
+   },
+   {
+    "zip": "78747",
+    "city": "Austin (Far South)",
+    "status": "backup_only",
+    "permit_ready_homes": 1337,
+    "surge_per_week_est": 0.08
+   },
+   {
+    "zip": "78702",
+    "city": "Austin (East)",
+    "status": "backup_only",
+    "permit_ready_homes": 1238,
+    "surge_per_week_est": 0.07
+   },
+   {
+    "zip": "78732",
+    "city": "Austin (Steiner Ranch)",
+    "status": "backup_only",
+    "permit_ready_homes": 1216,
+    "surge_per_week_est": 0.07
+   },
+   {
+    "zip": "78660",
+    "city": "Pflugerville",
+    "status": "mixed",
+    "permit_ready_homes": 1149,
+    "surge_per_week_est": 0.06
+   },
+   {
+    "zip": "78723",
+    "city": "Austin (Windsor Park)",
+    "status": "backup_only",
+    "permit_ready_homes": 1082,
+    "surge_per_week_est": 0.06
+   },
+   {
+    "zip": "78728",
+    "city": "Austin (Wells Branch)",
+    "status": "energy_and_backup",
+    "permit_ready_homes": 1054,
+    "surge_per_week_est": 0.06
+   },
+   {
+    "zip": "78739",
+    "city": "Austin (Circle C)",
+    "status": "backup_only",
+    "permit_ready_homes": 1013,
+    "surge_per_week_est": 0.06
+   },
+   {
+    "zip": "78727",
+    "city": "Austin (Scofield)",
+    "status": "mixed",
+    "permit_ready_homes": 989,
+    "surge_per_week_est": 0.06
+   },
+   {
+    "zip": "78731",
+    "city": "Austin (Northwest Hills)",
+    "status": "backup_only",
+    "permit_ready_homes": 974,
+    "surge_per_week_est": 0.05
+   },
+   {
+    "zip": "78735",
+    "city": "Austin (Barton Creek)",
+    "status": "backup_only",
+    "permit_ready_homes": 969,
+    "surge_per_week_est": 0.05
+   },
+   {
+    "zip": "78758",
+    "city": "Austin (North Burnet)",
+    "status": "backup_only",
+    "permit_ready_homes": 923,
+    "surge_per_week_est": 0.05
+   },
+   {
+    "zip": "78729",
+    "city": "Austin (Anderson Mill)",
+    "status": "backup_only",
+    "permit_ready_homes": 767,
+    "surge_per_week_est": 0.04
+   },
+   {
+    "zip": "78653",
+    "city": "Manor",
+    "status": "mixed",
+    "permit_ready_homes": 628,
+    "surge_per_week_est": 0.04
+   },
+   {
+    "zip": "78757",
+    "city": "Austin (Allandale)",
+    "status": "backup_only",
+    "permit_ready_homes": 560,
+    "surge_per_week_est": 0.03
+   },
+   {
+    "zip": "78725",
+    "city": "Austin (Southeast)",
+    "status": "backup_only",
+    "permit_ready_homes": 514,
+    "surge_per_week_est": 0.03
+   },
+   {
+    "zip": "78741",
+    "city": "Austin (Riverside)",
+    "status": "backup_only",
+    "permit_ready_homes": 502,
+    "surge_per_week_est": 0.03
+   },
+   {
+    "zip": "78703",
+    "city": "Austin (Tarrytown)",
+    "status": "backup_only",
+    "permit_ready_homes": 474,
+    "surge_per_week_est": 0.03
+   },
+   {
+    "zip": "78745",
+    "city": "Austin (South)",
+    "status": "backup_only",
+    "permit_ready_homes": 414,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78748",
+    "city": "Austin (Southpark Meadows)",
+    "status": "backup_only",
+    "permit_ready_homes": 406,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78736",
+    "city": "Austin (Oak Hill West)",
+    "status": "backup_only",
+    "permit_ready_homes": 403,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78726",
+    "city": "Austin (Four Points)",
+    "status": "backup_only",
+    "permit_ready_homes": 397,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78733",
+    "city": "Austin (Rob Roy)",
+    "status": "backup_only",
+    "permit_ready_homes": 396,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78721",
+    "city": "Austin (East MLK)",
+    "status": "backup_only",
+    "permit_ready_homes": 351,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78730",
+    "city": "Austin (River Place)",
+    "status": "backup_only",
+    "permit_ready_homes": 322,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78704",
+    "city": "Austin (South Congress)",
+    "status": "backup_only",
+    "permit_ready_homes": 318,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78751",
+    "city": "Austin (Hyde Park)",
+    "status": "backup_only",
+    "permit_ready_homes": 312,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78752",
+    "city": "Austin (North Lamar)",
+    "status": "backup_only",
+    "permit_ready_homes": 310,
+    "surge_per_week_est": 0.02
+   },
+   {
+    "zip": "78746",
+    "city": "West Lake Hills",
+    "status": "backup_only",
+    "permit_ready_homes": 224,
+    "surge_per_week_est": 0.01
+   },
+   {
+    "zip": "78734",
+    "city": "Lakeway",
+    "status": "mixed",
+    "permit_ready_homes": 219,
+    "surge_per_week_est": 0.01
+   },
+   {
+    "zip": "78753",
+    "city": "Austin (North)",
+    "status": "backup_only",
+    "permit_ready_homes": 211,
+    "surge_per_week_est": 0.01
+   },
+   {
+    "zip": "78756",
+    "city": "Austin (Brentwood)",
+    "status": "backup_only",
+    "permit_ready_homes": 165,
+    "surge_per_week_est": 0.01
+   },
+   {
+    "zip": "78705",
+    "city": "Austin (West Campus)",
+    "status": "backup_only",
+    "permit_ready_homes": 152,
+    "surge_per_week_est": 0.01
+   },
+   {
+    "zip": "78749",
+    "city": "Austin (Southwest)",
+    "status": "backup_only",
+    "permit_ready_homes": 150,
+    "surge_per_week_est": 0.01
+   },
+   {
+    "zip": "78617",
+    "city": "Del Valle",
+    "status": "backup_only",
+    "permit_ready_homes": 141,
+    "surge_per_week_est": 0.01
+   },
+   {
+    "zip": "78750",
+    "city": "Austin (Jollyville)",
+    "status": "mixed",
+    "permit_ready_homes": 130,
+    "surge_per_week_est": 0.01
+   },
+   {
+    "zip": "78722",
+    "city": "Austin (Cherrywood)",
+    "status": "backup_only",
+    "permit_ready_homes": 98,
+    "surge_per_week_est": 0.01
+   },
+   {
+    "zip": "78742",
+    "city": "Austin (Montopolis)",
+    "status": "backup_only",
+    "permit_ready_homes": 20,
+    "surge_per_week_est": 0.0
+   },
+   {
+    "zip": "78701",
+    "city": "Austin (downtown)",
+    "status": "backup_only",
+    "permit_ready_homes": 3,
+    "surge_per_week_est": 0.0
+   }
+  ]
+ },
+ "series": [
+  {
+   "month": "2019-01",
+   "count": 10,
+   "base": 0,
+   "generator": 5,
+   "battery": 2,
+   "solar_battery": 3,
+   "multiple": 0.8
+  },
+  {
+   "month": "2019-02",
+   "count": 6,
+   "base": 0,
+   "generator": 4,
+   "battery": 2,
+   "solar_battery": 0,
+   "multiple": 0.5
+  },
+  {
+   "month": "2019-03",
+   "count": 7,
+   "base": 0,
+   "generator": 3,
+   "battery": 3,
+   "solar_battery": 1,
+   "multiple": 0.5
+  },
+  {
+   "month": "2019-04",
+   "count": 6,
+   "base": 0,
+   "generator": 4,
+   "battery": 1,
+   "solar_battery": 1,
+   "multiple": 0.5
+  },
+  {
+   "month": "2019-05",
+   "count": 12,
+   "base": 0,
+   "generator": 8,
+   "battery": 3,
+   "solar_battery": 1,
+   "multiple": 0.9
+  },
+  {
+   "month": "2019-06",
+   "count": 5,
+   "base": 0,
+   "generator": 1,
+   "battery": 1,
+   "solar_battery": 3,
+   "multiple": 0.4
+  },
+  {
+   "month": "2019-07",
+   "count": 7,
+   "base": 0,
+   "generator": 4,
+   "battery": 3,
+   "solar_battery": 0,
+   "multiple": 0.5
+  },
+  {
+   "month": "2019-08",
+   "count": 7,
+   "base": 0,
+   "generator": 4,
+   "battery": 2,
+   "solar_battery": 1,
+   "multiple": 0.5
+  },
+  {
+   "month": "2019-09",
+   "count": 3,
+   "base": 0,
+   "generator": 1,
+   "battery": 1,
+   "solar_battery": 1,
+   "multiple": 0.2
+  },
+  {
+   "month": "2019-10",
+   "count": 7,
+   "base": 0,
+   "generator": 2,
+   "battery": 2,
+   "solar_battery": 3,
+   "multiple": 0.5
+  },
+  {
+   "month": "2019-11",
+   "count": 8,
+   "base": 0,
+   "generator": 2,
+   "battery": 2,
+   "solar_battery": 4,
+   "multiple": 0.6
+  },
+  {
+   "month": "2019-12",
+   "count": 7,
+   "base": 0,
+   "generator": 2,
+   "battery": 3,
+   "solar_battery": 2,
+   "multiple": 0.5
+  },
+  {
+   "month": "2020-01",
+   "count": 7,
+   "base": 0,
+   "generator": 4,
+   "battery": 2,
+   "solar_battery": 1,
+   "multiple": 0.5
+  },
+  {
+   "month": "2020-02",
+   "count": 10,
+   "base": 0,
+   "generator": 5,
+   "battery": 3,
+   "solar_battery": 2,
+   "multiple": 0.8
+  },
+  {
+   "month": "2020-03",
+   "count": 10,
+   "base": 0,
+   "generator": 6,
+   "battery": 1,
+   "solar_battery": 3,
+   "multiple": 0.8
+  },
+  {
+   "month": "2020-04",
+   "count": 11,
+   "base": 0,
+   "generator": 7,
+   "battery": 3,
+   "solar_battery": 1,
+   "multiple": 0.8
+  },
+  {
+   "month": "2020-05",
+   "count": 11,
+   "base": 0,
+   "generator": 3,
+   "battery": 5,
+   "solar_battery": 3,
+   "multiple": 0.8
+  },
+  {
+   "month": "2020-06",
+   "count": 9,
+   "base": 0,
+   "generator": 5,
+   "battery": 1,
+   "solar_battery": 3,
+   "multiple": 0.7
+  },
+  {
+   "month": "2020-07",
+   "count": 14,
+   "base": 0,
+   "generator": 8,
+   "battery": 2,
+   "solar_battery": 4,
+   "multiple": 1.1
+  },
+  {
+   "month": "2020-08",
+   "count": 14,
+   "base": 0,
+   "generator": 4,
+   "battery": 4,
+   "solar_battery": 6,
+   "multiple": 1.1
+  },
+  {
+   "month": "2020-09",
+   "count": 23,
+   "base": 0,
+   "generator": 10,
+   "battery": 8,
+   "solar_battery": 5,
+   "multiple": 1.7
+  },
+  {
+   "month": "2020-10",
+   "count": 15,
+   "base": 0,
+   "generator": 5,
+   "battery": 8,
+   "solar_battery": 2,
+   "multiple": 1.1
+  },
+  {
+   "month": "2020-11",
+   "count": 20,
+   "base": 0,
+   "generator": 4,
+   "battery": 6,
+   "solar_battery": 10,
+   "multiple": 1.5
+  },
+  {
+   "month": "2020-12",
+   "count": 15,
+   "base": 0,
+   "generator": 5,
+   "battery": 9,
+   "solar_battery": 1,
+   "multiple": 1.1
+  },
+  {
+   "month": "2021-01",
+   "count": 19,
+   "base": 0,
+   "generator": 8,
+   "battery": 9,
+   "solar_battery": 2,
+   "multiple": 1.4
+  },
+  {
+   "month": "2021-02",
+   "count": 59,
+   "base": 0,
+   "generator": 6,
+   "battery": 27,
+   "solar_battery": 26,
+   "multiple": 4.5
+  },
+  {
+   "month": "2021-03",
+   "count": 86,
+   "base": 0,
+   "generator": 18,
+   "battery": 31,
+   "solar_battery": 37,
+   "multiple": 6.5
+  },
+  {
+   "month": "2021-04",
+   "count": 114,
+   "base": 0,
+   "generator": 33,
+   "battery": 38,
+   "solar_battery": 43,
+   "multiple": 8.6
+  },
+  {
+   "month": "2021-05",
+   "count": 105,
+   "base": 0,
+   "generator": 39,
+   "battery": 26,
+   "solar_battery": 40,
+   "multiple": 7.9
+  },
+  {
+   "month": "2021-06",
+   "count": 112,
+   "base": 0,
+   "generator": 57,
+   "battery": 28,
+   "solar_battery": 27,
+   "multiple": 8.5
+  },
+  {
+   "month": "2021-07",
+   "count": 125,
+   "base": 0,
+   "generator": 82,
+   "battery": 11,
+   "solar_battery": 32,
+   "multiple": 9.4
+  },
+  {
+   "month": "2021-08",
+   "count": 143,
+   "base": 0,
+   "generator": 76,
+   "battery": 33,
+   "solar_battery": 34,
+   "multiple": 10.8
+  },
+  {
+   "month": "2021-09",
+   "count": 146,
+   "base": 0,
+   "generator": 76,
+   "battery": 28,
+   "solar_battery": 42,
+   "multiple": 11.0
+  },
+  {
+   "month": "2021-10",
+   "count": 147,
+   "base": 0,
+   "generator": 76,
+   "battery": 33,
+   "solar_battery": 38,
+   "multiple": 11.1
+  },
+  {
+   "month": "2021-11",
+   "count": 176,
+   "base": 0,
+   "generator": 75,
+   "battery": 19,
+   "solar_battery": 82,
+   "multiple": 13.3
+  },
+  {
+   "month": "2021-12",
+   "count": 166,
+   "base": 0,
+   "generator": 76,
+   "battery": 17,
+   "solar_battery": 73,
+   "multiple": 12.5
+  },
+  {
+   "month": "2022-01",
+   "count": 126,
+   "base": 0,
+   "generator": 64,
+   "battery": 12,
+   "solar_battery": 50,
+   "multiple": 9.5
+  },
+  {
+   "month": "2022-02",
+   "count": 106,
+   "base": 0,
+   "generator": 65,
+   "battery": 18,
+   "solar_battery": 23,
+   "multiple": 8.0
+  },
+  {
+   "month": "2022-03",
+   "count": 90,
+   "base": 0,
+   "generator": 42,
+   "battery": 17,
+   "solar_battery": 31,
+   "multiple": 6.8
+  },
+  {
+   "month": "2022-04",
+   "count": 121,
+   "base": 0,
+   "generator": 59,
+   "battery": 8,
+   "solar_battery": 54,
+   "multiple": 9.1
+  },
+  {
+   "month": "2022-05",
+   "count": 76,
+   "base": 0,
+   "generator": 42,
+   "battery": 4,
+   "solar_battery": 30,
+   "multiple": 5.7
+  },
+  {
+   "month": "2022-06",
+   "count": 99,
+   "base": 0,
+   "generator": 48,
+   "battery": 5,
+   "solar_battery": 46,
+   "multiple": 7.5
+  },
+  {
+   "month": "2022-07",
+   "count": 90,
+   "base": 0,
+   "generator": 39,
+   "battery": 3,
+   "solar_battery": 48,
+   "multiple": 6.8
+  },
+  {
+   "month": "2022-08",
+   "count": 106,
+   "base": 0,
+   "generator": 55,
+   "battery": 5,
+   "solar_battery": 46,
+   "multiple": 8.0
+  },
+  {
+   "month": "2022-09",
+   "count": 101,
+   "base": 0,
+   "generator": 40,
+   "battery": 8,
+   "solar_battery": 53,
+   "multiple": 7.6
+  },
+  {
+   "month": "2022-10",
+   "count": 83,
+   "base": 0,
+   "generator": 50,
+   "battery": 3,
+   "solar_battery": 30,
+   "multiple": 6.3
+  },
+  {
+   "month": "2022-11",
+   "count": 52,
+   "base": 0,
+   "generator": 26,
+   "battery": 2,
+   "solar_battery": 24,
+   "multiple": 3.9
+  },
+  {
+   "month": "2022-12",
+   "count": 62,
+   "base": 0,
+   "generator": 35,
+   "battery": 3,
+   "solar_battery": 24,
+   "multiple": 4.7
+  },
+  {
+   "month": "2023-01",
+   "count": 90,
+   "base": 0,
+   "generator": 39,
+   "battery": 6,
+   "solar_battery": 45,
+   "multiple": 6.8
+  },
+  {
+   "month": "2023-02",
+   "count": 94,
+   "base": 0,
+   "generator": 63,
+   "battery": 5,
+   "solar_battery": 26,
+   "multiple": 7.1
+  },
+  {
+   "month": "2023-03",
+   "count": 148,
+   "base": 0,
+   "generator": 107,
+   "battery": 10,
+   "solar_battery": 31,
+   "multiple": 11.2
+  },
+  {
+   "month": "2023-04",
+   "count": 115,
+   "base": 0,
+   "generator": 69,
+   "battery": 10,
+   "solar_battery": 36,
+   "multiple": 8.7
+  },
+  {
+   "month": "2023-05",
+   "count": 105,
+   "base": 0,
+   "generator": 69,
+   "battery": 5,
+   "solar_battery": 31,
+   "multiple": 7.9
+  },
+  {
+   "month": "2023-06",
+   "count": 93,
+   "base": 0,
+   "generator": 64,
+   "battery": 7,
+   "solar_battery": 22,
+   "multiple": 7.0
+  },
+  {
+   "month": "2023-07",
+   "count": 117,
+   "base": 0,
+   "generator": 80,
+   "battery": 4,
+   "solar_battery": 33,
+   "multiple": 8.8
+  },
+  {
+   "month": "2023-08",
+   "count": 134,
+   "base": 0,
+   "generator": 97,
+   "battery": 6,
+   "solar_battery": 31,
+   "multiple": 10.1
+  },
+  {
+   "month": "2023-09",
+   "count": 143,
+   "base": 0,
+   "generator": 110,
+   "battery": 6,
+   "solar_battery": 27,
+   "multiple": 10.8
+  },
+  {
+   "month": "2023-10",
+   "count": 189,
+   "base": 0,
+   "generator": 119,
+   "battery": 10,
+   "solar_battery": 60,
+   "multiple": 14.3
+  },
+  {
+   "month": "2023-11",
+   "count": 134,
+   "base": 0,
+   "generator": 82,
+   "battery": 13,
+   "solar_battery": 39,
+   "multiple": 10.1
+  },
+  {
+   "month": "2023-12",
+   "count": 113,
+   "base": 0,
+   "generator": 67,
+   "battery": 10,
+   "solar_battery": 36,
+   "multiple": 8.5
+  },
+  {
+   "month": "2024-01",
+   "count": 106,
+   "base": 0,
+   "generator": 65,
+   "battery": 11,
+   "solar_battery": 30,
+   "multiple": 8.0
+  },
+  {
+   "month": "2024-02",
+   "count": 62,
+   "base": 0,
+   "generator": 49,
+   "battery": 2,
+   "solar_battery": 11,
+   "multiple": 4.7
+  },
+  {
+   "month": "2024-03",
+   "count": 79,
+   "base": 0,
+   "generator": 37,
+   "battery": 13,
+   "solar_battery": 29,
+   "multiple": 6.0
+  },
+  {
+   "month": "2024-04",
+   "count": 80,
+   "base": 0,
+   "generator": 42,
+   "battery": 7,
+   "solar_battery": 31,
+   "multiple": 6.0
+  },
+  {
+   "month": "2024-05",
+   "count": 55,
+   "base": 0,
+   "generator": 30,
+   "battery": 8,
+   "solar_battery": 17,
+   "multiple": 4.2
+  },
+  {
+   "month": "2024-06",
+   "count": 64,
+   "base": 0,
+   "generator": 45,
+   "battery": 3,
+   "solar_battery": 16,
+   "multiple": 4.8
+  },
+  {
+   "month": "2024-07",
+   "count": 67,
+   "base": 0,
+   "generator": 32,
+   "battery": 8,
+   "solar_battery": 27,
+   "multiple": 5.1
+  },
+  {
+   "month": "2024-08",
+   "count": 99,
+   "base": 0,
+   "generator": 54,
+   "battery": 5,
+   "solar_battery": 40,
+   "multiple": 7.5
+  },
+  {
+   "month": "2024-09",
+   "count": 96,
+   "base": 0,
+   "generator": 49,
+   "battery": 8,
+   "solar_battery": 39,
+   "multiple": 7.2
+  },
+  {
+   "month": "2024-10",
+   "count": 113,
+   "base": 0,
+   "generator": 60,
+   "battery": 5,
+   "solar_battery": 48,
+   "multiple": 8.5
+  },
+  {
+   "month": "2024-11",
+   "count": 67,
+   "base": 0,
+   "generator": 36,
+   "battery": 9,
+   "solar_battery": 22,
+   "multiple": 5.1
+  },
+  {
+   "month": "2024-12",
+   "count": 60,
+   "base": 0,
+   "generator": 29,
+   "battery": 10,
+   "solar_battery": 21,
+   "multiple": 4.5
+  },
+  {
+   "month": "2025-01",
+   "count": 77,
+   "base": 0,
+   "generator": 47,
+   "battery": 6,
+   "solar_battery": 24,
+   "multiple": 5.8
+  },
+  {
+   "month": "2025-02",
+   "count": 47,
+   "base": 0,
+   "generator": 21,
+   "battery": 6,
+   "solar_battery": 20,
+   "multiple": 3.5
+  },
+  {
+   "month": "2025-03",
+   "count": 28,
+   "base": 0,
+   "generator": 14,
+   "battery": 4,
+   "solar_battery": 10,
+   "multiple": 2.1
+  },
+  {
+   "month": "2025-04",
+   "count": 49,
+   "base": 0,
+   "generator": 17,
+   "battery": 8,
+   "solar_battery": 24,
+   "multiple": 3.7
+  },
+  {
+   "month": "2025-05",
+   "count": 43,
+   "base": 0,
+   "generator": 21,
+   "battery": 9,
+   "solar_battery": 13,
+   "multiple": 3.2
+  },
+  {
+   "month": "2025-06",
+   "count": 73,
+   "base": 0,
+   "generator": 38,
+   "battery": 5,
+   "solar_battery": 30,
+   "multiple": 5.5
+  },
+  {
+   "month": "2025-07",
+   "count": 80,
+   "base": 0,
+   "generator": 37,
+   "battery": 11,
+   "solar_battery": 32,
+   "multiple": 6.0
+  },
+  {
+   "month": "2025-08",
+   "count": 92,
+   "base": 0,
+   "generator": 38,
+   "battery": 12,
+   "solar_battery": 42,
+   "multiple": 6.9
+  },
+  {
+   "month": "2025-09",
+   "count": 66,
+   "base": 0,
+   "generator": 25,
+   "battery": 8,
+   "solar_battery": 33,
+   "multiple": 5.0
+  },
+  {
+   "month": "2025-10",
+   "count": 105,
+   "base": 0,
+   "generator": 34,
+   "battery": 6,
+   "solar_battery": 65,
+   "multiple": 7.9
+  },
+  {
+   "month": "2025-11",
+   "count": 63,
+   "base": 0,
+   "generator": 30,
+   "battery": 5,
+   "solar_battery": 28,
+   "multiple": 4.8
+  },
+  {
+   "month": "2025-12",
+   "count": 47,
+   "base": 0,
+   "generator": 25,
+   "battery": 3,
+   "solar_battery": 19,
+   "multiple": 3.5
+  },
+  {
+   "month": "2026-01",
+   "count": 32,
+   "base": 0,
+   "generator": 21,
+   "battery": 5,
+   "solar_battery": 6,
+   "multiple": 2.4
+  },
+  {
+   "month": "2026-02",
+   "count": 35,
+   "base": 1,
+   "generator": 22,
+   "battery": 3,
+   "solar_battery": 10,
+   "multiple": 2.6
+  },
+  {
+   "month": "2026-03",
+   "count": 38,
+   "base": 1,
+   "generator": 29,
+   "battery": 1,
+   "solar_battery": 8,
+   "multiple": 2.9
+  },
+  {
+   "month": "2026-04",
+   "count": 48,
+   "base": 10,
+   "generator": 18,
+   "battery": 17,
+   "solar_battery": 13,
+   "multiple": 3.6
+  },
+  {
+   "month": "2026-05",
+   "count": 31,
+   "base": 1,
+   "generator": 16,
+   "battery": 6,
+   "solar_battery": 9,
+   "multiple": 2.3
+  },
+  {
+   "month": "2026-06",
+   "count": 45,
+   "base": 1,
+   "generator": 26,
+   "battery": 5,
+   "solar_battery": 14,
+   "multiple": 3.4
+  },
+  {
+   "month": "2026-07",
+   "count": 71,
+   "base": 39,
+   "generator": 19,
+   "battery": 43,
+   "solar_battery": 9,
+   "multiple": 5.4
+  },
+  {
+   "month": "2026-08",
+   "count": 256,
+   "base": 227,
+   "generator": 16,
+   "battery": 230,
+   "solar_battery": 10,
+   "multiple": 19.3
+  },
+  {
+   "month": "2026-09",
+   "count": 64,
+   "base": 43,
+   "generator": 18,
+   "battery": 44,
+   "solar_battery": 2,
+   "multiple": 4.8
+  }
+ ]
+}

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Base Home | Base Fleet</title>
+<link rel="stylesheet" href="/web/shell.css"/>
+<link rel="stylesheet" href="/web/assets/stitch/fonts.css"/>
+<script src="/web/assets/stitch/tailwind-forms.js"></script>
+<script id="tailwind-config">
+    if (window.tailwind) tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#a0d3a6",
+            "on-surface-variant": "#414941",
+            "inverse-on-surface": "#ecf1ff",
+            "surface-bright": "#f9f9ff",
+            "secondary": "#4a6700",
+            "tertiary-fixed": "#95f8a7",
+            "surface-container-highest": "#d8e3fb",
+            "energy-lime": "#84CC16",
+            "primary-container": "#1e4d2b",
+            "surface-subtle": "#F1F5F9",
+            "background": "#f9f9ff",
+            "on-tertiary-container": "#63c479",
+            "inverse-surface": "#263143",
+            "on-tertiary-fixed": "#00210a",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-variant": "#d8e3fb",
+            "surface-container-high": "#dee8ff",
+            "primary": "#023616",
+            "secondary-container": "#cbf080",
+            "on-primary-container": "#8bbd92",
+            "surface-dim": "#cfdaf2",
+            "wire-border": "#E2E8F0",
+            "evergreen-deep": "#004A31",
+            "surface-tint": "#396844",
+            "ink-primary": "#0F172A",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed": "#00210b",
+            "tertiary-container": "#004f21",
+            "surface-muted": "#F8FAFC",
+            "tertiary": "#003614",
+            "surface-container": "#e7eeff",
+            "tertiary-fixed-dim": "#79db8d",
+            "solar-green": "#22C55E",
+            "on-secondary-container": "#506e08",
+            "warning-amber": "#F59E0B",
+            "outline-variant": "#c1c9be",
+            "surface": "#f9f9ff",
+            "surface-container-low": "#f0f3ff",
+            "on-tertiary": "#ffffff",
+            "critical-red": "#EF4444",
+            "primary-fixed": "#bbefc1",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed-variant": "#374e00",
+            "error": "#ba1a1a",
+            "inverse-primary": "#a0d3a6",
+            "secondary-fixed": "#cbf080",
+            "outline": "#717970",
+            "on-surface": "#111c2d",
+            "on-primary-fixed-variant": "#21502e",
+            "on-background": "#111c2d",
+            "on-secondary-fixed": "#141f00",
+            "secondary-fixed-dim": "#afd367",
+            "on-tertiary-fixed-variant": "#005323"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter-lg": "2rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin-xl": "3rem",
+            "margin": "2rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "gutter": "1.5rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "telemetry-metric": ["Plus Jakarta Sans"],
+            "telemetry-unit": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "display-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        },
+      },
+    };
+  </script>
+<style>
+  body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; direction: ltr; font-feature-settings: 'liga'; display: inline-block; }
+  .st-wash { background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(203,240,128,0.35), rgba(249,249,255,0) 70%); }
+  .sh-story { --sh-max: 1120px; width: calc(100% - 32px); margin: 0 auto 24px; }
+  .workspace.is-route { border-color: #1e4d2b; box-shadow: 0 4px 20px -4px rgba(15,23,42,0.10); }
+</style>
+<script defer src="/web/start.js"></script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md">
+<!-- Slim Top Navigation Shell -->
+<header class="flex justify-between items-center w-full px-space-md h-12 border-b border-wire-border bg-surface-container-lowest sticky top-0 z-50">
+<div class="flex items-center space-x-space-lg">
+<div class="flex items-center space-x-space-sm">
+<div class="w-6 h-6 rounded-lg bg-primary-container flex items-center justify-center text-surface-container-lowest">
+<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">bolt</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-ink-primary tracking-tight">Base Fleet</span>
+</div>
+</div>
+</header>
+<!-- Main Canvas Section -->
+<main class="st-wash flex-1 flex flex-col justify-center items-center px-4 py-12 md:py-16">
+<div class="w-full max-w-4xl mx-auto flex flex-col items-center">
+<div class="text-center mb-10 max-w-xl flex flex-col items-center">
+<span class="inline-flex items-center gap-1.5 mb-4 px-2.5 py-1 rounded bg-secondary-container text-ink-primary font-label-caps text-label-caps uppercase border border-secondary-fixed-dim"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">hub</span>One Base network</span>
+<h1 class="font-display-sm text-display-sm md:font-display-lg md:text-display-lg font-bold text-ink-primary tracking-tight">Pick your track.</h1>
+<p class="font-body-lg text-body-lg text-outline mt-2 text-balance">Two doors, one network. Open either one as a customer or as a Base admin.</p>
+</div>
+<!-- Two Entry Cards Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+<section class="workspace bg-surface-container-lowest border border-wire-border rounded-xl p-7 flex flex-col justify-between hover:border-outline-variant hover:shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)] transition-all duration-200" id="home-card" aria-labelledby="home-title">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="w-12 h-12 rounded-xl bg-surface-subtle border border-wire-border flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-headline-lg" aria-hidden="true">cottage</span>
+</div>
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-primary-fixed/40 text-evergreen-deep border border-primary-fixed">
+                HOME TRACK
+              </span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-ink-primary mb-2" id="home-title">Base Home</h2>
+<p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-2">Base Ready &middot; Track 2</p>
+<p class="font-body-md text-body-md text-outline leading-relaxed mb-6" id="home-description">Review home records, prepare photos, and find answers.</p>
+<div class="space-y-2.5 pb-6 border-b border-surface-subtle mb-6">
+<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
+<span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">person</span>
+<span><span class="font-semibold">Customer:</span> Skip the form: public permits answer most questions; check the few that are open</span>
+</div>
+<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
+<span class="material-symbols-outlined text-outline mr-2 text-[18px] leading-[18px]" aria-hidden="true">travel_explore</span>
+<span><span class="font-semibold">Base admin:</span> Market, coverage, property, permits</span>
+</div>
+<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
+<span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">check_circle</span>
+<span>Opens live: your address, your details, your photo, status, credit</span>
+</div>
+</div>
+<p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-4">City of Austin permits &middot; records first</p>
+</div>
+<div class="space-y-3">
+<a class="w-full h-11 px-space-lg rounded-xl bg-primary-container hover:bg-evergreen-deep active:scale-[0.99] text-surface-container-lowest font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="home-customer" href="/web/onboarding.html?track=home&amp;persona=lead#home">
+<span>New here: start onboarding</span>
+<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">arrow_forward</span>
+</a>
+<a class="w-full h-11 px-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-subtle active:scale-[0.99] text-ink-primary border border-wire-border font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="home-member" href="/web/member.html?track=home&amp;persona=lead">
+<span>I'm a customer: my home</span>
+<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">home</span>
+</a>
+<a class="w-full h-11 px-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-subtle active:scale-[0.99] text-ink-primary border border-wire-border font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="home-admin" href="/web/market.html?track=home&amp;persona=operations">
+<span>Enter as Base admin</span>
+<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">navigate_next</span>
+</a>
+</div>
+</section>
+<section class="workspace bg-surface-container-lowest border border-wire-border rounded-xl p-7 flex flex-col justify-between hover:border-outline-variant hover:shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)] transition-all duration-200" id="compute-card" aria-labelledby="compute-title">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="w-12 h-12 rounded-xl bg-surface-subtle border border-wire-border flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-headline-lg" aria-hidden="true">memory</span>
+</div>
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container-high text-on-surface border border-surface-dim">
+                COMPUTE TRACK
+              </span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-ink-primary mb-2" id="compute-title">Base Compute</h2>
+<p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-2">Base Super Local AI &middot; Track 3</p>
+<p class="font-body-md text-body-md text-outline leading-relaxed mb-6" id="compute-description">Inspect node workloads and energy context.</p>
+<div class="space-y-2.5 pb-6 border-b border-surface-subtle mb-6">
+<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
+<span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">person</span>
+<span><span class="font-semibold">Customer:</span> Your battery and the PC beside it, the neighborhood hub</span>
+</div>
+<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
+<span class="material-symbols-outlined text-outline mr-2 text-[18px] leading-[18px]" aria-hidden="true">monitoring</span>
+<span><span class="font-semibold">Base admin:</span> Fleet economics, capacity planning, control tower</span>
+</div>
+<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
+<span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">check_circle</span>
+<span>Opens on a landing page: what it is, why it matters, and where to go</span>
+</div>
+</div>
+<p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-4">Battery stations &middot; private AI next door</p>
+</div>
+<div class="space-y-3">
+<a class="w-full h-11 px-space-lg rounded-xl bg-primary-container hover:bg-evergreen-deep active:scale-[0.99] text-surface-container-lowest font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="compute-customer" href="/web/compute-home.html?track=compute&amp;persona=gpu">
+<span>Enter as Customer</span>
+<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">arrow_forward</span>
+</a>
+<a class="w-full h-11 px-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-subtle active:scale-[0.99] text-ink-primary border border-wire-border font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="compute-admin" href="/web/overview.html?track=compute&amp;persona=fleet">
+<span>Enter as Base admin</span>
+<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">navigate_next</span>
+</a>
+<a class="block text-center font-body-sm text-body-sm font-semibold text-primary-container underline underline-offset-2 hover:text-evergreen-deep pt-1" id="compute-pitch" href="/web/pitch.html?track=compute&amp;persona=fleet">Why AI runs next door: see the pitch</a>
+</div>
+</section>
+</div>
+</div>
+<p class="text-center mt-6"><a id="built-link" class="inline-flex items-center gap-1 font-label-md text-label-md font-semibold text-primary-container underline underline-offset-4 hover:text-evergreen-deep" href="/web/built.html">What we built this weekend: the what, why and how</a></p>
+</main>
+<nav class="sh-story" aria-label="The story"><span>Story 1 of 15: Pick your track</span><a href="/web/onboarding.html?track=home&amp;persona=lead#home">Next: Your home from public records</a></nav>
+<footer class="w-full border-t border-wire-border py-3 px-space-md bg-surface-container-lowest flex flex-col sm:flex-row justify-between items-center text-outline font-body-sm text-body-sm">
+<div class="flex items-center space-x-space-md">
+<span class="font-medium text-ink-primary">Base Fleet</span>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,71 @@
+{
+  "electricity_price_per_kwh_lz_aen_avg": 0.0476,
+  "library_node": {
+    "name": "Library node (4 batteries + 4 GPUs: business/base/partner/external)",
+    "num_batteries": 4,
+    "battery_net_weekly": 50.32,
+    "gpu_tiers": [
+      {
+        "tier": "business",
+        "rate_per_hour": 1.09,
+        "active_hours": 67.2,
+        "revenue": 73.248,
+        "electricity_cost": 1.1196612000000001,
+        "net": 72.12833880000001
+      },
+      {
+        "tier": "base",
+        "rate_per_hour": 0.79,
+        "active_hours": 67.2,
+        "revenue": 53.08800000000001,
+        "electricity_cost": 1.1196612000000001,
+        "net": 51.968338800000005
+      },
+      {
+        "tier": "partner",
+        "rate_per_hour": 0.34,
+        "active_hours": 67.2,
+        "revenue": 22.848000000000003,
+        "electricity_cost": 1.1196612000000001,
+        "net": 21.728338800000003
+      },
+      {
+        "tier": "external",
+        "rate_per_hour": 0.16,
+        "active_hours": 67.2,
+        "revenue": 10.752,
+        "electricity_cost": 1.1196612000000001,
+        "net": 9.632338800000001
+      }
+    ],
+    "gpu_revenue_weekly": 159.94,
+    "gpu_electricity_cost_weekly": 4.48,
+    "gpu_net_weekly": 155.46,
+    "total_weekly": 205.78,
+    "utilization_assumption": 0.4,
+    "gpu_draw_kw_assumption": 0.35,
+    "electricity_price_per_kwh": 0.0476
+  },
+  "house_node": {
+    "name": "House node (1 battery + 1 GPU: business)",
+    "num_batteries": 1,
+    "battery_net_weekly": 12.58,
+    "gpu_tiers": [
+      {
+        "tier": "business",
+        "rate_per_hour": 1.09,
+        "active_hours": 67.2,
+        "revenue": 73.248,
+        "electricity_cost": 1.1196612000000001,
+        "net": 72.12833880000001
+      }
+    ],
+    "gpu_revenue_weekly": 73.25,
+    "gpu_electricity_cost_weekly": 1.12,
+    "gpu_net_weekly": 72.13,
+    "total_weekly": 84.71,
+    "utilization_assumption": 0.4,
+    "gpu_draw_kw_assumption": 0.35,
+    "electricity_price_per_kwh": 0.0476
+  }
+}

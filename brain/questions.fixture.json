@@ -1,0 +1,52 @@
+[
+ {
+  "id": "q01",
+  "question": "Why did my battery discharge at 5 pm on Monday?",
+  "expected": "ERCOT peak price $0.19/kWh, reserve held at 30%"
+ },
+ {
+  "id": "q02",
+  "question": "What did my node earn this week?",
+  "expected": "week total from totals.week_usd"
+ },
+ {
+  "id": "q03",
+  "question": "What is my reserve right now?",
+  "expected": "30% minimum reserve, never breached"
+ },
+ {
+  "id": "q04",
+  "question": "How many GPU hours did my node run on Thursday?",
+  "expected": "7"
+ },
+ {
+  "id": "q05",
+  "question": "What is my panel amperage and how confident are you?",
+  "expected": "200A, 95%, permit 2019-2210"
+ },
+ {
+  "id": "q06",
+  "question": "Which feeder is my node on?",
+  "expected": "F2, node 3"
+ },
+ {
+  "id": "q07",
+  "question": "What do you still need me to confirm?",
+  "expected": "panel_location"
+ },
+ {
+  "id": "q08",
+  "question": "When is my next credit paid?",
+  "expected": "GAP"
+ },
+ {
+  "id": "q09",
+  "question": "Can I add a second battery to my house?",
+  "expected": "GAP"
+ },
+ {
+  "id": "q10",
+  "question": "What is the monthly membership fee for my plan?",
+  "expected": "GAP"
+ }
+]

@@ -1,0 +1,210 @@
+{
+ "built_at": "2026-09-27T09:33",
+ "source": "gh issue list -R jravinder/base-fleet-archive (titles that start with 'Gap:', and #54)",
+ "found": 23,
+ "fixed": 15,
+ "open": [
+  117,
+  116,
+  115,
+  114,
+  113,
+  85,
+  80,
+  57
+ ],
+ "issues": [
+  {
+   "number": 117,
+   "title": "Gap: the station map needed the network",
+   "state": "open",
+   "body": "block.html loaded Leaflet from cdnjs, so the map broke offline. Fixed in PR #111 (web/assets/leaflet). Basemap tiles still need the network; the station ring and homes draw without them.\n\nFound 2026-09-27 during the story and Stitch work.\n\nhttps://claude.ai/code/session_018aChz6GbK2rHdPPgNzZoaB",
+   "closed": null,
+   "hunt": false
+  },
+  {
+   "number": 116,
+   "title": "Gap: tests/ux-redesign.cjs is stale",
+   "state": "open",
+   "body": "Hardcoded port 8769 and waits for .fact-row, which the journey no longer has. Fails on master. Either retire it or rewrite it against the story pages.\n\nFound 2026-09-27 during the story and Stitch work.\n\nhttps://claude.ai/code/session_018aChz6GbK2rHdPPgNzZoaB",
+   "closed": null,
+   "hunt": false
+  },
+  {
+   "number": 115,
+   "title": "Gap: two answer paths disagree on where an answer ran",
+   "state": "open",
+   "body": "copilot.html showed 'Answered in this browser' and 'Answered at home' on the same reply. Fixed in PR #111. Rule: the privacy line reports the path that actually answered.\n\nFound 2026-09-27 during the story and Stitch work.\n\nhttps://claude.ai/code/session_018aChz6GbK2rHdPPgNzZoaB",
+   "closed": null,
+   "hunt": false
+  },
+  {
+   "number": 114,
+   "title": "Gap: Base staff names and in-person quotes are in tracked docs and git history",
+   "state": "open",
+   "body": "SPEC.md, docs/BASE_BUSINESS_PILLARS.md, docs/GAPS.md, docs/MINDMAP.md and docs/ideas/FOCUS_ADDS.md named staff and quoted unrecorded remarks. Scrubbed in the working tree (PR #111). Still in git history: scan or publish a clean squashed copy before making the repo public.\n\nFound 2026-09-27 during the story and Stitch work.\n\nhttps://claude.ai/code/session_018aChz6GbK2rHdPPgNzZoaB",
+   "closed": null,
+   "hunt": false
+  },
+  {
+   "number": 113,
+   "title": "Gap: Stitch screens carry invented facts (people, addresses, feeders, telemetry)",
+   "state": "open",
+   "body": "Stitch generated 'Sarah Jenkins', '4812 Sycamore Creek Dr', 'Feeder 14B', transformer temps, permit numbers, phone numbers, NEMA and NEC claims and 'Verified' badges. Every port had to swap these for real data or drop them. Rule for future screens: port layout only; content from repo data; tag Simulation/Measured.\n\nFound 2026-09-27 during the story and Stitch work.\n\nhttps://claude.ai/code/session_018aChz6GbK2rHdPPgNzZoaB",
+   "closed": null,
+   "hunt": false
+  },
+  {
+   "number": 112,
+   "title": "Gap: the ask server answered member questions with permit statistics",
+   "state": "closed",
+   "body": "Asked 'What happens when the power goes out?', brain/ask.py went to the data agent and returned permit surge counts. Fixed in PR #109: member FAQs are matched first (faq_hit). Keep: any new member question type needs a FAQ row or it falls to the agent. Status: fixed, verify after each FAQ rebuild.\n\nFound 2026-09-27 during the story and Stitch work.\n\nhttps://claude.ai/code/session_018aChz6GbK2rHdPPgNzZoaB",
+   "closed": "2026-09-27",
+   "hunt": false
+  },
+  {
+   "number": 85,
+   "title": "Gap: PC power draw is 0.4 kW in sim/fleet.py but 350 W in grid/library_node.py",
+   "state": "open",
+   "body": "Found by judge Q&A prep (docs/qa/grid-ai.md). The fleet sim and the library node model use different power draws for the PC beside the battery. Pick one sourced value, rerun both, restate grid/NUMBERS.md, the fleet page and the library numbers. Parent: #54",
+   "closed": null,
+   "hunt": false
+  },
+  {
+   "number": 81,
+   "title": "Gap: permits.py storage keyword flags sheds as batteries",
+   "state": "closed",
+   "body": "Found by the recovery build (#38): the storage word match in house/permits.py marks storage sheds as battery permits (example in the 78745 cohort). The mirror (house/mirror.py) already excludes plain storage buildings; permits.py does not. Effect: some cohort has_battery values are wrong; recovery.html shows them as 'check permit'. Fix: reuse the mirror's rule in permits.py, rerun the cohort. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 80,
+   "title": "Gap: local AI speed not measured on a Windows-class PC (with or without GPU)",
+   "state": "open",
+   "body": "2026-09-26. The node beside the battery is likely a commodity Windows-class PC; whether it has an NVIDIA GPU is unknown. We measured the member brain only on our Jetson (12/16 plus 4/4 GAP, 3.0 s median) and an M2 laptop (14/16 plus 4/4, 2.2 s). An M2 CPU-only test was inconclusive (contention, and Apple silicon does not represent x86). Fix: run python3 -m brain.score with Ollama gemma4:e4b on an x86 PC, once with GPU and once with num_gpu 0. Wording in VIDEO, SUBMISSION, story now says 'on the PC beside the battery', hardware-neutral. Parent: #54",
+   "closed": null,
+   "hunt": false
+  },
+  {
+   "number": 74,
+   "title": "Gap: top star zips Cedar Park and Leander may be PEC (not served), not Oncor",
+   "state": "closed",
+   "body": "Found 2026-09-26 by the feeder search (#73). OpenStreetMap shows only PEC substations in 78613 (Cedar Park) and 78641 (Leander), and none from the funnel's utility in 78666 (San Marcos). house/territory.py marks 78613 Oncor MEDIUM and 78641 Oncor LOW. These zips hold 12,479 of the top-10 star homes, including the #1 zip on the star map.\n\nFix: check each zip on Power to Choose (zip lookup lists the TDUs). Split zips served by both. Mark PEC-only zips not_served. Rerun house/funnel.py and restate the star map top 10 in docs/VIDEO.md, docs/SUBMISSION.md, web/story.html.\n\nAlso from the search: Onc",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 72,
+   "title": "Gap: territory.py is missing 22 of the 49 Austin zips, so the sim counts 54% of leads as not served",
+   "state": "closed",
+   "body": "Found 2026-09-26 by the sim rerun after sim/stages.py switched to house/territory.py (#59). Territory share fell from 0.662 to 0.249. The cause is coverage, not reality: 22 Austin zips are not in ZIP_TABLE and default to not served. Most are Austin Energy (backup_only), some border zips are PEC or Oncor.\n\nFix: add the missing zips with TDU, status, source, confidence. Use the Austin Energy service-area list or the zip-level Power to Choose lookup; mark guesses LOW. Rerun python3 -m sim --nodes 50 --seed 7 and restate the share.\n\nParent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 66,
+   "title": "Gap: $2,920 compute revenue assumes every GPU runs every hour",
+   "state": "closed",
+   "body": "The sim books 3,600 GPU hours on 50 nodes over 72 hours (100% utilisation). The library node uses 40%. Members paying $1.20/h on their own node are 59% of compute revenue. The headline $2,920 vs $181 overstates compute. Fix: run at 40% utilisation, cap member self-use, restate beat 6 with both numbers.\n\nSource row: docs/GAPS.md. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 65,
+   "title": "Gap: density numbers depend on node count; the listed command gives different numbers",
+   "state": "closed",
+   "body": "SUBMISSION B and VIDEO beat 7 quote the 120-node sweep (1 per feeder loses 24 GPU hours). The listed run command python3 -m sim.density defaults to 240 nodes and gives 48 hours lost and 88%. README 48 hours is the 240-node run. Also compute per node is $54 to $57, not $56 to $57. Fix: pin --nodes 120 in the command and fix the range.\n\nSource row: docs/GAPS.md. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 64,
+   "title": "Gap: VIDEO beat 6 says three days of real ERCOT prices; it is two days and a replay",
+   "state": "closed",
+   "body": "sim/fleet.py price_series uses Sep 7, Sep 9, then Sep 7 again. SUBMISSION says so; the voice does not. Fix voice: two real ERCOT days and a replay. Better fix: the no-login feed issue.\n\nSource row: docs/GAPS.md. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 63,
+   "title": "Gap: a no-login ERCOT price feed exists; we said none did",
+   "state": "closed",
+   "body": "SUBMISSION B and grid/EARNED.md say ERCOT has no login-free live source and we have only two real days. On 2026-09-26 https://www.ercot.com/api/1/services/read/dashboards/systemWidePrices.json returned 200 in a headless browser, no login, same schema as data/ercot-dam-*.json (damSppData, rtSppData, lzAen). curl hits a bot wall, not a login wall. Fix: add a Playwright fetch to grid/, start collecting daily (#51), replace the two-day replay.\n\nSource row: docs/GAPS.md. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 62,
+   "title": "Gap: grid/earned.py uses a 30 kWh battery and LZ_SOUTH; Base Core is 39.2 kWh and the sim uses LZ_AEN",
+   "state": "closed",
+   "body": "earned.py (and SUBMISSION B, VIDEO beat 10 library numbers) use a 30 kWh / 11 kW pack from an interview. basepowercompany.com says 39.2 kWh in every Base Core; sim/fleet.py uses 39.2. earned.py prices LZ_SOUTH, the sim uses LZ_AEN. Fix: one battery spec and one zone across grid/ and sim/, rerun, update $190 vs $81 and beat 10.\n\nSource row: docs/GAPS.md. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 61,
+   "title": "Gap: VIDEO beat 3 photo timings sound like totals; they are per photo",
+   "state": "closed",
+   "body": "Beat 3 says cloud 18 of 21 in 13 seconds, local 16 of 21 in 129 seconds. Recomputed: medians 12.7 s and 129.3 s per photo. Fix voice: 13 seconds a photo, 129 seconds a photo.\n\nSource row: docs/GAPS.md. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 60,
+   "title": "Gap: FAQ gap list names 10, FAQ.md has 11 (one is a retrieval miss)",
+   "state": "closed",
+   "body": "SUBMISSION.md A says every FAQ gap is an eligibility question and lists 10. faq/FAQ.md has 11 gaps, including #17 (move), which the corpus answers (retrieval miss), plus #19 solar and #25 portable generator. Fix: say 10 true corpus gaps plus 1 retrieval miss.\n\nSource row: docs/GAPS.md. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 59,
+   "title": "Gap: sim territory share 0.662 comes from a zip-prefix rule that disagrees with territory.py",
+   "state": "closed",
+   "body": "SUBMISSION.md A quotes territory share 0.662. Rerun reproduces it, but out/report.json splits 580 Austin Energy / 220 Oncor-PEC and 0 not served. The 0.338 loss is renters and new builds, not territory. sim/stages.py does not call house/territory.py, so two territory rules exist. Fix: have sim/stages.py use house/territory.py, rerun, restate the number.\n\nSource row: docs/GAPS.md. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 58,
+   "title": "Gap: SUBMISSION A says Austin/78745 is not served by Base",
+   "state": "closed",
+   "body": "SUBMISSION.md A (Stubbed, What we built) says the 78745 cohort is outside Base territory and territory.py covers competitive areas only. Austin permits show 323 Base permits in 2026, 9 in 78745. Base sells Backup Only there (#55). Fix: reword to Austin Energy (Backup Only) plus the competitive TDUs Base lists. This turns a caveat into a strength: our cohort zip has real Base installs.\n\nSource row: docs/GAPS.md. Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 57,
+   "title": "Gap: Base's install footprint is visible only in Austin; no open contractor-named permit feed in its Oncor/CenterPoint cities",
+   "state": "open",
+   "body": "Found 2026-09-26 (#54 track 4). Of 13 Texas cities checked, only Austin has a keyless, current permit feed that names the contractor. Houston is pre-aggregated with no contractor. Dallas stops in 2019. Arlington has no contractor field. San Antonio's closest field is undocumented and shows zero Base hits (inconclusive). Fort Worth, Plano, Frisco, McKinney, Round Rock, Georgetown, Pflugerville, Cedar Park: no open feed found.\n\nConsequence: the star map's top zips (Cedar Park, Round Rock, Leander, Hutto) are in Base's core Oncor territory, and we have no install evidence there. Our market intell",
+   "closed": null,
+   "hunt": false
+  },
+  {
+   "number": 56,
+   "title": "Gap: territory said AEP Texas Central/North and TNMP are ineligible; Base pricing page lists them",
+   "state": "closed",
+   "body": "Found 2026-09-26 by the territory audit (#54). Base's public pricing page lists AEP Texas Central, AEP Texas North, and TNMP. house/territory.py marked all three not eligible. Fixed in c7b41c9: now energy_and_backup, confidence MEDIUM. Not yet checked: whether any of our zips fall in those TDUs (none in the Austin-region table today). Parent: #54",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 55,
+   "title": "Gap: territory says Austin Energy is ineligible, but Base filed ~300 battery permits in Austin since August",
+   "state": "closed",
+   "body": "Found 2026-09-26 in the Austin permits dataset (3syk-w9eu), which names the contractor.\n\nEvidence:\n| Month 2026 | Base permits | All Auxiliary Power permits |\n|---|---|---|\n| Jul | 20 | 64 |\n| Aug | 138 | 194 |\n| Sep (to date) | 157 | 195 |\n\nDescription on 302 of them: \"BASE: Installing a backup battery system and additional meter socket.\" 59 final, 264 active. Median applied-to-issued about 16 days. Top zips: 78731, 78746, 78757, 78704.\n\nWhere we are wrong: house/territory.py marks Austin Energy as not eligible, so house/funnel.py and web/star.html score every Austin zip at zero.\n\nFix: tracke",
+   "closed": "2026-09-26",
+   "hunt": false
+  },
+  {
+   "number": 54,
+   "title": "Gap hunt: test every shipped assumption against public data",
+   "state": "open",
+   "body": "Standing ask (2026-09-26): keep finding gaps between what we assume and what public data shows.\n\nFirst gap found: Austin permits (3syk-w9eu) name the contractor. Base filed 323 battery permits in the City of Austin in 2026, 295 of them in Aug and Sep, about 76% of the Auxiliary Power class. house/territory.py says Austin Energy customers are not eligible, so the star map scores Austin zips at zero. That is wrong for Austin today (likely a backup-only product; not confirmed).\n\nLedger: docs/GAPS.md. One row per claim: claim, where we state it, evidence, verdict (holds / wrong / unverified), fix.",
+   "closed": null,
+   "hunt": true
+  }
+ ]
+}

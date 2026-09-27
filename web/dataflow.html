@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Base Fleet data flow</title>
+<meta name="description" content="Where every number on this site comes from: public records in, one database in the middle, small files out to the pages.">
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="shell.css">
+<script defer src="shell.js"></script>
+<style>
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+#main{overflow-wrap:anywhere}
+:where(#main) :where(p,h1,h2,h3,dl,dd){margin:0}
+#main a{color:#1e4d2b}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:#fff;padding:6px 10px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:4px 10px;border-radius:8px;background:#F1F5F9;border:1px solid #E2E8F0;color:#717970;font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:#22C55E;display:inline-block}
+.caps{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970}
+.panel{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:24px;min-width:0}
+code,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:12px;background:#F1F5F9;border:1px solid #E2E8F0;border-radius:4px;padding:0 4px;color:#0F172A}
+
+  .fresh { display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:12.5px }
+  .fresh .lbl { font:700 11px/16px "Plus Jakarta Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#717970; margin-right:4px }
+  .chip { display:inline-flex; align-items:center; gap:6px; border:1px solid #E2E8F0; background:#fff; border-radius:999px; padding:4px 12px; white-space:nowrap; font-variant-numeric:tabular-nums; color:#0F172A }
+  .chip b { font-weight:700 }
+  .dot { width:8px; height:8px; border-radius:50%; background:#c1c9be; flex:none }
+  .dot.ok { background:#22C55E } .dot.stale { background:#F59E0B } .dot.fail { background:#EF4444 }
+  .box { overflow:auto; -webkit-overflow-scrolling:touch; max-width:100%; border-top:1px solid #E2E8F0 }
+  .box svg { display:block; width:max(100%, 1100px); height:auto }
+  .legend { display:flex; flex-wrap:wrap; gap:6px 18px; font-size:12px; color:#717970 }
+  .legend svg { vertical-align:middle; margin-right:4px }
+  svg .colh { font:700 12px var(--bf-font); fill:var(--bf-muted); letter-spacing:.02em }
+  svg .coln { font:600 11px var(--bf-font); fill:var(--bf-faint) }
+  svg .node { cursor:pointer }
+  svg .node rect.bg { fill:#fff; stroke:var(--bf-line-strong); stroke-width:1 }
+  svg .node rect.bar { stroke:none }
+  svg .node .t { font:650 13px var(--bf-font); fill:var(--bf-ink) }
+  svg .node .s { font:11.5px var(--bf-font); fill:var(--bf-muted) }
+  svg .node .tbl { font:11.5px var(--bf-mono); fill:var(--bf-ink) }
+  svg .node .n { font:11.5px var(--bf-mono); fill:var(--bf-muted); text-anchor:end }
+  svg .node .tag { font:700 9.5px var(--bf-font); fill:var(--bf-amber); letter-spacing:.04em }
+  svg .node.mac rect.bg { stroke:var(--bf-amber); stroke-dasharray:5 3; stroke-width:1.5 }
+  svg .node:hover rect.bg, svg .node:focus rect.bg { stroke:var(--bf-brand); stroke-width:2 }
+  svg .node:focus { outline:none }
+  svg .node.sel rect.bg { stroke:var(--bf-brand); stroke-width:2.5 }
+  svg .k-src .bar { fill:var(--bf-faint) } svg .k-col .bar { fill:var(--bf-blue) } svg .k-raw .bar { fill:var(--bf-line-strong) }
+  svg .k-db .bar { fill:var(--bf-brand) } svg .k-der .bar { fill:var(--bf-brand-soft) } svg .k-file .bar { fill:var(--bf-blue-line) }
+  svg .k-page .bar { fill:var(--bf-ink) } svg .node.mac .bar { fill:var(--bf-amber) }
+  svg .k-db rect.bg { fill:var(--bf-brand-tint); stroke:var(--bf-brand) }
+  svg .edge { fill:none; stroke:var(--bf-line-strong); stroke-width:1.4 }
+  svg .edge.mac { stroke:var(--bf-amber); stroke-dasharray:5 4 }
+  svg.focus .edge { opacity:.15 } svg.focus .node { opacity:.35 }
+  svg.focus .edge.on { opacity:1; stroke:var(--bf-brand); stroke-width:2.2 }
+  svg.focus .edge.mac.on { stroke:var(--bf-amber) }
+  svg.focus .node.on { opacity:1 }
+  svg .ah { fill:var(--bf-line-strong) } svg .ah-on { fill:var(--bf-brand) } svg .ah-mac { fill:var(--bf-amber) }
+
+
+  .card { position:fixed; top:16px; right:16px; bottom:16px; width:360px; max-width:calc(100vw - 32px); z-index:60;
+    background:#fff; border:1px solid #E2E8F0; border-radius:12px; box-shadow:0 12px 40px rgba(15,23,42,.14); padding:24px; overflow:auto; display:none }
+  .card.open { display:block }
+  .card .card-empty { display:none }
+  .card .kind { font:700 11px/16px "Plus Jakarta Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#717970 }
+  .card h2 { font:600 20px/28px "Plus Jakarta Sans",sans-serif; margin:4px 36px 8px 0 !important; color:#0F172A }
+  .card .mactag { display:inline-block; font-size:11px; font-weight:700; color:#87591c; background:#fffbeb; border:1px solid #fde68a; border-radius:999px; padding:2px 10px; margin-bottom:8px }
+  .card dl { margin:0 }
+  .card dt { font:700 11px/16px "Plus Jakarta Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#717970; margin-top:16px }
+  .card dd { margin:4px 0 0 !important; font-size:13.5px; overflow-wrap:anywhere; color:#0F172A }
+  .card dd.mono { display:block; padding:8px 10px; border-radius:8px; background:#F8FAFC }
+  .card dd.caveat { border:1px solid #fde68a; background:#fffbeb; padding:8px 12px; border-radius:8px }
+  .card .x { position:absolute; top:16px; right:16px; width:32px; height:32px; border:1px solid #E2E8F0; border-radius:8px; background:#fff; color:#0F172A; font-size:18px; line-height:1; cursor:pointer }
+  .card .x:focus-visible { outline:3px solid #467bb0 }
+  .feedrow { display:flex; gap:8px; align-items:baseline; font-size:12.5px; margin-top:4px }
+  .feedrow .dot { transform:translateY(1px) }
+  .mac-list { margin:0; padding-left:18px; font-size:13.5px }
+  .mac-list li { margin:6px 0 }
+  @media (min-width:1280px) {
+    .flow-grid { display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:24px; align-items:start }
+    .box svg { width:100% }
+    .card { position:sticky; top:calc(var(--sh-top, 72px) + 16px); right:auto; bottom:auto; width:auto; max-width:none; max-height:calc(100vh - 120px); display:block; box-shadow:none; z-index:1 }
+    .card:not(.open) #card-body, .card:not(.open) .x { display:none }
+    .card:not(.open) .card-empty { display:block }
+  }
+  @media (max-width:860px) {
+    .box svg { width:1362px }
+    .card { top:auto; left:8px; right:8px; bottom:8px; width:auto; max-width:none; max-height:62vh }
+  }
+</style>
+</head>
+<body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<a class="skip" href="#main">Skip to data lineage</a>
+<div class="shell">
+<main id="main" class="max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-6">
+  <section class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+    <div class="min-w-0 max-w-3xl">
+      <span class="eyebrow"><i></i>Data lineage and pipeline</span>
+      <h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight mt-3">Where does every number on this site come from?</h1>
+      <p class="font-body-md text-body-md text-outline mt-2">Public records in, one database in the middle, small files out to the pages. Each source has a recorded refresh cadence and coverage limits; the as-of time shows how current each one is.</p>
+      <div class="fresh mt-4" id="fresh" aria-live="polite"><span class="lbl">Feed status</span><span class="chip">Loading admin.json</span></div>
+    </div>
+    <dl class="shrink-0 grid grid-cols-3 bg-surface-container-lowest border border-wire-border rounded-xl divide-x divide-wire-border">
+      <div class="px-5 py-4"><dt class="caps">Rows stored</dt><dd class="font-headline-lg text-headline-lg text-ink-primary mt-1">~150K</dd></div>
+      <div class="px-5 py-4"><dt class="caps">Tables</dt><dd class="font-headline-lg text-headline-lg text-ink-primary mt-1">15</dd></div>
+      <div class="px-5 py-4"><dt class="caps">Sources</dt><dd class="font-headline-lg text-headline-lg text-ink-primary mt-1">8</dd></div>
+    </dl>
+  </section>
+
+  <div class="flow-grid">
+    <section class="bg-surface-container-lowest border border-wire-border rounded-xl min-w-0 overflow-hidden">
+      <div class="p-6 flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 class="font-headline-md text-headline-md text-ink-primary">Data ingestion graph</h2>
+          <p class="font-body-sm text-body-sm text-outline mt-1">Select a box to light up its full path, from source to page. On a phone, scroll sideways inside the graph.</p>
+        </div>
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-subtle border border-wire-border text-outline text-xs font-semibold"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>Flow: left to right</span>
+      </div>
+      <div class="box" id="box" tabindex="0" aria-label="Data flow diagram. Scroll sideways on a small screen."></div>
+      <div class="legend px-6 py-4 border-t border-wire-border">
+        <span><svg width="34" height="10"><path d="M0 5H30" stroke="#c1c9be" stroke-width="1.6"/></svg>file or table flow</span>
+        <span><svg width="34" height="10"><path d="M0 5H30" stroke="#87591c" stroke-width="1.6" stroke-dasharray="5 4"/></svg>live on the Mac</span>
+        <span><svg width="16" height="12"><rect x="1" y="1" width="14" height="10" rx="2" fill="#ecfdf5" stroke="#1e4d2b"/></svg>the one database</span>
+      </div>
+    </section>
+
+    <aside class="card" id="card" role="dialog" aria-modal="false" aria-labelledby="card-h">
+      <div class="card-empty">
+        <p class="caps">Inspection detail</p>
+        <h2 class="font-headline-md text-headline-md text-ink-primary mt-1">Select a node</h2>
+        <p class="font-body-md text-body-md text-outline mt-2">Pick any box in the graph to see what it is, its rows, its refresh cadence, its file and its caveat.</p>
+      </div>
+      <button class="x" id="card-x" aria-label="Close">&times;</button>
+      <div id="card-body"></div>
+    </aside>
+  </div>
+
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="panel">
+      <p class="caps">Local services</p>
+      <h2 class="font-headline-md text-headline-md text-ink-primary mt-1 mb-3">Live on the Mac</h2>
+      <ul class="mac-list">
+        <li><b>Ask server</b> (<code>python3 -m brain.ask --serve 8742</code>). It answers live questions on <a href="ask.html">Ask the data</a>; elsewhere the page shows stored answers.</li>
+        <li><b>Control tower live mode</b> (<code>python3 -m sim.server</code>, port 8732). It drives <a href="tower.html">Control tower</a> live; elsewhere the page plays a recorded replay.</li>
+        <li><b>Local gemma4</b> on Ollama (port 11434). It answers typed questions on <a href="member.html">My Battery</a> and runs the ask agent.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <p class="caps">Provenance</p>
+      <h2 class="font-headline-md text-headline-md text-ink-primary mt-1 mb-3">Where these facts come from</h2>
+      <p class="font-body-md text-body-md text-outline">Facts come from <code>collect/README.md</code>, <code>store/*.py</code>, <code>docs/MIRROR_SCHEMA.md</code>, <code>grid/ERCOT_DATA.md</code>, <code>docs/DEEDS.md</code>, and table counts in <code>data/fleet.db</code> on 2026-09-26. The status strip reads <code>web/data/admin.json</code> when the page opens. Text version with every source URL: <a href="../docs/DATAFLOW.md">docs/DATAFLOW.md</a>.</p>
+    </div>
+  </section>
+  <footer class="font-body-sm text-body-sm text-outline pt-8 border-t border-wire-border">A Base Fleet design. Pipeline and data lineage.</footer>
+</main></div>
+
+<script>
+(() => {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  const COLS = [
+    {k: "src",  h: "1. Sources",         n: "public, no login"},
+    {k: "col",  h: "2. Collectors",      n: "launchd on the Mac"},
+    {k: "raw",  h: "3. Raw and mirror",  n: "files on disk"},
+    {k: "db",   h: "4. One database",    n: "SQLite, stdlib"},
+    {k: "der",  h: "5. Derived",         n: "rules and models"},
+    {k: "file", h: "6. Page files",      n: "small JSON"},
+    {k: "page", h: "7. Pages",           n: "what you see"}
+  ];
+  const KIND = {src: "Source", col: "Collector", raw: "Raw and mirror files", db: "Database", der: "Derived", file: "Page file", page: "Pages"};
+
+  // Every fact below is from the repo. rows/cadence/file/caveat feed the side card.
+  const N = [
+    // 1. Sources
+    {id: "s_permits", c: 0, t: "Austin permits", s: ["City of Austin, Socrata"],
+      what: "City of Austin Issued Construction Permits on the city open data portal (Socrata dataset 3syk-w9eu). No key.",
+      rows: "34,334 energy permits since 2015-01-01. 31,338 have a location.",
+      cad: "Daily at 06:15, incremental.",
+      file: "https://data.austintexas.gov/resource/3syk-w9eu.json via house/mirror.py, house/market.py, house/permits_by_zip.py",
+      cav: "Austin only. Base cities served by Oncor and CenterPoint have no open permit feed with the contractor name (issue #57).",
+      feeds: ["Austin permits by zip", "Austin permits, Base market"]},
+    {id: "s_ercot", c: 0, t: "ERCOT", s: ["prices, load, dashboards"],
+      what: "ERCOT public dashboards (JSON), the day-ahead and real-time price archive (report 13060), and native load history. No login.",
+      rows: "46,074 day-ahead price rows, 2,160 real-time rows, 23,373 load hours, 11 dashboard feeds on file.",
+      cad: "Prices, supply-demand and fuel mix hourly. daily-prc once a day at 12 UTC. Archive and load history are one-time pulls.",
+      file: "collect/ercot_feeds.sh, grid/ercot_archive.py, grid/ercot_system.js (catalog: grid/ERCOT_DATA.md)",
+      cav: "Use system-wide-prices.json with a hyphen. The camel-case URL redirects to a bot wall. The year view has day-ahead energy only, no ancillary prices.",
+      feeds: ["ERCOT system-wide-prices", "ERCOT supply-demand", "ERCOT fuel-mix", "ERCOT daily-prc", "ERCOT DAM archive (report 13060)", "ERCOT load history"]},
+    {id: "s_census", c: 0, t: "Census ACS", s: ["via Census Reporter"],
+      what: "American Community Survey 5-year estimates per zip, read through the Census Reporter API.",
+      rows: "59 zips (ACS 2024 5-year).", cad: "Monthly, on the 2nd at 06:30.",
+      file: "https://api.censusreporter.org via house/demographics.py",
+      cav: "These are survey estimates, not counts. Every funnel stage built on them is an estimate.",
+      feeds: ["ACS demographics"]},
+    {id: "s_ptc", c: 0, t: "Power to Choose", s: ["utility per zip"],
+      what: "The Texas Power to Choose plans API. It gives the plan count and the utility (TDU) for each zip.",
+      rows: "59 zips.", cad: "One pull, 2026-09-26.",
+      file: "http://api.powertochoose.org/api/PowerToChoose/plans via house/territory.py, output data/ptc_tdu.json",
+      cav: "It lists retail plans, not Base coverage. In a mixed zip, a city utility or a co-op serves part of the zip.",
+      feeds: ["Power to Choose, utility per zip"]},
+    {id: "s_cad", c: 0, t: "Appraisal deeds", s: ["Travis and Williamson"],
+      what: "The TCAD 2026 certified appraisal export (read with HTTP range requests) and the WCAD open data portal.",
+      rows: "588,135 parcels (352,216 Travis, 235,919 Williamson). 104 zips.",
+      cad: "Once a year. This is the July 2026 certified roll.",
+      file: "https://traviscad.org/publicinformation and https://data.wcad.org via house/cad_deeds.py (docs/DEEDS.md)",
+      cav: "Owner names and mailing addresses are dropped at read time. A \"sale\" is any deed transfer. The Travis export has no deed type."},
+    {id: "s_nws", c: 0, t: "Weather Service", s: ["alerts, 2 counties"],
+      what: "National Weather Service active alerts for Travis (TXC453) and Williamson (TXC491) counties.",
+      rows: "0 active alerts stored now (table nws_alerts).", cad: "Hourly at :07.",
+      file: "https://api.weather.gov/alerts/active?zone=TXC453,TXC491 via collect/ercot_feeds.sh and store/signals.py",
+      cav: "The API gives active alerts only. There is no history from before the collector started on 2026-09-26."},
+    {id: "s_osm", c: 0, t: "OpenStreetMap", s: ["substations"],
+      what: "Distribution substations from OpenStreetMap through the Overpass API (ODbL). One bounding box call per zip.",
+      rows: "31 substations for the top 10 star zips.", cad: "One pull.",
+      file: "https://overpass-api.de via house/feeders.py, output data/feeders.json",
+      cav: "No Texas utility in Base territory publishes feeder or hosting capacity data. feeder_ids is empty and hosting_capacity_kw is null.",
+      feeds: ["OSM substations"]},
+    {id: "s_base", c: 0, t: "Base public pages", s: ["basepowercompany.com"],
+      what: "Four public Base pages copied by hand: home, how it works, pricing, help center.",
+      rows: "4 pages.", cad: "One pull.",
+      file: "faq/corpus/*.md (see faq/FAQ.md)",
+      cav: "A manual copy, current as of the capture date.",
+      feeds: ["Base public pages (FAQ corpus)"]},
+
+    // 2. Collectors
+    {id: "c_hourly", c: 1, t: "Hourly, at :07", s: ["ercot_feeds.sh"],
+      what: "launchd job com.basefleet.ercot. It pulls 3 ERCOT feeds (plus daily-prc at 12 UTC) and NWS alerts, then runs store/build.py --incremental, store/signals.py, grid/today.py and admin/build.py.",
+      rows: "4 snapshot files each hour, 5 at 12 UTC.", cad: "Every hour at minute 7.",
+      file: "collect/ercot_feeds.sh (install: collect/install_mac.sh)",
+      cav: "It runs only while the Mac is awake. It skips the run when free disk is under 300 MB. Plain curl, no browser.",
+      feeds: ["ERCOT system-wide-prices", "ERCOT supply-demand", "ERCOT fuel-mix", "ERCOT daily-prc"]},
+    {id: "c_daily", c: 1, t: "Daily, 06:15", s: ["daily.sh"],
+      what: "launchd job com.basefleet.daily. It runs house.permits_by_zip, house.market and house.mirror --incremental, then the store build, signals and admin build.",
+      rows: "Permit rows issued since the newest issue_date on file.", cad: "Every day at 06:15.",
+      file: "collect/daily.sh",
+      cav: "Each step writes ok or FAIL to data/live/collect.log. Steps run independently of each other.",
+      feeds: ["Austin permits by zip", "Austin permits, Base market"]},
+    {id: "c_monthly", c: 1, t: "Monthly, 2nd", s: ["monthly.sh"],
+      what: "launchd job com.basefleet.monthly. It runs house/demographics.py and keeps a dated copy.",
+      rows: "59 zips.", cad: "The 2nd of each month at 06:30.",
+      file: "collect/monthly.sh",
+      cav: "ACS changes once a year, so most monthly runs find no change.",
+      feeds: ["ACS demographics"]},
+    {id: "c_once", c: 1, t: "One-time pulls", s: ["run by hand"],
+      what: "Scripts that someone runs by hand: grid/ercot_archive.py, grid/ercot_system.js, house/territory.py, house/cad_deeds.py (about 2 minutes), house/feeders.py, house/public_buildings.py, and the FAQ copy.",
+      rows: "See each source.", cad: "One pull each. The admin page marks them as manual.",
+      file: "grid/*.py, grid/*.js, house/*.py",
+      cav: "This data gets older until someone runs the script again.",
+      manual: true},
+
+    // 3. Raw and mirror
+    {id: "r_live", c: 2, t: "data/live/", s: ["snapshots, collect.log"],
+      what: "ERCOT snapshots (ercot/<feed>/<UTC>.json.gz), NWS alerts (nws/), dated daily and monthly copies, and collect.log.",
+      rows: "18 ERCOT snapshot files loaded so far (table snapshots). 5 collector log lines.", cad: "Grows each hour.",
+      file: "data/live/ (gitignored)",
+      cav: "Not in git. It exists only on the Mac. A fresh clone has no snapshots until the hourly job runs."},
+    {id: "r_mirror", c: 2, t: "data/mirror/", s: ["permits, deeds"],
+      what: "Compressed row mirrors. energy_permits.csv.gz (every Austin energy permit since 2015) and deeds_min.csv.gz (deed date per parcel).",
+      rows: "34,334 permit rows (609 KB). 588,135 deed rows (4.2 MB).", cad: "Permits daily. Deeds once a year.",
+      file: "data/mirror/*.csv.gz (schema: docs/MIRROR_SCHEMA.md, docs/DEEDS.md)",
+      cav: "No owner names, no addresses, no permit descriptions. Every contractor other than Base is an anonymous id."},
+    {id: "r_json", c: 2, t: "data/*.json, *.csv", s: ["ACS, PTC, ERCOT history"],
+      what: "demographics.json, permits_by_zip.json, ptc_tdu.json, feeders.json, deeds_by_zip.json, the ERCOT price and load CSVs, data/ercot/*.json and data/ercot-dam-*.json.",
+      rows: "59 zips (ACS), 27 zips (permits by zip), 104 zips (deeds), 31 substations, 11 dashboard feeds, 4 price days.",
+      cad: "Mixed: daily, monthly or one-time.",
+      file: "data/",
+      cav: "Some files skip the database. deeds_by_zip.json goes straight to the star page. permits_by_zip.json goes straight to the funnel."},
+    {id: "r_faq", c: 2, t: "faq/corpus/", s: ["4 Base pages"],
+      what: "Markdown copies of the Base public pages.",
+      rows: "4 files.", cad: "One pull.",
+      file: "faq/corpus/home.md, how-it-works.md, pricing.md, help-center.md",
+      cav: "pricing.md sets the offer confidence per utility in the funnel (house/territory.py)."},
+
+    // 4. Database
+    {id: "db", c: 3, t: "data/fleet.db", s: [], tables: [
+        ["permits", "34,334"], ["dam_prices", "46,074"], ["rt_prices", "2,160"], ["load_hourly", "23,373"],
+        ["fuel_mix", "3,864"], ["supply_demand", "195"], ["prc", "5,839"], ["conditions", "1"], ["snapshots", "18"],
+        ["demographics", "59"], ["territory", "59"], ["collector_runs", "5"], ["nws_alerts", "0"], ["signals", "0"],
+        ["judgments", "34,636"]],
+      what: "One SQLite file. store/build.py loads every collector file into it. Natural keys make each load an upsert, so a second run gives the same rows.",
+      rows: "About 150,000 rows in 15 tables (counted 2026-09-26). 23.7 MB.",
+      cad: "After every hourly and daily run (--incremental loads only new or changed files).",
+      file: "store/build.py, data/fleet.db",
+      cav: "Not every page file comes from it yet. store/feeds.py replaces a page file only when every value matches (see NOT_YET in store/feeds.py)."},
+
+    // 5. Derived
+    {id: "d_signals", c: 4, t: "Signals", s: ["5 rules"],
+      what: "store/signals.py checks 5 rules on the database: base_week, zip_surge, price_spike, low_reserves, storm_alert. Each rule states its threshold.",
+      rows: "live", cad: "After each hourly and daily build.",
+      file: "store/signals.py, table signals",
+      cav: "A rule with no data reports \"no data\" and fires nothing. low_reserves waits for the first daily-prc snapshot.", sig: true},
+    {id: "d_judg", c: 4, t: "Judgments", s: ["confidence routing"],
+      what: "Every typed guess (permit category, house field, photo type, zip territory) with a confidence. The route comes from the confidence only.",
+      rows: "34,636 judgments. Auto (0.85 or more): 29,967. Model review (0.70 to 0.85): 3,092. Human (under 0.70): 1,577.",
+      cad: "On every store build.",
+      file: "store/judgments.py (ROUTES), store/judge.py to re-judge",
+      cav: "Permit confidence is per rule, not per permit; the mirror stores permit types, not descriptions."},
+    {id: "d_views", c: 4, t: "Page builders", s: ["grid, mirror, feeds"],
+      what: "Scripts that shape tables into page files: grid/today.py, grid/year.py, house/mirror.py (write_browser), house/market.py, store/feeds.py.",
+      rows: "8 page feeds checked by store/feeds.py.", cad: "Hourly (grid) and daily (permits).",
+      file: "grid/today.py, grid/year.py, house/mirror.py, store/feeds.py",
+      cav: "When a rebuilt feed differs from the current file, store/feeds.py writes a .store.json copy beside it, keeping the current file in place."},
+    {id: "d_funnel", c: 4, t: "Easy-fit funnel", s: ["59 zips"],
+      what: "house/funnel.py: households, then owner single-family, in Base territory, likely 200 A service, and easy fit.",
+      rows: "59 zips. 56,658 easy-fit homes in total (estimate).", cad: "When its inputs change.",
+      file: "house/funnel.py, output data/funnel.json",
+      cav: "An estimate from public totals, not a parcel count. The easy-fit share (22 of 40) comes from one 40-house cohort."},
+    {id: "d_sim", c: 4, t: "Fleet sim", s: ["seed 7, real prices"],
+      what: "The fleet simulation in sim/. It uses the OSM substations and real ERCOT day-ahead price days.",
+      rows: "40 to 50 simulated nodes.", cad: "Run by hand. Live in the tower server.",
+      file: "sim/fleet.py, sim/network.py, sim/server.py",
+      cav: "Simulated. Jobs, nodes and cash are sim values on real price days."},
+    {id: "d_members", c: 4, t: "Member records", s: ["40 houses"],
+      what: "brain/members.py joins house/cohort.json, the sim network and fleet stream, and ERCOT day-ahead days into one record per house.",
+      rows: "40 records.", cad: "Run by hand.",
+      file: "brain/members.py, output data/members.json",
+      cav: "Zip only, no street address. The week is three real price days, repeated."},
+    {id: "l_gemma", c: 4, t: "Local gemma4", s: ["Ollama :11434"], mac: true,
+      what: "gemma4:e4b on local Ollama. The ask agent, member free-text questions, house/mirror.py --llm and store/judge.py --backend gemma use it.",
+      rows: "No stored rows. Answers are made on request.", cad: "On request.",
+      file: "http://localhost:11434",
+      cav: "Mac only. The public pages show stored answers. Typed questions need Ollama running locally."},
+
+    // 6. Page files
+    {id: "f_signals", c: 5, t: "signals.json", s: ["web/data/"],
+      what: "The rule list, the current value of each rule, and the latest fired signals.",
+      rows: "5 rules.", cad: "Hourly.", file: "web/data/signals.json (read by grid.html, admin.html)",
+      cav: "0 signals fired so far. The window for a rule ends on the newest data in the store, not on today."},
+    {id: "f_judg", c: 5, t: "judgments.json", s: ["web/data/"],
+      what: "Counts by subject and route, the thresholds, the permit rules, and a sample of rows.",
+      rows: "Counts for 34,636 judgments.", cad: "On every store build.", file: "web/data/judgments.json (read by judgments.html)",
+      cav: "It holds counts and a sample, not every row."},
+    {id: "f_grid", c: 5, t: "grid_*.json", s: ["today, year, load"],
+      what: "grid_today.json (newest dashboard snapshots), grid_year.json (one battery on every day-ahead hour since January 2025), grid_load.json.",
+      rows: "627 days of day-ahead prices.", cad: "Hourly (today). Year and load when rebuilt.",
+      file: "web/data/grid_today.json, grid_year.json, grid_load.json (read by grid.html, story.html)",
+      cav: "The year view uses day-ahead energy prices only. $603 a year per battery is LZ_AEN, 2025."},
+    {id: "f_explorer", c: 5, t: "explorer_*.json", s: ["points, zip counts"],
+      what: "explorer_points.json (one point per located permit) and explorer_zip.json (counts by zip and by month).",
+      rows: "31,338 points (907 KB).", cad: "Daily.",
+      file: "web/data/explorer_points.json, explorer_zip.json (read by explorer.html)",
+      cav: "Latitude and longitude are rounded to 4 decimals. No addresses. Other contractors show as \"Installer N\"."},
+    {id: "f_market", c: 5, t: "market, storms", s: ["data/"],
+      what: "market.json (Base permits by month and zip against other contractors) and storms.json.",
+      rows: "316 Base permits in 2026.", cad: "Daily.",
+      file: "data/market.json, data/storms.json (read by market.html, explorer.html, story.html)",
+      cav: "The daily job writes market.json from Socrata. The store copy starts in 2015, so 2013 and 2014 are missing there.",
+      feeds: ["Austin permits, Base market"]},
+    {id: "f_funnel", c: 5, t: "funnel, deeds", s: ["data/, star_cards"],
+      what: "funnel.json (households to easy fit per zip), deeds_by_zip.json (turnover per zip) and star_cards.json.",
+      rows: "59 funnel zips. 104 deed zips.", cad: "When rebuilt.",
+      file: "data/funnel.json, data/deeds_by_zip.json, web/data/star_cards.json (read by story.html)",
+      cav: "deeds_by_zip.json reads directly from file, outside the database."},
+    {id: "f_sim", c: 5, t: "sim files", s: ["block, density, replay"],
+      what: "block.json, density.json, fleet_kill_log.json and tower_replay.json from sim runs.",
+      rows: "4 files.", cad: "Run by hand.",
+      file: "web/data/block.json, density.json, fleet_kill_log.json, tower_replay.json (read by index.html, block.html, tower.html)",
+      cav: "Recorded sim output. The tower replay stays fixed until re-recorded."},
+    {id: "l_tower", c: 5, t: "Tower server", s: ["sim.server :8732"], mac: true,
+      what: "python3 -m sim.server runs the fleet sim live, one interval every tick. GET /state, POST /jobs, POST /kill.",
+      rows: "Live state in memory.", cad: "Every tick (2 seconds by default).",
+      file: "sim/server.py, http://localhost:8732/tower.html",
+      cav: "Mac only. Without it, tower.html plays tower_replay.json and job lists are off."},
+    {id: "f_members", c: 5, t: "members.json", s: ["data/"],
+      what: "One record per house for the Base Brain.",
+      rows: "40 records.", cad: "Run by hand.", file: "data/members.json (read by member.html)",
+      cav: "Zip only. Records are joins of real sources and sim values."},
+    {id: "l_ask", c: 5, t: "Ask server", s: ["brain.ask :8742"], mac: true,
+      what: "python3 -m brain.ask --serve 8742. Fixed templates answer common questions. Other questions go to four roles: planner, analyst, critic, reporter.",
+      rows: "No stored rows. Stored answers are in brain/insights.json.", cad: "On request.",
+      file: "brain/ask.py, brain/templates.py",
+      cav: "Mac only. The critic checks that numbers are in the result, not that the query is right. 8 wrong cached answers were removed (docs/ASK_REMOVED.md)."},
+    {id: "f_admin", c: 5, t: "admin.json", s: ["web/data/"],
+      what: "Feed status, pages, tracks and agents, built from files in the repo, git log and gh issues.",
+      rows: "live", cad: "At the end of each hourly and daily run.",
+      file: "admin/build.py, output web/data/admin.json (read by admin.html and this page)",
+      cav: "It needs gh auth to count issues. A feed with no snapshot shows as stale.", adm: true},
+
+    // 7. Pages
+    {id: "p_grid", c: 6, t: "Grid", s: ["grid.html"], href: "grid.html",
+      what: "One Base battery against every ERCOT day-ahead hour since January 2025, zone price tiles, and a live ERCOT dashboard.",
+      rows: "Reads 4 page files.", cad: "Hourly data.", file: "web/grid.html",
+      cav: "Day-ahead energy only. No real-time market or ancillary revenue."},
+    {id: "p_judg", c: 6, t: "Judgments", s: ["judgments.html"], href: "judgments.html",
+      what: "Every guess, its confidence, and who checks it.", rows: "Reads judgments.json.", cad: "On every store build.",
+      file: "web/judgments.html", cav: "Shows counts and a sample, not every row."},
+    {id: "p_where", c: 6, t: "Where Base stands", s: ["explorer, market, star"], href: "explorer.html",
+      what: "Permit explorer, Market, Next areas and Story.",
+      rows: "Reads explorer, market, storms, funnel, deeds and star files.", cad: "Daily data.",
+      file: "web/explorer.html, market.html, story.html",
+      cav: "Permit views cover Austin only."},
+    {id: "p_fleet", c: 6, t: "Fleet, one block", s: ["index, block, placement"], href: "index.html",
+      what: "Fleet report, one block hub map and hub placement.", rows: "Reads the sim files.", cad: "Run by hand.",
+      file: "web/index.html, block.html, placement.html", cav: "Sim results on real price days."},
+    {id: "p_tower", c: 6, t: "Control tower", s: ["tower.html"], href: "tower.html", part: true,
+      what: "Live ops view of the fleet sim.", rows: "Replay file, or live state on the Mac.", cad: "Every tick in live mode.",
+      file: "web/tower.html", cav: "Live mode needs the tower server on the Mac. Elsewhere it is a replay."},
+    {id: "p_member", c: 6, t: "My Battery", s: ["member.html"], href: "member.html", part: true,
+      what: "The Base Brain: one house record, and questions about it.", rows: "Reads members.json.", cad: "Run by hand.",
+      file: "web/member.html", cav: "Typed questions need local Ollama. Stored answers work everywhere."},
+    {id: "p_ask", c: 6, t: "Ask the data", s: ["ask.html"], href: "ask.html", part: true,
+      what: "Cited questions over the open data.", rows: "Stored answers, or live answers on the Mac.", cad: "On request.",
+      file: "web/ask.html", cav: "Live questions need the ask server on the Mac."},
+    {id: "p_admin", c: 6, t: "Admin and gaps", s: ["admin.html, gaps.html"], href: "admin.html",
+      what: "Feeds, pages, tracks, agents and open gaps.", rows: "Reads admin.json, signals.json, gaps.json.", cad: "Hourly.",
+      file: "web/admin.html, gaps.html", cav: "Built from files, git and gh. Track strength is a judgment."}
+  ];
+
+  const E = [
+    ["s_permits","c_daily"], ["s_ercot","c_hourly"], ["s_ercot","c_once"], ["s_census","c_monthly"], ["s_ptc","c_once"],
+    ["s_cad","c_once"], ["s_nws","c_hourly"], ["s_osm","c_once"], ["s_base","c_once"],
+    ["c_hourly","r_live"], ["c_daily","r_live"], ["c_daily","r_mirror"], ["c_daily","r_json"], ["c_monthly","r_live"],
+    ["c_monthly","r_json"], ["c_once","r_json"], ["c_once","r_mirror"], ["c_once","r_faq"],
+    ["r_live","db"], ["r_mirror","db"], ["r_json","db"],
+    ["db","d_signals"], ["db","d_judg"], ["db","d_views"], ["db","d_funnel"],
+    ["r_faq","d_funnel"], ["r_json","d_sim"], ["r_json","d_members"], ["r_json","f_funnel"], ["r_live","f_admin"],
+    ["d_signals","f_signals"], ["d_judg","f_judg"], ["d_views","f_grid"], ["d_views","f_explorer"], ["d_views","f_market"],
+    ["d_funnel","f_funnel"], ["d_sim","f_sim"], ["d_sim","l_tower"], ["d_members","f_members"], ["l_gemma","l_ask"],
+    ["f_signals","p_grid"], ["f_signals","p_admin"], ["f_judg","p_judg"], ["f_grid","p_grid"], ["f_explorer","p_where"],
+    ["f_market","p_where"], ["f_funnel","p_where"], ["f_sim","p_fleet"], ["f_sim","p_tower"], ["f_members","p_member"],
+    ["f_admin","p_admin"], ["l_ask","p_ask"], ["l_tower","p_tower"], ["l_gemma","p_member"]
+  ];
+
+  // ---- layout ----
+  const COLW = 150, GAP = 48, PADX = 12, TOP = 54, VG = 12, W = PADX * 2 + COLW * 7 + GAP * 6;
+  const byId = Object.fromEntries(N.map(n => [n.id, n]));
+  const colX = i => PADX + i * (COLW + GAP);
+  N.forEach(n => {
+    n.h = n.tables ? 34 + n.tables.length * 15 : 30 + n.s.length * 15 + (n.mac || n.part ? 13 : 0);
+    n.x = colX(n.c);
+  });
+  const cols = COLS.map((_, i) => N.filter(n => n.c === i));
+  const colH = cols.map(c => c.reduce((a, n) => a + n.h, 0) + VG * (c.length - 1));
+  const maxH = Math.max(...colH);
+  cols.forEach((c, i) => { let y = TOP + (maxH - colH[i]) / 2; c.forEach(n => { n.y = y; y += n.h + VG; }); });
+  const bottom = TOP + maxH;
+
+  const edges = E.map(([a, b], i) => ({i, a: byId[a], b: byId[b], mac: !!(byId[a].mac || byId[b].mac)}));
+  edges.forEach(e => { e.skip = e.b.c - e.a.c > 1; });
+  const skips = edges.filter(e => e.skip);
+  skips.forEach((e, k) => { e.cy = bottom + 20 + k * 11; });
+  const H = bottom + 20 + skips.length * 11 + 14;
+
+  // ports: spread along the side, ordered by the other end to limit crossings
+  const cy = n => n.y + n.h / 2;
+  N.forEach(n => {
+    const outs = edges.filter(e => e.a === n).sort((p, q) => (p.skip ? 1e6 + p.cy : cy(p.b)) - (q.skip ? 1e6 + q.cy : cy(q.b)));
+    const ins = edges.filter(e => e.b === n).sort((p, q) => (p.skip ? 1e6 + p.cy : cy(p.a)) - (q.skip ? 1e6 + q.cy : cy(q.a)));
+    const top = n.tables ? n.y + 8 : n.y + 6, span = (n.tables ? n.h - 16 : n.h - 12);
+    outs.forEach((e, k) => { e.ys = top + span * (k + 1) / (outs.length + 1); });
+    ins.forEach((e, k) => { e.yt = top + span * (k + 1) / (ins.length + 1); });
+  });
+
+  // an incoming stub must not sit on the same y as an outgoing stub in the same gap
+  const gapOf = (e, side) => side === "out" ? e.a.c : e.b.c - 1;
+  edges.forEach(e => {
+    const g = gapOf(e, "in");
+    const outs = edges.filter(o => o !== e && gapOf(o, "out") === g).map(o => o.ys);
+    const ins = edges.filter(o => o !== e && o.b === e.b).map(o => o.yt);
+    const free = y => y > e.b.y + 4 && y < e.b.y + e.b.h - 4 && outs.every(v => Math.abs(v - y) >= 6) && ins.every(v => Math.abs(v - y) >= 5);
+    if (outs.every(v => Math.abs(v - e.yt) >= 6)) return;
+    for (let d = 3; d <= 30; d += 3) { if (free(e.yt + d)) { e.yt += d; return; } if (free(e.yt - d)) { e.yt -= d; return; } }
+  });
+
+  // lanes: vertical runs per gap; runs with separate y ranges can share an x
+  const gapRuns = Array.from({length: 6}, () => []);
+  edges.forEach(e => {
+    if (!e.skip) { if (Math.abs(e.ys - e.yt) > 1.5) gapRuns[e.a.c].push({e, key: "l", lo: Math.min(e.ys, e.yt), hi: Math.max(e.ys, e.yt)}); }
+    else {
+      gapRuns[e.a.c].push({e, key: "l1", lo: e.ys, hi: e.cy});
+      gapRuns[e.b.c - 1].push({e, key: "l2", lo: e.yt, hi: e.cy});
+    }
+  });
+  gapRuns.forEach((runs, g) => {
+    runs.sort((p, q) => p.lo - q.lo);
+    const lanes = [];
+    runs.forEach(r => {
+      let k = lanes.findIndex(end => end < r.lo - 16);
+      if (k < 0) { k = lanes.length; lanes.push(0); }
+      lanes[k] = r.hi; r.lane = k;
+    });
+    const x0 = colX(g) + COLW, L = lanes.length;
+    runs.forEach(r => { r.e[r.key] = x0 + 10 + (GAP - 20) * (L === 1 ? 0.5 : r.lane / (L - 1)); });
+  });
+
+  edges.forEach(e => {
+    const x0 = e.a.x + COLW, x1 = e.b.x - 1;
+    if (!e.skip) {
+      if (e.l === undefined) { e.yt = e.ys; e.d = `M${x0} ${e.ys}H${x1}`; }
+      else e.d = `M${x0} ${e.ys}H${e.l}V${e.yt}H${x1}`;
+    } else e.d = `M${x0} ${e.ys}H${e.l1}V${e.cy}H${e.l2}V${e.yt}H${x1}`;
+  });
+
+  // self-check: no two collinear segments share a stretch
+  function segs(e) {
+    const pts = e.d.match(/[MHV][^MHV]+/g); let x = 0, y = 0; const out = [];
+    pts.forEach(p => { const v = p.slice(1).trim().split(/\s+/).map(Number);
+      if (p[0] === "M") { x = v[0]; y = v[1]; }
+      else if (p[0] === "H") { out.push({o: "h", c: y, a: Math.min(x, v[0]), b: Math.max(x, v[0])}); x = v[0]; }
+      else { out.push({o: "v", c: x, a: Math.min(y, v[0]), b: Math.max(y, v[0])}); y = v[0]; } });
+    return out;
+  }
+  let overlaps = 0; const all = edges.map(e => segs(e).map(s => ({...s, e})));
+  for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++)
+    for (const s of all[i]) for (const t of all[j])
+      if (s.o === t.o && Math.abs(s.c - t.c) < 3 && Math.min(s.b, t.b) - Math.max(s.a, t.a) > 2) overlaps++;
+  window.__dataflow = {overlaps, nodes: N.length, edges: edges.length};
+
+  // ---- draw ----
+  const NS = "http://www.w3.org/2000/svg";
+  let svg = `<svg xmlns="${NS}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Data flow from 8 public sources through collectors, raw files and one database to derived data, page files and pages">
+    <defs>${["ah", "ah-on", "ah-mac"].map(c => `<marker id="${c}" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="${c}" d="M0 0L8 4L0 8z"/></marker>`).join("")}</defs>`;
+  COLS.forEach((c, i) => {
+    svg += `<text class="colh" x="${colX(i)}" y="22">${esc(c.h)}</text><text class="coln" x="${colX(i)}" y="38">${esc(c.n)}</text>`;
+  });
+  svg += `<g id="edges">` + edges.map(e => `<path class="edge${e.mac ? " mac" : ""}" data-i="${e.i}" d="${e.d}" marker-end="url(#${e.mac ? "ah-mac" : "ah"})"/>`).join("") + `</g>`;
+  svg += N.map(n => {
+    const k = COLS[n.c].k;
+    let g = `<g class="node k-${k}${n.mac ? " mac" : ""}" data-id="${n.id}" tabindex="0" role="button" aria-label="${esc(n.t)}. ${esc(KIND[k])}. Open details." transform="translate(${n.x},${n.y})">`;
+    g += `<rect class="bg" width="${COLW}" height="${n.h}" rx="6"/><rect class="bar" width="4" height="${n.h}" rx="2"/>`;
+    g += `<text class="t" x="12" y="19">${esc(n.t)}</text>`;
+    if (n.mac || n.part) g += `<text class="tag" x="12" y="${n.h - 9}">${n.mac ? "LIVE ON MAC" : "LIVE MODE ON MAC"}</text>`;
+    n.s.forEach((s, j) => { g += `<text class="s" x="12" y="${35 + j * 15}">${esc(s)}</text>`; });
+    if (n.tables) n.tables.forEach(([t, c], j) => {
+      g += `<text class="tbl" x="12" y="${38 + j * 15}">${esc(t)}</text><text class="n" x="${COLW - 10}" y="${38 + j * 15}">${esc(c)}</text>`;
+    });
+    return g + `</g>`;
+  }).join("");
+  svg += `</svg>`;
+  $("box").innerHTML = svg;
+  const S = $("box").querySelector("svg");
+
+  // ---- admin.json ----
+  let ADMIN = null;
+  const fmtT = s => s ? s.replace("T", " ").slice(0, 16) : "none";
+  function strip(a) {
+    const f = a.feeds || [];
+    const cnt = st => f.filter(x => x.status === st).length;
+    const failed = f.filter(x => /fail/i.test(x.status || "") || /FAIL/.test(x.last_log || "")).length;
+    const pulls = f.filter(x => String(x.job || "").startsWith("com.basefleet") && x.last_fetched).map(x => x.last_fetched).sort();
+    const last = pulls[pulls.length - 1];
+    $("fresh").innerHTML = `<span class="lbl">Feed status</span>
+      <span class="chip"><span class="dot ok"></span><b>${cnt("ok")}</b> ok</span>
+      <span class="chip"><span class="dot stale"></span><b>${cnt("stale")}</b> stale</span>
+      <span class="chip"><span class="dot fail"></span><b>${failed}</b> failed</span>
+      <span class="chip"><span class="dot"></span><b>${cnt("manual")}</b> one-time</span>
+      <span class="chip">Last pull <b>${esc(fmtT(last))}</b> CT</span>
+      <span class="chip">admin.json built <b>${esc(fmtT(a.built_at))}</b></span>`;
+  }
+  fetch("data/admin.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(a => { ADMIN = a; strip(a); })
+    .catch(() => { $("fresh").innerHTML = `<span class="lbl">Feed status</span><span class="chip"><span class="dot stale"></span>Build web/data/admin.json with <code>python3 admin/build.py</code> to see feed status.</span>`; });
+
+  // ---- lineage + card ----
+  function lineage(id) {
+    const on = new Set([id]), eOn = new Set();
+    const walk = (dir) => { const stack = [id]; while (stack.length) { const cur = stack.pop();
+      edges.forEach(e => { const [from, to] = dir ? [e.a.id, e.b.id] : [e.b.id, e.a.id];
+        if (from === cur) { eOn.add(e.i); if (!on.has(to) || to !== id) { if (!on.has(to)) stack.push(to); on.add(to); } } }); } };
+    walk(true); walk(false);
+    return {on, eOn};
+  }
+  function feedRows(names) {
+    if (!names || !ADMIN) return "";
+    const f = (ADMIN.feeds || []).filter(x => names.includes(x.name));
+    if (!f.length) return "";
+    return `<dt>Status now (admin.json)</dt><dd>` + f.map(x => {
+      const cls = x.status === "ok" ? "ok" : x.status === "stale" ? "stale" : "";
+      const rows = x.rows == null ? "" : `, ${Number(x.rows).toLocaleString()} ${esc(x.rows_label || "")}`;
+      return `<div class="feedrow"><span class="dot ${cls}"></span><span><b>${esc(x.name)}</b>: ${esc(x.status)}, last ${esc(fmtT(x.last_fetched))}${rows}</span></div>`;
+    }).join("") + `</dd>`;
+  }
+  function rowsText(n) {
+    if (n.sig) {
+      const s = ADMIN && ADMIN.signals;
+      if (!s) return "5 rules. Fired count is in web/data/signals.json.";
+      const p = (s.rules || []).find(r => r.name === "price_spike");
+      return `${s.fired_now} fired now.` + (p && p.now ? ` Newest LZ_AEN price: $${p.now.value}/MWh (threshold ${esc(p.threshold)}).` : "");
+    }
+    if (n.adm) {
+      const a = ADMIN;
+      if (!a) return "Feeds, pages, tracks and agents.";
+      return `${(a.feeds || []).length} feeds, ${(a.pages || []).length} pages, ${(a.tracks || []).length} tracks, ${(a.agents || []).length} agents.`;
+    }
+    if (n.manual && ADMIN) {
+      const m = (ADMIN.feeds || []).filter(x => x.status === "manual").length;
+      return `${m} feeds marked manual in admin.json.`;
+    }
+    return n.rows;
+  }
+  let sel = null, lastFocus = null;
+  function open(id) {
+    const n = byId[id]; sel = id;
+    const {on, eOn} = lineage(id);
+    S.classList.add("focus");
+    S.querySelectorAll(".node").forEach(g => { g.classList.toggle("on", on.has(g.dataset.id)); g.classList.toggle("sel", g.dataset.id === id); });
+    S.querySelectorAll(".edge").forEach(p => { const e = edges[+p.dataset.i]; const o = eOn.has(e.i); p.classList.toggle("on", o);
+      p.setAttribute("marker-end", `url(#${e.mac ? "ah-mac" : o ? "ah-on" : "ah"})`); });
+    const k = COLS[n.c].k;
+    const tables = n.tables ? `<dt>Tables</dt><dd class="mono">${n.tables.map(([t, c]) => `${esc(t)} ${esc(c)}`).join("<br>")}</dd>` : "";
+    const link = n.href ? ` <a href="${esc(n.href)}">Open the page</a>` : "";
+    $("card-body").innerHTML = `<div class="kind">${esc(n.mac ? "Local service" : KIND[k])}</div><h2 id="card-h">${esc(n.t)}</h2>
+      ${n.mac ? `<div class="mactag">Live only on the Mac</div>` : n.part ? `<div class="mactag">Live mode only on the Mac</div>` : ""}
+      <dl><dt>What it is</dt><dd>${esc(n.what)}${link}</dd>
+      <dt>Rows</dt><dd>${esc(rowsText(n))}</dd>${tables}
+      <dt>Refresh</dt><dd>${esc(n.cad)}</dd>
+      <dt>File or script</dt><dd class="mono">${esc(n.file)}</dd>
+      ${feedRows(n.feeds)}
+      <dt>Caveat</dt><dd class="caveat">${esc(n.cav)}</dd></dl>`;
+    $("card").classList.add("open");
+  }
+  function close() {
+    sel = null; $("card").classList.remove("open"); S.classList.remove("focus");
+    S.querySelectorAll(".node").forEach(g => g.classList.remove("on", "sel"));
+    S.querySelectorAll(".edge").forEach(p => { p.classList.remove("on"); p.setAttribute("marker-end", `url(#${edges[+p.dataset.i].mac ? "ah-mac" : "ah"})`); });
+    if (lastFocus) lastFocus.focus();
+  }
+  S.addEventListener("click", ev => { const g = ev.target.closest(".node"); if (!g) return; lastFocus = g; sel === g.dataset.id ? close() : open(g.dataset.id); });
+  S.addEventListener("keydown", ev => { const g = ev.target.closest(".node"); if (g && (ev.key === "Enter" || ev.key === " ")) { ev.preventDefault(); lastFocus = g; open(g.dataset.id); } });
+  $("card-x").addEventListener("click", close);
+  document.addEventListener("keydown", ev => { if (ev.key === "Escape" && sel) close(); });
+})();
+</script>
+</body>
+</html>

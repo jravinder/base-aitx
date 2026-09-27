@@ -1,0 +1,100 @@
+{
+ "nodes": 240,
+ "seed": 7,
+ "community": 12,
+ "network": {
+  "feeders": 49,
+  "chosen": [
+   "78634-f0",
+   "78660-f0",
+   "78664-f0",
+   "78704-f0",
+   "78724-f0",
+   "78744-f0",
+   "78660-f1",
+   "78746-f0",
+   "78748-f0",
+   "78758-f0",
+   "78752-f0",
+   "78753-f0"
+  ],
+  "chosen_sizes": [
+   12,
+   12,
+   12,
+   12,
+   12,
+   12,
+   11,
+   8,
+   8,
+   8,
+   7,
+   7
+  ],
+  "killed": 48
+ },
+ "rows": [
+  {
+   "arm": "baseline",
+   "extra_nodes": 0,
+   "gpu_hours_lost": 2,
+   "failover_ok": 46,
+   "requeued": 2,
+   "margin": 13865.35,
+   "margin_power": 403.8,
+   "margin_compute": 13461.55,
+   "jobs_done": 5672,
+   "upload_cost": 349.8,
+   "jobs_by_fit": {
+    "node": 3196,
+    "feeder": 2242,
+    "far": 314
+   },
+   "discharges_capped": 1248
+  },
+  {
+   "arm": "houses",
+   "extra_nodes": 48,
+   "gpu_hours_lost": 2,
+   "failover_ok": 46,
+   "requeued": 2,
+   "margin": 15534.28,
+   "margin_power": 381.27,
+   "margin_compute": 15153.01,
+   "jobs_done": 5760,
+   "upload_cost": 468.0,
+   "jobs_by_fit": {
+    "node": 2705,
+    "feeder": 2516,
+    "far": 541
+   },
+   "discharges_capped": 1732
+  },
+  {
+   "arm": "community",
+   "extra_nodes": 12,
+   "gpu_hours_lost": 2,
+   "failover_ok": 46,
+   "requeued": 2,
+   "margin": 15534.28,
+   "margin_power": 381.27,
+   "margin_compute": 15153.01,
+   "jobs_done": 5760,
+   "upload_cost": 468.0,
+   "jobs_by_fit": {
+    "node": 2705,
+    "feeder": 2516,
+    "far": 541
+   },
+   "discharges_capped": 1369
+  }
+ ],
+ "upload_cost": {
+  "node": 0.0,
+  "feeder": 0.1,
+  "far": 0.4
+ },
+ "feeder_export_kw": 25.0,
+ "ceiling": "placement as an optimiser over feeder load, queue origin and kill risk, not the N densest feeders"
+}

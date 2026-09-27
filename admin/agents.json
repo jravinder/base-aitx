@@ -1,0 +1,41 @@
+{
+  "_note": "Hand-edited by Ravi. Keys match the agent keys in build.py. Role, contributions and help lines are text, not measured.",
+  "agents": {
+    "claude": {
+      "label": "Claude session",
+      "role": "Builds the data spine and tests every claim against public data.",
+      "help": "Turns a claim into a checked number with a source, or files a Gap issue.",
+      "notable": ["Gap hunt: 14 gaps found, 13 fixed (#54 to #74)", "Open grid data: 627 days of ERCOT prices, 11 live feeds, launchd collectors", "Member brain: record-only Q&A on local gemma4"]
+    },
+    "builder": {
+      "label": "Builder (Grokbot)",
+      "role": "Writes decisions and framing docs.",
+      "help": "Keeps the story honest with ADRs and kills.",
+      "notable": ["ADRs 0001 and 0010 to 0016 (idea kills, live set, GPU hub placement)", "Base business pillars", "Placement page and mindmap"]
+    },
+    "depth": {
+      "label": "depth",
+      "role": "Idea viability review.",
+      "help": "Checks which idea threads survive the weekend.",
+      "notable": ["FOCUS_ADDS for five live idea threads", "Weekend viability status", "Input to IDEA_VIABILITY"]
+    },
+    "web": {
+      "label": "jravinder (GitHub web)",
+      "role": "Commits made on github.com.",
+      "help": "Direct doc edits outside a local session.",
+      "notable": ["docs: Base business pillars (canonical)"]
+    },
+    "ravi": {
+      "label": "Ravi, other local commits",
+      "role": "Local commits with no session trailer.",
+      "help": "Sim, site, tower and house records before the session trailer was in use.",
+      "notable": ["Sim and Basenet M1 to M5", "Control tower server", "House records and cohort"]
+    },
+    "merges": {
+      "label": "Merges",
+      "role": "Pull request and branch merges.",
+      "help": "Brings branch work into master.",
+      "notable": []
+    }
+  }
+}

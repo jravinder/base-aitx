@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Local models | Base Fleet</title>
+<link rel="stylesheet" href="assets/stitch/fonts.css">
+<script src="assets/stitch/tailwind.js"></script>
+<script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
+<link rel="stylesheet" href="shell.css">
+<style>.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+#main{overflow-wrap:anywhere}
+body{margin:0}
+#main p,#main h1,#main h2,#main h3,#main dl,#main dd,#main ol,#main ul,#main pre{margin:0}
+#main ol,#main ul{padding:0;list-style:none}
+#main a,.shell nav[aria-label=Breadcrumb] a{text-decoration:none}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:#fff;padding:6px 10px}
+.mono,#main pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.eyebrow{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970}
+.stat{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px 14px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.stat .v{font:600 15px/22px "Plus Jakarta Sans",sans-serif;color:#0F172A;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.stat .s{font-size:12px;line-height:18px;color:#717970}
+.led{width:8px;height:8px;border-radius:999px;background:#c1c9be;flex:none}
+.led[data-s="up"]{background:#22C55E}.led[data-s="down"]{background:#EF4444}.led[data-s="busy"]{background:#F59E0B}
+.btn{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;color:#0F172A;font:600 13px/18px "Plus Jakarta Sans",sans-serif;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#F1F5F9}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.pri{background:#1e4d2b;border-color:#1e4d2b;color:#fff}.btn.pri:hover{background:#004A31}
+table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;background:#fff;border:1px solid #e2e8f0;border-radius:12px}
+.reg th,.reg td{text-align:left;padding:10px 12px;border-bottom:1px solid #e2e8f0;vertical-align:top}
+.reg th{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970;background:#F8FAFC}
+.reg thead th:first-child{border-top-left-radius:12px}.reg thead th:last-child{border-top-right-radius:12px}
+.reg tr:last-child td{border-bottom:0}
+.reg td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.reg td .sub{display:block;color:#717970;font-size:12px}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:700;line-height:20px;white-space:nowrap;border:1px solid #e2e8f0;background:#F8FAFC;color:#414941}
+.pill.ok{background:#cbf080;border-color:#afd367;color:#023616}.pill.warn{background:#fffbeb;border-color:#fde68a;color:#78350f}
+.src{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:#414941}
+.rt{display:grid;grid-template-columns:minmax(0,220px) minmax(0,200px) minmax(0,1fr);gap:16px;padding:16px 24px;border-bottom:1px solid #e2e8f0;align-items:start}
+.rt:last-child{border-bottom:0}
+.cmd{display:flex;align-items:flex-start;gap:8px;background:#F8FAFC;border:1px solid #e2e8f0;border-radius:8px;padding:6px 6px 6px 12px}
+.cmd pre{flex:1;min-width:0;font-size:12px;line-height:18px;color:#0F172A;white-space:pre-wrap;overflow-wrap:anywhere;padding-top:4px}
+.cmd .btn{min-height:28px;padding:0 8px;font-size:12px}
+.bar{height:6px;border-radius:999px;background:#F1F5F9;border:1px solid #e2e8f0}
+.bar>span{display:block;height:100%;width:0;border-radius:999px;background:#1e4d2b;transition:width .2s}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid #e2e8f0;border-radius:8px;background:#fff}
+.seg button{font:600 12px/18px "Plus Jakarta Sans",sans-serif;padding:6px 10px;border:0;border-right:1px solid #e2e8f0;background:transparent;color:#414941;cursor:pointer}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:#cbf080;color:#023616}
+.seg button:disabled{color:#a3aaa2;cursor:not-allowed}
+.brain{display:block}
+.lanes{display:grid;grid-template-columns:1fr;gap:8px;align-items:start}
+@media (min-width:1024px){.lanes{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.lane{border:1px solid #e2e8f0;border-radius:10px;background:#fff;padding:10px 12px;min-width:0}
+.lane[data-state="working"]{border-color:#84CC16;box-shadow:0 0 0 2px rgba(132,204,22,.18)}
+.lane[data-state="done"]{border-color:#1e4d2b}
+.lane[data-state="rest"]{background:#F8FAFC}
+.lane .dot{width:8px;height:8px;border-radius:999px;background:#c1c9be;flex:none}
+.lane[data-state="working"] .dot{background:#84CC16;animation:pulse 1s ease-in-out infinite}
+.lane[data-state="done"] .dot{background:#1e4d2b}
+.lane[data-state="rest"] .dot{background:#cbf080}
+@keyframes pulse{50%{transform:scale(1.6);opacity:.55}}
+.route-opt{display:inline-flex;align-items:center;padding:0 6px;border-radius:999px;border:1px solid #e2e8f0;background:#F8FAFC;color:#717970;font-size:10.5px;font-weight:600;line-height:17px}
+.route-opt[data-on="1"]{background:#cbf080;border-color:#afd367;color:#023616}
+.log{background:#fff;border:1px solid #e2e8f0;border-radius:10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:18px;max-height:260px;overflow-y:auto}
+.log li{display:grid;grid-template-columns:96px 52px 76px minmax(0,1fr);gap:8px;padding:4px 12px;border-bottom:1px solid #F1F5F9;color:#0F172A}
+.log li:last-child{border-bottom:0}
+.log li.hd{position:sticky;top:0;background:#F8FAFC;color:#717970;font-weight:700}
+.log .t{color:#717970}.log .by-model{color:#4a6700;font-weight:700}.log .by-code{color:#414941}
+.ans sup{font-size:10px;color:#1e4d2b;font-weight:700}
+.caret::after{content:"\258D";color:#84CC16;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.flowrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.flowrow .node{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;font-size:12.5px;font-weight:600;color:#0F172A}
+.flowrow .arr{color:#717970;font-size:14px}
+.flowrow .node.cloud{border-style:dashed;color:#717970}
+.flowrow.cloud-on .node.cloud{border-style:solid;border-color:#F59E0B;color:#0F172A;background:#fffbeb}
+@media (max-width:900px){.rt{grid-template-columns:1fr;gap:10px;padding:16px}}
+@media (max-width:640px){
+ table.reg,.reg thead,.reg tbody,.reg tr,.reg td{display:block;width:100%}
+ .reg thead{display:none}
+ table.reg{border:0;background:none}
+ .reg tr{background:#fff;border:1px solid #e2e8f0;border-radius:12px;margin:0 0 8px;padding:10px 14px}
+ .reg td{border:0;padding:2px 0}
+ .reg td[data-l]::before{content:attr(data-l) ": ";color:#717970;font-size:11.5px}
+ .reg td.first{font-weight:600;padding-bottom:4px}
+ .log li{grid-template-columns:48px 64px minmax(0,1fr)}
+ .log li .t{display:none}
+}
+@media (prefers-reduced-motion:reduce){.lane .dot,.caret::after{animation:none!important}.bar>span{transition:none}}
+</style>
+<script defer src="shell.js"></script><script defer src="models.js"></script>
+</head>
+<body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<a class="skip" href="#main">Skip to the models</a>
+<div class="shell">
+<div class="bg-surface-container-lowest border-b border-wire-border">
+ <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-body-sm font-body-sm">
+  <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-outline">
+   <a href="copilot.html" data-ctx class="hover:text-ink-primary flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">smart_toy</span><span>Your own AI</span></a>
+   <span class="material-symbols-outlined text-[14px] opacity-70" aria-hidden="true">chevron_right</span>
+   <span class="text-ink-primary font-semibold">Local models</span>
+  </nav>
+  <span id="mode-chip" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span><span id="mode-text">Ready</span></span>
+ </div>
+</div>
+<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-6">
+
+ <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-4" aria-labelledby="hero-title">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+   <div class="min-w-0">
+    <span class="eyebrow">Operator console · Base Super Local AI · Track 3</span>
+    <h1 id="hero-title" class="font-headline-lg text-headline-lg text-ink-primary mt-1">Local models</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-1">Models, runtimes and live runs for the home AI. Each figure cites its source file.</p>
+   </div>
+   <div class="flex flex-wrap gap-2 self-start md:self-auto">
+    <a id="try-btn" href="#try" class="btn pri"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">play_arrow</span>Try it</a>
+    <a id="story-next" href="copilot.html" data-ctx class="btn"><span>Next: your own AI</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+   </div>
+  </div>
+  <div id="statusbar" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+   <div class="stat" id="st-home"><span class="eyebrow">Home server · 8742</span><span class="v"><span class="led"></span><span class="val">Not checked</span></span><span class="s">python3 -m brain.ask --serve 8742</span></div>
+   <div class="stat" id="st-voice"><span class="eyebrow">Voice server · 8744</span><span class="v"><span class="led"></span><span class="val">Not checked</span></span><span class="s">Kokoro-82M, brain/tts.py</span></div>
+   <div class="stat" id="st-browser"><span class="eyebrow">Browser runtime</span><span class="v"><span class="led"></span><span class="val">Checking WebGPU</span></span><span class="s">Model not loaded</span></div>
+   <div class="stat" id="st-last"><span class="eyebrow">Last answer</span><span class="v"><canvas id="live-brain" class="brain" style="width:40px;height:24px" role="img" aria-label="Activity indicator. It pulses while an answer runs."></canvas><span class="val" id="hero-state-text">None yet</span></span><span class="s" id="st-last-sub">Ready for a question</span></div>
+  </div>
+ </section>
+
+ <section id="live" class="scroll-mt-20 bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-4" aria-labelledby="live-title">
+  <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-3">
+   <div class="min-w-0">
+    <span class="eyebrow">Live run</span>
+    <h2 id="live-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Question, route, model, check, answer</h2>
+   </div>
+   <div class="flex flex-wrap items-center gap-2">
+    <span class="eyebrow">Run on</span>
+    <div class="seg" id="run-on" role="group" aria-label="Where the next question runs">
+     <button type="button" data-on="routes" aria-pressed="true">Code routes</button>
+     <button type="button" data-on="browser" aria-pressed="false" disabled title="Load the browser model under Runtimes">Browser model</button>
+     <button type="button" data-on="pc" aria-pressed="false" disabled title="Check your PC under Runtimes">Your PC</button>
+    </div>
+    <span id="run-where" class="pill"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">language</span><span id="run-where-text">Ready</span></span>
+   </div>
+  </div>
+  <form id="ask-form" class="flex gap-2" autocomplete="off">
+   <label for="ask-q" style="position:absolute;left:-9999px">Your question</label>
+   <input id="ask-q" class="flex-1 min-w-0 h-10 px-3 rounded-lg border border-wire-border bg-white text-ink-primary font-body-md text-body-md" placeholder="e.g. how long does backup last?">
+   <button id="ask-go" type="submit" class="btn pri shrink-0"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">send</span>Run</button>
+  </form>
+  <div id="chips" class="flex flex-wrap gap-2" aria-label="Example questions"></div>
+  <ol id="lanes" class="lanes" aria-label="Answer pipeline" aria-live="polite"></ol>
+  <ol id="log" class="log" aria-label="Step log"><li class="hd"><span class="t">time</span><span>by</span><span>ms</span><span>step</span></li></ol>
+  <div id="answer" class="rounded-xl border border-wire-border bg-surface-muted p-4 space-y-2" hidden>
+   <div class="flex flex-wrap items-center justify-between gap-2">
+    <span class="eyebrow">Answer with sources</span>
+    <span id="answer-meta" class="mono text-[12px] text-on-surface-variant"></span>
+   </div>
+   <p id="answer-text" class="ans font-body-md text-body-md text-ink-primary"></p>
+   <ul id="answer-sources" class="space-y-1 font-body-sm text-body-sm"></ul>
+  </div>
+ </section>
+
+ <section id="try" class="scroll-mt-20 bg-surface-container-lowest border border-wire-border rounded-xl" aria-labelledby="try-title">
+  <div class="px-6 pt-6 pb-4 border-b border-wire-border">
+   <span class="eyebrow">Runtimes · Try it</span>
+   <h2 id="try-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Where the model runs</h2>
+  </div>
+  <div class="rt" id="rt-browser">
+   <div class="min-w-0"><p class="font-headline-sm text-headline-sm">In this browser (WebLLM)</p><p class="src mt-1" id="wl-model">Qwen2.5-0.5B-Instruct-q4f16_1-MLC</p></div>
+   <div class="min-w-0 space-y-2"><p><span class="pill" id="wl-state">Checking WebGPU</span></p><button type="button" id="wl-load" class="btn pri" disabled><span class="material-symbols-outlined text-[18px]" aria-hidden="true">download</span><span id="wl-load-text">Load model · 282 MB</span></button></div>
+   <div class="min-w-0 space-y-2 font-body-sm text-body-sm text-on-surface-variant">
+    <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+     <div><dt class="eyebrow">Download</dt><dd class="text-ink-primary font-semibold" id="wl-size">278 MB + 3.8 MB</dd></div>
+     <div><dt class="eyebrow">GPU memory</dt><dd class="text-ink-primary font-semibold" id="wl-vram">945 MB</dd></div>
+     <div><dt class="eyebrow">Size</dt><dd class="text-ink-primary font-semibold">0.5B, 4-bit</dd></div>
+     <div><dt class="eyebrow">Speed</dt><dd class="text-ink-primary font-semibold" id="wl-tps">On first run</dd></div>
+    </dl>
+    <div class="bar" id="wl-bar" hidden><span></span></div>
+    <p id="wl-text" class="mono text-[12px]" aria-live="polite">Weights + runtime per the WebLLM 0.2.79 model list. The browser caches them after the first load.</p>
+    <p>Small model, for a quick taste. Answers use the top 3 matches from faq.json and kb_graph.json. Reference on the same page: gemma4:e4b on the M2 scored 14 of 16 at 2.2 s median (brain/LOCAL_VS_CLOUD.md).</p>
+   </div>
+  </div>
+  <div class="rt" id="rt-pc">
+   <div class="min-w-0"><p class="font-headline-sm text-headline-sm">Your PC (Ollama + ask server)</p><p class="src mt-1">gemma4:e4b · 9.6 GB · ports 8741, 8742, 8744</p></div>
+   <div class="min-w-0 space-y-2"><p><span class="pill" id="pc-state">Not checked</span></p><button type="button" id="pc-check" class="btn"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">lan</span>Check my PC</button></div>
+   <div class="min-w-0 space-y-2 font-body-sm text-body-sm text-on-surface-variant">
+    <p class="eyebrow">Install · macOS, Linux best effort</p>
+    <div class="cmd"><pre id="cmd-install">git clone https://github.com/jravinder/base-aitx.git &amp;&amp; cd base-aitx &amp;&amp; bash scripts/install-local.sh</pre><button type="button" class="btn" data-copy="cmd-install"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span>Copy</button></div>
+    <div class="cmd"><pre id="cmd-stop">bash scripts/install-local.sh --uninstall</pre><button type="button" class="btn" data-copy="cmd-stop"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span>Copy</button></div>
+    <p>Installs Ollama, pulls gemma4:e4b, starts the pages (8741), the ask server (8742) and, with a Kokoro venv, the voice server (8744). Opens <span class="src">localhost:8741/web/models.html#try</span>. Needs access to the base-fleet repo.</p>
+    <p id="pc-note" class="text-ink-primary"></p>
+   </div>
+  </div>
+  <div class="rt" id="rt-jetson">
+   <div class="min-w-0"><p class="font-headline-sm text-headline-sm">Jetson edge box</p><p class="src mt-1">gemma4:e4b · Ollama over Tailscale</p></div>
+   <div class="min-w-0"><span class="pill ok">Measured 2026-09-26</span></div>
+   <div class="min-w-0 space-y-2 font-body-sm text-body-sm text-on-surface-variant"><p>12 of 16 correct · 4 of 4 policy questions to Base · 3.0 s median · 1.45 s first token · 64 ms round trip · <span class="src">brain/LOCAL_VS_CLOUD.md</span></p><div class="cmd"><pre id="cmd-jetson">python3 -m brain.answer --backend jetson m001 "what did my node earn this week"</pre><button type="button" class="btn" data-copy="cmd-jetson"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span>Copy</button></div></div>
+  </div>
+  <div class="rt" id="rt-windows">
+   <div class="min-w-0"><p class="font-headline-sm text-headline-sm">Windows PC beside the battery</p><p class="src mt-1">x86 · Ollama</p></div>
+   <div class="min-w-0"><span class="pill">Next measurement · #80</span></div>
+   <div class="min-w-0 space-y-2 font-body-sm text-body-sm text-on-surface-variant"><p>Same 16 questions on an x86 PC with Ollama · <span class="src">docs/GAPS.md</span></p><div class="cmd"><pre id="cmd-win">python3 -m brain.score</pre><button type="button" class="btn" data-copy="cmd-win"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span>Copy</button></div></div>
+  </div>
+ </section>
+
+ <section class="space-y-3" aria-labelledby="cards-title">
+  <div class="min-w-0">
+   <span class="eyebrow">Model registry</span>
+   <h2 id="cards-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Models and paths, measured</h2>
+  </div>
+  <div id="cards"></div>
+ </section>
+
+ <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-3" aria-labelledby="leaves-title">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+   <div class="min-w-0"><span class="eyebrow">Data flow</span><h2 id="leaves-title" class="font-headline-sm text-headline-sm text-ink-primary mt-1">What leaves your home</h2></div>
+   <button id="cloud-toggle" type="button" aria-pressed="false" class="btn self-start md:self-auto"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">cloud</span><span id="cloud-toggle-text">Show a cloud choice</span></button>
+  </div>
+  <ul id="flow" class="flowrow" aria-label="Data flow">
+   <li class="node"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">smartphone</span>You</li><li class="arr" aria-hidden="true">→</li>
+   <li class="node"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">router</span>Home network</li><li class="arr" aria-hidden="true">→</li>
+   <li class="node"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">memory</span>PC beside battery: route, model, knowledge, check</li><li class="arr" aria-hidden="true">→</li>
+   <li class="node"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">task_alt</span>Answer + sources</li>
+   <li class="node"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">travel_explore</span>City of Austin records: zip + date range</li>
+   <li class="node cloud"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">cloud</span><span id="cloud-label">Cloud model: when picked</span></li>
+  </ul>
+  <p id="cloud-note" class="font-body-sm text-body-sm text-on-surface-variant">Cloud model runs only for a question you pick it for.</p>
+ </section>
+
+ <footer class="font-body-sm text-body-sm text-outline py-6 border-t border-wire-border">A Base Fleet design. Measured numbers name their source file.</footer>
+</main></div>
+</body></html>

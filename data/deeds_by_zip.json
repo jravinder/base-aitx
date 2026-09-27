@@ -1,0 +1,1289 @@
+{
+ "as_of": "2026-09-26",
+ "universe": "Travis: real property, improvement state code A* (single-family). Williamson: property type RES.",
+ "sources": {
+  "travis": "https://traviscad.org/wp-content/largefiles/2026%20Certified%20Appraisal%20Export%20Supp%200_07182026.zip",
+  "williamson": "https://data.wcad.org (ai3c-c9pf, 2k72-e257, nbn7-h4pp, xs93-mfpk)"
+ },
+ "definitions": {
+  "median_years_since_deed": "median of (as_of - last deed date), parcels with a deed date only",
+  "share_sold_last_2y": "last deed on or after as_of minus 2 years; any transfer, not only arm's-length sales",
+  "share_held_20y_plus": "last deed on or before as_of minus 20 years",
+  "share_homestead": "share of all parcels with an active homestead exemption"
+ },
+ "rows": [
+  {
+   "zip": "76357",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 12,
+   "parcels_with_deed_date": 12,
+   "median_years_since_deed": 3.1,
+   "share_sold_last_2y": 0.167,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.833
+  },
+  {
+   "zip": "76511",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 517,
+   "parcels_with_deed_date": 457,
+   "median_years_since_deed": 8.6,
+   "share_sold_last_2y": 0.142,
+   "share_held_20y_plus": 0.252,
+   "share_homestead": 0.561
+  },
+  {
+   "zip": "76527",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 1853,
+   "parcels_with_deed_date": 1570,
+   "median_years_since_deed": 7.2,
+   "share_sold_last_2y": 0.126,
+   "share_held_20y_plus": 0.168,
+   "share_homestead": 0.591
+  },
+  {
+   "zip": "76530",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 1243,
+   "parcels_with_deed_date": 1117,
+   "median_years_since_deed": 9.2,
+   "share_sold_last_2y": 0.111,
+   "share_held_20y_plus": 0.243,
+   "share_homestead": 0.64
+  },
+  {
+   "zip": "76534",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 9.3,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.0
+  },
+  {
+   "zip": "76537",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 9630,
+   "parcels_with_deed_date": 9418,
+   "median_years_since_deed": 4.2,
+   "share_sold_last_2y": 0.215,
+   "share_held_20y_plus": 0.022,
+   "share_homestead": 0.655
+  },
+  {
+   "zip": "76573",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 17,
+   "parcels_with_deed_date": 16,
+   "median_years_since_deed": 14.6,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.438,
+   "share_homestead": 0.765
+  },
+  {
+   "zip": "76574",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 7684,
+   "parcels_with_deed_date": 7309,
+   "median_years_since_deed": 7.2,
+   "share_sold_last_2y": 0.146,
+   "share_held_20y_plus": 0.181,
+   "share_homestead": 0.668
+  },
+  {
+   "zip": "76577",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 89,
+   "parcels_with_deed_date": 79,
+   "median_years_since_deed": 10.4,
+   "share_sold_last_2y": 0.076,
+   "share_held_20y_plus": 0.253,
+   "share_homestead": 0.685
+  },
+  {
+   "zip": "76578",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 906,
+   "parcels_with_deed_date": 822,
+   "median_years_since_deed": 8.7,
+   "share_sold_last_2y": 0.124,
+   "share_held_20y_plus": 0.193,
+   "share_homestead": 0.604
+  },
+  {
+   "zip": "76721",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 2,
+   "parcels_with_deed_date": 2,
+   "median_years_since_deed": 5.5,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.5
+  },
+  {
+   "zip": "77835",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 4.5,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.0
+  },
+  {
+   "zip": "78167",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 10.8,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.0
+  },
+  {
+   "zip": "78521",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 27.6,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 1.0,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "78527",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 5.3,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.0
+  },
+  {
+   "zip": "78605",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 10,
+   "parcels_with_deed_date": 10,
+   "median_years_since_deed": 8.4,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.8
+  },
+  {
+   "zip": "78610",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1884,
+   "parcels_with_deed_date": 1862,
+   "median_years_since_deed": 2.5,
+   "share_sold_last_2y": 0.34,
+   "share_held_20y_plus": 0.073,
+   "share_homestead": 0.633
+  },
+  {
+   "zip": "78611",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 8,
+   "parcels_with_deed_date": 8,
+   "median_years_since_deed": 10.5,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.25,
+   "share_homestead": 0.25
+  },
+  {
+   "zip": "78612",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 166,
+   "parcels_with_deed_date": 160,
+   "median_years_since_deed": 12.0,
+   "share_sold_last_2y": 0.056,
+   "share_held_20y_plus": 0.25,
+   "share_homestead": 0.392
+  },
+  {
+   "zip": "78613",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 25327,
+   "parcels_with_deed_date": 25182,
+   "median_years_since_deed": 8.5,
+   "share_sold_last_2y": 0.12,
+   "share_held_20y_plus": 0.142,
+   "share_homestead": 0.747
+  },
+  {
+   "zip": "78615",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 607,
+   "parcels_with_deed_date": 527,
+   "median_years_since_deed": 8.8,
+   "share_sold_last_2y": 0.114,
+   "share_held_20y_plus": 0.22,
+   "share_homestead": 0.56
+  },
+  {
+   "zip": "78616",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 6,
+   "parcels_with_deed_date": 4,
+   "median_years_since_deed": 22.2,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.5,
+   "share_homestead": 0.667
+  },
+  {
+   "zip": "78617",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 5132,
+   "parcels_with_deed_date": 5072,
+   "median_years_since_deed": 8.8,
+   "share_sold_last_2y": 0.111,
+   "share_held_20y_plus": 0.172,
+   "share_homestead": 0.584
+  },
+  {
+   "zip": "78619",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 7,
+   "parcels_with_deed_date": 7,
+   "median_years_since_deed": 3.9,
+   "share_sold_last_2y": 0.429,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.143
+  },
+  {
+   "zip": "78620",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1128,
+   "parcels_with_deed_date": 1119,
+   "median_years_since_deed": 7.5,
+   "share_sold_last_2y": 0.101,
+   "share_held_20y_plus": 0.113,
+   "share_homestead": 0.79
+  },
+  {
+   "zip": "78621",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 3543,
+   "parcels_with_deed_date": 3397,
+   "median_years_since_deed": 5.2,
+   "share_sold_last_2y": 0.143,
+   "share_held_20y_plus": 0.091,
+   "share_homestead": 0.594
+  },
+  {
+   "zip": "78624",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 5.0,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.0
+  },
+  {
+   "zip": "78626",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 15413,
+   "parcels_with_deed_date": 15110,
+   "median_years_since_deed": 5.6,
+   "share_sold_last_2y": 0.136,
+   "share_held_20y_plus": 0.083,
+   "share_homestead": 0.661
+  },
+  {
+   "zip": "78627",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 13,
+   "parcels_with_deed_date": 13,
+   "median_years_since_deed": 10.9,
+   "share_sold_last_2y": 0.385,
+   "share_held_20y_plus": 0.385,
+   "share_homestead": 0.462
+  },
+  {
+   "zip": "78628",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 21278,
+   "parcels_with_deed_date": 21129,
+   "median_years_since_deed": 4.6,
+   "share_sold_last_2y": 0.221,
+   "share_held_20y_plus": 0.069,
+   "share_homestead": 0.806
+  },
+  {
+   "zip": "78630",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 2,
+   "parcels_with_deed_date": 2,
+   "median_years_since_deed": 9.9,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "78633",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 16864,
+   "parcels_with_deed_date": 16712,
+   "median_years_since_deed": 4.9,
+   "share_sold_last_2y": 0.235,
+   "share_held_20y_plus": 0.061,
+   "share_homestead": 0.867
+  },
+  {
+   "zip": "78634",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 17985,
+   "parcels_with_deed_date": 17786,
+   "median_years_since_deed": 5.1,
+   "share_sold_last_2y": 0.162,
+   "share_held_20y_plus": 0.065,
+   "share_homestead": 0.706
+  },
+  {
+   "zip": "78640",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 27,
+   "parcels_with_deed_date": 26,
+   "median_years_since_deed": 5.0,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.038,
+   "share_homestead": 0.148
+  },
+  {
+   "zip": "78641",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 39910,
+   "parcels_with_deed_date": 39498,
+   "median_years_since_deed": 5.4,
+   "share_sold_last_2y": 0.148,
+   "share_held_20y_plus": 0.068,
+   "share_homestead": 0.734
+  },
+  {
+   "zip": "78642",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 13616,
+   "parcels_with_deed_date": 13166,
+   "median_years_since_deed": 4.1,
+   "share_sold_last_2y": 0.231,
+   "share_held_20y_plus": 0.044,
+   "share_homestead": 0.742
+  },
+  {
+   "zip": "78645",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 8754,
+   "parcels_with_deed_date": 8526,
+   "median_years_since_deed": 6.0,
+   "share_sold_last_2y": 0.139,
+   "share_held_20y_plus": 0.12,
+   "share_homestead": 0.682
+  },
+  {
+   "zip": "78646",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 3,
+   "parcels_with_deed_date": 3,
+   "median_years_since_deed": 16.1,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.333,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "78652",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1873,
+   "parcels_with_deed_date": 1869,
+   "median_years_since_deed": 7.1,
+   "share_sold_last_2y": 0.112,
+   "share_held_20y_plus": 0.163,
+   "share_homestead": 0.774
+  },
+  {
+   "zip": "78653",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 14289,
+   "parcels_with_deed_date": 14195,
+   "median_years_since_deed": 5.6,
+   "share_sold_last_2y": 0.128,
+   "share_held_20y_plus": 0.065,
+   "share_homestead": 0.7
+  },
+  {
+   "zip": "78654",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 370,
+   "parcels_with_deed_date": 368,
+   "median_years_since_deed": 8.6,
+   "share_sold_last_2y": 0.114,
+   "share_held_20y_plus": 0.212,
+   "share_homestead": 0.438
+  },
+  {
+   "zip": "78655",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 4.5,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "78660",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 35599,
+   "parcels_with_deed_date": 35517,
+   "median_years_since_deed": 7.2,
+   "share_sold_last_2y": 0.103,
+   "share_held_20y_plus": 0.132,
+   "share_homestead": 0.726
+  },
+  {
+   "zip": "78663",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 4,
+   "parcels_with_deed_date": 4,
+   "median_years_since_deed": 16.5,
+   "share_sold_last_2y": 0.25,
+   "share_held_20y_plus": 0.5,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "78664",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 16053,
+   "parcels_with_deed_date": 15920,
+   "median_years_since_deed": 8.7,
+   "share_sold_last_2y": 0.114,
+   "share_held_20y_plus": 0.2,
+   "share_homestead": 0.657
+  },
+  {
+   "zip": "78665",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 21322,
+   "parcels_with_deed_date": 21276,
+   "median_years_since_deed": 6.3,
+   "share_sold_last_2y": 0.14,
+   "share_held_20y_plus": 0.083,
+   "share_homestead": 0.737
+  },
+  {
+   "zip": "78669",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 4631,
+   "parcels_with_deed_date": 4579,
+   "median_years_since_deed": 6.9,
+   "share_sold_last_2y": 0.137,
+   "share_held_20y_plus": 0.144,
+   "share_homestead": 0.681
+  },
+  {
+   "zip": "78674",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 40,
+   "parcels_with_deed_date": 35,
+   "median_years_since_deed": 9.3,
+   "share_sold_last_2y": 0.2,
+   "share_held_20y_plus": 0.286,
+   "share_homestead": 0.675
+  },
+  {
+   "zip": "78681",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 17673,
+   "parcels_with_deed_date": 17438,
+   "median_years_since_deed": 8.6,
+   "share_sold_last_2y": 0.122,
+   "share_held_20y_plus": 0.183,
+   "share_homestead": 0.767
+  },
+  {
+   "zip": "78699",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 14.7,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.0
+  },
+  {
+   "zip": "78700",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 2,
+   "parcels_with_deed_date": 2,
+   "median_years_since_deed": 1.9,
+   "share_sold_last_2y": 0.5,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.0
+  },
+  {
+   "zip": "78701",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 4736,
+   "parcels_with_deed_date": 4736,
+   "median_years_since_deed": 5.3,
+   "share_sold_last_2y": 0.172,
+   "share_held_20y_plus": 0.045,
+   "share_homestead": 0.391
+  },
+  {
+   "zip": "78702",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 7720,
+   "parcels_with_deed_date": 7585,
+   "median_years_since_deed": 7.2,
+   "share_sold_last_2y": 0.126,
+   "share_held_20y_plus": 0.151,
+   "share_homestead": 0.568
+  },
+  {
+   "zip": "78703",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 6707,
+   "parcels_with_deed_date": 6669,
+   "median_years_since_deed": 8.5,
+   "share_sold_last_2y": 0.14,
+   "share_held_20y_plus": 0.202,
+   "share_homestead": 0.701
+  },
+  {
+   "zip": "78704",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 12340,
+   "parcels_with_deed_date": 12222,
+   "median_years_since_deed": 7.0,
+   "share_sold_last_2y": 0.143,
+   "share_held_20y_plus": 0.154,
+   "share_homestead": 0.606
+  },
+  {
+   "zip": "78705",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 4077,
+   "parcels_with_deed_date": 4010,
+   "median_years_since_deed": 6.6,
+   "share_sold_last_2y": 0.143,
+   "share_held_20y_plus": 0.159,
+   "share_homestead": 0.221
+  },
+  {
+   "zip": "78714",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 2,
+   "parcels_with_deed_date": 2,
+   "median_years_since_deed": 8.4,
+   "share_sold_last_2y": 0.5,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "78715",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 2,
+   "parcels_with_deed_date": 2,
+   "median_years_since_deed": 10.7,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.5
+  },
+  {
+   "zip": "78717",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 9338,
+   "parcels_with_deed_date": 9335,
+   "median_years_since_deed": 8.6,
+   "share_sold_last_2y": 0.108,
+   "share_held_20y_plus": 0.126,
+   "share_homestead": 0.739
+  },
+  {
+   "zip": "78718",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 2,
+   "parcels_with_deed_date": 2,
+   "median_years_since_deed": 14.6,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.5,
+   "share_homestead": 0.0
+  },
+  {
+   "zip": "78719",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 360,
+   "parcels_with_deed_date": 341,
+   "median_years_since_deed": 13.0,
+   "share_sold_last_2y": 0.082,
+   "share_held_20y_plus": 0.296,
+   "share_homestead": 0.533
+  },
+  {
+   "zip": "78721",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 3626,
+   "parcels_with_deed_date": 3543,
+   "median_years_since_deed": 7.1,
+   "share_sold_last_2y": 0.126,
+   "share_held_20y_plus": 0.179,
+   "share_homestead": 0.64
+  },
+  {
+   "zip": "78722",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 2156,
+   "parcels_with_deed_date": 2138,
+   "median_years_since_deed": 7.6,
+   "share_sold_last_2y": 0.135,
+   "share_held_20y_plus": 0.213,
+   "share_homestead": 0.624
+  },
+  {
+   "zip": "78723",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 9709,
+   "parcels_with_deed_date": 9635,
+   "median_years_since_deed": 6.9,
+   "share_sold_last_2y": 0.143,
+   "share_held_20y_plus": 0.16,
+   "share_homestead": 0.71
+  },
+  {
+   "zip": "78724",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 5886,
+   "parcels_with_deed_date": 5871,
+   "median_years_since_deed": 7.8,
+   "share_sold_last_2y": 0.078,
+   "share_held_20y_plus": 0.188,
+   "share_homestead": 0.624
+  },
+  {
+   "zip": "78725",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 3916,
+   "parcels_with_deed_date": 3894,
+   "median_years_since_deed": 8.0,
+   "share_sold_last_2y": 0.088,
+   "share_held_20y_plus": 0.134,
+   "share_homestead": 0.602
+  },
+  {
+   "zip": "78726",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 2661,
+   "parcels_with_deed_date": 2648,
+   "median_years_since_deed": 9.1,
+   "share_sold_last_2y": 0.105,
+   "share_held_20y_plus": 0.198,
+   "share_homestead": 0.841
+  },
+  {
+   "zip": "78727",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 7394,
+   "parcels_with_deed_date": 7366,
+   "median_years_since_deed": 10.7,
+   "share_sold_last_2y": 0.092,
+   "share_held_20y_plus": 0.274,
+   "share_homestead": 0.713
+  },
+  {
+   "zip": "78728",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 4662,
+   "parcels_with_deed_date": 4645,
+   "median_years_since_deed": 8.7,
+   "share_sold_last_2y": 0.085,
+   "share_held_20y_plus": 0.213,
+   "share_homestead": 0.671
+  },
+  {
+   "zip": "78729",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 7155,
+   "parcels_with_deed_date": 7104,
+   "median_years_since_deed": 9.9,
+   "share_sold_last_2y": 0.109,
+   "share_held_20y_plus": 0.231,
+   "share_homestead": 0.654
+  },
+  {
+   "zip": "78730",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 2946,
+   "parcels_with_deed_date": 2938,
+   "median_years_since_deed": 8.2,
+   "share_sold_last_2y": 0.135,
+   "share_held_20y_plus": 0.147,
+   "share_homestead": 0.805
+  },
+  {
+   "zip": "78731",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 8583,
+   "parcels_with_deed_date": 8553,
+   "median_years_since_deed": 9.0,
+   "share_sold_last_2y": 0.122,
+   "share_held_20y_plus": 0.235,
+   "share_homestead": 0.802
+  },
+  {
+   "zip": "78732",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 5368,
+   "parcels_with_deed_date": 5352,
+   "median_years_since_deed": 8.4,
+   "share_sold_last_2y": 0.116,
+   "share_held_20y_plus": 0.107,
+   "share_homestead": 0.825
+  },
+  {
+   "zip": "78733",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 3234,
+   "parcels_with_deed_date": 3205,
+   "median_years_since_deed": 10.1,
+   "share_sold_last_2y": 0.115,
+   "share_held_20y_plus": 0.213,
+   "share_homestead": 0.796
+  },
+  {
+   "zip": "78734",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 9759,
+   "parcels_with_deed_date": 9676,
+   "median_years_since_deed": 7.7,
+   "share_sold_last_2y": 0.129,
+   "share_held_20y_plus": 0.149,
+   "share_homestead": 0.693
+  },
+  {
+   "zip": "78735",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 4421,
+   "parcels_with_deed_date": 4387,
+   "median_years_since_deed": 8.6,
+   "share_sold_last_2y": 0.121,
+   "share_held_20y_plus": 0.186,
+   "share_homestead": 0.812
+  },
+  {
+   "zip": "78736",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 2882,
+   "parcels_with_deed_date": 2869,
+   "median_years_since_deed": 9.3,
+   "share_sold_last_2y": 0.115,
+   "share_held_20y_plus": 0.261,
+   "share_homestead": 0.779
+  },
+  {
+   "zip": "78737",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1635,
+   "parcels_with_deed_date": 1629,
+   "median_years_since_deed": 10.4,
+   "share_sold_last_2y": 0.122,
+   "share_held_20y_plus": 0.254,
+   "share_homestead": 0.827
+  },
+  {
+   "zip": "78738",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 11271,
+   "parcels_with_deed_date": 11234,
+   "median_years_since_deed": 5.8,
+   "share_sold_last_2y": 0.172,
+   "share_held_20y_plus": 0.053,
+   "share_homestead": 0.824
+  },
+  {
+   "zip": "78739",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 6695,
+   "parcels_with_deed_date": 6689,
+   "median_years_since_deed": 9.5,
+   "share_sold_last_2y": 0.103,
+   "share_held_20y_plus": 0.169,
+   "share_homestead": 0.879
+  },
+  {
+   "zip": "78741",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 5189,
+   "parcels_with_deed_date": 5150,
+   "median_years_since_deed": 8.0,
+   "share_sold_last_2y": 0.1,
+   "share_held_20y_plus": 0.167,
+   "share_homestead": 0.541
+  },
+  {
+   "zip": "78742",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 124,
+   "parcels_with_deed_date": 111,
+   "median_years_since_deed": 10.1,
+   "share_sold_last_2y": 0.09,
+   "share_held_20y_plus": 0.234,
+   "share_homestead": 0.532
+  },
+  {
+   "zip": "78744",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 11797,
+   "parcels_with_deed_date": 11756,
+   "median_years_since_deed": 6.9,
+   "share_sold_last_2y": 0.126,
+   "share_held_20y_plus": 0.188,
+   "share_homestead": 0.671
+  },
+  {
+   "zip": "78745",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 16533,
+   "parcels_with_deed_date": 16410,
+   "median_years_since_deed": 8.5,
+   "share_sold_last_2y": 0.123,
+   "share_held_20y_plus": 0.236,
+   "share_homestead": 0.672
+  },
+  {
+   "zip": "78746",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 8953,
+   "parcels_with_deed_date": 8817,
+   "median_years_since_deed": 8.9,
+   "share_sold_last_2y": 0.135,
+   "share_held_20y_plus": 0.224,
+   "share_homestead": 0.802
+  },
+  {
+   "zip": "78747",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 7210,
+   "parcels_with_deed_date": 7164,
+   "median_years_since_deed": 6.4,
+   "share_sold_last_2y": 0.121,
+   "share_held_20y_plus": 0.107,
+   "share_homestead": 0.7
+  },
+  {
+   "zip": "78748",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 15664,
+   "parcels_with_deed_date": 15635,
+   "median_years_since_deed": 8.6,
+   "share_sold_last_2y": 0.094,
+   "share_held_20y_plus": 0.186,
+   "share_homestead": 0.745
+  },
+  {
+   "zip": "78749",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 10435,
+   "parcels_with_deed_date": 10426,
+   "median_years_since_deed": 10.6,
+   "share_sold_last_2y": 0.101,
+   "share_held_20y_plus": 0.273,
+   "share_homestead": 0.798
+  },
+  {
+   "zip": "78750",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 8490,
+   "parcels_with_deed_date": 8376,
+   "median_years_since_deed": 9.4,
+   "share_sold_last_2y": 0.112,
+   "share_held_20y_plus": 0.221,
+   "share_homestead": 0.765
+  },
+  {
+   "zip": "78751",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 3695,
+   "parcels_with_deed_date": 3644,
+   "median_years_since_deed": 8.4,
+   "share_sold_last_2y": 0.127,
+   "share_held_20y_plus": 0.206,
+   "share_homestead": 0.562
+  },
+  {
+   "zip": "78752",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 2771,
+   "parcels_with_deed_date": 2659,
+   "median_years_since_deed": 8.1,
+   "share_sold_last_2y": 0.129,
+   "share_held_20y_plus": 0.224,
+   "share_homestead": 0.583
+  },
+  {
+   "zip": "78753",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 7682,
+   "parcels_with_deed_date": 7645,
+   "median_years_since_deed": 10.7,
+   "share_sold_last_2y": 0.091,
+   "share_held_20y_plus": 0.292,
+   "share_homestead": 0.7
+  },
+  {
+   "zip": "78754",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 6630,
+   "parcels_with_deed_date": 6618,
+   "median_years_since_deed": 7.4,
+   "share_sold_last_2y": 0.082,
+   "share_held_20y_plus": 0.089,
+   "share_homestead": 0.673
+  },
+  {
+   "zip": "78756",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 2546,
+   "parcels_with_deed_date": 2518,
+   "median_years_since_deed": 9.3,
+   "share_sold_last_2y": 0.115,
+   "share_held_20y_plus": 0.23,
+   "share_homestead": 0.676
+  },
+  {
+   "zip": "78757",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 8171,
+   "parcels_with_deed_date": 8115,
+   "median_years_since_deed": 8.6,
+   "share_sold_last_2y": 0.127,
+   "share_held_20y_plus": 0.203,
+   "share_homestead": 0.716
+  },
+  {
+   "zip": "78758",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 7155,
+   "parcels_with_deed_date": 7111,
+   "median_years_since_deed": 9.9,
+   "share_sold_last_2y": 0.111,
+   "share_held_20y_plus": 0.26,
+   "share_homestead": 0.65
+  },
+  {
+   "zip": "78759",
+   "counties": [
+    "travis",
+    "williamson"
+   ],
+   "parcels": 10227,
+   "parcels_with_deed_date": 10184,
+   "median_years_since_deed": 10.2,
+   "share_sold_last_2y": 0.112,
+   "share_held_20y_plus": 0.266,
+   "share_homestead": 0.802
+  },
+  {
+   "zip": "78764",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 0.3,
+   "share_sold_last_2y": 1.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.0
+  },
+  {
+   "zip": "78781",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 5.9,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "78860",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 17.8,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "78947",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 2,
+   "parcels_with_deed_date": 2,
+   "median_years_since_deed": 11.4,
+   "share_sold_last_2y": 0.5,
+   "share_held_20y_plus": 0.5,
+   "share_homestead": 0.5
+  },
+  {
+   "zip": "79613",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 21.5,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 1.0,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "79626",
+   "counties": [
+    "williamson"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 0.2,
+   "share_sold_last_2y": 1.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 1.0
+  },
+  {
+   "zip": "79739",
+   "counties": [
+    "travis"
+   ],
+   "parcels": 1,
+   "parcels_with_deed_date": 1,
+   "median_years_since_deed": 2.3,
+   "share_sold_last_2y": 0.0,
+   "share_held_20y_plus": 0.0,
+   "share_homestead": 0.0
+  }
+ ]
+}
