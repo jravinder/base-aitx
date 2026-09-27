@@ -423,7 +423,17 @@
       $("fit-box").hidden = !fit.length;
       renderUtility();
       const util = ptc && ptc.zips && house.zip && ptc.zips[house.zip];
-      setText("record-src", `Found in City of Austin permits${util ? " and Power to Choose" : ""}`);
+      // Name the permits that matter for a battery, newest first, so the source is visible, not a label.
+      const KEY = {built: "built", new_construction: "built", service_upgrade: "service upgrade", electrical: "electrical work",
+        solar: "solar", battery: "battery", pool: "pool", remodel: "remodel"};
+      const seen = new Set(), keys = [];
+      for (const e of house.events.slice().sort((a, b) => String(b.date).localeCompare(String(a.date)))) {
+        const k = KEY[e.kind];
+        if (!k || seen.has(k)) continue;
+        seen.add(k); keys.push(`${k} ${String(e.date).slice(0, 4)}`);
+        if (keys.length === 3) break;
+      }
+      setText("record-src", `Found in ${n} City of Austin permit${n === 1 ? "" : "s"}${keys.length ? ": " + keys.join(" · ") : ""}${util ? ". Utility from Power to Choose" : ""}.`);
       setText("house-address", titleCase(house.address));
       setText("house-zip", `Austin ${house.zip || ""}`.trim());
     }
