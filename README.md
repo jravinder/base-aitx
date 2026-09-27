@@ -26,37 +26,97 @@ Goal: a private AI assistant for each member, on a small computer beside the bat
 - **Energy and credits.** The backup reserve always comes first. [Energy](https://base-aitx.vercel.app/web/energy.html)
 - **Control tower.** Runs jobs by priority and moves them when a node fails, without touching the reserve (simulation). [Control tower](https://base-aitx.vercel.app/web/tower.html)
 
-## Run it locally
+## Quick start
+
+Needs Python 3.11+ (standard library only). Node 20+ only for the tests.
 
 ```sh
-python3 -m http.server 8741          # from the repo root
-open http://localhost:8741/web/start.html
-
-python3 -m brain.ask --serve 8742    # Help / Base Brain answers, and photo reading
-                                       # needs GEMINI_API_KEY in the environment for photo reading
-
-bash scripts/install-local.sh        # local AI on your PC, with Ollama
+git clone https://github.com/jravinder/base-aitx && cd base-aitx
+python3 -m http.server 8741                  # serve the static site from the repo root
+open http://localhost:8741/web/start.html    # pages run on the checked-in JSON; no keys needed
 ```
 
-Optional: a local Kokoro voice server for the voice guide, `brain/tts.py`.
+Optional pieces:
 
-## How it's built
+```sh
+cp .env.example .env && set -a && source .env && set +a   # add GEMINI_API_KEY
+python3 -m brain.ask --serve 8742    # Help / Base Brain answers and photo reading on localhost
+bash scripts/install-local.sh        # Super Local AI on your own PC, with Ollama
+python3 -m sim --nodes 50 --seed 7   # rerun the fleet simulation -> out/report.json, out/report.md
+python3 grid/insights.py             # rerun the ERCOT analysis
+```
 
-Static pages with JSON data built by collectors, served by `brain/ask.py`. Base Brain is a knowledge graph in `store/kb.py`. `sim/` runs the fleet simulation for the control tower. `grid/insights.py` runs the ERCOT analysis. `api/read-photo.js` reads photos on Vercel with a server-side key. Voice clips are Kokoro audio in `web/audio`.
+## Reproduce the demo
 
-## Data sources
+1. Serve the site (Quick start). The demo path: `/web/start.html` → Base Ready → onboarding: confirm one of the 40 Austin homes, answer what records miss, upload a photo (samples in `demo/photos/`), then Rewards and Status. Compute: `/web/compute-home.html` → Try it, Plans, Energy, Control tower.
+2. Photo reading and the Gemini voice need `GEMINI_API_KEY`. On localhost, run `brain.ask` (above); on Vercel, set the key in the project and `api/read-photo.js` and `api/tts.js` use it server-side. Without a key, the photo step falls back to a person-review note and the voice guide to recorded clips and the browser voice.
+3. Environment variables: see [.env.example](.env.example). Keys stay server-side; nothing is sent from the browser to Gemini directly.
+4. Tests: `npm i -D playwright && npx playwright install chromium`, then `node tests/<name>.cjs`; Python tests: `python3 -m pytest tests/`.
 
-Every number names its source file. See `web/data/sources.json` and the Data sources page for the full list: City of Austin permits, ERCOT day-ahead prices and load, Census ACS, Power to Choose.
+## Tech stack and architecture
 
-Tags on every claim: **Measured** (we ran it, or counted it in public data), **Simulation** (our sim or model, with its dials named), **Our design** (a choice we made, not a measurement).
+- **Pages:** static HTML, Tailwind (CDN) and vanilla JS in `web/`, one shared shell (`web/shell.js`), styles from a Stitch design.
+- **Data:** stdlib Python collectors (`collect/`, `grid/`, `house/`) write JSON and one SQLite store (`store/build.py` → `data/fleet.db`). Pages read small JSON files, so they work without a server.
+- **Answers:** `brain/ask.py` answers in a fixed order: recorded answer, route policy questions to Base, Base Brain knowledge base (`store/kb.py`), template, then a local model (Ollama, `gemma4:e4b`).
+- **Photo and voice:** Gemini 3.8 Flash reads the photo (`api/read-photo.js`); voice is recorded Kokoro clips (`web/audio`), then Gemini TTS (`api/tts.js`), then the browser voice.
+- **Simulation:** `sim/` models the fleet (nodes, jobs, reserve floor, earnings) for the control tower and plans.
+- **Hosting:** Vercel (static files + two serverless functions). GA4 for page views.
 
-## Honest limits
+```mermaid
+flowchart LR
+  subgraph Public data
+    P[City of Austin permits]
+    E[ERCOT prices and load]
+    C[Census ACS, CAD, Power to Choose, NWS]
+  end
+  P & E & C --> COL[Collectors<br/>collect/ grid/ house/]
+  COL --> DB[(data/fleet.db<br/>+ JSON files)]
+  DB --> WEB[Static pages<br/>web/]
+  SIM[Fleet simulation<br/>sim/] --> WEB
+  WEB -->|photo| RP[api/read-photo.js] --> G[Gemini 3.8 Flash]
+  WEB -->|voice| TTS[api/tts.js] --> G
+  WEB -->|questions| ASK[brain/ask.py] --> KB[Base Brain<br/>store/kb.py] & OL[Local model<br/>Ollama gemma4:e4b]
+```
 
+## Datasets and provenance
+
+Every number on a page names its source file and a tag: **Measured** (we ran it or counted it in public data), **Simulation** (our model, with its dials named), **Our design** (a choice, not a measurement). The full list with URLs is in [web/data/sources.json](web/data/sources.json) and on each page's Data sources strip.
+
+| Data | Source | Kind |
+|---|---|---|
+| Building and electrical permits (the 40 demo homes, market counts) | City of Austin Open Data, Socrata `3syk-w9eu` | Public |
+| Prices, load, fuel mix | ERCOT dashboards and DAM/RTM archive (report 13060), load history | Public |
+| Households, income | U.S. Census ACS 5-year (Census Reporter), TIGERweb ZCTAs | Public |
+| Year built, appraisal | Travis and Williamson appraisal districts | Public |
+| Retail plans | Power to Choose (PUCT) | Public |
+| Weather alerts | National Weather Service | Public |
+| Substations, libraries, rec centres, schools | OpenStreetMap, Austin Public Library, City of Austin, TEA | Public |
+| FAQ corpus | Base Power public site and help centre, copied by hand | Public |
+| GPU and token prices | RunPod, Lambda, Together AI pricing pages (2026-09-26) | Public |
+| Local vs cloud answers, permit judgments, data QA | Our runs (`brain/LOCAL_VS_CLOUD.md`, `store/`) | Measured |
+| Fleet, earnings, onboarding funnel, easy-fit funnel | Our simulations (`sim/`, `grid/`) | Simulation (synthetic) |
+| Demo photos | Openly licensed images, see `demo/photos/ATTRIBUTION.md` | Public |
+
+The 40 demo homes are real Austin addresses from public permit records; there are no owner names. Answers, points and photos a visitor adds stay in that browser.
+
+## Known limitations
+
+- The demo covers 40 preset Austin homes, not any address.
 - Target PC speed is not yet measured on the Windows-class PC beside the battery (#80).
 - One PC's power draw is unresolved: 0.4 kW in the fleet sim vs 350 W in the hub model (#85).
-- 40% GPU use is a dial we set, not a measured demand number.
+- 40% GPU use is a dial we set, not a measured demand number; earnings and savings are Simulation.
+- There is no hyperscaler price in the comparison yet; the measured public rate is RunPod.
 - Amps read from outside-the-panel photos are rarely readable; a person confirms breaker size.
-- Base's real lead-to-install drop rate is unknown; our conversion view uses assumed dials.
+- The hand-off to a person is shown, not staffed: a photo for review is saved in the browser only.
+- Points and bill credit are our proposal, not a Base program. Base's real lead-to-install drop rate is unknown.
+
+## Next steps
+
+- Any Austin address: look up permits live from Socrata instead of the preset 40.
+- Measure speed and power on the target PC (#80, #85) and run the member AI with the internet unplugged on battery.
+- Add a hyperscaler GPU price to the comparison.
+- Real reviewer queue for photos, during Base hours.
+- Log 30 days of job arrivals at one pilot hub to replace the 40% GPU dial.
 
 ## Demo photos
 
