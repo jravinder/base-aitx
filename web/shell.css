@@ -218,3 +218,10 @@ html.sh-touring body{padding-top:var(--sh-top)}
 /* Entry name and track chip beside the brand (subtle). */
 .sh-group .sh-entry{font-weight:600}
 .sh-group .sh-entry-track{opacity:.7;font-weight:500}
+
+/* Credit line (shell.js builtBy). */
+.sh-built{max-width:var(--sh-max,1440px);margin:24px auto 0;padding:12px 24px 24px;box-sizing:border-box;font:13px/1.5 "Plus Jakarta Sans",system-ui,sans-serif;color:#5f6b7a;text-align:left}
+.sh-built a.sh-built-link{color:inherit !important;text-decoration:underline;text-underline-offset:2px}
+.sh-built a.sh-built-link:hover{color:#111c2d !important}
+:root[data-theme="dark"] .sh-built{color:#bdbdbd}
+:root[data-theme="dark"] .sh-built a.sh-built-link:hover{color:#f5f5f5}

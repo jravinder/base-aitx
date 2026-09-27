@@ -103,7 +103,10 @@ const menus = {
   await page.goto('https://fleet.test/web/onboarding.html?track=home&persona=lead');
   await page.waitForSelector('#address-select option', {state:'attached'});
   const nextAddress = await page.locator('#address-select option').nth(1).getAttribute('value');
-  await page.locator('#address-select').selectOption(nextAddress);
+  await page.locator('#address-change').click();
+  await page.locator('#address-input').fill(nextAddress);
+  await page.locator('#address-list li').first().waitFor();
+  await page.locator('#address-input').press('Enter');
   assert.equal(new URL(await page.locator('[data-sh-id="brain"]').getAttribute('href')).searchParams.get('address'),nextAddress); checks++;
   await page.goto('https://fleet.test/web/demo.html?step=5');
   await page.waitForSelector('.sh-nav');

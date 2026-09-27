@@ -41,7 +41,8 @@
     }
     box.append(list);
     const story = document.querySelector(".sh-story");
-    if (story) story.before(box); else document.body.append(box);
+    const built = document.querySelector(".sh-built");
+    if (story) story.before(box); else if (built) built.before(box); else document.body.append(box);
     // Open by default on wide screens so judges see it; collapsed on phones.
     if (window.matchMedia("(min-width: 900px)").matches) box.open = true;
   }

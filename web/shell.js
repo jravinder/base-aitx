@@ -576,7 +576,16 @@
       a.title = "Your home";
     });
   }
-  function boot() { analytics(); build(); sources(); setTimeout(homeLink, 0); }
+  // Credit line at the bottom of every page; the landing page has its own in the footer.
+  function builtBy() {
+    if (document.querySelector(".sh-built, [data-built-by]")) return;
+    const p = el("p", "sh-built");
+    const link = (href, text) => { const a = el("a", "sh-built-link", text); a.href = href; a.target = "_blank"; a.rel = "noopener"; return a; };
+    p.append("Built by ", link("https://www.linkedin.com/in/jravinder/", "Ravinder Jilkapally"), " · ", link("https://aisoft.us", "aisoft.us"));
+    document.body.append(p);
+  }
+
+  function boot() { analytics(); build(); sources(); builtBy(); setTimeout(homeLink, 0); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();
