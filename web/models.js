@@ -334,7 +334,7 @@
     for (const ev of evs) push({run: id, ...ev});
     push({run: id, ev: "done", result: r, where: "Code routes in this browser", total});
   }
-  const fromFaq = (q, it) => ({path: "faq", template: it.id, answer: it.a, sources: [{n: 1, label: it.source || "Base Fleet FAQ", url: it.source_url}], model_calls: 0});
+  const fromFaq = (q, it) => ({path: "faq", template: it.id, answer: it.a, sources: [{n: 1, label: it.source || "Base Brain FAQ", url: it.source_url}], model_calls: 0});
   function where(text, icon) {
     $("run-where-text").textContent = text;
     $("run-where").querySelector(".material-symbols-outlined").textContent = icon;

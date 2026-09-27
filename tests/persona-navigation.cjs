@@ -40,7 +40,7 @@ const menus = {
     assert.equal(new URL(page.url()).searchParams.get('persona'),persona);
     assert.equal(await page.locator('.sh-perspective,#sh-track,#sh-persona').count(),0);
     assert.equal(await page.locator('.sh-beats').count(),0);
-    assert.equal(await page.locator('.sh-name').textContent(),'Base Fleet');
+    assert.equal(await page.locator('.sh-name').textContent(),track==='compute'?'Base Super Local AI':'Base Ready');
     assert.equal(await page.locator('html').getAttribute('data-theme'),'light');
     assert(!/signed in|authenticated|logged in|demo perspective/i.test(await page.locator('.sh-nav').textContent()));
     const links=await page.locator('.sh-link').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.shId,url:n.href})));
@@ -96,7 +96,7 @@ const menus = {
   ]) {
    await page.goto(`https://fleet.test/web/brain.html?track=${track}&persona=${persona}&${context}=${encodeURIComponent(value)}`);
    await page.waitForSelector('.sh-nav');
-   assert.match(await page.locator('.sh-group').first().innerText(), new RegExp(track === 'home' ? 'Base Ready' : 'Base Super Local AI'));
+   assert.match(await page.locator('.sh-name').first().innerText(), new RegExp(track === 'home' ? 'Base Ready' : 'Base Super Local AI'));
    const link = new URL(await page.locator(`[data-sh-id="${destination}"]`).getAttribute('href'));
    assert.equal(link.searchParams.get(context), value); checks++;
   }

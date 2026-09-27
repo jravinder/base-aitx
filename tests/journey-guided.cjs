@@ -31,7 +31,7 @@ function check(value, message) { assert.ok(value, message); checks++; }
    check(await page.locator('#continue-question').isDisabled(),'Choice required');
    check(await page.locator('#credits, #tell-btn, #invite-banner').count() === 0,'No reward/referral detours');
    check(await page.locator('#home-view [data-milestones]').count() === 1,'One shared milestone tracker');
-   check(/Base Fleet points \(proposal\)/i.test(await page.locator('#home-view [data-milestones]').innerText()),'Rewards labelled as assumed');
+   check(/Base Ready points \(proposal\)/i.test(await page.locator('#home-view [data-milestones]').innerText()),'Rewards labelled as assumed');
    check(!/shared hub|badge|streak|leaderboard/i.test(await page.locator('#home-view').innerText()),'No badges or hub copy');
    const houses = JSON.parse(fs.readFileSync(path.join(root,'house/cohort.json')));
    const house = houses.find(h => h.confirm_with_member.includes('main_breaker_amps') && h.confirm_with_member.includes('has_solar'));

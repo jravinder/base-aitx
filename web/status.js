@@ -47,7 +47,7 @@
     const q = `?address=${encodeURIComponent(addr)}`;
 
     $("addr").textContent = addr;
-    document.title = `Application status | Base Fleet`;
+    document.title = `Application status | Base Ready`;
     $("crumb-home").href = `onboarding.html${q}#home`;
     $("brain-link").href = `brain.html${q}`;
 

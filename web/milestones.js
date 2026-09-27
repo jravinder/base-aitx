@@ -9,7 +9,7 @@
   "use strict";
   const MILESTONES = ["Public records", "Your details", "Photo", "Engineering review", "Installation"];
   const REWARD = {field: 10, photo: 20, complete: 30, neighbour: 50};
-  const LABEL = "Base Fleet points (proposal)";
+  const LABEL = "Base Ready points (proposal)";
   const UNIT = "pts";
   const ICON = '<svg viewBox="0 -960 960 960" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="m233-80 65-281L80-550l288-25 112-265 112 265 288 25-218 189 65 281-247-149L233-80Z"/></svg>'; // Material Symbols "star"
 
