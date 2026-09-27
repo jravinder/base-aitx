@@ -230,7 +230,10 @@ async function integrationCase(browser, width) {
     const original = await page.locator('#address-select').inputValue();
     const other = await page.locator('#address-select option').evaluateAll((nodes, original) => nodes.find(n => n.value !== original)?.value, original);
     assert(other, 'Need a second actual cohort address');
-    await page.locator('#address-select').selectOption(other);
+    await page.locator('#address-change').click();
+    await page.locator('#address-input').fill(other);
+    await page.locator('#address-list li').first().waitFor();
+    await page.locator('#address-input').press('Enter');
     check((await page.locator('.pc-context').innerText()).includes(other), 'Actual home selector updates component');
     check(/0 photos/.test(await page.locator('.pc-count').innerText()), 'Actual home switch clears captures');
     check(await page.locator('.pc-preview').isHidden(), 'No previous-home preview remains');
