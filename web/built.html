@@ -95,8 +95,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
    <p class="font-body-md text-body-md text-on-surface-variant mt-3 max-w-[920px]">Open data tells us about a home before the lead arrives. City of Austin permits, ERCOT prices and load, and Census ACS feed one readiness read per home. The member gets a form that is mostly filled in, guided steps with rewards, a photo check, and help by voice or chat. The Base team gets market intelligence and a conversion view. One knowledge base answers both sides. Each row below names its source file and tags its proof: Measured, Simulation, or Our design.</p>
   </div>
   <div class="grid grid-cols-2 xl:grid-cols-4 gap-3">
-   <div class="stat"><span class="eyebrow">Built</span><span class="v">7</span><span class="s">rows 1, 2, 3, 5, 7, 8, 10</span></div>
-   <div class="stat"><span class="eyebrow">Partly built</span><span class="v">3</span><span class="s">rows 4, 6, 9</span></div>
+   <div class="stat"><span class="eyebrow">Built</span><span class="v">8</span><span class="s">rows 1, 2, 3, 4, 6, 8, 9, 11</span></div>
+   <div class="stat"><span class="eyebrow">Partly built</span><span class="v">3</span><span class="s">rows 5, 7, 10</span></div>
    <div class="stat"><span class="eyebrow">Knowledge base</span><span class="v">169 · 1,075</span><span class="s">nodes · links, <span class="src">web/data/kb_graph.json</span></span></div>
   </div>
   <div class="min-w-0 pt-1">
@@ -109,7 +109,7 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
     <li class="node src0"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">database</span>Open data</li><li class="arr" aria-hidden="true">→</li>
     <li class="node">Readiness</li><li class="arr" aria-hidden="true">→</li>
     <li class="node">Autofill</li><li class="arr" aria-hidden="true">→</li>
-    <li class="node">Guided steps</li><li class="arr" aria-hidden="true">→</li>
+    <li class="node">Guided steps, points</li><li class="arr" aria-hidden="true">→</li>
     <li class="node">Photo check</li><li class="arr" aria-hidden="true">→</li>
     <li class="node">Help: voice, chat</li><li class="arr" aria-hidden="true">→</li>
     <li class="node"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">hub</span>Knowledge base</li>
@@ -127,7 +127,7 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
  <section class="space-y-3" aria-labelledby="reg-title">
   <div class="min-w-0">
    <span class="eyebrow">Register</span>
-   <h2 id="reg-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Ten rows, each checked in the repo</h2>
+   <h2 id="reg-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Eleven rows, each checked in the repo</h2>
   </div>
   <table class="reg" id="built-register">
    <thead><tr><th>#</th><th>What</th><th>Why</th><th>How</th><th>Proof</th><th>Page</th><th>Status</th></tr></thead>
@@ -162,6 +162,15 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
     </tr>
     <tr data-row="4">
      <td class="n">4</td>
+     <td class="first" data-l="What"><b>Points and rewards</b>Every answer, the photo, and finishing all earn points on a visible tracker; inviting a neighbour earns more.</td>
+     <td data-l="Why">Leads stall between steps; a visible next reward and an earn moment keep them moving. Neighbour invites grow the network.</td>
+     <td data-l="How">Shared tracker on every onboarding page, reward chips on each button, an earn toast, a points chip in the nav, and a Redeem section. <span class="src">web/milestones.js</span>, <span class="src">web/rewards.html</span>, <span class="src">docs/adr/0018-reward-points-replace-kwh-credit.md</span></td>
+     <td data-l="Proof"><span class="num">Up to 100 pts per home + 50 per neighbour</span><span class="pill tag">Our design</span></td>
+     <td data-l="Page"><a class="pg" href="rewards.html">rewards.html</a><a class="pg" href="onboarding.html#home">onboarding.html</a></td>
+     <td data-l="Status"><span class="pill ok">Built</span><span class="sub">Redeeming is a proposal, not live</span></td>
+    </tr>
+    <tr data-row="5">
+     <td class="n">5</td>
      <td class="first" data-l="What"><b>Photo check</b>The photo is classified on the spot and the member gets a retake tip right away.</td>
      <td data-l="Why">The photo step is where leads stall. A tip in seconds replaces a wait for a human review.</td>
      <td data-l="How">Guided shot list saved on this device (<span class="src">web/photo-checklist.js</span>). gemma4:e4b through local Ollama returns photo type and pass, with a fixed safe retake tip (<span class="src">web/voice.js</span>, prompt from <span class="src">panel/read.py</span>). Reads on 5 reference photos (<span class="src">web/extraction-gallery.js</span>).</td>
@@ -169,8 +178,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="voice.html">voice.html</a><a class="pg" href="onboarding.html#home">journey gallery</a></td>
      <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: read breaker amps (<span class="src">docs/GAPS.md</span>); live check runs when local Ollama is up</span></td>
     </tr>
-    <tr data-row="5">
-     <td class="n">5</td>
+    <tr data-row="6">
+     <td class="n">6</td>
      <td class="first" data-l="What"><b>Voice guide</b>One question at a time, spoken, with a caregiver view.</td>
      <td data-l="Why">Some members need more help to finish, for example older members or members with a disability.</td>
      <td data-l="How">Browser speech synthesis and recognition. Questions come from the home's public record. Optional Kokoro-82M voice. <span class="src">web/voice.js</span>, <span class="src">brain/tts.py</span></td>
@@ -178,8 +187,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="voice.html">voice.html</a></td>
      <td data-l="Status"><span class="pill ok">Built</span></td>
     </tr>
-    <tr data-row="6">
-     <td class="n">6</td>
+    <tr data-row="7">
+     <td class="n">7</td>
      <td class="first" data-l="What"><b>Chat, any hour</b>Help answers from the knowledge base at any hour. Account, contract and bill questions go to the Base Help Center.</td>
      <td data-l="Why">Members ask at night and on weekends. Base team time goes to account work.</td>
      <td data-l="How">Indexed FAQs with sources, plus the ask server with gemma4:e4b on the local machine. <span class="src">web/brain.html</span>, <span class="src">web/data/faq.json</span>, <span class="src">brain/ask.py</span></td>
@@ -187,8 +196,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="brain.html">brain.html</a></td>
      <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: hand off to a person during Base hours</span></td>
     </tr>
-    <tr data-row="7">
-     <td class="n">7</td>
+    <tr data-row="8">
+     <td class="n">8</td>
      <td class="first" data-l="What"><b>Knowledge base</b>One second brain behind every answer, each answer with its source.</td>
      <td data-l="Why">Every answer stays the same across chat, voice and the Base team view.</td>
      <td data-l="How">Docs, FAQs and data files built into graph tables in <span class="src">data/fleet.db</span> by <span class="src">store/kb.py</span>, exported to <span class="src">web/data/kb_graph.json</span></td>
@@ -197,8 +206,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Status"><span class="pill ok">Built</span></td>
     </tr>
     <tr class="grp"><td colspan="7">Base side</td></tr>
-    <tr data-row="8">
-     <td class="n">8</td>
+    <tr data-row="9">
+     <td class="n">9</td>
      <td class="first" data-l="What"><b>Market intelligence</b>Where Base installs, where ready homes concentrate, and grid prices by hour.</td>
      <td data-l="Why">Go to market with zip-level targets before spend.</td>
      <td data-l="How">Permits by month, status and zip (<span class="src">house/market.py</span> → <span class="src">data/market.json</span>). Easy-fit estimate per zip from ACS and permits (<span class="src">house/funnel.py</span> → <span class="src">data/funnel.json</span>). ERCOT day-ahead prices (<span class="src">data/ercot_dam_hourly_2025_2026.csv</span>).</td>
@@ -206,8 +215,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="market.html">market</a><a class="pg" href="explorer.html">explorer</a><a class="pg" href="grid.html">grid</a></td>
      <td data-l="Status"><span class="pill ok">Built</span></td>
     </tr>
-    <tr data-row="9">
-     <td class="n">9</td>
+    <tr data-row="10">
+     <td class="n">10</td>
      <td class="first" data-l="What"><b>Conversion view</b>Leads through each stage to installation, with the dials that move them.</td>
      <td data-l="Why">Shows where leads stall and what a guided photo step is worth.</td>
      <td data-l="How">Stage model with dials: photo drop 35% by default, 15% with guided collection. Both are assumptions. <span class="src">sim/stages.py</span> → <span class="src">web/data/report.json</span></td>
@@ -215,8 +224,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="index.html">index.html</a></td>
      <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: Base's real drop rate</span></td>
     </tr>
-    <tr data-row="10">
-     <td class="n">10</td>
+    <tr data-row="11">
+     <td class="n">11</td>
      <td class="first" data-l="What"><b>Same knowledge base for Base</b>The Base team asks the same brain, with its own FAQ set.</td>
      <td data-l="Why">Team and member answers stay in step.</td>
      <td data-l="How">Base team tab on Help for the Base admin role. <span class="src">web/brain.html</span>, FAQ audience field in <span class="src">web/data/faq.json</span></td>
@@ -238,8 +247,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
    <p class="font-body-md text-body-md text-on-surface-variant mt-3 max-w-[920px]">Our answer: a control tower for private AI next door. The PC beside the battery and a station on the feeder run open models for the member, with the backup reserve held first and the fleet holding up when a station goes offline, price spikes, or the scheduler drops. Spare GPU time sells to local businesses. Each row names its source file and tags its proof: Measured, Simulation, or Our design. A Base Fleet proposal.</p>
   </div>
   <div class="grid grid-cols-2 xl:grid-cols-4 gap-3">
-   <div class="stat"><span class="eyebrow">Built</span><span class="v">4</span><span class="s">rows 11, 14, 16, 17</span></div>
-   <div class="stat"><span class="eyebrow">Partly built</span><span class="v">3</span><span class="s">rows 12, 13, 15</span></div>
+   <div class="stat"><span class="eyebrow">Built</span><span class="v">4</span><span class="s">rows 12, 15, 17, 18</span></div>
+   <div class="stat"><span class="eyebrow">Partly built</span><span class="v">3</span><span class="s">rows 13, 14, 16</span></div>
    <div class="stat"><span class="eyebrow">Open gaps</span><span class="v">3</span><span class="s">row 18: #80, #85, demand</span></div>
    <div class="stat"><span class="eyebrow">Local model, measured</span><span class="v">18 of 20</span><span class="s">gemma4:e4b, 2.2 s median, <span class="src">brain/LOCAL_VS_CLOUD.md</span></span></div>
   </div>
@@ -262,8 +271,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
    <thead><tr><th>#</th><th>What</th><th>Why</th><th>How</th><th>Proof</th><th>Page</th><th>Status</th></tr></thead>
    <tbody>
     <tr class="grp"><td colspan="7">Member</td></tr>
-    <tr data-row="11">
-     <td class="n">11</td>
+    <tr data-row="12">
+     <td class="n">12</td>
      <td class="first" data-l="What"><b>Why local AI</b>Ask a question and the station on your street answers. Take a station offline or spike the grid price and ask again.</td>
      <td data-l="Why">A battery home has steady power and a network for a small computer. Base is building the stations; a member AI service is a Base Fleet proposal.</td>
      <td data-l="How">Pitch page with a live ask box and a fleet toggle for station offline, price spike and battery at reserve. <span class="src">web/pitch.js</span></td>
@@ -271,8 +280,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="pitch.html">pitch.html</a></td>
      <td data-l="Status"><span class="pill ok">Built</span></td>
     </tr>
-    <tr data-row="12">
-     <td class="n">12</td>
+    <tr data-row="13">
+     <td class="n">13</td>
      <td class="first" data-l="What"><b>How it thinks, and Try it</b>Each question runs through route, model, check and answer, step by step, with sources.</td>
      <td data-l="Why">A member trusts an answer they can watch being made.</td>
      <td data-l="How">gemma4:e4b through Ollama on the home PC, or Qwen2.5-0.5B in the browser with WebLLM. <span class="src">web/models.js</span>, <span class="src">brain/ask.py</span>, <span class="src">scripts/install-local.sh</span></td>
@@ -280,8 +289,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="models.html">models.html</a><a class="pg" href="models.html#try">Try it</a></td>
      <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: target PC speed (#80)</span></td>
     </tr>
-    <tr data-row="13">
-     <td class="n">13</td>
+    <tr data-row="14">
+     <td class="n">14</td>
      <td class="first" data-l="What"><b>Your own AI</b>A chat that runs on the PC beside the battery, with backup hours, today's grid prices and the Base Help Center one tap away.</td>
      <td data-l="Why">The member's questions and home data stay with the member.</td>
      <td data-l="How">Home-first answers with sources, a backup-hours calculator from the battery settings, ERCOT prices. <span class="src">web/copilot.js</span></td>
@@ -289,8 +298,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="copilot.html">copilot.html</a></td>
      <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: run on the target PC (#80); internet-off test</span></td>
     </tr>
-    <tr data-row="14">
-     <td class="n">14</td>
+    <tr data-row="15">
+     <td class="n">15</td>
      <td class="first" data-l="What"><b>Energy and credits</b>What the battery and PC did this week, hour by hour, with the backup reserve locked.</td>
      <td data-l="Why">The member sees what the hardware earned and that backup came first.</td>
      <td data-l="How">Seven days replayed on real ERCOT day-ahead prices; reserve setting tool; proposed credit. <span class="src">web/energy.js</span>, <span class="src">data/members.json</span></td>
@@ -299,8 +308,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Status"><span class="pill ok">Built</span></td>
     </tr>
     <tr class="grp"><td colspan="7">Plans and stations</td></tr>
-    <tr data-row="15">
-     <td class="n">15</td>
+    <tr data-row="16">
+     <td class="n">16</td>
      <td class="first" data-l="What"><b>Three offers: Use, Host, Sell</b>Members buy GPU time like energy, host a GPU for a share, and Base sells spare station time to local businesses.</td>
      <td data-l="Why">Open models are close to the frontier; people lack the GPU. Base has the homes, installers and care to supply it.</td>
      <td data-l="How">Offer table, rate card, open-model catalog by machine, comparison with cloud APIs, the data rule. <span class="src">docs/COMPUTE_PLANS.md</span></td>
@@ -308,8 +317,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="plans.html">plans.html</a></td>
      <td data-l="Status"><span class="pill warn">Partly built</span><span class="sub">Next: set the Host revenue share</span></td>
     </tr>
-    <tr data-row="16">
-     <td class="n">16</td>
+    <tr data-row="17">
+     <td class="n">17</td>
      <td class="first" data-l="What"><b>Stations</b>A station could sit at the Menchaca Road Branch library, with homes on the same feeder covering each other.</td>
      <td data-l="Why">A station holds more batteries and GPUs than one home and serves the homes around it.</td>
      <td data-l="How">City of Austin permits in a 1.5 km ring; station layout of 4 batteries and 4 GPU PCs; feeder topology. <span class="src">grid/library_node.py</span>, <span class="src">web/data/block.json</span></td>
@@ -317,8 +326,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Page"><a class="pg" href="overview.html">overview</a><a class="pg" href="placement.html">placement</a><a class="pg" href="block.html">block</a></td>
      <td data-l="Status"><span class="pill ok">Built</span></td>
     </tr>
-    <tr data-row="17">
-     <td class="n">17</td>
+    <tr data-row="18">
+     <td class="n">18</td>
      <td class="first" data-l="What"><b>Job rules and the control tower</b>Backup reserve first, work stays on the feeder, grid price sets the pace.</td>
      <td data-l="Why">Compute runs only on power the home can spare.</td>
      <td data-l="How">Fleet simulation on ERCOT day-ahead prices with node, region and scheduler interruptions. <span class="src">sim/fleet.py</span>, <span class="src">sim/server.py</span></td>
@@ -327,8 +336,8 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;li
      <td data-l="Status"><span class="pill ok">Built</span><span class="sub">Live controls with python3 -m sim.server</span></td>
     </tr>
     <tr class="grp"><td colspan="7">Open</td></tr>
-    <tr data-row="18">
-     <td class="n">18</td>
+    <tr data-row="19">
+     <td class="n">19</td>
      <td class="first" data-l="What"><b>Open gaps</b>Three measurements before the numbers are claims.</td>
      <td data-l="Why">Speed, power and demand set what a member pays and earns.</td>
      <td data-l="How">#80 target PC speed; #85 one PC power draw (0.4 kW in the sim, 350 W in the hub model); demand, 40% GPU use as a dial. <span class="src">docs/COMPUTE_FLOW.md</span>, <span class="src">sim/fleet.py UTIL</span></td>

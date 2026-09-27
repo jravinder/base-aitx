@@ -11,7 +11,7 @@ Timings are recording targets.
 |---|---|---|---|
 | 1 | 0:00 to 0:20 | /web/start.html | 20 s |
 | 2 | 0:20 to 0:45 | /web/onboarding.html#home | 25 s |
-| 3 | 0:45 to 1:05 | /web/onboarding.html#home | 20 s |
+| 3 | 0:45 to 1:05 | /web/onboarding.html#home, /web/rewards.html#redeem (5 s) | 20 s |
 | 4 | 1:05 to 1:35 | /web/onboarding.html#home (photo step), /web/voice.html | 30 s |
 | 5 | 1:35 to 1:52 | /web/status.html | 17 s |
 | 6 | 1:52 to 2:05 | /web/rewards.html | 13 s |
@@ -38,12 +38,13 @@ earlier batteries, with dates. The member sees their house from the record first
 
 Show the record card and its source link.
 
-**Beat 3, 0:45 to 1:05. Only what records miss.** same page
+**Beat 3, 0:45 to 1:05. Only what records miss.** same page, then `/web/rewards.html#redeem`
 
 "The member answers only what the records miss, one question at a time. Every answer earns
-points, and the tracker at the top shows how close they are."
+points: a plus-10 toast pops, and the points chip in the nav ticks up right there."
 
-Click one answer; show the reward chip and the tracker move.
+Click one answer; show the "+10 pts" toast and the nav chip update. Cut 5 seconds to
+rewards.html and show the Redeem section.
 
 **Beat 4, 1:05 to 1:35. One photo, guided; voice for anyone.** photo step, then `/web/voice.html`
 
