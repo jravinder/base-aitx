@@ -2,7 +2,7 @@
 
 Built at the Base Power × AITX Talent Hackathon, Sep 25 to 27, 2026. Two entries share this repo. Start at the [landing page](https://base-aitx.vercel.app/web/start.html).
 
-Demo video: [Loom walkthrough](https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019).
+Demo videos: [Base Ready](https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019) · [Base Super Local AI](https://www.loom.com/share/37a225004ab248bc874401470ef2653d).
 
 ## What we built for Track 2, Orchestration: Base Ready
 
