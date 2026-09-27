@@ -62,12 +62,13 @@
    <div class="ob-done-line" id="find-summary" hidden>
     <span class="material-symbols-outlined ob-check" aria-hidden="true">check_circle</span>
     <p id="find-summary-text"></p>
+    <button class="ob-link" type="button" data-drawer="permits" aria-controls="ob-drawer">Permits</button>
     <button id="find-change" class="ob-link" type="button">Change</button>
    </div>
    <div class="ob-step-body" id="find-body">
     <div class="ob-record" id="record-card">
      <p class="ob-addr" id="record-address">...</p>
-     <p class="ob-src-line" id="record-src">Found in City of Austin permits</p>
+     <p class="ob-src-line"><span id="record-src">Found in City of Austin permits</span> <button class="ob-link" type="button" data-drawer="permits" aria-controls="ob-drawer">See permits</button></p>
     </div>
     <div class="ob-actions ob-actions-row">
      <button id="confirm-property" class="ob-primary" type="button" disabled><span id="confirm-label">Yes, this is my home</span><span aria-hidden="true">→</span></button>
