@@ -1,5 +1,5 @@
 #!/bin/bash
-# Base Fleet local AI: one-shot setup on your own PC. Everything runs on this machine.
+# Base Super Local AI: one-shot setup on your own PC. Everything runs on this machine.
 #
 #   git clone https://github.com/jravinder/base-aitx.git && cd base-aitx && bash scripts/install-local.sh
 #
