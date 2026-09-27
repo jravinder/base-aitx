@@ -43,12 +43,13 @@ cp .env.example .env && set -a && source .env && set +a   # add GEMINI_API_KEY
 python3 -m brain.ask --serve 8742    # Help / Base Brain answers and photo reading on localhost
 bash scripts/install-local.sh        # Super Local AI on your own PC, with Ollama
 python3 -m sim --nodes 50 --seed 7   # rerun the fleet simulation -> out/report.json, out/report.md
+python3 -m sim.server --port 8732    # live control tower: http://localhost:8732/tower.html
 python3 grid/insights.py             # rerun the ERCOT analysis
 ```
 
 ## Reproduce the demo
 
-1. Serve the site (Quick start). The demo path: `/web/start.html` → Base Ready → onboarding: confirm one of the 40 Austin homes, answer what records miss, upload a photo (samples in `demo/photos/`), then Rewards and Status. Compute: `/web/compute-home.html` → Try it, Plans, Energy, Control tower.
+1. Serve the site (Quick start). The demo path: `/web/start.html` → Base Ready → onboarding: confirm one of the 40 Austin homes, answer what records miss, upload a photo (samples in `demo/photos/`), then Rewards and Status. Base Super Local AI: `/web/compute-home.html` → Try it (a model runs in your browser with WebGPU, or on your PC after `scripts/install-local.sh`), Plans, Energy, Control tower.
 2. Photo reading and the Gemini voice need `GEMINI_API_KEY`. On localhost, run `brain.ask` (above); on Vercel, set the key in the project and `api/read-photo.js` and `api/tts.js` use it server-side. Without a key, the photo step falls back to a person-review note and the voice guide to recorded clips and the browser voice.
 3. Environment variables: see [.env.example](.env.example). Keys stay server-side; nothing is sent from the browser to Gemini directly.
 4. Tests: `npm i -D playwright && npx playwright install chromium`, then `node tests/<name>.cjs`; Python tests: `python3 -m pytest tests/`.
@@ -59,23 +60,33 @@ python3 grid/insights.py             # rerun the ERCOT analysis
 - **Data:** stdlib Python collectors (`collect/`, `grid/`, `house/`) write JSON and one SQLite store (`store/build.py` → `data/fleet.db`). Pages read small JSON files, so they work without a server.
 - **Answers:** `brain/ask.py` answers in a fixed order: recorded answer, route policy questions to Base, Base Brain knowledge base (`store/kb.py`), template, then a local model (Ollama, `gemma4:e4b`).
 - **Photo and voice:** Gemini 3.8 Flash reads the photo (`api/read-photo.js`); voice is recorded Kokoro clips (`web/audio`), then Gemini TTS (`api/tts.js`), then the browser voice.
-- **Simulation:** `sim/` models the fleet (nodes, jobs, reserve floor, earnings) for the control tower and plans.
+- **Super Local AI:** in the browser, WebLLM (MLC) runs a small open model on WebGPU with no install (`web/models.js`); on a home PC, `scripts/install-local.sh` sets up Ollama with `gemma4:e4b` (9.6 GB, one time), and the same answer server runs against it.
+- **Control tower and simulation:** `sim/` models the fleet (nodes, jobs, backup reserve floor, earnings, failover); `sim/server.py` runs it live for the control tower; `grid/library_node.py` models a neighbourhood station.
 - **Hosting:** Vercel (static files + two serverless functions). GA4 for page views.
+
+**Base Ready**
 
 ```mermaid
 flowchart LR
-  subgraph Public data
-    P[City of Austin permits]
-    E[ERCOT prices and load]
-    C[Census ACS, CAD, Power to Choose, NWS]
-  end
-  P & E & C --> COL[Collectors<br/>collect/ grid/ house/]
-  COL --> DB[(data/fleet.db<br/>+ JSON files)]
-  DB --> WEB[Static pages<br/>web/]
-  SIM[Fleet simulation<br/>sim/] --> WEB
-  WEB -->|photo| RP[api/read-photo.js] --> G[Gemini 3.8 Flash]
-  WEB -->|voice| TTS[api/tts.js] --> G
-  WEB -->|questions| ASK[brain/ask.py] --> KB[Base Brain<br/>store/kb.py] & OL[Local model<br/>Ollama gemma4:e4b]
+  P[City of Austin permits] & C[Census, CAD, Power to Choose] & E[ERCOT] --> COL[Collectors<br/>collect/ grid/ house/]
+  COL --> DB[(data/fleet.db + JSON)]
+  DB --> ON[Onboarding, Status, Rewards<br/>web/]
+  ON -->|photo| RP[api/read-photo.js] --> G[Gemini 3.8 Flash]
+  ON -->|voice| TTS[api/tts.js] --> G
+  ON -->|questions| ASK[brain/ask.py] --> KB[Base Brain<br/>store/kb.py]
+  ON -->|uncertain field or photo| H[Person reviews]
+```
+
+**Base Super Local AI**
+
+```mermaid
+flowchart LR
+  M[Member question or business job] --> BR[Browser: WebLLM on WebGPU]
+  M --> PC[Home PC beside the battery<br/>Ollama gemma4:e4b]
+  M --> ST[Base station on the feeder]
+  PC & ST --> T[Control tower<br/>sim/server.py]
+  T -->|backup reserve first| BAT[Battery]
+  T --> EN[Energy and earnings<br/>web/energy.html]
 ```
 
 ## Datasets and provenance
