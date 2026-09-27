@@ -1,0 +1,43 @@
+{
+  "note": "One prompt for every photo reader: web/photo-check.js (PC model), brain/ask.py and api/read-photo.js (Gemini). {label} and {asks} come from the shot.",
+  "default": "meter_closeup",
+  "prompt": "You check one photo that a homeowner took for a home battery installation.\nThis photo is for the shot \"{label}\". The shot asks for: {asks}\nThe homeowner keeps every door and cover closed and does not touch equipment. A closed panel door or cover is correct. Judge only what is visible from outside.\nReturn ONLY JSON with these fields:\n{\"photo_type\": \"panel_open|panel_closed|meter_exterior|other\", \"cover_off\": bool, \"main_breaker_amps\": int|null, \"brand\": str|null, \"location\": \"indoor|outdoor|unknown\", \"issues\": [str], \"pass\": bool, \"retake_reason\": str|null, \"confidence\": 0-1}\nRules:\n- pass = true when this photo clearly shows what this shot asks for. Judge only this shot. Small print only matters when the shot asks for a label. pass = false when the photo is visibly blurry, too dark or too far away, even if you can still tell what it shows. Other shots cover other details, so do not ask for them.\n- retake_reason = null when pass is true. Otherwise one short, plain instruction for this shot only, 20 words or fewer, for example \"Step back so the whole meter and the wall around it are in the photo.\"\n- Never ask the homeowner to open a door, remove a cover, or touch equipment.\n- main_breaker_amps and brand: fill them only when a label is readable from outside. Otherwise null.\n- issues: short notes an engineer should see, such as rust, water or damage visible from outside.\n- confidence: how sure you are about pass.",
+  "shots": {
+    "meter_closeup": {
+      "label": "Meter close-up",
+      "asks": "the whole electric meter, large, in focus and lit well enough to see what kind of meter it is. Small print on the meter does not need to be readable."
+    },
+    "meter_surroundings": {
+      "label": "Meter surroundings",
+      "asks": "the meter with the wall around it and the nearby ground and space, taken a few steps back."
+    },
+    "meter_left": {
+      "label": "Left of meter",
+      "asks": "the wall and open space to the left of the meter."
+    },
+    "meter_right": {
+      "label": "Right of meter",
+      "asks": "the wall and open space to the right of the meter."
+    },
+    "adjacent_wall": {
+      "label": "Adjacent wall",
+      "asks": "the next wall around the nearest corner from the meter, with the ground beside it."
+    },
+    "behind_fence": {
+      "label": "Behind fence",
+      "asks": "the space behind a fence next to the meter wall, if it is safe to reach."
+    },
+    "closed_breaker_box": {
+      "label": "Closed breaker box",
+      "asks": "the outside of the closed breaker box, with its door closed."
+    },
+    "disconnect_rating": {
+      "label": "Visible disconnect rating",
+      "asks": "the amperage label on a disconnect or breaker box, only where it is visible from outside."
+    },
+    "panel_area": {
+      "label": "Surrounding panel area",
+      "asks": "where the closed breaker box is, with the wall and space around it, taken a few steps back."
+    }
+  }
+}

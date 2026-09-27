@@ -68,6 +68,8 @@
     main.href = `onboarding.html${q}#home`;
     voice.href = `voice.html${q}`;
     const hasPhoto = s.photo && s.addr === addr;
+    // A photo the member asked a Base reviewer to check (photo-check.js).
+    $("photo-review").hidden = !read(`base-fleet:review:v1:${addr}`);
     // Voice answers earn no per-answer credit (milestones.js); a voice-guide photo does.
     const mark = (a, kind) => {
       if ((a.dataset.reward || null) === kind) return;

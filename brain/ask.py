@@ -14,6 +14,7 @@ Usage:
   python3 -m brain.ask "How many Base permits in August 2026?"
   python3 -m brain.ask --insights          # run brain/questions80.py, write brain/insights.json
   python3 -m brain.ask --serve 8742        # POST /ask {"q": "..."}; POST /ask?stream=1 streams NDJSON steps
+                                           # POST /photo/read {"image": base64, "mime", "shot"} checks one checklist photo with Gemini
 
 Order: cache (an exact match in brain/insights.json), then Base policy (route to Base support),
 then templates (brain/templates.py: a fixed query, no model call), then the knowledge base
@@ -755,6 +756,68 @@ def run_insights(path=os.path.join(ROOT, "brain", "insights.json")):
           f"agent {doc['median_agent_seconds']} s -> {path}")
 
 
+# ---------- photo reading (Gemini, key from the environment only) ----------
+
+PHOTO_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
+PHOTO_MAX = 4 * 1024 * 1024
+PHOTO_TYPES = ("panel_open", "panel_closed", "meter_exterior", "other")
+
+
+PHOTO_SHOTS = os.path.join(os.path.dirname(__file__), "..", "web", "data", "photo-shots.json")
+
+
+def photo_prompt(shot=None):
+    """Shot-aware prompt from web/data/photo-shots.json, shared with the page and api/read-photo.js."""
+    with open(PHOTO_SHOTS) as f:
+        cfg = json.load(f)
+    shot = shot if shot in cfg["shots"] else cfg["default"]
+    s = cfg["shots"][shot]
+    return shot, cfg["prompt"].replace("{label}", s["label"]).replace("{asks}", s["asks"])
+
+
+def read_photo(image_b64, mime="image/jpeg", shot=None):
+    """Returns (status, body). Never includes the key in the body or the log."""
+    key = os.environ.get("GEMINI_API_KEY")
+    if not key:
+        return 503, {"error": "reading unavailable"}
+    image_b64 = re.sub(r"^data:[^,]*,", "", str(image_b64 or ""))
+    if not image_b64 or not re.fullmatch(r"[A-Za-z0-9+/=\s]+", image_b64):
+        return 400, {"error": "image must be base64"}
+    if len(image_b64) * 3 // 4 > PHOTO_MAX:
+        return 413, {"error": "image too large"}
+    mime = mime if mime in ("image/jpeg", "image/png", "image/webp") else "image/jpeg"
+    shot, prompt = photo_prompt(shot)
+    req = urllib.request.Request(
+        f"https://generativelanguage.googleapis.com/v1beta/models/{PHOTO_MODEL}:generateContent",
+        data=json.dumps({"contents": [{"parts": [{"text": prompt}, {"inline_data": {"mime_type": mime, "data": image_b64}}]}],
+                         "generationConfig": {"responseMimeType": "application/json", "temperature": 0}}).encode(),
+        headers={"Content-Type": "application/json", "x-goog-api-key": key})
+    t0 = time.time()
+    try:
+        data = json.loads(urllib.request.urlopen(req, timeout=45).read())
+        text = "".join(p.get("text", "") for p in data["candidates"][0]["content"]["parts"])
+        out = json.loads(text)
+        if not isinstance(out, dict):
+            raise ValueError
+    except Exception:
+        return 502, {"error": "reading failed"}
+    amps = out.get("main_breaker_amps")
+    amps = amps if isinstance(amps, int) and not isinstance(amps, bool) and 30 <= amps <= 600 else None
+    brand = out.get("brand")
+    conf = out.get("confidence")
+    return 200, {
+        "photo_type": out.get("photo_type") if out.get("photo_type") in PHOTO_TYPES else "other",
+        "manufacturer": brand.strip()[:40] if isinstance(brand, str) and brand.strip() else None,
+        "main_breaker_amps": amps,
+        "usable": out.get("pass") is True,
+        "retake_reason": out.get("retake_reason")[:300] if isinstance(out.get("retake_reason"), str) else None,
+        "confidence": max(0.0, min(1.0, float(conf))) if isinstance(conf, (int, float)) and not isinstance(conf, bool) else None,
+        "shot": shot,
+        "model": PHOTO_MODEL,
+        "seconds": round(time.time() - t0, 1),
+    }
+
+
 # ---------- server ----------
 
 class Handler(BaseHTTPRequestHandler):
@@ -823,6 +886,17 @@ class Handler(BaseHTTPRequestHandler):
         return self.reply(404, {"error": "use /learn/approve, /learn/reject or /learn/log"})
 
     def do_POST(self):
+        if self.path.startswith("/photo/read"):
+            try:
+                n = int(self.headers.get("Content-Length", "0"))
+                if n > PHOTO_MAX * 1.4:
+                    return self.reply(413, {"error": "image too large"})
+                body = json.loads(self.rfile.read(n) or b"{}")
+                if not isinstance(body, dict):
+                    raise ValueError
+            except ValueError:
+                return self.reply(400, {"error": "body must be JSON {\"image\": \"<base64>\"}"})
+            return self.reply(*read_photo(body.get("image"), body.get("mime"), body.get("shot")))
         if not (self.path.startswith("/ask") or self.path.startswith("/learn/")):
             return self.reply(404, {"error": "use POST /ask"})
         try:
