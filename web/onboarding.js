@@ -65,7 +65,6 @@
       input: $("address-input"), list: $("address-list"), search: $("address-search"), hint: $("address-hint"),
       confirm: $("confirm-property"),
       line: $("progress-line"), reset: $("reset-progress"), retry: $("retry-load"),
-      zip: $("sample-zip"),
       next: $("continue-question"), back: $("back-question"), help: $("panel-help")};
     if (Object.values(ui).some(v => !v)) return;
 
@@ -423,6 +422,8 @@
         "px-2.5 py-1 rounded bg-surface-subtle text-ink-primary font-body-sm text-body-sm")));
       $("fit-box").hidden = !fit.length;
       renderUtility();
+      const util = ptc && ptc.zips && house.zip && ptc.zips[house.zip];
+      setText("record-src", `Found in City of Austin permits${util ? " and Power to Choose" : ""}`);
       setText("house-address", titleCase(house.address));
       setText("house-zip", `Austin ${house.zip || ""}`.trim());
     }
@@ -450,7 +451,7 @@
 
     function renderConfirm() {
       const ok = isConfirmed();
-      setText("confirm-label", ok ? "Property confirmed" : "Confirm this property");
+      setText("confirm-label", ok ? "Home confirmed" : "Yes, this is my home");
       setText("confirm-note", ok ? "Saved on this device." : "");
       renderStep();
     }
@@ -542,7 +543,6 @@
       closeList();
       showAll = false;
       document.dispatchEvent(new CustomEvent("home-context-changed", {detail: {address: house.address}}));
-      ui.zip.textContent = `Austin ${house.zip || ""}`.trim();
       restore();
       renderFacts();
       if (Object.keys(saved).length || photo) persist();
@@ -695,11 +695,17 @@
       document.dispatchEvent(new CustomEvent("home-photos-open", {detail: {group: "electrical"}}));
       document.getElementById("photo-checklist").scrollIntoView({block: "nearest"});
     });
+    function openSearch() {
+      $("find-search").hidden = false;
+      $("address-change").setAttribute("aria-expanded", "true");
+      ui.input.focus({preventScroll: true});
+    }
     $("find-change").addEventListener("click", () => {
       editing = true;
       renderStep();
-      ui.input.focus({preventScroll: true});
+      openSearch();
     });
+    $("address-change").addEventListener("click", openSearch);
 
     // Side drawer with two tabs: permit history and the records table.
     const drawer = $("ob-drawer"), tabs = ["permits", "records"];

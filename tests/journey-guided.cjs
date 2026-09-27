@@ -37,7 +37,8 @@ function check(value, message) { assert.ok(value, message); checks++; }
    const house = houses.find(h => h.confirm_with_member.includes('main_breaker_amps') && h.confirm_with_member.includes('has_solar'));
    // Find your home: search combobox over the public-record homes, then confirm on the same page.
    check(await page.locator('#address-input[role="combobox"]').count() === 1,'Address search is a combobox');
-   check(/Type your address/.test(await page.locator('#find-title').innerText()),'Type your address is the first step');
+   await page.locator('#address-change').click();
+   check(/Type your address/.test(await page.locator('#find-title').innerText()),'Type your address opens from Change');
    await page.locator('#address-input').fill(house.address.split(' ').slice(1,3).join(' ').toLowerCase());
    await page.waitForSelector('#address-list [role="option"]');
    const optIndex = await page.locator('#address-list [role="option"] strong').evaluateAll((els,a) => els.findIndex(e => e.textContent.toUpperCase() === a), house.address);

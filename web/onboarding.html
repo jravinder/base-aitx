@@ -13,6 +13,16 @@
 <link rel="stylesheet" href="milestones.css">
 <script defer src="extraction-gallery.js"></script>
 <script defer src="shell.js"></script><script defer src="speak.js"></script><script defer src="photo-checklist.js"></script><script defer src="photo-check.js"></script><script defer src="onboarding.js"></script><script defer src="network-demo.js"></script><script defer src="milestones.js"></script>
+<style>
+#find-home .ob-record{border:0;padding:4px 0 0;background:transparent;gap:4px}
+#find-home .ob-addr{font-size:clamp(22px,3.2vw,28px);line-height:1.2;font-weight:700;overflow-wrap:anywhere}
+#find-home .ob-src-line{margin:0;font-size:12.5px;color:var(--ob-muted,#6b7280)}
+#find-home .ob-actions-row{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px}
+#find-home .ob-known{border-top:1px solid var(--ob-line,#e5e7eb);padding-top:8px}
+#find-home .ob-known>summary{cursor:pointer;font-size:13px;color:var(--ob-muted,#6b7280)}
+#find-home .ob-known[open]>summary{margin-bottom:8px}
+#find-home .ob-known .ob-open{margin-top:8px}
+</style>
 </head>
 <body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
 <a class="skip" href="#main">Skip to workspace</a>
@@ -46,7 +56,7 @@
   <section class="ob-step" id="find-home" data-state="now" aria-labelledby="step1-title">
    <header class="ob-step-head">
     <span class="ob-num" aria-hidden="true">1</span>
-    <div class="ob-step-name"><div class="ob-eyebrow-row"><p class="ob-eyebrow">Step 1</p><a class="ob-voice" data-voice-step="records" href="voice.html?track=home&amp;persona=lead&amp;step=records"><span class="material-symbols-outlined" aria-hidden="true">record_voice_over</span>Talk me through it</a></div><h2 id="step1-title">Your home from records</h2></div>
+    <div class="ob-step-name"><div class="ob-eyebrow-row"><p class="ob-eyebrow">Step 1</p><a class="ob-voice" data-voice-step="records" href="voice.html?track=home&amp;persona=lead&amp;step=records"><span class="material-symbols-outlined" aria-hidden="true">record_voice_over</span>Talk me through it</a></div><h2 id="step1-title">Is this your home?</h2></div>
     <span class="ob-chip" data-step-chip></span>
    </header>
    <div class="ob-done-line" id="find-summary" hidden>
@@ -55,7 +65,16 @@
     <button id="find-change" class="ob-link" type="button">Change</button>
    </div>
    <div class="ob-step-body" id="find-body">
-    <div class="ob-field">
+    <div class="ob-record" id="record-card">
+     <p class="ob-addr" id="record-address">...</p>
+     <p class="ob-src-line" id="record-src">Found in City of Austin permits</p>
+    </div>
+    <div class="ob-actions ob-actions-row">
+     <button id="confirm-property" class="ob-primary" type="button" disabled><span id="confirm-label">Yes, this is my home</span><span aria-hidden="true">→</span></button>
+     <button id="address-change" class="ob-btn-2" type="button" aria-expanded="false" aria-controls="find-search">Change</button>
+    </div>
+    <p id="confirm-note" class="ob-note" aria-live="polite"></p>
+    <div class="ob-field" id="find-search" hidden>
      <label id="find-title" class="ob-label" for="address-input">Type your address.</label>
      <div class="ob-search">
       <div class="relative flex-1 min-w-0">
@@ -68,12 +87,8 @@
      <p id="address-hint" class="ob-hint" aria-live="polite"></p>
      <select id="address-select" class="jr-sync" aria-hidden="true" tabindex="-1" disabled><option>Loading properties...</option></select>
     </div>
-    <div class="ob-record" id="record-card">
-     <div class="ob-record-top">
-      <span class="ob-src"><span class="ob-src-dot" aria-hidden="true"></span>Found in City of Austin permits</span>
-      <span class="ob-muted" id="sample-zip">Austin</span>
-     </div>
-     <p class="ob-addr" id="record-address">...</p>
+    <details class="ob-known" id="known-box">
+     <summary>What we already know</summary>
      <div class="ob-facts" id="home-facts">
       <div class="ob-fact"><span class="ob-k">Year built</span><b class="ob-v" id="fact-year">...</b><small id="fact-permits">...</small></div>
       <div class="ob-fact" id="fact-amps-box"><span class="ob-k">Electric service</span><b class="ob-v" id="fact-amps">...</b><small id="fact-amps-src"></small></div>
@@ -83,13 +98,9 @@
       <span class="ob-k">Fit notes from records</span>
       <div class="ob-fit-list" id="fact-fit"></div>
      </div>
-    </div>
-    <div class="ob-actions">
-     <button id="confirm-property" class="ob-primary" type="button" disabled><span id="confirm-label">Confirm this property</span><span aria-hidden="true">→</span></button>
-     <p id="confirm-note" class="ob-note" aria-live="polite"></p>
-    </div>
+     <button class="ob-open" type="button" data-drawer="permits" aria-controls="ob-drawer"><span class="material-symbols-outlined" aria-hidden="true">timeline</span>See the permit history<span class="ob-open-count" id="timeline-count-chip"></span><span class="material-symbols-outlined ob-open-arrow" aria-hidden="true">chevron_right</span></button>
+    </details>
    </div>
-   <button class="ob-open" type="button" data-drawer="permits" aria-controls="ob-drawer"><span class="material-symbols-outlined" aria-hidden="true">timeline</span>See the permit history<span class="ob-open-count" id="timeline-count-chip"></span><span class="material-symbols-outlined ob-open-arrow" aria-hidden="true">chevron_right</span></button>
   </section>
 
   <!-- Step 2: what records miss, one question at a time -->
