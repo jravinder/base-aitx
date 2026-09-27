@@ -59,8 +59,6 @@ const root = path.resolve(__dirname, '..');
     assert(kbLink.pathname.endsWith('/knowledge.html') && kbLink.searchParams.get('kb') && kbLink.hash==='#knowledge');
     assert.equal(kbLink.searchParams.get('track'),'home');
     await page.locator('#q').fill('stay in their homes');
-    await page.waitForTimeout(3000);
-    console.log('DBG2', JSON.stringify(await page.evaluate(()=>({cat:document.querySelector('#ans-cat').textContent, q:document.querySelector('#ans-q').textContent, val:document.querySelector('#q').value}))));
     await page.waitForFunction(()=>document.querySelector('#ans-cat').textContent==='Your zip');
     assert.match(await page.locator('#ans-where').textContent(),/Zip 78745/);
     await page.locator('#q').fill('zzzznomatch');
