@@ -37,10 +37,10 @@ const root = path.resolve(__dirname, '..');
    await page.setViewportSize({width,height:900});
    await page.goto(origin + (track==='home' ? '/' : '/compute'));
    assert.equal(new URL(page.url()).pathname,'/'+track);
-   assert.equal(await page.locator('h1').innerText(),'Pick your track.');
+   assert.equal(await page.locator('h1').innerText(),'What is Base?');
    assert.equal(await page.title(),track==='home'?'Base Ready':'Base Super Local AI');
    assert.equal(await page.locator('#'+track+'-card.is-route').count(),1);
-   assert.equal(await page.locator('main a').count(),7);
+   assert.equal(await page.locator('main a').count(),8);
    assert.equal(await page.locator('select,input,button').count(),0);
    assert.deepEqual((await page.locator('h2').allTextContents()).map(t=>t.trim()),['Base Ready','Base Super Local AI']);
    assert.equal(await page.locator('.sh-nav,.sh-beats').count(),0);
@@ -53,8 +53,8 @@ const root = path.resolve(__dirname, '..');
     assert.equal(target.searchParams.get('track'),t);
    }
    const order=[];
-   for(let i=0;i<5;i++){await page.keyboard.press('Tab');order.push(await page.locator(':focus').getAttribute('id'));}
-   assert.deepEqual(order,['home-customer','home-member','home-admin','compute-customer','compute-admin']);
+   for(let i=0;i<6;i++){await page.keyboard.press('Tab');order.push(await page.locator(':focus').getAttribute('id'));}
+   assert.deepEqual(order,['base-source','home-customer','home-member','home-admin','compute-customer','compute-admin']);
    await page.screenshot({path:path.join(shots,track+'-'+width+'.png'),fullPage:true});
   }
   for(const [track,id,role] of [['home','home-customer','lead'],['home','home-admin','operations'],['compute','compute-customer','gpu'],['compute','compute-admin','fleet']]) {

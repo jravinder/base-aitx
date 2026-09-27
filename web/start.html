@@ -144,11 +144,17 @@
 <!-- Main Canvas Section -->
 <main class="st-wash flex-1 flex flex-col justify-center items-center px-4 py-12 md:py-16">
 <div class="w-full max-w-4xl mx-auto flex flex-col items-center">
-<div class="text-center mb-10 max-w-xl flex flex-col items-center">
-<span class="inline-flex items-center gap-1.5 mb-4 px-2.5 py-1 rounded bg-secondary-container text-ink-primary font-label-caps text-label-caps uppercase border border-secondary-fixed-dim"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">hub</span>One Base network</span>
-<h1 class="font-display-sm text-display-sm md:font-display-lg md:text-display-lg font-bold text-ink-primary tracking-tight">Pick your track.</h1>
-<p class="font-body-lg text-body-lg text-outline mt-2 text-balance">Two doors, one network. Open either one as a customer or as a Base admin.</p>
-</div>
+<section class="mb-10 max-w-3xl w-full" aria-labelledby="what-base">
+<h1 id="what-base" class="font-display-sm text-display-sm md:font-display-lg md:text-display-lg font-bold text-ink-primary tracking-tight text-balance">What is Base?</h1>
+<p class="font-body-lg text-body-lg text-ink-primary mt-3 text-balance">Base Power puts a large backup battery at your home. In an outage it switches the whole house over in under a second. On normal days it charges when power is cheap and helps steady the Texas grid, always keeping a backup reserve for you.</p>
+<ul class="mt-4 flex flex-wrap gap-2 font-body-sm text-body-sm text-ink-primary list-none p-0">
+<li class="px-3 py-1.5 rounded-lg bg-surface-container-lowest border border-wire-border"><b>39.2 kWh</b> battery</li>
+<li class="px-3 py-1.5 rounded-lg bg-surface-container-lowest border border-wire-border">About <b>36 hours</b> of backup from one battery</li>
+<li class="px-3 py-1.5 rounded-lg bg-surface-container-lowest border border-wire-border"><b>30,000+</b> homes in Texas and Illinois</li>
+</ul>
+<p class="font-body-sm text-body-sm text-outline mt-2">From <a id="base-source" class="underline underline-offset-2" href="https://basepowercompany.com/how-it-works" target="_blank" rel="noopener">basepowercompany.com</a>. We are not Base; this is a hackathon entry.</p>
+<p class="font-headline-sm text-headline-sm text-ink-primary mt-8">We built two things on top of it. Pick one:</p>
+</section>
 <!-- Two Entry Cards Grid -->
 <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
 <section class="workspace bg-surface-container-lowest border border-wire-border rounded-xl p-7 flex flex-col justify-between hover:border-outline-variant hover:shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)] transition-all duration-200" id="home-card" aria-labelledby="home-title">
@@ -163,7 +169,7 @@
 </div>
 <h2 class="font-headline-md text-headline-md font-bold text-ink-primary mb-2" id="home-title">Base Ready</h2>
 <p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-2">Base Ready &middot; Track 2</p>
-<p class="font-body-md text-body-md text-outline leading-relaxed mb-6" id="home-description">Review home records, prepare photos, and find answers.</p>
+<p class="font-body-md text-body-md text-outline leading-relaxed mb-6" id="home-description">From address to installed battery, without a phone call.</p>
 <div class="space-y-2.5 pb-6 border-b border-surface-subtle mb-6">
 <div class="flex items-start text-body-sm font-body-sm text-ink-primary">
 <span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">person</span>
@@ -207,7 +213,7 @@
 </div>
 <h2 class="font-headline-md text-headline-md font-bold text-ink-primary mb-2" id="compute-title">Base Super Local AI</h2>
 <p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-2">Base Super Local AI &middot; Track 3</p>
-<p class="font-body-md text-body-md text-outline leading-relaxed mb-6" id="compute-description">Inspect node workloads and energy context.</p>
+<p class="font-body-md text-body-md text-outline leading-relaxed mb-6" id="compute-description">Run AI on a GPU next to the battery. Your data stays local.</p>
 <div class="space-y-2.5 pb-6 border-b border-surface-subtle mb-6">
 <div class="flex items-start text-body-sm font-body-sm text-ink-primary">
 <span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">person</span>
