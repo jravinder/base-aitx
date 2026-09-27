@@ -50,8 +50,8 @@
   const PERSONAS = {
     lead: {track: "home", label: "Customer", start: "home", pages: ["home", "status", "rewards", "brain", "member", "knowledge", "built", "voice"]},
     operations: {track: "home", label: "Base admin", start: "market", pages: ["market", "explorer", "grid", "ask", "dataflow", "admin", "house", "recovery", "wall", "knowledge", "brain", "built", "dataqa", "judgments", "gaps"]},
-    gpu: {track: "compute", label: "Customer", start: "computehome", pages: ["computehome", "copilot", "energy", "plans", "brain", "models", "tower", "block", "knowledge", "built"]},
-    fleet: {track: "compute", label: "Base admin", start: "overview", pages: ["overview", "tower", "placement", "jobs", "index", "plans", "block", "models", "pitch", "grid", "ask", "dataflow", "admin", "knowledge", "brain", "built", "gaps"]}
+    gpu: {track: "compute", label: "Customer", start: "computehome", pages: ["computehome", "copilot", "energy", "plans", "models", "tower", "block", "built"]},
+    fleet: {track: "compute", label: "Base admin", start: "overview", pages: ["overview", "tower", "placement", "jobs", "index", "plans", "block", "models", "pitch", "built", "gaps"]}
   };
   const params = new URLSearchParams(location.search);
   const initialId = currentId();
@@ -198,12 +198,12 @@
     const brand = el("a", "sh-brand");
     brand.href = new URL('start.html?track=' + track, href(ORDER.find(item => item.id === PERSONAS[persona].start))).href;
     brand.title = 'Choose a workspace';
-    const name = el("span", "sh-name", "Base Fleet");
-    brand.append(name);
     // Entry names and event tracks: one place to rename them.
     const ENTRY = {home: {name: "Base Ready", track: "Track 2"}, compute: {name: "Base Super Local AI", track: "Track 3"}};
+    const name = el("span", "sh-name", ENTRY[track].name);
+    brand.append(name);
     const pill = el("span", "sh-group");
-    pill.append(el("span", "sh-entry", ENTRY[track].name), el("span", "sh-entry-track", ` · ${ENTRY[track].track}`));
+    pill.append(el("span", "sh-entry-track", ` · ${ENTRY[track].track}`));
     pill.title = `${ENTRY[track].name}, hackathon ${ENTRY[track].track}`;
     const toggle = el("button", "sh-toggle");
     toggle.type = "button";
@@ -576,7 +576,7 @@
       a.title = "Your home";
     });
   }
-  function boot() { analytics(); build(); storyBar(); sources(); setTimeout(homeLink, 0); }
+  function boot() { analytics(); build(); sources(); setTimeout(homeLink, 0); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();

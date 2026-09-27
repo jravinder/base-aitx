@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your home energy | Base Fleet</title>
+<title>Your home energy | Base Super Local AI</title>
 <link rel="stylesheet" href="assets/stitch/fonts.css">
 <script src="assets/stitch/tailwind.js"></script>
 <script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
@@ -138,9 +138,30 @@
     .twin .badge { position:static; width:auto }
     .twin .twin-img { order:-1 }
   }
+  .done-steps { list-style:none; display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:10px 0 6px }
+  .done-steps li { display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:999px; background:#e6f4ea; color:#1e4d2b; font-size:13px; font-weight:600 }
+  .done-steps li .material-symbols-outlined { font-size:16px }
+  .tag { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:2px 8px; border-radius:4px; background:#fef3c7; color:#78350f; vertical-align:middle }
+  .rw { width:100%; border-collapse:collapse; margin-top:8px; font-size:14px }
+  .rw td { padding:8px 0; border-bottom:1px solid var(--rule) }
+  .rw td:last-child { text-align:right; font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; padding-left:12px }
+  .rw tr.tot td { border-bottom:0; font-weight:700; font-size:16px; color:#1e4d2b }
+  .rw tr.pend td { color:var(--muted); font-style:italic }
 </style>
 <link rel="stylesheet" href="shell.css">
 <link rel="stylesheet" href="milestones.css">
+<script>
+// No saved progress in this browser: show the example finished member (Simulation). Read-only; nothing is written.
+(() => { try {
+  const get = Storage.prototype.getItem;
+  if (new URL(location.href).searchParams.get("address") || get.call(localStorage, "base-fleet:home:v1")) return;
+  const HOME = "Example home";
+  const demo = {"base-fleet:home:v1": {address: HOME},
+    ["base-fleet:journey:v1:" + HOME]: {version: 2, saved: {q1: 1, q2: 1, q3: 1, q4: 1, q5: 1}, open: 5, photo: true}};
+  Storage.prototype.getItem = function (k) { return this === localStorage && k in demo ? JSON.stringify(demo[k]) : get.call(this, k); };
+  window.MEMBER_EXAMPLE = true;
+} catch (e) {} })();
+</script>
 <script defer src="shell.js"></script>
 <script defer src="milestones.js"></script>
 </head>
@@ -149,19 +170,50 @@
 <div class="max-w-7xl mx-auto w-full px-4 sm:px-space-xl py-space-xl flex flex-col gap-space-xl">
 
   <section id="setup-banner" class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg shadow-sm">
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+    <div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md">
       <div class="space-y-1 min-w-0">
-        <div class="flex items-center gap-2 text-warning-amber font-label-caps text-label-caps uppercase">
-          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">hourglass_top</span>
-          <span id="banner-kicker">Setup in progress</span>
+        <div class="flex items-center gap-2 text-primary-container font-label-caps text-label-caps uppercase" id="banner-kick-row">
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true" id="banner-icon">check_circle</span>
+          <span id="banner-kicker">All steps done</span>
         </div>
-        <h1 class="font-headline-lg text-headline-lg text-ink-primary">Your home setup is in progress</h1>
+        <h1 class="font-headline-lg text-headline-lg text-ink-primary" id="banner-title">You're done. Base takes it from here.</h1>
         <p class="text-outline font-body-md text-body-md max-w-3xl" id="next-step-text">Checking your saved progress in this browser.</p>
+        <ul class="done-steps" id="done-steps" aria-label="Your onboarding steps">
+          <li><span class="material-symbols-outlined" aria-hidden="true">check</span>Address</li>
+          <li><span class="material-symbols-outlined" aria-hidden="true">check</span>Home questions</li>
+          <li><span class="material-symbols-outlined" aria-hidden="true">check</span>Panel photo</li>
+        </ul>
+        <p class="font-body-sm text-body-sm text-outline" id="whats-next"><b class="text-ink-primary">What happens next:</b> Base does the engineering review, then books your install. Battery status: not installed yet. Live readings start after installation.</p>
+        <p class="font-body-sm text-body-sm text-outline" id="demo-note" hidden></p>
       </div>
-      <div class="flex items-center gap-space-sm self-start md:self-center shrink-0">
+      <div class="flex items-center gap-space-sm self-start shrink-0">
         <a class="btn px-4 bg-surface-subtle hover:bg-wire-border text-ink-primary font-label-md text-label-md rounded-xl border border-wire-border" href="status.html">Application status</a>
       </div>
     </div>
+  </section>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg" id="done-panels">
+    <section class="md:col-span-2 bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg shadow-sm min-w-0" aria-labelledby="rw-title">
+      <div class="flex flex-wrap items-center justify-between gap-2 pb-space-sm border-b border-wire-border">
+        <h2 id="rw-title" class="font-headline-sm text-headline-sm text-ink-primary">Rewards coming your way</h2>
+        <span class="tag">Our proposal</span>
+      </div>
+      <table class="rw" id="rw-table"><tbody></tbody></table>
+      <p class="font-body-sm text-body-sm text-outline mt-2"><b class="text-ink-primary">What points redeem for:</b> a credit on your Base bill. <span class="tag">Our proposal</span> Not an issued payment. Base confirms points at installation.</p>
+      <div class="rw-invite mt-space-md p-space-sm rounded-lg bg-surface-subtle border border-wire-border flex flex-wrap items-center justify-between gap-2">
+        <p class="font-body-sm text-body-sm text-ink-primary min-w-0" id="rw-pending">Pending: neighbour invite bonus. It counts when a neighbour joins from your invite.</p>
+        <a class="btn px-4 bg-secondary-container hover:bg-secondary-fixed text-ink-primary font-label-md text-label-md rounded-xl font-semibold" href="rewards.html">Invite a neighbour</a>
+      </div>
+    </section>
+    <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg shadow-sm min-w-0 flex flex-col gap-2" aria-labelledby="help-title">
+      <div class="flex items-center gap-2 pb-space-sm border-b border-wire-border"><span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">support_agent</span><h2 id="help-title" class="font-headline-sm text-headline-sm text-ink-primary">Help any hour</h2></div>
+      <p class="font-body-sm text-body-sm text-outline">Questions about your install, billing or battery? Base Brain answers any time.</p>
+      <a class="btn self-start px-4 bg-surface-subtle hover:bg-wire-border text-ink-primary font-label-md text-label-md rounded-xl border border-wire-border" id="help-any-hour" href="brain.html?track=home&amp;persona=lead">Ask Base Brain</a>
+    </section>
+  </div>
+
+  <section class="flex flex-col gap-2" aria-label="Your onboarding record">
+    <div data-milestones="ribbon"></div>
   </section>
 
   <nav class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-1 font-body-sm text-body-sm" aria-label="Home energy sections">
@@ -171,7 +223,7 @@
       <a href="brain.html?track=home&persona=lead&q=how%20and%20when%20do%20I%20pay">Billing help</a>
       <a href="#member-help">Help</a>
     </div>
-    <span class="inline-flex items-center gap-1.5 self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-surface-container-highest text-ink-primary font-label-caps text-[11px] font-semibold border border-wire-border"><span class="w-1.5 h-1.5 rounded-full bg-warning-amber"></span><span id="setup-pill">Setup in progress</span></span>
+    <span class="inline-flex items-center gap-1.5 self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-surface-container-highest text-ink-primary font-label-caps text-[11px] font-semibold border border-wire-border"><span class="w-1.5 h-1.5 rounded-full bg-solar-green" id="setup-dot"></span><span id="setup-pill">All steps done</span></span>
   </nav>
   <div class="notice" id="notice">Home details are loading. Refresh the page if this stays empty.</div>
 
@@ -218,12 +270,8 @@
     </div>
   </section>
 
-  <section class="flex flex-col gap-2" aria-label="Onboarding rewards">
-    <div data-milestones="ribbon"></div>
-    <a class="btn self-end gap-1 text-primary-container hover:text-ink-primary font-label-md text-label-md font-semibold" href="rewards.html"><span>View rewards</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></a>
-  </section>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
     <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg flex flex-col justify-between shadow-sm min-w-0">
       <div>
         <div class="flex items-center justify-between pb-space-sm border-b border-wire-border">
@@ -262,25 +310,6 @@
       <div class="pt-space-md mt-space-md border-t border-wire-border flex flex-wrap items-center justify-between gap-2">
         <span class="font-body-sm text-body-sm text-outline" id="grid-asof"></span>
         <a class="btn text-ink-primary font-label-md text-label-md gap-1 hover:underline" href="grid.html">Grid detail<span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span></a>
-      </div>
-    </div>
-
-    <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg flex flex-col justify-between shadow-sm min-w-0">
-      <div>
-        <div class="flex items-center justify-between pb-space-sm border-b border-wire-border">
-          <span class="font-label-caps text-label-caps text-outline uppercase">Your next step</span>
-          <span class="material-symbols-outlined text-outline text-[18px]" aria-hidden="true">task_alt</span>
-        </div>
-        <h3 class="font-headline-sm text-headline-sm text-ink-primary mt-space-md">Next action</h3>
-        <div class="my-space-md p-space-sm rounded-lg bg-emerald-50/60 border border-emerald-200">
-          <div class="flex items-center gap-1.5 text-primary-container font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">check_circle</span><span id="na-done">Public records found</span></div>
-          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1" id="na-done-text"></p>
-        </div>
-        <p class="font-body-sm text-body-sm text-outline leading-relaxed" id="na-text"></p>
-        <a class="btn mt-2 text-primary-container font-label-md text-label-md font-semibold hover:underline" id="na-cta" hidden></a>
-      </div>
-      <div class="pt-space-md mt-space-md border-t border-wire-border">
-        <a class="btn w-full bg-secondary-container hover:bg-secondary-fixed text-ink-primary font-label-md text-label-md rounded-xl font-semibold" href="status.html"><span>View application status</span><span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span></a>
       </div>
     </div>
   </div>
@@ -323,7 +352,7 @@
   </details>
   <details class="detail"><summary>Answer sources and connection</summary><footer>Answers come from a local AI model running on this machine. No addresses, no names. The week is a test run on three real ERCOT price days, repeated.</footer></details>
   </div>
-  <p class="font-body-sm text-body-sm text-outline">A Base Fleet design. Answers saved on this device.</p>
+  <p class="font-body-sm text-body-sm text-outline">A Base Super Local AI design. Answers saved on this device.</p>
 </div>
 </main>
 <script>
@@ -421,30 +450,31 @@ async function loadHome() {
     const permits = (house.events || []).length;
     setText("res-source", `From Austin permit records: ${house.year_built ? `built ${house.year_built}, ` : ""}${permits} permit${permits === 1 ? "" : "s"} on file. Base uses them to plan your install so you answer fewer questions.`);
   }
-  const cta = document.getElementById("na-cta");
-  const show = (label, href, reward) => { cta.textContent = label; cta.href = href; cta.hidden = false; if (reward) cta.dataset.reward = reward; else delete cta.dataset.reward; if (ms && ms.chips) ms.chips(cta.parentNode); };
   const st = s ? s.status : ["done", "next", "next", "base", "base"];
-  setText("na-done-text", addr ? `Austin permit records for ${addr} are loaded.` : "Pick your home to load its Austin permit records.");
-  if (!addr) {
-    setText("next-step-text", "Next: pick your home so we can load its public records.");
-    setText("na-text", "Choose your address. The records fill in most answers for you.");
-    show("Pick your home", "onboarding.html#home");
-  } else if (st[1] !== "done") {
-    const left = s && Number.isInteger(s.open) ? Math.max(0, s.open - s.answered) : null;
-    setText("next-step-text", `Next: confirm your home details${left ? ` (${left} left)` : ""}. Then add a photo of your electric panel.`);
-    setText("na-text", "A few quick questions finish your home details. Not sure is a fine answer.");
-    show("Continue your details", "onboarding.html#home", "field");
-  } else if (st[2] !== "done") {
-    setText("na-done", "Home details confirmed");
-    setText("next-step-text", "Next: add a photo of your electric panel. After that, Base does the engineering review.");
-    setText("na-text", "One clear photo of your main panel helps Base plan the install.");
-    show("Add your panel photo", "onboarding.html#home", "photo");
+  const ex = !!window.MEMBER_EXAMPLE;
+  if (ex) { setText("res-title", "Example home"); setText("demo-note", "Simulation: an example finished account. Nothing is saved in this browser yet."); document.getElementById("demo-note").hidden = false; }
+  if (s && s.complete) {
+    const R = ms.REWARD, U = ms.UNIT;
+    setText("next-step-text", "Every onboarding step is complete: address, home questions and panel photo. There is nothing more for you to do.");
+    const rows = [
+      [`Home questions (${s.confirmed} answer${s.confirmed === 1 ? "" : "s"} x ${R.field} ${U})`, s.confirmed * R.field],
+      ["Panel photo", R.photo],
+      ["Finished both", R.complete]];
+    const body = document.querySelector("#rw-table tbody");
+    const tr = (a, b, cls) => { const r = document.createElement("tr"); if (cls) r.className = cls; const x = document.createElement("td"), y = document.createElement("td"); x.textContent = a; y.textContent = b; r.append(x, y); body.append(r); };
+    rows.forEach(([a, n]) => tr(a, `${n} ${U}`));
+    tr("Total so far", `${s.credit} ${U}`, "tot");
+    tr(`Pending: neighbour joins from your invite`, `+${R.neighbour} ${U}`, "pend");
+    setText("rw-pending", `Pending: ${R.neighbour} ${U} neighbour bonus. It counts when a neighbour joins from your invite.`);
   } else {
-    setText("na-done", "Your tasks are done");
-    setText("banner-kicker", "Waiting on Base");
-    setText("next-step-text", "Your part is done. Next, Base does the engineering review, then schedules installation.");
-    setText("na-text", "Nothing to do now. Base support can answer account or contract questions.");
-    show("Ask Base Brain", "brain.html?track=home&persona=lead");
+    ["done-panels", "done-steps", "whats-next"].forEach(id => { document.getElementById(id).style.display = "none"; });
+    setText("banner-kicker", "Setup in progress");
+    setText("setup-pill", "Setup in progress");
+    setText("banner-title", "Your home setup is in progress");
+    document.getElementById("banner-icon").textContent = "hourglass_top";
+    if (!addr) setText("next-step-text", "Next: pick your home so we can load its public records.");
+    else if (st[1] !== "done") setText("next-step-text", "Next: confirm your home details. Then add a photo of your electric panel.");
+    else setText("next-step-text", "Next: add a photo of your electric panel. After that, Base does the engineering review.");
   }
 }
 

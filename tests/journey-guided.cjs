@@ -31,13 +31,14 @@ function check(value, message) { assert.ok(value, message); checks++; }
    check(await page.locator('#continue-question').isDisabled(),'Choice required');
    check(await page.locator('#credits, #tell-btn, #invite-banner').count() === 0,'No reward/referral detours');
    check(await page.locator('#home-view [data-milestones]').count() === 1,'One shared milestone tracker');
-   check(/Base Fleet points \(proposal\)/i.test(await page.locator('#home-view [data-milestones]').innerText()),'Rewards labelled as assumed');
+   check(/Base Ready points \(proposal\)/i.test(await page.locator('#home-view [data-milestones]').innerText()),'Rewards labelled as assumed');
    check(!/shared hub|badge|streak|leaderboard/i.test(await page.locator('#home-view').innerText()),'No badges or hub copy');
    const houses = JSON.parse(fs.readFileSync(path.join(root,'house/cohort.json')));
    const house = houses.find(h => h.confirm_with_member.includes('main_breaker_amps') && h.confirm_with_member.includes('has_solar'));
    // Find your home: search combobox over the public-record homes, then confirm on the same page.
    check(await page.locator('#address-input[role="combobox"]').count() === 1,'Address search is a combobox');
-   check(/Type your address/.test(await page.locator('#find-title').innerText()),'Type your address is the first step');
+   await page.locator('#address-change').click();
+   check(/Type your address/.test(await page.locator('#find-title').innerText()),'Type your address opens from Change');
    await page.locator('#address-input').fill(house.address.split(' ').slice(1,3).join(' ').toLowerCase());
    await page.waitForSelector('#address-list [role="option"]');
    const optIndex = await page.locator('#address-list [role="option"] strong').evaluateAll((els,a) => els.findIndex(e => e.textContent.toUpperCase() === a), house.address);

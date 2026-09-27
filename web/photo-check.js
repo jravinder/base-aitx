@@ -179,7 +179,7 @@
         msg.textContent = 'This browser opens JPEG, PNG and WebP photos. Try one of those.';
       }
       render();
-      if (quality && LOCAL_PAGE) readPhoto();
+      if (quality && !new URLSearchParams(location.search).has('static')) readPhoto();
     });
 
     async function ready(signal) {

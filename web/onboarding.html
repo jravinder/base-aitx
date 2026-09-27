@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Onboarding | Base Fleet</title>
+<title>Onboarding | Base Ready</title>
 <link rel="stylesheet" href="assets/stitch/fonts.css">
 <script src="assets/stitch/tailwind.js"></script>
 <script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
@@ -13,6 +13,16 @@
 <link rel="stylesheet" href="milestones.css">
 <script defer src="extraction-gallery.js"></script>
 <script defer src="shell.js"></script><script defer src="speak.js"></script><script defer src="photo-checklist.js"></script><script defer src="photo-check.js"></script><script defer src="onboarding.js"></script><script defer src="network-demo.js"></script><script defer src="milestones.js"></script>
+<style>
+#find-home .ob-record{border:0;padding:4px 0 0;background:transparent;gap:4px}
+#find-home .ob-addr{font-size:clamp(22px,3.2vw,28px);line-height:1.2;font-weight:700;overflow-wrap:anywhere}
+#find-home .ob-src-line{margin:0;font-size:12.5px;color:var(--ob-muted,#6b7280)}
+#find-home .ob-actions-row{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px}
+#find-home .ob-known{border-top:1px solid var(--ob-line,#e5e7eb);padding-top:8px}
+#find-home .ob-known>summary{cursor:pointer;font-size:13px;color:var(--ob-muted,#6b7280)}
+#find-home .ob-known[open]>summary{margin-bottom:8px}
+#find-home .ob-known .ob-open{margin-top:8px}
+</style>
 </head>
 <body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
 <a class="skip" href="#main">Skip to workspace</a>
@@ -46,7 +56,7 @@
   <section class="ob-step" id="find-home" data-state="now" aria-labelledby="step1-title">
    <header class="ob-step-head">
     <span class="ob-num" aria-hidden="true">1</span>
-    <div class="ob-step-name"><div class="ob-eyebrow-row"><p class="ob-eyebrow">Step 1</p><a class="ob-voice" data-voice-step="records" href="voice.html?track=home&amp;persona=lead&amp;step=records"><span class="material-symbols-outlined" aria-hidden="true">record_voice_over</span>Talk me through it</a></div><h2 id="step1-title">Your home from records</h2></div>
+    <div class="ob-step-name"><div class="ob-eyebrow-row"><p class="ob-eyebrow">Step 1</p><a class="ob-voice" data-voice-step="records" href="voice.html?track=home&amp;persona=lead&amp;step=records"><span class="material-symbols-outlined" aria-hidden="true">record_voice_over</span>Talk me through it</a></div><h2 id="step1-title">Is this your home?</h2></div>
     <span class="ob-chip" data-step-chip></span>
    </header>
    <div class="ob-done-line" id="find-summary" hidden>
@@ -55,7 +65,16 @@
     <button id="find-change" class="ob-link" type="button">Change</button>
    </div>
    <div class="ob-step-body" id="find-body">
-    <div class="ob-field">
+    <div class="ob-record" id="record-card">
+     <p class="ob-addr" id="record-address">...</p>
+     <p class="ob-src-line" id="record-src">Found in City of Austin permits</p>
+    </div>
+    <div class="ob-actions ob-actions-row">
+     <button id="confirm-property" class="ob-primary" type="button" disabled><span id="confirm-label">Yes, this is my home</span><span aria-hidden="true">→</span></button>
+     <button id="address-change" class="ob-btn-2" type="button" aria-expanded="false" aria-controls="find-search">Change</button>
+    </div>
+    <p id="confirm-note" class="ob-note" aria-live="polite"></p>
+    <div class="ob-field" id="find-search" hidden>
      <label id="find-title" class="ob-label" for="address-input">Type your address.</label>
      <div class="ob-search">
       <div class="relative flex-1 min-w-0">
@@ -68,12 +87,8 @@
      <p id="address-hint" class="ob-hint" aria-live="polite"></p>
      <select id="address-select" class="jr-sync" aria-hidden="true" tabindex="-1" disabled><option>Loading properties...</option></select>
     </div>
-    <div class="ob-record" id="record-card">
-     <div class="ob-record-top">
-      <span class="ob-src"><span class="ob-src-dot" aria-hidden="true"></span>Found in City of Austin permits</span>
-      <span class="ob-muted" id="sample-zip">Austin</span>
-     </div>
-     <p class="ob-addr" id="record-address">...</p>
+    <details class="ob-known" id="known-box">
+     <summary>What we already know</summary>
      <div class="ob-facts" id="home-facts">
       <div class="ob-fact"><span class="ob-k">Year built</span><b class="ob-v" id="fact-year">...</b><small id="fact-permits">...</small></div>
       <div class="ob-fact" id="fact-amps-box"><span class="ob-k">Electric service</span><b class="ob-v" id="fact-amps">...</b><small id="fact-amps-src"></small></div>
@@ -83,13 +98,9 @@
       <span class="ob-k">Fit notes from records</span>
       <div class="ob-fit-list" id="fact-fit"></div>
      </div>
-    </div>
-    <div class="ob-actions">
-     <button id="confirm-property" class="ob-primary" type="button" disabled><span id="confirm-label">Confirm this property</span><span aria-hidden="true">→</span></button>
-     <p id="confirm-note" class="ob-note" aria-live="polite"></p>
-    </div>
+     <button class="ob-open" type="button" data-drawer="permits" aria-controls="ob-drawer"><span class="material-symbols-outlined" aria-hidden="true">timeline</span>See the permit history<span class="ob-open-count" id="timeline-count-chip"></span><span class="material-symbols-outlined ob-open-arrow" aria-hidden="true">chevron_right</span></button>
+    </details>
    </div>
-   <button class="ob-open" type="button" data-drawer="permits" aria-controls="ob-drawer"><span class="material-symbols-outlined" aria-hidden="true">timeline</span>See the permit history<span class="ob-open-count" id="timeline-count-chip"></span><span class="material-symbols-outlined ob-open-arrow" aria-hidden="true">chevron_right</span></button>
   </section>
 
   <!-- Step 2: what records miss, one question at a time -->

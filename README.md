@@ -1,41 +1,28 @@
-# Base Ready · Base Super Local AI
+# Base Power × AITX hackathon entry
 
-Built at the Base Power x AITX Talent Hackathon, Sep 25 to 27, 2026.
+Built at the Base Power × AITX Talent Hackathon, Sep 25 to 27, 2026. Two entries share this repo. The live site is behind the Vercel login until it is public. Start at the [landing page](https://base-aitx.vercel.app/web/start.html).
 
-## Two areas
+## What we built for Track 2, Orchestration: Base Ready
 
-### Base Ready (Track 2, Orchestration)
+Goal: take a member from a home address to an installed battery without a phone call.
 
-Base Ready takes a member from a home address to an installed battery without a phone call. Public records fill in most of the form so the member answers only what records miss.
+- **Records-first onboarding.** The member types an address. City of Austin permits, ERCOT and Census data fill most fields, and three guided steps ask only what the records miss. [Onboarding](https://base-aitx.vercel.app/web/onboarding.html#home)
+- **Points for each step.** 10 per answer, 20 for the photo, 30 for finishing, 50 per neighbour who joins. The member can redeem points for bill credit (our proposal). [Rewards](https://base-aitx.vercel.app/web/rewards.html)
+- **Photo check with a person in the loop.** Gemini reads one guided photo, a quality check blocks blurry shots, and a person reviews anything uncertain. [Onboarding, photo step](https://base-aitx.vercel.app/web/onboarding.html#home)
+- **Voice guide.** One question at a time, with pre-rendered Kokoro audio. [Voice guide](https://base-aitx.vercel.app/web/voice.html)
+- **Application status.** The member sees where the application stands. [Status](https://base-aitx.vercel.app/web/status.html)
+- **Help at any hour.** Base Brain answers from 88 curated FAQs and 168 linked sources. [Help](https://base-aitx.vercel.app/web/brain.html) · [The knowledge behind it](https://base-aitx.vercel.app/web/knowledge.html)
+- **Views for Base.** Where ready homes concentrate, the permits behind them, and ERCOT price and load insights. [Market](https://base-aitx.vercel.app/web/market.html) · [ERCOT grid](https://base-aitx.vercel.app/web/grid.html)
 
-What a member sees: records-first onboarding that fills in most fields from public data; three guided steps that earn points as they go; a photo check read by Gemini, with a person confirming anything uncertain; a voice guide with a caregiver view; and Help or Base Brain answering questions any hour.
+## What we built for Track 3, Most Commercializable: Base Super Local AI
 
-What Base sees: market intelligence on where ready homes concentrate, the permits behind each one, ERCOT price and load insights, and an install-readiness read per home.
+Goal: a private AI assistant for each member, on a small computer beside the battery. The member's data stays in the home.
 
-### Base Super Local AI (Track 3, Most Commercializable)
-
-A private AI next door: a PC beside the battery, or a station on the feeder, running open models for the member. Try it in the browser, or install it on your own PC with one command. Three plans: Use, Host, Sell. A control tower keeps the backup reserve first, ahead of any compute job.
-
-## Try it
-
-Live site: [base-aitx.vercel.app](https://base-aitx.vercel.app) (behind Vercel login until public). Start at `/web/start.html`.
-
-| Page | What it shows |
-|---|---|
-| `/web/start.html` | Pick your track: your home, or local AI |
-| `/web/onboarding.html#home` | Records-first onboarding, guided steps, points |
-| `/web/voice.html` | Voice guide, one question at a time |
-| `/web/status.html` | Where the application stands |
-| `/web/rewards.html` | Points and neighbour invites |
-| `/web/brain.html` | Help and Base Brain, any hour |
-| `/web/knowledge.html` | Base Brain: the knowledge behind every answer |
-| `/web/market.html` | Market intelligence, permits by month and zip |
-| `/web/grid.html` | ERCOT grid insights |
-| `/web/pitch.html` | Base Super Local AI, live ask box |
-| `/web/models.html` | Try it: local AI in the browser or on your PC |
-| `/web/plans.html` | Compute plans: Use, Host, Sell |
-| `/web/energy.html` | Energy and credits, backup reserve first |
-| `/web/tower.html` | Control tower: jobs, reserve, failover |
+- **The pitch, with a live ask box.** [Pitch](https://base-aitx.vercel.app/web/pitch.html)
+- **Try it.** Run the local AI in the browser, or install it on a home PC with one command. [Try it](https://base-aitx.vercel.app/web/models.html)
+- **Three plans: Use, Host, Sell.** A member uses the AI, hosts a GPU for shared earnings, or Base sells spare GPU time to local businesses. [Plans](https://base-aitx.vercel.app/web/plans.html)
+- **Energy and credits.** The backup reserve always comes first. [Energy](https://base-aitx.vercel.app/web/energy.html)
+- **Control tower.** Runs jobs by priority and moves them when a node fails, without touching the reserve (simulation). [Control tower](https://base-aitx.vercel.app/web/tower.html)
 
 ## Run it locally
 
