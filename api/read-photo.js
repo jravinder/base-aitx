@@ -4,6 +4,7 @@
 const MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
 const MAX_BYTES = 4 * 1024 * 1024;
 const SHOTS = require('../web/data/photo-shots.json');
+const { human } = require('./_turnstile');
 // Same shot-aware prompt as brain/ask.py and the page: judge only what this checklist shot asks for.
 function prompt(shot) {
   const id = Object.hasOwn(SHOTS.shots, shot) ? shot : SHOTS.default;
@@ -47,6 +48,7 @@ module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return send(res, 405, { error: 'use POST' });
   const key = process.env.GEMINI_API_KEY;
   if (!key) return send(res, 503, { error: 'reading unavailable' });
+  if (!(await human(req))) return send(res, 403, { error: 'bot check failed' });
   let body;
   try { body = await readBody(req); } catch (e) { return send(res, e.code === 413 ? 413 : 400, { error: e.code === 413 ? 'image too large' : 'body must be JSON' }); }
   const image = typeof body.image === 'string' ? body.image.replace(/^data:[^,]*,/, '') : '';

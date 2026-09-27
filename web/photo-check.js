@@ -237,7 +237,7 @@
       // One deadline for the whole reading, however many readers it tries.
       const stop = new AbortController();
       const deadline = setTimeout(() => stop.abort(), LIMITS.deadline);
-      const post = (u, body) => fetch(u, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: stop.signal });
+      const post = (u, body, extra) => fetch(u, { method: 'POST', headers: { 'Content-Type': 'application/json', ...extra }, body: JSON.stringify(body), signal: stop.signal });
       try {
         await shotsReady;
         const b64 = await base64(f);
@@ -246,7 +246,8 @@
         const sent = setTimeout(() => { if (t === token && stage === 1) setStage(2); }, 600);
         let out = null, by = '';
         try {
-          const g = await post(LOCAL_PAGE ? 'http://localhost:8742/photo/read' : '/api/read-photo', { image: b64, mime: 'image/jpeg', shot: s });
+          const extra = LOCAL_PAGE || !window.BaseHuman ? {} : { 'cf-turnstile-response': await window.BaseHuman.token() };
+          const g = await post(LOCAL_PAGE ? 'http://localhost:8742/photo/read' : '/api/read-photo', { image: b64, mime: 'image/jpeg', shot: s }, extra);
           if (g.ok) {
             const d = await g.json();
             out = clean({ photo_type: d.photo_type, brand: d.manufacturer || '', main_breaker_amps: d.main_breaker_amps,

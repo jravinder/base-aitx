@@ -43,6 +43,8 @@ async function synth(page, kind) {
       page.on('pageerror', e => errors.push(e.message));
       await context.route('**/*', async route => {
         const url = new URL(route.request().url());
+        // The hosted page loads the Cloudflare Turnstile script (bot check). Block it (offline) but do not count it.
+        if (url.href.startsWith('https://challenges.cloudflare.com/turnstile/')) return route.abort('blockedbyclient');
         if (url.origin !== origin) { denied.push(url.href); return route.abort('blockedbyclient'); }
         const file = path.resolve(root, decodeURIComponent(url.pathname).replace(/^\/+/, ''));
         try { return await route.fulfill({ body: await fs.readFile(file), contentType: types[path.extname(file)] || 'application/octet-stream' }); }
