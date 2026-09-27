@@ -5,6 +5,7 @@
 const MODEL = process.env.GEMINI_TTS_MODEL || 'gemini-3.8-flash-tts';
 const VOICE = process.env.GEMINI_TTS_VOICE || 'Kore';
 const MAX_CHARS = 400;
+const { human } = require('./_turnstile');
 
 function send(res, code, obj) {
   res.statusCode = code;
@@ -35,6 +36,7 @@ module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return send(res, 405, { error: 'use POST' });
   const key = process.env.GEMINI_API_KEY;
   if (!key) return send(res, 503, { error: 'voice unavailable' });
+  if (!(await human(req))) return send(res, 403, { error: 'bot check failed' });
   let body;
   try { body = await readBody(req); } catch { return send(res, 400, { error: 'body must be JSON' }); }
   const text = typeof body.text === 'string' ? body.text.replace(/\s+/g, ' ').trim() : '';

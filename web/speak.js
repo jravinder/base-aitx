@@ -48,9 +48,10 @@
     if (cloudUp === false || isLocal()) return null;
     if (cloudCache.has(text)) return cloudCache.get(text);
     try {
+      const human = window.BaseHuman ? await window.BaseHuman.token() : "";
       const ctl = new AbortController();
       const timer = setTimeout(() => ctl.abort(), 6000);
-      const r = await fetch(CLOUD, {method: "POST", headers: {"Content-Type": "application/json"},
+      const r = await fetch(CLOUD, {method: "POST", headers: {"Content-Type": "application/json", "cf-turnstile-response": human},
         body: JSON.stringify({text}), signal: ctl.signal});
       if (!r.ok) { clearTimeout(timer); if (r.status === 404 || r.status === 503) cloudUp = false; return null; }
       const blob = await r.blob();
