@@ -145,3 +145,7 @@ See [demo/photos/ATTRIBUTION.md](demo/photos/ATTRIBUTION.md) for sourcing and li
 - [docs/LEARNING.md](docs/LEARNING.md) — what we learned
 - [docs/VIDEO.md](docs/VIDEO.md) — video script
 - [docs/adr/](docs/adr/) — architecture decision records
+
+---
+
+Built by [Ravinder Jilkapally](https://www.linkedin.com/in/jravinder/) · [aisoft.us](https://aisoft.us)

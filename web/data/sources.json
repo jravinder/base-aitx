@@ -248,7 +248,7 @@
       "kind": "measured"
     },
     "fleet_simulation": {
-      "name": "Base Fleet simulation (nodes, jobs, earnings, kills, recovery)",
+      "name": "Fleet simulation (nodes, jobs, earnings, kills, recovery)",
       "publisher": "Our simulation",
       "id": "",
       "url": "",
