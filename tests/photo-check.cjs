@@ -57,7 +57,7 @@ async function synth(page, kind) {
         try { await route.fulfill({ status: m.status || 200, contentType: 'application/json', body: JSON.stringify(m.body || {}) }); } catch { /* aborted by the page */ }
       });
       const good = { photo_type: 'meter_exterior', manufacturer: null, main_breaker_amps: null, usable: true, retake_reason: null, confidence: 0.95, model: 'gemini-3.8-flash', seconds: 2.1 };
-      await page.goto(origin + '/web/onboarding.html?track=home&persona=lead', { waitUntil: 'load' });
+      await page.goto(origin + '/web/onboarding.html?track=home&persona=lead&static', { waitUntil: 'load' });
       await page.waitForFunction(() => !document.getElementById('pk-file').disabled);
       check(await page.locator('#pk-file').getAttribute('capture') === 'environment', 'camera capture on the input');
 
