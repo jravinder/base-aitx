@@ -13,9 +13,9 @@ const cases = {
 };
 const menus = {
  lead:['home','status','rewards','brain','member','knowledge','built'],
- operations:['market','explorer','grid','ask','dataflow','admin','house','recovery','wall','knowledge','brain','built','dataqa','judgments','gaps'],
+ operations:['market','explorer','grid','ask','dataflow','admin','house','recovery','wall','knowledge','brain','built','judgments'],
  gpu:['computehome','copilot','energy','plans','models','tower','block','built'],
- fleet:['overview','tower','placement','jobs','index','plans','block','models','pitch','built','gaps']
+ fleet:['overview','tower','placement','jobs','index','plans','block','models','pitch','built']
 };
 (async () => {
  const browser = await chromium.launch({headless:true});

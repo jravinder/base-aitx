@@ -21,7 +21,7 @@
       {id: "market", href: "market.html", label: "Market intelligence", short: "Market"},
       {id: "grid", href: "grid.html", label: "Energy insights by ERCOT", short: "Energy"},
       {id: "ask", href: "ask.html", label: "Search", short: "Search"},
-      {id: "judgments", href: "judgments.html", label: "Judgments", short: "Judgments"}]},
+      {id: "judgments", href: "judgments.html", label: "Permit check", short: "Permit check"}]},
     {title: "B. Local AI close to you", items: [
       {id: "computehome", href: "compute-home.html", label: "Home", short: "Home"},
       {id: "copilot", href: "copilot.html", label: "My AI", short: "My AI"},
@@ -49,9 +49,9 @@
   const TRACKS = {home: "Home & Installation", compute: "Energy & Compute"};
   const PERSONAS = {
     lead: {track: "home", label: "Customer", start: "home", pages: ["home", "status", "rewards", "brain", "member", "knowledge", "built", "voice"]},
-    operations: {track: "home", label: "Base admin", start: "market", pages: ["market", "explorer", "grid", "ask", "dataflow", "admin", "house", "recovery", "wall", "knowledge", "brain", "built", "dataqa", "judgments", "gaps"]},
+    operations: {track: "home", label: "Base admin", start: "market", pages: ["market", "explorer", "grid", "ask", "dataflow", "admin", "house", "recovery", "wall", "knowledge", "brain", "built", "judgments"]},
     gpu: {track: "compute", label: "Customer", start: "computehome", pages: ["computehome", "copilot", "energy", "plans", "models", "tower", "block", "built"]},
-    fleet: {track: "compute", label: "Base admin", start: "overview", pages: ["overview", "tower", "placement", "jobs", "index", "plans", "block", "models", "pitch", "built", "gaps"]}
+    fleet: {track: "compute", label: "Base admin", start: "overview", pages: ["overview", "tower", "placement", "jobs", "index", "plans", "block", "models", "pitch", "built"]}
   };
   const params = new URLSearchParams(location.search);
   const initialId = currentId();

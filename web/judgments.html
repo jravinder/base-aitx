@@ -2,238 +2,244 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Model judgments | Base Ready</title>
+<title>Permit check | Base Ready</title>
 <link rel="stylesheet" href="assets/stitch/fonts.css">
 <script src="assets/stitch/tailwind.js"></script>
 <script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
 <link rel="stylesheet" href="shell.css">
-<style>.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
+<style>
 *,*::before,*::after{box-sizing:border-box}
-#main{overflow-wrap:anywhere}
-body{margin:0}
-#main p,#main h1,#main h2,#main h3,#main h4,#main dl,#main dd,#main ol{margin:0}
-#main a,.shell nav[aria-label=Breadcrumb] a{text-decoration:none}
-.mono,code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
-code{background:#F1F5F9;padding:1px 5px;border-radius:4px}
-table.d{border-collapse:collapse;width:100%;font-size:13px}
-table.d th{text-align:left;font:700 11px/16px 'Plus Jakarta Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970;padding:10px 14px;border-bottom:1px solid #E2E8F0;background:#F8FAFC;position:sticky;top:0}
-table.d td{padding:9px 14px;border-bottom:1px solid #F1F5F9;vertical-align:middle;white-space:nowrap;color:#0F172A}
-table.d tr:last-child td{border-bottom:0}
+body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body)}
+#main{max-width:1440px;margin:0 auto;padding:32px 24px 48px;overflow-wrap:anywhere}
+#main h1,#main h2,#main h3,#main p{margin:0}
+#main a{color:var(--bf-brand);text-decoration:none}#main a:hover{text-decoration:underline}
+.mono,code{font-family:var(--bf-mono);font-size:12px}
+.eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+.tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+.tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+.tag.s{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
+:root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+.hero{padding-bottom:28px;border-bottom:1px solid var(--bf-line);display:grid;gap:12px}
+.hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+.hero .a{font:700 44px/52px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.hero .a small{font:600 22px/30px var(--bf-font);color:var(--bf-muted);letter-spacing:0}
+.hero .line{font:var(--bf-text-body-lg);color:var(--bf-muted);max-width:760px}
+.panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+.run{margin-top:28px;display:grid;gap:16px}
+.runhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.runhead h2{font:var(--bf-text-h2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.state{font:700 11px/16px var(--bf-font);padding:2px 10px;border-radius:999px;background:var(--bf-blue-tint);color:var(--bf-blue);border:1px solid var(--bf-blue-line)}
+.state.done{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+:root[data-theme="dark"] .state.done{color:var(--bf-brand)}
+.runhead .meta{font:var(--bf-text-small);color:var(--bf-faint)}
+.top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:16px;align-items:stretch}
+.strip{display:flex;align-items:center;padding:24px 20px;gap:0}
+.blk{flex:1;min-width:0;border:1px solid var(--bf-line-strong);border-radius:var(--bf-radius-lg);padding:12px 14px;background:var(--bf-surface)}
+.blk b{display:block;font:var(--bf-text-h3)}
+.blk .op{display:block;font:var(--bf-text-small);color:var(--bf-faint)}
+.blk .st{display:flex;align-items:center;gap:6px;margin-top:6px;font:var(--bf-text-small);color:var(--bf-muted)}
+.blk .st i{width:8px;height:8px;border-radius:50%;background:var(--bf-line-strong)}
+.blk.running{border-color:var(--bf-blue)}.blk.running .st i{background:var(--bf-blue)}
+.blk.done .st i{background:var(--bf-solar)}
+.wire{width:28px;height:2px;background:var(--bf-line-strong);flex:none}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{padding:14px 16px;min-width:0}
+.stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+.stat .v{display:block;font:700 28px/34px var(--bf-font);letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
+.gridp .gh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:14px 18px;border-bottom:1px solid var(--bf-line)}
+.gridp .gh b{font:var(--bf-text-h3)}.gridp .gh span{font:var(--bf-text-small);color:var(--bf-faint)}
+#sq{display:grid;grid-template-columns:repeat(auto-fill,14px);gap:4px;padding:18px}
+#sq i{width:14px;height:14px;border-radius:2px;background:var(--bf-line);transition:background-color .25s}
+#sq i.r{background:var(--bf-blue)}#sq i.a{background:var(--bf-solar)}#sq i.v{background:#F59E0B}#sq i.p{background:#EF4444}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;padding:0 18px 16px;font:var(--bf-text-small);color:var(--bf-muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.find{margin-top:28px;padding:22px 24px;display:grid;gap:14px;border-left:4px solid var(--bf-amber)}
+.find h2{font:var(--bf-text-h2);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.find p{font:var(--bf-text-body-lg);color:var(--bf-muted);max-width:900px}
+.duo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.duo div{background:var(--bf-sunk);border-radius:var(--bf-radius-lg);padding:14px 16px}
+.duo b{display:block;font:700 26px/32px var(--bf-font)}.duo span{font:var(--bf-text-small);color:var(--bf-muted)}
+.more{margin-top:28px}
+.more h2{font:var(--bf-text-h3);margin-bottom:10px}
+details{border-top:1px solid var(--bf-line)}details:last-of-type{border-bottom:1px solid var(--bf-line)}
+summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+details>div{padding:4px 4px 18px;overflow-x:auto;color:var(--bf-muted)}
+table.d{border-collapse:collapse;width:100%;font-size:13px;min-width:460px}
+table.d th{text-align:left;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);padding:8px 12px;border-bottom:1px solid var(--bf-line);background:var(--bf-sunk)}
+table.d td{padding:8px 12px;border-bottom:1px solid var(--bf-line);color:var(--bf-ink)}
 table.d td.num{text-align:right;font-variant-numeric:tabular-nums}
-.code table.d{min-width:470px}
-.code tr.j td{background:#fafdf5}
-.code .plus{color:#b45309;font-weight:700}
-.scroll{max-height:520px;overflow:auto}
-select{font:inherit;color:#0F172A;background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:6px 10px;margin-left:6px}
-select:focus-visible{outline:2px solid #1e4d2b;outline-offset:2px}
-.count{color:#717970;font-size:12px}
-.bar{display:inline-flex;align-items:center;gap:8px}
-.bar s{display:inline-block;width:80px;height:6px;background:#F1F5F9;border-radius:4px;overflow:hidden;text-decoration:none}
-.bar s i{display:block;height:100%}
-.pill{display:inline-block;font-size:11px;line-height:16px;padding:1px 8px;border-radius:999px;white-space:nowrap;font-weight:700;border:1px solid}
-.pill.auto,.pill.src{background:#ecfdf5;color:#065f46;border-color:#a7f3d0}
-.pill.review{background:#fffbeb;color:#92400e;border-color:#fde68a}
-.pill.human{background:#fef2f2;color:#991b1b;border-color:#fecaca}
-.v{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;padding:1px 6px;border-radius:4px;background:#F1F5F9;color:#0F172A}
-.v.bool-true{color:#15803d}.v.bool-false{color:#717970}.v.unknown{color:#94a3b8;font-style:italic}
-.vt{color:#94a3b8;font:10.5px ui-monospace,Menlo,monospace;margin-left:4px}
-#flow{display:block;width:100%}
-#flow text{font-family:'Plus Jakarta Sans',sans-serif;fill:#0F172A}
-#flow .sub{fill:#717970;font-size:11px}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#717970}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:999px;margin-right:6px;vertical-align:-1px}</style>
+.pill{display:inline-block;font:700 11px/16px var(--bf-font);padding:1px 8px;border-radius:999px;white-space:nowrap}
+.pill.auto{background:#ecfdf5;color:#065f46}.pill.review{background:#fffbeb;color:#92400e}.pill.human{background:#fef2f2;color:#991b1b}
+footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
+#notice{display:none;margin-top:16px;padding:12px;border-radius:var(--bf-radius-lg);background:var(--bf-amber-tint);color:var(--bf-amber)}
+@media (max-width:1000px){.top{grid-template-columns:1fr}}
+@media (max-width:640px){
+ #main{padding:24px 16px 40px}
+ .hero .a{font:700 32px/40px var(--bf-font)}.hero .a small{font-size:18px}
+ .strip{flex-direction:column;align-items:stretch;padding:16px}.wire{width:2px;height:14px;margin-left:24px}
+ .duo{grid-template-columns:1fr}
+ #sq{grid-template-columns:repeat(auto-fill,11px);gap:3px;padding:14px}#sq i{width:11px;height:11px}
+ .stat .v{font-size:24px;line-height:30px}
+}
+@media (prefers-reduced-motion:reduce){#sq i{transition:none}}
+</style>
 <script defer src="shell.js"></script>
 </head>
-<body class="bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
-<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
- <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-wire-border">
-  <div class="space-y-1.5 min-w-0">
-   <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-surface-subtle border border-wire-border font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>Model judgments</div>
-   <h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight">Only the uncertain ones reach a person.</h1>
-   <p class="font-body-md text-body-md text-outline max-w-3xl">Every classification and inferred field is a typed value with a confidence and a route. Confidence is the model's own signal; an engineer confirms each property before installation.</p>
-  </div>
- </div>
- <div class="notice p-3.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 font-body-sm text-body-sm" id="notice" style="display:none">Judgments load from data/judgments.json. Run <code>python3 -m store.judgments</code>, then serve the repo root.</div>
-
- <section class="kpis grid grid-cols-1 lg:grid-cols-12 gap-6" id="kpis"></section>
-
- <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-5 sm:p-6 shadow-sm">
-  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-5 pb-4 border-b border-wire-border">
-   <div class="min-w-0"><h2 class="font-headline-sm text-headline-sm text-ink-primary">Where each judgment goes</h2>
-    <p class="note font-body-sm text-body-sm text-outline mt-1 max-w-3xl" id="rule"></p></div>
-   <div class="legend shrink-0" id="legend"></div>
-  </div>
-  <div class="flowbox bg-surface-subtle rounded-xl p-4 sm:p-6 border border-wire-border"><svg id="flow" role="img" aria-label="Routing flow from each source to auto, model review and human"></svg></div>
+<body>
+<main id="main">
+ <section class="hero">
+  <span class="eyebrow"><i></i>Permit check</span>
+  <p class="q" id="q">Which homes need a person?</p>
+  <h1 class="a" id="ans">&nbsp;</h1>
+  <p class="line">We read every Austin permit once, and only the uncertain ones reach a person. <span class="tag m">Measured</span></p>
  </section>
+ <div id="notice">Permit data loads from data/judgments.json. Run <code>python3 -m store.judgments</code>, then serve the repo root.</div>
 
- <section class="space-y-4">
-  <div><h2 class="font-headline-sm text-headline-sm text-ink-primary">Tables and their judgment columns</h2>
-   <p class="note font-body-sm text-body-sm text-outline mt-1 max-w-3xl">Source rows come from a source system. Rows marked <b>+</b> are judgments: a typed value that a rule, a model or the member gives, stored with its confidence and its route.</p></div>
-  <div class="schemas grid grid-cols-1 lg:grid-cols-2 gap-6" id="schemas"></div>
- </section>
-
- <section class="bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm overflow-hidden">
-  <div class="px-5 sm:px-6 py-4 border-b border-wire-border flex flex-col md:flex-row md:items-center justify-between gap-3">
-   <h2 class="font-headline-sm text-headline-sm text-ink-primary">Typed judgments</h2>
-   <div class="filters flex flex-wrap items-center gap-3 font-body-sm text-body-sm text-outline">
-    <label>Subject <select id="ft"><option value="">all</option></select></label>
-    <label>Route <select id="fr"><option value="">all</option><option value="auto">auto</option><option value="review">model review</option><option value="human">human</option></select></label>
-    <span class="count bg-surface-subtle px-2 py-0.5 rounded" id="cnt"></span>
+ <section class="run" aria-label="Permit run">
+  <div class="runhead"><h2>read_every_permit <span class="state" id="state">Running</span></h2><span class="meta" id="meta"></span></div>
+  <div class="top">
+   <div class="panel strip">
+    <div class="blk done" id="b1"><b>Collect permits</b><span class="op">Austin open data</span><span class="st"><i></i><span id="s1"></span></span></div>
+    <div class="wire"></div>
+    <div class="blk running" id="b2"><b>Judge each permit</b><span class="op">rules + confidence</span><span class="st"><i></i><span id="s2"></span></span></div>
+    <div class="wire"></div>
+    <div class="blk" id="b3"><b>Route</b><span class="op">auto / review / person</span><span class="st"><i></i><span id="s3">Waiting</span></span></div>
+   </div>
+   <div class="stats">
+    <div class="panel stat"><span class="k">Permits judged <span class="tag m">Measured</span></span><b class="v" id="k1">0</b><span class="s" id="k1s"></span></div>
+    <div class="panel stat"><span class="k">Sent to a person <span class="tag m">Measured</span></span><b class="v" id="k2">0</b><span class="s" id="k2s"></span></div>
+    <div class="panel stat"><span class="k">Share automatic <span class="tag m">Measured</span></span><b class="v" id="k3">0%</b><span class="s" id="k3s"></span></div>
+    <div class="panel stat"><span class="k">Cost <span class="tag s">Simulation</span></span><b class="v" id="k4">$0.00</b><span class="s" id="k4s"></span></div>
    </div>
   </div>
-  <div class="tbl scroll"><table class="d" id="jt"><thead><tr><th>Subject</th><th>Field</th><th>Typed value</th><th>Confidence</th><th>Method</th><th>Route</th></tr></thead><tbody></tbody></table></div>
-  <p class="note px-5 sm:px-6 py-3 border-t border-wire-border bg-surface-muted font-body-sm text-body-sm text-outline" id="samplenote"></p>
+  <div class="panel gridp">
+   <div class="gh"><b>judge_permit <span style="font-weight:400;color:var(--bf-faint)">· one square per <span id="per"></span> permits</span></b><span id="prog"></span></div>
+   <div id="sq" role="img" aria-label="Grid of permits filling from queued to routed"></div>
+   <div class="legend" id="legend"></div>
+  </div>
  </section>
 
- <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-  <section class="lg:col-span-5 bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm overflow-hidden min-w-0">
-   <div class="px-5 sm:px-6 py-4 border-b border-wire-border">
-    <h2 class="font-headline-sm text-headline-sm text-ink-primary">Permit rules and their confidence</h2>
-    <p class="note font-body-sm text-body-sm text-outline mt-1">The mirror keeps the category, so each permit's confidence comes from the rule that gave the category and from whether the city's work class agrees. The mapping lives in <code>store/judgments.py</code> (RULE_CONFIDENCE).</p>
-   </div>
-   <div class="tbl overflow-x-auto"><table class="d" id="rt"><thead><tr><th>Rule</th><th>Confidence</th><th>Route</th><th style="text-align:right">Permits</th></tr></thead><tbody></tbody></table></div>
-  </section>
-  <section class="lg:col-span-7 bg-surface-container-lowest border border-wire-border rounded-xl p-5 sm:p-6 shadow-sm min-w-0 space-y-4">
-   <div><h2 class="font-headline-sm text-headline-sm text-ink-primary">A second model on the uncertain permits</h2>
-    <p class="note font-body-sm text-body-sm text-outline mt-1" id="cmpnote"></p></div>
-   <div class="cmp grid grid-cols-2 xl:grid-cols-4 gap-4" id="cmp"></div>
-   <div class="tbl overflow-x-auto border border-wire-border rounded-xl" id="cmplabels"></div>
-  </section>
- </div>
+ <section class="panel find" id="find">
+  <h2>A local model's own confidence did not match the rules <span class="tag m">Measured</span></h2>
+  <div class="duo" id="duo"></div>
+  <p id="findp"></p>
+ </section>
 
- <footer class="font-body-sm text-body-sm text-outline py-8 border-t border-wire-border">Source: <code>data/fleet.db</code> table <code>judgments</code>, built by <code>store/judgments.py</code>; comparison by <code>python3 -m store.judge --backend gemma --sample 100</code>. Routing idea from Astronomer's post on Jev, a model that returns typed judgments with a confidence.</footer>
+ <section class="more">
+  <h2>More detail</h2>
+  <div id="dets"></div>
+ </section>
+
+ <footer>Source: <code>data/fleet.db</code> table <code>judgments</code>, built by <code>store/judgments.py</code>; model check by <code>python3 -m store.judge --backend gemma --sample 100</code>. Run-screen layout after Astronomer's Jev lead-scoring run.</footer>
 </main>
 <script>
 (() => {
   "use strict";
   const $ = s => document.querySelector(s);
   const fmt = n => n.toLocaleString("en-US");
-  const TYPES = {permit: "Permits", house: "Houses", photo: "Panel photos", zip: "Zips"};
-  const ROUTE = {auto: "auto", review: "model review", human: "human"};
-  const COLOR = {auto: "#22C55E", review: "#F59E0B", human: "#EF4444"};
+  const pct = (a, b, d = 1) => (100 * a / b).toFixed(d) + "%";
   const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+  const PER = 70;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const SCHEMAS = [
-    {name: "fleet.permits", note: "one row per permit", rows: [
-      ["permit_number", "VARCHAR", 0], ["issue_date", "DATE", 0], ["zip", "VARCHAR", 0],
-      ["lat / lon", "FLOAT", 0], ["contractor", "VARCHAR", 0],
-      ["category", "ENUM", 1], ["category_confidence", "FLOAT", 1], ["route", "ENUM", 1]]},
-    {name: "fleet.houses", note: "one row per home", rows: [
-      ["house_id", "VARCHAR", 0], ["zip", "VARCHAR", 0], ["permit_events", "ARRAY", 0],
-      ["fit", "ENUM", 1], ["main_breaker_amps", "INT", 1], ["photo_type", "ENUM", 1], ["route", "ENUM", 1]]}];
-  $("#schemas").innerHTML = SCHEMAS.map(s => `<section class="code bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm min-w-0 overflow-hidden">
-    <div class="code-h flex flex-wrap items-center justify-between gap-2 px-5 py-3 border-b border-wire-border bg-surface-muted"><span class="font-headline-sm text-headline-sm text-ink-primary flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">table_chart</span><span class="mono">${s.name}</span></span><span class="text-xs text-outline">${s.note}</span></div>
-    <div class="code-x overflow-x-auto"><table class="d"><thead><tr><th>Column</th><th>Type</th><th>Where it comes from</th></tr></thead><tbody>
-    ${s.rows.map(([c, t, j]) => `<tr class="${j ? "j" : "s"}"><td class="c mono">${j ? '<span class="plus">+</span> ' : ""}${c}</td><td class="t"><span class="v">${t}</span></td><td class="w">${j
-      ? '<span class="pill review">judgment</span> rules / gemma / member' : '<span class="pill src">source</span> Austin permits 3syk-w9eu'}</td></tr>`).join("")}
-    </tbody></table></div></section>`).join("");
+  function render(D) {
+    const c = D.counts.permit, N = c.auto + c.review + c.human, T = D.thresholds, J = D.judge_compare;
+    $("#ans").innerHTML = `${fmt(c.human)} <small>of ${fmt(N)} permits.</small>`;
+    $("#meta").textContent = `built ${D._meta.built_at.slice(0, 10)} · ${fmt(N)} permits`;
+    $("#s1").textContent = `Done · ${fmt(N)}`;
+    $("#per").textContent = PER;
+    $("#k1s").textContent = "each read once";
+    $("#k2s").textContent = `${pct(c.human, N)} · confidence under ${T.review.toFixed(2)}`;
+    $("#k3s").textContent = `${fmt(c.auto)} at ${T.auto.toFixed(2)} or more; ${fmt(c.review)} to review`;
+    $("#k4s").textContent = J ? `hosted judge on all ${fmt(N)}, at Jev's price` : "";
 
-  let D;
-  function flow() {
-    const svg = $("#flow"), W = Math.max(300, svg.clientWidth || 600), narrow = W < 520;
-    const left = narrow ? 8 : 150, right = narrow ? 128 : 170, x0 = left, x1 = W - right, laneH = narrow ? 104 : 96, gap = 18;
-    const types = Object.keys(TYPES);
-    let out = "", y = 6;
-    for (const t of types) {
-      const c = D.counts[t], total = c.auto + c.review + c.human;
-      const top = narrow ? 20 : 0, H = laneH - 14, srcY = y + 7 + top;
-      out += narrow
-        ? `<text x="0" y="${y + 12}" font-size="12.5" font-weight="650">${TYPES[t]} <tspan class="sub" font-weight="400">${fmt(total)} judgments</tspan></text>`
-        : `<text x="0" y="${srcY + H / 2 - 2}" font-size="13.5" font-weight="650">${TYPES[t]}</text>`
-          + `<text class="sub" x="0" y="${srcY + H / 2 + 13}">${fmt(total)} judgments</text>`;
-      out += `<rect x="${x0 - 8}" y="${srcY}" width="8" height="${H}" rx="2" fill="var(--bf-ink)" opacity=".75"/>`;
-      // destination nodes: share of the lane, 4 px floor so small counts stay visible
-      const keys = ["auto", "review", "human"], dgap = 6, avail = H - dgap * 2;
-      const hs = keys.map(k => c[k] ? Math.max(4, avail * c[k] / total) : 0), scale = avail / hs.reduce((a, b) => a + b, 0);
-      let sy = srcY, dy = srcY;
-      keys.forEach((k, i) => {
-        const h = hs[i] * scale, hsrc = H * c[k] / total;
-        if (c[k]) {
-          const mx = (x0 + x1) / 2;
-          out += `<path d="M${x0},${sy} C${mx},${sy} ${mx},${dy} ${x1},${dy} L${x1},${dy + h} C${mx},${dy + h} ${mx},${sy + hsrc} ${x0},${sy + hsrc} Z" fill="${COLOR[k]}" opacity=".32"/>`
-            + `<rect x="${x1}" y="${dy}" width="8" height="${h}" rx="2" fill="${COLOR[k]}"/>`;
-        }
-        const label = k === "human" ? D.human[t] : (narrow && k === "review" ? "review" : ROUTE[k]);
-        out += `<text x="${x1 + 13}" y="${dy + Math.max(h, 10) / 2 + 4}" font-size="11.5"><tspan font-weight="650">${fmt(c[k])}</tspan> <tspan class="sub">${label}</tspan></text>`;
-        sy += hsrc; dy += h + dgap;
-      });
-      y += laneH + gap + top;
-    }
-    svg.setAttribute("viewBox", `0 0 ${W} ${y - gap + 6}`);
-    svg.setAttribute("height", y - gap + 6);
-    svg.innerHTML = out;
-  }
+    // squares, scaled from the real counts (largest remainder)
+    const total = Math.round(N / PER), keys = ["auto", "review", "human"];
+    const raw = keys.map(k => c[k] / N * total), n = raw.map(Math.floor);
+    raw.map((r, i) => [r - n[i], i]).sort((a, b) => b[0] - a[0]).slice(0, total - n.reduce((a, b) => a + b, 0)).forEach(([, i]) => n[i]++);
+    const cls = {auto: "a", review: "v", human: "p"};
+    const fin = [];
+    keys.forEach((k, i) => { for (let j = 0; j < n[i]; j++) fin.push(cls[k]); });
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (let i = fin.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [fin[i], fin[j]] = [fin[j], fin[i]]; }
+    $("#sq").innerHTML = "<i></i>".repeat(total);
+    const cells = [...document.querySelectorAll("#sq i")];
+    $("#legend").innerHTML = [["var(--bf-line)", "Queued"], ["var(--bf-blue)", "Running"],
+      ["var(--bf-solar)", `Auto · ${fmt(c.auto)}`], ["#F59E0B", `Review · ${fmt(c.review)}`], ["#EF4444", `Person · ${fmt(c.human)}`]]
+      .map(([col, t]) => `<span><i style="background:${col}"></i>${t}</span>`).join("");
 
-  function table() {
-    const ft = $("#ft").value, fr = $("#fr").value;
-    const rows = D.sample.filter(r => (!ft || r[0] === ft) && (!fr || r[7] === fr));
-    $("#cnt").textContent = `${fmt(rows.length)} shown`;
-    $("#jt tbody").innerHTML = rows.map(([st, id, field, val, vt, conf, method, route]) => {
-      const cls = val === "unknown" ? "unknown" : vt === "bool" ? `bool-${val}` : "";
-      const pct = Math.round(conf * 100);
-      return `<tr><td><span class="count">${esc(st)}</span> <span class="mono">${esc(id)}</span></td><td class="mono">${esc(field)}</td>`
-        + `<td><span class="v ${cls}">${esc(val)}</span><span class="vt">${esc(vt)}</span></td>`
-        + `<td><span class="bar"><s><i style="width:${pct}%;background:${COLOR[route]}"></i></s><span class="mono">${conf.toFixed(2)}</span></span></td>`
-        + `<td>${esc(method)}</td><td><span class="pill ${route}">${route === "human" ? esc(D.human[st]) : ROUTE[route]}</span></td></tr>`;
-    }).join("");
-  }
+    const cost = J ? J.jev_cost_all_permits_usd : 0;
+    const set = f => {
+      const done = Math.round(f * total), seen = Math.round(f * N);
+      const hum = Math.round(f * c.human), aut = Math.round(f * c.auto);
+      $("#k1").textContent = fmt(seen);
+      $("#k2").textContent = fmt(hum);
+      $("#k3").textContent = seen ? pct(aut, seen) : "0%";
+      $("#k4").textContent = "$" + (f * cost).toFixed(2);
+      $("#s2").textContent = f < 1 ? `Running · ${fmt(done)} / ${fmt(total)} squares` : `Done · ${fmt(N)}`;
+      $("#prog").textContent = `${fmt(seen)} / ${fmt(N)} permits`;
+      return done;
+    };
+    const finish = () => {
+      cells.forEach((el, i) => el.className = fin[i]);
+      set(1);
+      $("#b2").className = "blk done"; $("#b3").className = "blk done";
+      $("#s3").textContent = `Done · ${fmt(c.auto)} / ${fmt(c.review)} / ${fmt(c.human)}`;
+      $("#state").textContent = "Success"; $("#state").className = "state done";
+    };
 
-  function render() {
-    const c = D.counts, sum = k => Object.values(c).reduce((a, v) => a + v[k], 0);
-    const all = sum("auto") + sum("review") + sum("human");
-    const share = k => (100 * sum(k) / all).toFixed(1) + "%";
-    const tier = (n, k, label, icon, tone) => `<div class="kpi bg-surface-container-lowest border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0">
-      <div><div class="flex items-center justify-between mb-3"><span class="font-label-caps text-label-caps text-outline uppercase">Tier ${n}</span><span class="w-2 h-2 rounded-full" style="background:${COLOR[k]}"></span></div>
-      <b class="block font-telemetry-metric text-telemetry-metric text-ink-primary tracking-tight">${fmt(sum(k))}</b>
-      <span class="block font-label-md text-label-md text-ink-primary mt-1 font-semibold">${label}</span></div>
-      <div class="pt-4 mt-4 border-t border-surface-subtle"><div class="flex items-baseline justify-between font-body-sm text-body-sm"><span class="text-outline">Share</span><span class="font-bold ${tone}">${share(k)}</span></div>
-      <div class="w-full bg-surface-subtle h-1.5 rounded-full mt-1.5 overflow-hidden"><div class="h-full rounded-full" style="width:${share(k)};background:${COLOR[k]}"></div></div></div></div>`;
-    $("#kpis").innerHTML = `<div class="kpi lg:col-span-6 bg-surface-container-lowest border border-wire-border rounded-xl p-6 flex flex-col justify-between min-w-0">
-      <div><div class="flex flex-wrap items-center justify-between gap-2 mb-4"><span class="font-label-caps text-label-caps text-outline uppercase">Judgments in the db</span>
-      <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span>${share("auto")} go straight to the data</span></div>
-      <b class="block font-telemetry-metric text-telemetry-metric text-ink-primary tracking-tight">${fmt(sum("human"))} <span class="font-headline-md text-headline-md font-normal text-outline">of ${fmt(all)}</span></b>
-      <span class="block font-headline-sm text-headline-sm text-primary-container font-semibold mt-2">judgments go to a person.</span></div>
-      <p class="why pt-6 mt-6 border-t border-surface-subtle font-body-sm text-body-sm text-outline" id="why"></p></div>
-      <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-6 min-w-0">${tier("01", "auto", "Straight to the data", "", "text-emerald-700")}${tier("02", "review", "Second model", "", "text-amber-700")}${tier("03", "human", "A person", "", "text-red-600")}</div>`;
-    $("#why").textContent = `A model runs only where it adds value. People see the uncertain rows: ${fmt(sum("human"))} of ${fmt(all)}.`;
-    const T = D.thresholds;
-    $("#rule").textContent = `Rule: confidence ${T.auto.toFixed(2)} or more goes to auto; ${T.review.toFixed(2)} to ${T.auto.toFixed(2)} goes to model review; under ${T.review.toFixed(2)} goes to a person (the member confirms, the member retakes the photo, or an engineer checks). Band width is the share of each lane.`;
-    $("#legend").innerHTML = Object.keys(ROUTE).map(k => `<span><i style="background:${COLOR[k]}"></i>${ROUTE[k]}</span>`).join("");
-    for (const t of Object.keys(TYPES)) $("#ft").insertAdjacentHTML("beforeend", `<option value="${t}">${TYPES[t].toLowerCase()}</option>`);
-    const nPermit = D.sample.filter(r => r[0] === "permit").length;
-    $("#samplenote").textContent = `The table holds every house, photo and zip judgment, and ${nPermit} permits (6 per rule). The db holds all ${fmt(c.permit.auto + c.permit.review + c.permit.human)} permit judgments.`;
-    $("#rt tbody").innerHTML = D.permit_rules.map(r => `<tr><td>${esc(r.rule)}</td><td class="mono">${r.confidence.toFixed(2)}</td>`
-      + `<td><span class="pill ${r.route}">${r.route === "human" ? D.human.permit : ROUTE[r.route]}</span></td><td class="num">${fmt(r.rows)}</td></tr>`).join("");
-    const J = D.judge_compare;
     if (J) {
-      $("#cmpnote").textContent = `${J.model} re-judged the ${J.sample} permits with the lowest rules confidence (all fell through to other_electrical), from the city's description text. `
-        + `Agreement with the rules means the model also found no energy category. Most disagreements are real service or panel work that the regex missed (typos such as "exising", meter can swaps). `
-        + `gemma reports its own confidence (${(J.confidence_buckets["0.9"] || 0)} of ${J.sample} at 0.9 or more), so read it as a self-rating; Jev derives confidence from its probabilities. Cost is what Jev would charge for the same input tokens, at ${J.jev_price}.`;
-      $("#cmp").innerHTML = [[`${J.agree_with_rules} of ${J.sample}`, "agree with the rules"], [`${J.seconds_median}s`, `median per row (${J.seconds_total}s total, local)`],
-        [fmt(J.input_tokens), "input tokens"], [`$${J.jev_cost_usd.toFixed(4)}`, `at Jev prices; all ${fmt(c.permit.auto + c.permit.review + c.permit.human)} permits: $${J.jev_cost_all_permits_usd.toFixed(2)}`]]
-        .map(([b, s]) => `<div class="bg-surface-container-lowest border border-wire-border rounded-xl p-5 min-w-0"><b class="block font-headline-lg text-headline-lg text-ink-primary">${b}</b><span class="block font-body-sm text-body-sm text-outline mt-1">${s}</span></div>`).join("");
-      const rt = J.routes || {};
-      $("#cmplabels").innerHTML = `<table class="d"><thead><tr><th>Model label</th><th style="text-align:right">Rows</th></tr></thead><tbody>`
-        + Object.entries(J.labels).map(([k, v]) => `<tr><td class="mono">${esc(k)}</td><td class="num">${v}</td></tr>`).join("")
-        + `<tr><td>Model confidence routes: auto ${rt.auto || 0}, model review ${rt.review || 0}, human ${rt.human || 0}</td><td></td></tr></tbody></table>`;
-    } else {
-      $("#cmpnote").textContent = "The comparison appears after python3 -m store.judge --backend gemma --sample 100 and python3 -m store.judgments run.";
-    }
-    table(); flow();
+      const hi = J.confidence_buckets["0.9"] || 0;
+      $("#duo").innerHTML = [[`${hi} of ${J.sample}`, `rated its own answer 0.9 or more (${J.routes.auto} would route auto)`],
+        [`${J.agree_with_rules} of ${J.sample}`, "agreed with the rules"],
+        [`${J.sample - J.agree_with_rules}`, "disagreements the model's confidence could not flag"]]
+        .map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join("");
+      $("#findp").textContent = `We gave ${J.model} the ${J.sample} permits the rules were least sure of (confidence ${J.rows[0].rules_confidence.toFixed(2)}, all sent to a person). `
+        + `It called ${hi} of them near-certain, yet it agreed with the rules on only ${J.agree_with_rules}. On ${J.sample - J.agree_with_rules} permits one side is wrong, and the model's confidence does not say which. `
+        + `If we routed on that number, ${J.routes.auto} of these ${J.sample} permits would skip a person. So a confidence only decides the route after we check it against labelled permits, and until then the uncertain permits still go to a person.`;
+    } else $("#find").style.display = "none";
+
+    const route = r => `<span class="pill ${r}">${r === "human" ? "person" : r}</span>`;
+    const permits = D.sample.filter(r => r[0] === "permit");
+    const other = Object.entries(D.counts).filter(([k]) => k !== "permit");
+    const det = [
+      ["Seven rules set each permit's confidence", `auto at ${T.auto.toFixed(2)}+, review at ${T.review.toFixed(2)}+`,
+        `<table class="d"><thead><tr><th>Rule</th><th>Confidence</th><th>Route</th><th style="text-align:right">Permits</th></tr></thead><tbody>`
+        + D.permit_rules.slice().sort((a, b) => b.confidence - a.confidence).map(r => `<tr><td>${esc(r.rule)}</td><td class="mono">${r.confidence.toFixed(2)}</td><td>${route(r.route)}</td><td class="num">${fmt(r.rows)}</td></tr>`).join("")
+        + `</tbody></table>`],
+      ["The 100-permit model check in full", J ? `${J.model}, ${J.seconds_median}s median per permit` : "",
+        J ? `<p>Labels: ${Object.entries(J.labels).map(([k, v]) => `${esc(k)} ${v}`).join(", ")}. Time ${J.seconds_total}s total on a local machine. ${fmt(J.input_tokens)} input tokens; at ${esc(J.jev_price)} that is $${J.jev_cost_usd.toFixed(4)} for the ${J.sample}, $${J.jev_cost_all_permits_usd.toFixed(2)} for all ${fmt(N)}. Picked: ${esc(J.picked)}.</p>` : ""],
+      ["Sample permit judgments", `${permits.length} rows`,
+        `<table class="d"><thead><tr><th>Permit</th><th>Value</th><th>Confidence</th><th>Route</th></tr></thead><tbody>`
+        + permits.map(r => `<tr><td class="mono">${esc(r[1])}</td><td class="mono">${esc(r[3])}</td><td class="mono">${Number(r[5]).toFixed(2)}</td><td>${route(r[7])}</td></tr>`).join("") + `</tbody></table>`],
+      ["Homes, photos and zips use the same routes", other.map(([k, v]) => `${k} ${fmt(v.human)} to a person`).join(", "),
+        `<table class="d"><thead><tr><th>Subject</th><th style="text-align:right">Auto</th><th style="text-align:right">Review</th><th style="text-align:right">Person</th><th>Who</th></tr></thead><tbody>`
+        + other.map(([k, v]) => `<tr><td>${k}</td><td class="num">${fmt(v.auto)}</td><td class="num">${fmt(v.review)}</td><td class="num">${fmt(v.human)}</td><td>${esc(D.human[k])}</td></tr>`).join("") + `</tbody></table>`],
+      ["Answers by zip (data QA)", "", `<p><a href="data-qa.html">Open the zip answers page</a>.</p>`],
+      ["Q&amp;A drill", "", `<p><a href="qa.html">Open the judge drill</a>.</p>`],
+      ["Known gaps and claim checks", "", `<p><a href="gaps.html">Open the gap ledger</a>.</p>`]
+    ];
+    $("#dets").innerHTML = det.map(([t, s, b]) => `<details><summary>${t}${s ? `<span>${s}</span>` : ""}</summary><div>${b}</div></details>`).join("");
+
+    if (reduce) { finish(); return; }
+    set(0);
+    const DUR = 4200, WAVE = 18, t0 = performance.now();
+    const tick = now => {
+      const f = Math.min(1, (now - t0) / DUR), done = set(f);
+      for (let i = 0; i < cells.length; i++) {
+        const want = i < done - WAVE ? fin[i] : i < done ? "r" : "";
+        if (cells[i].className !== want) cells[i].className = want;
+      }
+      if (f < 1) requestAnimationFrame(tick); else finish();
+    };
+    requestAnimationFrame(tick);
   }
 
-  $("#ft").addEventListener("change", table);
-  $("#fr").addEventListener("change", table);
-  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => D && flow(), 120); });
   fetch("data/judgments.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(d => {
-      const order = {permit: 0, house: 1, photo: 2, zip: 3};
-      d.sample.sort((a, b) => order[a[0]] - order[b[0]] || (a[0] === "permit" || a[0] === "zip" ? b[5] - a[5] : 0)
-        || String(a[1]).localeCompare(String(b[1])) || String(a[6]).localeCompare(String(b[6])) || a[2].localeCompare(b[2]));
-      d.permit_rules.sort((a, b) => b.confidence - a.confidence);
-      D = d; render();
-    })
-    .catch(() => { $("#notice").style.display = "block"; });
+    .then(render).catch(() => { $("#notice").style.display = "block"; });
 })();
 </script>
 </body>
