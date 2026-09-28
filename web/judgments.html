@@ -20,13 +20,13 @@ body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-bod
 .tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
 .tag.s{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
 :root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
-.hero{padding-bottom:14px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+.hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
 .hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
 .hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
 .hero .a small{font:600 22px/30px var(--bf-font);color:var(--bf-muted);letter-spacing:0}
 .hero .line{font:var(--bf-text-body);color:var(--bf-muted);max-width:760px}
 .panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
-.run{margin-top:14px;display:grid;gap:10px}
+.run{margin-top:0;display:grid;gap:10px}
 .runhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
 .runhead h2{font:var(--bf-text-h2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .state{font:700 11px/16px var(--bf-font);padding:2px 10px;border-radius:999px;background:var(--bf-blue-tint);color:var(--bf-blue);border:1px solid var(--bf-blue-line)}
@@ -43,7 +43,7 @@ body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-bod
 .blk.running{border-color:var(--bf-blue)}.blk.running .st i{background:var(--bf-blue)}
 .blk.done .st i{background:var(--bf-solar)}
 .wire{width:28px;height:2px;background:var(--bf-line-strong);flex:none}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:760px){.stats{grid-template-columns:1fr 1fr}}
 .stat{padding:10px 12px;min-width:0}
 .stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
@@ -51,8 +51,8 @@ body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-bod
 .stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
 .gridp .gh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:8px 16px;border-bottom:1px solid var(--bf-line)}
 .gridp .gh b{font:var(--bf-text-h3)}.gridp .gh span{font:var(--bf-text-small);color:var(--bf-faint)}
-#sq{display:grid;grid-template-columns:repeat(auto-fill,11px);gap:3px;padding:12px 16px}
-#sq i{width:11px;height:11px;border-radius:2px;background:var(--bf-line);transition:background-color .25s}
+#sq{display:grid;grid-template-columns:repeat(auto-fill,14px);gap:4px;padding:14px 16px}
+#sq i{width:14px;height:14px;border-radius:2px;background:var(--bf-line);transition:background-color .25s}
 #sq i.r{background:var(--bf-blue)}#sq i.a{background:var(--bf-solar)}#sq i.v{background:#F59E0B}#sq i.p{background:#EF4444}
 .legend{display:flex;flex-wrap:wrap;gap:8px 18px;padding:0 16px 10px;font:var(--bf-text-small);color:var(--bf-muted)}
 .legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
@@ -62,6 +62,11 @@ body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-bod
 .duo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .duo div{background:var(--bf-sunk);border-radius:var(--bf-radius-lg);padding:8px 12px}
 .duo b{display:block;font:700 20px/26px var(--bf-font)}.duo span{font:var(--bf-text-small);color:var(--bf-muted)}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+.left,.right{display:grid;gap:10px;min-width:0}
+.right .find{margin-top:0}
+.right .duo{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
 .more{margin-top:20px}
 .more h2{font:var(--bf-text-h3);margin-bottom:10px}
 details{border-top:1px solid var(--bf-line)}details:last-of-type{border-bottom:1px solid var(--bf-line)}
@@ -91,17 +96,12 @@ footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
 </head>
 <body>
 <main id="main">
- <section class="hero">
-  <span class="eyebrow"><i></i>Permit check</span>
-  <p class="q" id="q">Which homes need a person?</p>
-  <h1 class="a" id="ans">&nbsp;</h1>
-  <p class="line">We read every Austin permit once, and only the uncertain ones reach a person. <span class="tag m">Measured</span></p>
- </section>
  <div id="notice">Permit data loads from data/judgments.json. Run <code>python3 -m store.judgments</code>, then serve the repo root.</div>
 
  <section class="run" aria-label="Permit run">
-  <div class="runhead"><h2>read_every_permit <span class="state" id="state">Running</span></h2><span class="meta" id="meta"></span></div>
-  <div class="top">
+  <div class="cols">
+   <div class="left">
+    <div class="runhead"><h2>read_every_permit <span class="state" id="state">Running</span></h2><span class="meta" id="meta"></span></div>
    <div class="panel strip">
     <div class="blk done" id="b1"><b>Collect permits</b><span class="op">Austin open data</span><span class="st"><i></i><span id="s1"></span></span></div>
     <div class="wire"></div>
@@ -109,25 +109,34 @@ footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
     <div class="wire"></div>
     <div class="blk" id="b3"><b>Route</b><span class="op">auto / review / person</span><span class="st"><i></i><span id="s3">Waiting</span></span></div>
    </div>
+   <div class="panel gridp">
+    <div class="gh"><b>judge_permit <span style="font-weight:400;color:var(--bf-faint)">· one square per <span id="per"></span> permits</span></b><span id="prog"></span></div>
+    <div id="sq" role="img" aria-label="Grid of permits filling from queued to routed"></div>
+    <div class="legend" id="legend"></div>
+   </div>
+   </div>
+   <aside class="right" aria-label="Analysis">
+    <section class="hero">
+  <span class="eyebrow"><i></i>Permit check</span>
+  <p class="q" id="q">Which homes need a person?</p>
+  <h1 class="a" id="ans">&nbsp;</h1>
+  <p class="line">We read every Austin permit once, and only the uncertain ones reach a person. <span class="tag m">Measured</span></p>
+ </section>
    <div class="stats">
     <div class="panel stat"><span class="k">Permits judged <span class="tag m">Measured</span></span><b class="v" id="k1">0</b><span class="s" id="k1s"></span></div>
     <div class="panel stat"><span class="k">Sent to a person <span class="tag m">Measured</span></span><b class="v" id="k2">0</b><span class="s" id="k2s"></span></div>
     <div class="panel stat"><span class="k">Share automatic <span class="tag m">Measured</span></span><b class="v" id="k3">0%</b><span class="s" id="k3s"></span></div>
     <div class="panel stat"><span class="k">Cost <span class="tag s">Simulation</span></span><b class="v" id="k4">$0.00</b><span class="s" id="k4s"></span></div>
    </div>
-  </div>
-  <div class="panel gridp">
-   <div class="gh"><b>judge_permit <span style="font-weight:400;color:var(--bf-faint)">· one square per <span id="per"></span> permits</span></b><span id="prog"></span></div>
-   <div id="sq" role="img" aria-label="Grid of permits filling from queued to routed"></div>
-   <div class="legend" id="legend"></div>
-  </div>
- </section>
-
  <section class="panel find" id="find">
-  <h2>A local model's own confidence did not match the rules <span class="tag m">Measured</span></h2>
+  <h2>A model's own confidence can't route <span class="tag m">Measured</span></h2>
   <div class="duo" id="duo"></div>
   <p id="findp"></p>
  </section>
+   </aside>
+  </div>
+ </section>
+
 
  <section class="more">
   <h2>More detail</h2>
@@ -193,13 +202,11 @@ footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
 
     if (J) {
       const hi = J.confidence_buckets["0.9"] || 0;
-      $("#duo").innerHTML = [[`${hi} of ${J.sample}`, `rated its own answer 0.9 or more (${J.routes.auto} would route auto)`],
+      $("#duo").innerHTML = [[`${hi} of ${J.sample}`, "said near-certain"],
         [`${J.agree_with_rules} of ${J.sample}`, "agreed with the rules"],
-        [`${J.sample - J.agree_with_rules}`, "disagreements the model's confidence could not flag"]]
+        [`${J.routes.auto}`, "would skip a person"]]
         .map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join("");
-      $("#findp").textContent = `We gave ${J.model} the ${J.sample} permits the rules were least sure of (confidence ${J.rows[0].rules_confidence.toFixed(2)}, all sent to a person). `
-        + `It called ${hi} of them near-certain, yet it agreed with the rules on only ${J.agree_with_rules}. On ${J.sample - J.agree_with_rules} permits one side is wrong, and the model's confidence does not say which. `
-        + `If we routed on that number, ${J.routes.auto} of these ${J.sample} permits would skip a person. So a confidence only decides the route after we check it against labelled permits, and until then the uncertain permits still go to a person.`;
+      $("#findp").textContent = `On the ${J.sample} hardest permits, ${J.model}'s own confidence could not tell right from wrong, so uncertain permits still go to a person until a judge is checked against labelled permits.`;
     } else $("#find").style.display = "none";
 
     const route = r => `<span class="pill ${r}">${r === "human" ? "person" : r}</span>`;
