@@ -33,7 +33,7 @@ body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-bod
 .state.done{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
 :root[data-theme="dark"] .state.done{color:var(--bf-brand)}
 .runhead .meta{font:var(--bf-text-small);color:var(--bf-faint)}
-.top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:16px;align-items:stretch}
+.top{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
 .strip{display:flex;align-items:center;padding:24px 20px;gap:0}
 .blk{flex:1;min-width:0;border:1px solid var(--bf-line-strong);border-radius:var(--bf-radius-lg);padding:12px 14px;background:var(--bf-surface)}
 .blk b{display:block;font:var(--bf-text-h3)}
@@ -43,7 +43,8 @@ body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-bod
 .blk.running{border-color:var(--bf-blue)}.blk.running .st i{background:var(--bf-blue)}
 .blk.done .st i{background:var(--bf-solar)}
 .wire{width:28px;height:2px;background:var(--bf-line-strong);flex:none}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}}
 .stat{padding:14px 16px;min-width:0}
 .stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
 .stat .v{display:block;font:700 28px/34px var(--bf-font);letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
@@ -163,8 +164,7 @@ footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
     const cls = {auto: "a", review: "v", human: "p"};
     const fin = [];
     keys.forEach((k, i) => { for (let j = 0; j < n[i]; j++) fin.push(cls[k]); });
-    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-    for (let i = fin.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [fin[i], fin[j]] = [fin[j], fin[i]]; }
+    // Kept in routing order (auto, review, person) so the grid shows the split, not a made-up permit order.
     $("#sq").innerHTML = "<i></i>".repeat(total);
     const cells = [...document.querySelectorAll("#sq i")];
     $("#legend").innerHTML = [["var(--bf-line)", "Queued"], ["var(--bf-blue)", "Running"],
