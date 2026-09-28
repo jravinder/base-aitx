@@ -34,7 +34,7 @@ const base = 'https://fleet.test';
   await page.keyboard.press('Enter');
   assert(await page.locator('.sh-more').evaluate(el=>el.open)); checks++;
   await page.locator('.sh-link[data-sh-id=admin]').click();
-  await page.waitForSelector('#feeds table');
+  await page.waitForSelector('#feeds table',{state:'attached'});
   assert(!(await page.locator('#pages').isVisible())); checks++;
   assert(!(await page.locator('#tracks').isVisible())); checks++;
   await page.goto(base+'/web/onboarding.html?track=home&persona=lead&address=4305%20MOUNT%20VERNON%20DR');

@@ -9,166 +9,148 @@
 <link rel="stylesheet" href="shell.css">
 <link rel="stylesheet" href="milestones.css">
 <style>
-.rw .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;font-size:18px;line-height:1;display:inline-block;vertical-align:middle}
-.rw main,.rw main *,.rw main *::before,.rw main *::after{box-sizing:border-box}
-body.rw{font-family:'Plus Jakarta Sans',sans-serif;margin:0}
-.rw .skip{position:absolute;left:-9999px}.rw .skip:focus{left:8px;top:8px;z-index:50;background:#fff;padding:6px}
-.rw table{min-width:640px}
-.rw h1,.rw h2,.rw h3,.rw p{margin:0}
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:18px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;vertical-align:middle}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body)}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:var(--bf-surface);padding:6px 10px}
+#main{max-width:1440px;margin:0 auto;padding:24px 24px 48px;overflow-wrap:anywhere}
+#main h1,#main h2,#main h3,#main p,#main dl,#main dd{margin:0}
+#main a{color:var(--bf-brand);text-decoration:none}#main a:hover{text-decoration:underline}
+#main a.bf-btn-primary{color:var(--bf-on-brand)}#main a.bf-btn:hover{text-decoration:none}
+.mono,code{font-family:var(--bf-mono);font-size:12px}
+.eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+.tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+.tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+.tag.p{background:var(--bf-blue-tint);color:var(--bf-blue);border-color:var(--bf-blue-line)}
+:root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+.hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+.hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+.hero .a{font:700 30px/36px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.hero .a small{font:600 20px/28px var(--bf-font);color:var(--bf-muted);letter-spacing:0}
+.hero .line{font:var(--bf-text-body);color:var(--bf-muted)}
+.panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+.runhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.runhead h2{font:var(--bf-text-h2)}
+.runhead .meta{font:var(--bf-text-small);color:var(--bf-faint)}
+.runhead .meta a{color:var(--bf-muted)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{padding:10px 12px;min-width:0}
+.stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+.stat .v{display:block;font:700 22px/28px var(--bf-font);letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
+.find{padding:12px 16px;display:grid;gap:6px;border-left:4px solid var(--bf-brand)}
+.find h2{font:var(--bf-text-h3)}
+.find p{font:var(--bf-text-small);color:var(--bf-muted)}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.acts .bf-btn{padding:0 18px}
+.note{font:var(--bf-text-small);color:var(--bf-muted)}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}
+.left,.right{display:grid;gap:10px;min-width:0}
+@media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+.more{margin-top:20px}
+.more h2{font:var(--bf-text-h3);margin-bottom:10px}
+details.d{border-top:1px solid var(--bf-line)}details.d:last-of-type{border-bottom:1px solid var(--bf-line)}
+details.d>summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+details.d>summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+details.d>div{padding:4px 4px 18px;overflow-x:auto;color:var(--bf-muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;font:700 11px/16px var(--bf-font);padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap;flex:none}
+.chip i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.chip.green{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+.chip.todo{background:var(--bf-blue-tint);color:var(--bf-blue);border-color:var(--bf-blue-line)}
+.chip.grey{background:var(--bf-sunk);color:var(--bf-muted);border-color:var(--bf-line)}
+:root[data-theme="dark"] .chip.green{color:var(--bf-brand)}
+footer.f{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
+@media (max-width:640px){#main{padding:20px 16px 40px}.hero .a{font:700 26px/32px var(--bf-font)}}
+#rw-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.opt{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.opt .oh{display:flex;align-items:center;gap:8px;color:var(--bf-brand)}
+.opt h3{font:var(--bf-text-h3);color:var(--bf-ink)}
+.opt .ot{font:var(--bf-text-small);color:var(--bf-muted)}
+.opt .on{font:700 12px/16px var(--bf-font);color:var(--bf-faint)}.opt .on.ready{color:var(--bf-brand)}
+.opt .meter{height:8px;border-radius:99px;background:var(--bf-sunk);border:1px solid var(--bf-line);overflow:hidden}
+.opt .meter i{display:block;height:100%;background:var(--bf-brand)}
+.opt .oq{margin-top:auto;min-height:40px;padding:0 10px;font:600 12px/16px var(--bf-font);color:var(--bf-muted);cursor:default}
+.redeemhead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.redeemhead h2{font:var(--bf-text-h2)}
+.rw-out{font:var(--bf-text-small);color:var(--bf-muted)}
+.rw-out:empty{display:none}
+#rw-addr{font-family:var(--bf-mono);font-size:12px}
+table.d{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+table.d th{text-align:left;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);padding:8px 12px;border-bottom:1px solid var(--bf-line);background:var(--bf-sunk)}
+table.d td{border-bottom:1px solid var(--bf-line);color:var(--bf-ink)}
+#rw-ledger .text-outline{color:var(--bf-muted)}#rw-ledger .text-ink-primary{color:var(--bf-ink)}#rw-ledger .text-primary-container{color:var(--bf-brand)}
+#rw-ledger a,#rw-ledger button{background:var(--bf-sunk);border-color:var(--bf-line);color:var(--bf-ink)}
+.invite{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+#rw-link{flex:1 1 280px;min-width:0;background:var(--bf-sunk);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:8px 12px;font-family:var(--bf-mono);font-size:12px;color:var(--bf-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#rw-policy>div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--bf-line);color:var(--bf-ink)}
+#rw-policy>div span:last-child{color:var(--bf-brand);font-weight:600}
+@media (max-width:760px){#rw-options{grid-template-columns:1fr}}
 </style>
 <script defer src="shell.js"></script><script defer src="milestones.js"></script><script defer src="rewards.js"></script>
 </head>
-<body class="rw bg-background text-on-surface antialiased min-h-screen">
+<body class="rw">
 <a class="skip" href="#main">Skip to rewards</a>
 <div class="shell">
-<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-margin py-8 flex flex-col gap-6">
-<div class="bg-surface-container-lowest border border-wire-border rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-body-sm font-body-sm">
- <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-outline">
-  <a id="rw-crumb-home" href="onboarding.html#home" class="hover:text-ink-primary flex items-center gap-1 no-underline text-outline"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">home</span><span>Onboarding</span></a>
-  <span class="material-symbols-outlined text-[14px] opacity-70" aria-hidden="true">chevron_right</span>
-  <a id="rw-crumb-status" href="status.html" class="hover:text-ink-primary no-underline text-outline">Application status</a>
-  <span class="material-symbols-outlined text-[14px] opacity-70" aria-hidden="true">chevron_right</span>
-  <span class="text-primary-container font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">redeem</span>Rewards and referrals</span>
- </nav>
- <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span>Member rewards ledger</span>
-</div>
-
-<!-- Page header -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-wire-border">
- <div class="min-w-0">
-  <div class="flex flex-wrap items-center gap-2 text-outline mb-1">
-   <span class="font-label-caps text-label-caps uppercase text-outline">Home from Austin permit records</span>
-   <span aria-hidden="true">•</span>
-   <span id="rw-addr" class="font-label-caps text-label-caps text-primary-container bg-surface-subtle px-1.5 py-0.5 rounded border border-wire-border">Pick a home on Onboarding</span>
-  </div>
-  <h1 class="font-headline-lg text-headline-lg text-ink-primary">Your points, and how to earn more.</h1>
-  <p class="font-body-md text-body-md text-outline mt-0.5">Points from the steps you finished, plus +50 pts for each neighbour who joins from your invite. Redeem them for a bill credit or a priority review.</p>
- </div>
- <div class="flex flex-wrap items-center gap-2 self-start md:self-auto">
-  <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface-container-lowest border border-wire-border text-outline">
-   <span class="material-symbols-outlined text-warning-amber" aria-hidden="true">info</span>
-   <span class="font-body-sm text-body-sm">Saved on this device</span>
-  </div>
-  <a id="story-next" href="brain.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold hover:bg-evergreen-deep shadow-sm no-underline"><span>Next: ask anything</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
- </div>
-</div>
-
-<!-- Tracker section -->
-<section class="bg-surface-container-lowest border border-wire-border rounded-xl p-4 sm:p-6 shadow-none flex flex-col gap-6" aria-labelledby="rw-track-title">
- <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-wire-border">
-  <div>
-   <div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-primary-container text-[18px]" aria-hidden="true">verified</span><span class="font-label-caps text-label-caps uppercase text-outline font-bold">Base Ready points (proposal)</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-secondary-container text-ink-primary uppercase tracking-normal">5-step track</span></div>
-   <h2 id="rw-track-title" class="font-headline-lg text-headline-lg text-ink-primary font-bold">Onboarding and referral points</h2>
-   <p class="font-body-md text-body-md text-outline mt-0.5">Finish your steps to earn points. Base confirms points at installation.</p>
-  </div>
-  <div class="flex items-center gap-2.5 shrink-0">
-   <button type="button" data-invite data-reward="neighbour" class="bg-primary-container hover:bg-evergreen-deep text-surface-container-lowest font-label-md text-label-md px-4 py-2.5 rounded-lg transition-colors inline-flex items-center gap-2 shadow-sm"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">share</span><span>Copy invite link</span></button>
-  </div>
- </div>
- <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-xl bg-surface-subtle border border-wire-border">
-  <div class="p-3 bg-surface-container-lowest border border-wire-border rounded-lg flex flex-col justify-between">
-   <div class="flex items-center justify-between text-outline text-label-caps font-bold uppercase mb-1"><span>Earned</span><span class="w-2 h-2 rounded-full bg-warning-amber"></span></div>
-   <div class="flex items-baseline gap-2"><span id="rw-proposed" class="font-telemetry-metric text-telemetry-metric text-ink-primary">0</span><span class="font-telemetry-unit text-telemetry-unit text-outline font-semibold">pts</span></div>
-   <div class="mt-2 pt-2 border-t border-surface-subtle text-xs text-outline">From your own steps</div>
-  </div>
-  <div class="p-3 bg-surface-container-lowest border border-wire-border rounded-lg flex flex-col justify-between">
-   <div class="flex items-center justify-between text-outline text-label-caps font-bold uppercase mb-1"><span>Still to earn</span><span class="w-2 h-2 rounded-full bg-solar-green"></span></div>
-   <div class="flex items-baseline gap-2"><span id="rw-waiting" class="font-telemetry-metric text-telemetry-metric text-ink-primary">0</span><span class="font-telemetry-unit text-telemetry-unit text-outline font-semibold">pts</span></div>
-   <div id="rw-waiting-note" class="mt-2 pt-2 border-t border-surface-subtle text-xs text-outline">Still open from your own steps</div>
-  </div>
-  <div class="p-3 bg-surface-container-lowest border border-wire-border rounded-lg flex flex-col justify-between">
-   <div class="flex items-center justify-between text-outline text-label-caps font-bold uppercase mb-1"><span>Issued</span><span class="w-2 h-2 rounded-full bg-outline-variant"></span></div>
-   <div class="flex items-baseline gap-2"><span class="font-telemetry-metric text-telemetry-metric text-ink-primary">0</span><span class="font-telemetry-unit text-telemetry-unit text-outline font-semibold">pts</span></div>
-   <div class="mt-2 pt-2 border-t border-surface-subtle text-xs text-outline">Issued after Base confirms installation</div>
-  </div>
- </div>
-
- <div class="p-3.5 bg-secondary-container/30 border border-secondary-container rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-  <div class="flex items-center gap-3">
-   <span class="w-8 h-8 rounded-lg bg-surface-container-lowest border border-secondary-container flex items-center justify-center text-primary-container shrink-0"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">group_add</span></span>
-   <div>
-    <div class="flex flex-wrap items-center gap-2"><span class="font-headline-sm text-[14px] font-bold text-ink-primary">Neighbour booster</span><span id="rw-joins" class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary-container text-surface-container-lowest uppercase tracking-normal">0 joins recorded</span></div>
-    <p id="rw-booster" class="font-body-sm text-xs text-outline mt-0.5">Points when a neighbour joins from your invite.</p>
+<main id="main">
+ <div class="cols">
+  <div class="left">
+   <div class="runhead">
+    <h2>Points for each step</h2>
+    <nav class="meta" aria-label="Breadcrumb"><a id="rw-crumb-home" href="onboarding.html#home">Onboarding</a> › <a id="rw-crumb-status" href="status.html">Application status</a> › Rewards and referrals</nav>
    </div>
+   <div data-milestones="ribbon"></div>
+   <section id="rw-redeem" class="panel" style="padding:14px 16px;display:grid;gap:10px" aria-labelledby="rw-redeem-title">
+    <div class="redeemhead"><h2 id="rw-redeem-title">Your next reward</h2><span class="note"><span id="rw-avail">0</span> pts available. Three ways to use them. <span class="tag p">Proposal</span></span></div>
+    <div id="rw-options"></div>
+   </section>
   </div>
-  <div class="flex items-center gap-2.5 shrink-0">
-   <button type="button" data-invite data-reward="neighbour" class="bg-primary-container hover:bg-evergreen-deep text-surface-container-lowest font-label-md text-xs px-3 py-1.5 rounded-lg transition-colors inline-flex items-center gap-1.5 shadow-sm"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">share</span><span>Invite a neighbour</span></button>
-  </div>
- </div>
- <p class="rw-out font-body-sm text-body-sm text-outline -mt-3" role="status" aria-live="polite"></p>
-</section>
 
-<!-- Ledger + side column -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
- <div class="lg:col-span-8 min-w-0 bg-surface-container-lowest border border-wire-border rounded-xl overflow-hidden shadow-none">
-  <div class="p-4 px-5 border-b border-wire-border flex items-center justify-between gap-2 bg-surface-container-lowest">
-   <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container" aria-hidden="true">list_alt</span><h2 class="font-headline-sm text-headline-sm text-ink-primary">Points ledger</h2></div>
-   <span id="rw-count" class="font-body-sm text-body-sm text-outline">0 rows</span>
-  </div>
-  <div class="overflow-x-auto">
-   <table class="w-full text-left border-collapse">
-    <thead><tr class="bg-surface-subtle border-b border-wire-border text-outline">
-     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold w-24">Date</th>
-     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Description</th>
-     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Milestone</th>
-     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Points</th>
-     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Status</th>
-     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold">Source</th>
-     <th class="py-2.5 px-4 font-label-caps text-label-caps uppercase font-bold text-right">Next</th>
-    </tr></thead>
-    <tbody id="rw-ledger" class="divide-y divide-wire-border font-body-md text-body-md"></tbody>
+  <aside class="right" aria-label="Your points">
+   <section class="hero">
+    <span class="eyebrow"><i></i>Base Ready points · <span id="rw-addr">Pick a home on Onboarding</span></span>
+    <p class="q">How many points do you have?</p>
+    <h1 class="a"><span id="rw-proposed">0</span> pts <small>earned so far.</small></h1>
+    <p class="line">Points from the steps you finished, plus +50 pts for each neighbour who joins from your invite. Base confirms points at installation. <span class="tag p">Proposal</span></p>
+   </section>
+   <div class="stats">
+    <div class="panel stat"><span class="k">Still to earn</span><b class="v"><span id="rw-waiting">0</span> pts</b><span class="s" id="rw-waiting-note">Still open from your own steps</span></div>
+    <div class="panel stat"><span class="k">Issued</span><b class="v">0 pts</b><span class="s">Issued after Base confirms installation</span></div>
+    <div class="panel stat"><span class="k">Neighbour booster</span><b class="v" id="rw-joins">0 joins recorded</b><span class="s" id="rw-booster">Points when a neighbour joins from your invite.</span></div>
+    <div class="panel stat"><span class="k">Saved</span><b class="v">This device</b><span class="s">Read from answers saved here</span></div>
+   </div>
+   <div class="acts">
+    <button type="button" data-invite data-reward="neighbour" class="bf-btn bf-btn-primary"><span class="material-symbols-outlined" aria-hidden="true">share</span><span>Invite a neighbour</span></button>
+    <a id="story-next" href="brain.html" class="bf-btn"><span>Next: ask anything</span><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+   </div>
+   <p class="rw-out" role="status" aria-live="polite"></p>
+  </aside>
+ </div>
+
+ <section class="more">
+  <h2>More detail</h2>
+  <details class="d"><summary>Points ledger <span id="rw-count">0 rows</span></summary><div>
+   <table class="d">
+    <thead><tr><th>Date</th><th>Description</th><th>Milestone</th><th>Points</th><th>Status</th><th>Source</th><th style="text-align:right">Next</th></tr></thead>
+    <tbody id="rw-ledger"></tbody>
    </table>
-  </div>
-  <div class="p-3 bg-surface-subtle/70 border-t border-wire-border flex flex-wrap items-center justify-between gap-2 text-body-sm text-outline">
-   <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">sync</span>Read from answers saved on this device</span>
-   <span class="font-semibold text-ink-primary">Total earned: <span id="rw-total">0</span> pts</span>
-  </div>
- </div>
-
- <div class="lg:col-span-4 min-w-0 flex flex-col gap-6">
-  <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-5 flex flex-col gap-4">
-   <div class="flex items-center justify-between gap-2">
-    <div class="flex items-center gap-2"><span class="w-7 h-7 rounded-lg bg-surface-subtle border border-wire-border flex items-center justify-center text-primary-container"><span class="material-symbols-outlined" aria-hidden="true">share</span></span><h3 class="font-headline-sm text-headline-sm text-ink-primary">Your invite code</h3></div>
-    <span id="rw-code-state" class="font-label-caps text-label-caps text-primary-container bg-secondary-container/30 px-2 py-0.5 rounded font-bold">Ready to make</span>
+   <p class="note" style="margin-top:10px">Read from answers saved on this device. <b style="color:var(--bf-ink)">Total earned: <span id="rw-total">0</span> pts</b></p>
+  </div></details>
+  <details class="d"><summary>Your invite code <span id="rw-code-state">Ready to make</span></summary><div>
+   <p>Share with a neighbour. The link holds an anonymous code only: no name, no address.</p>
+   <div class="invite">
+    <div id="rw-link">Copy the link to make a code</div>
+    <button type="button" data-invite data-reward="neighbour" class="bf-btn"><span class="material-symbols-outlined" aria-hidden="true">content_copy</span><span>Copy link</span></button>
    </div>
-   <p class="font-body-sm text-body-sm text-outline">Share with a neighbour. The link holds an anonymous code only: no name, no address.</p>
-   <div class="flex flex-col gap-2">
-    <span class="font-label-caps text-label-caps text-outline uppercase font-bold">Invite link</span>
-    <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch gap-2">
-     <div id="rw-link" class="flex-1 min-w-0 bg-surface-subtle border border-wire-border rounded-lg px-3 py-2 font-mono text-body-sm text-ink-primary select-all overflow-hidden text-ellipsis whitespace-nowrap">Copy the link to make a code</div>
-     <button type="button" data-invite data-reward="neighbour" class="bg-primary-container hover:bg-evergreen-deep text-surface-container-lowest font-label-md text-label-md px-3.5 py-2 rounded-lg transition-colors shrink-0 inline-flex items-center justify-center gap-1.5 shadow-sm"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span><span>Copy link</span></button>
-    </div>
-   </div>
-   <div class="p-3 bg-surface-subtle rounded-lg border border-wire-border text-body-sm text-outline flex items-start gap-2">
-    <span class="material-symbols-outlined text-[17px] text-outline shrink-0 mt-0.5" aria-hidden="true">policy</span>
-    <p class="leading-relaxed">Points arrive when a neighbour joins from your link and Base confirms their installation.</p>
-   </div>
-  </div>
+   <p class="note" style="margin-top:8px">Points arrive when a neighbour joins from your link and Base confirms their installation.</p>
+  </div></details>
+  <details class="d"><summary>Points policy <span>what each step earns</span></summary><div>
+   <div id="rw-policy"></div>
+   <p class="note" style="margin-top:8px">Base confirms points at installation.</p>
+  </div></details>
+ </section>
 
-  <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-5 flex flex-col gap-3">
-   <div class="flex items-center gap-2 pb-2 border-b border-wire-border"><span class="material-symbols-outlined text-outline" aria-hidden="true">tune</span><h3 class="font-headline-sm text-headline-sm text-ink-primary">Points policy</h3></div>
-   <div id="rw-policy" class="space-y-2.5 font-body-sm text-body-sm"></div>
-   <div class="pt-2 border-t border-wire-border flex items-center gap-1.5 text-xs text-outline"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">gavel</span><span>Base confirms points at installation.</span></div>
-  </div>
- </div>
-</div>
-
-<!-- Redeem: a proposal. Buttons show state only; no transaction happens. -->
-<section id="rw-redeem" class="bg-surface-container-lowest border border-wire-border rounded-xl p-4 sm:p-6 flex flex-col gap-4" aria-labelledby="rw-redeem-title">
- <div class="flex flex-wrap items-center justify-between gap-2">
-  <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container" aria-hidden="true">redeem</span><h2 id="rw-redeem-title" class="font-headline-sm text-headline-sm text-ink-primary">Redeem your points</h2></div>
-  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-secondary-container text-ink-primary uppercase tracking-normal">Proposal</span>
- </div>
- <p class="font-body-sm text-body-sm text-outline"><span id="rw-avail">0</span> pts available. Three ways to use them, as our proposal.</p>
- <div id="rw-options" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
-</section>
-
-<div data-milestones="ribbon"></div>
-
-<footer class="border-t border-wire-border pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-body-sm text-outline">
- <span>A Base Ready design. Answers saved on this device.</span>
- <span><a class="hover:text-ink-primary underline" href="brain.html">Ask Base Brain</a> · Base support for account or contract questions</span>
-</footer>
+ <footer class="f">A Base Ready design. Answers saved on this device. <a href="brain.html">Ask Base Brain</a> · Base support for account or contract questions</footer>
 </main>
 </div>
 </body></html>

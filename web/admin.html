@@ -10,186 +10,218 @@
 <script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
 <link rel="stylesheet" href="shell.css">
 <style>
-.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0}
-#main{overflow-wrap:anywhere}
+body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body)}
+#main{max-width:1440px;margin:0 auto;padding:32px 24px 48px;overflow-wrap:anywhere}
 :where(#main) :where(p,h1,h2,h3,dl,dd){margin:0}
-#main a{color:#1e4d2b}
-.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:#fff;padding:6px 10px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:4px 10px;border-radius:8px;background:#F1F5F9;border:1px solid #E2E8F0;color:#717970;font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}
-.eyebrow i{width:6px;height:6px;border-radius:50%;background:#22C55E;display:inline-block}
-.caps{font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#717970}
-.panel{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:24px;min-width:0}
-code,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:12px;background:#F1F5F9;border:1px solid #E2E8F0;border-radius:4px;padding:0 4px;color:#0F172A}
-
-  .pill { display:inline-flex; align-items:center; gap:4px; font-size:11.5px; line-height:18px; padding:1px 8px; border-radius:999px; white-space:nowrap; font-weight:600; text-decoration:none; border:1px solid transparent }
-  #main a.pill { text-decoration:none }
-  .ok { background:#ecfdf5; color:#1e4d2b; border-color:#bbefc1 }
-  .stale, .local, .watch { background:#fffbeb; color:#87591c; border-color:#fde68a }
-  .fail, .high { background:#fbe9f0; color:#a0184b; border-color:#f5c2d4 }
-  .manual, .info { background:#F1F5F9; color:#486077; border-color:#E2E8F0 }
-  .mo { display:none }
-  .judg { font-size:11px; color:#717970; font-style:italic }
-  .num { font-variant-numeric:tabular-nums }
-  .sec-h { font:600 20px/28px "Plus Jakarta Sans",sans-serif; color:#0F172A; margin:0 0 4px !important; display:flex; gap:10px; align-items:baseline; flex-wrap:wrap }
-  .sec-h small { font:400 12px/18px "Plus Jakarta Sans",sans-serif; color:#717970 }
-  .asof { color:#717970; font-size:12px }
-  /* summary tiles */
-  .strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px }
-  .tile { background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:24px; min-width:0 }
-  .tile .k { font:700 11px/16px "Plus Jakarta Sans",sans-serif; color:#717970; text-transform:uppercase; letter-spacing:.06em }
-  .tile .v { font:700 32px/38px "Plus Jakarta Sans",sans-serif; letter-spacing:-.02em; color:#0F172A; margin:8px 0 10px; font-variant-numeric:tabular-nums }
-  .tile .s { font-size:12px; color:#717970; display:flex; flex-wrap:wrap; gap:4px }
-  /* tables: light */
-  table { border-collapse:separate; border-spacing:0; width:100%; font-size:13px; background:#fff; border:1px solid #E2E8F0; border-radius:12px; overflow:hidden }
-  th, td { text-align:left; padding:12px 16px; border-bottom:1px solid #E2E8F0; vertical-align:top }
-  th { font:700 11px/16px "Plus Jakarta Sans",sans-serif; letter-spacing:.06em; text-transform:uppercase; color:#717970; background:#F8FAFC }
-  tr:last-child td { border-bottom:0 }
-  td .sub { display:block; color:#717970; font-size:12px; overflow-wrap:anywhere }
-  /* cards */
-  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px }
-  .card { background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:24px; min-width:0; display:flex; flex-direction:column; gap:8px }
-  .card h3 { margin:0; font:600 16px/24px "Plus Jakarta Sans",sans-serif; color:#0F172A; display:flex; justify-content:space-between; gap:8px; align-items:baseline }
-  .card .meta, .meta { color:#717970; font-size:12px }
-  .thumb { display:block; aspect-ratio:16/10; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; overflow:hidden }
-  .thumb img { width:100%; height:100%; object-fit:cover; object-position:top; display:block }
-  .thumb.none { display:grid; place-items:center; color:#717970; font-size:12px }
-  .row { display:flex; flex-wrap:wrap; gap:4px }
-  .tracks { grid-template-columns:repeat(3,minmax(0,1fr)) }
-  .ev { list-style:none; margin:0; padding:0 }
-  .ev li { padding:8px 0; border-top:1px solid #E2E8F0 }
-  .ev b { font-size:17px; font-variant-numeric:tabular-nums; margin-right:6px }
-  .ev .meta a { font-weight:600 }
-  .dots { display:inline-flex; gap:3px; vertical-align:middle }
-  .dots i { width:10px; height:10px; border-radius:50%; border:1px solid #1e4d2b }
-  .dots i.on { background:#1e4d2b }
-  .weak { border:1px solid #fde68a; padding:8px 12px; background:#fffbeb; font-size:13px; border-radius:8px; color:#0F172A }
-  .stats { display:flex; gap:16px; flex-wrap:wrap }
-  .stats div { font-size:12px; color:#717970 }
-  .stats b { display:block; font-size:18px; color:#0F172A; font-variant-numeric:tabular-nums }
-  ul.plain, ol.plain { margin:0; padding-left:18px; font-size:13px }
-  ol.plain li, ul.plain li { padding:4px 0 }
-  .help { font-size:13px; color:#1e4d2b; font-weight:600 }
-  .note { color:#717970; font-size:12px; margin:8px 0 0 !important }
-  .notice { border:1px solid #f5c2d4; border-radius:12px; background:#fbe9f0; padding:12px 16px; display:none; color:#0F172A }
-  .admin-path { display:flex; flex-wrap:wrap; gap:4px 20px }
-  .admin-path a, .review-next, summary { min-height:44px; display:flex; align-items:center; padding:8px 0 }
-  #main .admin-path a { color:#414941; font-weight:500; border-bottom:2px solid transparent }
-  #main .admin-path [aria-current] { color:#1e4d2b; font-weight:600; border-bottom-color:#1e4d2b }
-  #main .review-next { color:#1e4d2b; font-weight:600 }
-  .rules .card { overflow-wrap:anywhere }
-  .rules details { margin-top:auto; border-top:1px solid #E2E8F0 }
-  summary { cursor:pointer; font-weight:600; color:#0F172A }
-  details.fold { background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:0 24px }
-  details.fold[open] { padding-bottom:24px }
-  details.fold > summary { font:600 16px/24px "Plus Jakarta Sans",sans-serif; min-height:56px }
-  details.fold > summary small { font:400 12px/18px "Plus Jakarta Sans",sans-serif; color:#717970; margin-left:8px }
-  a:focus-visible, summary:focus-visible { outline:3px solid #467bb0; outline-offset:3px }
-  .sig { display:grid; grid-template-columns:70px 1fr auto; gap:4px 12px; align-items:baseline }
-  .sig .msg { overflow-wrap:anywhere }
-  .sig .src { font-size:12px; color:#717970; overflow-wrap:anywhere }
-  .rules { grid-template-columns:repeat(5,minmax(0,1fr)); gap:16px; margin-bottom:16px }
-  .rules .card { gap:4px; font-size:12.5px; padding:20px }
-  .rules .card h3 { font-size:13px }
-  .rules .v { font:700 20px/28px "Plus Jakarta Sans",sans-serif; font-variant-numeric:tabular-nums; color:#0F172A }
-  .none { color:#717970; font-size:13px; padding:12px 16px; background:#fff; border:1px solid #E2E8F0; border-radius:12px }
-  .lrn-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:24px }
-  .bar { display:grid; grid-template-columns:110px 1fr 100px; gap:8px; align-items:center; font-size:13px; padding:4px 0 }
-  .bar .track { height:8px; background:#F1F5F9; border-radius:999px; overflow:hidden }
-  .bar .track i { display:block; height:100%; background:#1e4d2b; border-radius:999px }
-  .props td.q { max-width:360px; overflow-wrap:anywhere }
-  .props button { font:inherit; font-size:12px; font-weight:600; padding:4px 12px; border-radius:8px; border:1px solid #E2E8F0; background:#fff; color:#0F172A; cursor:pointer; margin:0 4px 4px 0 }
-  .props button.yes { background:#1e4d2b; border-color:#1e4d2b; color:#fff }
-  .props button:disabled { opacity:.45; cursor:not-allowed }
-  .srv { font-size:12.5px; padding:6px 12px; border-radius:8px; margin:0 0 12px; display:inline-block }
-  .who { font:inherit; font-size:12.5px; padding:4px 8px; border:1px solid #E2E8F0; border-radius:8px; width:120px; background:#fff; color:#0F172A }
-  #health.green { background:#ecfdf5; border-color:#bbefc1 }
-  #health.amber { background:#fffbeb; border-color:#fde68a }
-  #main .admin-path a, #main .review-next, #main .card h3 a { text-decoration:none }
-  @media (max-width:1100px) { .rules { grid-template-columns:repeat(3,minmax(0,1fr)) } }
-  @media (max-width:900px) { .lrn-grid, .tracks { grid-template-columns:1fr } .strip { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px } .rules { grid-template-columns:repeat(2,minmax(0,1fr)) } }
-  @media (max-width:640px) {
-    .sig, .rules { grid-template-columns:1fr }
-    .tile { padding:16px } .tile .v { font-size:24px; line-height:30px }
-    table, thead, tbody, tr, td { display:block; width:100% }
-    thead { display:none }
-    table { border:0; background:none; border-radius:0 }
-    tr { background:#fff; border:1px solid #E2E8F0; border-radius:12px; margin:0 0 8px; padding:12px 16px }
-    td { border:0; padding:2px 0 }
-    td[data-l]::before { content:attr(data-l) ": "; color:#717970; font-size:11.5px }
-    td.first .nm { display:flex; justify-content:space-between; gap:8px; align-items:baseline; font-weight:600 }
-    .mo { display:inline } .dk { display:none } td.st:not(:has(.sub)) { display:none }
-    .cards { grid-template-columns:1fr }
-    details.fold { padding:0 16px }
-  }
+#main a{color:var(--bf-brand);text-decoration:none}#main a:hover{text-decoration:underline}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:var(--bf-surface);padding:6px 10px}
+code,.mono{font-family:var(--bf-mono);font-size:12px;background:var(--bf-sunk);border:1px solid var(--bf-line);border-radius:var(--bf-radius);padding:0 4px;color:var(--bf-ink)}
+.eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+.caps{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint)}
+.tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+.tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+:root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+.hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+.hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+.hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.hero .a small{font:600 22px/30px var(--bf-font);color:var(--bf-muted);letter-spacing:0}
+.hero .line{font:var(--bf-text-body);color:var(--bf-muted)}
+.asof{font:var(--bf-text-small);color:var(--bf-faint)}
+.panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card);min-width:0}
+.runhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.runhead h2{font:var(--bf-text-h2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.runhead .meta{font:var(--bf-text-small);color:var(--bf-faint)}
+.state{font:700 11px/16px var(--bf-font);padding:2px 10px;border-radius:999px;background:var(--bf-blue-tint);color:var(--bf-blue);border:1px solid var(--bf-blue-line)}
+.state.done{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+.state.warn{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
+:root[data-theme="dark"] .state.done{color:var(--bf-brand)}
+.gridp .gh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:8px 16px;border-bottom:1px solid var(--bf-line)}
+.gridp .gh b{font:var(--bf-text-h3)}.gridp .gh span{font:var(--bf-text-small);color:var(--bf-faint)}
+#fsq{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding:14px 16px}
+.fq{display:grid;gap:4px;min-width:0}
+.fq i{display:block;height:34px;border-radius:var(--bf-radius);background:var(--bf-line)}
+.fq.ok i{background:var(--bf-solar)}.fq.stale i{background:#F59E0B}.fq.fail i{background:#EF4444}.fq.manual i{background:var(--bf-blue)}
+.fq b{font:600 12px/16px var(--bf-font);color:var(--bf-ink);overflow-wrap:anywhere}
+.fq span{font:var(--bf-text-small);color:var(--bf-faint)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;padding:0 16px 10px;font:var(--bf-text-small);color:var(--bf-muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.kstats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{padding:10px 12px;min-width:0}
+.stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+.stat .v{display:block;font:700 22px/28px var(--bf-font);letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat .s{display:flex;flex-wrap:wrap;gap:4px;font:var(--bf-text-small);color:var(--bf-muted);margin-top:4px}
+.find{padding:14px 18px;display:grid;gap:8px;border-left:4px solid var(--bf-amber)}
+.find.good{border-left-color:var(--bf-brand)}
+.find h2{font:var(--bf-text-h3);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.find p{font:var(--bf-text-body);color:var(--bf-muted)}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+.left,.right{display:grid;gap:10px;min-width:0}
+@media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+.pill{display:inline-flex;align-items:center;gap:4px;font:600 11.5px/18px var(--bf-font);padding:1px 8px;border-radius:999px;white-space:nowrap;text-decoration:none;border:1px solid transparent}
+#main a.pill{text-decoration:none}
+.ok{background:var(--bf-brand-tint);color:var(--bf-brand);border-color:var(--bf-brand-soft)}
+.stale,.local,.watch{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
+.fail,.high{background:var(--bf-danger-tint);color:var(--bf-danger);border-color:var(--bf-danger-line)}
+.manual,.info{background:var(--bf-blue-tint);color:var(--bf-blue);border-color:var(--bf-blue-line)}
+.fq.ok,.fq.stale,.fq.fail,.fq.manual{background:none;border:0;color:inherit}
+.mo{display:none}
+.judg{font-size:11px;color:var(--bf-faint);font-style:italic}
+.num{font-variant-numeric:tabular-nums}
+.sec-h{font:var(--bf-text-h3);color:var(--bf-ink);margin:0 0 4px !important;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.sec-h small{font:var(--bf-text-small);color:var(--bf-faint)}
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tile{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:12px 14px;min-width:0}
+.tile .k{font:var(--bf-text-caps);color:var(--bf-faint);text-transform:uppercase;letter-spacing:.06em}
+.tile .v{font:700 22px/28px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink);margin:4px 0 6px;font-variant-numeric:tabular-nums}
+.tile .s{font:var(--bf-text-small);color:var(--bf-faint);display:flex;flex-wrap:wrap;gap:4px}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);overflow:hidden}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--bf-line);vertical-align:top;color:var(--bf-ink)}
+th{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);background:var(--bf-sunk)}
+tr:last-child td{border-bottom:0}
+td .sub{display:block;color:var(--bf-faint);font-size:12px;overflow-wrap:anywhere}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:16px;min-width:0;display:flex;flex-direction:column;gap:8px;color:var(--bf-ink)}
+.card h3{margin:0;font:var(--bf-text-h3);color:var(--bf-ink);display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.card .meta,.meta{color:var(--bf-faint);font-size:12px}
+.thumb{display:block;aspect-ratio:16/10;background:var(--bf-sunk);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.thumb.none{display:grid;place-items:center;color:var(--bf-faint);font-size:12px}
+.row{display:flex;flex-wrap:wrap;gap:4px}
+.tracks{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ev{list-style:none;margin:0;padding:0}
+.ev li{padding:8px 0;border-top:1px solid var(--bf-line)}
+.ev b{font-size:17px;font-variant-numeric:tabular-nums;margin-right:6px}
+.dots{display:inline-flex;gap:3px;vertical-align:middle}
+.dots i{width:10px;height:10px;border-radius:50%;border:1px solid var(--bf-brand)}
+.dots i.on{background:var(--bf-brand)}
+.weak{border:1px solid var(--bf-amber);padding:8px 12px;background:var(--bf-amber-tint);font-size:13px;border-radius:var(--bf-radius-lg);color:var(--bf-ink)}
+.stats{display:flex;gap:16px;flex-wrap:wrap}
+.stats div{font-size:12px;color:var(--bf-faint)}
+.stats b{display:block;font-size:18px;color:var(--bf-ink);font-variant-numeric:tabular-nums}
+ul.plain,ol.plain{margin:0;padding-left:18px;font-size:13px}
+ol.plain li,ul.plain li{padding:4px 0}
+.help{font-size:13px;color:var(--bf-brand);font-weight:600}
+.note{color:var(--bf-faint);font-size:12px;margin:8px 0 0 !important}
+.notice{border:1px solid var(--bf-danger-line);border-radius:var(--bf-radius-lg);background:var(--bf-danger-tint);padding:12px 16px;display:none;color:var(--bf-ink)}
+.admin-path{display:flex;flex-wrap:wrap;gap:4px 20px;border-bottom:1px solid var(--bf-line)}
+.admin-path a,.review-next,.rules summary{min-height:44px;display:flex;align-items:center;padding:8px 0}
+#main .admin-path a{color:var(--bf-muted);font-weight:500;border-bottom:2px solid transparent}
+#main .admin-path [aria-current]{color:var(--bf-brand);font-weight:600;border-bottom-color:var(--bf-brand)}
+#main .review-next{color:var(--bf-brand);font-weight:600}
+.rules{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.rules .card{gap:2px;font-size:12.5px;padding:12px;overflow-wrap:anywhere}
+.rules .card h3{font-size:13px;flex-wrap:wrap}
+.rules .v{font:700 18px/24px var(--bf-font);font-variant-numeric:tabular-nums;color:var(--bf-ink)}
+.rules details{margin-top:auto;border-top:1px solid var(--bf-line)}
+summary{cursor:pointer;font-weight:600;color:var(--bf-ink)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--bf-focus);outline-offset:3px}
+.sig{display:grid;grid-template-columns:70px 1fr auto;gap:4px 12px;align-items:baseline}
+.sig .msg{overflow-wrap:anywhere}
+.sig .src{font-size:12px;color:var(--bf-faint);overflow-wrap:anywhere}
+.none{color:var(--bf-faint);font-size:13px;padding:12px 16px;background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg)}
+.lrn-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.bar{display:grid;grid-template-columns:110px 1fr 100px;gap:8px;align-items:center;font-size:13px;padding:4px 0}
+.bar .track{height:8px;background:var(--bf-sunk);border-radius:999px;overflow:hidden}
+.bar .track i{display:block;height:100%;background:var(--bf-brand);border-radius:999px}
+.props td.q{max-width:360px;overflow-wrap:anywhere}
+.props button{font:inherit;font-size:12px;font-weight:600;padding:4px 12px;border-radius:var(--bf-radius-lg);border:1px solid var(--bf-line);background:var(--bf-surface);color:var(--bf-ink);cursor:pointer;margin:0 4px 4px 0}
+.props button.yes{background:var(--bf-brand);border-color:var(--bf-brand);color:var(--bf-on-brand)}
+.props button:disabled{opacity:.45;cursor:not-allowed}
+.srv{font-size:12.5px;padding:6px 12px;border-radius:var(--bf-radius-lg);margin:0 0 12px;display:inline-block}
+.who{font:inherit;font-size:12.5px;padding:4px 8px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);width:120px;background:var(--bf-surface);color:var(--bf-ink)}
+.more{margin-top:20px}
+.more>h2{font:var(--bf-text-h3);margin-bottom:10px}
+.more>details{border-top:1px solid var(--bf-line)}.more>details:last-of-type{border-bottom:1px solid var(--bf-line)}
+.more>details>summary{padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink);min-height:44px}
+.more>details>summary small{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+.more>details>div{padding:4px 4px 18px;color:var(--bf-muted);display:grid;gap:12px}
+footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
+@media (max-width:1100px){.rules{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:900px){.lrn-grid,.tracks{grid-template-columns:1fr}.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.rules{grid-template-columns:repeat(2,minmax(0,1fr))}#fsq{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:640px){
+ #main{padding:24px 16px 40px}
+ .hero .a{font:700 30px/36px var(--bf-font)}.hero .a small{font-size:18px}
+ #fsq{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px}
+ .sig,.rules{grid-template-columns:1fr}
+ table,thead,tbody,tr,td{display:block;width:100%}
+ thead{display:none}
+ table{border:0;background:none;border-radius:0}
+ tr{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);margin:0 0 8px;padding:12px 16px}
+ td{border:0;padding:2px 0}
+ td[data-l]::before{content:attr(data-l) ": ";color:var(--bf-faint);font-size:11.5px}
+ td.first .nm{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-weight:600}
+ .mo{display:inline}.dk{display:none}td.st:not(:has(.sub)){display:none}
+ .cards{grid-template-columns:1fr}
+}
 </style>
 </head>
-<body class="st bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<body>
 <a class="skip" href="#main">Skip to operations health</a>
 <div class="shell">
-<main id="main" class="max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
-<section class="panel flex flex-col md:flex-row md:items-center justify-between gap-6">
-  <div class="min-w-0 max-w-3xl">
-    <span class="eyebrow"><i></i>Operations health</span>
-    <h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight mt-3">Is everything running?</h1>
-    <p class="font-body-md text-body-md text-outline mt-2">Check source freshness and recorded signals before you choose a follow-up. Signals and repository health come from public data and are research inputs. Open a page to review the evidence before you assign work or save a decision.</p>
-    <p class="asof mt-3" id="asof">Loading web/data/admin.json</p>
-  </div>
-  <div id="health" class="shrink-0 flex items-center gap-4 border border-wire-border rounded-xl px-6 py-4 bg-surface-muted">
-    <span class="w-12 h-12 rounded-lg bg-primary-container text-white flex items-center justify-center"><span id="health-i" class="material-symbols-outlined text-[28px]" aria-hidden="true">task_alt</span></span>
-    <div><div id="health-v" class="font-display-sm text-display-sm text-ink-primary">...</div><div id="health-s" class="font-body-sm text-body-sm text-outline">Checking feeds</div></div>
-  </div>
-</section>
-<nav class="admin-path border-b border-wire-border" aria-label="Operations workflow" id="operations-path"></nav>
+<main id="main">
 <div class="notice" id="notice">Load data/admin.json: run <code>python3 admin/build.py</code>, then serve the repo root with <code>python3 -m http.server 8741</code>.</div>
+<div class="cols">
+ <div class="left">
+  <div class="runhead"><h2>collect_every_feed <span class="state" id="fstate">Checking</span></h2><span class="meta" id="feedsub"></span></div>
+  <div class="panel gridp">
+   <div class="gh"><b>Collector health <span style="font-weight:400;color:var(--bf-faint)">· one square per feed, coloured by freshness</span></b><span id="fprog"></span></div>
+   <div id="fsq" role="list" aria-label="Collector health, one square per feed"></div>
+   <div class="legend" id="flegend"></div>
+  </div>
+  <section id="signals-wrap" hidden>
+   <div class="runhead" style="margin:6px 0 8px"><h2 style="font:var(--bf-text-h3)">Signals</h2><span class="meta" id="sigsub"></span></div>
+   <div class="cards rules" id="rules"></div>
+  </section>
+ </div>
+ <aside class="right" aria-label="Summary">
+  <section class="hero" id="health">
+   <span class="eyebrow"><i></i>Operations health</span>
+   <p class="q">Is everything running?</p>
+   <h1 class="a" id="health-v">...</h1>
+   <p class="line" id="health-s">Checking feeds</p>
+   <p class="asof" id="asof">Loading web/data/admin.json</p>
+  </section>
+  <nav class="admin-path" aria-label="Operations workflow" id="operations-path"></nav>
+  <div class="kstats" id="strip"></div>
+  <section class="panel find" id="ffind" hidden>
+   <h2 id="ffind-h"></h2>
+   <p id="ffind-p"></p>
+  </section>
+ </aside>
+</div>
 
-<div class="strip" id="strip"></div>
-
-<section id="signals-wrap" hidden>
-<h2 class="sec-h">Signals <small id="sigsub"></small></h2>
-<p class="note" style="margin:0 0 16px !important">Rule checks on the public data, with the current value of each rule.</p>
-<div class="cards rules" id="rules"></div>
-<div id="signals"></div>
-</section>
-
-<section id="learn-wrap" hidden>
-<h2 class="sec-h">Learning: Base Brain <small id="lrnsub"></small></h2>
-<div class="mt-4" id="lrnsrv"></div>
-<div class="strip" id="lrnstrip"></div>
-<div class="lrn-grid">
-  <div class="card"><span class="caps">Knowledge routing</span><h3>What members ask that only Base can answer</h3><ul class="plain" id="lrnbase"></ul>
+<section class="more">
+ <h2>More detail</h2>
+ <details><summary>Scheduled jobs and data feeds <small id="feedsub2"></small></summary><div>
+  <div id="feeds"></div>
+  <p class="note">Status reflects the recorded build: ok is fresher than 2x cadence; stale is older, or waiting for its first fetch; fail is a FAIL as the last collect.log line; manual runs by hand. These checks measure collection health; source accuracy and customer status live with each source. Check rules on the public data are research inputs; open a page to review the evidence before you assign work or save a decision.</p>
+ </div></details>
+ <details><summary>Signals fired <small id="sigsub2"></small></summary><div>
+  <p class="note" style="margin:0 !important">Rule checks on the public data, with the current value of each rule.</p>
+  <div id="signals"></div>
+ </div></details>
+ <details id="learn-wrap" hidden><summary>Learning: Base Brain <small id="lrnsub"></small></summary><div>
+  <div id="lrnsrv"></div>
+  <div class="strip" id="lrnstrip"></div>
+  <div class="lrn-grid">
+   <div class="card"><span class="caps">Knowledge routing</span><h3>What members ask that only Base can answer</h3><ul class="plain" id="lrnbase"></ul>
     <p class="note">Credits, cancelling, payments, contracts and eligibility are Base policy. The Base support team answers them directly.</p></div>
-  <div class="card"><span class="caps">Answer paths</span><h3>Answered share by path</h3><div id="lrnpaths"></div>
+   <div class="card"><span class="caps">Answer paths</span><h3>Answered share by path</h3><div id="lrnpaths"></div>
     <p class="note">cache: a recorded answer. template: fixed query, no model. kb: the Base Brain knowledge base. agent: the four-role model agent. gap: outside the data and records. base_support: a Base policy question.</p></div>
-  <div class="card"><span class="caps">Open questions</span><h3>Top unanswered</h3><ol class="plain" id="lrnun"></ol></div>
-  <div class="card"><span class="caps">Knowledge base</span><h3>Base Brain knowledge base</h3><div id="lrnkb"></div></div>
-</div>
-<h2 class="sec-h mt-8">Proposals <small id="propsub"></small></h2>
-<div class="mt-4" id="lrnprops"></div>
-<p class="note">Each answer goes live after approval. Approve moves a cached answer into brain/insights.json and the knowledge base, with who and when. A cached answer is proposed when a template produces it and the critic passes.</p>
+   <div class="card"><span class="caps">Open questions</span><h3>Top unanswered</h3><ol class="plain" id="lrnun"></ol></div>
+   <div class="card"><span class="caps">Knowledge base</span><h3>Base Brain knowledge base</h3><div id="lrnkb"></div></div>
+  </div>
+  <h2 class="sec-h">Proposals <small id="propsub"></small></h2>
+  <div id="lrnprops"></div>
+  <p class="note">Each answer goes live after approval. Approve moves a cached answer into brain/insights.json and the knowledge base, with who and when. A cached answer is proposed when a template produces it and the critic passes.</p>
+ </div></details>
+ <details><summary>Page inventory</summary><div><div class="cards" id="pages"></div></div></details>
+ <details><summary>Submission readiness</summary><div><div class="cards tracks" id="tracks"></div></div></details>
+ <details><summary>Agent activity <small id="agentsub"></small></summary><div><div class="cards" id="agents"></div></div></details>
 </section>
-
-<section>
-<h2 class="sec-h">Scheduled jobs and data feeds <small id="feedsub"></small></h2>
-<div class="mt-4" id="feeds"></div>
-<p class="note">Status reflects the recorded build: ok is fresher than 2x cadence; stale is older, or waiting for its first fetch; fail is a FAIL as the last collect.log line; manual runs by hand. These checks measure collection health; source accuracy and customer status live with each source.</p>
-</section>
-
-<div class="space-y-4">
-<details class="fold"><summary>Page inventory</summary>
-<div class="cards" id="pages"></div>
-</details>
-
-<details class="fold"><summary>Submission readiness</summary>
-<div class="cards tracks" id="tracks"></div>
-</details>
-
-<details class="fold"><summary>Agent activity <small id="agentsub"></small></summary>
-<div class="cards" id="agents"></div>
-</details>
-</div>
-<footer class="font-body-sm text-body-sm text-outline pt-8 border-t border-wire-border">A Base Ready and Base Super Local AI design. Operations health for the team.</footer>
+<footer>A Base Ready and Base Super Local AI design. Operations health for the team. Source: <code>web/data/admin.json</code>, built by <code>python3 admin/build.py</code>.</footer>
 </main></div>
 <script defer src="shell.js"></script>
 <script>
@@ -228,7 +260,8 @@ const nowVal = r => { const n = r.now || {}; if (n.value == null) return n.note 
 function renderSignals(g) {
   if (!g) return;
   document.getElementById("signals-wrap").hidden = false;
-  document.getElementById("sigsub").innerHTML = `${g.fired_now} fired on the last run, ${esc(g.built_at)} UTC · store/signals.py on data/fleet.db · <a href="data/signals.json">signals.json</a>`;
+  document.getElementById("sigsub").textContent = `${g.fired_now} fired on the last run · rule checks on public data`;
+  document.getElementById("sigsub2").innerHTML = `${g.fired_now} fired on the last run, ${esc(g.built_at)} UTC · store/signals.py on data/fleet.db · <a href="data/signals.json">signals.json</a>`;
   document.getElementById("signals").innerHTML = g.latest.length ? `<table><tbody>${g.latest.map(x => `<tr><td class="sig">
       <span>${pill(x.severity, x.severity)}</span>
       <span class="msg"><b>${esc(x.name)}</b> ${esc(x.message)}</span>
@@ -318,10 +351,21 @@ function render(d) {
   renderSignals(d.signals);
   const s = d.summary, f = s.feeds;
   const okN = f.ok || 0, liveN = d.feeds.filter(r => r.status !== "manual").length, bad = (f.stale || 0) + (f.fail || 0);
-  document.getElementById("health-v").textContent = bad ? `${bad} to check` : "All green";
-  document.getElementById("health-s").textContent = `${okN} of ${liveN} scheduled feeds ok · ${f.manual || 0} manual`;
-  document.getElementById("health").classList.add(bad ? "amber" : "green");
-  if (bad) document.getElementById("health-i").textContent = "pending_actions";
+  document.getElementById("health-v").innerHTML = bad ? `${bad} to check <small>of ${d.feeds.length} feeds.</small>` : `All green <small>${d.feeds.length} feeds.</small>`;
+  document.getElementById("health-s").innerHTML = `${okN} of ${liveN} scheduled feeds are fresh; ${f.manual || 0} run by hand. Signals and repository health come from public data and are research inputs. <span class="tag m">Measured</span>`;
+  const st = document.getElementById("fstate");
+  st.textContent = bad ? `${bad} to check` : "All fresh"; st.className = bad ? "state warn" : "state done";
+  const word = {ok: "Fresh", stale: "Stale", fail: "Failed", manual: "By hand"};
+  document.getElementById("fsq").innerHTML = d.feeds.map(r => `<div class="fq ${esc(r.status)}" role="listitem" title="${esc(r.name)} · ${esc(r.status)} · ${esc(r.cadence)}${r.note ? " · " + esc(r.note) : ""}"><i></i><b>${esc(r.name)}</b><span>${esc(word[r.status] || r.status)}${r.age_h != null ? " · " + esc(age(r.age_h)) : ""}</span></div>`).join("");
+  document.getElementById("fprog").textContent = `${d.feeds.length} feeds · built ${d.built_at}`;
+  document.getElementById("flegend").innerHTML = [["var(--bf-solar)", `Fresh · ${f.ok || 0}`], ["#F59E0B", `Stale · ${f.stale || 0}`], ["#EF4444", `Failed · ${f.fail || 0}`], ["var(--bf-blue)", `By hand · ${f.manual || 0}`]]
+    .map(([c, t]) => `<span><i style="background:${c}"></i>${t}</span>`).join("");
+  const late = d.feeds.filter(r => r.status === "stale" || r.status === "fail");
+  const ff = document.getElementById("ffind"); ff.hidden = false;
+  if (late.length) {
+    document.getElementById("ffind-h").innerHTML = `${late.length} feed${late.length == 1 ? "" : "s"} to check <span class="tag m">Measured</span>`;
+    document.getElementById("ffind-p").textContent = `${late.map(r => r.name).join(", ")}. ${late[0].note || ""}`;
+  } else { ff.classList.add("good"); document.getElementById("ffind-h").textContent = "Every scheduled feed is fresh"; document.getElementById("ffind-p").textContent = "Open a page to review the evidence before you assign work or save a decision."; }
   document.getElementById("asof").innerHTML = `Built ${esc(d.built_at)} CT from repo files, git and gh. Rebuild: <code>python3 admin/build.py</code> · <a href="story.html">Story</a>`;
   const [tl, tls] = left(s.deadline);
   document.getElementById("strip").innerHTML = [
@@ -329,8 +373,9 @@ function render(d) {
     ["Pages", s.pages, pill("info", `${d.pages.filter(p => p.runs.startsWith("local")).length} local only`) + pill("info", `${d.pages.filter(p => !p.shot).length} no shot`)],
     ["Open gaps", s.open_gaps.length, s.open_gaps.map(g => issue({...g, gap: true})).join("") + pill("info", `${s.gaps_found} found, ${s.gaps_fixed} fixed`)],
     ["To submission", tl, `<span>${tls}</span>`],
-  ].map(([k, v, sub]) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${sub}</div></div>`).join("");
+  ].map(([k, v, sub]) => `<div class="panel stat"><span class="k">${k}</span><b class="v">${v}</b><span class="s">${sub}</span></div>`).join("");
 
+  document.getElementById("feedsub2").textContent = `${d.feeds.length} sources in a table`;
   document.getElementById("feedsub").textContent = `${d.feeds.length} sources, launchd com.basefleet.ercot, daily, monthly`;
   document.getElementById("feeds").innerHTML = `<table><thead><tr><th>Source</th><th>Status</th><th>Script</th><th>Cadence and job</th><th>Last fetched</th><th>Rows</th></tr></thead><tbody>${
     d.feeds.map(r => `<tr>

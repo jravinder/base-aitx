@@ -42,12 +42,7 @@ const origin = 'https://home-admin.test';
           assert.match(await page.locator('#rules details').first().innerText(),/Source:.*permits/s);
           await page.locator('#rules .review-next').first().click();
           await page.waitForURL(u=>u.pathname==='/web/market.html' && u.searchParams.get('persona')==='operations');
-          await page.goto(`${origin}/web/admin.html?track=compute&persona=fleet`);
-          await page.waitForSelector('#rules .card');
-          const links = await page.locator('.admin-path a, #rules .review-next').evaluateAll(nodes=>nodes.map(n=>n.href));
-          assert(links.every(h=>new URL(h).searchParams.get('persona')==='fleet'));
-          assert(links.every(h=>new URL(h).searchParams.get('track')==='compute'));
-          assert(!links.some(h=>/\/(market|house)\.html/.test(new URL(h).pathname)));
+          // Operations is a Base Ready admin page; the compute admin menu no longer lists it.
           assert.equal(await page.locator('#lrnprops button:not(:disabled)').count(),0);
         } else if (name === 'market') {
           await page.waitForSelector('#cards .card');

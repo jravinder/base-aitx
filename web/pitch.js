@@ -289,3 +289,18 @@
     if (first) ask(first.q);
   });
 })();
+
+// Links to a section inside a closed "More detail" block open that block first.
+(() => {
+  const open = () => {
+    const id = location.hash.slice(1), el = id && document.getElementById(id);
+    const d = el && el.closest("details");
+    if (d) { d.open = true; el.scrollIntoView(); }
+  };
+  addEventListener("hashchange", open);
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.getAttribute("href").length > 1) setTimeout(open, 0);
+  });
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", open); else open();
+})();

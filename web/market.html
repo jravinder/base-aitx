@@ -18,118 +18,154 @@
 <link rel="stylesheet" href="shell.css">
 <script defer src="shell.js"></script>
 <style>
-  body { font-family:'Plus Jakarta Sans', system-ui, sans-serif; background-color:#f8fafc; color:#0f172a; -webkit-font-smoothing:antialiased }
-  summary { cursor:pointer; min-height:44px; display:flex; align-items:center; justify-content:space-between; gap:12px }
-  summary { list-style:none } summary::-webkit-details-marker, summary::marker { display:none; content:"" }
-  details[open] > summary .chev { transform:rotate(180deg) }
-  a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid #467bb0; outline-offset:3px }
-  .admin-path [aria-current] { background:#f1f5f9; color:#0f172a; font-weight:700 }
-  .bars { grid-template-columns:repeat(var(--n), minmax(0,1fr)) }
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body);-webkit-font-smoothing:antialiased}
+#main{max-width:1440px;margin:0 auto;padding:32px 24px 48px;overflow-wrap:anywhere}
+#main h1,#main h2,#main h3,#main h4,#main p{margin:0}
+#main a{color:var(--bf-brand);text-decoration:none}#main a:hover{text-decoration:underline}
+code{font-family:var(--bf-mono);font-size:12px}
+.eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+.tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+.tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+:root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+.hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+.hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+.hero .a{font:700 30px/36px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.hero .a small{display:block;font:600 18px/26px var(--bf-font);color:var(--bf-muted);letter-spacing:0;margin-top:4px}
+.hero .line{font:var(--bf-text-small);color:var(--bf-muted);max-width:760px}
+.panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+.left,.right{display:grid;gap:10px;min-width:0}
+@media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+.chartp .gh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:10px 16px;border-bottom:1px solid var(--bf-line)}
+.chartp .gh .t{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:block}
+.chartp .gh h2{font:var(--bf-text-h3)}
+.legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font:var(--bf-text-small);color:var(--bf-muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.btn2{min-height:40px;padding:0 12px;border-radius:var(--bf-radius-lg);border:1px solid var(--bf-line-strong);background:var(--bf-surface);color:var(--bf-ink);font:var(--bf-text-label);cursor:pointer}
+.btn2[aria-pressed="true"]{background:var(--bf-brand-strong);border-color:var(--bf-brand-strong);color:var(--bf-on-brand)}
+#monthly{padding:48px 16px 16px}
+.zipgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 24px;padding:12px 16px 14px}
+.b-base{background:var(--bf-brand)}.b-oth{background:var(--bf-line-strong)}
+.bars{grid-template-columns:repeat(var(--n), minmax(0,1fr))}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{padding:10px 12px;min-width:0;display:flex;flex-direction:column}
+.stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+.stat .v{display:block;font:700 22px/28px var(--bf-font);letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
+.stat .do{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--bf-line)}
+.stat .do b{color:var(--bf-brand-strong);font-weight:700}
+.stat .src{display:block;font:var(--bf-text-small);color:var(--bf-faint);margin-top:4px}
+#main .stat .src{color:var(--bf-faint)}
+.act{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#main a.primary{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:var(--bf-radius-lg);background:var(--bf-brand-strong);color:var(--bf-on-brand);font:var(--bf-text-label);text-decoration:none}
+.admin-path{display:flex;flex-wrap:wrap;gap:2px;font:var(--bf-text-label)}
+#main .admin-path a{min-height:36px;display:inline-flex;align-items:center;padding:0 10px;border-radius:var(--bf-radius-lg);color:var(--bf-muted)}
+#main .admin-path [aria-current]{background:var(--bf-sunk);color:var(--bf-ink);font-weight:700}
+.more{margin-top:20px}
+.more h2{font:var(--bf-text-h3);margin-bottom:10px}
+details{border-top:1px solid var(--bf-line)}details:last-of-type{border-bottom:1px solid var(--bf-line)}
+summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink);min-height:44px}
+summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+details>div{padding:4px 4px 18px;overflow-x:auto;color:var(--bf-muted)}
+#notice{display:none;margin-bottom:16px;padding:12px;border-radius:var(--bf-radius-lg);background:var(--bf-amber-tint);color:var(--bf-amber)}
+#notice.show{display:block}
+footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
+a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid var(--bf-focus); outline-offset:3px }
+@media (max-width:640px){#main{padding:24px 16px 40px}.hero .a{font-size:26px;line-height:32px}}
+@media (max-width:480px){.stats{grid-template-columns:1fr}}
 </style>
 </head>
-<body class="min-h-screen selection:bg-brand-100 selection:text-brand-900">
+<body>
+<main id="main">
+ <div id="notice">Could not load data/market.json. Start the server from the repo root: <code>python3 -m http.server 8741</code>, then open <code>http://localhost:8741/web/market.html</code>.</div>
 
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-10">
-
-    <div class="mb-8">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-       <div class="min-w-0">
-        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-500 text-[11px] font-bold uppercase tracking-wider mb-3"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>Market pace &middot; City of Austin open data</span>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-2">Base permits are climbing fast in Austin.</h1>
-        <p class="text-base text-slate-500 font-medium" id="sub">Backup power permits (city class: Auxiliary Power), City of Austin.</p>
-       </div>
-       <a id="story-next" href="explorer.html" class="shrink-0 inline-flex items-center justify-center gap-2 min-h-[44px] px-4 rounded-lg bg-[#1e4d2b] text-white text-sm font-semibold hover:bg-[#143d22] shadow-sm no-underline"><span>Next: every permit on the map</span><span aria-hidden="true">&rarr;</span></a>
-      </div>
-      <nav class="admin-path flex flex-wrap gap-1 mt-4 text-sm font-medium text-slate-600" aria-label="Market workflow"><a class="px-3 min-h-[44px] inline-flex items-center rounded-lg hover:bg-slate-50" href="market.html" aria-current="page">Priorities</a><a class="px-3 min-h-[44px] inline-flex items-center rounded-lg hover:bg-slate-50" href="explorer.html">Permit map</a><a class="px-3 min-h-[44px] inline-flex items-center rounded-lg hover:bg-slate-50" href="recovery.html">Install stage</a><a class="px-3 min-h-[44px] inline-flex items-center rounded-lg hover:bg-slate-50" href="house.html">Homes ready</a></nav>
+ <div class="cols">
+  <div class="left">
+   <!-- Main visual: monthly stacked bars -->
+   <section class="panel chartp" aria-label="Monthly permit volume">
+    <div class="gh">
+     <div><span class="t">Monthly permit volume</span><h2 id="chartnote">Backup power permits each month</h2></div>
+     <div class="legend">
+      <span><i class="b-base"></i>Base Power</span>
+      <span><i class="b-oth"></i>All other installers</span>
+      <button class="btn2" id="range" aria-pressed="false">Show since 2024</button>
+     </div>
     </div>
-    <div class="hidden mb-6 border-l-4 border-emerald-600 bg-emerald-50 rounded-lg px-4 py-3 text-sm" id="notice">Could not load data/market.json. Start the server from the repo root: <code>python3 -m http.server 8741</code>, then open <code>http://localhost:8741/web/market.html</code>.</div>
+    <div class="relative" id="monthly">
+     <div class="absolute top-0 bottom-8 w-px border-l-2 border-dashed z-20 pointer-events-none flex flex-col items-center hidden" style="border-color:var(--bf-brand)" id="launch">
+      <div class="text-[11px] font-bold px-2.5 py-1 rounded-md -mt-2 whitespace-nowrap flex items-center gap-1.5" style="background:var(--bf-brand-tint);color:var(--bf-brand-strong);border:1px solid var(--bf-brand-soft)"><span class="w-1.5 h-1.5 rounded-full" style="background:var(--bf-brand)"></span><span id="launchlbl"></span></div>
+     </div>
+     <div class="absolute inset-x-0 flex flex-col justify-between pointer-events-none" style="top:48px;bottom:40px;left:16px;right:16px" id="grid"></div>
+     <div class="bars relative z-10 grid gap-1 sm:gap-4 h-64 items-end pl-8 pr-2 sm:pr-6" id="bars"></div>
+    </div>
+   </section>
+   <section class="panel chartp" aria-label="Where Base installs most">
+    <div class="gh"><div><span class="t">Where Base installs most</span><h2>Top 5 zips by Base permits per 1,000 owner-occupied homes</h2></div><span class="tag m">Measured</span></div>
+    <div class="zipgrid" id="zipbars"></div>
+   </section>
+  </div>
 
-    <!-- Hero: monthly stacked bars -->
-    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-4">
-        <div>
-          <span class="text-xs font-bold tracking-wider uppercase text-slate-400">Monthly permit volume</span>
-          <h2 class="text-lg font-bold text-slate-900" id="chartnote">Backup power permits each month</h2>
-        </div>
-        <div class="flex flex-wrap items-center gap-5 text-xs font-semibold">
-          <div class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-sm bg-emerald-600 inline-block shadow-sm"></span><span class="text-slate-800">Base Power</span></div>
-          <div class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-sm bg-slate-300 inline-block"></span><span class="text-slate-600">All other installers</span></div>
-          <button class="min-h-[44px] px-3 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 aria-pressed:bg-brand-800 aria-pressed:text-white aria-pressed:border-brand-800" id="range" aria-pressed="false">Show since 2024</button>
-        </div>
-      </div>
-      <div class="relative pt-12 pb-4" id="monthly">
-        <div class="absolute top-0 bottom-8 w-px border-l-2 border-dashed border-emerald-500 z-20 pointer-events-none flex flex-col items-center hidden" id="launch">
-          <div class="bg-emerald-50 border border-emerald-500/30 text-emerald-800 text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm -mt-2 whitespace-nowrap flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span><span id="launchlbl"></span></div>
-        </div>
-        <div class="absolute inset-x-0 top-12 bottom-10 flex flex-col justify-between pointer-events-none" id="grid"></div>
-        <div class="bars relative z-10 grid gap-1 sm:gap-4 h-64 items-end pl-8 pr-2 sm:pr-6" id="bars"></div>
-      </div>
-    </section>
+  <aside class="right" aria-label="Answer">
+   <section class="hero">
+    <span class="eyebrow"><i></i>Market pace &middot; City of Austin open data</span>
+    <p class="q">Where is Base installing?</p>
+    <h1 class="a" id="ans">Base permits are climbing fast in Austin.</h1>
+    <p class="line" id="sub">Backup power permits (city class: Auxiliary Power), City of Austin. <span class="tag m">Measured</span></p>
+   </section>
+   <section class="stats" id="cards"></section>
+   <div class="act">
+    <a id="story-next" class="primary" href="explorer.html"><span>Next: every permit on the map</span><span aria-hidden="true">&rarr;</span></a>
+   </div>
+   <nav class="admin-path" aria-label="Market workflow"><a href="market.html" aria-current="page">Priorities</a><a href="explorer.html">Permit map</a><a href="recovery.html">Install stage</a><a href="house.html">Homes ready</a></nav>
+  </aside>
+ </div>
 
-    <!-- Four answer cards -->
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10" id="cards"></section>
+ <section class="more">
+  <h2>More detail</h2>
+  <details id="install-stage" aria-label="Install stage">
+   <summary>Install stage: permit milestones are the public install signal<span>Issued, active, final, median days; outside Austin</span></summary>
+   <div>
+    <p class="text-sm mt-1 max-w-2xl" id="install-stage-copy">Loading…</p>
+    <ol class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 p-0" id="install-stage-steps"></ol>
+    <div class="panel mt-4 p-4 text-sm" style="border-left:4px solid var(--bf-amber)">
+     <p class="font-bold mb-1" style="color:var(--bf-ink)">Outside Austin · #57</p>
+     <p>Oncor / CenterPoint cities have no open contractor-named permit feed. Star estimates still rank those zips; we do not invent Base install counts there.</p>
+     <a class="inline-flex mt-3 min-h-[40px] items-center font-semibold" href="recovery.html?track=home&amp;persona=operations">Open install stage →</a>
+    </div>
+   </div>
+  </details>
+  <details id="market-trends">
+   <summary>Permit history, installer mix, all zips, sources and related questions<span>Every year since 2006, installer groups, full zip table</span></summary>
+   <div class="space-y-8">
+    <div id="context-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4"></div>
+    <div>
+     <h4 class="text-sm font-bold mb-1" style="color:var(--bf-ink)">Every year</h4>
+     <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_280px] gap-4 items-center">
+      <div class="relative h-[120px] min-w-0"><canvas id="annual"></canvas></div>
+      <p class="text-xs" id="sparknote"></p>
+     </div>
+    </div>
+    <div>
+     <h4 class="text-sm font-bold mb-1" style="color:var(--bf-ink)">Installer mix</h4>
+     <p class="text-xs mb-2" id="instnote"></p>
+     <div id="groups"></div>
+    </div>
+    <div>
+     <h4 class="text-sm font-bold mb-2" style="color:var(--bf-ink)" id="zipsum">All zips</h4>
+     <div class="max-h-[420px] overflow-auto"><table class="w-full text-xs" id="zips"></table></div>
+    </div>
+    <div>
+     <h4 class="text-sm font-bold mb-2" style="color:var(--bf-ink)">Related questions</h4>
+     <div class="flex flex-wrap gap-2" id="chips"></div>
+    </div>
+   </div>
+  </details>
+ </section>
 
-    <!-- Install stage strip -->
-    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm mb-8" id="install-stage" aria-label="Install stage">
-      <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
-        <div class="min-w-0 flex-1">
-          <span class="text-xs font-bold tracking-wider uppercase text-slate-400">Install stage · Austin evidence</span>
-          <h3 class="text-lg font-bold text-slate-900 mt-0.5">Permit milestones are the public install signal</h3>
-          <p class="text-sm text-slate-600 mt-2 max-w-2xl" id="install-stage-copy">Loading…</p>
-          <ol class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4" id="install-stage-steps"></ol>
-        </div>
-        <div class="lg:w-80 shrink-0 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-slate-800">
-          <p class="font-bold text-amber-900 mb-1">Outside Austin · #57</p>
-          <p class="text-slate-700 leading-snug">Oncor / CenterPoint cities have no open contractor-named permit feed. Star estimates still rank those zips; we do not invent Base install counts there.</p>
-          <a class="inline-flex mt-3 min-h-[40px] items-center font-semibold text-emerald-800 underline underline-offset-2" href="recovery.html?track=home&amp;persona=operations">Open install stage →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Where Base installs most -->
-    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
-      <div class="flex items-center justify-between pb-6 border-b border-slate-100 mb-6 gap-4">
-        <div>
-          <h3 class="text-lg font-bold text-slate-900">Where Base installs most</h3>
-          <p class="text-xs text-slate-500 font-medium mt-0.5">Top 5 zips by Base permits per 1,000 owner-occupied homes.</p>
-        </div>
-        <span class="text-xs font-semibold px-2.5 py-1 rounded bg-slate-100 text-slate-600 whitespace-nowrap">Per 1,000 homes</span>
-      </div>
-      <div class="space-y-5 max-w-4xl" id="zipbars"></div>
-    </section>
-
-    <!-- Details, closed -->
-    <details class="bg-white border border-slate-200 rounded-2xl px-6 shadow-sm mb-12 group" id="market-trends">
-      <summary class="text-sm font-semibold text-slate-700 py-3"><span>Permit history, installer mix, all zips, sources and related questions</span><span class="chev text-slate-400 transition-transform">&#9662;</span></summary>
-      <div class="pb-6 pt-2 space-y-8 border-t border-slate-100">
-        <div id="context-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4"></div>
-        <div>
-          <h4 class="text-sm font-bold text-slate-900 mb-1">Every year</h4>
-          <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_280px] gap-4 items-center">
-            <div class="relative h-[120px] min-w-0"><canvas id="annual"></canvas></div>
-            <p class="text-xs text-slate-500" id="sparknote"></p>
-          </div>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold text-slate-900 mb-1">Installer mix</h4>
-          <p class="text-xs text-slate-500 mb-2" id="instnote"></p>
-          <div id="groups"></div>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold text-slate-900 mb-2" id="zipsum">All zips</h4>
-          <div class="max-h-[420px] overflow-auto"><table class="w-full text-xs" id="zips"></table></div>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold text-slate-900 mb-2">Related questions</h4>
-          <div class="flex flex-wrap gap-2" id="chips"></div>
-        </div>
-      </div>
-    </details>
-  </main>
-
-  <footer class="w-full border-t border-slate-200/70 bg-white py-4 px-6">
-    <div class="max-w-7xl mx-auto text-xs text-slate-400 font-medium" id="foot">Source: City of Austin issued construction permits (open data).</div>
-  </footer>
+ <footer id="foot">Source: City of Austin issued construction permits (open data).</footer>
+</main>
 <script>
 const $ = s => document.querySelector(s);
 const fmt = n => n.toLocaleString();
@@ -148,7 +184,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 (async () => {
   let d, storms = null, ins = null;
   try { const r = await fetch("../data/market.json"); if (!r.ok) throw 0; d = await r.json(); }
-  catch (e) { $("#notice").classList.remove("hidden"); return; }
+  catch (e) { $("#notice").classList.add("show"); return; }
   try { const r = await fetch("../data/storms.json"); if (r.ok) storms = await r.json(); } catch (e) {}
   try { const r = await fetch("../brain/insights.json"); if (r.ok) ins = await r.json(); } catch (e) {}
 
@@ -166,20 +202,12 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
   const pace = Math.round(mean(m.slice(-2).map(x => x.base)) / 10) * 10;
   const openZ = [...zips].sort((x, y) => y.active - x.active).slice(0, 3);
   const look = d.lookalikes ? d.lookalikes.zips.slice(0, 3) : [];
-  const card = (tag, q, big, text, todo, href, src) => `<div class="card bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:border-slate-300 transition-colors">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">${tag}</span>
-        <h3 class="text-base font-bold text-slate-800 mb-3">${q}</h3>
-        <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">${big}</div>
-        <p class="text-sm text-slate-600 leading-snug">${text}</p>
-      </div>
-      <div>
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-start gap-2">
-          <span class="text-[11px] font-bold uppercase text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded shrink-0" title="What to do with this">Do</span>
-          <p class="text-xs font-medium text-slate-700">${todo}</p>
-        </div>
-        <a class="block mt-3 text-[11px] text-slate-400 hover:text-slate-600 underline-offset-2 hover:underline" href="${esc(href)}" target="_blank" rel="noopener">Source: ${src}</a>
-      </div>
+  const card = (tag, q, big, text, todo, href, src) => `<div class="card panel stat">
+      <span class="k">${tag} <span class="tag m">Measured</span></span>
+      <b class="v">${big}</b>
+      <span class="s"><b style="color:var(--bf-ink)">${q}</b> ${text}</span>
+      <span class="do"><b title="What to do with this">Do:</b> ${todo}</span>
+      <a class="src" href="${esc(href)}" target="_blank" rel="noopener">Source: ${src}</a>
     </div>`;
   const cards = [
     card("Pace &amp; Scale", "How fast?", `${Math.round(latest.base / first.base)}x`,
@@ -208,7 +236,8 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
     ["Final", fmt(finalN), pct(bt.final_rate) + " final"],
     ["Median days", String(bt.median_days_applied_to_issued), "Applied → issued"],
   ].map((s, i) => `<li class="rounded-xl border border-slate-200 bg-slate-50 p-3"><div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Step ${i + 1}</div><div class="text-2xl font-extrabold text-slate-900 tabular-nums mt-1">${s[1]}</div><div class="text-sm font-bold text-slate-800">${s[0]}</div><div class="text-xs text-slate-500">${s[2]}</div></li>`).join("");
-  $("#sub").textContent = `${latest.base} Base backup permits in ${MONL[mi(latest.month)]}${partial ? ` (to day ${+asof.slice(8,10)})` : ""}, ${Math.round(latest.base / first.base)}x ${MONL[mi(first.month)]}, since the ${launch ? launch.label.replace(/^Base /, "") : "launch"}. City of Austin permits, ${dlabel(asof)}.`;
+  $("#ans").innerHTML = `Base permits are climbing fast in Austin.<small>${first.base} in ${MONL[mi(first.month)]}, ${latest.base} in ${MONL[mi(latest.month)]}${partial ? ` (to ${MON[mi(latest.month)]} ${+asof.slice(8,10)})` : ""}. Most per home in zip ${top.zip}: ${top.count} permits, ${top.per_1000_owner_occupied} per 1,000 homes.</small>`;
+  $("#sub").innerHTML = `<span class="tag m">Measured</span> `; $("#sub").append(`${latest.base} Base backup permits in ${MONL[mi(latest.month)]}${partial ? ` (to day ${+asof.slice(8,10)})` : ""}, ${Math.round(latest.base / first.base)}x ${MONL[mi(first.month)]}, since the ${launch ? launch.label.replace(/^Base /, "") : "launch"}. City of Austin permits, ${dlabel(asof)}.`);
   $("#context-cards").innerHTML = `<p class="text-xs text-slate-500 md:col-span-2">Zip ${top.zip} has ${top.count} Base permits for ${fmt(top.owner_occupied)} owner-occupied homes, the highest rate of ${zips.length} zips. ${fmt(finalN)} Base permits have final status. Median application-to-issue time covers the permit step; installation follows.</p>` +
     (look.length ? `<p class="text-xs text-slate-500 md:col-span-2">Similar zips: ${look.map(z => `${z.zip} (${fmt(z.owner_occupied)} homes, ${z.base_permits} permits)`).join(", ")}.</p>` : "");
 
@@ -224,10 +253,10 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
     $("#bars").innerHTML = rows.map((x, i) => {
       const hot = x.base > 0, isLast = i === lastI, lbl = all ? (x.month.endsWith("-01") ? x.month.slice(0, 4) : "") : MON[mi(x.month)];
       return `<div class="flex flex-col items-center h-full justify-end group min-w-0">
-        <div class="text-[10px] font-${isLast ? "bold text-emerald-700" : "semibold text-slate-400 opacity-0 group-hover:opacity-100"} mb-1 transition-opacity text-center leading-tight" title="${mlabel(x.month)}: ${x.base} Base, ${x.base + x.others} all installers">${hot ? `${x.base} Base` : `${x.others} all`}</div>
+        <div class="text-[10px] font-${isLast ? "bold text-emerald-800" : "semibold text-slate-400 opacity-0 group-hover:opacity-100"} mb-1 transition-opacity text-center leading-tight" title="${mlabel(x.month)}: ${x.base} Base, ${x.base + x.others} all installers">${hot ? `${x.base} Base` : `${x.others} all`}</div>
         <div class="w-full max-w-[38px] flex flex-col justify-end">
-          ${hot ? `<div class="w-full bg-emerald-600 rounded-t-sm transition-all hover:bg-emerald-500" style="height:${px(x.base)}px" title="${mlabel(x.month)} Base: ${x.base} permits"></div>` : ""}
-          <div class="w-full bg-slate-300 ${hot ? "border-t border-white/40" : "rounded-t-sm"} transition-all hover:bg-slate-400" style="height:${px(x.others)}px" title="${mlabel(x.month)} others: ${x.others} permits"></div>
+          ${hot ? `<div class="w-full b-base rounded-t-sm" style="height:${px(x.base)}px" title="${mlabel(x.month)} Base: ${x.base} permits"></div>` : ""}
+          <div class="w-full b-oth ${hot ? "border-t border-white/40" : "rounded-t-sm"}" style="height:${px(x.others)}px" title="${mlabel(x.month)} others: ${x.others} permits"></div>
         </div>
         <span class="text-[11px] ${isLast ? "font-bold text-emerald-800" : hot ? "font-semibold text-slate-800" : "font-medium text-slate-500"} mt-2 h-4 whitespace-nowrap">${lbl}</span>
       </div>`;
@@ -269,12 +298,12 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
   // Zips
   const t5 = zips.slice(0, 5), maxP = t5[0].per_1000_owner_occupied;
   const op = ["", "/90", "/85", "/80", "/75"];
-  $("#zipbars").innerHTML = t5.map((z, i) => `<div class="space-y-1.5">
+  $("#zipbars").innerHTML = t5.map((z, i) => `<div class="space-y-1">
       <div class="flex justify-between items-center text-sm font-semibold gap-3">
         <span class="text-slate-800 font-bold">${z.zip} <span class="text-xs font-normal text-slate-500 ml-1.5">${z.count} permits</span></span>
         <span class="text-slate-900 font-extrabold">${z.per_1000_owner_occupied}</span>
       </div>
-      <div class="w-full h-4 bg-slate-100 rounded-full overflow-hidden flex"><div class="bg-emerald-600${op[i]} h-full rounded-full transition-all" style="width:${(100 * z.per_1000_owner_occupied / maxP * 0.985).toFixed(1)}%"></div></div>
+      <div class="w-full h-2.5 rounded-full overflow-hidden flex" style="background:var(--bf-sunk)"><div class="b-base h-full rounded-full transition-all" style="width:${(100 * z.per_1000_owner_occupied / maxP * 0.985).toFixed(1)}%"></div></div>
     </div>`).join("");
   $("#zipsum").textContent = `All ${zips.length} zips`;
   const th = "text-left font-medium text-slate-500 py-1.5 pr-2 border-b border-slate-200 sticky top-0 bg-white", td = "py-1.5 pr-2 border-b border-slate-100";

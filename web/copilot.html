@@ -21,49 +21,47 @@
   .card{background:#fff;border:1px solid #eef2f7;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.05),0 6px 20px rgba(15,23,42,.04)}
   .cp-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
   #chat-stream{scroll-behavior:smooth}
+  #main{max-width:1440px;margin:0 auto;padding:24px 24px 48px;overflow-wrap:anywhere}
+  .panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+  .eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+  .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+  .tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+  .tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+  .tag.s{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
+  :root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+  .hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+  .hero .q{font:var(--bf-text-h1);color:var(--bf-muted);margin:0}
+  .hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink);margin:0}
+  .hero .line{font:var(--bf-text-body);color:var(--bf-muted);margin:0}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{padding:10px 12px;min-width:0}
+  .stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+  .stat .v{display:block;font:700 22px/28px var(--bf-font);letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums;color:var(--bf-ink)}
+  .stat .v.sm{font:700 15px/21px var(--bf-font);letter-spacing:0}
+  .stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
+  .stat a.s{color:var(--bf-brand);text-decoration:underline;text-underline-offset:3px}
+  .find{padding:12px 16px;display:grid;gap:6px;border-left:4px solid var(--bf-brand)}
+  .find p{font:var(--bf-text-body);color:var(--bf-muted);margin:0}.find b{color:var(--bf-ink)}
+  .acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:var(--bf-radius-lg);border:1px solid var(--bf-line-strong);background:var(--bf-surface);color:var(--bf-ink);font:var(--bf-text-label);text-decoration:none}
+  .btn.primary{background:var(--bf-brand-strong);border-color:var(--bf-brand-strong);color:#fff}
+  .btn:hover{text-decoration:none;filter:brightness(.97)}
+  .cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+  .left,.right{display:grid;gap:10px;min-width:0}
+  @media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+  .more{margin-top:20px}
+  .more h2{font:var(--bf-text-h3);margin:0 0 10px}
+  .more details{border-top:1px solid var(--bf-line)}.more details:last-of-type{border-bottom:1px solid var(--bf-line)}
+  .more summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+  .more summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+  .more details>div{padding:4px 4px 18px;min-width:0}
+  @media (max-width:640px){#main{padding:20px 16px 40px}.hero .a{font:700 30px/36px var(--bf-font)}}
 </style>
 </head>
 <body class="bg-surface text-ink-primary font-body-md text-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container">
-<main id="main" class="max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 flex flex-col gap-6 min-h-[calc(100vh-140px)]">
-
-<!-- Hero -->
-<section class="card relative overflow-hidden p-6 sm:p-8" aria-labelledby="hero-title" style="background:linear-gradient(120deg,#ffffff 55%,#f0f9ec 100%)">
-<div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-gradient-to-br from-energy-lime/15 via-solar-green/10 to-transparent blur-3xl pointer-events-none" aria-hidden="true"></div>
-<div class="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-<div class="flex flex-col gap-2 max-w-2xl min-w-0">
-<div class="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-primary-container font-label-caps text-label-caps uppercase tracking-wider self-start">
-<span class="w-2 h-2 rounded-full bg-solar-green animate-pulse" aria-hidden="true"></span>
-<span>Your home AI</span><span aria-hidden="true">·</span><span id="hero-feeder">Base Brain</span>
-</div>
-<h1 id="hero-title" class="font-display-sm text-display-sm sm:font-display-lg sm:text-display-lg text-ink-primary tracking-tight">Your own AI, next door.</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant">Ask anything. It runs on the PC beside your battery, so your questions and your home’s data stay with you.</p>
-<div class="flex flex-wrap items-center gap-3 mt-2">
-<a href="energy.html" data-ctx id="next-energy" class="inline-flex items-center gap-2 min-h-[44px] px-5 rounded-lg bg-primary-container text-white font-label-md text-label-md no-underline hover:bg-evergreen-deep">See what your battery did this week<span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
-<a href="models.html" data-ctx id="see-thinks" class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-lg bg-surface-container-lowest border border-wire-border text-ink-primary font-label-md text-label-md no-underline hover:bg-surface-subtle"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">neurology</span>See how it thinks</a>
-<a href="models.html#try" data-ctx id="try-local" class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-lg bg-surface-container-lowest border border-wire-border text-ink-primary font-label-md text-label-md no-underline hover:bg-surface-subtle"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">play_arrow</span>Try it on this device</a>
-<span id="sim-tag" class="self-center px-2 py-0.5 rounded-full bg-surface-subtle border border-wire-border text-on-surface-variant font-label-md text-[11px]">Simulated member</span>
-</div>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 gap-3 lg:w-[440px] xl:w-[620px] shrink-0">
-<div class="bg-surface-muted border border-wire-border rounded-lg p-3.5 flex items-center gap-3 min-w-0">
-<div class="w-9 h-9 rounded-md bg-white border border-wire-border flex items-center justify-center text-primary-container shrink-0"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">computer</span></div>
-<div class="flex flex-col min-w-0"><span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Answers from</span><span class="font-label-md text-label-md text-ink-primary">The PC beside your battery</span></div>
-</div>
-<div class="bg-surface-muted border border-wire-border rounded-lg p-3.5 flex items-center gap-3 min-w-0">
-<div class="w-9 h-9 rounded-md bg-white border border-wire-border flex items-center justify-center text-solar-green shrink-0"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">battery_charging_full</span></div>
-<div class="flex flex-col min-w-0"><span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Backup at 1 kW</span><span class="font-label-md text-label-md text-ink-primary" id="hero-hours">-- hours</span><span class="font-body-sm text-[11px] text-on-surface-variant" id="hero-week">Your week</span></div>
-</div>
-<div class="bg-surface-muted border border-wire-border rounded-lg p-3.5 flex items-center gap-3 min-w-0" id="status-chip">
-<div class="w-9 h-9 rounded-md bg-solar-green/15 flex items-center justify-center text-solar-green shrink-0" id="status-dot"><span class="material-symbols-outlined text-[20px]" aria-hidden="true" id="status-icon">verified</span></div>
-<div class="flex flex-col min-w-0"><span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Grid and weather</span><span class="font-label-md text-label-md text-ink-primary" id="status-title">Checking...</span><span class="font-body-sm text-[11px] text-on-surface-variant" id="status-note"></span></div>
-</div>
-</div>
-</div>
-</section>
-
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-<!-- Left: chat first -->
-<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-6 min-w-0">
+<main id="main">
+<div class="cols">
+<div class="left">
 <section class="card p-5 sm:p-6 flex flex-col gap-5" aria-labelledby="chat-title">
 <div class="flex items-center justify-between gap-3">
 <div class="flex items-center gap-3 min-w-0">
@@ -80,7 +78,7 @@
 <span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Suggested</span>
 <div class="flex flex-wrap gap-2" id="pills"></div>
 </div>
-<div id="chat-stream" class="flex flex-col gap-4 bg-surface-muted border border-wire-border rounded-xl p-4 sm:p-5 min-h-[320px] max-h-[560px] overflow-y-auto" aria-live="polite" aria-label="Conversation">
+<div id="chat-stream" class="flex flex-col gap-4 bg-surface-muted border border-wire-border rounded-xl p-4 sm:p-5 min-h-[300px] max-h-[520px] overflow-y-auto" aria-live="polite" aria-label="Conversation">
 <div id="chat-empty" class="m-auto flex flex-col items-center text-center gap-2 max-w-sm py-8">
 <div class="w-12 h-12 rounded-full bg-secondary-container text-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-[26px]" aria-hidden="true">forum</span></div>
 <p class="font-headline-sm text-headline-sm text-ink-primary">Start with a question</p>
@@ -95,8 +93,36 @@
 <button class="inline-flex items-center gap-1 px-3 sm:px-4 h-9 rounded-md bg-primary-container text-white hover:bg-evergreen-deep font-label-md text-label-md whitespace-nowrap" id="ask-btn" type="submit"><span>Ask</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">send</span></button>
 </form>
 </section>
-
-<!-- Backup math -->
+</div>
+<aside class="right" aria-label="Your home AI at a glance">
+<section class="hero" aria-labelledby="hero-title">
+<span class="eyebrow"><i></i>Your home AI · <span id="hero-feeder">Base Brain</span></span>
+<p class="q">Where does my AI work run?</p>
+<h1 id="hero-title" class="a">On a GPU next door.</h1>
+<p class="line">Ask anything. It runs on the PC beside your battery, so your questions and your home’s data stay with you.</p>
+</section>
+<div class="stats">
+<div class="panel stat"><span class="k">Answers from <span class="tag m">Measured</span></span><span class="v">Next door</span><span class="s">The PC beside your battery · median 2.2 s</span></div>
+<div class="panel stat"><span class="k">Backup at 1 kW <span class="tag s">Simulation</span></span><span class="v" id="hero-hours">-- hours</span><span class="s" id="hero-week">Your week</span></div>
+<div class="panel stat" id="status-chip"><span class="k">Grid and weather <span class="w-6 h-6 rounded-md bg-solar-green/15 inline-flex items-center justify-center text-solar-green shrink-0" id="status-dot"><span class="material-symbols-outlined text-[16px]" aria-hidden="true" id="status-icon">verified</span></span></span><span class="v sm" id="status-title">Checking...</span><span class="s" id="status-note"></span></div>
+<div class="panel stat"><span class="k">Texas grid today <span class="tag m">Measured</span></span><span class="v sm" id="grid-title">Loading prices...</span><span class="s" id="grid-note"></span><a class="s" id="grid-link" href="grid.html">See today’s grid</a></div>
+</div>
+<div class="panel find">
+<p><b>Data stays local.</b> Questions and home records are answered on the PC beside your battery, not a cloud API.</p>
+<p><b>Pay by the hour.</b> GPU time is billed per hour, not per token.</p>
+<p><b>Backup reserve first.</b> The PC only uses energy above the outage reserve.</p>
+</div>
+<div class="acts">
+<a href="energy.html" data-ctx id="next-energy" class="btn primary">See what your battery did this week<span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+<a href="models.html" data-ctx id="see-thinks" class="btn">See how it thinks</a>
+<a href="models.html#try" data-ctx id="try-local" class="btn">Try it on this device</a>
+<span id="sim-tag" class="tag s">Simulated member</span>
+</div>
+</aside>
+</div>
+<section class="more" aria-label="More detail">
+<h2>More detail</h2>
+<details><summary>Backup during a freeze or outage<span>hours before the reserve floor, with a slider and chart</span></summary><div>
 <article class="card p-5 sm:p-6 flex flex-col gap-5" aria-labelledby="backup-title">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
 <div class="flex items-center gap-3">
@@ -141,39 +167,52 @@
 <span id="backup-src">Source: your battery settings. Base’s How it works page says backup lasts up to 36 hours on one battery, depending on use.</span>
 </div>
 </article>
-
-<!-- Grid today -->
-<div class="card p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-<div class="flex items-center gap-4 min-w-0">
-<div class="w-10 h-10 shrink-0 rounded-lg bg-surface-subtle text-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-[22px]" aria-hidden="true">currency_exchange</span></div>
-<div class="flex flex-col min-w-0">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Today on the Texas grid <span class="ml-1 px-1.5 py-0.5 rounded bg-secondary-container text-primary-container normal-case tracking-normal">Measured</span></span>
-<span class="font-headline-sm text-headline-sm text-ink-primary" id="grid-title">Loading prices...</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant" id="grid-note"></span>
+</div></details>
+<details><summary>Power flow this week<span>battery and home PC work, day by day · Simulation</span></summary><div>
+<article class="card p-5 sm:p-6 flex flex-col gap-4" aria-labelledby="flow-title">
+<div class="flex items-center justify-between gap-2">
+<h2 id="flow-title" class="font-headline-sm text-headline-sm text-ink-primary">Power flow this week</h2>
+<span class="px-2 py-0.5 rounded bg-surface-subtle border border-wire-border font-label-md text-[11px] text-on-surface-variant">Simulation</span>
 </div>
+<div class="flex flex-wrap gap-1" id="days" role="group" aria-label="Day"></div>
+<div class="bg-surface-muted border border-wire-border rounded-xl p-4 flex flex-col gap-3" id="flow">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Battery</span>
+<div class="relative h-5 rounded bg-white border border-wire-border overflow-hidden" id="lane-bat"></div>
 </div>
-<a class="shrink-0 px-4 py-2.5 rounded-lg bg-secondary-container hover:bg-secondary-fixed-dim text-ink-primary font-label-md text-label-md text-center no-underline" id="grid-link" href="grid.html">See today’s grid</a>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Home PC work</span>
+<div class="relative h-5 rounded bg-white border border-wire-border overflow-hidden" id="lane-gpu"></div>
 </div>
-
-<!-- Home records -->
-<article class="card p-5 sm:p-6 flex flex-col gap-4" aria-labelledby="rec-title">
-<div class="flex flex-col">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">City of Austin permits</span>
-<h2 class="font-headline-md text-headline-md text-ink-primary" id="rec-title">Home records and support</h2>
-<span class="font-body-sm text-body-sm text-on-surface-variant" id="rec-note"></span>
+<div class="flex justify-between font-body-sm text-[11px] text-outline"><span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span><span>12 AM</span></div>
+<div class="flex flex-wrap gap-x-3 gap-y-1 font-body-sm text-[11px] text-on-surface-variant" id="flow-key"></div>
 </div>
-<div class="flex flex-col gap-1" id="records"></div>
-<button type="button" id="rec-more" class="self-start font-label-md text-label-md text-primary-container underline underline-offset-4" hidden></button>
-<div class="p-4 rounded-xl bg-surface-muted border border-wire-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 shrink-0 rounded-full bg-primary-container text-white flex items-center justify-center"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">support_agent</span></div>
-<div class="flex flex-col"><span class="font-label-md text-label-md text-ink-primary">Talk to Base</span><span class="font-body-sm text-body-sm text-on-surface-variant">The Base team answers account, contract and service questions directly.</span></div>
+<div class="grid grid-cols-1 gap-2" id="auto"></div>
+</article>
+</div></details>
+<details><summary>Battery reserve<span>reserve floor, lowest point and specs · Simulation</span></summary><div>
+<article class="card p-5 sm:p-6 flex flex-col gap-4" aria-labelledby="hw-title">
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-headline-sm text-headline-sm text-ink-primary" id="hw-title">Battery reserve</h2>
+<span class="px-2 py-0.5 rounded bg-surface-subtle border border-wire-border font-label-md text-[11px] text-on-surface-variant">Simulation</span>
 </div>
-<a class="shrink-0 flex items-center justify-center gap-1 py-2 px-4 rounded-lg bg-white border border-wire-border hover:bg-surface-subtle text-primary-container font-label-md text-label-md no-underline" href="https://help.basepowercompany.com/" target="_blank" rel="noopener"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span><span>Open Base Help Center</span></a>
+<div class="flex justify-between items-baseline gap-2 flex-wrap">
+<span class="font-telemetry-metric text-telemetry-metric text-ink-primary" id="res-pct">--%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="hw-badge">Base Core installed</span>
+</div>
+<div class="h-6 w-full rounded-md bg-surface-subtle border border-wire-border overflow-hidden flex" id="res-bar" role="img" aria-label="Battery reserve"></div>
+<div class="grid grid-cols-2 gap-3 font-body-sm text-body-sm">
+<div class="flex items-start gap-2"><span class="w-3 h-3 rounded-full bg-primary-container mt-0.5 shrink-0" aria-hidden="true"></span><div class="flex flex-col"><span class="font-label-md text-label-md text-ink-primary" id="res-floor-t">Backup reserve</span><span class="text-on-surface-variant" id="res-floor-s">Kept for outages.</span></div></div>
+<div class="flex items-start gap-2"><span class="w-3 h-3 rounded-full bg-energy-lime mt-0.5 shrink-0" aria-hidden="true"></span><div class="flex flex-col"><span class="font-label-md text-label-md text-ink-primary" id="res-low-t">Lowest point</span><span class="text-on-surface-variant" id="res-low-s">On the chosen day.</span></div></div>
+</div>
+<div class="grid grid-cols-2 gap-2" id="specs"></div>
+<div class="flex items-start gap-2 p-3 rounded-lg bg-secondary-container/40 text-primary-container font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-solar-green" aria-hidden="true">check_circle</span>
+<span id="safety">Base says the battery is certified to UL 9540A and tested from -22 to 122 F.</span>
 </div>
 </article>
-
-<!-- Station hardware -->
+</div></details>
+<details><summary>Where the heavy work runs<span>neighborhood station hardware · Measured and Simulation</span></summary><div>
 <article class="card p-5 sm:p-6 flex flex-col gap-4" aria-labelledby="hub-hw-title">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
 <div class="flex flex-col min-w-0">
@@ -195,55 +234,8 @@
 </div>
 </div>
 </article>
-</div>
-
-<!-- Right column -->
-<div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-6 min-w-0">
-<!-- Power flow: the member's simulated week -->
-<article class="card p-5 sm:p-6 flex flex-col gap-4" aria-labelledby="flow-title">
-<div class="flex items-center justify-between gap-2">
-<h2 id="flow-title" class="font-headline-sm text-headline-sm text-ink-primary">Power flow this week</h2>
-<span class="px-2 py-0.5 rounded bg-surface-subtle border border-wire-border font-label-md text-[11px] text-on-surface-variant">Simulation</span>
-</div>
-<div class="flex flex-wrap gap-1" id="days" role="group" aria-label="Day"></div>
-<div class="bg-surface-muted border border-wire-border rounded-xl p-4 flex flex-col gap-3" id="flow">
-<div class="flex flex-col gap-1">
-<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Battery</span>
-<div class="relative h-5 rounded bg-white border border-wire-border overflow-hidden" id="lane-bat"></div>
-</div>
-<div class="flex flex-col gap-1">
-<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Home PC work</span>
-<div class="relative h-5 rounded bg-white border border-wire-border overflow-hidden" id="lane-gpu"></div>
-</div>
-<div class="flex justify-between font-body-sm text-[11px] text-outline"><span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span><span>12 AM</span></div>
-<div class="flex flex-wrap gap-x-3 gap-y-1 font-body-sm text-[11px] text-on-surface-variant" id="flow-key"></div>
-</div>
-<div class="grid grid-cols-1 gap-2" id="auto"></div>
-</article>
-
-<!-- Battery reserve -->
-<article class="card p-5 sm:p-6 flex flex-col gap-4" aria-labelledby="hw-title">
-<div class="flex items-center justify-between gap-2">
-<h2 class="font-headline-sm text-headline-sm text-ink-primary" id="hw-title">Battery reserve</h2>
-<span class="px-2 py-0.5 rounded bg-surface-subtle border border-wire-border font-label-md text-[11px] text-on-surface-variant">Simulation</span>
-</div>
-<div class="flex justify-between items-baseline gap-2 flex-wrap">
-<span class="font-telemetry-metric text-telemetry-metric text-ink-primary" id="res-pct">--%</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant" id="hw-badge">Base Core installed</span>
-</div>
-<div class="h-6 w-full rounded-md bg-surface-subtle border border-wire-border overflow-hidden flex" id="res-bar" role="img" aria-label="Battery reserve"></div>
-<div class="grid grid-cols-2 gap-3 font-body-sm text-body-sm">
-<div class="flex items-start gap-2"><span class="w-3 h-3 rounded-full bg-primary-container mt-0.5 shrink-0" aria-hidden="true"></span><div class="flex flex-col"><span class="font-label-md text-label-md text-ink-primary" id="res-floor-t">Backup reserve</span><span class="text-on-surface-variant" id="res-floor-s">Kept for outages.</span></div></div>
-<div class="flex items-start gap-2"><span class="w-3 h-3 rounded-full bg-energy-lime mt-0.5 shrink-0" aria-hidden="true"></span><div class="flex flex-col"><span class="font-label-md text-label-md text-ink-primary" id="res-low-t">Lowest point</span><span class="text-on-surface-variant" id="res-low-s">On the chosen day.</span></div></div>
-</div>
-<div class="grid grid-cols-2 gap-2" id="specs"></div>
-<div class="flex items-start gap-2 p-3 rounded-lg bg-secondary-container/40 text-primary-container font-label-md text-label-md">
-<span class="material-symbols-outlined text-[18px] text-solar-green" aria-hidden="true">check_circle</span>
-<span id="safety">Base says the battery is certified to UL 9540A and tested from -22 to 122 F.</span>
-</div>
-</article>
-
-<!-- Station near you -->
+</div></details>
+<details><summary>A station near you<span>station vs one home, weekly value · Simulation</span></summary><div>
 <article class="card p-5 sm:p-6 flex flex-col gap-4" aria-labelledby="station-title">
 <div class="flex items-center gap-3">
 <div class="w-9 h-9 rounded-lg bg-secondary-container text-primary-container flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">local_library</span></div>
@@ -261,8 +253,26 @@
 <p class="font-body-sm text-body-sm text-on-surface-variant">Base is building the stations; a member AI service is our proposal.</p>
 <a class="self-start font-label-md text-label-md text-primary-container underline underline-offset-4" href="block.html" data-ctx>See the station block</a>
 </article>
+</div></details>
+<details><summary>Home records and support<span>City of Austin permits and Base Help Center</span></summary><div>
+<article class="card p-5 sm:p-6 flex flex-col gap-4" aria-labelledby="rec-title">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">City of Austin permits</span>
+<h2 class="font-headline-md text-headline-md text-ink-primary" id="rec-title">Home records and support</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="rec-note"></span>
 </div>
+<div class="flex flex-col gap-1" id="records"></div>
+<button type="button" id="rec-more" class="self-start font-label-md text-label-md text-primary-container underline underline-offset-4" hidden></button>
+<div class="p-4 rounded-xl bg-surface-muted border border-wire-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 shrink-0 rounded-full bg-primary-container text-white flex items-center justify-center"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">support_agent</span></div>
+<div class="flex flex-col"><span class="font-label-md text-label-md text-ink-primary">Talk to Base</span><span class="font-body-sm text-body-sm text-on-surface-variant">The Base team answers account, contract and service questions directly.</span></div>
 </div>
+<a class="shrink-0 flex items-center justify-center gap-1 py-2 px-4 rounded-lg bg-white border border-wire-border hover:bg-surface-subtle text-primary-container font-label-md text-label-md no-underline" href="https://help.basepowercompany.com/" target="_blank" rel="noopener"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span><span>Open Base Help Center</span></a>
+</div>
+</article>
+</div></details>
+</section>
 </main>
 <footer class="w-full bg-surface py-8 border-t border-wire-border"><div class="max-w-[1440px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-space-md font-body-sm text-body-sm text-on-surface-variant text-center"><div class="flex items-center gap-space-sm"><span class="font-label-caps text-label-caps tracking-widest uppercase text-on-surface">Base Super Local AI</span><span>Our design</span></div><div class="flex flex-wrap justify-center items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" href="grid.html" data-ctx>Grid today</a><a class="hover:text-on-surface transition-colors" href="knowledge.html" data-ctx>Base Brain</a><a class="hover:text-on-surface transition-colors" href="brain.html" data-ctx>Help</a></div></div></footer>
 </body>

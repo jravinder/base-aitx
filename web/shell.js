@@ -18,7 +18,7 @@
       {id: "dataqa", href: "data-qa.html", label: "Answers by zip", short: "Zip answers"}]},
     {title: "Where Base stands", items: [
       {id: "explorer", href: "explorer.html", label: "Permit map", short: "Map"},
-      {id: "market", href: "market.html", label: "Market intelligence", short: "Market"},
+      {id: "market", href: "market.html", label: "Where Base installs", short: "Installs"},
       {id: "grid", href: "grid.html", label: "Energy insights by ERCOT", short: "Energy"},
       {id: "ask", href: "ask.html", label: "Search", short: "Search"},
       {id: "judgments", href: "judgments.html", label: "Permits", short: "Permits"}]},

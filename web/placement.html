@@ -10,7 +10,46 @@
 <style>
   :root { --accent: var(--bf-brand); --batt: var(--bf-blue); --job: var(--bf-amber); --local: var(--bf-info-ink); --stress: var(--bf-danger); --dim: #717970 }
   *,*::before,*::after { box-sizing: border-box }
-  body { margin: 0; font-family: "Plus Jakarta Sans", sans-serif; background: #f9f9ff }
+  body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body)}
+  #main{max-width:1440px;margin:0 auto;padding:32px 24px 48px}
+  #main a{color:var(--bf-brand)}
+  .eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+  .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+  .tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+  .tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+  .tag.s{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
+  :root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+  .hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+  .hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+  .hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+  .hero .line{font:var(--bf-text-body);color:var(--bf-muted)}
+  .panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+  .state{font:700 11px/16px var(--bf-font);padding:2px 10px;border-radius:999px;background:var(--bf-blue-tint);color:var(--bf-blue);border:1px solid var(--bf-blue-line)}
+  .state.done{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+  :root[data-theme="dark"] .state.done{color:var(--bf-brand)}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{padding:10px 12px;min-width:0}
+  .stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+  .stat .v{display:block;font:700 22px/28px var(--bf-font);letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums;color:var(--bf-ink)}
+  .stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
+  .find{padding:14px 18px;display:grid;gap:8px;border-left:4px solid var(--bf-brand)}
+  .find h2{font:var(--bf-text-h2);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .find p{font:var(--bf-text-body);color:var(--bf-muted)}
+  .duo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .duo div{background:var(--bf-sunk);border-radius:var(--bf-radius-lg);padding:8px 12px}
+  .duo b{display:block;font:700 20px/26px var(--bf-font)}.duo span{font:var(--bf-text-small);color:var(--bf-muted)}
+  .cta{justify-self:start;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 20px;border-radius:var(--bf-radius-lg);background:var(--bf-brand);color:var(--bf-on-brand)!important;font:var(--bf-text-label);text-decoration:none}
+  .cta:hover{opacity:.9}
+  .cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+  .left,.right{display:grid;gap:10px;min-width:0}
+  @media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+  .more{margin-top:20px}
+  .more>h2{font:var(--bf-text-h3);margin-bottom:10px}
+  .more details{border-top:1px solid var(--bf-line)}.more details:last-of-type{border-bottom:1px solid var(--bf-line)}
+  .more summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+  .more summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+  .more details>div{padding:4px 4px 18px;color:var(--bf-muted)}
+  @media (max-width:640px){#main{padding:24px 16px 40px}.hero .a{font:700 28px/34px var(--bf-font)}.duo{grid-template-columns:1fr}}
   #main p, #main h1, #main h2, #main h3 { margin: 0 }
   #main { overflow-wrap: anywhere }
   .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; direction: ltr; overflow: hidden; max-width: 1.2em; display: inline-block; -webkit-font-smoothing: antialiased }
@@ -19,51 +58,15 @@
   .sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block }
   #stats b { color: #1e4d2b }
   #stats.homes b { color: var(--local) }
-  .model-notes summary { cursor: pointer; min-height: 44px; padding: 10px 0; font-weight: 600 }
   summary:focus-visible, button:focus-visible { outline: 3px solid var(--bf-focus); outline-offset: 3px }
 </style>
 <script defer src="shell.js"></script>
 </head>
 <body class="bg-surface text-ink-primary font-body-md text-body-md antialiased min-h-screen flex flex-col">
-<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 flex flex-col gap-8">
-<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-<div class="flex flex-col gap-2 min-w-0">
-<div class="flex flex-wrap items-center gap-3">
-<span class="text-label-caps font-label-caps uppercase tracking-widest text-primary-container">Example station site · Austin <span id="site-zip">78745</span></span>
-<span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span>
-<span class="text-label-md font-label-md text-primary-container">Physical siting</span>
-</div>
-<h1 class="text-display-sm font-display-sm lg:text-display-lg lg:font-display-lg tracking-tight text-ink-primary">A station could sit here.</h1>
-<p class="text-body-md text-on-surface-variant flex items-start gap-2"><span class="material-symbols-outlined shrink-0 mt-0.5 text-[18px] text-primary-container" aria-hidden="true">location_on</span><span>The library example: <span id="site-name">Menchaca Road Branch library</span>, an Austin Public Library location with every energy permit inside a 1.5 km ring.</span></p>
-</div>
-<div class="flex flex-wrap items-center gap-3">
-<span class="flex items-center gap-2 px-3 py-2 bg-white border border-wire-border rounded-xl text-label-md font-label-md text-ink-primary"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">local_library</span>Public building</span>
-<span class="flex items-center gap-2 px-3 py-2 bg-white border border-wire-border rounded-xl text-label-md font-label-md text-ink-primary"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">hub</span>Sim feeder 78745-f0</span>
-<a id="pl-next" href="block.html" class="no-underline flex items-center gap-2 min-h-[44px] px-5 py-2 rounded-xl bg-primary-container text-white text-label-md font-label-md shadow-sm hover:opacity-90">See the homes it serves<span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
-</div>
-</div>
-<div class="w-full bg-white border border-wire-border rounded-xl p-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-label-md font-label-md">
-<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">description</span><span class="text-on-surface-variant font-medium">Energy permits:</span><b id="s-permits" class="text-ink-primary font-mono">537</b></span>
-<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">home</span><span class="text-on-surface-variant font-medium">Addresses:</span><b id="s-addresses" class="text-ink-primary font-mono">428</b></span>
-<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-solar-green" aria-hidden="true">solar_power</span><span class="text-on-surface-variant font-medium">Solar homes:</span><b id="s-solar" class="text-ink-primary font-mono">185</b></span>
-<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">battery_charging_full</span><span class="text-on-surface-variant font-medium">Battery homes:</span><b id="s-battery" class="text-ink-primary font-mono">27</b></span>
-<span class="sm:ml-auto"><span class="shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed">Measured</span></span>
-</div>
-<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
-<div class="xl:col-span-8 flex flex-col gap-6 min-w-0">
-<figure class="relative m-0 w-full rounded-xl overflow-hidden border border-wire-border bg-white">
-<img src="assets/stitch/placement-1.jpg" width="1376" height="768" alt="Illustration: a stone library building under oak trees, with a fenced steel yard beside it holding battery and compute cabinets" class="block w-full h-auto aspect-[16/9] object-cover">
-<figcaption class="p-3 sm:p-0 sm:absolute sm:bottom-3 sm:left-3 sm:right-3 flex flex-wrap items-end justify-between gap-3">
-<span class="bg-white/95 border border-wire-border px-4 py-2 rounded-xl shadow-sm"><span class="block text-label-caps font-label-caps uppercase text-primary-container">Station layout</span><span class="text-body-sm text-ink-primary font-medium">Four batteries and four GPU PCs in one fenced yard beside the building</span></span>
-<span class="flex flex-wrap items-center gap-2"><span class="shrink-0 px-2.5 py-1 rounded-lg text-label-md font-label-md bg-primary-container text-white">Public library site</span><span class="shrink-0 px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-white/90 text-ink-primary border border-wire-border">Illustration</span></span>
-</figcaption>
-</figure>
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">Batteries</span><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">battery_charging_full</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary">4<span class="text-headline-sm text-outline">×</span></span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">39.2 kWh</span></div><span class="text-body-sm text-on-surface-variant mt-1">10 kW each, 30% kept in reserve</span></div>
-<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">GPU PCs</span><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">memory</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary">4<span class="text-headline-sm text-outline">×</span></span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">40% use</span></div><span class="text-body-sm text-on-surface-variant mt-1">One per customer tier</span></div>
-<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">Ring</span><span class="material-symbols-outlined text-[20px] text-energy-lime" aria-hidden="true">radar</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary" id="k-radius">1.5</span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">km</span></div><span class="text-body-sm text-on-surface-variant mt-1">Around the library</span></div>
-<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">Solar homes</span><span class="material-symbols-outlined text-[20px] text-solar-green" aria-hidden="true">solar_power</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary" id="k-solar">185</span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">homes</span></div><span class="text-body-sm text-on-surface-variant mt-1">Permits in the ring</span></div>
-</div>
+<main id="main">
+<section class="run" aria-label="Station placement">
+ <div class="cols">
+  <div class="left">
 <section class="bg-white border border-wire-border rounded-xl overflow-hidden flex flex-col">
 <div class="px-6 py-4 border-b border-wire-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
 <div class="min-w-0">
@@ -75,7 +78,7 @@
 <button id="btn-hub" type="button" aria-pressed="true" class="on min-h-[44px] px-4 py-2 text-label-md font-label-md bg-primary-container text-white rounded-lg shadow-sm flex items-center gap-1.5 border-0 cursor-pointer"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">check_circle</span>Station-optimized</button>
 </div>
 </div>
-<div class="relative w-full aspect-square sm:aspect-[16/9] bg-surface-subtle overflow-hidden border-b border-wire-border" id="cwrap">
+<div class="relative w-full aspect-square sm:aspect-[16/9] xl:aspect-auto xl:h-[440px] bg-surface-subtle overflow-hidden border-b border-wire-border" id="cwrap">
 <canvas id="c" role="img" aria-label="Animated placement model: compute stations and home batteries. Compare policies using the buttons above."></canvas>
 <div class="absolute top-4 left-4 bg-white/90 px-3 py-1.5 rounded-lg border border-wire-border flex items-center gap-2 pointer-events-none">
 <span class="w-2 h-2 rounded-full bg-solar-green"></span>
@@ -96,6 +99,55 @@
 <span class="inline-flex items-center gap-1.5"><i class="sw" style="background:var(--stress)"></i>export-cap stress</span>
 </div>
 </section>
+  </div>
+  <aside class="right" aria-label="Answer">
+   <section class="hero">
+    <span class="eyebrow"><i></i>Physical siting · Austin <span id="site-zip">78745</span></span>
+    <p class="q">Where should the compute go?</p>
+    <h1 class="a">A station could sit here.</h1>
+    <p class="line">The library example: <span id="site-name">Menchaca Road Branch library</span>, an Austin Public Library location with every energy permit inside a 1.5 km ring.</p>
+   </section>
+   <div class="stats">
+    <div class="panel stat"><span class="k">Station earns <span class="tag s">Simulation</span></span><b class="v" id="eco-total">$205.78</b><span class="s">a week, batteries + GPU PCs</span></div>
+    <div class="panel stat"><span class="k">Station vs one home <span class="tag s">Simulation</span></span><b class="v" id="eco-ratio">2.4×</b><span class="s">same week, same prices</span></div>
+    <div class="panel stat"><span class="k">Energy permits <span class="tag m">Measured</span></span><b class="v" id="s-permits">537</b><span class="s">inside the 1.5 km ring</span></div>
+    <div class="panel stat"><span class="k">Solar homes <span class="tag m">Measured</span></span><b class="v" id="k-solar">185</b><span class="s">permits in the ring</span></div>
+   </div>
+   <section class="panel find" aria-live="polite">
+    <h2><span id="ans-big">Stations first.</span> <span class="state done" id="ans-q">Station-optimized</span></h2>
+    <div class="duo"><div><b>4 + 4</b><span>Library station: batteries, PCs</span></div><div><b>1 + 1</b><span>One home: battery, PC</span></div><div><b>30%</b><span>Backup reserve kept</span></div></div>
+    <p id="ans-why">Put the compute at the station near the homes; homes keep the battery and backup. A home PC only where the job needs local data.</p>
+   </section>
+   <a id="pl-next" class="cta" href="block.html">See the homes it serves <span aria-hidden="true">→</span></a>
+  </aside>
+ </div>
+</section>
+<section class="more">
+ <h2>More detail</h2>
+ <details><summary>The station site<span>illustration, batteries, GPU PCs, 1.5 km ring</span></summary><div class="flex flex-col gap-4">
+<figure class="relative m-0 w-full rounded-xl overflow-hidden border border-wire-border bg-white">
+<img src="assets/stitch/placement-1.jpg" width="1376" height="768" alt="Illustration: a stone library building under oak trees, with a fenced steel yard beside it holding battery and compute cabinets" class="block w-full h-auto aspect-[16/9] object-cover">
+<figcaption class="p-3 sm:p-0 sm:absolute sm:bottom-3 sm:left-3 sm:right-3 flex flex-wrap items-end justify-between gap-3">
+<span class="bg-white/95 border border-wire-border px-4 py-2 rounded-xl shadow-sm"><span class="block text-label-caps font-label-caps uppercase text-primary-container">Station layout</span><span class="text-body-sm text-ink-primary font-medium">Four batteries and four GPU PCs in one fenced yard beside the building</span></span>
+<span class="flex flex-wrap items-center gap-2"><span class="shrink-0 px-2.5 py-1 rounded-lg text-label-md font-label-md bg-primary-container text-white">Public library site</span><span class="shrink-0 px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-white/90 text-ink-primary border border-wire-border">Illustration</span></span>
+</figcaption>
+</figure>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">Batteries</span><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">battery_charging_full</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary">4<span class="text-headline-sm text-outline">×</span></span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">39.2 kWh</span></div><span class="text-body-sm text-on-surface-variant mt-1">10 kW each, 30% kept in reserve</span></div>
+<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">GPU PCs</span><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">memory</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary">4<span class="text-headline-sm text-outline">×</span></span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">40% use</span></div><span class="text-body-sm text-on-surface-variant mt-1">One per customer tier</span></div>
+<div class="bg-white border border-wire-border rounded-xl p-5 flex flex-col justify-between min-w-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="text-label-caps font-label-caps uppercase">Ring</span><span class="material-symbols-outlined text-[20px] text-energy-lime" aria-hidden="true">radar</span></div><div class="mt-4"><span class="text-telemetry-metric font-telemetry-metric text-ink-primary" id="k-radius">1.5</span><span class="text-telemetry-unit font-telemetry-unit text-primary-container ml-1">km</span></div><span class="text-body-sm text-on-surface-variant mt-1">Around the library</span></div>
+</div>
+<div class="flex flex-wrap gap-3"><span class="flex items-center gap-2 px-3 py-2 bg-white border border-wire-border rounded-xl text-label-md font-label-md text-ink-primary">Public building</span><span class="flex items-center gap-2 px-3 py-2 bg-white border border-wire-border rounded-xl text-label-md font-label-md text-ink-primary">Sim feeder 78745-f0</span></div>
+ </div></details>
+ <details><summary>Permit counts in the ring<span>addresses, solar and battery homes · Measured</span></summary><div>
+<div class="w-full bg-white border border-wire-border rounded-xl p-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-label-md font-label-md">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">home</span><span class="text-on-surface-variant font-medium">Addresses:</span><b id="s-addresses" class="text-ink-primary font-mono">428</b></span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-solar-green" aria-hidden="true">solar_power</span><span class="text-on-surface-variant font-medium">Solar homes:</span><b id="s-solar" class="text-ink-primary font-mono">185</b></span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">battery_charging_full</span><span class="text-on-surface-variant font-medium">Battery homes:</span><b id="s-battery" class="text-ink-primary font-mono">27</b></span>
+<span class="sm:ml-auto"><span class="shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed">Measured</span></span>
+</div>
+ </div></details>
+ <details><summary>Co-located at the station<span>storage yard and compute rack · Simulation</span></summary><div>
 <section id="colocated" class="bg-white border border-wire-border rounded-xl p-6 flex flex-col gap-5" aria-labelledby="colocated-title">
 <div class="flex flex-wrap items-center justify-between gap-3">
 <h2 id="colocated-title" class="text-headline-md font-headline-md text-ink-primary flex items-center gap-2 m-0"><span class="material-symbols-outlined text-primary-container" aria-hidden="true">account_tree</span>Co-located at the station</h2>
@@ -122,19 +174,14 @@
 </div>
 </div>
 </section>
-</div>
-<div class="xl:col-span-4 flex flex-col gap-6 min-w-0">
+ </div></details>
+ <details><summary>Station economics<span>battery and GPU split, station vs one home · Simulation</span></summary><div class="flex flex-col gap-4">
 <section class="bg-white border border-wire-border rounded-xl p-6 flex flex-col gap-5">
 <div class="flex items-center justify-between gap-3"><span class="text-label-caps font-label-caps uppercase tracking-wider text-primary-container">Station economics</span><span class="shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-surface-subtle text-outline border border-wire-border">Simulation</span></div>
-<div class="flex flex-col gap-1">
-<span class="text-body-sm text-on-surface-variant font-medium">What the library station earns</span>
-<div class="flex items-baseline gap-1"><span class="text-display-lg font-display-lg text-ink-primary tracking-tight" id="eco-total">$205.78</span><span class="text-label-md text-on-surface-variant">/ week</span></div>
-</div>
 <div class="flex flex-col gap-3 text-body-sm">
 <div class="flex items-center justify-between gap-3 p-3 bg-surface-muted rounded-xl"><span class="text-on-surface-variant font-medium">Four batteries</span><b class="text-ink-primary" id="eco-batt">$50.32</b></div>
 <div class="flex items-center justify-between gap-3 p-3 bg-surface-muted rounded-xl"><span class="text-on-surface-variant font-medium">Four GPU PCs, after power</span><b class="text-ink-primary" id="eco-gpu">$155.46</b></div>
 <div class="flex items-center justify-between gap-3 p-3 bg-surface-muted rounded-xl"><span class="text-on-surface-variant font-medium">One home, 1 battery + 1 PC</span><b class="text-ink-primary" id="eco-house">$84.71</b></div>
-<div class="flex items-center justify-between gap-3 p-3 bg-secondary-fixed/40 border border-secondary-fixed rounded-xl"><span class="text-ink-primary font-medium">Station vs one home</span><b class="text-primary-container" id="eco-ratio">2.4×</b></div>
 </div>
 <p class="text-body-sm text-on-surface-variant">Battery trades use real ERCOT day-ahead prices for Austin; GPU hours use dated public cloud rates.</p>
 </section>
@@ -152,6 +199,8 @@
 <p class="text-body-sm text-on-surface-variant pt-2 border-t border-surface-subtle mt-2" id="home-note"></p>
 </div>
 </div>
+ </div></details>
+ <details><summary>Why this library<span>most energy permits within 1.5 km</span></summary><div>
 <section class="bg-white border border-wire-border rounded-xl p-6 flex flex-col gap-4">
 <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">location_city</span><h2 class="text-headline-sm font-headline-sm text-ink-primary font-bold">Why this library</h2></div>
 <p class="text-body-sm text-on-surface-variant">It has the most energy permits within 1.5 km of the public buildings we compared.</p>
@@ -161,25 +210,15 @@
 <p class="text-body-sm text-on-surface-variant flex items-start gap-2"><span class="material-symbols-outlined text-[18px] text-solar-green" aria-hidden="true">check_circle</span><span id="why-cohort">7 of 40 sample member homes sit inside the ring.</span></p>
 <a class="text-label-md font-label-md text-primary-container underline" href="block.html?track=compute&amp;persona=fleet">See the ring on the map</a>
 </section>
-<section class="bg-primary-container text-white rounded-xl p-6 flex flex-col gap-3" aria-live="polite">
-<div class="flex items-center justify-between gap-3">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-md font-label-md"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">compare_arrows</span><span id="ans-q">Station-optimized</span></span>
-</div>
-<h3 class="text-display-sm font-display-sm tracking-tight" id="ans-big">Stations first.</h3>
-<p class="text-body-md text-white/85" id="ans-why">Put the compute at the station near the homes; homes keep the battery and backup. A home PC only where the job needs local data.</p>
-<div class="pt-3 border-t border-white/20 grid grid-cols-2 gap-4">
-<div><span class="text-label-caps font-label-caps uppercase text-secondary-fixed block mb-1">Library station</span><span class="text-headline-sm font-headline-sm font-bold">4 batteries, 4 PCs</span></div>
-<div><span class="text-label-caps font-label-caps uppercase text-secondary-fixed block mb-1">One home</span><span class="text-headline-sm font-headline-sm font-bold">1 battery, 1 PC</span></div>
-</div>
-<div class="pt-3 border-t border-white/20 flex items-center justify-between gap-3 font-mono text-[12px]"><span class="uppercase tracking-wider text-white/85">Backup reserve 30%</span><span class="font-bold text-secondary-fixed">KEPT</span></div>
-</section>
+ </div></details>
+ <details class="model-notes"><summary>Model assumptions<span>ADR-0016, planning estimates</span></summary><div>
 <div class="rounded-xl border border-wire-border bg-white p-4 flex items-start gap-3">
 <span class="material-symbols-outlined text-primary-container text-[20px] mt-0.5" aria-hidden="true">info</span>
 <div class="text-label-md font-label-md text-ink-primary">Base is building the stations; a member AI service is our proposal.</div>
 </div>
-</div>
-</div>
-<details class="model-notes border-t border-wire-border pt-2 text-body-md text-on-surface-variant"><summary class="text-ink-primary">Model assumptions</summary><p class="max-w-[75ch]">Stations hold the bulk GPUs; homes provide batteries and feeder-local compute in this placement model (ADR-0016). The library is an example site from Austin Public Library locations. GPU PCs busy 40% of the time is a planning estimate. Workloads a station could run: member questions, business inference, and open-science batch work such as protein folding. The six-feeder view shows the idea at a glance; the fleet recording shows recovery evidence.</p><a class="text-primary-container font-semibold underline" href="tower.html?track=compute&amp;persona=fleet">Inspect recorded fleet recovery</a></details>
+<p class="max-w-[75ch]">Stations hold the bulk GPUs; homes provide batteries and feeder-local compute in this placement model (ADR-0016). The library is an example site from Austin Public Library locations. GPU PCs busy 40% of the time is a planning estimate. Workloads a station could run: member questions, business inference, and open-science batch work such as protein folding. The six-feeder view shows the idea at a glance; the fleet recording shows recovery evidence.</p><a class="text-primary-container font-semibold underline" href="tower.html?track=compute&amp;persona=fleet">Inspect recorded fleet recovery</a>
+ </div></details>
+</section>
 </main>
 <footer class="bg-white border-t border-wire-border">
 <div class="max-w-[1440px] px-4 sm:px-6 mx-auto py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-body-sm text-outline text-center">

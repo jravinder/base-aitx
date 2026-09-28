@@ -12,130 +12,187 @@
 <script defer src="milestones.js"></script>
 <script src="turnstile.js"></script><script src="speak.js"></script>
 <style>
-  body{margin:0;overscroll-behavior:none;font-family:"Plus Jakarta Sans",var(--bf-font)}
-  [hidden]{display:none!important}
-  img{max-width:100%;height:auto}
-  button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #396844;outline-offset:2px}
-  button,input{min-height:44px}
-  .kb-list{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}
-  .kb-list a,#ans-src a{color:#1e4d2b;font-weight:600;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
-  .msg-you{align-self:flex-end;max-width:85%;background:#1e4d2b;color:#fff;padding:12px;border-radius:12px 2px 12px 12px;font-size:12px;line-height:18px;overflow-wrap:anywhere}
-  .msg-brain{max-width:100%;background:rgba(241,245,249,.7);border:1px solid #E2E8F0;padding:12px;border-radius:2px 12px 12px 12px;font-size:12px;line-height:18px;color:#0F172A;overflow-wrap:anywhere}
-  .msg-brain p{margin:0 0 6px}
-  .msg-brain .who{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#023616;margin-bottom:4px}
-  .msg-brain .srch{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#717970}
-  .speak{min-height:32px;min-width:32px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid #E2E8F0;background:#fff;color:#023616;cursor:pointer}
-  .speak:hover{background:#F1F5F9}
-  .chip[aria-pressed="true"]{background:#1e4d2b;color:#fff;border-color:#1e4d2b}
-  .tabbtn[aria-selected="true"]{background:#1e4d2b;color:#fff}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;overscroll-behavior:none;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body)}
+[hidden]{display:none!important}
+img{max-width:100%;height:auto}
+button:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--bf-focus);outline-offset:2px}
+button,input{min-height:44px;font-family:inherit}
+#main{max-width:1440px;margin:0 auto;padding:32px 24px 48px;overflow-wrap:anywhere}
+#main h1,#main h2,#main h3,#main p{margin:0}
+#main a{color:var(--bf-brand);text-decoration:none}#main a:hover{text-decoration:underline}
+.material-symbols-outlined{font-size:18px;line-height:1;vertical-align:middle}
+.eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+.tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+.tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+:root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+.hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+.hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+.hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.hero .line{font:var(--bf-text-body);color:var(--bf-muted)}
+.panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+.left,.right{display:grid;gap:10px;min-width:0}
+@media (max-width:1000px){.cols{display:flex;flex-direction:column}.right{display:contents}.right>*{order:-1}.right>.homec{order:1}}
+/* answer card */
+.ans{padding:16px 20px;display:grid;gap:8px}
+.anshead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--bf-line)}
+.anscat{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}
+.catpill{display:inline-flex;align-items:center;gap:6px;font:700 11px/16px var(--bf-font);padding:2px 10px;border-radius:999px;background:var(--bf-brand-tint);color:var(--bf-brand-strong);border:1px solid var(--bf-brand-soft)}
+:root[data-theme="dark"] .catpill{color:var(--bf-brand)}
+.catpill i{width:6px;height:6px;border-radius:50%;background:var(--bf-solar)}
+.where{font:var(--bf-text-small);color:var(--bf-faint)}
+.tabs{background:var(--bf-sunk)}
+.tabbtn{border:0;background:transparent;color:var(--bf-muted);font:var(--bf-text-label);cursor:pointer}
+.tabbtn[aria-selected="true"]{background:var(--bf-brand);color:var(--bf-on-brand)}
+.ansq{font:var(--bf-text-h2);color:var(--bf-ink)}
+.ansa{font:var(--bf-text-body-lg);color:var(--bf-ink)}
+.ansmore{font:var(--bf-text-body);color:var(--bf-muted)}
+#ans-stats{margin-top:4px;padding:10px 12px;border-radius:var(--bf-radius-lg);background:var(--bf-sunk);border:1px solid var(--bf-line)}
+#ans-stats .stat span:first-child{font:700 18px/24px var(--bf-font)!important;color:var(--bf-brand)!important}
+#ans-stats .stat span{color:var(--bf-muted)}
+.ansfoot{padding-top:10px;border-top:1px solid var(--bf-line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.listen{display:inline-flex;align-items:center;gap:8px;padding:0 14px;border-radius:var(--bf-radius-lg);border:1px solid var(--bf-brand-soft);background:var(--bf-brand-tint);color:var(--bf-ink);font:var(--bf-text-label);cursor:pointer}
+.listen[aria-pressed="true"]{background:var(--bf-brand);color:var(--bf-on-brand)}
+.src{display:flex;align-items:flex-start;gap:6px;font:var(--bf-text-small);color:var(--bf-muted);min-width:0;flex:1 1 260px}
+.kb-list{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}
+.kb-list a,#ans-src a{color:var(--bf-brand);font-weight:600;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+/* chat */
+.chat{padding:14px 18px;display:grid;gap:10px}
+.chathead{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--bf-line)}
+.chathead h3{font:var(--bf-text-h3)}
+.ready{display:inline-flex;align-items:center;gap:6px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted)}
+.ready i,.talk i{width:6px;height:6px;border-radius:50%;background:var(--bf-solar);flex:none}
+.askout{display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto}
+.askout:empty{display:none}
+.msg-you{align-self:flex-end;max-width:85%;background:var(--bf-brand);color:var(--bf-on-brand);padding:10px 12px;border-radius:12px 2px 12px 12px;font-size:13px;line-height:19px;overflow-wrap:anywhere}
+.msg-brain{max-width:100%;background:var(--bf-sunk);border:1px solid var(--bf-line);padding:10px 12px;border-radius:2px 12px 12px 12px;font-size:13px;line-height:19px;color:var(--bf-ink);overflow-wrap:anywhere}
+.msg-brain p{margin:0 0 6px}
+.msg-brain .who{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--bf-brand);margin-bottom:4px}
+.msg-brain .srch{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint)}
+.speak{min-height:32px;min-width:32px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid var(--bf-line);background:var(--bf-surface);color:var(--bf-brand);cursor:pointer}
+.speak:hover{background:var(--bf-sunk)}
+.prompts{display:grid;gap:6px}
+.lbl{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint)}
+#ask-prompts button{background:var(--bf-sunk)!important;border-color:var(--bf-line)!important;color:var(--bf-ink)!important;min-height:36px}
+.askf{display:flex;gap:6px;align-items:center;background:var(--bf-sunk);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:4px}
+.askf input{flex:1;min-width:0;border:0;background:transparent;color:var(--bf-ink);padding:0 10px;font:var(--bf-text-body);outline:none}
+.askf button{width:44px;border:0;border-radius:var(--bf-radius-lg);background:var(--bf-brand);color:var(--bf-on-brand);cursor:pointer;display:grid;place-items:center}
+/* right column */
+.searchf{display:flex;align-items:center;gap:6px;padding:4px 6px 4px 12px;border-color:var(--bf-brand-soft)}
+.searchf:focus-within{border-color:var(--bf-brand)}
+.searchf>.material-symbols-outlined{color:var(--bf-faint)}
+.searchf input{flex:1;min-width:0;border:0;background:transparent;color:var(--bf-ink);font:var(--bf-text-body-lg);padding:0 4px;outline:none}
+.mic{width:44px;border:0;border-radius:var(--bf-radius-lg);background:transparent;color:var(--bf-muted);cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chips .chip{background:var(--bf-surface);border:1px solid var(--bf-line);color:var(--bf-ink);border-radius:999px;padding:0 14px;min-height:36px;font:var(--bf-text-small);cursor:pointer;text-align:left}
+.chips .chip:hover{background:var(--bf-sunk)}
+.chips .chip[aria-pressed="true"]{background:var(--bf-brand);color:var(--bf-on-brand);border-color:var(--bf-brand)}
+.homec{padding:12px 14px;display:grid;gap:8px}
+.homehead{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.homehead h2{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint)}
+.origin{font:700 11px/16px var(--bf-font);padding:1px 8px;border-radius:999px;background:var(--bf-brand-tint);color:var(--bf-brand-strong);white-space:nowrap}
+#home-body{display:grid;gap:8px}
+.addr{display:grid;gap:2px;font:var(--bf-text-small);color:var(--bf-muted)}.addr b{font:var(--bf-text-label);color:var(--bf-ink)}
+.talk{display:flex;align-items:center;gap:8px;font:var(--bf-text-small);color:var(--bf-ink)}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:520px){.btns{grid-template-columns:1fr}}
+.btn1,.btn2{min-height:44px;padding:0 12px;border-radius:var(--bf-radius-lg);display:inline-flex;align-items:center;justify-content:center;gap:6px;font:var(--bf-text-label);text-align:center}
+#main a.btn1{background:var(--bf-brand);color:var(--bf-on-brand);text-decoration:none}
+#main a.btn2{background:var(--bf-surface);border:1px solid var(--bf-line);color:var(--bf-ink);text-decoration:none}
+.fine{font:var(--bf-text-small);color:var(--bf-faint)}
+/* more */
+.more{margin-top:20px}
+.more h2{font:var(--bf-text-h3);margin-bottom:10px}
+details{border-top:1px solid var(--bf-line)}details:last-of-type{border-bottom:1px solid var(--bf-line)}
+summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+details>div{padding:4px 4px 18px;color:var(--bf-muted)}
+.illo{position:relative;max-width:420px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk);padding:8px}
+.illo span{position:absolute;left:12px;bottom:12px;font:var(--bf-text-caps);padding:1px 8px;border-radius:999px;background:var(--bf-surface);color:var(--bf-muted);border:1px solid var(--bf-line)}
+footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
+@media (max-width:640px){#main{padding:24px 16px 40px}.hero .a{font:700 30px/36px var(--bf-font)}}
 </style>
 </head>
-<body class="bg-surface-muted text-ink-primary font-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-secondary-container selection:text-ink-primary">
-<main class="flex-grow max-w-[1360px] w-full mx-auto px-4 sm:px-6 py-8">
-
-<!-- Title and subtitle -->
-<div class="mb-8 text-center max-w-2xl mx-auto">
-<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-solar-green/10 text-primary border border-wire-border mb-3"><span class="material-symbols-outlined text-sm text-solar-green" aria-hidden="true">verified</span><span class="text-label-caps font-label-caps uppercase tracking-wider text-primary">Answers with sources</span></div>
-<h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight font-bold">Ask anything.</h1>
-<p class="font-body-md text-body-md text-outline mt-2 leading-relaxed" id="subtitle">Every answer shows where it came from.</p>
-</div>
-
-<!-- Search bar with mic -->
-<div class="max-w-2xl mx-auto mb-10">
-<form id="searchf" role="search" class="relative flex items-center bg-surface-container-lowest border border-wire-border rounded-xl shadow-sm focus-within:border-primary-container focus-within:ring-2 focus-within:ring-primary-container/20 transition-all p-1">
-<span class="material-symbols-outlined text-outline pl-3 sm:pl-4 pr-2 text-xl" aria-hidden="true">search</span>
-<input class="w-full min-w-0 py-3 pr-12 bg-transparent text-ink-primary font-body-md text-body-md border-0 focus:ring-0 placeholder:text-outline outline-none" id="q" type="search" placeholder="Search outages, permits, installation..." aria-label="Search the answers" autocomplete="off">
-<button class="absolute right-2 sm:right-3 w-11 h-11 rounded-lg hover:bg-surface-subtle text-outline hover:text-ink-primary transition-colors flex items-center justify-center" id="mic" title="Speak your question" aria-label="Speak your question" type="button" hidden><span class="material-symbols-outlined text-xl" aria-hidden="true">mic</span></button>
-</form>
-<div class="flex flex-wrap items-center justify-center gap-2 mt-4" id="chips" role="group" aria-label="Suggested questions"></div>
-</div>
-
-<!-- Two columns -->
-<div class="grid grid-cols-12 gap-6 lg:gap-8 items-start">
-<div class="col-span-12 lg:col-span-8 min-w-0">
-<section class="bg-surface-container-lowest border border-wire-border rounded-xl p-5 sm:p-8 shadow-sm" id="answer" aria-live="polite">
-<div class="flex flex-wrap items-center justify-between gap-2 pb-6 border-b border-wire-border">
-<div class="flex flex-wrap items-center gap-2 min-w-0">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#22C55E]/15 text-primary border border-[#22C55E]/30"><span class="w-1.5 h-1.5 rounded-full bg-solar-green mr-1.5" aria-hidden="true"></span><span id="ans-cat">Answer</span></span>
-<span class="text-body-sm font-body-sm text-outline" id="ans-where"></span>
-</div>
-<div class="tabs inline-flex rounded-full bg-surface-subtle p-1" role="tablist" aria-label="Who is asking" hidden>
-<button role="tab" data-tab="member" aria-selected="false" class="tabbtn px-3 rounded-full font-label-md text-label-md text-outline">Members</button>
-<button role="tab" data-tab="internal" aria-selected="true" class="tabbtn px-3 rounded-full font-label-md text-label-md text-outline">Base team</button>
+<body class="bb">
+<main id="main">
+ <div class="cols">
+  <div class="left">
+<section class="panel ans" id="answer" aria-live="polite">
+<div class="anshead">
+<div class="anscat"><span class="catpill"><i aria-hidden="true"></i><span id="ans-cat">Answer</span></span><span class="where" id="ans-where"></span></div>
+<div class="tabs inline-flex rounded-full p-1" role="tablist" aria-label="Who is asking" hidden>
+<button role="tab" data-tab="member" aria-selected="false" class="tabbtn px-3 rounded-full">Members</button>
+<button role="tab" data-tab="internal" aria-selected="true" class="tabbtn px-3 rounded-full">Base team</button>
 </div>
 </div>
-<div class="mt-6 mb-4"><h2 class="font-headline-lg text-headline-lg text-ink-primary font-bold tracking-tight" id="ans-q">Loading answers...</h2></div>
-<div class="max-w-none text-ink-primary font-body-lg text-body-lg leading-relaxed"><p class="m-0" id="ans-a"></p></div>
-<p class="mt-4 mb-0 font-body-md text-body-md text-outline leading-relaxed" id="ans-more" hidden></p>
-<div class="mt-8 p-5 sm:p-6 rounded-lg bg-surface-subtle/50 border border-wire-border grid grid-cols-1 gap-4 text-center" id="ans-stats" hidden></div>
-<div class="mt-8 pt-6 border-t border-wire-border flex flex-col sm:flex-row sm:items-center justify-between gap-4" id="ans-foot" hidden>
-<button class="self-start inline-flex items-center gap-2 bg-secondary-container hover:bg-[#bfe673] px-4 rounded-lg font-label-md text-label-md transition-all active:scale-[0.98]" id="listen" type="button" aria-pressed="false"><span class="material-symbols-outlined text-base text-ink-primary" aria-hidden="true" id="listen-icon">headphones</span><span class="font-semibold text-ink-primary" id="listen-text">Listen</span></button>
-<div class="flex items-start gap-1.5 text-body-sm font-body-sm text-outline min-w-0"><span class="material-symbols-outlined text-sm mt-0.5 shrink-0" aria-hidden="true">verified_user</span><span id="ans-src" class="min-w-0" style="overflow-wrap:anywhere"></span></div>
+<h2 class="ansq" id="ans-q">Loading answers...</h2>
+<p class="ansa" id="ans-a"></p>
+<p class="ansmore" id="ans-more" hidden></p>
+<div class="grid grid-cols-1 gap-4 text-center" id="ans-stats" hidden></div>
+<div class="ansfoot" id="ans-foot" hidden>
+<button class="listen" id="listen" type="button" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true" id="listen-icon">headphones</span><span id="listen-text">Listen</span></button>
+<div class="src"><span class="material-symbols-outlined" aria-hidden="true">verified_user</span><span id="ans-src" class="min-w-0" style="overflow-wrap:anywhere"></span></div>
 </div>
 </section>
-<div class="mt-6 rounded-xl bg-primary-container text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4" id="brain-next">
-<div class="min-w-0"><span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-secondary-container text-ink-primary text-[11px] font-semibold uppercase tracking-wider">Next</span><p class="m-0 mt-2 font-headline-sm text-headline-sm text-white">The knowledge behind every answer.</p><p class="m-0 mt-1 text-body-sm text-white/80">See the entries and links Base Brain answers from.</p></div>
-<a class="inline-flex items-center justify-center gap-2 min-h-[44px] px-6 rounded-xl bg-secondary-container hover:bg-[#bfe673] text-ink-primary font-label-md text-label-md font-semibold no-underline whitespace-nowrap" id="brain-next-link" href="knowledge.html#knowledge">Open Base Brain <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+<section class="panel chat" id="local-ask" aria-labelledby="askh">
+<div class="chathead">
+<div><h3 id="askh">Base Brain assistant</h3><span class="ready"><i aria-hidden="true"></i>Ready · every answer shows its source</span></div>
+<span class="tag m">Sourced</span>
 </div>
-</div>
-
-<div class="col-span-12 lg:col-span-4 min-w-0">
-<div class="flex flex-col gap-6">
-<section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm" id="local-ask" aria-labelledby="askh">
-<div class="flex items-start justify-between gap-2 pb-3 border-b border-wire-border mb-3">
+<div class="askout" id="askout" aria-live="polite"></div>
+<div class="prompts"><span class="lbl">Suggested prompts</span><div class="flex flex-wrap gap-1.5" id="ask-prompts"></div></div>
+<form id="askf" class="askf">
+<input id="askq" type="text" placeholder="Ask Base Brain about your home or battery" aria-label="Your question">
+<button type="submit" title="Send" aria-label="Ask"><span class="material-symbols-outlined" aria-hidden="true">send</span></button>
+</form>
+</section>
+  </div>
+  <aside class="right" aria-label="Ask">
+<section class="hero">
+<span class="eyebrow"><i></i>Answers with sources</span>
+<p class="q">What do you want to know?</p>
+<h1 class="a">Ask anything.</h1>
+<p class="line" id="subtitle">Every answer shows where it came from.</p>
+</section>
 <div>
-<div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">smart_toy</span><h3 class="m-0 font-headline-sm text-headline-sm text-ink-primary font-bold" id="askh">Base Brain assistant</h3></div>
-<span class="inline-flex items-center text-[11px] font-label-caps uppercase tracking-wider text-primary font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-solar-green mr-1.5" aria-hidden="true"></span>Ready · every answer shows its source</span>
-</div>
-<span class="shrink-0 px-2 py-0.5 rounded bg-secondary-container text-ink-primary text-[11px] font-semibold">Sourced</span>
-</div>
-<p class="text-xs text-outline leading-relaxed mb-4">Ask about outages, installation, your battery or your zip. Base Brain answers with its sources, and the Base team answers account questions.</p>
-<div class="flex flex-col gap-3 mb-4" id="askout" aria-live="polite"></div>
-<div class="mb-4">
-<div class="text-[11px] font-label-caps text-outline uppercase tracking-wider mb-2 font-semibold">Suggested prompts</div>
-<div class="flex flex-wrap gap-1.5" id="ask-prompts"></div>
-</div>
-<form id="askf" class="relative flex items-center bg-surface-subtle border border-wire-border rounded-lg p-1 focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container/20">
-<input id="askq" type="text" class="w-full min-w-0 py-2 pl-3 pr-12 bg-transparent text-xs text-ink-primary border-0 focus:ring-0 placeholder:text-outline outline-none" placeholder="Ask Base Brain about your home or battery" aria-label="Your question">
-<button class="absolute right-1 w-11 h-11 rounded-md bg-primary-container hover:bg-evergreen-deep text-white transition-colors flex items-center justify-center" type="submit" title="Send" aria-label="Ask"><span class="material-symbols-outlined text-sm" aria-hidden="true">send</span></button>
+<form id="searchf" role="search" class="panel searchf">
+<span class="material-symbols-outlined" aria-hidden="true">search</span>
+<input id="q" type="search" placeholder="Search outages, permits, installation..." aria-label="Search the answers" autocomplete="off">
+<button class="mic" id="mic" title="Speak your question" aria-label="Speak your question" type="button" hidden><span class="material-symbols-outlined" aria-hidden="true">mic</span></button>
 </form>
-</section>
-<section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm" id="home-card" aria-labelledby="home-title">
-<div class="flex items-center justify-between gap-2 pb-3 border-b border-wire-border mb-4">
-<h2 class="m-0 font-label-caps text-label-caps uppercase text-outline font-semibold tracking-wider" id="home-title">Your home and support</h2>
-<span class="inline-flex items-center text-xs font-medium text-primary bg-solar-green/10 px-2 py-0.5 rounded-full whitespace-nowrap" id="home-origin" hidden></span>
+<div class="chips" id="chips" role="group" aria-label="Suggested questions"></div>
 </div>
+<section class="panel homec" id="home-card" aria-labelledby="home-title">
+<div class="homehead"><h2 id="home-title">Your home and support</h2><span class="origin" id="home-origin" hidden></span></div>
 <div id="home-body" hidden>
-<div class="w-full h-44 bg-surface-subtle/50 rounded-lg overflow-hidden relative mb-4 border border-wire-border flex items-center justify-center">
-<img alt="Illustrated house" class="w-full h-full object-contain p-3" src="assets/stitch/brain-1.jpg" width="1200" height="896">
-<div class="absolute bottom-2 left-2 bg-ink-primary/80 text-white px-2 py-0.5 rounded text-[11px] font-label-caps">Illustration</div>
+<div class="addr"><b id="home-addr"></b><span id="home-meta"></span></div>
+<a class="btn2" id="home-link" href="#" hidden><span class="material-symbols-outlined" aria-hidden="true">hub</span><span>Open your node</span></a>
 </div>
-<div class="p-3.5 bg-surface-subtle/50 rounded-lg border border-wire-border mb-4 text-body-sm space-y-1.5">
-<div class="text-ink-primary font-semibold" id="home-addr"></div>
-<div class="text-outline" id="home-meta"></div>
+<p class="talk"><i aria-hidden="true"></i><span id="talk-line">Talk to Base: the Base team answers account, contract and bill questions directly.</span></p>
+<div class="btns">
+<a class="btn2" id="help-center" href="https://help.basepowercompany.com/"><span class="material-symbols-outlined" aria-hidden="true">support_agent</span><span>Open Base Help Center</span></a>
+<a class="btn1" id="call-base" href="tel:+15125181009"><span class="material-symbols-outlined" aria-hidden="true">call</span><span>Call Base 512-518-1009</span></a>
 </div>
-<a class="w-full min-h-[44px] px-4 mb-4 bg-surface-container-lowest hover:bg-surface-subtle border border-wire-border text-ink-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 shadow-sm" id="home-link" href="#" hidden><span class="material-symbols-outlined text-sm text-outline" aria-hidden="true">hub</span><span>Open your node</span></a>
-</div>
-<div class="p-2.5 rounded-lg bg-surface-subtle border border-wire-border mb-4 flex items-center gap-2 text-xs">
-<span class="w-2 h-2 rounded-full bg-solar-green shrink-0" aria-hidden="true"></span>
-<span class="font-medium text-ink-primary" id="talk-line">Talk to Base: the Base team answers account, contract and bill questions directly.</span>
-</div>
-<a class="w-full min-h-[44px] px-4 bg-surface-container-lowest hover:bg-surface-subtle border border-wire-border text-ink-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 shadow-sm" id="help-center" href="https://help.basepowercompany.com/"><span class="material-symbols-outlined text-sm text-outline" aria-hidden="true">support_agent</span><span>Open Base Help Center</span></a>
-<a class="mt-3 w-full min-h-[44px] px-4 bg-primary-container hover:bg-evergreen-deep text-white font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 shadow-sm" id="call-base" href="tel:+15125181009"><span class="material-symbols-outlined text-sm" aria-hidden="true">call</span><span>Call Base 512-518-1009</span></a>
-<p class="mt-2 mb-0 text-center text-[11px] text-outline">New customers call · members email support@basepowercompany.com</p>
+<p class="fine">New customers call · members email support@basepowercompany.com</p>
 </section>
+  </aside>
+ </div>
 
+ <section class="more">
+  <h2>More detail</h2>
+  <details><summary>The knowledge behind every answer <span>See the entries and links Base Brain answers from</span></summary><div id="brain-next">
+   <p>See the entries and links Base Brain answers from.</p>
+   <p style="margin-top:10px"><a class="btn1" id="brain-next-link" href="knowledge.html#knowledge">Open Base Brain <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a></p>
+  </div></details>
+  <details><summary>Your home, as drawn <span>Illustration, not a photo of your home</span></summary><div>
+   <div class="illo"><img alt="Illustrated house" src="assets/stitch/brain-1.jpg" width="1200" height="896"><span>Illustration</span></div>
+  </div></details>
+ </section>
 
-</div>
-</div>
-</div>
+ <footer><b>Base Ready</b> · Help for Austin homes · <a href="knowledge.html">Base Brain entries</a> · Our design. Saved on this device.</footer>
 </main>
-<footer class="w-full bg-surface-container-lowest border-t border-wire-border mt-12 py-6">
-<div class="max-w-[1360px] mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between text-body-sm text-outline gap-2 text-center">
-<div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1"><span class="font-headline-sm text-headline-sm text-primary font-bold">Base Ready</span><span class="hidden md:inline text-wire-border" aria-hidden="true">|</span><span>Help for Austin homes</span><span class="hidden md:inline text-wire-border" aria-hidden="true">|</span><a class="text-outline hover:text-primary" href="knowledge.html">Base Brain entries</a></div>
-<span>Our design. Saved on this device.</span>
-</div>
-</footer>
 <script>
 (() => {
   "use strict";
@@ -295,7 +352,7 @@
     const pg = e.item && e.item.page;
     if (tiles.length < 3 && pg && pg.label) tiles.push({value: pg.label, label: 'See it on', note: 'Base Ready page', href: pg.href});
     if (tiles.length) {
-      $('ans-stats').className = `mt-8 p-5 sm:p-6 rounded-lg bg-surface-subtle/50 border border-wire-border grid grid-cols-1 gap-4 text-center ${tiles.length > 1 ? 'sm:grid-cols-' + tiles.length : ''}`;
+      $('ans-stats').className = `grid grid-cols-1 gap-4 text-center ${tiles.length > 1 ? 'sm:grid-cols-' + tiles.length : ''}`;
       $('ans-stats').innerHTML = tiles.map((t, i) => {
         const v = t.href ? `<a class="text-primary hover:underline" href="${esc(contextHref(t.href))}">${esc(t.value)}</a>` : esc(t.value);
         return `<div class="stat min-w-0 ${i < tiles.length - 1 ? 'sm:border-r border-wire-border/80 sm:pr-4' : ''}"><span class="font-headline-md text-headline-md text-primary font-bold block" style="overflow-wrap:anywhere">${v}</span><span class="font-label-caps text-label-caps uppercase text-outline block mt-1">${esc(t.label)}</span>${t.note ? `<span class="font-body-sm text-body-sm text-outline block mt-0.5">${esc(t.note)}</span>` : ''}</div>`;
