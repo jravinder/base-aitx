@@ -17,11 +17,11 @@
       {id: "recovery", href: "recovery.html", label: "Install readiness", short: "Install readiness"},
       {id: "dataqa", href: "data-qa.html", label: "Answers by zip", short: "Zip answers"}]},
     {title: "Where Base stands", items: [
-      {id: "explorer", href: "explorer.html", label: "Permits", short: "Permits"},
+      {id: "explorer", href: "explorer.html", label: "Permit map", short: "Map"},
       {id: "market", href: "market.html", label: "Market intelligence", short: "Market"},
       {id: "grid", href: "grid.html", label: "Energy insights by ERCOT", short: "Energy"},
       {id: "ask", href: "ask.html", label: "Search", short: "Search"},
-      {id: "judgments", href: "judgments.html", label: "Permit check", short: "Permit check"}]},
+      {id: "judgments", href: "judgments.html", label: "Permits", short: "Permits"}]},
     {title: "B. Local AI close to you", items: [
       {id: "computehome", href: "compute-home.html", label: "Home", short: "Home"},
       {id: "copilot", href: "copilot.html", label: "My AI", short: "My AI"},
@@ -49,7 +49,7 @@
   const TRACKS = {home: "Home & Installation", compute: "Energy & Compute"};
   const PERSONAS = {
     lead: {track: "home", label: "Customer", start: "home", pages: ["home", "status", "rewards", "brain", "member", "knowledge", "built", "voice"]},
-    operations: {track: "home", label: "Base admin", start: "market", pages: ["market", "explorer", "grid", "ask", "dataflow", "admin", "house", "recovery", "wall", "knowledge", "brain", "built", "judgments"]},
+    operations: {track: "home", label: "Base admin", start: "market", pages: ["market", "judgments", "explorer", "grid", "ask", "admin", "dataflow", "house", "recovery", "wall", "knowledge", "brain", "built"]},
     gpu: {track: "compute", label: "Customer", start: "computehome", pages: ["computehome", "copilot", "energy", "plans", "models", "tower", "block", "built"]},
     fleet: {track: "compute", label: "Base admin", start: "overview", pages: ["overview", "tower", "placement", "jobs", "index", "plans", "block", "models", "pitch", "built"]}
   };

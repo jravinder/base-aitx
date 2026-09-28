@@ -13,7 +13,7 @@ const cases = {
 };
 const menus = {
  lead:['home','status','rewards','brain','member','knowledge','built'],
- operations:['market','explorer','grid','ask','dataflow','admin','house','recovery','wall','knowledge','brain','built','judgments'],
+ operations:['market','judgments','explorer','grid','ask','admin','dataflow','house','recovery','wall','knowledge','brain','built'],
  gpu:['computehome','copilot','energy','plans','models','tower','block','built'],
  fleet:['overview','tower','placement','jobs','index','plans','block','models','pitch','built']
 };
