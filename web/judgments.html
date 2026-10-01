@@ -95,53 +95,15 @@ footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
 </style>
 <script defer src="shell.js"></script>
 <script defer src="permit-jev.js"></script>
-<style>.pj-next{margin:6px 0 0}.pj-next a{font:600 13px/1.4 var(--bf-font,inherit);color:var(--bf-primary,#1e4d2b);text-decoration:underline;text-underline-offset:3px}</style>
 </head>
 <body>
 <main id="main">
  <div id="notice">Permit data loads from data/judgments.json. Run <code>python3 -m store.judgments</code>, then serve the repo root.</div>
 
-  <section class="pj" aria-label="Permit notebook">
-  <header class="pj-head">
-   <div>
-    <div class="pj-eye">Permit check · notebook · <span class="tag m">Measured</span></div>
-    <h1>Can a local model judge 34,334 Austin permits without a person?</h1>
-    <p class="pj-sub" id="pj-sub">&nbsp;</p>
-    <p class="pj-next"><a id="story-next" href="wall.html?track=home&amp;persona=operations">Next: 3 · Will the battery fit →</a></p>
-   </div>
-   <div class="pj-kpi"><div class="pj-strip" id="pj-strip"></div><div class="pj-big" id="pj-big"></div></div>
-  </header>
-  <div class="pj-grid">
-   <figure class="pj-fig pj-f1" style="margin:0">
-    <figcaption class="pj-cap"><span><b>Fig. 1</b> · confidence → route: rules on every permit, model on the 100 hardest</span><span class="tag m">Measured</span></figcaption>
-    <div class="pj-chips" id="pj-chips" role="group" aria-label="Filter by route"></div>
-    <div id="pj-f1"></div>
-    <div class="pj-note" id="pj-f1n"></div>
-   </figure>
-   <figure class="pj-fig pj-f2" style="margin:0">
-    <figcaption class="pj-cap"><span><b>Fig. 2</b> · rules: predicted vs observed, by category</span><span class="tag m">Measured</span></figcaption>
-    <div class="pj-rows" id="pj-f2"></div>
-   </figure>
-   <figure class="pj-fig pj-f3" style="margin:0">
-    <figcaption class="pj-cap"><span><b>Fig. 3</b> · one permit, end to end</span><span class="tag m">Measured</span></figcaption>
-    <div id="pj-f3" style="display:grid;gap:6px"></div>
-   </figure>
-   <figure class="pj-fig pj-f4" style="margin:0">
-    <figcaption class="pj-cap"><span><b>Fig. 4</b> · calibration by rule tier</span><span class="tag m">Measured</span></figcaption>
-    <div class="pj-rows" id="pj-f4"></div>
-   </figure>
-   <figure class="pj-fig pj-f5" style="margin:0">
-    <figcaption class="pj-cap"><span><b>Fig. 5</b> · confidently wrong</span><span class="tag m">Measured</span></figcaption>
-    <div id="pj-f5" style="display:grid;gap:6px"></div>
-   </figure>
-   <figure class="pj-fig pj-f6" style="margin:0">
-    <figcaption class="pj-cap"><span><b>Fig. 6</b> · routing by category</span><span class="tag m">Measured</span></figcaption>
-    <div class="pj-rows" id="pj-f6"></div>
-   </figure>
-  </div>
- </section>
-
- <div class="pj-below"><h2>Run replay</h2><span>The original run screen, cost estimate and tables.</span></div>
+ <header class="pj-top">
+  <h1>Can a local model judge 34,334 Austin permits without a person?</h1>
+  <a id="story-next" class="pj-next" href="house.html?track=home&amp;persona=operations">Next: The lead, as Base sees it →</a>
+ </header>
  <section class="run" aria-label="Permit run">
   <div class="cols">
    <div class="left">
@@ -178,6 +140,45 @@ footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
   <p id="findp"></p>
  </section>
    </aside>
+  </div>
+ </section>
+
+
+ <section class="pj" aria-label="Permit notebook">
+  <header class="pj-head">
+   <div>
+    <h2 class="pj-h2">Notebook: does the routing hold up? <span class="tag m">Measured</span></h2>
+    <p class="pj-sub" id="pj-sub">&nbsp;</p>
+   </div>
+   <div class="pj-kpi"><div class="pj-strip" id="pj-strip"></div><div class="pj-big" id="pj-big"></div></div>
+  </header>
+  <div class="pj-grid">
+   <figure class="pj-fig pj-f1" style="margin:0">
+    <figcaption class="pj-cap"><span><b>Fig. 1</b> · confidence → route: rules on every permit, model on the 100 hardest</span><span class="tag m">Measured</span></figcaption>
+    <div class="pj-chips" id="pj-chips" role="group" aria-label="Filter by route"></div>
+    <div id="pj-f1"></div>
+    <div class="pj-note" id="pj-f1n"></div>
+   </figure>
+   <figure class="pj-fig pj-f2" style="margin:0">
+    <figcaption class="pj-cap"><span><b>Fig. 2</b> · rules: predicted vs observed, by category</span><span class="tag m">Measured</span></figcaption>
+    <div class="pj-rows" id="pj-f2"></div>
+   </figure>
+   <figure class="pj-fig pj-f3" style="margin:0">
+    <figcaption class="pj-cap"><span><b>Fig. 3</b> · one permit, end to end</span><span class="tag m">Measured</span></figcaption>
+    <div id="pj-f3" style="display:grid;gap:6px"></div>
+   </figure>
+   <figure class="pj-fig pj-f4" style="margin:0">
+    <figcaption class="pj-cap"><span><b>Fig. 4</b> · calibration by rule tier</span><span class="tag m">Measured</span></figcaption>
+    <div class="pj-rows" id="pj-f4"></div>
+   </figure>
+   <figure class="pj-fig pj-f5" style="margin:0">
+    <figcaption class="pj-cap"><span><b>Fig. 5</b> · confidently wrong</span><span class="tag m">Measured</span></figcaption>
+    <div id="pj-f5" style="display:grid;gap:6px"></div>
+   </figure>
+   <figure class="pj-fig pj-f6" style="margin:0">
+    <figcaption class="pj-cap"><span><b>Fig. 6</b> · routing by category</span><span class="tag m">Measured</span></figcaption>
+    <div class="pj-rows" id="pj-f6"></div>
+   </figure>
   </div>
  </section>
 

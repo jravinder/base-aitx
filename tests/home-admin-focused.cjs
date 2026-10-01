@@ -25,9 +25,9 @@ const origin = 'https://home-admin.test';
           await route.fulfill({body:await fs.readFile(file),contentType:({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.geojson':'application/json'})[path.extname(file)] || 'application/octet-stream'});
         } catch { await route.fulfill({status:404,body:''}); }
       });
-      for (const name of (process.env.ADMIN_ONLY ? ['admin'] : ['market','explorer','house','admin'])) {
-        // market and house are Base admin story steps; explorer and admin left the nav and open by direct URL.
-        const story = ['market','house'].includes(name);
+      for (const name of (process.env.ADMIN_ONLY ? ['admin'] : ['judgments','market','explorer','house','admin'])) {
+        // judgments, house and market are Base admin story steps; explorer and admin left the nav and open by direct URL.
+        const story = ['judgments','market','house'].includes(name);
         await page.goto(`${origin}/web/${name}.html` + (story ? '?track=home&persona=operations' : ''));
         await page.waitForSelector('.sh-nav',{state:'attached'});
         assert.equal(new URL(page.url()).pathname,`/web/${name}.html`,`${name}: no redirect`);
@@ -53,6 +53,17 @@ const origin = 'https://home-admin.test';
           await page.waitForURL(u=>u.pathname==='/web/market.html' && u.searchParams.get('persona')==='operations');
           // Operations is a Base Ready admin page; the compute admin menu no longer lists it.
           assert.equal(await page.locator('#lrnprops button:not(:disabled)').count(),0);
+        } else if (name === 'judgments') {
+          // Story step 1: the run screen is the first screen, the notebook figures sit under it, one H1.
+          const labels = await page.locator('.sh-link .sh-short').allTextContents();
+          assert.deepEqual(labels.map(t => t.trim()),['Permits','The lead','Will it fit','Ready to install','Where next']);
+          assert.equal(await page.locator('h1').count(),1);
+          assert.match(await page.locator('h1').innerText(),/34,334 Austin permits/);
+          await page.waitForSelector('#sq i.p');
+          const top = await page.evaluate(() => [document.querySelector('.run').getBoundingClientRect().top, document.querySelector('.pj').getBoundingClientRect().top]);
+          assert(top[0] < top[1],'run screen above the notebook');
+          await page.waitForSelector('#pj-f1 svg');
+          assert.equal(new URL(await page.locator('#story-next').getAttribute('href'),page.url()).pathname,'/web/house.html');
         } else if (name === 'market') {
           await page.waitForSelector('#cards .card');
           // Stitch layout: permit chart open as the hero, four answer cards, closed details.

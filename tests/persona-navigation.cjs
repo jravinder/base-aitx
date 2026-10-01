@@ -8,12 +8,12 @@ catch { ({chromium} = require('/Users/red/.agents/skills/gstack/node_modules/pla
 const root = path.resolve(__dirname, '..');
 const cases = {
   lead: ['home','onboarding.html','home'],
-  operations: ['home','house.html','house'], gpu: ['compute','compute-home.html','computehome'],
+  operations: ['home','judgments.html','judgments'], gpu: ['compute','compute-home.html','computehome'],
   fleet: ['compute','overview.html','overview']
 };
 const menus = {
  lead:['home','status','rewards','brain','member','knowledge','built'],
- operations:['house','judgments','wall','recovery','market'],
+ operations:['judgments','house','wall','recovery','market'],
  gpu:['computehome','copilot','energy','plans','models','tower','block','built'],
  fleet:['overview','tower','placement','jobs','index','plans','block','models','pitch','built']
 };
@@ -108,6 +108,25 @@ const menus = {
   await page.locator('#address-list li').first().waitFor();
   await page.locator('#address-input').press('Enter');
   assert.equal(new URL(await page.locator('[data-sh-id="brain"]').getAttribute('href')).searchParams.get('address'),nextAddress); checks++;
+  // Base admin starts on every permit (judgments), then Next opens the lead (house), keeping an address if one is set.
+  {
+   await page.goto('https://fleet.test/web/judgments.html?track=home&persona=operations');
+   await page.waitForSelector('.sh-nav',{state:'attached'});
+   assert.equal(await page.locator('h1').count(),1);
+   const first=new URL(await page.locator('#story-next').getAttribute('href'),page.url());
+   assert.equal(first.pathname,'/web/house.html');
+   assert.equal(first.searchParams.get('persona'),'operations');
+   const lead='4601 CLAWSON RD';
+   await page.goto('https://fleet.test/web/judgments.html?track=home&persona=operations&address='+encodeURIComponent(lead));
+   const next=page.locator('#story-next');
+   await next.waitFor({state:'attached'});
+   await page.waitForFunction(()=>new URL(document.querySelector('#story-next').href).searchParams.has('address'));
+   await next.evaluate(a=>a.click());
+   await page.waitForURL(u=>u.pathname==='/web/house.html');
+   const u=new URL(page.url());
+   assert.equal(u.searchParams.get('persona'),'operations');
+   assert.equal(u.searchParams.get('address'),lead);checks++;
+  }
   // Base admin follows one lead: the Customer -> Base admin switch keeps the address, then each Next step carries it.
   {
    const lead = '4601 CLAWSON RD';
@@ -120,7 +139,7 @@ const menus = {
    assert.equal(u.searchParams.get('persona'),'operations');
    assert.equal(u.searchParams.get('address'),lead);
    await page.waitForFunction(()=>/already know about 4601 Clawson Rd/i.test(document.querySelector('#q').textContent)); checks++;
-   for(const [file,role] of [['judgments.html','operations'],['wall.html','operations'],['recovery.html','operations'],['market.html','operations'],['onboarding.html','lead']]) {
+   for(const [file,role] of [['wall.html','operations'],['recovery.html','operations'],['market.html','operations'],['onboarding.html','lead']]) {
     const next=page.locator('#story-next');
     await next.waitFor({state:'attached'});
     assert.equal(new URL(await next.getAttribute('href'),page.url()).searchParams.get('address'),lead,`Next from ${new URL(page.url()).pathname} keeps the lead`);

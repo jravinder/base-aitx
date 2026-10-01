@@ -12,16 +12,16 @@
       {id: "status", href: "status.html", label: "Status", short: "Status"},
       {id: "rewards", href: "rewards.html", label: "Rewards", short: "Rewards"},
       {id: "demo", href: "demo.html", label: "Walkthrough", short: "Walkthrough"},
-      {id: "house", href: "house.html", label: "The lead", short: "1 · The lead"},
-      {id: "wall", href: "wall.html", label: "Will it fit", short: "3 · Will it fit"},
-      {id: "recovery", href: "recovery.html", label: "Ready to install", short: "4 · Ready to install"},
+      {id: "house", href: "house.html", label: "The lead", short: "The lead"},
+      {id: "wall", href: "wall.html", label: "Will it fit", short: "Will it fit"},
+      {id: "recovery", href: "recovery.html", label: "Ready to install", short: "Ready to install"},
       {id: "dataqa", href: "data-qa.html", label: "Answers by zip", short: "Zip answers"}]},
     {title: "Where Base stands", items: [
       {id: "explorer", href: "explorer.html", label: "Permit map", short: "Map"},
-      {id: "market", href: "market.html", label: "Where Base installs next", short: "5 · Installs"},
+      {id: "market", href: "market.html", label: "Where Base installs next", short: "Where next"},
       {id: "grid", href: "grid.html", label: "Energy insights by ERCOT", short: "Energy"},
       {id: "ask", href: "ask.html", label: "Search", short: "Search"},
-      {id: "judgments", href: "judgments.html", label: "Permit check", short: "2 · Permit check"}]},
+      {id: "judgments", href: "judgments.html", label: "Permit check", short: "Permits"}]},
     {title: "B. Local AI close to you", items: [
       {id: "computehome", href: "compute-home.html", label: "Home", short: "Home"},
       {id: "copilot", href: "copilot.html", label: "My AI", short: "My AI"},
@@ -49,7 +49,7 @@
   const TRACKS = {home: "Home & Installation", compute: "Energy & Compute"};
   const PERSONAS = {
     lead: {track: "home", label: "Customer", start: "home", pages: ["home", "status", "rewards", "brain", "member", "knowledge", "built", "voice"]},
-    operations: {track: "home", label: "Base admin", start: "house", pages: ["house", "judgments", "wall", "recovery", "market"]},
+    operations: {track: "home", label: "Base admin", start: "judgments", pages: ["judgments", "house", "wall", "recovery", "market"]},
     gpu: {track: "compute", label: "Customer", start: "computehome", pages: ["computehome", "copilot", "energy", "plans", "models", "tower", "block", "built"]},
     fleet: {track: "compute", label: "Base admin", start: "overview", pages: ["overview", "tower", "placement", "jobs", "index", "plans", "block", "models", "pitch", "built"]}
   };
@@ -489,8 +489,8 @@
     ["tower.html", "Break it and watch it recover"]];
   // Base admin's own story on the home track (docs/GOAL.md, admin rows), ending at Base Brain.
   const ADMIN_STORY = [
+    ["judgments.html", "Every permit, routed"],
     ["house.html", "The lead, as Base sees it"],
-    ["judgments.html", "How the permit check routed it"],
     ["wall.html", "Will the battery fit"],
     ["recovery.html", "Ready to install"],
     ["market.html", "Where Base installs next"]];

@@ -68,3 +68,10 @@ main#main{padding-top:14px}
  .pj-big{text-align:left;border-left:0;border-top:1px solid var(--bf-line);padding:10px 0 0}.pj-big span{margin-left:0;max-width:none}
  .pj-row{grid-template-columns:88px minmax(0,1fr) 40px}
 }
+/* Page header: the one H1, with the admin story's Next link beside it. */
+.pj-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 24px;margin:0 0 12px}
+.pj-top h1{font:700 24px/30px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.pj-next{font:600 13px/20px var(--bf-font);color:var(--bf-brand)!important;text-decoration:underline!important;text-underline-offset:3px;white-space:nowrap}
+.pj{margin-top:28px}
+.pj-h2{font:600 16px/22px var(--bf-font);color:var(--bf-ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+@media (max-width:640px){.pj-top h1{font-size:22px;line-height:28px}.pj-next{white-space:normal}}
