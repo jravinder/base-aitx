@@ -462,6 +462,7 @@ body.st{background:#f8fafc;color:#0f172a;font-family:"Plus Jakarta Sans",var(--b
 #home-view .ob-question .home-review .review-row{padding:6px 0}
 #home-view .ob-q-actions{margin:0;display:flex;justify-content:flex-end;align-items:center;gap:8px}
 #home-view .ob-q-actions .ob-primary{min-width:160px}
+#home-view .ob-continue-hint{margin:0 auto 0 0;font-size:13px;line-height:18px;color:var(--bf-muted,#414941)}
 .ob-step[data-state="done"] .ob-house{display:none}
 
 /* Step 3 */

@@ -285,7 +285,7 @@ function renderSignals(g) {
 let LRN = null, LSRV = null;
 const PORTS = [8742, 8752];
 async function findServer() {
-  if (!["localhost", "127.0.0.1"].includes(location.hostname)) return null;
+  if (!["localhost", "127.0.0.1", "[::1]"].includes(location.hostname)) return null;
   for (const p of PORTS) {
     try { const r = await fetch(`http://localhost:${p}/health`, {signal: AbortSignal.timeout(1500)}); const h = await r.json(); if (h.learn) return `http://localhost:${p}`; } catch (e) {}
   }

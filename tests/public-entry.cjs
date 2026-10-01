@@ -37,16 +37,16 @@ const root = path.resolve(__dirname, '..');
    await page.setViewportSize({width,height:900});
    await page.goto(origin + (track==='home' ? '/' : '/compute'));
    assert.equal(new URL(page.url()).pathname,'/'+track);
-   assert.equal(await page.locator('h1').innerText(),'What is Base?');
+   assert.equal(await page.locator('h1').innerText(),'Two things built on Base in one weekend.');
    assert.equal(await page.title(),track==='home'?'Base Ready':'Base Super Local AI');
    assert.equal(await page.locator('#'+track+'-card.is-route').count(),1);
-   assert.equal(await page.locator('main a').count(),8);
+   assert.equal(await page.locator('main a').count(),7);
    assert.equal(await page.locator('select,input,button').count(),0);
    assert.deepEqual((await page.locator('h2').allTextContents()).map(t=>t.trim()),['Base Ready','Base Super Local AI']);
    assert.equal(await page.locator('.sh-nav,.sh-beats').count(),0);
    assert(!/sample|fictional|US-TX|Hz|24 ?kWh|islanding|terminal|secure grid/i.test(await page.locator('body').innerText()));
    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false);
-   for(const [id,destination,role,t] of [['home-customer','onboarding.html','lead','home'],['home-admin','market.html','operations','home'],['compute-customer','compute-home.html','gpu','compute'],['compute-admin','overview.html','fleet','compute']]) {
+   for(const [id,destination,role,t] of [['home-customer','onboarding.html','lead','home'],['home-admin','judgments.html','operations','home'],['compute-customer','compute-home.html','gpu','compute'],['compute-admin','overview.html','fleet','compute']]) {
     const target = new URL(await page.locator('#'+id).getAttribute('href'),page.url());
     assert.equal(target.pathname,'/web/'+destination);
     assert.equal(target.searchParams.get('persona'),role);

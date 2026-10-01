@@ -197,6 +197,7 @@ footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
 (() => {
   "use strict";
   const ASK = "http://localhost:8742/ask";
+  const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname); // the home ask server only answers pages served from this machine
   const QLOG = "base-fleet:questions:v1";
   const CHAT = "base-fleet:help-chat:v1";
   const HELP = "https://help.basepowercompany.com/";
@@ -446,7 +447,7 @@ footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
     reply.innerHTML = `<span class="who"><span>Base Brain</span></span><p>Finding your answer...</p>`;
     out.append(you, reply);
     let r = null;
-    try {
+    if (LOCAL) try {
       const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 45000);
       const res = await fetch(ASK, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({q: text, page: "brain.html"}), signal: ctl.signal});
       clearTimeout(t);

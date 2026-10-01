@@ -2,6 +2,7 @@
 (() => {
   "use strict";
   const ASK = "http://localhost:8742/ask";
+  const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname); // the home ask server only answers pages served from this machine
   const HELP = "https://help.basepowercompany.com/";
   const TOPICS = ["My battery and the grid", "Storms and backup"];
   const EVERYDAY = ["private", "move"];
@@ -114,7 +115,7 @@
     stopVoice(); addUser(text); $("brain-search-input").value = "";
     const el = addBot();
     let r = null;
-    try {
+    if (LOCAL) try {
       const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 30000);
       const res = await fetch(ASK, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({q: text, page: "copilot.html"}), signal: ctl.signal});
       clearTimeout(t);
