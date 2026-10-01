@@ -35,13 +35,7 @@ def main():
         p["conf"], p["rule"] = rule_confidence(p["category"], p["work_class"])
         p["route"] = route(p["conf"])
 
-    years = sorted({p["issue_date"][:4] for p in permits})
-    # Per zip, permits issued per year, split by route (FIG. 1).
-    zy = defaultdict(lambda: {r: [0] * len(years) for r in ("auto", "review", "human")})
-    for p in permits:
-        zy[p["zip"]][p["route"]][years.index(p["issue_date"][:4])] += 1
-
-    # Routing by category (FIG. 6) and permit-weighted rule confidence per category (FIG. 2 predicted).
+    # Routing by category (FIG. 6) and permit-weighted rule confidence per category (FIG. 2 predicted; FIG. 1 uses judgments.json).
     cat_route = {c: Counter() for c in CATS}
     cat_conf = defaultdict(float)
     for p in permits:
@@ -76,8 +70,6 @@ def main():
                   "builder": "web/data/build_permit_jev.py",
                   "issue_dates": [min(p["issue_date"] for p in permits), max(p["issue_date"] for p in permits)]},
         "n": len(permits),
-        "years": years,
-        "zips": {z: v for z, v in sorted(zy.items())},
         "categories": [{"cat": c, "n": sum(cat_route[c].values()),
                         "auto": cat_route[c]["auto"], "review": cat_route[c]["review"], "human": cat_route[c]["human"],
                         "predicted": round(cat_conf[c] / max(1, sum(cat_route[c].values())), 3),

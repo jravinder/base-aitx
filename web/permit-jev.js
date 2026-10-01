@@ -11,33 +11,49 @@
   const CAT = {solar: "solar", battery: "battery", solar_battery: "solar+battery", generator: "generator",
     ev_charger: "EV charger", panel_upgrade: "service upgrade", other_electrical: "other"};
 
-  function fig1(F, filter) {
-    const box = $("#pj-f1"), W = Math.max(280, box.clientWidth), H = W < 500 ? 220 : 212;
-    const m = {l: 34, r: 52, t: 8, b: 20}, Y = F.years, n = Y.length;
-    const keys = filter === "all" ? ["auto", "review", "human"] : [filter];
-    const series = Object.entries(F.zips).map(([z, v]) => [z, Y.map((_, i) => keys.reduce((a, k) => a + v[k][i], 0))]);
-    const max = Math.max(1, ...series.flatMap(s => s[1]));
-    const step = max > 200 ? 100 : max > 40 ? 20 : max > 10 ? 5 : 1, top = Math.ceil(max / step) * step;
-    const x = i => m.l + i * (W - m.l - m.r) / (n - 1), y = v => m.t + (H - m.t - m.b) * (1 - v / top);
-    const tot = s => s[1].reduce((a, b) => a + b, 0);
-    const hi = series.slice().sort((a, b) => tot(b) - tot(a)).slice(0, 3).map(s => s[0]);
-    const hiCol = filter === "all" ? "var(--bf-brand)" : COL[filter];
+  // FIG. 1: one confidence axis. Top lane: rule confidence for every permit (log bars, by route).
+  // Bottom lane: the 100 lowest-confidence permits (all 0.40 by rules) as the local model re-judged them.
+  function fig1(D, filter) {
+    const box = $("#pj-f1"), W = Math.max(280, box.clientWidth), wide = W > 560, T = D.thresholds, J = D.judge_compare;
+    const p = wide ? 7 : 5, cols = wide ? 5 : 2, lo = 0.3, hi = 1.03;
+    const m = {l: wide ? 104 : 4, r: 12, t: wide ? 16 : 30};
+    const x = v => m.l + (v - lo) / (hi - lo) * (W - m.l - m.r);
+    const tiers = D.permit_rules.map(r => ({v: r.confidence, n: r.rows, route: r.route}));
+    const A = 104, yA = m.t + A, gap = wide ? 30 : 44;
+    const byConf = {};
+    J.rows.forEach(r => (byConf[r.confidence] = byConf[r.confidence] || []).push(r));
+    Object.values(byConf).forEach(a => a.sort((q, w) => (q.value === q.rules) - (w.value === w.rules)));
+    const rows = Math.max(...Object.values(byConf).map(a => Math.ceil(a.length / cols)));
+    const yB = yA + gap, B = Math.max(40, rows * p + 6), H = yB + B + 22;
+    const on = r => filter === "all" || filter === r;
+    const max = Math.log10(Math.max(...tiers.map(t => t.n)));
     let g = "";
-    for (let v = 0; v <= top; v += step) g += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--pj-grid)" stroke-width="1"/><text x="${m.l - 6}" y="${y(v) + 3}" text-anchor="end">${v}</text>`;
-    Y.forEach((yr, i) => { if (W > 500 || i % 2 === 0 || i === n - 1) g += `<text x="${x(i)}" y="${H - 4}" text-anchor="middle">${i === n - 1 && W > 500 ? yr + "*" : "’" + yr.slice(2) + (i === n - 1 ? "*" : "")}</text>`; });
-    const path = d => d.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
-    let lines = "", labels = "";
-    series.filter(s => !hi.includes(s[0])).forEach(([z, d]) => { lines += `<path d="${path(d)}" fill="none" stroke="var(--pj-trace)" stroke-width="1"><title>${z}: ${fmt(tot([z, d]))}</title></path>`; });
-    const ends = [];
-    hi.forEach(z => {
-      const d = series.find(s => s[0] === z)[1];
-      lines += `<path d="${path(d)}" fill="none" stroke="${hiCol}" stroke-width="2"><title>${z}: ${fmt(d.reduce((a, b) => a + b, 0))}</title></path>`;
-      ends.push([z, y(d[n - 1])]);
+    [[lo, T.review, "human"], [T.review, T.auto, "review"], [T.auto, hi, "auto"]].forEach(([a, b, r]) =>
+      g += `<rect x="${x(a)}" y="${m.t - 4}" width="${x(b) - x(a)}" height="${H - 22 - m.t + 4}" fill="${COL[r]}" opacity="${on(r) ? .09 : .03}"/>`);
+    [[T.review, (wide ? "review ≥ " : "≥ ") + T.review.toFixed(2), "start"], [T.auto, (wide ? "auto ≥ " : "≥ ") + T.auto.toFixed(2), "start"]].forEach(([v, t]) =>
+      g += `<line x1="${x(v)}" x2="${x(v)}" y1="${m.t - 4}" y2="${H - 22}" stroke="var(--bf-ink)" stroke-dasharray="3 3" stroke-width="1"/><text x="${x(v) + 4}" y="${yA + 13}" class="ink">${t}</text>`);
+    for (let v = 0.3; v <= 1.0001; v += 0.1) g += `<line x1="${x(v)}" x2="${x(v)}" y1="${H - 22}" y2="${H - 18}" stroke="var(--bf-line-strong)"/><text x="${x(v)}" y="${H - 6}" text-anchor="middle">${v.toFixed(1)}</text>`;
+    g += `<line x1="${m.l}" x2="${W - m.r}" y1="${yA}" y2="${yA}" stroke="var(--bf-line-strong)"/><line x1="${m.l}" x2="${W - m.r}" y1="${H - 22}" y2="${H - 22}" stroke="var(--bf-line-strong)"/>`;
+    const lane = (y, a, b) => wide ? `<text x="0" y="${y}" class="ink">${a}</text><text x="0" y="${y + 13}">${b}</text>` : `<text x="${m.l}" y="${y}" class="ink">${a} <tspan style="fill:var(--bf-faint)">${b}</tspan></text>`;
+    g += wide ? lane(m.t + 40, "rules", fmt(tiers.reduce((a, t) => a + t.n, 0)) + " permits") + lane(m.t + 66, "", "log scale")
+      : lane(m.t - 12, "rules", fmt(tiers.reduce((a, t) => a + t.n, 0)) + " permits, log scale");
+    g += wide ? lane(yB + 14, "model", J.sample + " hardest") + lane(yB + 40, "", J.model) : lane(yB - 8, "model", J.sample + " hardest, " + J.model);
+    const bw = wide ? 14 : 7;
+    tiers.forEach(t => {
+      const h = Math.max(2, Math.log10(t.n) / max * (A - 14));
+      g += `<rect x="${x(t.v) - bw / 2}" y="${yA - h}" width="${bw}" height="${h}" fill="${COL[t.route]}" opacity="${on(t.route) ? 1 : .2}"><title>rule confidence ${t.v.toFixed(2)}: ${fmt(t.n)} permits, ${NAME[t.route]}</title></rect>`;
+      if (wide) g += `<text x="${x(t.v)}" y="${yA - h - 4}" text-anchor="middle" class="ink" opacity="${on(t.route) ? 1 : .3}">${fmt(t.n)}</text>`;
     });
-    ends.sort((a, b) => a[1] - b[1]).forEach((e, i) => { if (i && e[1] - ends[i - 1][1] < 11) e[1] = ends[i - 1][1] + 11; labels += `<text x="${W - m.r + 6}" y="${e[1] + 3}" class="ink">${e[0]}</text>`; });
-    box.innerHTML = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="Permits per year for each of ${series.length} Austin zip codes, ${filter === "all" ? "all routes" : NAME[filter] + " route"}; highest: ${hi.join(", ")}">${g}${lines}${labels}</svg>`;
-    const sum = series.reduce((a, s) => a + tot(s), 0);
-    $("#pj-f1n").innerHTML = `<b>${fmt(sum)}</b> permits · ${series.length} zips · top 3 <b>${hi.join(" ")}</b> · *2026 through ${F._meta.issue_dates[1].slice(5)}`;
+    // bottom lane: rules put all 100 at 0.40; the model moved them
+    const rc = J.rows[0].rules_confidence, cy = yB + B / 2;
+    g += `<circle cx="${x(rc)}" cy="${cy}" r="${wide ? 13 : 10}" fill="none" stroke="${COL.human}" stroke-width="1.5" opacity="${on("human") ? 1 : .3}"/><text x="${x(rc)}" y="${cy + 3}" text-anchor="middle" class="ink">${J.sample}</text>`;
+    g += `<line x1="${x(rc) + (wide ? 18 : 14)}" x2="${x(0.8) - 10}" y1="${cy}" y2="${cy}" stroke="var(--bf-faint)" stroke-dasharray="2 3"/>${wide ? `<text x="${(x(rc) + x(0.8)) / 2}" y="${cy - 5}" text-anchor="middle">rules ${rc.toFixed(2)} → model</text>` : ""}`;
+    Object.entries(byConf).forEach(([v, a]) => a.forEach((r, i) => {
+      const cx = x(+v) + (i % cols - (cols - 1) / 2) * p, y = yB + B - 4 - Math.floor(i / cols) * p, ag = r.value === r.rules;
+      g += `<circle cx="${cx}" cy="${y}" r="${p * 0.38}" fill="${ag ? "var(--bf-ink)" : COL.human}" opacity="${on(r.route) ? 1 : .15}"><title>${esc(r.permit)}: rules ${esc(r.rules)} ${r.rules_confidence}, model ${esc(r.value)} ${r.confidence}${ag ? " (agrees)" : ""}</title></circle>`;
+    }));
+    box.innerHTML = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="Rule confidence for ${fmt(tiers.reduce((a, t) => a + t.n, 0))} permits by route, and ${J.sample} hard permits re-judged by ${J.model}: ${J.agree_with_rules} agree with the rules">${g}</svg>`;
+    $("#pj-f1n").innerHTML = `<span style="color:var(--pj-human)">●</span> model disagrees with rules · <span style="color:var(--bf-ink)">●</span> agrees (<b>${J.agree_with_rules}</b>) · rules: <b>${fmt(D.counts.permit.auto)}</b> at ≥ ${T.auto.toFixed(2)}; model: <b>${J.routes.auto}</b> of ${J.sample} would skip a person`;
   }
 
   function render(D, F) {
@@ -56,10 +72,10 @@
       const b = e.target.closest("button"); if (!b) return;
       filter = b.dataset.k;
       document.querySelectorAll("#pj-chips button").forEach(x => x.setAttribute("aria-pressed", x === b));
-      fig1(F, filter);
+      fig1(D, filter);
     });
-    fig1(F, filter);
-    let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => fig1(F, filter), 120); });
+    fig1(D, filter);
+    let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => fig1(D, filter), 120); });
 
     // FIG. 2: observed accuracy (hand check, Wilson 95% interval) vs predicted (mean rule confidence)
     const lo = 0.3, sc = v => ((v - lo) / (1 - lo) * 100).toFixed(1) + "%";
