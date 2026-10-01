@@ -45,7 +45,7 @@ const check = (ok, msg) => { assert.ok(ok, msg); checks++; };
         check(JSON.stringify(labels) === JSON.stringify(LABELS), `${route}: five labels in order, got ${labels}`);
         const credit = Number(await trackers.first().locator('.bf-ms-credit').getAttribute('data-credit'));
         check(credit === EXPECTED, `${route}: credit ${credit} kWh, expected ${EXPECTED}`);
-        check(/Base Ready points \(proposal\)/i.test(await trackers.first().innerText()), `${route}: points labelled as a proposal`);
+        check(/Base Ready points\b(?! \(proposal\))/i.test(await trackers.first().innerText()), `${route}: points labelled as Base Ready points`);
         check(/^Next: /.test(await trackers.first().locator('.bf-ms-next').innerText()), `${route}: next reward line`);
         check(!(await page.locator('#bf-ms-toast.bf-ms-toast-on').count()), `${route}: no toast on page load`);
         const text = await page.locator('body').innerText();

@@ -533,8 +533,7 @@
     bar.append(where, a);
     document.body.append(bar);
   }
-  // Page analytics, only on the hosted site. Vercel Web Analytics and Speed Insights are served by Vercel itself;
-  // Google Analytics loads only when a measurement id is set in ANALYTICS.ga (for example "G-XXXXXXX").
+  // Page analytics, only on the hosted site. Google Analytics loads only when a measurement id is set in ANALYTICS.ga (for example "G-XXXXXXX").
   const ANALYTICS = {ga: "G-9QLRH4GSME"};
   function analytics() {
     if (!/\.vercel\.app$|^basefleet\./.test(location.hostname) || window.__bfAnalytics) return;
@@ -545,10 +544,6 @@
       for (const [k, v] of Object.entries(attrs)) s.setAttribute(k, v);
       document.head.append(s);
     };
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-    add("/_vercel/insights/script.js");
-    add("/_vercel/speed-insights/script.js");
     if (/^G-[A-Z0-9]+$/.test(ANALYTICS.ga)) {
       add(`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.ga}`);
       window.dataLayer = window.dataLayer || [];
