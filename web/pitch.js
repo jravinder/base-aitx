@@ -148,10 +148,10 @@
     if (it) {
       const nodes = kbFor(it);
       return show({q: it.q, a: it.a + (it.number ? " (" + it.number + ")" : ""), where: local(),
-        src: "Source: " + esc(String(it.source || "").replace(/\s*\([^)]*\.(?:md|json|py|csv|js)\b[^)]*\)/g, "").trim()) + (nodes.length ? " · Base Brain: " + nodes.map(kbLink).join(", ") : "")});
+        src: "Source: " + esc(String(it.source || "").replace(/\s*\([^)]*\.(?:md|json|py|csv|js)\b[^)]*\)/g, "").trim()) + (nodes.length ? " · Base help: " + nodes.map(kbLink).join(", ") : "")});
     }
     const nodes = kbSearch(text, 3);
-    if (nodes.length) return show({q: text, a: "These Base Brain entries cover your question.", where: local(), src: "Base Brain: " + nodes.map(kbLink).join(", ")});
+    if (nodes.length) return show({q: text, a: "These Base help entries cover your question.", where: local(), src: "Base help: " + nodes.map(kbLink).join(", ")});
     show({q: text, a: "The Base team answers this one directly. Ask Base Brain for more.", where: local(), src: '<a class="text-primary underline" href="brain.html">Ask Base Brain</a>'});
   }
   $("hiw-form").addEventListener("submit", ev => { ev.preventDefault(); ask($("hiw-q").value); });
