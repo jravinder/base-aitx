@@ -8,12 +8,12 @@ catch { ({chromium} = require('/Users/red/.agents/skills/gstack/node_modules/pla
 const root = path.resolve(__dirname, '..');
 const cases = {
   lead: ['home','onboarding.html','home'],
-  operations: ['home','market.html','market'], gpu: ['compute','compute-home.html','computehome'],
+  operations: ['home','house.html','house'], gpu: ['compute','compute-home.html','computehome'],
   fleet: ['compute','overview.html','overview']
 };
 const menus = {
  lead:['home','status','rewards','brain','member','knowledge','built'],
- operations:['market','judgments','explorer','grid','ask','admin','dataflow','house','recovery','wall','knowledge','brain','built'],
+ operations:['house','judgments','wall','recovery','market'],
  gpu:['computehome','copilot','energy','plans','models','tower','block','built'],
  fleet:['overview','tower','placement','jobs','index','plans','block','models','pitch','built']
 };
@@ -108,6 +108,32 @@ const menus = {
   await page.locator('#address-list li').first().waitFor();
   await page.locator('#address-input').press('Enter');
   assert.equal(new URL(await page.locator('[data-sh-id="brain"]').getAttribute('href')).searchParams.get('address'),nextAddress); checks++;
+  // Base admin follows one lead: the Customer -> Base admin switch keeps the address, then each Next step carries it.
+  {
+   const lead = '4601 CLAWSON RD';
+   await page.goto('https://fleet.test/web/onboarding.html?track=home&persona=lead&address='+encodeURIComponent(lead));
+   await page.waitForSelector('.sh-role-link[data-sh-role="operations"]',{state:'attached'});
+   if((page.viewportSize()||{}).width<860) await page.locator('.sh-toggle').click();
+   await page.locator('.sh-role-link[data-sh-role="operations"]').click();
+   await page.waitForURL(u=>u.pathname==='/web/house.html');
+   let u=new URL(page.url());
+   assert.equal(u.searchParams.get('persona'),'operations');
+   assert.equal(u.searchParams.get('address'),lead);
+   await page.waitForFunction(()=>/already know about 4601 Clawson Rd/i.test(document.querySelector('#q').textContent)); checks++;
+   for(const [file,role] of [['judgments.html','operations'],['wall.html','operations'],['recovery.html','operations'],['market.html','operations'],['onboarding.html','lead']]) {
+    const next=page.locator('#story-next');
+    await next.waitFor({state:'attached'});
+    assert.equal(new URL(await next.getAttribute('href'),page.url()).searchParams.get('address'),lead,`Next from ${new URL(page.url()).pathname} keeps the lead`);
+    await next.evaluate(a=>a.click());
+    await page.waitForURL(x=>x.pathname==='/web/'+file);
+    await page.waitForSelector('.sh-nav',{state:'attached'});
+    u=new URL(page.url());
+    assert.equal(u.searchParams.get('persona'),role,file);
+    assert.equal(u.searchParams.get('address'),lead,file);
+    if(file==='recovery.html') await page.waitForFunction(()=>document.querySelector('#pick').value==='4601-clawson-rd');
+    checks++;
+   }
+  }
   await page.goto('https://fleet.test/web/demo.html?step=5');
   await page.waitForSelector('.sh-nav');
   await page.reload();
@@ -116,8 +142,8 @@ const menus = {
   assert.equal(new URL(page.url()).searchParams.get('step'),'5');checks++;
   await page.goto('https://fleet.test/web/story.html?tour=judge');
   await page.waitForSelector('.sh-tour');
-  await page.locator('.sh-link[data-sh-id="explorer"]').click();
-  await page.waitForURL(u=>u.pathname==='/web/explorer.html');
+  await page.locator('.sh-link[data-sh-id="house"]').click();
+  await page.waitForURL(u=>u.pathname==='/web/house.html');
   assert.equal(new URL(page.url()).searchParams.get('tour'),'judge');checks++;
   for(const width of [1440,390]) {
    await page.setViewportSize({width,height:1000});

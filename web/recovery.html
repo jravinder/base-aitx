@@ -61,7 +61,7 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
     <h1 id="hero-title" class="font-headline-lg text-headline-lg text-ink-primary mt-1">Install readiness</h1>
     <p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-3xl">Which homes can move to install, what blocks the rest, and what each fix puts on the City of Austin permit record.</p>
    </div>
-   <a id="story-next" href="knowledge.html?track=home&amp;persona=operations" class="btn pri self-start md:self-auto"><span>Next: the knowledge behind every answer</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+   <a id="story-next" href="market.html?track=home&amp;persona=operations" class="btn pri self-start md:self-auto"><span>Next: 5 · Where Base installs next</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
   </div>
   <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-4 border-t border-wire-border">
    <div class="min-w-0">
@@ -230,7 +230,10 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
 
   pick.onchange = () => render(pick.value);
   const first = data.cases.find(c => c.kind === "house" && c.status !== "fits") || data.cases[0];
-  render(data.cases.some(c => c.id === location.hash.slice(1)) ? location.hash.slice(1) : first.id);
+  // A lead carried through the admin story (?address=) opens its own case.
+  const leadId = (new URLSearchParams(location.search).get("address") || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const want = location.hash.slice(1) || leadId;
+  render(data.cases.some(c => c.id === want) ? want : first.id);
 })();
 </script>
 </body>

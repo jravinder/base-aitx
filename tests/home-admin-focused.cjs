@@ -26,9 +26,18 @@ const origin = 'https://home-admin.test';
         } catch { await route.fulfill({status:404,body:''}); }
       });
       for (const name of (process.env.ADMIN_ONLY ? ['admin'] : ['market','explorer','house','admin'])) {
-        await page.goto(`${origin}/web/${name}.html?track=home&persona=operations`);
-        await page.waitForSelector('.admin-path');
-        assert.equal(await page.locator('.admin-path [aria-current="page"]').count(),1);
+        // market and house are Base admin story steps; explorer and admin left the nav and open by direct URL.
+        const story = ['market','house'].includes(name);
+        await page.goto(`${origin}/web/${name}.html` + (story ? '?track=home&persona=operations' : ''));
+        await page.waitForSelector('.sh-nav',{state:'attached'});
+        assert.equal(new URL(page.url()).pathname,`/web/${name}.html`,`${name}: no redirect`);
+        if (story) {
+          assert.equal(await page.locator('.admin-path').count(),0,`${name}: old workflow tabs removed`);
+          assert.equal(await page.locator('.sh-link[aria-current="page"]').getAttribute('data-sh-id'),name);
+        } else {
+          await page.waitForSelector('.admin-path');
+          assert.equal(await page.locator('.admin-path [aria-current="page"]').count(),1);
+        }
         if (name === 'admin') {
           await page.waitForSelector('#rules .card');
           assert.equal(await page.locator('#rules details[open]').count(),0);

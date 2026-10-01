@@ -171,9 +171,9 @@
       <h1 id="q" class="text-display-sm font-display-sm text-ink-primary tracking-tight">Which homes are ready for a battery?</h1>
       <p class="text-body-lg font-body-lg text-on-surface-variant" id="lede">40 homes in 78745, read from City of Austin permits. Pick a home to see its permit history.</p>
      </div>
-     <a id="story-next" href="wall.html?track=home&amp;persona=operations" class="shrink-0 self-start md:self-auto inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest text-label-md font-label-md font-semibold hover:bg-evergreen-deep shadow-sm no-underline"><span>Next: will the battery fit?</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+     <a id="story-next" href="judgments.html?track=home&amp;persona=operations" class="shrink-0 self-start md:self-auto inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest text-label-md font-label-md font-semibold hover:bg-evergreen-deep shadow-sm no-underline"><span>Next: 2 · Permit check</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
     </div>
-    <nav class="admin-path flex flex-wrap gap-x-6 text-label-md font-label-md text-on-surface-variant" aria-label="Market workflow"><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="market.html">Priorities</a><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="explorer.html">Permit map</a><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="house.html" aria-current="page">Homes ready</a></nav>
+    
     <div class="flex flex-wrap gap-2.5 mt-2" id="chips" role="group" aria-label="Questions"></div>
   </section>
   <div class="hidden border-l-4 border-critical-red bg-error-container rounded-lg px-4 py-3 text-sm" id="notice">Homes will load once the property-records file is available.</div>
@@ -424,6 +424,14 @@ async function load() {
   const cands = houses.filter(h => canAsk(h) && amps(h) && amps(h).value != null);
   const best = (cands.length ? cands : houses).map(h => [h, reach(h).length]).sort((a, b) => b[1] - a[1])[0][0];
   selected = best.address;
+  // Arriving from a lead's onboarding (?address=), open that home.
+  const want = (new URLSearchParams(location.search).get("address") || "").trim().toUpperCase();
+  const lead = want && houses.find(h => h.address.toUpperCase().startsWith(want));
+  if (lead) {
+    selected = lead.address;
+    $("#q").textContent = `What does Base already know about ${title(lead.address)}?`;
+    $("#lede").textContent = `A new lead from onboarding. Everything below comes from City of Austin permits, before anyone calls: one of ${houses.length} homes in 78745.`;
+  }
   computeInheritance();
   renderChips(); render(); renderDetails();
 }

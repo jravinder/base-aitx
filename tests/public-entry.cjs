@@ -46,7 +46,7 @@ const root = path.resolve(__dirname, '..');
    assert.equal(await page.locator('.sh-nav,.sh-beats').count(),0);
    assert(!/sample|fictional|US-TX|Hz|24 ?kWh|islanding|terminal|secure grid/i.test(await page.locator('body').innerText()));
    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false);
-   for(const [id,destination,role,t] of [['home-customer','onboarding.html','lead','home'],['home-admin','market.html','operations','home'],['compute-customer','compute-home.html','gpu','compute'],['compute-admin','overview.html','fleet','compute']]) {
+   for(const [id,destination,role,t] of [['home-customer','onboarding.html','lead','home'],['home-admin','house.html','operations','home'],['compute-customer','compute-home.html','gpu','compute'],['compute-admin','overview.html','fleet','compute']]) {
     const target = new URL(await page.locator('#'+id).getAttribute('href'),page.url());
     assert.equal(target.pathname,'/web/'+destination);
     assert.equal(target.searchParams.get('persona'),role);
