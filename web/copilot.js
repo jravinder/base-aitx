@@ -81,7 +81,7 @@
     d.className = "cp-bot flex items-start gap-3 max-w-full sm:max-w-[92%]";
     d.innerHTML = `<div class="w-7 h-7 rounded-md bg-secondary-container text-primary-container flex items-center justify-center shrink-0 mt-1">${icon("bolt")}</div>
       <div class="flex flex-col gap-1.5 min-w-0"><div class="bg-white border border-wire-border rounded-xl rounded-tl-none p-4 flex flex-col gap-2">
-      <span class="cp-kicker font-label-caps text-label-caps uppercase tracking-wider text-primary-container">Base Brain</span>
+      <span class="cp-kicker font-label-caps text-label-caps uppercase tracking-wider text-primary-container">Base help</span>
       <p class="cp-a font-body-md text-body-md text-ink-primary" style="overflow-wrap:anywhere">Finding your answer...</p>
       <div class="cp-src flex items-start gap-1.5 font-body-sm text-body-sm text-on-surface-variant" hidden>${icon("policy", "text-solar-green")}<span class="min-w-0"></span></div></div>
       <div class="flex flex-wrap items-center gap-3 px-1 font-body-sm text-[11px] text-on-surface-variant">
@@ -92,7 +92,7 @@
     return d;
   }
   function fill(el, a, where) {
-    el.querySelector(".cp-kicker").textContent = a.kicker || "Base Brain";
+    el.querySelector(".cp-kicker").textContent = a.kicker || "Base help";
     el.querySelector(".cp-a").textContent = a.a;
     const s = el.querySelector(".cp-src"); s.hidden = !a.src; s.querySelector("span.min-w-0").innerHTML = a.src || "";
     el.querySelector(".cp-where span:last-child").textContent = where;
@@ -107,7 +107,7 @@
   function fromItem(it) {
     const nodes = kbFor(it);
     const src = "Source: " + esc(String(it.source || "").replace(/\s*\([^)]*\.(?:md|json|py|csv|js)\b[^)]*\)/g, "").trim()) + (it.source_url ? ` (<a class="cp-link" href="${esc(it.source_url)}" target="_blank" rel="noopener">page</a>)` : "")
-      + (nodes.length ? " · Base Brain: " + nodes.map(n => `<a class="cp-link" href="${esc(kbHref(n))}">${esc(n.title)}</a>`).join(", ") : "");
+      + (nodes.length ? " · Base help: " + nodes.map(n => `<a class="cp-link" href="${esc(kbHref(n))}">${esc(n.title)}</a>`).join(", ") : "");
     return {id: it.id, kicker: it.category, q: it.q, a: it.a + (it.number ? " (" + it.number + ")" : ""), src};
   }
   async function ask(text) {
@@ -123,13 +123,13 @@
     } catch (e) { r = null; }
     if (r && r.answer) {
       const rows = kbFromServer(r.sources);
-      return fill(el, {q: text, a: r.answer, src: rows.length ? "Sources: " + rows.join(" · ") : "Base Brain"}, "Answered on your home’s PC.");
+      return fill(el, {q: text, a: r.answer, src: rows.length ? "Sources: " + rows.join(" · ") : "Base help"}, "Answered on your home’s PC.");
     }
     const where = "Answered in this browser.";
     const it = rank(text);
-    if (it) return fill(el, Object.assign(fromItem(it), {q: text, kicker: (it.category || "Base Brain") + " · " + it.q}), where);
+    if (it) return fill(el, Object.assign(fromItem(it), {q: text, kicker: (it.category || "Base help") + " · " + it.q}), where);
     const nodes = kbSearch(text, 3);
-    if (nodes.length) return fill(el, {q: text, a: "These Base Brain entries cover your question.", src: "Base Brain: " + nodes.map(n => `<a class="cp-link" href="${esc(kbHref(n))}">${esc(n.title)}</a>`).join(", ")}, where);
+    if (nodes.length) return fill(el, {q: text, a: "These Base help entries cover your question.", src: "Base help: " + nodes.map(n => `<a class="cp-link" href="${esc(kbHref(n))}">${esc(n.title)}</a>`).join(", ")}, where);
     fill(el, {q: text, a: "The Base team can answer this one directly.", src: `<a class="cp-link" href="${HELP}" target="_blank" rel="noopener">Open Base Help Center</a>`}, where);
   }
   $("ask-form").addEventListener("submit", ev => { ev.preventDefault(); ask($("brain-search-input").value); });
