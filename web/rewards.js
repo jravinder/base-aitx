@@ -96,7 +96,7 @@
         const [label, icon, href] = act;
         const b = el(href ? "a" : "button", "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-subtle hover:bg-surface-subtle/70 border border-wire-border font-label-md text-xs text-ink-primary font-medium transition-colors no-underline");
         if (href) b.href = href; else { b.type = "button"; b.dataset.invite = ""; b.dataset.reward = "neighbour"; }
-        b.append(el("span", "material-symbols-outlined text-[14px] text-warning-amber", icon), el("span", "", label));
+        b.append(el("span", "material-symbols-outlined text-[14px]", icon), el("span", "", label));
         b.firstChild.setAttribute("aria-hidden", "true");
         a.append(b);
       }
@@ -130,24 +130,24 @@
     const box = $("rw-options");
     box.replaceChildren();
     for (const o of OPTIONS) {
-      const card = el("div", "p-4 rounded-xl border border-wire-border bg-surface-subtle flex flex-col gap-2");
+      const card = el("div", "panel opt");
       card.dataset.redeem = String(o.need);
-      const head = el("div", "flex items-center gap-2");
-      const ic = el("span", "material-symbols-outlined text-primary-container text-[20px]", o.icon);
+      const head = el("div", "oh");
+      const ic = el("span", "material-symbols-outlined", o.icon);
       ic.setAttribute("aria-hidden", "true");
-      head.append(ic, el("h3", "font-headline-sm text-[15px] font-bold text-ink-primary", o.title));
+      head.append(ic, el("h3", "", o.title));
       const ready = have >= o.need;
       const need = o.need > 1 ? `${Math.min(have, o.need)} of ${o.need} pts` : (have ? `${have} pts to give` : "Any amount");
-      const meter = el("div", "h-1.5 rounded-full bg-surface-container-lowest border border-wire-border overflow-hidden");
-      const fill = el("i", "block h-full bg-solar-green");
+      const meter = el("div", "meter");
+      const fill = el("i", "");
       fill.style.width = `${Math.min(100, Math.round(have / o.need * 100))}%`;
       meter.append(fill);
-      const btn = el("button", "mt-auto inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 rounded-lg border border-wire-border bg-surface-container-lowest text-xs font-semibold text-outline cursor-default");
+      const btn = el("button", "bf-btn oq");
       btn.type = "button";
       btn.setAttribute("aria-disabled", "true");
       btn.textContent = "Proposal: redeeming is not live";
-      card.append(head, el("p", "text-body-sm text-outline", o.text),
-        el("p", `text-xs font-semibold ${ready ? "text-primary-container" : "text-outline"}`, ready ? `Ready: ${need}` : need), meter, btn);
+      card.append(head, el("p", "ot", o.text),
+        el("p", ready ? "on ready" : "on", ready ? `Ready: ${need}` : need), meter, btn);
       box.append(card);
     }
   }

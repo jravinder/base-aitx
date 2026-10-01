@@ -891,7 +891,7 @@
   {
    "file": "status.html",
    "title": "Application status | Base Fleet",
-   "purpose": "Points opportunity: each home detail you confirm adds +10 pts and your panel photo adds +20 pts of Base Fleet points (proposal)",
+   "purpose": "Points opportunity: each home detail you confirm adds +10 pts and your panel photo adds +20 pts of Base Ready points",
    "purpose_from": "web/status.html first paragraph",
    "beats": [],
    "runs": "static",

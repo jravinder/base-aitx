@@ -25,10 +25,19 @@ const origin = 'https://home-admin.test';
           await route.fulfill({body:await fs.readFile(file),contentType:({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.geojson':'application/json'})[path.extname(file)] || 'application/octet-stream'});
         } catch { await route.fulfill({status:404,body:''}); }
       });
-      for (const name of (process.env.ADMIN_ONLY ? ['admin'] : ['market','explorer','house','admin'])) {
-        await page.goto(`${origin}/web/${name}.html?track=home&persona=operations`);
-        await page.waitForSelector('.admin-path');
-        assert.equal(await page.locator('.admin-path [aria-current="page"]').count(),1);
+      for (const name of (process.env.ADMIN_ONLY ? ['admin'] : ['judgments','market','explorer','house','admin'])) {
+        // judgments, house and market are Base admin story steps; explorer and admin left the nav and open by direct URL.
+        const story = ['judgments','market','house'].includes(name);
+        await page.goto(`${origin}/web/${name}.html` + (story ? '?track=home&persona=operations' : ''));
+        await page.waitForSelector('.sh-nav',{state:'attached'});
+        assert.equal(new URL(page.url()).pathname,`/web/${name}.html`,`${name}: no redirect`);
+        if (story) {
+          assert.equal(await page.locator('.admin-path').count(),0,`${name}: old workflow tabs removed`);
+          assert.equal(await page.locator('.sh-link[aria-current="page"]').getAttribute('data-sh-id'),name);
+        } else {
+          await page.waitForSelector('.admin-path');
+          assert.equal(await page.locator('.admin-path [aria-current="page"]').count(),1);
+        }
         if (name === 'admin') {
           await page.waitForSelector('#rules .card');
           assert.equal(await page.locator('#rules details[open]').count(),0);
@@ -42,13 +51,19 @@ const origin = 'https://home-admin.test';
           assert.match(await page.locator('#rules details').first().innerText(),/Source:.*permits/s);
           await page.locator('#rules .review-next').first().click();
           await page.waitForURL(u=>u.pathname==='/web/market.html' && u.searchParams.get('persona')==='operations');
-          await page.goto(`${origin}/web/admin.html?track=compute&persona=fleet`);
-          await page.waitForSelector('#rules .card');
-          const links = await page.locator('.admin-path a, #rules .review-next').evaluateAll(nodes=>nodes.map(n=>n.href));
-          assert(links.every(h=>new URL(h).searchParams.get('persona')==='fleet'));
-          assert(links.every(h=>new URL(h).searchParams.get('track')==='compute'));
-          assert(!links.some(h=>/\/(market|house)\.html/.test(new URL(h).pathname)));
+          // Operations is a Base Ready admin page; the compute admin menu no longer lists it.
           assert.equal(await page.locator('#lrnprops button:not(:disabled)').count(),0);
+        } else if (name === 'judgments') {
+          // Story step 1: the run screen is the first screen, the notebook figures sit under it, one H1.
+          const labels = await page.locator('.sh-link .sh-short').allTextContents();
+          assert.deepEqual(labels.map(t => t.trim()),['Permits','The lead','Will it fit','Ready to install','Where next']);
+          assert.equal(await page.locator('h1').count(),1);
+          assert.match(await page.locator('h1').innerText(),/34,334 Austin permits/);
+          await page.waitForSelector('#sq i.p');
+          const top = await page.evaluate(() => [document.querySelector('.run').getBoundingClientRect().top, document.querySelector('.pj').getBoundingClientRect().top]);
+          assert(top[0] < top[1],'run screen above the notebook');
+          await page.waitForSelector('#pj-f1 svg');
+          assert.equal(new URL(await page.locator('#story-next').getAttribute('href'),page.url()).pathname,'/web/house.html');
         } else if (name === 'market') {
           await page.waitForSelector('#cards .card');
           // Stitch layout: permit chart open as the hero, four answer cards, closed details.

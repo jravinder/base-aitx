@@ -62,7 +62,7 @@ function checkTokens(tokens) {
     'voice.html?track=home&persona=lead&address=' + encodeURIComponent(address),
     'tower.html?track=compute&persona=gpu&node=3',
     'tower.html?track=compute&persona=fleet',
-    'brain.html?track=home&persona=operations'];
+    'brain.html?track=home&persona=lead&address=' + encodeURIComponent(address)];
   const widths = (process.env.WIDTHS || '1440,390').split(',').map(Number);
   const systems = (process.env.SYSTEMS || 'light,dark').split(',');
   assert(widths.every(w => Number.isInteger(w) && w >= 320 && w <= 2560), 'Invalid WIDTHS');

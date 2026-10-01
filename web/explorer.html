@@ -122,8 +122,48 @@
 <link rel="stylesheet" href="shell.css">
 <script defer src="shell.js"></script>
 <style>
-  :root { --base:#1e4d2b; --storm:#2f6db0; --gap:#c07a12; --market:#3a3f46; --ghost:#94a3b8; --tile-filter:grayscale(1) brightness(1.1) contrast(.8); --tile-op:.45 }
-  body { font-family:'Plus Jakarta Sans', system-ui, sans-serif }
+  :root { --base:#1e4d2b; --storm:#2f6db0; --gap:#F59E0B; --market:#3a3f46; --ghost:#94a3b8; --tile-filter:grayscale(1) brightness(1.1) contrast(.8); --tile-op:.45 }
+
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body)}
+  #main{max-width:1440px;margin:0 auto;padding:32px 24px 48px;overflow-wrap:anywhere}
+  #main h1,#main h2,#main h3,#main p{margin:0}
+  .eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+  .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+  .tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+  .tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+  :root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+  .panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+  .cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+  .left,.right{display:grid;gap:10px;min-width:0}
+  @media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+  .hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+  .hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+  #card .big{display:block;font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink);font-variant-numeric:tabular-nums}
+  #card .what{display:block;font:var(--bf-text-h3);color:var(--bf-ink)}
+  #card .says{display:block;font:var(--bf-text-body);color:var(--bf-muted);margin-top:2px}
+  #card a{font:var(--bf-text-small);color:var(--bf-brand)}
+  .hero .line{font:var(--bf-text-small);color:var(--bf-faint)}
+  .mapp{padding:12px;display:grid;gap:8px}
+  .mapbox{position:relative;width:100%;height:560px;background:var(--bf-sunk);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);overflow:hidden;user-select:none}
+  @media (max-width:1000px){.mapbox{height:440px}}
+  .find{padding:14px 18px;display:grid;gap:8px;border-left:4px solid var(--bf-brand)}
+  .find h2{font:var(--bf-text-h3);display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+  .zr{display:grid;gap:3px}.zr .l{display:flex;justify-content:space-between;font:var(--bf-text-small);color:var(--bf-muted)}.zr .l b{color:var(--bf-ink)}
+  .zr .bar{height:6px;border-radius:999px;background:var(--bf-sunk);overflow:hidden}.zr .bar i{display:block;height:100%;background:var(--bf-brand);border-radius:999px}
+  .find .foot{font:var(--bf-text-small);color:var(--bf-faint)}
+  .act{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  #main a.primary{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:var(--bf-radius-lg);background:var(--bf-brand-strong);color:var(--bf-on-brand);font:var(--bf-text-label);text-decoration:none}
+  .admin-path{display:flex;flex-wrap:wrap;gap:2px;font:var(--bf-text-label)}
+  #main .admin-path a{min-height:36px;display:inline-flex;align-items:center;padding:0 10px;border-radius:var(--bf-radius-lg);color:var(--bf-muted);text-decoration:none}
+  #main .admin-path [aria-current]{background:var(--bf-sunk);color:var(--bf-ink);font-weight:700}
+  #chips button{background:var(--bf-surface);border-color:var(--bf-line);color:var(--bf-muted)}
+  .more{margin-top:20px}.more h2{font:var(--bf-text-h3);margin-bottom:10px}
+  .more details{border-top:1px solid var(--bf-line);border-bottom:1px solid var(--bf-line)}
+  .more summary{padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink);min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .more summary .sub{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+  footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
+  @media (max-width:640px){#main{padding:24px 16px 40px}}
   .material-symbols-outlined { font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; font-size:20px; line-height:1; display:inline-block; vertical-align:middle }
   input[type=range] { -webkit-appearance:none; appearance:none; background:transparent; height:24px }
   input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; height:18px; width:18px; border-radius:50%; background:#1e4d2b; cursor:pointer; border:2px solid #fff; box-shadow:0 1px 3px rgba(0,0,0,.25); margin-top:-6px }
@@ -135,7 +175,7 @@
   .leaflet-control-attribution { font-size:10px !important }
   .zb { background:none; border:0 }
   .zb span { display:flex; align-items:center; justify-content:center; transform:translate(-50%,-50%); border-radius:999px; background:#1e4d2b; color:#fff; border:2px solid #fff; font:700 11px/1 'Plus Jakarta Sans', sans-serif; box-shadow:0 0 0 8px rgba(16,185,129,.18), 0 2px 4px rgba(0,0,0,.2) }
-  #chips button[aria-pressed="true"] { background:#1e4d2b; color:#fff; border-color:#1e4d2b }
+  #chips button[aria-pressed="true"] { background:var(--bf-brand-strong); color:var(--bf-on-brand); border-color:var(--bf-brand-strong) }
   #chips button[aria-pressed="true"] .ic { display:inline-block }
   .ic::before { content:"check_circle" }
   #stamp small { display:block; font:400 12px/18px 'Plus Jakarta Sans', sans-serif; color:#414941; margin-top:2px }
@@ -149,67 +189,59 @@
   tr.b td { color:#1e4d2b }
   #chart { width:100%; height:180px; display:block }
   button:focus-visible, summary:focus-visible, a:focus-visible, input:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
-  .admin-path [aria-current] { color:#023616; border-color:#023616; font-weight:700 }
 </style>
 </head>
-<body class="bg-surface-muted text-ink-primary font-body-md antialiased min-h-screen">
-<main class="flex-1 max-w-[1536px] w-full mx-auto px-4 sm:px-margin py-8 space-y-6">
-  <section class="space-y-2">
-    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-subtle border border-wire-border text-label-caps font-label-caps text-on-surface-variant tracking-wider uppercase">
-      <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>Permit map · City of Austin open data
-    </div>
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div class="min-w-0">
-        <h1 id="h" class="text-display-sm font-display-sm text-ink-primary tracking-tight">Where Base is installing, month by month.</h1>
-        <p id="q" class="text-body-md font-body-md text-on-surface-variant mt-0.5">Base permits by month</p>
-      </div>
-      <a id="story-next" href="grid.html" class="shrink-0 inline-flex items-center justify-center gap-2 min-h-[44px] px-4 rounded-lg bg-primary-container text-white text-label-md font-label-md font-semibold hover:bg-evergreen-deep shadow-sm no-underline"><span>Next: what the grid asks</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
-    </div>
-    <nav class="admin-path flex flex-wrap gap-x-6 text-label-md font-label-md text-on-surface-variant" aria-label="Market workflow"><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="market.html">Priorities</a><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="explorer.html" aria-current="page">Permit map</a><a class="min-h-[44px] inline-flex items-center border-b-2 border-transparent hover:text-primary" href="house.html">Homes ready</a></nav>
-  </section>
-  <div class="px-3 py-2 rounded-lg border border-warning-amber bg-amber-50 text-amber-800 text-body-sm font-semibold" id="banner" hidden></div>
-  <section id="chips" aria-label="Questions" role="group" class="flex flex-wrap items-center gap-2 pt-1 pb-1"></section>
-
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
-    <section class="lg:col-span-8 bg-surface-container-lowest border border-wire-border rounded-xl p-4 sm:p-5 shadow-sm space-y-4 min-w-0">
-      <div class="relative w-full h-[420px] sm:h-[520px] bg-[#F4F7F9] rounded-lg border border-wire-border overflow-hidden select-none">
-        <div id="map" class="absolute inset-0 z-0" role="region" aria-label="Permit map"></div>
-        <div id="stamp" aria-live="polite" class="absolute top-4 left-4 z-[500] pointer-events-none bg-surface-container-lowest/95 backdrop-blur-sm border border-wire-border px-4 py-3 rounded-lg shadow-sm text-headline-md font-headline-md text-ink-primary leading-tight font-bold max-w-[calc(100%-2rem)]"></div>
-        <div class="absolute bottom-6 right-4 z-[500] bg-surface-container-lowest/95 backdrop-blur-sm border border-wire-border px-3.5 py-2.5 rounded-lg shadow-sm flex flex-wrap items-center gap-x-4 gap-y-1" id="mlegend"></div>
-      </div>
-      <div class="pt-2 px-1 flex flex-col md:flex-row items-center gap-4" id="timebar">
-        <button id="play" type="button" class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-surface-subtle border border-wire-border hover:bg-wire-border/60 text-ink-primary font-label-md text-label-md transition-colors duration-150 shrink-0"><span class="material-symbols-outlined text-primary-container" style="font-variation-settings:'FILL' 1" id="playic">play_arrow</span><span id="playlbl">Play timeline</span></button>
-        <div class="flex-1 w-full space-y-1.5">
-          <input class="w-full cursor-pointer" id="slider" type="range" aria-label="Month">
-          <div class="flex justify-between text-label-caps font-label-caps text-on-surface-variant px-1 select-none" id="ticks"></div>
+<body>
+<main id="main">
+  <div class="px-3 py-2 mb-3 rounded-lg text-body-sm font-semibold" style="background:var(--bf-amber-tint);color:var(--bf-amber);border:1px solid var(--bf-amber)" id="banner" hidden></div>
+  <div class="cols">
+    <div class="left">
+      <section class="panel mapp" aria-label="Permit map">
+        <div class="mapbox">
+          <div id="map" class="absolute inset-0 z-0" role="region" aria-label="Permit map"></div>
+          <div id="stamp" aria-live="polite" class="absolute top-4 left-4 z-[500] pointer-events-none bg-surface-container-lowest/95 backdrop-blur-sm border border-wire-border px-4 py-3 rounded-lg shadow-sm text-headline-md font-headline-md text-ink-primary leading-tight font-bold max-w-[calc(100%-2rem)]"></div>
+          <div class="absolute bottom-6 right-4 z-[500] bg-surface-container-lowest/95 backdrop-blur-sm border border-wire-border px-3.5 py-2.5 rounded-lg shadow-sm flex flex-wrap items-center gap-x-4 gap-y-1" id="mlegend"></div>
         </div>
-      </div>
-    </section>
-    <aside class="lg:col-span-4 min-w-0">
-      <div id="card" aria-live="polite" class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 shadow-sm"><div class="text-body-md text-on-surface-variant">Loading permits...</div></div>
-      <div id="topzips" class="mt-gutter bg-primary-container text-white rounded-xl p-6 shadow-sm relative overflow-hidden" hidden></div>
+        <div class="px-1 flex flex-col md:flex-row items-center gap-4" id="timebar">
+          <button id="play" type="button" class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-full bg-surface-subtle border border-wire-border hover:bg-wire-border/60 text-ink-primary font-label-md text-label-md transition-colors duration-150 shrink-0"><span class="material-symbols-outlined text-primary-container" style="font-variation-settings:'FILL' 1" id="playic">play_arrow</span><span id="playlbl">Play timeline</span></button>
+          <div class="flex-1 w-full space-y-1.5">
+            <input class="w-full cursor-pointer" id="slider" type="range" aria-label="Month">
+            <div class="flex justify-between text-label-caps font-label-caps text-on-surface-variant px-1 select-none" id="ticks"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <aside class="right" aria-label="Answer">
+      <section class="hero">
+        <span class="eyebrow"><i></i>Permit map &middot; City of Austin open data</span>
+        <h1 id="h" class="q">Where Base is installing, month by month.</h1>
+        <div id="card" aria-live="polite"><span class="says">Loading permits...</span></div>
+        <p id="q" class="line">Base permits by month</p>
+      </section>
+      <section id="chips" aria-label="Questions" role="group" class="flex flex-wrap items-center gap-2"></section>
+      <section id="topzips" class="panel find" hidden></section>
+      <div class="act"><a id="story-next" href="grid.html" class="primary"><span>Next: what the grid asks</span><span aria-hidden="true">&rarr;</span></a></div>
+      <nav class="admin-path" aria-label="Market workflow"><a href="market.html">Priorities</a><a href="explorer.html" aria-current="page">Permit map</a><a href="house.html">Homes ready</a></nav>
     </aside>
   </div>
 
-  <details id="details" class="bg-surface-container-lowest border border-wire-border rounded-xl overflow-hidden shadow-sm">
-    <summary class="w-full px-5 py-4 min-h-[44px] flex items-center justify-between gap-3 hover:bg-surface-subtle/70 transition-colors duration-150">
-      <div class="flex items-center space-x-3"><span class="material-symbols-outlined text-on-surface-variant">query_stats</span><span class="text-body-md font-label-md text-ink-primary">Category counts, installers, monthly chart, source queries</span></div>
-      <div class="inline-flex items-center gap-1 text-body-sm font-label-md text-on-surface-variant shrink-0"><span class="xl">Expand details</span><span class="cl">Close details</span><span class="chev material-symbols-outlined transition-transform">keyboard_arrow_down</span></div>
+  <section class="more">
+  <h2>More detail</h2>
+  <details id="details">
+    <summary>
+      <span>Category counts, installers, monthly chart, source queries<span class="sub">Permits since 2015 by category and installer</span></span>
+      <span class="inline-flex items-center gap-1 text-body-sm font-label-md text-on-surface-variant shrink-0"><span class="xl">Expand details</span><span class="cl">Close details</span><span class="chev material-symbols-outlined transition-transform">keyboard_arrow_down</span></span>
     </summary>
-    <div class="grid gap-6 px-5 pb-6 pt-4 border-t border-wire-border" style="grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))">
+    <div class="grid gap-6 px-1 pb-6 pt-4" style="grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))">
       <div class="min-w-0"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">Permits by category, 2015 to now</h3><table class="w-full border-collapse" id="cats"></table></div>
       <div class="min-w-0"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">Top installers, all categories</h3><table class="w-full border-collapse" id="installers"></table></div>
       <div class="min-w-0" style="grid-column:1/-1"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">Permits per month, stacked by category</h3><canvas id="chart" role="img" aria-label="Monthly permits chart"></canvas></div>
       <div class="min-w-0" style="grid-column:1/-1"><h3 class="text-label-caps font-label-caps uppercase tracking-wider text-outline mb-2">Source queries (replay on data.austintexas.gov)</h3><ul class="list-disc pl-5 text-body-sm space-y-1 break-words [&_a]:text-primary [&_a]:underline" id="queries"></ul><p class="text-body-sm text-outline mt-2" id="note"></p></div>
     </div>
   </details>
+  </section>
+  <footer>Base Ready · Permit map · City of Austin. Sources: City of Austin issued construction permits (open data).</footer>
 </main>
-<footer class="bg-surface-container-lowest border-t border-wire-border mt-8">
-  <div class="max-w-[1536px] mx-auto px-4 sm:px-margin py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-body-sm font-body-sm text-on-surface-variant">
-    <div><span class="font-label-md text-ink-primary">Base Ready</span> · Permit map · City of Austin</div>
-    <div>Sources: City of Austin issued construction permits (open data).</div>
-  </div>
-</footer>
 
 <script src="assets/leaflet/leaflet.js"></script>
 <script>
@@ -408,9 +440,8 @@ function start(P, Z, zcta, S) {
     if (v.range) { slider.min = v.range[0]; slider.max = v.range[1]; state.m = v.def; }
     if (k === "solar") { zipLayer.addTo(map); zipLayer.setStyle(zipLayer.options.style); } else map.removeLayer(zipLayer);
     const c = v.card();
-    $("card").innerHTML = `<div class="flex flex-col space-y-2"><div class="text-telemetry-metric font-telemetry-metric text-ink-primary tracking-tight">${c.n}</div>
-      <div class="text-headline-sm font-headline-sm text-ink-primary">${c.what}</div>${c.says ? `<div class="text-body-md font-body-md text-on-surface-variant">${c.says}</div>` : ""}
-      <div class="pt-2"><a class="inline-flex items-center gap-1.5 text-body-sm font-label-md text-primary hover:text-evergreen-deep underline-offset-2 hover:underline transition-colors duration-150" href="${c.src}" target="_blank" rel="noopener">Source: City of Austin permits <span class="material-symbols-outlined text-primary" style="font-size:16px">arrow_outward</span></a></div></div>`;
+    $("card").innerHTML = `<b class="big">${c.n}</b><span class="what">${c.what} <span class="tag m">Measured</span></span>${c.says ? `<span class="says">${c.says}</span>` : ""}
+      <a class="inline-flex items-center gap-1 underline-offset-2 hover:underline" href="${c.src}" target="_blank" rel="noopener">Source: City of Austin permits <span class="material-symbols-outlined" style="font-size:14px">arrow_outward</span></a>`;
     frame();
   }
   show("base");
@@ -419,13 +450,9 @@ function start(P, Z, zcta, S) {
   const top5 = zipRows.filter(([, r]) => r.base).slice(0, 5);
   if (top5.length) {
     const tmax = top5[0][1].base;
-    $("topzips").innerHTML = `<div class="absolute -right-10 -top-10 w-40 h-40 bg-energy-lime/10 pointer-events-none" style="border-radius:9999px"></div>
-      <div class="flex items-center justify-between gap-3 mb-4 relative"><span class="text-label-caps font-label-caps uppercase tracking-wider text-inverse-primary">Where Base installs most</span>
-        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-energy-lime text-on-secondary-fixed text-[10px] font-bold uppercase tracking-wider">${fmt(baseTotal)} permits</span></div>
-      <div class="space-y-3 relative">${top5.map(([z, r], i) => `<div>
-        <div class="flex items-baseline justify-between text-body-sm"><span class="font-semibold">${i + 1}. ${z}</span><span class="font-mono text-[12px] text-secondary-fixed">${fmt(r.base)} &middot; ${Math.round(r.base / baseTotal * 100)}%</span></div>
-        <div class="mt-1 h-1.5 rounded-full bg-white/15 overflow-hidden"><div class="h-full rounded-full bg-energy-lime" style="width:${(r.base / tmax * 100).toFixed(1)}%"></div></div></div>`).join("")}</div>
-      <div class="mt-4 pt-3 border-t border-white/15 font-mono text-[11px] text-inverse-primary relative">TOP 5 ZIPS = ${Math.round(top5.reduce((a, [, r]) => a + r.base, 0) / baseTotal * 100)}% OF BASE PERMITS, 2026</div>`;
+    $("topzips").innerHTML = `<h2>Where Base installs most <span class="tag m">${fmt(baseTotal)} permits</span></h2>
+      ${top5.map(([z, r], i) => `<div class="zr"><div class="l"><b>${i + 1}. ${z}</b><span>${fmt(r.base)} &middot; ${Math.round(r.base / baseTotal * 100)}%</span></div><div class="bar"><i style="width:${(r.base / tmax * 100).toFixed(1)}%"></i></div></div>`).join("")}
+      <p class="foot">Top 5 zips = ${Math.round(top5.reduce((a, [, r]) => a + r.base, 0) / baseTotal * 100)}% of Base permits, 2026</p>`;
     $("topzips").hidden = false;
   }
 

@@ -18,162 +18,199 @@
 </script>
 <link rel="stylesheet" href="shell.css">
 <style>
-  body { font-family:'Plus Jakarta Sans', sans-serif; background-color:#f8fafc; color:#0f172a; -webkit-font-smoothing:antialiased }
-  [hidden] { display:none!important }
-  #map { width:100%; height:auto; display:block }
-  input[type=range]#t { width:100%; accent-color:#1e4d2b; min-height:32px; cursor:pointer }
-  .legend i { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px; vertical-align:middle }
-  .chip { cursor:pointer; min-height:44px; display:inline-flex; align-items:center; padding:8px 14px; border-radius:999px; border:1px solid #e2e8f0; background:#fff; font-size:13.5px; font-weight:600; color:#0f172a }
-  .chip:hover { border-color:#1e4d2b }
-  .chip[aria-pressed="true"] { background:#ecfdf5; border-color:#1e4d2b; color:#065f46 }
-  .chip:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
-  #ans .big small { display:block; font-size:14px; line-height:1.5; font-weight:400; color:#475569; margin-top:10px; letter-spacing:0 }
-  .money { margin:14px 0 0; background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:14px 18px }
-  .money p { margin:0 0 8px; font-size:15px }
-  .mbar { display:grid; grid-template-columns:190px minmax(0,1fr) 90px; gap:10px; align-items:center; font-size:13.5px; margin-top:6px }
-  .mbar .track { height:14px; background:#f1f5f9; border-radius:7px; overflow:hidden }
-  .mbar .track i { display:block; height:100%; background:#1e4d2b }
-  .mbar.pw .track i { background:#94a3b8 }
-  .mbar b { text-align:right; font-variant-numeric:tabular-nums }
-  details.detail > summary { list-style:none }
-  details.detail > summary::-webkit-details-marker { display:none }
-  details.detail > summary h2::before { content:"\25B8"; display:inline-block; margin-right:8px; color:#64748b; transition:transform .15s }
-  details.detail[open] > summary h2::before { transform:rotate(90deg) }
-  .dsec { border-top:1px solid #e2e8f0; padding:18px 0 }
-  .dsec h3 { font-size:15px; font-weight:700; margin:0 0 6px }
-  .dsec canvas { width:100%; height:auto; display:block; background:#fff; border:1px solid #e2e8f0; border-radius:8px }
-  .num { font-size:28px; font-weight:700; font-variant-numeric:tabular-nums; margin:6px 0 0 }
-  .unit { color:#64748b; font-size:13px }
-  .ceil { margin:10px 0 0; font-size:13px; color:#64748b }
-  .ceil b { color:#0f172a; font-weight:600 }
-  .tw { overflow-x:auto }
-  table { border-collapse:collapse; font-size:13px; margin-top:10px; width:100% }
-  td, th { text-align:left; padding:4px 10px 4px 0; border-bottom:1px solid #e2e8f0; font-variant-numeric:tabular-nums }
-  th { color:#64748b; font-weight:500 }
-  ul.assume { margin:10px 0 0; padding-left:18px; font-size:12.5px; color:#64748b; list-style:disc }
-  ul.assume li.stub::before { content:"GUESS "; color:#a0184b; font-weight:600 }
-  .kills { margin-top:8px; font-size:13px } .kills span { display:inline-block; margin-right:18px }
-  .row4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin:6px 0 0 }
-  .row4 .num { font-size:24px } .row4 .k { font-size:13px; font-weight:600 }
-  @media (max-width:720px){ .mbar { grid-template-columns:minmax(0,1fr) 80px } .mbar .track { grid-column:1 / -1; grid-row:2 } .row4 { grid-template-columns:1fr 1fr } }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body);-webkit-font-smoothing:antialiased}
+  [hidden]{display:none!important}
+  #main{max-width:1440px;margin:0 auto;padding:32px 24px 48px;overflow-wrap:anywhere;width:100%}
+  #main h1,#main h2,#main h3,#main p{margin:0}
+  #main a{color:var(--bf-brand);text-decoration:none}#main a:hover{text-decoration:underline}
+  .eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+  .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+  .tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+  .tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+  .tag.s{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
+  .hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+  .hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+  .hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+  .hero .a small{font:600 18px/26px var(--bf-font);color:var(--bf-muted);letter-spacing:0}
+  .hero .line{font:var(--bf-text-body);color:var(--bf-muted);max-width:760px}
+  .panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+  .cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+  .left,.right{display:grid;gap:10px;min-width:0}
+  @media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{padding:10px 12px;min-width:0}
+  .stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+  .stat .v{display:block;font:700 22px/28px var(--bf-font);letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+  .stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
+  .stat.hi .v{color:var(--bf-brand-strong)}
+  :root[data-theme="dark"] .stat.hi .v{color:var(--bf-brand)}
+  .gridp .gh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid var(--bf-line)}
+  .gridp .gh b{font:var(--bf-text-h3)}.gridp .gh span{font:var(--bf-text-small);color:var(--bf-faint)}
+  .gh .cnt{display:inline-flex;gap:14px}.gh .cnt i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+  #map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:14px 16px 6px}
+  #map .reg b{display:block;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);margin-bottom:8px}
+  #map .sq{display:grid;grid-template-columns:repeat(auto-fill,30px);gap:6px}
+  #map .sq i{position:relative;width:30px;height:30px;border-radius:3px;background:var(--bf-line);transition:background-color .25s}
+  #map .sq i.discharge{background:var(--bf-solar)}#map .sq i.charge{background:var(--bf-blue)}#map .sq i.dead{background:#EF4444}
+  #map .sq i::after{content:"";position:absolute;left:10px;top:10px;width:10px;height:10px;border-radius:50%;display:none}
+  #map .sq i.local::after{display:block;background:#fff;border:2px solid var(--bf-ink)}
+  #map .sq i.sell::after{display:block;background:#F59E0B;border:2px solid #fff}
+  #kill{min-height:20px;padding:0 16px;font:var(--bf-text-label);color:#b91c1c}
+  :root[data-theme="dark"] #kill{color:#f87171}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 16px;padding:4px 16px 10px;font:var(--bf-text-small);color:var(--bf-muted)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+  .legend i.dot{border-radius:50%}
+  .play{display:grid;gap:8px;padding:12px 16px;border-top:1px solid var(--bf-line)}
+  .play .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+  .play .row>div{display:flex;align-items:center;gap:10px}
+  .play .row b{font:var(--bf-text-h3)}.play .row small{display:block;font:var(--bf-text-small);color:var(--bf-faint)}
+  #play{width:44px;height:44px;flex:none;border-radius:50%;border:0;background:var(--bf-brand);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  #play svg{width:16px;height:16px;fill:currentColor}
+  .clock{font:500 12px/18px var(--bf-mono);color:var(--bf-muted);background:var(--bf-sunk);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:4px 10px}
+  .clock #tprice{color:var(--bf-brand-strong);font-weight:700}
+  input[type=range]#t{width:100%;accent-color:var(--bf-brand);min-height:32px;cursor:pointer;margin:0}
+  #days{display:flex;justify-content:space-between;font:var(--bf-text-small);color:var(--bf-faint)}
+  #days .on{color:var(--bf-ink);font-weight:700}
+  #hourline{font:var(--bf-text-small);color:var(--bf-muted);font-variant-numeric:tabular-nums}
+  #chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{cursor:pointer;min-height:36px;display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;border:1px solid var(--bf-line);background:var(--bf-surface);font:600 12.5px/16px var(--bf-font);color:var(--bf-ink)}
+  .chip:hover{border-color:var(--bf-brand)}
+  .chip[aria-pressed="true"]{background:var(--bf-brand-tint);border-color:var(--bf-brand);color:var(--bf-brand-strong)}
+  .chip:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--bf-blue);outline-offset:2px}
+  .find{padding:12px 16px;display:grid;gap:6px;border-left:4px solid var(--bf-brand)}
+  .find .lbl{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint)}
+  .find .q{font:var(--bf-text-label);color:var(--bf-muted)}
+  #ans .big{font:700 22px/28px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+  #ans .big small{display:block;font:var(--bf-text-small);color:var(--bf-muted);letter-spacing:0;margin-top:2px}
+  #ans .why{font:var(--bf-text-small);color:var(--bf-muted)}
+  #ans .do{font:var(--bf-text-small);color:var(--bf-ink)}#ans .do b{color:var(--bf-brand-strong)}
+  .next{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:999px;background:var(--bf-brand);color:#fff!important;font:700 13.5px/18px var(--bf-font);justify-self:start}
+  .more{margin-top:20px}
+  .more>h2{font:var(--bf-text-h3);margin-bottom:10px}
+  .more details{border-top:1px solid var(--bf-line)}.more details:last-of-type{border-bottom:1px solid var(--bf-line)}
+  .more summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+  .more summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+  .more details>div{padding:4px 4px 18px;overflow-x:auto;color:var(--bf-muted)}
+  .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .tiles>div{padding:16px 18px}
+  .money{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:14px 18px}
+  .money p{margin:0 0 8px;font-size:14px;color:var(--bf-ink)}
+  .mbar{display:grid;grid-template-columns:190px minmax(0,1fr) 90px;gap:10px;align-items:center;font-size:13.5px;margin-top:6px}
+  .mbar .track{height:14px;background:var(--bf-sunk);border-radius:7px;overflow:hidden}
+  .mbar .track i{display:block;height:100%;background:var(--bf-brand)}
+  .mbar.pw .track i{background:var(--bf-line-strong)}
+  .mbar b{text-align:right;font-variant-numeric:tabular-nums}
+  .dsec{border-top:1px solid var(--bf-line);padding:18px 0}
+  .dsec h3{font-size:15px;font-weight:700;margin:0 0 6px;color:var(--bf-ink)}
+  .dsec canvas{width:100%;height:auto;display:block;background:#fff;border:1px solid var(--bf-line);border-radius:8px}
+  .num{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;margin:6px 0 0;color:var(--bf-ink)}
+  .unit{color:var(--bf-faint);font-size:13px}
+  .ceil{margin:10px 0 0!important;font-size:13px;color:var(--bf-muted)}
+  .ceil b{color:var(--bf-ink);font-weight:600}
+  .tw{overflow-x:auto}
+  table{border-collapse:collapse;font-size:13px;margin-top:10px;width:100%}
+  td,th{text-align:left;padding:4px 10px 4px 0;border-bottom:1px solid var(--bf-line);font-variant-numeric:tabular-nums;color:var(--bf-ink)}
+  th{color:var(--bf-faint);font-weight:500}
+  ul.assume{margin:10px 0 0;padding-left:18px;font-size:12.5px;color:var(--bf-muted);list-style:disc}
+  ul.assume li.stub::before{content:"GUESS ";color:#b91c1c;font-weight:600}
+  .kills{margin-top:8px;font-size:13px;color:var(--bf-ink)}.kills span{display:inline-block;margin-right:18px}
+  .row4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:6px 0 0}
+  .row4 .num{font-size:24px}.row4 .k{font-size:13px;font-weight:600;color:var(--bf-ink)}
+  #foot{font:var(--bf-text-small);color:var(--bf-faint)}
+  footer.pf{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint);max-width:1440px;padding:0 24px 32px;margin-left:auto;margin-right:auto}
+  @media (max-width:720px){.mbar{grid-template-columns:minmax(0,1fr) 80px}.mbar .track{grid-column:1 / -1;grid-row:2}.row4{grid-template-columns:1fr 1fr}.tiles{grid-template-columns:1fr}}
+  @media (max-width:640px){
+    #main{padding:24px 16px 40px}
+    .hero .a{font:700 30px/36px var(--bf-font)}.hero .a small{font-size:18px}
+    #map{grid-template-columns:repeat(2,minmax(0,1fr))}
+    #map .sq{grid-template-columns:repeat(auto-fill,20px);gap:4px}#map .sq i{width:20px;height:20px}
+    #map .sq i::after{left:5px;top:5px}
+  }
+  @media (prefers-reduced-motion:reduce){#map .sq i{transition:none}}
 </style>
 <script defer src="shell.js"></script>
 </head>
-<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-<main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-8">
-  <div class="mb-8">
-    <div class="inline-flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-md border border-emerald-100 mb-3">
-      <span>Fleet economics</span><span class="text-emerald-400">&middot;</span><span>Modeled results</span>
+<body>
+<main id="main">
+ <div class="cols">
+  <div class="left">
+   <section class="panel gridp" data-purpose="hero-topology" aria-label="Fleet over three days">
+    <div class="gh"><b id="hero-title">Watch the three days</b>
+     <span class="cnt"><span><i style="background:var(--bf-solar)"></i><span id="n-on"></span></span><span><i style="background:#EF4444"></i><span id="n-off"></span></span></span></div>
+    <div id="map" role="img" aria-label="One square per home by area of Austin: battery and PC state at the selected hour"></div>
+    <p id="kill" aria-live="polite"></p>
+    <div class="legend" aria-label="Battery and compute states">
+     <span><i style="background:var(--bf-solar)"></i>Battery sells to grid</span>
+     <span><i style="background:var(--bf-blue)"></i>Charges</span>
+     <span><i style="background:var(--bf-line)"></i>Waits</span>
+     <span><i style="background:#EF4444"></i>Switched off in the test</span>
+     <span><i class="dot" style="background:#fff;border:2px solid var(--bf-ink)"></i>PC works for the home</span>
+     <span><i class="dot" style="background:#F59E0B"></i>PC works for a buyer</span>
     </div>
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">What the fleet earns: power alone vs power plus compute.</h1>
-    <p class="mt-2 text-sm text-slate-500" id="lede">The same 50 homes, each with a battery and a PC, over three real ERCOT days &mdash; measured against public ERCOT prices.</p>
+    <div class="play">
+     <div class="row">
+      <div><button id="play" aria-label="Play" type="button"></button>
+       <span><b>Three real ERCOT days</b><small>72 hours, public day-ahead prices, three planned switch-offs. Simulated fleet, not current operations.</small></span></div>
+      <span class="clock"><span id="tlabel"></span> | <span id="tprice"></span></span>
+     </div>
+     <input type="range" id="t" min="0" max="71" value="0" aria-label="Hour of the test run">
+     <div id="days"><span data-day="0">Day 1 · 0-24h</span><span data-day="1">Day 2 · 24-48h</span><span data-day="2">Day 3 · 48-72h</span></div>
+     <p id="hourline"></p>
+    </div>
+   </section>
+   <a id="story-next" class="next" href="plans.html">Next: plans to use, host or sell GPU time <span aria-hidden="true">&rarr;</span></a>
   </div>
+  <aside class="right" aria-label="Answer">
+   <section class="hero">
+    <span class="eyebrow"><i></i>Fleet economics</span>
+    <p class="q">What does the fleet earn: power alone vs power plus compute?</p>
+    <h1 class="a" id="hero-ans">&nbsp;</h1>
+    <p class="line" id="lede">The same 50 homes, each with a battery and a PC, over three real ERCOT days &mdash; measured against public ERCOT prices. <span class="tag s">Simulation</span></p>
+   </section>
+   <div class="stats" id="hero-compare" aria-live="polite"></div>
+   <div id="chips" role="group" aria-label="Pick a question"></div>
+   <section class="panel find" id="ans" aria-live="polite"><p class="q">Loading the test run</p></section>
+  </aside>
+ </div>
 
-  <section class="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-7 mb-8" id="hero-compare" aria-live="polite"></section>
-
-  <section class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden mb-8" data-purpose="hero-topology">
-    <div class="px-4 sm:px-6 py-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4 bg-slate-50/60">
-      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-        <span class="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-        <span class="text-sm font-bold text-slate-800" id="hero-title">Watch the three days</span>
-        <span class="text-xs text-slate-400 font-mono">|</span>
-        <span class="text-xs font-medium text-slate-500">Simulated fleet activity across three historical ERCOT price days, not current operations.</span>
-      </div>
-      <div class="flex items-center gap-4 text-xs font-medium text-slate-600">
-        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> <span id="n-on"></span></span>
-        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-slate-400 inline-block"></span> <span id="n-off"></span></span>
-      </div>
-    </div>
-    <div class="p-3 sm:p-8 flex items-center justify-center bg-[#fcfdfd]">
-      <div class="w-full max-w-5xl rounded-xl border border-slate-100 bg-white p-2 shadow-inner">
-        <canvas id="map" width="1040" height="190" role="img" aria-label="Homes by area of Austin, battery and PC state at the selected hour"></canvas>
-      </div>
-    </div>
-    <details class="px-4 sm:px-6 pb-3 text-sm"><summary class="cursor-pointer min-h-[44px] py-2.5 font-semibold text-slate-700">Battery and compute states</summary><div class="legend flex flex-wrap gap-x-3.5 gap-y-1.5 text-xs text-slate-500">
-      <span>Battery (dot):</span>
-      <span><i style="background:#2f6f3e"></i>sells power to the grid</span>
-      <span><i style="background:#3b6ea8"></i>charges</span>
-      <span><i style="background:#c9c4b8"></i>waits</span>
-      <span><i style="background:#1f2328"></i>switched off in the test</span>
-      <span>PC beside it (ring):</span>
-      <span><i style="background:transparent;border:3px solid #b8471b"></i>works for the home</span>
-      <span><i style="background:transparent;border:3px solid #e0a04a"></i>works for a buyer</span>
-    </div></details>
-    <div class="px-4 sm:px-6 py-5 bg-white border-t border-slate-200">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
-        <div class="flex items-center gap-3">
-          <button id="play" aria-label="Play" class="w-11 h-11 shrink-0 rounded-full bg-[#1e4d2b] hover:bg-emerald-900 text-white flex items-center justify-center transition shadow-sm" type="button"></button>
-          <div>
-            <span class="text-sm font-bold text-slate-900">Three real ERCOT days</span>
-            <span class="text-xs text-slate-500 block">72 hours, public day-ahead prices, three planned switch-offs</span>
-          </div>
-        </div>
-        <div class="flex flex-wrap items-center gap-2 text-xs font-mono font-medium text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 self-start sm:self-auto">
-          <span id="tlabel"></span><span class="text-slate-300">|</span><span class="text-emerald-700 font-bold" id="tprice"></span>
-        </div>
-      </div>
-      <div class="relative pt-1 pb-1">
-        <input type="range" id="t" min="0" max="71" value="0" aria-label="Hour of the test run">
-        <div class="flex justify-between items-center text-xs font-semibold text-slate-400 mt-1 px-1" id="days">
-          <div class="flex flex-col"><span data-day="0" class="text-slate-700">Day 1</span><span class="text-[10px] text-slate-400 font-normal">0h - 24h</span></div>
-          <div class="flex flex-col items-center"><span data-day="1" class="text-slate-700">Day 2</span><span class="text-[10px] text-slate-400 font-normal">24h - 48h</span></div>
-          <div class="flex flex-col items-end"><span data-day="2" class="text-slate-700">Day 3</span><span class="text-[10px] text-slate-400 font-normal">48h - 72h</span></div>
-        </div>
-      </div>
-      <p id="hourline" class="mt-3 text-[13px] text-slate-600 tabular-nums"></p>
-    </div>
-  </section>
-
-  <div class="flex flex-wrap gap-2 mb-4" id="chips" role="group" aria-label="Pick a question"></div>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden" id="ans" aria-live="polite">
-      <div class="absolute top-0 left-0 right-0 h-1 bg-[#10b981]"></div>
-      <p class="q text-sm font-semibold">Loading the test run</p>
-    </div>
-    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden" id="tile-money" hidden></div>
-    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden" id="tile-floor" hidden></div>
-  </div>
-
-  <details class="detail mt-10 border-t border-slate-200" id="detail">
-    <summary class="cursor-pointer min-h-[44px] pt-4 pb-1"><h2 class="text-lg font-bold">Economics and assumptions</h2></summary>
+ <section class="more">
+  <h2>More detail</h2>
+  <details><summary>Money and backup floor<span>power alone, plus compute, reserve never breached</span></summary><div class="tiles"><div class="panel" id="tile-money" hidden></div><div class="panel" id="tile-floor" hidden></div></div></details>
+  <details class="detail" id="detail">
+   <summary>Economics and assumptions<span>money by buyer, homes per street, switch-offs, new-home pipe</span></summary>
+   <div>
     <div class="money" id="money"></div>
     <div class="dsec">
-      <h3>Homes per street, three results</h3>
-      <canvas id="density" width="1040" height="220"></canvas>
-      <p class="ceil" id="n-ceil"></p>
+     <h3>Homes per street, three results</h3>
+     <canvas id="density" width="1040" height="220"></canvas>
+     <p class="ceil" id="n-ceil"></p>
     </div>
     <div class="dsec">
-      <h3>Money over three days</h3>
-      <div class="num" id="f-num"></div><div class="unit">batteries plus PCs, all homes</div>
-      <p class="ceil" id="f-compute"></p>
-      <div class="tw"><table id="tiers"></table></div>
-      <p class="ceil" id="f-ceil"></p>
-      <div class="tw"><canvas id="strip" width="1040" height="120"></canvas></div>
+     <h3>Money over three days</h3>
+     <div class="num" id="f-num"></div><div class="unit">batteries plus PCs, all homes</div>
+     <p class="ceil" id="f-compute"></p>
+     <div class="tw"><table id="tiers"></table></div>
+     <p class="ceil" id="f-ceil"></p>
+     <div class="tw"><canvas id="strip" width="1040" height="120"></canvas></div>
     </div>
     <div class="dsec">
-      <h3>Three things we switched off on purpose</h3>
-      <div class="kills" id="kills"></div>
-      <ul class="assume" id="f-assume"></ul>
+     <h3>Three things we switched off on purpose</h3>
+     <div class="kills" id="kills"></div>
+     <ul class="assume" id="f-assume"></ul>
     </div>
     <div class="dsec">
-      <h3>The pipe that brings new homes to the fleet</h3>
-      <p class="ceil" id="thread"></p>
-      <div class="row4" id="row"></div>
-      <div id="p1" class="dsec"></div><div id="p2" class="dsec"></div><div id="p3" class="dsec"></div><div id="p4" class="dsec"></div>
+     <h3>The pipe that brings new homes to the fleet</h3>
+     <p class="ceil" id="thread"></p>
+     <div class="row4" id="row"></div>
+     <div id="p1" class="dsec"></div><div id="p2" class="dsec"></div><div id="p3" class="dsec"></div><div id="p4" class="dsec"></div>
     </div>
+   </div>
   </details>
-  <details class="text-sm"><summary class="cursor-pointer min-h-[44px] py-2.5 font-semibold text-slate-700">Data sources</summary><p id="foot" class="text-xs text-slate-500">From data/report.json, data/density.json and data/fleet_kill_log.json. Public ERCOT price history is an input; equipment, utilization and compute rates are model assumptions. The bundle has no capture timestamp and is not a current forecast, bill, or issued payment. Inspect the assumptions before applying the results.</p></details>
-  <div class="mt-8 flex justify-end">
-    <a id="story-next" href="plans.html" class="inline-flex items-center gap-2 min-h-[44px] px-5 py-2.5 rounded-full bg-[#1e4d2b] hover:bg-emerald-900 text-white text-sm font-bold shadow-sm transition">Next: plans to use, host or sell GPU time <span aria-hidden="true">&rarr;</span></a>
-  </div>
+  <details><summary>Data sources<span>report, density and kill-log files</span></summary><div><p id="foot">From data/report.json, data/density.json and data/fleet_kill_log.json. Public ERCOT price history is an input; equipment, utilization and compute rates are model assumptions. The bundle has no capture timestamp and is not a current forecast, bill, or issued payment. Inspect the assumptions before applying the results.</p></div></details>
+ </section>
 </main>
-<footer class="w-full bg-white border-t border-slate-200 mt-12 py-6">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4 text-center">
-    <div class="flex items-center gap-2"><span class="font-bold text-slate-700">Base Super Local AI</span><span>&middot;</span><span>Fleet economics</span></div>
-    <div class="text-slate-500">Base is building the stations; a member AI service is our proposal.</div>
-    <div class="text-slate-500">Sources: data/report.json, data/density.json, data/fleet_kill_log.json</div>
-  </div>
-</footer>
+<footer class="pf">Base Super Local AI · Fleet economics. Base is building the stations; a member AI service is our proposal. Sources: data/report.json, data/density.json, data/fleet_kill_log.json</footer>
 <script>
 const $ = s => document.querySelector(s);
 const usd = n => "$" + n.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -214,12 +251,9 @@ Promise.all(["data/report.json", "data/fleet_kill_log.json", "data/density.json"
   let cur = 0;
   function show(i) {
     cur = i; const a = A[i];
-    $("#ans").innerHTML = `<div class="absolute top-0 left-0 right-0 h-1 bg-[#10b981]"></div><div>
-      <div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${a.label}</span></div>
-      <p class="q text-sm font-semibold text-slate-500 mb-2">${a.q}</p>
-      <div class="big text-3xl font-extrabold text-slate-900 tracking-tight leading-none mb-3">${a.big}</div>
-      <p class="why text-sm text-slate-600 leading-relaxed">${a.why}</p></div>
-      <div class="do mt-6 pt-4 border-t border-slate-100 text-xs text-slate-600"><b class="block text-[11px] uppercase tracking-wide text-emerald-800 mb-1">What to do with this</b>${a.todo}</div>`;
+    $("#ans").innerHTML = `<span class="lbl">${a.label}</span><p class="q">${a.q}</p>
+      <div class="big">${a.big}</div><p class="why">${a.why}</p>
+      <p class="do"><b>What to do:</b> ${a.todo}</p>`;
     $("#chips").querySelectorAll(".chip").forEach((c, k) => c.setAttribute("aria-pressed", k === i));
   }
   $("#chips").innerHTML = A.map((a, i) => `<button class="chip" type="button" data-i="${i}">${a.chip}</button>`).join("");
@@ -227,24 +261,12 @@ Promise.all(["data/report.json", "data/fleet_kill_log.json", "data/density.json"
   show(0);
 
   // Hero comparison: power alone vs power plus compute, above the fold
+  $("#hero-ans").innerHTML = `${usd(p5.compute)} <small>from PCs, vs ${usd(p5.power_only)} from power alone</small>`;
   $("#hero-compare").innerHTML = `
-    <div class="flex items-center justify-between mb-4 gap-2 flex-wrap">
-      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">SIMULATION</span>
-      <span class="text-xs font-semibold text-slate-500">${p5.nodes} homes &middot; 3 days &middot; ${Math.round(p5.gpu_utilisation * 100)}% GPU use assumed</span>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
-        <div class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Power alone</div>
-        <div class="text-3xl font-extrabold text-slate-500 tracking-tight">${usd(p5.power_only)}</div>
-        <div class="text-xs text-slate-500 mt-2">from battery trading only</div>
-      </div>
-      <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50">
-        <div class="text-xs font-bold uppercase tracking-wide text-emerald-800 mb-1">Power plus compute</div>
-        <div class="text-3xl font-extrabold text-[#1e4d2b] tracking-tight">${usd(p5.compute)}</div>
-        <div class="text-xs text-emerald-800 mt-2">members ${usd(p5.compute_members)} &middot; outside buyers ${usd(p5.compute_outside)}</div>
-      </div>
-    </div>
-    <div class="mt-4 pt-4 border-t border-slate-100 text-xs font-semibold text-slate-600">Backup reserve kept every hour (0 breaches).</div>`;
+    <div class="panel stat"><span class="k">Power alone <span class="tag s">Simulation</span></span><b class="v">${usd(p5.power_only)}</b><span class="s">from battery trading only</span></div>
+    <div class="panel stat hi"><span class="k">Power plus compute <span class="tag s">Simulation</span></span><b class="v">${usd(p5.compute)}</b><span class="s">members ${usd(p5.compute_members)} &middot; outside buyers ${usd(p5.compute_outside)}</span></div>
+    <div class="panel stat"><span class="k">Fleet <span class="tag s">Simulation</span></span><b class="v">${p5.nodes} homes</b><span class="s">3 days &middot; ${Math.round(p5.gpu_utilisation * 100)}% GPU use assumed</span></div>
+    <div class="panel stat"><span class="k">Backup breaches <span class="tag s">Simulation</span></span><b class="v">${p5.reserve_breaches}</b><span class="s">Backup reserve kept every hour</span></div>`;
 
   // Money line
   const mx = Math.max(p5.power_only, p5.compute_outside);
@@ -303,31 +325,26 @@ Promise.all(["data/report.json", "data/fleet_kill_log.json", "data/density.json"
 
   // Play: dots
   const N = p5.nodes, REG = ["north", "south", "east", "west"];
-  const colors = {discharge: "#2f6f3e", charge: "#3b6ea8", local: "#b8471b", sell: "#e0a04a", idle: "#c9c4b8", dead: "#1f2328"};
-  const map = $("#map"), mc = map.getContext("2d"), pos = [];
-  const cols = Math.ceil(N / 4 / 2);
-  for (let i = 0; i < N; i++) { const r = i % 4, k = Math.floor(i / 4); pos.push({x: 60 + r * 250 + (k % cols) * 28, y: 70 + Math.floor(k / cols) * 34}); }
-  const KILL = {20: "One home switched off", 30: "East side cut off", 40: "Schedule stopped"};
+  const map = $("#map"), cells = [];
+  map.innerHTML = REG.map(r => `<div class="reg"><b>${r[0].toUpperCase() + r.slice(1)} Austin</b><div class="sq" data-r="${r}"></div></div>`).join("");
+  for (let i = 0; i < N; i++) { const el = document.createElement("i"); map.querySelector(`[data-r="${REG[i % 4]}"]`).appendChild(el); cells.push(el); }
+  const KILL = {20: "Hour 20: one home switched off", 30: "Hour 30: east side cut off", 40: "Hour 40: schedule stopped"};
   function drawMap(t) {
     const row = LOG[t];
-    mc.clearRect(0, 0, map.width, map.height);
-    mc.font = "600 15px sans-serif"; mc.fillStyle = "#5b6470";
-    REG.forEach((r, i) => mc.fillText(r[0].toUpperCase() + r.slice(1) + " Austin", 60 + i * 250, 38));
-    pos.forEach((p, i) => {
+    cells.forEach((el, i) => {
       const a = row.actions[i] || "idle";
       const b = a === "dead" ? "dead" : (a === "charge" || a === "discharge") ? a : "idle";
       const g = (row.gpu_actions || {})[i] || "idle";
-      mc.beginPath(); mc.arc(p.x, p.y, 8, 0, Math.PI * 2); mc.fillStyle = colors[b]; mc.fill();
-      if (a !== "dead" && (g === "local" || g === "sell")) { mc.beginPath(); mc.arc(p.x, p.y, 11.5, 0, Math.PI * 2); mc.lineWidth = 3; mc.strokeStyle = colors[g]; mc.stroke(); }
+      el.className = b + (a !== "dead" && (g === "local" || g === "sell") ? " " + g : "");
     });
-    if (KILL[t]) { mc.fillStyle = "#b8471b"; mc.font = "600 16px sans-serif"; mc.fillText(KILL[t], 60, 170); }
+    $("#kill").textContent = KILL[t] || "";
   }
   const strip = $("#strip"), sc = strip.getContext("2d");
   function drawStrip(t) {
     sc.clearRect(0, 0, strip.width, strip.height);
     const W = strip.width - 80, H = strip.height - 30, x0 = 60, y0 = 10;
     const mx = Math.max(...LOG.map(r => r.margin)), gx = Math.max(...LOG.map(r => r.grid));
-    LOG.forEach((r, i) => { const x = x0 + i * W / 72; sc.fillStyle = i === t ? "#b8471b" : "#d9d5cc"; sc.fillRect(x, y0 + H - r.margin / mx * H, W / 72 - 2, r.margin / mx * H); });
+    LOG.forEach((r, i) => { const x = x0 + i * W / 72; sc.fillStyle = i === t ? "#1e4d2b" : "#d9d5cc"; sc.fillRect(x, y0 + H - r.margin / mx * H, W / 72 - 2, r.margin / mx * H); });
     sc.beginPath(); sc.strokeStyle = "#3b6ea8"; sc.lineWidth = 1.5;
     LOG.forEach((r, i) => { const x = x0 + i * W / 72 + W / 144, y = y0 + H - r.grid / gx * H; i ? sc.lineTo(x, y) : sc.moveTo(x, y); });
     sc.stroke(); sc.fillStyle = "#5b6470"; sc.font = "12px sans-serif";
@@ -341,13 +358,13 @@ Promise.all(["data/report.json", "data/fleet_kill_log.json", "data/density.json"
     $("#tprice").textContent = `${(row.grid * 100).toFixed(1)}¢ per kWh`;
     const off = Object.values(row.actions).filter(a => a === "dead").length;
     $("#n-on").textContent = `${N - off} operating`; $("#n-off").textContent = `${off} switched off`;
-    document.querySelectorAll("#days [data-day]").forEach(s => { const on = +s.dataset.day === Math.floor(t / 24); s.className = on ? "text-slate-900 font-bold" : "text-slate-700"; });
+    document.querySelectorAll("#days [data-day]").forEach(s => { const on = +s.dataset.day === Math.floor(t / 24); s.className = on ? "on" : ""; });
     $("#hourline").innerHTML = `Power price <b>${(row.grid * 100).toFixed(1)}¢ per kWh</b> · PC hour sells for <b>$${row.gpu.toFixed(2)}</b> · jobs waiting <b>${row.queue}</b> · earned this hour <b>$${row.margin.toFixed(2)}</b>`;
   }
   slider.addEventListener("input", () => render(+slider.value));
   let timer = null;
-  const ICON = {Play: '<svg class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24" aria-hidden="true"><polygon points="5,3 19,12 5,21"></polygon></svg>',
-    Pause: '<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="5" height="18"></rect><rect x="14" y="3" width="5" height="18"></rect></svg>'};
+  const ICON = {Play: '<svg style="margin-left:2px" viewBox="0 0 24 24" aria-hidden="true"><polygon points="5,3 19,12 5,21"></polygon></svg>',
+    Pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="5" height="18"></rect><rect x="14" y="3" width="5" height="18"></rect></svg>'};
   const setPlay = s => { $("#play").innerHTML = ICON[s]; $("#play").setAttribute("aria-label", s); };
   setPlay("Play");
   $("#hero-title").textContent = `${N} homes, three historical ERCOT days`;
@@ -377,10 +394,10 @@ Promise.all(["data/report.json", "data/fleet_kill_log.json", "data/density.json"
     rows.forEach(r => { g.beginPath(); g.arc(X(r.nodes_per_feeder), Y(r[key]), 3.5, 0, 7); g.fill(); });
     g.fillText(label, 4, T + 14 + 16 * n++);
   }
-  line("gpu_hours_lost", "#1f2328", "hours of work lost", 0, Math.max(10, lone.gpu_hours_lost));
-  line("compute_per_node", "#b8471b", "$ PC money per home", Math.floor(cmin) - 1, Math.ceil(cmax) + 1);
+  line("gpu_hours_lost", "#EF4444", "hours of work lost", 0, Math.max(10, lone.gpu_hours_lost));
+  line("compute_per_node", "#2563eb", "$ PC money per home", Math.floor(cmin) - 1, Math.ceil(cmax) + 1);
   line("peak_relief_kw_per_feeder", "#2f6f3e", "kW off the street", 0, 25);
-}).catch(e => { $("#ans").innerHTML = `<p class="q font-semibold">Could not load the test run</p><p class="why text-sm">Start the server from the repo root: python3 -m http.server 8741, then open http://localhost:8741/web/index.html. (${esc(e.message)})</p>`; });
+}).catch(e => { $("#ans").innerHTML = `<p class="q">Could not load the test run</p><p class="why">Start the server from the repo root: python3 -m http.server 8741, then open http://localhost:8741/web/index.html. (${esc(e.message)})</p>`; });
 </script>
 </body>
 </html>

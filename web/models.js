@@ -460,7 +460,7 @@
   }
 
   // ---------- Your PC: ask server 8742, voice 8744 ----------
-  const onLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && location.protocol === "http:";
+  const onLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) && location.protocol === "http:";
   let pcModel = "gemma4:e4b";
   function pcState(up, note) {
     const b = $("run-on").querySelector('[data-on="pc"]');
@@ -470,8 +470,6 @@
     stat("st-home", up ? "up" : "down", up ? "Connected" : note || "Offline", up ? pcModel + " · localhost:8742" : "localhost:8742");
     if (!up && mode === "pc") setMode("routes");
   }
-  // Reachability without CORS: an opaque no-cors reply means something answers on that port.
-  const reach = url => fetch(url, {mode: "no-cors", signal: AbortSignal.timeout(1500)}).then(() => true, () => false);
   async function checkPC(manual) {
     $("pc-check").disabled = true; $("pc-state").textContent = "Checking"; $("pc-state").className = "pill warn";
     // brain/tts.py answers the CORS preflight for localhost pages; from other origins the voice check runs on the local copy.
@@ -481,13 +479,13 @@
       if (h) { pcModel = h.model || pcModel; pcState(true); if (manual || mode === "routes") setMode("pc"); $("pc-note").textContent = ""; }
       else { pcState(false, "Offline"); $("pc-note").textContent = "Start it with the install command above."; }
     } else {
-      const up = await reach(ASK + "/health");
-      pcState(false, up ? "Running on this PC" : "Offline");
-      $("pc-note").innerHTML = up ? `Your PC answers on 8742. Live runs connect from the local copy: <a class="text-primary-container font-semibold underline underline-offset-2" href="${LOCAL_PAGES}">localhost:8741/web/models.html</a>` : "Start it with the install command above, then check again.";
-      if (up) stat("st-home", "up", "Running", "Open the local copy to connect");
+      // A hosted page never calls the PC: it says where the PC runtime lives instead.
+      pcState(false, "Runs on the local copy");
+      $("pc-note").innerHTML = `After the install above, open the local copy to connect: <a class="text-primary-container font-semibold underline underline-offset-2" href="${LOCAL_PAGES}">localhost:8741/web/models.html</a>`;
+      stat("st-home", "idle", "Runs on the local copy", "localhost:8741/web/models.html");
     }
     const v = await voice;
-    if (v === null) stat("st-voice", "idle", "Checked on the local copy", "localhost:8741/web/models.html");
+    if (v === null) stat("st-voice", "idle", "Runs on the local copy", "Browser voice in use here");
     else stat("st-voice", v ? "up" : "idle", v ? "Running" : "Off", v ? "Kokoro-82M · localhost:8744" : "Browser voice in use");
     $("pc-check").disabled = false;
   }
@@ -550,7 +548,7 @@
   $("wl-load").addEventListener("click", loadModel);
   $("pc-check").addEventListener("click", () => checkPC(true));
   initBrowserRuntime();
-  if (!onLocal) { stat("st-home", "idle", "Not checked", "Check my PC under Runtimes"); stat("st-voice", "idle", "Not checked", "Check my PC under Runtimes"); }
+  if (!onLocal) { stat("st-home", "idle", "Runs on the local copy", "localhost:8741/web/models.html"); stat("st-voice", "idle", "Runs on the local copy", "Browser voice in use here"); }
   Promise.all([get("data/faq.json"), get("data/kb_graph.json"), onLocal ? checkPC(false) : null]).then(([f, k]) => {
     faq = f; kb = k;
     if (mode === "routes") setMode("routes");

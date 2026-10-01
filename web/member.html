@@ -141,12 +141,86 @@
   .done-steps { list-style:none; display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:10px 0 6px }
   .done-steps li { display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:999px; background:#e6f4ea; color:#1e4d2b; font-size:13px; font-weight:600 }
   .done-steps li .material-symbols-outlined { font-size:16px }
-  .tag { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:2px 8px; border-radius:4px; background:#fef3c7; color:#78350f; vertical-align:middle }
-  .rw { width:100%; border-collapse:collapse; margin-top:8px; font-size:14px }
+    .rw { width:100%; border-collapse:collapse; margin-top:8px; font-size:14px }
   .rw td { padding:8px 0; border-bottom:1px solid var(--rule) }
   .rw td:last-child { text-align:right; font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; padding-left:12px }
   .rw tr.tot td { border-bottom:0; font-weight:700; font-size:16px; color:#1e4d2b }
   .rw tr.pend td { color:var(--muted); font-style:italic }
+  /* One-screen layout, judgments.html look (shell.css tokens). */
+  body.st { background:var(--bf-bg); color:var(--bf-ink); font:var(--bf-text-body) }
+  #main.mp { max-width:1440px; margin:0 auto; padding:24px 24px 48px; overflow-wrap:anywhere }
+  #main.mp a { color:var(--bf-brand); text-decoration:none } #main.mp a:hover { text-decoration:underline }
+  .mp .panel { background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:var(--bf-radius-lg); box-shadow:var(--bf-shadow-card) }
+  .mp .cols { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:12px; align-items:start }
+  .mp .left,.mp .right { display:grid; gap:10px; min-width:0 }
+  .mp .eyebrow { justify-self:start; display:inline-flex; align-items:center; gap:6px; font:var(--bf-text-caps); letter-spacing:.06em; text-transform:uppercase; color:var(--bf-muted); padding:4px 10px; border:1px solid var(--bf-line); border-radius:var(--bf-radius-lg); background:var(--bf-sunk) }
+  .mp .eyebrow .material-symbols-outlined { font-size:15px; color:var(--bf-brand) }
+  .mp .hero { padding:0 0 12px; border-bottom:1px solid var(--bf-line); display:grid; gap:6px }
+  .mp .hero .q { font:var(--bf-text-h1); color:var(--bf-muted); margin:0 }
+  .mp .hero .a { font:700 30px/36px var(--bf-font); letter-spacing:-.02em; color:var(--bf-ink); margin:0 }
+  .mp .hero .line { font:var(--bf-text-body); color:var(--bf-muted); margin:0 }
+  .mp .hero .line b { color:var(--bf-ink) }
+  .mp .acts { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px }
+  #main.mp .btnp,#main.mp .btns { display:inline-flex; align-items:center; min-height:44px; padding:0 16px; border-radius:var(--bf-radius-lg); font:var(--bf-text-label); text-decoration:none }
+  #main.mp .btnp { background:var(--bf-brand); color:#fff; border:1px solid var(--bf-brand) }
+  #main.mp .btns { background:var(--bf-surface); color:var(--bf-ink); border:1px solid var(--bf-line-strong) }
+  .mp .stats { display:grid; grid-template-columns:1fr 1fr; gap:10px }
+  .mp .stat { padding:10px 12px; min-width:0 }
+  .mp .k { font:var(--bf-text-caps); letter-spacing:.06em; text-transform:uppercase; color:var(--bf-faint); display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 6px; align-items:center }
+  .mp .stat .v { display:block; font:700 22px/28px var(--bf-font); letter-spacing:-.02em; margin-top:2px; font-variant-numeric:tabular-nums }
+  .mp .stat .v.sm { font:700 16px/22px var(--bf-font); letter-spacing:0 }
+  .mp .s { display:block; font:var(--bf-text-small); color:var(--bf-muted); margin-top:2px }
+  .mp .tag { display:inline-block; font:700 10.5px/16px var(--bf-font); letter-spacing:.04em; text-transform:uppercase; padding:1px 8px; border-radius:999px; border:1px solid; vertical-align:middle; white-space:nowrap }
+  .mp .tag.m { background:var(--bf-brand-tint); color:var(--bf-brand-strong); border-color:var(--bf-brand-soft) }
+  .mp .tag.s { background:var(--bf-amber-tint); color:var(--bf-amber); border-color:var(--bf-amber) }
+  :root[data-theme="dark"] .mp .tag.m { color:var(--bf-brand) }
+  .mp .done-steps li { background:var(--bf-brand-tint); color:var(--bf-brand-strong) }
+  .mp .homep .gh { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px; padding:10px 16px; border-bottom:1px solid var(--bf-line) }
+  .mp .homep h2 { font:var(--bf-text-h3); margin:0 }
+  .mp .chipline,.mp .pill-st { font:var(--bf-text-small); color:var(--bf-muted); padding:2px 10px; border:1px solid var(--bf-line); border-radius:999px; background:var(--bf-sunk); display:inline-flex; align-items:center; gap:6px }
+  .mp .pill-st i { width:6px; height:6px; border-radius:50%; background:var(--bf-brand) }
+  .mp .twin { position:relative; min-height:0; height:330px; display:flex; align-items:center; justify-content:center; padding:12px; background:var(--bf-sunk); overflow:hidden }
+  .mp .twin::before { display:none }
+  .mp .twin-img { position:relative; max-width:520px; width:100% }
+  .mp .twin-img img { display:block; width:100%; height:300px; object-fit:contain; border-radius:var(--bf-radius-lg) }
+  .mp .illus { position:absolute; right:6px; bottom:6px; font:700 11px/16px var(--bf-font); padding:1px 8px; border-radius:4px; background:var(--bf-surface); color:var(--bf-ink) }
+  .mp .twin .badge { position:absolute; z-index:2; width:12.5rem; background:var(--bf-surface); border:1px solid var(--bf-line); border-radius:var(--bf-radius-lg); padding:8px 10px; box-shadow:var(--bf-shadow-card) }
+  .mp .twin .badge b { display:block; font:700 20px/26px var(--bf-font) } .mp .twin .badge b small { font:600 13px var(--bf-font); color:var(--bf-muted) }
+  .mp .twin .b-solar { top:12px; left:12px } .mp .twin .b-home { top:12px; right:12px } .mp .twin .b-store { bottom:12px; left:12px; width:14rem }
+  .mp .src { font:var(--bf-text-small); color:var(--bf-muted); padding:8px 16px; margin:0; border-top:1px solid var(--bf-line) }
+  .mp .week { margin-top:24px; display:grid; gap:8px }
+  .mp .navrow { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px }
+  #main.mp .member-links a { color:var(--bf-muted) } #main.mp .member-links a[aria-current] { background:var(--bf-sunk); color:var(--bf-ink) }
+  .mp .week > h2 { font:var(--bf-text-h2); margin:0; display:flex; gap:10px; align-items:center; flex-wrap:wrap }
+  .mp .sub { font:var(--bf-text-small); color:var(--bf-muted); margin:0 }
+  .mp .wgrid { display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:start }
+  .mp .wcard { padding:16px 18px; min-width:0 }
+  .mp .wcard h3 { font:var(--bf-text-h3); margin:0 0 10px }
+  .st .mp .asksec { border:1px solid var(--bf-line); padding:16px 18px }
+  .st .mp .chip { background:var(--bf-sunk); border-color:var(--bf-line); color:var(--bf-ink) }
+  .st .mp .chip[aria-pressed="true"] { background:var(--bf-brand); border-color:var(--bf-brand); color:#fff }
+  .st .mp .ans .q { color:var(--bf-muted) } .st .mp .ans .big { color:var(--bf-ink) } .st .mp .ans .big small,.st .mp .ans .why { color:var(--bf-muted) }
+  .mp .more { margin-top:24px }
+  .mp .more > h2 { font:var(--bf-text-h3); margin:0 0 10px }
+  .mp .more > details, .st .mp .more > details.detail { margin:0; border-top:1px solid var(--bf-line) }
+  .mp .more > details:last-of-type { border-bottom:1px solid var(--bf-line) }
+  .mp .more > details > summary { cursor:pointer; display:block; list-style:revert; padding:12px 4px; min-height:0; font:var(--bf-text-label); color:var(--bf-ink) }
+  .mp .more > details > summary span { font:var(--bf-text-small); color:var(--bf-faint); margin-left:6px }
+  .mp .more > details > summary span.t { font:var(--bf-text-label); color:var(--bf-ink); margin:0 }
+  .mp .more > details > div { padding:4px 4px 18px; color:var(--bf-muted); display:grid; gap:8px; overflow-x:auto }
+  .mp .more h3 { font:var(--bf-text-h3); color:var(--bf-ink); margin:0 }
+  .mp .more .row { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin:0 }
+  .mp .axis { display:flex; justify-content:space-between; font:var(--bf-text-small); color:var(--bf-faint) }
+  .mp .price-bars i { background:var(--bf-line) } .mp .price-bars i.peak { background:var(--bf-brand) }
+  .mp .rw tr.tot td { color:var(--bf-brand-strong) }
+  .mp > footer { margin-top:28px; font:var(--bf-text-small); color:var(--bf-faint) }
+  @media (max-width:1000px){ .mp .cols { grid-template-columns:1fr } .mp .right { order:-1 } }
+  @media (max-width:760px){ .mp .wgrid { grid-template-columns:1fr } }
+  @media (max-width:640px){
+    #main.mp { padding:20px 16px 40px } .mp .hero .a { font:700 26px/32px var(--bf-font) }
+    .mp .twin { height:auto; flex-direction:column; align-items:stretch; gap:8px }
+    .mp .twin .badge { position:static; width:auto } .mp .twin-img img { height:200px } .mp .twin .twin-img { order:-1 }
+  }
 </style>
 <link rel="stylesheet" href="shell.css">
 <link rel="stylesheet" href="milestones.css">
@@ -165,195 +239,115 @@
 <script defer src="shell.js"></script>
 <script defer src="milestones.js"></script>
 </head>
-<body class="st font-body-md text-body-md antialiased">
-<main>
-<div class="max-w-7xl mx-auto w-full px-4 sm:px-space-xl py-space-xl flex flex-col gap-space-xl">
-
-  <section id="setup-banner" class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg shadow-sm">
-    <div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md">
-      <div class="space-y-1 min-w-0">
-        <div class="flex items-center gap-2 text-primary-container font-label-caps text-label-caps uppercase" id="banner-kick-row">
-          <span class="material-symbols-outlined text-[16px]" aria-hidden="true" id="banner-icon">check_circle</span>
-          <span id="banner-kicker">All steps done</span>
-        </div>
-        <h1 class="font-headline-lg text-headline-lg text-ink-primary" id="banner-title">You're done. Base takes it from here.</h1>
-        <p class="text-outline font-body-md text-body-md max-w-3xl" id="next-step-text">Checking your saved progress in this browser.</p>
-        <ul class="done-steps" id="done-steps" aria-label="Your onboarding steps">
-          <li><span class="material-symbols-outlined" aria-hidden="true">check</span>Address</li>
-          <li><span class="material-symbols-outlined" aria-hidden="true">check</span>Home questions</li>
-          <li><span class="material-symbols-outlined" aria-hidden="true">check</span>Panel photo</li>
-        </ul>
-        <p class="font-body-sm text-body-sm text-outline" id="whats-next"><b class="text-ink-primary">What happens next:</b> Base does the engineering review, then books your install. Battery status: not installed yet. Live readings start after installation.</p>
-        <p class="font-body-sm text-body-sm text-outline" id="demo-note" hidden></p>
-      </div>
-      <div class="flex items-center gap-space-sm self-start shrink-0">
-        <a class="btn px-4 bg-surface-subtle hover:bg-wire-border text-ink-primary font-label-md text-label-md rounded-xl border border-wire-border" href="status.html">Application status</a>
-      </div>
+<body class="st">
+<main id="main" class="mp">
+ <div class="notice" id="notice">Home details are loading. Refresh the page if this stays empty.</div>
+ <div class="cols">
+  <div class="left">
+   <section aria-label="Your onboarding record"><div data-milestones="ribbon"></div></section>
+   <section class="panel homep" aria-labelledby="res-title">
+    <div class="gh">
+     <div><span class="k">Residence</span><h2 id="res-title">Your home</h2></div>
+     <span class="chipline">Readings start after installation</span>
     </div>
-  </section>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg" id="done-panels">
-    <section class="md:col-span-2 bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg shadow-sm min-w-0" aria-labelledby="rw-title">
-      <div class="flex flex-wrap items-center justify-between gap-2 pb-space-sm border-b border-wire-border">
-        <h2 id="rw-title" class="font-headline-sm text-headline-sm text-ink-primary">Rewards coming your way</h2>
-        <span class="tag">Our proposal</span>
-      </div>
-      <table class="rw" id="rw-table"><tbody></tbody></table>
-      <p class="font-body-sm text-body-sm text-outline mt-2"><b class="text-ink-primary">What points redeem for:</b> a credit on your Base bill. <span class="tag">Our proposal</span> Not an issued payment. Base confirms points at installation.</p>
-      <div class="rw-invite mt-space-md p-space-sm rounded-lg bg-surface-subtle border border-wire-border flex flex-wrap items-center justify-between gap-2">
-        <p class="font-body-sm text-body-sm text-ink-primary min-w-0" id="rw-pending">Pending: neighbour invite bonus. It counts when a neighbour joins from your invite.</p>
-        <a class="btn px-4 bg-secondary-container hover:bg-secondary-fixed text-ink-primary font-label-md text-label-md rounded-xl font-semibold" href="rewards.html">Invite a neighbour</a>
-      </div>
-    </section>
-    <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg shadow-sm min-w-0 flex flex-col gap-2" aria-labelledby="help-title">
-      <div class="flex items-center gap-2 pb-space-sm border-b border-wire-border"><span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">support_agent</span><h2 id="help-title" class="font-headline-sm text-headline-sm text-ink-primary">Help any hour</h2></div>
-      <p class="font-body-sm text-body-sm text-outline">Questions about your install, billing or battery? Base Brain answers any time.</p>
-      <a class="btn self-start px-4 bg-surface-subtle hover:bg-wire-border text-ink-primary font-label-md text-label-md rounded-xl border border-wire-border" id="help-any-hour" href="brain.html?track=home&amp;persona=lead">Ask Base Brain</a>
-    </section>
+    <div class="twin">
+     <div class="twin-img">
+      <img alt="Illustration of a house with rooftop solar and an outdoor battery" src="assets/stitch/member-1.jpg">
+      <span class="illus">Illustration</span>
+     </div>
+     <div class="badge b-solar"><span class="k">Solar inflow</span><b>-- <small>kW</small></b><span class="s">Starts after installation</span></div>
+     <div class="badge b-home"><span class="k">Home consumption</span><b>-- <small>kW</small></b><span class="s">Starts after installation</span></div>
+     <div class="badge b-store"><span class="k">Storage <span class="tag m">Planned</span></span><span class="s">Sized by Base after engineering review</span></div>
+    </div>
+    <p class="src" id="res-source">Home facts come from Austin permit records.</p>
+   </section>
   </div>
+  <aside class="right" aria-label="Your status">
+   <section id="setup-banner" class="hero">
+    <span class="eyebrow" id="banner-kick-row"><span class="material-symbols-outlined" aria-hidden="true" id="banner-icon">check_circle</span><span id="banner-kicker">All steps done</span></span>
+    <p class="q">Where does my home setup stand?</p>
+    <h1 class="a" id="banner-title">You're done. Base takes it from here.</h1>
+    <p class="line" id="next-step-text">Checking your saved progress in this browser.</p>
+    <ul class="done-steps" id="done-steps" aria-label="Your onboarding steps">
+     <li><span class="material-symbols-outlined" aria-hidden="true">check</span>Address</li>
+     <li><span class="material-symbols-outlined" aria-hidden="true">check</span>Home questions</li>
+     <li><span class="material-symbols-outlined" aria-hidden="true">check</span>Panel photo</li>
+    </ul>
+    <p class="line" id="whats-next"><b>What happens next:</b> Base does the engineering review, then books your install. Battery status: not installed yet. Live readings start after installation.</p>
+    <p class="line" id="demo-note" hidden></p>
+    <div class="acts"><a class="btnp" href="status.html">Application status</a><a class="btns" href="brain.html?track=home&amp;persona=lead">Ask Base Brain</a></div>
+   </section>
+   <div class="stats">
+    <div class="panel stat"><span class="k">Points so far <span class="tag m">Proposal</span></span><b class="v" id="stat-pts">0 pts</b><span class="s">Base confirms at installation</span></div>
+    <div class="panel stat"><span class="k">Weather alerts <span class="tag m">Measured</span></span><b class="v sm" id="out-alerts">...</b><span class="s">National Weather Service</span></div>
+    <div class="panel stat"><span class="k">Grid today <span class="tag m">Measured</span></span><b class="v sm" id="grid-peak">...</b><span class="s">ERCOT day-ahead, Austin</span></div>
+    <div class="panel stat"><span class="k">Battery</span><b class="v sm">Planned</b><span class="s">Sized after engineering review</span></div>
+   </div>
+  </aside>
+ </div>
 
-  <section class="flex flex-col gap-2" aria-label="Your onboarding record">
-    <div data-milestones="ribbon"></div>
-  </section>
-
-  <nav class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-1 font-body-sm text-body-sm" aria-label="Home energy sections">
-    <div class="member-links flex flex-wrap">
-      <a href="#ans" aria-current="location">Home</a>
-      <a href="#daily-activity">Energy</a>
-      <a href="brain.html?track=home&persona=lead&q=how%20and%20when%20do%20I%20pay">Billing help</a>
-      <a href="#member-help">Help</a>
-    </div>
-    <span class="inline-flex items-center gap-1.5 self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-surface-container-highest text-ink-primary font-label-caps text-[11px] font-semibold border border-wire-border"><span class="w-1.5 h-1.5 rounded-full bg-solar-green" id="setup-dot"></span><span id="setup-pill">All steps done</span></span>
+ <section class="week" aria-labelledby="week-title">
+  <nav class="navrow" aria-label="Home energy sections">
+   <div class="member-links">
+    <a href="#ans" aria-current="location">Home</a>
+    <a href="#daily-activity">Energy</a>
+    <a href="brain.html?track=home&persona=lead&q=how%20and%20when%20do%20I%20pay">Billing help</a>
+    <a href="#member-help">Help</a>
+   </div>
+   <span class="pill-st"><i id="setup-dot"></i><span id="setup-pill">All steps done</span></span>
   </nav>
-  <div class="notice" id="notice">Home details are loading. Refresh the page if this stays empty.</div>
-
-  <section class="bg-surface-container-lowest border border-wire-border rounded-xl overflow-hidden shadow-sm" aria-labelledby="res-title">
-    <div class="p-space-lg border-b border-wire-border flex flex-wrap items-center justify-between gap-2">
-      <div class="min-w-0">
-        <span class="font-label-caps text-label-caps text-outline uppercase block">Residence</span>
-        <h2 id="res-title" class="font-headline-sm text-headline-sm text-ink-primary">Your home</h2>
-      </div>
-      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle text-outline font-label-md text-label-md"><span class="material-symbols-outlined text-[15px]" aria-hidden="true">sensors</span>Readings start after installation</span>
+  <h2 id="week-title">What a battery week can look like <span class="tag s">Simulation</span></h2>
+  <p class="sub">A modeled example account using ERCOT prices. Your own numbers start after installation.</p>
+  <div class="wgrid">
+   <div class="panel wcard"><h3>Modeled battery earnings</h3><section class="ans" id="ans" aria-live="polite"><p class="q">Loading the example week</p></section></div>
+   <section class="asksec panel wcard" id="member-help">
+    <h2>Questions about the week</h2>
+    <p class="note">Recorded answers from this example account.</p>
+    <div class="chips" id="chips" role="group" aria-label="Questions to ask"></div>
+    <details id="local-questions"><summary>Ask a local model</summary>
+    <p class="note">Requires Ollama running on this device.</p>
+    <div class="ask">
+     <input id="q" placeholder="Ask about your house, battery or week" aria-label="Your question">
+     <button id="go">Ask</button>
     </div>
-    <div class="twin bg-surface-muted flex items-center justify-center p-6 overflow-hidden">
-      <div class="twin-img relative z-10 max-w-xl w-full flex items-center justify-center">
-        <img alt="Illustration of a house with rooftop solar and an outdoor battery" class="w-full h-auto object-contain select-none max-h-[400px] rounded-lg" src="assets/stitch/member-1.jpg">
-        <span class="absolute right-2 bottom-2 text-[11px] font-bold px-2 py-0.5 rounded bg-white/85 text-ink-primary">Illustration</span>
-      </div>
-      <div class="badge b-solar bg-surface-container-lowest/95 border border-wire-border rounded-xl p-3 shadow-md">
-        <div class="flex items-center justify-between pb-1.5 border-b border-wire-border/60">
-          <div class="flex items-center gap-1.5 text-outline"><span class="material-symbols-outlined text-[16px] text-amber-500" aria-hidden="true">solar_power</span><span class="font-label-caps text-label-caps uppercase">Solar inflow</span></div>
-          <span class="w-2 h-2 rounded-full bg-slate-300"></span>
-        </div>
-        <div class="pt-2"><div class="flex items-baseline gap-1"><span class="font-telemetry-metric text-telemetry-metric text-ink-primary">--</span><span class="font-telemetry-unit text-telemetry-unit text-outline">kW</span></div>
-        <p class="font-body-sm text-body-sm text-outline mt-0.5">Starts after installation</p></div>
-      </div>
-      <div class="badge b-home bg-surface-container-lowest/95 border border-wire-border rounded-xl p-3 shadow-md">
-        <div class="flex items-center justify-between pb-1.5 border-b border-wire-border/60">
-          <div class="flex items-center gap-1.5 text-outline"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">home</span><span class="font-label-caps text-label-caps uppercase">Home consumption</span></div>
-          <span class="w-2 h-2 rounded-full bg-slate-300"></span>
-        </div>
-        <div class="pt-2"><div class="flex items-baseline gap-1"><span class="font-telemetry-metric text-telemetry-metric text-ink-primary">--</span><span class="font-telemetry-unit text-telemetry-unit text-outline">kW</span></div>
-        <p class="font-body-sm text-body-sm text-outline mt-0.5">Starts after installation</p></div>
-      </div>
-      <div class="badge b-store bg-surface-container-lowest/95 border border-wire-border rounded-xl p-3 shadow-md">
-        <div class="flex items-center justify-between pb-1.5 border-b border-wire-border/60">
-          <div class="flex items-center gap-1.5 text-primary-container"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">battery_charging_full</span><span class="font-label-caps text-label-caps uppercase">Storage</span></div>
-          <span class="font-label-caps text-[10px] font-bold text-primary-container bg-secondary-container/60 px-2 py-0.5 rounded uppercase">Planned</span>
-        </div>
-        <div class="pt-2"><p class="font-headline-sm text-headline-sm text-ink-primary">Sized by Base after engineering review</p></div>
-      </div>
-    </div>
-    <div class="bg-surface-subtle px-space-lg py-2.5 flex items-start gap-1.5 font-body-sm text-body-sm text-outline border-t border-wire-border">
-      <span class="material-symbols-outlined text-[16px]" aria-hidden="true">info</span>
-      <span id="res-source">Home facts come from Austin permit records.</span>
-    </div>
-  </section>
-
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
-    <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg flex flex-col justify-between shadow-sm min-w-0">
-      <div>
-        <div class="flex items-center justify-between pb-space-sm border-b border-wire-border">
-          <span class="font-label-caps text-label-caps text-outline uppercase">Outage preparedness</span>
-          <span class="material-symbols-outlined text-outline text-[18px]" aria-hidden="true">shield</span>
-        </div>
-        <h3 class="font-headline-sm text-headline-sm text-ink-primary mt-space-md">Storms and grid reserves</h3>
-        <div class="my-space-md p-space-sm rounded-lg bg-surface-subtle border border-wire-border">
-          <span class="font-body-sm text-body-sm text-outline block">Weather alerts, Travis and Williamson counties</span>
-          <div class="font-headline-md text-headline-md text-ink-primary font-bold" id="out-alerts">...</div>
-          <span class="inline-block mt-1 font-label-caps text-[10px] text-primary-container bg-primary-fixed/40 px-2 py-0.5 rounded uppercase">National Weather Service</span>
-        </div>
-        <p class="font-body-sm text-body-sm text-outline leading-relaxed" id="out-reserve"></p>
-      </div>
-      <div class="pt-space-md mt-space-md border-t border-wire-border flex flex-wrap items-center justify-between gap-2">
-        <span class="font-body-sm text-body-sm text-outline" id="out-asof"></span>
-        <a class="btn text-ink-primary font-label-md text-label-md gap-1 hover:underline" href="brain.html?track=home&persona=lead&q=backup%20during%20an%20outage">Ask Base Brain<span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span></a>
-      </div>
-    </div>
-
-    <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg flex flex-col justify-between shadow-sm min-w-0">
-      <div>
-        <div class="flex items-center justify-between pb-space-sm border-b border-wire-border">
-          <span class="font-label-caps text-label-caps text-outline uppercase" id="grid-title">Grid today</span>
-          <span class="material-symbols-outlined text-outline text-[18px]" aria-hidden="true">bolt</span>
-        </div>
-        <h3 class="font-headline-sm text-headline-sm text-ink-primary mt-space-md" id="grid-cond">ERCOT grid</h3>
-        <div class="my-space-md p-space-sm rounded-lg bg-surface-subtle border border-wire-border">
-          <span class="font-body-sm text-body-sm text-outline block" id="plan-sub">Day-ahead price, Austin load zone</span>
-          <div class="font-headline-md text-headline-md text-ink-primary font-bold" id="grid-peak">...</div>
-          <div class="price-bars mt-2" id="price-bars" role="img" aria-label="Hourly day-ahead prices"></div>
-          <div class="flex justify-between font-label-caps text-[10px] text-outline mt-1"><span>00:00</span><span>12:00</span><span>24:00</span></div>
-        </div>
-        <p class="font-body-sm text-body-sm text-outline leading-relaxed" id="grid-note"></p>
-      </div>
-      <div class="pt-space-md mt-space-md border-t border-wire-border flex flex-wrap items-center justify-between gap-2">
-        <span class="font-body-sm text-body-sm text-outline" id="grid-asof"></span>
-        <a class="btn text-ink-primary font-label-md text-label-md gap-1 hover:underline" href="grid.html">Grid detail<span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span></a>
-      </div>
-    </div>
+    </details>
+    <div class="answers" id="answers" aria-live="polite"></div>
+    <nav class="help-links" aria-label="Member help">
+     <a href="brain.html?track=home&persona=lead">Search all answers</a>
+     <a href="brain.html?track=home&persona=lead&q=how%20do%20I%20talk%20to%20Base">Contact and support information</a>
+    </nav>
+   </section>
   </div>
+ </section>
 
-  <section class="flex flex-col gap-space-md" aria-labelledby="week-title">
-    <div>
-      <h2 id="week-title" class="font-headline-md text-headline-md text-ink-primary">What a battery week can look like</h2>
-      <p class="font-body-sm text-body-sm text-outline">A modeled example account using ERCOT prices. Your own numbers start after installation.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
-      <div class="bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg shadow-sm min-w-0">
-        <div class="flex items-center gap-2 mb-space-md"><span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">payments</span><h3 class="font-headline-sm text-headline-sm text-ink-primary">Modeled battery earnings</h3></div>
-        <section class="ans" id="ans" aria-live="polite"><p class="q">Loading the example week</p></section>
-      </div>
-      <section class="asksec bg-surface-container-lowest border border-wire-border rounded-xl p-space-lg flex flex-col gap-space-md shadow-sm min-w-0" id="member-help">
-        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">psychology</span><h2>Questions about the week</h2></div>
-        <p class="note font-body-sm text-body-sm text-outline">Recorded answers from this example account.</p>
-        <div class="chips flex flex-wrap gap-space-xs" id="chips" role="group" aria-label="Questions to ask"></div>
-        <details id="local-questions"><summary>Ask a local model</summary>
-        <p class="note">Requires Ollama running on this device.</p>
-        <div class="ask">
-          <input id="q" placeholder="Ask about your house, battery or week" aria-label="Your question">
-          <button id="go">Ask</button>
-        </div>
-        </details>
-        <div class="answers" id="answers" aria-live="polite"></div>
-        <nav class="help-links" aria-label="Member help">
-          <a href="brain.html?track=home&persona=lead">Search all answers</a>
-          <a href="brain.html?track=home&persona=lead&q=how%20do%20I%20talk%20to%20Base">Contact and support information</a>
-        </nav>
-      </section>
-    </div>
-  </section>
-
-  <div>
+ <section class="more">
+  <h2>More detail</h2>
+  <details id="done-panels"><summary>Rewards coming your way <span>points by step, invite bonus, help any hour</span></summary><div>
+   <table class="rw" id="rw-table"><tbody></tbody></table>
+   <p><b>What points redeem for:</b> a credit on your Base bill. <span class="tag m">Our proposal</span> Not an issued payment. Base confirms points at installation.</p>
+   <p class="row"><span id="rw-pending">Pending: neighbour invite bonus. It counts when a neighbour joins from your invite.</span> <a href="rewards.html">Invite a neighbour</a></p>
+   <p class="row" id="help-title"><span>Help any hour: questions about your install, billing or battery? Base Brain answers any time.</span> <a id="help-any-hour" href="brain.html?track=home&amp;persona=lead">Ask Base Brain</a></p>
+  </div></details>
+  <details><summary>Outage preparedness <span>storms and grid reserves</span></summary><div>
+   <p id="out-reserve"></p>
+   <p class="row"><span id="out-asof"></span> <a href="brain.html?track=home&persona=lead&q=backup%20during%20an%20outage">Ask Base Brain</a></p>
+  </div></details>
+  <details><summary><span class="t" id="grid-title">Grid today</span> <span>hourly day-ahead prices</span></summary><div>
+   <h3 id="grid-cond">ERCOT grid</h3>
+   <p id="plan-sub">Day-ahead price, Austin load zone</p>
+   <div class="price-bars" id="price-bars" role="img" aria-label="Hourly day-ahead prices"></div>
+   <div class="axis"><span>00:00</span><span>12:00</span><span>24:00</span></div>
+   <p id="grid-note"></p>
+   <p class="row"><span id="grid-asof"></span> <a href="grid.html">Grid detail</a></p>
+  </div></details>
   <details class="detail" id="detail">
-    <summary><h2>Source record and sample members</h2></summary><p class="note">Permit-derived home fields are joined to simulated battery and compute activity, using an example record. Compute is tracked separately from the battery totals above.</p>
-    <div class="picker">Member <select id="member" aria-label="Pick a member"></select> <span id="src"></span></div>
-    <div id="record"></div>
+   <summary>Source record and sample members <span>permit fields joined to simulated activity</span></summary><div><p class="note">Permit-derived home fields are joined to simulated battery and compute activity, using an example record. Compute is tracked separately from the battery totals above.</p>
+   <div class="picker">Member <select id="member" aria-label="Pick a member"></select> <span id="src"></span></div>
+   <div id="record"></div></div>
   </details>
-  <details class="detail"><summary>Answer sources and connection</summary><footer>Answers come from a local AI model running on this machine. No addresses, no names. The week is a test run on three real ERCOT price days, repeated.</footer></details>
-  </div>
-  <p class="font-body-sm text-body-sm text-outline">A Base Super Local AI design. Answers saved on this device.</p>
-</div>
+  <details class="detail"><summary>Answer sources and connection <span>local model, no names or addresses</span></summary><div><footer>Answers come from a local AI model running on this machine. No addresses, no names. The week is a test run on three real ERCOT price days, repeated.</footer></div></details>
+ </section>
+ <footer>A Base Super Local AI design. Answers saved on this device.</footer>
 </main>
 <script>
 const $ = s => document.querySelector(s);
@@ -452,6 +446,7 @@ async function loadHome() {
   }
   const st = s ? s.status : ["done", "next", "next", "base", "base"];
   const ex = !!window.MEMBER_EXAMPLE;
+  if (s && ms) setText("stat-pts", `${s.credit || 0} ${ms.UNIT}`);
   if (ex) { setText("res-title", "Example home"); setText("demo-note", "Simulation: an example finished account. Nothing is saved in this browser yet."); document.getElementById("demo-note").hidden = false; }
   if (s && s.complete) {
     const R = ms.REWARD, U = ms.UNIT;

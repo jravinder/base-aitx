@@ -12,16 +12,16 @@
       {id: "status", href: "status.html", label: "Status", short: "Status"},
       {id: "rewards", href: "rewards.html", label: "Rewards", short: "Rewards"},
       {id: "demo", href: "demo.html", label: "Walkthrough", short: "Walkthrough"},
-      {id: "house", href: "house.html", label: "Homes ready", short: "Homes ready"},
-      {id: "wall", href: "wall.html", label: "Site requirements", short: "Site"},
-      {id: "recovery", href: "recovery.html", label: "Install readiness", short: "Install readiness"},
+      {id: "house", href: "house.html", label: "The lead", short: "The lead"},
+      {id: "wall", href: "wall.html", label: "Will it fit", short: "Will it fit"},
+      {id: "recovery", href: "recovery.html", label: "Ready to install", short: "Ready to install"},
       {id: "dataqa", href: "data-qa.html", label: "Answers by zip", short: "Zip answers"}]},
     {title: "Where Base stands", items: [
-      {id: "explorer", href: "explorer.html", label: "Permits", short: "Permits"},
-      {id: "market", href: "market.html", label: "Market intelligence", short: "Market"},
+      {id: "explorer", href: "explorer.html", label: "Permit map", short: "Map"},
+      {id: "market", href: "market.html", label: "Where Base installs next", short: "Where next"},
       {id: "grid", href: "grid.html", label: "Energy insights by ERCOT", short: "Energy"},
       {id: "ask", href: "ask.html", label: "Search", short: "Search"},
-      {id: "judgments", href: "judgments.html", label: "Judgments", short: "Judgments"}]},
+      {id: "judgments", href: "judgments.html", label: "Permit check", short: "Permits"}]},
     {title: "B. Local AI close to you", items: [
       {id: "computehome", href: "compute-home.html", label: "Home", short: "Home"},
       {id: "copilot", href: "copilot.html", label: "My AI", short: "My AI"},
@@ -49,9 +49,9 @@
   const TRACKS = {home: "Home & Installation", compute: "Energy & Compute"};
   const PERSONAS = {
     lead: {track: "home", label: "Customer", start: "home", pages: ["home", "status", "rewards", "brain", "member", "knowledge", "built", "voice"]},
-    operations: {track: "home", label: "Base admin", start: "market", pages: ["market", "explorer", "grid", "ask", "dataflow", "admin", "house", "recovery", "wall", "knowledge", "brain", "built", "dataqa", "judgments", "gaps"]},
+    operations: {track: "home", label: "Base admin", start: "judgments", pages: ["judgments", "house", "wall", "recovery", "market"]},
     gpu: {track: "compute", label: "Customer", start: "computehome", pages: ["computehome", "copilot", "energy", "plans", "models", "tower", "block", "built"]},
-    fleet: {track: "compute", label: "Base admin", start: "overview", pages: ["overview", "tower", "placement", "jobs", "index", "plans", "block", "models", "pitch", "built", "gaps"]}
+    fleet: {track: "compute", label: "Base admin", start: "overview", pages: ["overview", "tower", "placement", "jobs", "index", "plans", "block", "models", "pitch", "built"]}
   };
   const params = new URLSearchParams(location.search);
   const initialId = currentId();
@@ -112,7 +112,8 @@
     } else if (twin && PERSONAS[who].pages.includes(twin)) {
       const item = ORDER.find(x => x.id === twin);
       target = new URL(perspectiveUrl(item.href, who));
-      for (const key of ["address", "node"]) if (params.get(key)) target.searchParams.set(key, params.get(key));
+      const live = new URLSearchParams(location.search);
+      for (const key of ["address", "node"]) if (live.get(key)) target.searchParams.set(key, live.get(key));
     } else {
       const item = ORDER.find(x => x.id === PERSONAS[who].start);
       target = new URL(perspectiveUrl(onTower && item.id !== "tower" ? PAGES_ORIGIN + item.href : item.href, who));
@@ -277,6 +278,7 @@
     for (const who of roles) {
       const a = el("a", "sh-role-link", PERSONAS[who].label);
       a.href = roleHref(who, cur);
+      a.addEventListener("click", () => { a.href = roleHref(who, cur); }); // onboarding adds ?address after load
       a.dataset.shRole = who;
       if (who === persona) a.setAttribute("aria-current", "true");
       role.append(a);
@@ -487,23 +489,22 @@
     ["tower.html", "Break it and watch it recover"]];
   // Base admin's own story on the home track (docs/GOAL.md, admin rows), ending at Base Brain.
   const ADMIN_STORY = [
-    ["market.html", "How fast Base is arriving"],
-    ["explorer.html", "Every permit on the map"],
-    ["grid.html", "What the grid is doing today"],
-    ["house.html", "Homes ready"],
+    ["judgments.html", "Every permit, routed"],
+    ["house.html", "The lead, as Base sees it"],
     ["wall.html", "Will the battery fit"],
-    ["recovery.html", "Install readiness"]];
+    ["recovery.html", "Ready to install"],
+    ["market.html", "Where Base installs next"]];
   function adminStoryBar(file) {
     const i = ADMIN_STORY.findIndex(([f]) => f === file);
     if (i < 0) return false;
-    const next = i + 1 === ADMIN_STORY.length ? ["knowledge.html", "The knowledge behind every answer"] : ADMIN_STORY[i + 1];
+    const next = i + 1 === ADMIN_STORY.length ? ["onboarding.html", "See it as the customer"] : ADMIN_STORY[i + 1];
     const bar = document.createElement("nav");
     bar.className = "sh-story";
     bar.setAttribute("aria-label", "The Base admin story");
     const where = document.createElement("span");
     where.textContent = `Base admin story ${i + 1} of ${ADMIN_STORY.length}: ${ADMIN_STORY[i][1]}`;
     const a = document.createElement("a");
-    a.href = `${next[0]}?track=home&persona=operations`;
+    a.href = next[0] === "onboarding.html" ? "onboarding.html?track=home&persona=lead" : `${next[0]}?track=home&persona=operations`;
     a.textContent = `Next: ${next[1]}`;
     bar.append(where, a);
     document.body.append(bar);
@@ -533,8 +534,7 @@
     bar.append(where, a);
     document.body.append(bar);
   }
-  // Page analytics, only on the hosted site. Vercel Web Analytics and Speed Insights are served by Vercel itself;
-  // Google Analytics loads only when a measurement id is set in ANALYTICS.ga (for example "G-XXXXXXX").
+  // Page analytics, only on the hosted site. Google Analytics loads only when a measurement id is set in ANALYTICS.ga (for example "G-XXXXXXX").
   const ANALYTICS = {ga: "G-9QLRH4GSME"};
   function analytics() {
     if (!/\.vercel\.app$|^basefleet\./.test(location.hostname) || window.__bfAnalytics) return;
@@ -545,10 +545,6 @@
       for (const [k, v] of Object.entries(attrs)) s.setAttribute(k, v);
       document.head.append(s);
     };
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-    add("/_vercel/insights/script.js");
-    add("/_vercel/speed-insights/script.js");
     if (/^G-[A-Z0-9]+$/.test(ANALYTICS.ga)) {
       add(`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.ga}`);
       window.dataLayer = window.dataLayer || [];
@@ -588,4 +584,14 @@
   function boot() { analytics(); build(); sources(); builtBy(); setTimeout(homeLink, 0); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
+
+  // The admin story follows one lead: carry ?address= to the next step.
+  (function carryLead() {
+    const addr = new URLSearchParams(location.search).get("address");
+    const next = document.getElementById("story-next");
+    if (!addr || !next) return;
+    const u = new URL(next.getAttribute("href"), location.href);
+    u.searchParams.set("address", addr);
+    next.href = u.pathname.split("/").pop() + u.search + u.hash;
+  })();
 })();

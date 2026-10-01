@@ -54,6 +54,34 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
  .reg td.first{font-weight:600;padding-bottom:4px}
  .reg td.first::before{display:none}
 }
+
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+.left,.right{display:grid;gap:10px;min-width:0}
+@media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+.panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+.vis{padding:14px 16px}
+.eyebrow.jb{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+.eyebrow.jb i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+.hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+.hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+.hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.hero .a small{font:600 22px/30px var(--bf-font);color:var(--bf-muted);letter-spacing:0}
+.hero .line{font:var(--bf-text-body);color:var(--bf-muted)}
+.right .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.find{padding:12px 16px;display:grid;gap:6px;border-left:4px solid var(--bf-blue)}
+.find.ok{border-left-color:var(--bf-solar)}
+.find h2{font:var(--bf-text-h3)}
+.find p{font:var(--bf-text-small);color:var(--bf-muted)}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.more{margin-top:20px}
+.more>h2{font:var(--bf-text-h3);margin-bottom:10px}
+.more details{border-top:1px solid var(--bf-line)}.more details:last-of-type{border-bottom:1px solid var(--bf-line)}
+.more summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+.more summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+.more details>div{padding:4px 4px 18px;min-width:0}
+#rates .reg th,#rates .reg td{padding:8px 12px}
+#rates .reg td.first,#rates .reg td.num{overflow-wrap:normal;white-space:nowrap}
+@media (max-width:640px){.hero .a{font:700 30px/38px var(--bf-font)}.hero .a small{font-size:18px}.right .stats{grid-template-columns:1fr}}
 </style>
 <script defer src="shell.js"></script>
 </head>
@@ -70,28 +98,64 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
   <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span>Our proposal</span>
  </div>
 </div>
-<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-6">
+<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
 
- <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-4" aria-labelledby="hero-title">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
-   <div class="min-w-0">
-    <span class="eyebrow">Operator console · Base Super Local AI · Track 3</span>
-    <h1 id="hero-title" class="font-headline-lg text-headline-lg text-ink-primary mt-1">Compute plans</h1>
-    <p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-3xl">Base made home energy a service through batteries and strong distribution. The same homes, installers and care can carry AI compute. Open models are close to the frontier; what people lack is the GPU. Members buy GPU time the way they buy energy, pick an open model, and keep their data at home.</p>
+ <div class="cols">
+  <div class="left">
+ <section id="rates" class="scroll-mt-20 space-y-3 panel vis" aria-labelledby="rates-title">
+  <div class="min-w-0"><span class="eyebrow">Rate card · pay by the hour</span><h2 id="rates-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Five tiers, each pinned to a public GPU price</h2></div>
+  <table class="reg" id="rate-table">
+   <thead><tr><th>Tier</th><th>Buyer</th><th>$/GPU-hour</th><th>Public reference</th><th>Tag</th></tr></thead>
+   <tbody>
+    <tr><td class="first"><b>member</b></td><td data-l="Buyer">The member's own questions</td><td class="num" data-l="$/GPU-hour">1.20</td><td data-l="Public reference">Local job rate, set in the sim <span class="src">sim/fleet.py</span></td><td data-l="Tag"><span class="pill sim">Simulation</span></td></tr>
+    <tr><td class="first"><b>business</b></td><td data-l="Buyer">Local businesses, low latency</td><td class="num" data-l="$/GPU-hour">1.09</td><td data-l="Public reference">Lambda RTX A6000 48 GB on-demand $1.09/hr, 2026-09-26 · <a href="https://lambda.ai/service/gpu-cloud">lambda.ai</a></td><td data-l="Tag"><span class="pill ok">Measured</span></td></tr>
+    <tr><td class="first"><b>base</b></td><td data-l="Buyer">Base forecast and telemetry jobs</td><td class="num" data-l="$/GPU-hour">0.79</td><td data-l="Public reference">RunPod L40S 48 GB community $0.79/hr, 2026-09-26 · <a href="https://www.runpod.io/pricing">runpod.io</a></td><td data-l="Tag"><span class="pill ok">Measured</span></td></tr>
+    <tr><td class="first"><b>partner</b></td><td data-l="Buyer">Grid partner batch</td><td class="num" data-l="$/GPU-hour">0.34</td><td data-l="Public reference">RunPod RTX 4090 24 GB community $0.34/hr, 2026-09-26 · <a href="https://www.runpod.io/pricing">runpod.io</a></td><td data-l="Tag"><span class="pill ok">Measured</span></td></tr>
+    <tr><td class="first"><b>external</b></td><td data-l="Buyer">Public marketplace batch</td><td class="num" data-l="$/GPU-hour">0.16</td><td data-l="Public reference">RunPod RTX A5000 24 GB community $0.16/hr, 2026-09-26 · <a href="https://www.runpod.io/pricing">runpod.io</a></td><td data-l="Tag"><span class="pill ok">Measured</span></td></tr>
+   </tbody>
+  </table>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+   <div class="stat"><span class="eyebrow">One home, one simulated week</span><span class="v">GPU $36.41 median · $48.55 mean <span class="pill sim">Simulation</span></span><span class="s">Sum of week[].gpu_usd over 40 homes, 7 days replayed from ERCOT price days 2026-09-07, 09-09, 09-26, 40% GPU use. Battery alone: $5.42 mean. data/members.json</span></div>
+   <div class="stat"><span class="eyebrow">Fleet, 50 homes, 3 days</span><span class="v">$142.14 power · $1,183 with compute <span class="pill sim">Simulation</span></span><span class="s">Compute $1,040.68: members $646.60, outside buyers $394.08. python3 -m sim --nodes 50 --seed 7 · grid/RATES.md</span></div>
+  </div>
+  <p class="font-body-sm text-body-sm text-on-surface-variant">Tier rates are Measured public prices mapped to tiers in <span class="src">grid/RATES.md</span>; earnings are Simulation, with 40% GPU use as the demand dial.</p>
+ </section>
+  </div>
+  <aside class="right" aria-label="Summary">
+   <section class="hero" aria-labelledby="hero-title">
+    <span class="eyebrow jb"><i></i>Compute plans · Our proposal</span>
+    <h1 id="hero-title" class="q">How does a member pay for AI next door?</h1>
+    <p class="a">By the GPU-hour, <small>not by the token.</small></p>
+    <p class="line">Send your AI work to a GPU next door: data stays local, pay by the hour, backup reserve first.</p>
+   </section>
+   <div class="stats">
+    
+<div class="stat"><span class="eyebrow">Member GPU rate</span><span class="v">$1.20 / GPU-hour <span class="pill sim">Simulation</span></span><span class="s">sim/fleet.py TIERS member</span></div>    <div class="stat"><span class="eyebrow">Public 24 GB GPU</span><span class="v">$0.34 / hour <span class="pill ok">Measured</span></span><span class="s">RunPod RTX 4090, 2026-09-26, grid/RATES.md</span></div>    <div class="stat"><span class="eyebrow">GPU earnings per home, one week</span><span class="v">$36.41 median <span class="pill sim">Simulation</span></span><span class="s">40 homes, range $6.94 to $136.24, data/members.json</span></div>    <div class="stat"><span class="eyebrow">Measured local model</span><span class="v">gemma4:e4b, 18 of 20 <span class="pill ok">Measured</span></span><span class="s">2.2 s median, M2 laptop, brain/LOCAL_VS_CLOUD.md</span></div>
    </div>
-   <div class="flex flex-wrap gap-2 self-start md:self-auto">
-    <a href="#offers" class="btn"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">table_view</span>Offers</a>
+   <div class="panel find">
+    <h2>Use, Host, Sell</h2>
+    <p>Use: the member pays per GPU-hour. Host: the member earns from spare GPU time. Sell: Base sells spare station time; member questions run first and the backup reserve holds.</p>
+   </div>
+   <div class="panel find ok">
+    <h2>Member data stays with the member</h2>
+    <p>Member questions run only on their home PC or station. Jobs sold to others run in an isolated sandbox.</p>
+   </div>
+   <div class="acts">
     <a id="story-next" href="copilot.html" data-ctx class="btn pri"><span>Next: your own AI</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
    </div>
-  </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
-   <div class="stat"><span class="eyebrow">Member GPU rate</span><span class="v">$1.20 / GPU-hour <span class="pill sim">Simulation</span></span><span class="s">sim/fleet.py TIERS member</span></div>
-   <div class="stat"><span class="eyebrow">Public 24 GB GPU</span><span class="v">$0.34 / hour <span class="pill ok">Measured</span></span><span class="s">RunPod RTX 4090, 2026-09-26, grid/RATES.md</span></div>
-   <div class="stat"><span class="eyebrow">GPU earnings per home, one week</span><span class="v">$36.41 median <span class="pill sim">Simulation</span></span><span class="s">40 homes, range $6.94 to $136.24, data/members.json</span></div>
-   <div class="stat"><span class="eyebrow">Measured local model</span><span class="v">gemma4:e4b, 18 of 20 <span class="pill ok">Measured</span></span><span class="s">2.2 s median, M2 laptop, brain/LOCAL_VS_CLOUD.md</span></div>
-  </div>
- </section>
+  </aside>
+ </div>
 
+ <section class="more" aria-label="More detail">
+  <h2>More detail</h2>
+  <details>
+   <summary>Why compute, like energy<span>Base homes, installers and care can carry AI compute</span></summary>
+   <div><p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">Base made home energy a service through batteries and strong distribution. The same homes, installers and care can carry AI compute. Open models are close to the frontier; what people lack is the GPU. Members buy GPU time the way they buy energy, pick an open model, and keep their data at home.</p>
+   </div>
+  </details>
+  <details>
+   <summary>Use, Host, Sell<span>who pays, who owns the hardware, what the member gets</span></summary>
+   <div>
  <section id="offers" class="scroll-mt-20 space-y-3" aria-labelledby="offers-title">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-2">
    <div class="min-w-0"><span class="eyebrow">1 · Three offers</span><h2 id="offers-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Use, Host, Sell</h2></div>
@@ -125,26 +189,11 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
    </tbody>
   </table>
  </section>
-
- <section id="rates" class="scroll-mt-20 space-y-3" aria-labelledby="rates-title">
-  <div class="min-w-0"><span class="eyebrow">2 · Rate card</span><h2 id="rates-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Five tiers, each pinned to a public GPU price</h2></div>
-  <table class="reg" id="rate-table">
-   <thead><tr><th>Tier</th><th>Buyer</th><th>$/GPU-hour</th><th>Public reference</th><th>Tag</th></tr></thead>
-   <tbody>
-    <tr><td class="first"><b>member</b></td><td data-l="Buyer">The member's own questions</td><td class="num" data-l="$/GPU-hour">1.20</td><td data-l="Public reference">Local job rate, set in the sim <span class="src">sim/fleet.py</span></td><td data-l="Tag"><span class="pill sim">Simulation</span></td></tr>
-    <tr><td class="first"><b>business</b></td><td data-l="Buyer">Local businesses, low latency</td><td class="num" data-l="$/GPU-hour">1.09</td><td data-l="Public reference">Lambda RTX A6000 48 GB on-demand $1.09/hr, 2026-09-26 · <a href="https://lambda.ai/service/gpu-cloud">lambda.ai</a></td><td data-l="Tag"><span class="pill ok">Measured</span></td></tr>
-    <tr><td class="first"><b>base</b></td><td data-l="Buyer">Base forecast and telemetry jobs</td><td class="num" data-l="$/GPU-hour">0.79</td><td data-l="Public reference">RunPod L40S 48 GB community $0.79/hr, 2026-09-26 · <a href="https://www.runpod.io/pricing">runpod.io</a></td><td data-l="Tag"><span class="pill ok">Measured</span></td></tr>
-    <tr><td class="first"><b>partner</b></td><td data-l="Buyer">Grid partner batch</td><td class="num" data-l="$/GPU-hour">0.34</td><td data-l="Public reference">RunPod RTX 4090 24 GB community $0.34/hr, 2026-09-26 · <a href="https://www.runpod.io/pricing">runpod.io</a></td><td data-l="Tag"><span class="pill ok">Measured</span></td></tr>
-    <tr><td class="first"><b>external</b></td><td data-l="Buyer">Public marketplace batch</td><td class="num" data-l="$/GPU-hour">0.16</td><td data-l="Public reference">RunPod RTX A5000 24 GB community $0.16/hr, 2026-09-26 · <a href="https://www.runpod.io/pricing">runpod.io</a></td><td data-l="Tag"><span class="pill ok">Measured</span></td></tr>
-   </tbody>
-  </table>
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
-   <div class="stat"><span class="eyebrow">One home, one simulated week</span><span class="v">GPU $36.41 median · $48.55 mean <span class="pill sim">Simulation</span></span><span class="s">Sum of week[].gpu_usd over 40 homes, 7 days replayed from ERCOT price days 2026-09-07, 09-09, 09-26, 40% GPU use. Battery alone: $5.42 mean. data/members.json</span></div>
-   <div class="stat"><span class="eyebrow">Fleet, 50 homes, 3 days</span><span class="v">$142.14 power · $1,183 with compute <span class="pill sim">Simulation</span></span><span class="s">Compute $1,040.68: members $646.60, outside buyers $394.08. python3 -m sim --nodes 50 --seed 7 · grid/RATES.md</span></div>
-  </div>
-  <p class="font-body-sm text-body-sm text-on-surface-variant">Tier rates are Measured public prices mapped to tiers in <span class="src">grid/RATES.md</span>; earnings are Simulation, with 40% GPU use as the demand dial.</p>
- </section>
-
+   </div>
+  </details>
+  <details>
+   <summary>Which open model fits which machine<span>10 open models against browser, home PC and station</span></summary>
+   <div>
  <section id="catalog" class="scroll-mt-20 space-y-3" aria-labelledby="cat-title">
   <div class="min-w-0"><span class="eyebrow">3 · Model catalog</span><h2 id="cat-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Which open model fits which machine</h2></div>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -169,7 +218,11 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
   </table>
   <p class="font-body-sm text-body-sm text-on-surface-variant"><span class="pill est">Estimate</span> 4-bit weights = parameters × 0.5 bytes, weights only; context memory comes on top. Parameter counts and licenses from each model card on Hugging Face, checked 2026-09-27. The largest open models need station-class memory; one home box carries the 4B to 32B class.</p>
  </section>
-
+   </div>
+  </details>
+  <details>
+   <summary>Frontier API, hosted open model, Super Local AI<span>where data goes and who is paid per token</span></summary>
+   <div>
  <section id="compare" class="scroll-mt-20 space-y-3" aria-labelledby="cmp-title">
   <div class="min-w-0"><span class="eyebrow">4 · Honest comparison</span><h2 id="cmp-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Frontier API, hosted open model, Super Local AI</h2></div>
   <table class="reg" id="compare-table">
@@ -181,7 +234,11 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
    </tbody>
   </table>
  </section>
-
+   </div>
+  </details>
+  <details>
+   <summary>The data rule<span>member questions vs jobs sold to others</span></summary>
+   <div>
  <section id="data-rule" class="scroll-mt-20 bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-4" aria-labelledby="rule-title">
   <div class="min-w-0"><span class="eyebrow">5 · The data rule</span><h2 id="rule-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Member data stays with the member</h2></div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -189,7 +246,11 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
    <div class="rule" data-rule="sold"><span class="ic"><span class="material-symbols-outlined" aria-hidden="true">shield_lock</span></span><div class="min-w-0"><p class="font-headline-sm text-headline-sm">Jobs sold to others</p><p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Run only in an isolated sandbox on the station, always apart from member data.</p></div></div>
   </div>
  </section>
-
+   </div>
+  </details>
+  <details>
+   <summary>Four measurements to make next<span>PC speed, power draw, demand, larger models</span></summary>
+   <div>
  <section id="gaps" class="scroll-mt-20 bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-3" aria-labelledby="gaps-title">
   <div class="min-w-0"><span class="eyebrow">6 · Open gaps</span><h2 id="gaps-title" class="font-headline-md text-headline-md text-ink-primary mt-1">Four measurements to make next</h2></div>
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
@@ -198,6 +259,9 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
    <div class="gap"><span class="pill sim">Dial</span><p class="font-headline-sm text-headline-sm mt-2">Demand</p><p class="font-body-sm text-body-sm text-on-surface-variant mt-1">40% GPU use is a sim dial (UTIL in sim/fleet.py). Real buyer demand sets the earnings.</p></div>
    <div class="gap"><span class="pill">Model size</span><p class="font-headline-sm text-headline-sm mt-2">Larger models</p><p class="font-body-sm text-body-sm text-on-surface-variant mt-1">gemma4:e4b is the largest model measured so far. Gemma 4 12B and Qwen3-30B-A3B are pulled and ready to score.</p></div>
   </div>
+ </section>
+   </div>
+  </details>
  </section>
 
  <footer class="font-body-sm text-body-sm text-outline py-6 border-t border-wire-border">Our proposal. Sources: grid/RATES.md, sim/fleet.py, data/members.json, brain/LOCAL_VS_CLOUD.md, Hugging Face model cards. Details in docs/COMPUTE_PLANS.md.</footer>

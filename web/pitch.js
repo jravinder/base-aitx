@@ -2,6 +2,7 @@
 (() => {
   "use strict";
   const ASK = "http://localhost:8742/ask";
+  const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname); // the home ask server only answers pages served from this machine
   const CHIPS = ["how-long", "outage", "storm-now", "battery-today", "private"];
   const STOP = new Set("a an and are as at be by can do does for from how i if in is it my of on or the to what when where which who why will with you your me".split(" "));
   const KB_STOP = new Set("not get happens goes out need much many long base home".split(" "));
@@ -128,7 +129,7 @@
     const t0 = performance.now();
     const trip = hop();
     let r = null;
-    try {
+    if (LOCAL) try {
       const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 30000);
       const res = await fetch(ASK, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({q: text, page: "pitch.html"}), signal: ctl.signal});
       clearTimeout(t);
@@ -288,4 +289,19 @@
     const first = CHIPS.map(id => pool().find(x => x.id === id)).find(Boolean);
     if (first) ask(first.q);
   });
+})();
+
+// Links to a section inside a closed "More detail" block open that block first.
+(() => {
+  const open = () => {
+    const id = location.hash.slice(1), el = id && document.getElementById(id);
+    const d = el && el.closest("details");
+    if (d) { d.open = true; el.scrollIntoView(); }
+  };
+  addEventListener("hashchange", open);
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.getAttribute("href").length > 1) setTimeout(open, 0);
+  });
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", open); else open();
 })();

@@ -87,6 +87,44 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
  .log li .t{display:none}
 }
 @media (prefers-reduced-motion:reduce){.lane .dot,.caret::after{animation:none!important}.bar>span{transition:none}}
+/* one-screen layout, judgments.html pattern */
+body{background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body)}
+.eyebrow{font:var(--bf-text-caps);color:var(--bf-muted)}
+.hero .eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;letter-spacing:.06em;padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+.hero .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+.tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+.tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+:root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+.hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+.hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+.hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.hero .a small{font:600 22px/30px var(--bf-font);color:var(--bf-muted);letter-spacing:0}
+.hero .line{font:var(--bf-text-body);color:var(--bf-muted)}
+.panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+.livep{padding:16px 18px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card);padding:10px 12px}
+.stat .v{font:700 16px/22px var(--bf-font);color:var(--bf-ink)}
+.stat .s{color:var(--bf-muted);overflow-wrap:anywhere}
+.find{padding:14px 18px;display:grid;gap:8px;border-left:4px solid var(--bf-brand)}
+.find h2{font:var(--bf-text-h2);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.duo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.duo div{background:var(--bf-sunk);border-radius:var(--bf-radius-lg);padding:8px 12px}
+.duo b{display:block;font:700 20px/26px var(--bf-font);color:var(--bf-ink)}.duo span{font:var(--bf-text-small);color:var(--bf-muted)}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+.left,.right{display:grid;gap:10px;min-width:0}
+.cols .lanes{grid-template-columns:1fr}
+@media (min-width:1000px){.cols .lanes{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.livep .log{max-height:200px}
+@media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+.more{margin-top:20px}
+.more>h2{font:var(--bf-text-h3);margin-bottom:10px}
+.more details{border-top:1px solid var(--bf-line)}.more details:last-of-type{border-bottom:1px solid var(--bf-line)}
+.more summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+.more summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+.more details>div{padding:4px 4px 18px;overflow-x:auto}
+@media (max-width:640px){.duo{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.hero .a{font:700 28px/36px var(--bf-font)}}
 </style>
 <script defer src="shell.js"></script><script defer src="models.js"></script>
 </head>
@@ -103,29 +141,11 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
   <span id="mode-chip" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span><span id="mode-text">Ready</span></span>
  </div>
 </div>
-<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-6">
+<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-6">
 
- <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-4" aria-labelledby="hero-title">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
-   <div class="min-w-0">
-    <span class="eyebrow">Operator console · Base Super Local AI · Track 3</span>
-    <h1 id="hero-title" class="font-headline-lg text-headline-lg text-ink-primary mt-1">Local models</h1>
-    <p class="font-body-md text-body-md text-on-surface-variant mt-1">Models, runtimes and live runs for the home AI. Each figure cites its source file.</p>
-   </div>
-   <div class="flex flex-wrap gap-2 self-start md:self-auto">
-    <a id="try-btn" href="#try" class="btn pri"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">play_arrow</span>Try it</a>
-    <a id="story-next" href="copilot.html" data-ctx class="btn"><span>Next: your own AI</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
-   </div>
-  </div>
-  <div id="statusbar" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
-   <div class="stat" id="st-home"><span class="eyebrow">Home server · 8742</span><span class="v"><span class="led"></span><span class="val">Not checked</span></span><span class="s">python3 -m brain.ask --serve 8742</span></div>
-   <div class="stat" id="st-voice"><span class="eyebrow">Voice server · 8744</span><span class="v"><span class="led"></span><span class="val">Not checked</span></span><span class="s">Kokoro-82M, brain/tts.py</span></div>
-   <div class="stat" id="st-browser"><span class="eyebrow">Browser runtime</span><span class="v"><span class="led"></span><span class="val">Checking WebGPU</span></span><span class="s">Model not loaded</span></div>
-   <div class="stat" id="st-last"><span class="eyebrow">Last answer</span><span class="v"><canvas id="live-brain" class="brain" style="width:40px;height:24px" role="img" aria-label="Activity indicator. It pulses while an answer runs."></canvas><span class="val" id="hero-state-text">None yet</span></span><span class="s" id="st-last-sub">Ready for a question</span></div>
-  </div>
- </section>
-
- <section id="live" class="scroll-mt-20 bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-4" aria-labelledby="live-title">
+ <div class="cols">
+  <div class="left">
+ <section id="live" class="panel livep scroll-mt-20 space-y-3" aria-labelledby="live-title">
   <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-3">
    <div class="min-w-0">
     <span class="eyebrow">Live run</span>
@@ -158,7 +178,40 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
    <ul id="answer-sources" class="space-y-1 font-body-sm text-body-sm"></ul>
   </div>
  </section>
-
+  </div>
+  <aside class="right" aria-label="Summary">
+   <section class="hero" aria-labelledby="hero-title">
+    <span class="eyebrow"><i></i>Local models · Super Local AI</span>
+    <h1 id="hero-title" class="q">Where does my question get answered?</h1>
+    <p class="a">On a GPU next door. <small>Data stays local.</small></p>
+    <p class="line">Models, runtimes and live runs for the home AI. Each figure cites its source file.</p>
+   </section>
+  <div id="statusbar" class="stats">
+   <div class="stat" id="st-home"><span class="eyebrow">Home server · 8742</span><span class="v"><span class="led"></span><span class="val">Not checked</span></span><span class="s">python3 -m brain.ask --serve 8742</span></div>
+   <div class="stat" id="st-voice"><span class="eyebrow">Voice server · 8744</span><span class="v"><span class="led"></span><span class="val">Not checked</span></span><span class="s">Kokoro-82M, brain/tts.py</span></div>
+   <div class="stat" id="st-browser"><span class="eyebrow">Browser runtime</span><span class="v"><span class="led"></span><span class="val">Checking WebGPU</span></span><span class="s">Model not loaded</span></div>
+   <div class="stat" id="st-last"><span class="eyebrow">Last answer</span><span class="v"><canvas id="live-brain" class="brain" style="width:40px;height:24px" role="img" aria-label="Activity indicator. It pulses while an answer runs."></canvas><span class="val" id="hero-state-text">None yet</span></span><span class="s" id="st-last-sub">Ready for a question</span></div>
+  </div>
+   <div class="panel find">
+    <h2>Measured on real boxes <span class="tag m">Measured</span></h2>
+    <div class="duo">
+     <div><b>14 / 16</b><span>gemma4:e4b on M2 · 2.2 s median</span></div>
+     <div><b>12 / 16</b><span>Jetson edge box · 3.0 s median</span></div>
+     <div><b>4 / 4</b><span>policy questions sent to Base</span></div>
+    </div>
+    <p class="src">brain/LOCAL_VS_CLOUD.md · Windows x86 PC is the next measurement (#80)</p>
+   </div>
+   <div class="actions">
+    <a id="try-btn" href="#try" class="btn pri"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">play_arrow</span>Try it</a>
+    <a id="story-next" href="copilot.html" data-ctx class="btn"><span>Next: your own AI</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+   </div>
+  </aside>
+ </div>
+ <section class="more" aria-label="More detail">
+  <h2>More detail</h2>
+ <details id="d-try">
+  <summary>Where the model runs<span>browser, your PC, Jetson, Windows PC; install commands</span></summary>
+  <div>
  <section id="try" class="scroll-mt-20 bg-surface-container-lowest border border-wire-border rounded-xl" aria-labelledby="try-title">
   <div class="px-6 pt-6 pb-4 border-b border-wire-border">
    <span class="eyebrow">Runtimes · Try it</span>
@@ -201,7 +254,11 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
    <div class="min-w-0 space-y-2 font-body-sm text-body-sm text-on-surface-variant"><p>Same 16 questions on an x86 PC with Ollama · <span class="src">docs/GAPS.md</span></p><div class="cmd"><pre id="cmd-win">python3 -m brain.score</pre><button type="button" class="btn" data-copy="cmd-win"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span>Copy</button></div></div>
   </div>
  </section>
-
+  </div>
+ </details>
+ <details id="d-cards">
+  <summary>Models and paths, measured<span>accuracy, median time, first token, source per model</span></summary>
+  <div>
  <section class="space-y-3" aria-labelledby="cards-title">
   <div class="min-w-0">
    <span class="eyebrow">Model registry</span>
@@ -209,7 +266,11 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
   </div>
   <div id="cards"></div>
  </section>
-
+  </div>
+ </details>
+ <details id="d-leaves">
+  <summary>What leaves your home<span>data flow, with and without a cloud choice</span></summary>
+  <div>
  <section class="bg-surface-container-lowest border border-wire-border rounded-xl p-6 space-y-3" aria-labelledby="leaves-title">
   <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
    <div class="min-w-0"><span class="eyebrow">Data flow</span><h2 id="leaves-title" class="font-headline-sm text-headline-sm text-ink-primary mt-1">What leaves your home</h2></div>
@@ -225,7 +286,15 @@ table.reg{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;ba
   </ul>
   <p id="cloud-note" class="font-body-sm text-body-sm text-on-surface-variant">Cloud model runs only for a question you pick it for.</p>
  </section>
+  </div>
+ </details>
+ </section>
 
  <footer class="font-body-sm text-body-sm text-outline py-6 border-t border-wire-border">A Base Super Local AI design. Measured numbers name their source file.</footer>
 </main></div>
+<script>
+(function(){function openTry(){var d=document.getElementById('d-try');if(d)d.open=true}
+if(location.hash==='#try')openTry();
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#try"]');if(a)openTry()});})();
+</script>
 </body></html>

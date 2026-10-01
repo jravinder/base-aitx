@@ -135,7 +135,10 @@ async function shot(page, name) {
         const selected = await page.locator('#address-select').inputValue();
         const other = await page.locator('#address-select option').evaluateAll((options, selected) => options.find(o => o.value !== selected)?.value, selected);
         assert(other, 'Second cohort home required');
-        await page.locator('#address-select').selectOption(other);
+        await page.locator('#address-change').click();
+        await page.locator('#address-input').fill(other);
+        await page.locator('#address-list li').first().waitFor();
+        await page.locator('#address-input').press('Enter');
         for (let i = 0; i < examples.length; i++) {
           await thumbs.nth(i).click();
           check(await status.innerText() === 'To review', 'Home switch clears review for sample ' + i);

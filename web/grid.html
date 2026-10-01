@@ -221,74 +221,113 @@
   button:focus-visible, a:focus-visible, summary:focus-visible { outline:3px solid #467bb0; outline-offset:2px }
   summary{cursor:pointer;min-height:44px;padding:10px 0}
   summary:focus-visible{outline:3px solid var(--bf-focus);outline-offset:3px}
+
+  /* one-screen layout, same patterns as judgments.html */
+  #main{max-width:1440px;margin:0 auto;padding:32px 24px 48px;overflow-wrap:anywhere}
+  #main h1,#main h2,#main p{margin:0}
+  .eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+  .eyebrow .dot{width:6px;height:6px;box-shadow:none;background:var(--bf-brand)}
+  .eyebrow .dot.old{background:var(--bf-amber)}
+  .tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+  .tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+  .tag.s{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
+  :root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+  .hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+  .hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+  .hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+  .hero .line{font:var(--bf-text-body);color:var(--bf-muted)}
+  .panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{padding:10px 12px;min-width:0}
+  .stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+  .stat .v{display:block;font:700 22px/28px var(--bf-font);letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+  .stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
+  .find{padding:12px 16px;display:grid;gap:4px;border-left:4px solid var(--bf-brand)}
+  .find.warn{border-left-color:var(--bf-amber)}.find.bad{border-left-color:var(--bf-danger)}.find.info{border-left-color:var(--bf-blue)}
+  .find h2{font:var(--bf-text-h3);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .find p{font:var(--bf-text-small);color:var(--bf-muted)}
+  .btn{justify-self:start;display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:var(--bf-radius-lg);background:var(--bf-brand-strong);color:var(--bf-on-brand)!important;font:var(--bf-text-label);text-decoration:none!important}
+  .planp{padding:14px 16px;min-width:0}
+  .planp .ph{display:flex;justify-content:space-between;align-items:flex-start;gap:8px 16px;flex-wrap:wrap;padding-bottom:8px;border-bottom:1px solid var(--bf-line);margin-bottom:10px}
+  .planp h2{font:var(--bf-text-h2);margin-top:2px}
+  .kc{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint)}
+  .stampx{display:inline-flex;align-items:center;gap:6px;font:var(--bf-text-small);color:var(--bf-muted);background:var(--bf-sunk);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);padding:4px 10px}
+  .stampx .material-symbols-outlined{font-size:16px}
+  .leg{display:flex;flex-wrap:wrap;gap:6px 16px;font:var(--bf-text-small);margin-bottom:8px}
+  .pf{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding-top:10px;margin-top:8px;border-top:1px solid var(--bf-line);font:var(--bf-text-small);color:var(--bf-muted)}
+  .cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+  .left,.right{display:grid;gap:10px;min-width:0}
+  @media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+  .more{margin-top:20px}
+  .more > h2{font:var(--bf-text-h3);margin-bottom:10px}
+  .more details{border-top:1px solid var(--bf-line)}.more details:last-of-type{border-bottom:1px solid var(--bf-line)}
+  .more summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+  .more summary > span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+  .more details>div{padding:4px 4px 18px;color:var(--bf-muted)}
+  .grid3{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .mcard{padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+  @media (max-width:760px){.grid3{grid-template-columns:1fr}}
+  @media (max-width:640px){#main{padding:24px 16px 40px}.hero .a{font:700 28px/34px var(--bf-font)}}
 </style>
 <script defer src="shell.js"></script>
 </head>
-<body class="bg-surface-muted text-ink-primary font-body-md antialiased min-h-screen">
-<main class="w-full max-w-[1520px] mx-auto px-4 md:px-margin py-8">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-8 pb-6 border-b border-wire-border">
-    <div class="space-y-1.5 min-w-0">
-      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white border border-wire-border shadow-sm text-label-caps font-label-caps text-on-surface-variant uppercase">
-        <span class="dot w-2 h-2 rounded-full bg-solar-green" id="dot"></span>
-        <span id="zoneTag">ERCOT public snapshot</span>
-      </div>
-      <h1 class="text-display-sm font-display-sm text-ink-primary tracking-tight">What the grid asks a Base battery to do right now.</h1>
-      <p class="text-body-md font-body-md text-outline" id="lede">Inspect public ERCOT snapshots and a separate battery dispatch model.</p>
-    </div>
-    <div class="flex flex-wrap items-center gap-2 self-start md:self-auto shrink-0 whitespace-nowrap bg-surface-container-lowest border border-wire-border rounded-xl p-1 shadow-sm">
-      <span class="px-3 py-1.5 text-label-md font-label-md rounded bg-surface-subtle text-primary font-semibold inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">schedule</span><span id="asof">loading</span></span>
-      <a id="story-next" href="house.html" class="inline-flex items-center gap-2 min-h-[40px] px-4 rounded-lg bg-primary-container text-white text-label-md font-label-md font-semibold hover:bg-evergreen-deep shadow-sm no-underline"><span>Next: a home's records</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
-    </div>
-  </div>
+<body>
+<main id="main">
   <div class="notice" id="notice">Could not load the grid data. Start the server from the repo root: <code>python3 -m http.server 8741</code>, then open <code>http://localhost:8741/web/grid.html</code>.</div>
-
-  <section class="mb-8" id="missed" aria-labelledby="missed-h">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4">
-      <div class="min-w-0">
-        <span class="text-label-caps font-label-caps text-outline uppercase tracking-wider block">Open grid data · 627 days of ERCOT prices and load</span>
-        <h2 class="text-headline-lg font-headline-lg text-ink-primary" id="missed-h">What most people miss in ERCOT's public data</h2>
-        <p class="text-body-md font-body-md text-outline">Six findings from ERCOT's public price and load archives, each reproducible with <code>python3 grid/insights.py</code>.</p>
-      </div>
-      <span class="self-start md:self-auto shrink-0 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container text-label-caps font-label-caps uppercase">Measured (from public data)</span>
+  <div class="cols">
+    <div class="left">
+      <section class="panel planp" aria-labelledby="plan-q">
+        <div class="ph"><div class="min-w-0"><span class="kc">Dispatch plan · midnight to midnight <span class="tag s">Simulation</span></span>
+          <h2 id="plan-q">Today's price by hour, and what the battery does</h2></div>
+          <span class="stampx"><span class="material-symbols-outlined" aria-hidden="true">schedule</span><span id="asof">loading</span></span></div>
+        <div class="leg" id="plan-leg"></div>
+        <div class="w-full" id="plan"></div>
+        <div class="pf" id="plan-foot"></div>
+      </section>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter" id="missed-cards"></div>
-    <p class="mt-4 text-body-sm font-body-sm text-outline" id="missed-next"></p>
-  </section>
+    <aside class="right" aria-label="Answer">
+      <section class="hero">
+        <span class="eyebrow"><span class="dot" id="dot"></span><span id="zoneTag">ERCOT public snapshot</span></span>
+        <p class="q">What does the grid ask a Base battery to do right now?</p>
+        <h1 class="a" id="ans">&nbsp;</h1>
+        <p class="line" id="lede">Inspect public ERCOT snapshots and a separate battery dispatch model.</p>
+      </section>
+      <div class="stats" id="now-stats"></div>
+      <section class="panel find" id="a-now" aria-live="polite"><h2>Right now</h2><p>loading</p></section>
+      <section class="panel find" id="a-storm"></section>
+      <section class="panel find" id="a-when"></section>
+      <a id="story-next" class="btn" href="house.html"><span>Next: a home's records</span><span aria-hidden="true">&rarr;</span></a>
+    </aside>
+  </div>
 
-  <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-8">
-    <div class="lg:col-span-5 bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between shadow-sm min-w-0" id="a-now" aria-live="polite"><p class="text-label-caps font-label-caps text-outline uppercase">Right now</p><div class="text-display-sm font-display-sm">loading</div></div>
-    <div class="lg:col-span-7 bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between shadow-sm min-w-0">
+  <section class="more">
+    <h2>More detail</h2>
+    <details id="more-answers"><summary>How the answer was worked out <span>at-home effect, the rule, earnings, timing and storm checks</span></summary>
+      <div class="grid3">
+        <div class="panel mcard" id="now-more"></div>
+        <div class="panel mcard" id="earn-more"></div>
+        <div class="panel mcard" id="when-more"></div>
+        <div class="panel mcard" id="storm-more"></div>
+      </div>
+    </details>
+    <details id="missed" aria-labelledby="missed-h"><summary><span id="missed-h" style="margin:0;font:var(--bf-text-label);color:var(--bf-ink)">What most people miss in ERCOT's public data</span> <span>six findings from 627 days of ERCOT prices and load <span class="tag m">Measured</span></span></summary>
       <div>
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-surface-subtle gap-2">
-          <div><span class="text-label-caps font-label-caps text-outline uppercase tracking-wider block">Dispatch plan</span>
-            <h3 class="text-headline-md font-headline-md text-ink-primary font-bold" id="plan-q">Today's price by hour, and what the battery does</h3></div>
-          <span class="text-body-sm font-body-sm text-outline self-start sm:self-auto">Midnight to midnight</span>
-        </div>
-        <div class="bg-surface-subtle rounded-xl p-3 md:p-4 border border-wire-border relative">
-          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-body-sm font-body-sm" id="plan-leg"></div>
-          <div class="w-full" id="plan"></div>
-        </div>
+        <p class="text-body-md font-body-md text-outline mb-4">Six findings from ERCOT's public price and load archives, each reproducible with <code>python3 grid/insights.py</code>.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter" id="missed-cards"></div>
+        <p class="mt-4 text-body-sm font-body-sm text-outline" id="missed-next"></p>
       </div>
-      <div class="pt-4 mt-4 border-t border-wire-border flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-body-sm font-body-sm text-outline" id="plan-foot"></div>
-    </div>
+    </details>
+    <details class="detail" id="detail">
+      <summary>ERCOT grid data and history <span>conditions, prices, year and load tabs</span></summary>
+      <div class="detail-body pb-6">
+        <div class="kpis" id="kpis"></div>
+        <div class="tabs" role="tablist" id="tabs"></div>
+        <div id="panels"></div>
+        <h2 class="row">More numbers for a Base battery</h2>
+        <div class="notes" id="notes"></div>
+      </div>
+    </details>
   </section>
-
-  <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
-    <div class="bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between hover:border-primary-container transition-colors duration-150 shadow-sm min-w-0" id="a-earn"></div>
-    <div class="bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between hover:border-primary-container transition-colors duration-150 shadow-sm min-w-0" id="a-when"></div>
-    <div class="bg-surface-container-lowest rounded-xl border border-wire-border p-4 md:p-space-lg flex flex-col justify-between hover:border-primary-container transition-colors duration-150 shadow-sm min-w-0" id="a-storm"></div>
-  </section>
-
-  <details class="detail bg-surface-container-lowest rounded-xl border border-wire-border px-4 md:px-space-lg shadow-sm" id="detail">
-    <summary class="cursor-pointer list-none min-h-[52px] flex flex-wrap items-baseline gap-x-3 py-4"><h2 class="text-headline-sm font-headline-sm text-ink-primary">ERCOT grid data and history</h2><span class="text-body-sm text-outline">Conditions, prices, year and load tabs</span></summary>
-    <div class="detail-body pb-6">
-      <div class="kpis" id="kpis"></div>
-      <div class="tabs" role="tablist" id="tabs"></div>
-      <div id="panels"></div>
-      <h2 class="row">More numbers for a Base battery</h2>
-      <div class="notes" id="notes"></div>
-    </div>
-  </details>
 </main>
 <footer class="w-full bg-surface-container-lowest border-t border-wire-border py-6 px-4 md:px-margin mt-12">
   <div class="max-w-[1520px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4 text-body-sm font-body-sm text-outline">
@@ -722,24 +761,15 @@ function answerCards(td, yr, ld, signals) {
   }
   const PILL = {"v-alert": ["Hold full", "bg-red-50 text-critical-red border-red-100", "bg-critical-red"], "v-charge": ["Charging", "bg-sky-50 text-sky-700 border-sky-100", "bg-sky-500"],
     "v-discharge": ["Discharging", "bg-amber-50 text-amber-700 border-amber-100", "bg-warning-amber"], "v-hold": ["Holding", "bg-emerald-50 text-solar-green border-emerald-100", "bg-solar-green"]}[cls];
-  const stat = (l, v, u, c = "text-ink-primary") => `<div class="space-y-1 min-w-0"><span class="text-label-caps font-label-caps text-outline block uppercase">${l}</span><div class="flex flex-wrap items-baseline gap-1"><span class="text-headline-md font-headline-md ${c}">${v}</span><span class="text-body-sm font-body-sm text-outline">${u}</span></div></div>`;
-  $("#a-now").innerHTML = `<div>
-      <div class="flex items-center justify-between gap-2 mb-4"><span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">Modeled battery on ${zone}</span>
-        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-label-caps font-label-caps font-semibold border ${PILL[1]}"><span class="w-1.5 h-1.5 rounded-full ${PILL[2]}"></span>${PILL[0]}</span></div>
-      <div class="mb-6"><h2 class="text-display-sm font-display-sm text-ink-primary font-bold tracking-tight">${v}.</h2>
-        <p class="mt-2 text-body-md font-body-md text-on-surface-variant leading-relaxed"><strong class="text-ink-primary font-semibold">Reason:</strong> ${why}</p></div>
-      <div class="p-3.5 bg-surface-subtle border border-wire-border rounded-xl mb-6 flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">schedule</span>
-        <div><span class="text-label-md font-label-md text-ink-primary block font-semibold">${nextTxt}</span>
-        <span class="text-body-sm font-body-sm text-outline">At snapshot time, ${ct} CT. Today's band: ${usd(lo)} to ${usd(hi)} a MWh.${prc != null ? ` Reserves: ${fmt(prc)} MW (alarm at ${fmt(line3k)} MW).` : ""}</span></div></div>
-      <div class="p-4 bg-emerald-50/70 border border-emerald-100 rounded-xl mb-6">
-        <div class="flex items-center gap-2 text-primary font-semibold text-label-md font-label-md mb-1"><span class="material-symbols-outlined text-[18px]">verified_user</span><span>${feel.replace(/<\/?b>/g, "")}</span></div>
-        <p class="text-body-sm font-body-sm text-on-surface-variant pl-6"><abbr class="underline decoration-dotted cursor-help" title="${b.rule} A storm alert or reserves under ${fmt(line3k)} MW override the plan and keep the battery full.">The rule</abbr>: charge in the ${b.hours_per_window} cheapest hours, discharge in the ${b.hours_per_window} priciest, always keep ${reservePct} for the member.</p></div>
-    </div>
-    <div class="pt-4 border-t border-wire-border grid grid-cols-3 gap-3">
-      ${stat("ERCOT price at snapshot", usd(priceNow), "/MWh")}
-      ${stat("Modeled level", `${fmt(lvlNow / b.kwh * 100)}%`, `${fmt(lvlNow, 1)} kWh`)}
-      ${stat("Reserve kept", reservePct, `${fmt(b.kwh * b.reserve, 1)} kWh`, "text-primary font-bold")}
-    </div>`;
+  const stat = (l, v, sub, tag, id = "") => `<div class="panel stat"${id ? ` id="${id}"` : ""}><span class="k">${l} <span class="tag ${tag === "Measured" ? "m" : "s"}">${tag}</span></span><b class="v">${v}</b><span class="s">${sub}</span></div>`;
+  $("#ans").textContent = `${v}.`;
+  $("#a-now").className = "panel find" + (cls === "v-alert" ? " bad" : cls === "v-discharge" ? " warn" : cls === "v-charge" ? " info" : "");
+  $("#a-now").innerHTML = `<h2>${PILL[0]} · ${nextTxt}</h2><p><strong>Reason:</strong> ${why} At snapshot time, ${ct} CT. Today's band: ${usd(lo)} to ${usd(hi)} a MWh.${prc != null ? ` Reserves: ${fmt(prc)} MW (alarm at ${fmt(line3k)} MW).` : ""}</p>`;
+  $("#now-more").innerHTML = `<div><span class="kc">Modeled battery on ${zone}</span><h3 class="text-headline-sm font-headline-sm text-ink-primary font-semibold mt-1 mb-2">${feel.replace(/<\/?b>/g, "")}</h3>
+      <p class="text-body-sm font-body-sm text-on-surface-variant"><abbr class="underline decoration-dotted cursor-help" title="${b.rule} A storm alert or reserves under ${fmt(line3k)} MW override the plan and keep the battery full.">The rule</abbr>: charge in the ${b.hours_per_window} cheapest hours, discharge in the ${b.hours_per_window} priciest, always keep ${reservePct} for the member. ${b.rule} A storm alert or reserves under ${fmt(line3k)} MW override the plan and keep the battery full.</p></div>`;
+  const statsHtml = [stat("Price at snapshot", usd(priceNow), `per MWh on ${zone}, ${ct} CT`, "Measured"),
+    stat("Modeled level", `${fmt(lvlNow / b.kwh * 100)}%`, `${fmt(lvlNow, 1)} of ${fmt(b.kwh, 1)} kWh`, "Simulation"),
+    stat("Reserve kept", reservePct, `${fmt(b.kwh * b.reserve, 1)} kWh never sold`, "Simulation")];
   $("#lede").textContent = `Right now: ${v.charAt(0).toLowerCase() + v.slice(1)}. ERCOT ${zone} prices at ${ct} CT and the dispatch plan for one modeled ${fmt(b.kwh, 1)} kWh battery; the tower fleet runs on its own simulator.`;
   $("#zoneTag").textContent = `ERCOT ${zone} load zone · public snapshot`;
   $("#zoneFoot").textContent = zone;
@@ -753,14 +783,17 @@ function answerCards(td, yr, ld, signals) {
 
   // earned this year
   const Y25 = yr.years["2025"].aen, T = yr.years.trailing365.aen;
-  $("#a-earn").innerHTML = ansCard({label: "Annual performance", icon: "payments", q: "What did one modeled battery earn in 2025?", big: usd(Y25.total, 0),
+  statsHtml.push(stat("Earned in 2025", usd(Y25.total, 0), `one modeled battery, ${zone} day-ahead, energy only`, "Simulation", "a-earn"));
+  $("#now-stats").innerHTML = statsHtml.join("");
+  $("#earn-more").innerHTML = ansCard({label: "Annual performance", icon: "payments", q: "What did one modeled battery earn in 2025?", big: usd(Y25.total, 0),
     sub: `${zone}, 2025 day-ahead prices, energy only.`,
     foot: `<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">Simulation: one modeled Base Core on public prices. About ${usd(Y25.per_day)} a typical day, ${usd(T.total, 0)} over the last 365 days. Source: ERCOT report 13060, ${yr.first} to ${yr.last}.</p>`,
     link: ["See the year tab", "Year"]});
 
   // when does it matter most
   const [he0, he1] = ld.window_he, pool = ld.top100_pooled;
-  $("#a-when").innerHTML = ansCard({label: "Dispatch timing", icon: "bolt", q: "When does it matter most?", big: `${h12(he0 - 1)} to ${h12(he1)}`, bigCls: "text-ink-primary",
+  $("#a-when").innerHTML = `<h2>Peak hours: ${h12(he0 - 1)} to ${h12(he1)} <span class="tag m">Measured</span></h2><p>These ${he1 - he0 + 1} hours hold ${fmt(pool.window)} of the 100 highest-load hours in Texas (${pool.years}).</p>`;
+  $("#when-more").innerHTML = ansCard({label: "Dispatch timing", icon: "bolt", q: "When does it matter most?", big: `${h12(he0 - 1)} to ${h12(he1)}`, bigCls: "text-ink-primary",
     sub: `These ${he1 - he0 + 1} hours hold ${fmt(pool.window)} of the 100 highest-load hours in Texas (${pool.years}).`,
     foot: `<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">A few days carry the year: ${aboutShare(T.top10_share)} of a year's money (${fmt(T.top10_share * 100)}%) came from just 10 days, ${yr.trailing_range[0]} to ${yr.trailing_range[1]}.</p>`,
     link: ["See the load tab", "Load"]});
@@ -774,7 +807,9 @@ function answerCards(td, yr, ld, signals) {
   const SC = stormOn || tight ? ["text-critical-red", "bg-red-50 text-critical-red border-red-200", "bg-critical-red", "Alert", "warning"]
     : warn ? ["text-warning-amber", "bg-amber-50 text-amber-700 border-amber-200", "bg-warning-amber", "Watch", "info"]
     : ["text-solar-green", "bg-emerald-50 text-solar-green border-emerald-200", "bg-solar-green", "No alert", "check_circle"];
-  $("#a-storm").innerHTML = ansCard({label: "Grid reliability check", icon: SC[4], iconCls: SC[0], q: "Is a storm or shortage coming?", big: verdict, bigCls: SC[0],
+  $("#a-storm").className = "panel find" + (stormOn || tight ? " bad" : warn ? " warn" : "");
+  $("#a-storm").innerHTML = `<h2>Storm or shortage coming? ${verdict}. <span class="tag m">Measured</span></h2><p>${tomPk ? `Tomorrow's peak is forecast at ${fmt(tomPk.dem)} MW around ${h12(tomPk.he - 1)}, ${diff >= 0 ? fmt(diff, 1) + "% above" : fmt(-diff, 1) + "% below"} today's ${fmt(todayPeak)} MW.` : "Tomorrow's forecast arrives with the next snapshot."}</p>`;
+  $("#storm-more").innerHTML = ansCard({label: "Grid reliability check", icon: SC[4], iconCls: SC[0], q: "Is a storm or shortage coming?", big: verdict, bigCls: SC[0],
     badge: `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-caps font-label-caps border ${SC[1]}"><span class="w-1.5 h-1.5 rounded-full ${SC[2]}"></span>${SC[3]}</span>`,
     sub: `${tomPk ? `Tomorrow's peak is forecast at ${fmt(tomPk.dem)} MW around ${h12(tomPk.he - 1)}, ${diff >= 0 ? fmt(diff, 1) + "% above" : fmt(-diff, 1) + "% below"} today's ${fmt(todayPeak)} MW.` : "Tomorrow's forecast arrives with the next snapshot."}`,
     foot: (prc != null ? `<div class="p-2.5 bg-surface-subtle rounded border border-wire-border flex items-center justify-between gap-2 text-body-sm font-body-sm mb-2"><span class="text-outline">Reserves vs conservation line:</span><span class="font-bold text-primary">${fmt(prc)} MW (${prc >= line3k ? fmt(prc / line3k, 1) + "x" : "under"})</span></div>` : "") +
@@ -806,7 +841,7 @@ function planChart(td, nowMin) {
     el(s, "text", {x: ml - 6, y: YA(t) + 3.5, "text-anchor": "end"}, "$" + t);
   }
   const act = he => b.charge_he.includes(he) ? "charge" : b.discharge_he.includes(he) ? "discharge" : "";
-  const COL = {charge: "var(--bf-blue)", discharge: "var(--bf-amber)", "": "var(--bf-line-strong)"};
+  const COL = {charge: "var(--bf-blue)", discharge: "var(--bf-solar)", "": "var(--bf-line-strong)"};
   dam.forEach(r => {
     const a = act(r.he), y = YA(Math.max(r[zone], 0)), y0 = YA(Math.max(pLo, 0));
     el(s, "rect", {x: X(r.he - 1) + 1, y: Math.min(y, y0), width: Math.max(1, bw - 2), height: Math.abs(y0 - y), fill: COL[a], opacity: a ? 1 : .55, rx: 1.5})
@@ -852,7 +887,7 @@ function planChart(td, nowMin) {
   $("#plan-q").textContent = `Today on ${zone}: price by hour, and what the battery does`;
   const lg = (sw, t, tc = "text-on-surface-variant font-medium") => `<div class="flex items-center gap-1.5">${sw}<span class="${tc}">${t}</span></div>`;
   $("#plan-leg").innerHTML = lg('<span class="w-3 h-3 rounded-sm" style="background:var(--bf-blue)"></span>', `Charge ${heSpan(b.charge_he)}`) +
-    lg('<span class="w-3 h-3 rounded-sm" style="background:var(--bf-amber)"></span>', `Discharge ${heSpan(b.discharge_he)}`) +
+    lg('<span class="w-3 h-3 rounded-sm" style="background:var(--bf-solar)"></span>', `Discharge ${heSpan(b.discharge_he)}`) +
     lg('<span class="w-3 h-3 rounded-sm" style="background:var(--bf-line-strong)"></span>', "Hold") +
     lg('<span class="w-4 h-0.5" style="background:var(--ink)"></span>', "Real-time price") +
     lg('<span class="w-4 h-0.5 bg-primary"></span>', "Battery level") +

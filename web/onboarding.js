@@ -65,7 +65,7 @@
       input: $("address-input"), list: $("address-list"), search: $("address-search"), hint: $("address-hint"),
       confirm: $("confirm-property"),
       line: $("progress-line"), reset: $("reset-progress"), retry: $("retry-load"),
-      next: $("continue-question"), back: $("back-question"), help: $("panel-help")};
+      next: $("continue-question"), hint: $("continue-hint"), back: $("back-question"), help: $("panel-help")};
     if (Object.values(ui).some(v => !v)) return;
 
     let houses = [], house = null, saved = {}, photo = false, storageNote = "", tipFor = null, step = 0;
@@ -256,6 +256,8 @@
       ui.help.hidden = reviewing || list[step] !== "main_breaker_amps";
       ui.next.hidden = reviewing;
       ui.next.disabled = !Object.hasOwn(saved, list[step]);
+      ui.hint.hidden = reviewing || !ui.next.disabled;
+      if (!reviewing) ui.hint.textContent = `Answer "${FIELDS[list[step]].name}" above, or choose Not sure, to continue.`;
       ui.next.textContent = step === list.length - 1 ? "Review answers" : "Continue";
       ui.back.hidden = step === 0;
       ui.back.textContent = reviewing ? "Back to questions" : "Back";
@@ -555,8 +557,8 @@
       document.dispatchEvent(new CustomEvent("home-context-changed", {detail: {address: house.address}}));
       restore();
       renderFacts();
-      if (Object.keys(saved).length || photo) persist();
-      else document.dispatchEvent(new Event("base-fleet:progress"));
+      window.BaseShownAddress = house.address;
+      persist(); // stores this home's question count, so the points total uses its real maximum
       const q = guideHref();
       document.querySelectorAll('a[href^="voice.html"]').forEach(a => {
         a.href = a.dataset.voiceStep ? q + "&" + new URLSearchParams({step: a.dataset.voiceStep}) : q;

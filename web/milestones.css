@@ -35,7 +35,7 @@
 .bf-ms-ref-out{flex-basis:100%;font-size:12px;color:var(--ms-muted)}
 .bf-ms-ref-out:empty{display:none}
 /* Step cards: the Stitch H8/H9/H10 tracker. One look for every variant. */
-.bf-ms{--ms-amber:#b45309;--ms-amber-tint:#fffbeb;--ms-amber-line:#fcd34d;--ms-done-tint:#f0fdf4;--ms-done-line:#bbf7d0}
+.bf-ms{--ms-amber:#1d4ed8;--ms-amber-tint:#eff6ff;--ms-amber-line:#93c5fd;--ms-done-tint:#f0fdf4;--ms-done-line:#bbf7d0}
 .bf-ms-hint{font-size:12px;line-height:18px;color:var(--ms-muted);margin:-6px 0 14px}
 .bf-ms-bar{height:10px}
 .bf-ms-steps li{flex-direction:column;align-items:stretch;gap:6px;padding:12px 14px;border:1px solid var(--ms-line);border-radius:8px;background:#fff}
@@ -64,7 +64,7 @@
 :root[data-theme="dark"] .bf-ms-dot{background:#1b1b1b}
 :root[data-theme="dark"] .bf-ms-done .bf-ms-dot{color:#171717}
 :root[data-theme="dark"] .bf-ms-btn{color:#171717}
-:root[data-theme="dark"] .bf-ms{--ms-amber:#fbbf24;--ms-amber-tint:#2a2210;--ms-amber-line:#92400e;--ms-done-tint:#132a1b;--ms-done-line:#28583a}
+:root[data-theme="dark"] .bf-ms{--ms-amber:#93c5fd;--ms-amber-tint:#0f1d36;--ms-amber-line:#1e40af;--ms-done-tint:#132a1b;--ms-done-line:#28583a}
 :root[data-theme="dark"] .bf-ms-steps li{background:#1b1b1b}
 :root[data-theme="dark"] .bf-ms-steps li.bf-ms-done{background:var(--ms-done-tint)}
 :root[data-theme="dark"] .bf-ms-steps li.bf-ms-now{background:var(--ms-amber-tint)}
@@ -80,8 +80,8 @@
 .bf-ms-bar{display:flex;border:1px solid var(--ms-line)}
 .bf-ms-bar i{border-radius:0}
 .bf-ms-bar i:first-child{background:#22c55e}
-.bf-ms-bar .bf-ms-pend{background:#f59e0b;opacity:.85}
-.bf-ms-tip{margin:0 0 14px;padding:8px 12px;border-radius:8px;background:var(--ms-amber-tint);border:1px solid var(--ms-amber-line);color:#78350f}
+.bf-ms-bar .bf-ms-pend{background:#3b82f6;opacity:.85}
+.bf-ms-tip{margin:0 0 14px;padding:8px 12px;border-radius:8px;background:var(--ms-amber-tint);border:1px solid var(--ms-amber-line);color:#1e3a8a}
 :root[data-theme="dark"] .bf-ms-tip{color:#fcd34d}
 :root[data-theme="dark"] .bf-ms-pct{color:#171717}
 /* Next reward line: the single next thing and what it pays. */

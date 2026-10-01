@@ -4,12 +4,12 @@
      base-fleet:journey:v1:<address>  {version, saved:{field:value|null}, open, photo}   (onboarding.js)
      base-fleet:voice:v1              {<address>: {done, photo}}                          (voice.js)
      base-fleet:home:v1               {address}  last home picked on the journey page
-   Rewards are points (ADR 0015 table values, superseding its kWh unit): a Base Fleet proposal. */
+   Rewards are points (ADR 0015 table values, superseding its kWh unit). */
 (() => {
   "use strict";
   const MILESTONES = ["Public records", "Your details", "Photo", "Engineering review", "Installation"];
   const REWARD = {field: 10, photo: 20, complete: 30, neighbour: 50};
-  const LABEL = "Base Ready points (proposal)";
+  const LABEL = "Base Ready points";
   const UNIT = "pts";
   const ICON = '<svg viewBox="0 -960 960 960" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="m233-80 65-281L80-550l288-25 112-265 112 265 288 25-218 189 65 281-247-149L233-80Z"/></svg>'; // Material Symbols "star"
 
@@ -18,6 +18,7 @@
   function address() {
     const fromUrl = new URL(location.href).searchParams.get("address");
     if (fromUrl) return fromUrl;
+    if (window.BaseShownAddress) return window.BaseShownAddress; // the house onboarding is showing, before it is confirmed
     const home = read("base-fleet:home:v1");
     return home && home.address ? home.address : null;
   }

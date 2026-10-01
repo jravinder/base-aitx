@@ -3,253 +3,130 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Base Ready | Base Super Local AI</title>
+<link rel="icon" href="data:,"/>
+<script>try { if (localStorage.getItem("bf-theme") === "dark") document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}</script>
 <!-- Google Analytics (hosted site only) -->
 <script>if (/\.vercel\.app$/.test(location.hostname)) { var s=document.createElement("script"); s.async=true; s.src="https://www.googletagmanager.com/gtag/js?id=G-9QLRH4GSME"; document.head.appendChild(s); window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments);}; gtag("js", new Date()); gtag("config", "G-9QLRH4GSME", {anonymize_ip: true}); }</script>
-
 <link rel="stylesheet" href="/web/shell.css"/>
-<link rel="stylesheet" href="/web/assets/stitch/fonts.css"/>
-<script src="/web/assets/stitch/tailwind-forms.js"></script>
-<script id="tailwind-config">
-    if (window.tailwind) tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "on-secondary": "#ffffff",
-            "on-primary": "#ffffff",
-            "primary-fixed-dim": "#a0d3a6",
-            "on-surface-variant": "#414941",
-            "inverse-on-surface": "#ecf1ff",
-            "surface-bright": "#f9f9ff",
-            "secondary": "#4a6700",
-            "tertiary-fixed": "#95f8a7",
-            "surface-container-highest": "#d8e3fb",
-            "energy-lime": "#84CC16",
-            "primary-container": "#1e4d2b",
-            "surface-subtle": "#F1F5F9",
-            "background": "#f9f9ff",
-            "on-tertiary-container": "#63c479",
-            "inverse-surface": "#263143",
-            "on-tertiary-fixed": "#00210a",
-            "on-error": "#ffffff",
-            "error-container": "#ffdad6",
-            "surface-variant": "#d8e3fb",
-            "surface-container-high": "#dee8ff",
-            "primary": "#023616",
-            "secondary-container": "#cbf080",
-            "on-primary-container": "#8bbd92",
-            "surface-dim": "#cfdaf2",
-            "wire-border": "#E2E8F0",
-            "evergreen-deep": "#004A31",
-            "surface-tint": "#396844",
-            "ink-primary": "#0F172A",
-            "surface-container-lowest": "#ffffff",
-            "on-primary-fixed": "#00210b",
-            "tertiary-container": "#004f21",
-            "surface-muted": "#F8FAFC",
-            "tertiary": "#003614",
-            "surface-container": "#e7eeff",
-            "tertiary-fixed-dim": "#79db8d",
-            "solar-green": "#22C55E",
-            "on-secondary-container": "#506e08",
-            "warning-amber": "#F59E0B",
-            "outline-variant": "#c1c9be",
-            "surface": "#f9f9ff",
-            "surface-container-low": "#f0f3ff",
-            "on-tertiary": "#ffffff",
-            "critical-red": "#EF4444",
-            "primary-fixed": "#bbefc1",
-            "on-error-container": "#93000a",
-            "on-secondary-fixed-variant": "#374e00",
-            "error": "#ba1a1a",
-            "inverse-primary": "#a0d3a6",
-            "secondary-fixed": "#cbf080",
-            "outline": "#717970",
-            "on-surface": "#111c2d",
-            "on-primary-fixed-variant": "#21502e",
-            "on-background": "#111c2d",
-            "on-secondary-fixed": "#141f00",
-            "secondary-fixed-dim": "#afd367",
-            "on-tertiary-fixed-variant": "#005323"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.125rem",
-            "lg": "0.25rem",
-            "xl": "0.5rem",
-            "full": "0.75rem"
-          },
-          "spacing": {
-            "gutter-lg": "2rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem",
-            "margin-xl": "3rem",
-            "margin": "2rem",
-            "space-xs": "0.25rem",
-            "space-xl": "2rem",
-            "gutter": "1.5rem",
-            "space-sm": "0.5rem"
-          },
-          "fontFamily": {
-            "body-sm": ["Plus Jakarta Sans"],
-            "headline-sm": ["Plus Jakarta Sans"],
-            "body-lg": ["Plus Jakarta Sans"],
-            "telemetry-metric": ["Plus Jakarta Sans"],
-            "telemetry-unit": ["Plus Jakarta Sans"],
-            "label-md": ["Plus Jakarta Sans"],
-            "label-caps": ["Plus Jakarta Sans"],
-            "headline-md": ["Plus Jakarta Sans"],
-            "display-lg": ["Plus Jakarta Sans"],
-            "display-sm": ["Plus Jakarta Sans"],
-            "headline-lg": ["Plus Jakarta Sans"],
-            "body-md": ["Plus Jakarta Sans"]
-          },
-          "fontSize": {
-            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-            "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
-            "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
-            "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }],
-            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-            "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
-            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }]
-          }
-        },
-      },
-    };
-  </script>
 <style>
-  body { font-family: 'Plus Jakarta Sans', sans-serif; }
-  .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; direction: ltr; font-feature-settings: 'liga'; display: inline-block; }
-  .st-wash { background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(203,240,128,0.35), rgba(249,249,255,0) 70%); }
-  .workspace.is-route { border-color: #1e4d2b; box-shadow: 0 4px 20px -4px rgba(15,23,42,0.10); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bf-bg); color: var(--bf-ink); font: var(--bf-text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  a:focus-visible { outline: 3px solid var(--bf-focus); outline-offset: 2px; border-radius: var(--bf-radius); }
+  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+  .top { border-bottom: 1px solid var(--bf-line); background: var(--bf-surface); }
+  .top .wrap { height: 48px; display: flex; align-items: center; font: var(--bf-text-label); }
+  main { flex: 1; padding: 44px 0 32px; }
+  h1 { font: 700 44px/52px var(--bf-font); letter-spacing: -0.02em; margin: 0; max-width: 32ch; }
+  .lede { font: var(--bf-text-body-lg); font-size: 18px; line-height: 28px; color: var(--bf-muted); margin: 16px 0 0; max-width: 64ch; }
+  .lede a { color: var(--bf-ink); text-underline-offset: 3px; }
+  .lede b { color: var(--bf-ink); font-weight: 600; }
+  .products { margin-top: 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+  .product { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 1fr auto; gap: 0 24px; background: var(--bf-surface); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-lg); padding: 24px 28px; }
+  .product .info { grid-column: 1 / -1; padding-bottom: 20px; }
+  .product h2 { margin: 0; font: 700 26px/34px var(--bf-font); letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+  .product h2 svg { width: 24px; height: 24px; flex: none; color: var(--bf-brand); }
+  .product p { margin: 0; }
+  .what { margin-top: 8px !important; font: var(--bf-text-body-lg); color: var(--bf-ink); }
+  .sub { margin-top: 4px !important; font: var(--bf-text-body); color: var(--bf-muted); }
+  .proof { margin-top: 12px !important; font: var(--bf-text-body); color: var(--bf-muted); }
+  .proof .n { display: block; font: 700 24px/32px var(--bf-font); color: var(--bf-ink); }
+  .tag { display: inline-block; margin-left: 6px; padding: 0 8px; border-radius: var(--bf-radius-pill); border: 1px solid var(--bf-line); font: 600 12px/20px var(--bf-font); white-space: nowrap; vertical-align: 1px; }
+  .tag.m { background: var(--bf-brand-tint); border-color: var(--bf-brand-soft); color: var(--bf-brand); }
+  .tag.s { background: var(--bf-amber-tint); border-color: transparent; color: var(--bf-amber); }
+  .role { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--bf-line); }
+  .role h3 { margin: 0; font: var(--bf-text-label); color: var(--bf-ink); }
+  .role p { font: var(--bf-text-body); color: var(--bf-muted); flex: 1; min-height: 44px; }
+  .btn { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 44px; padding: 8px 16px; border-radius: var(--bf-radius-lg); border: 1px solid var(--bf-line-strong); background: var(--bf-surface); color: var(--bf-ink); font: 600 15px/20px var(--bf-font); text-decoration: none; }
+  .btn:hover { background: var(--bf-sunk); }
+  .btn.primary { background: var(--bf-brand); border-color: var(--bf-brand); color: var(--bf-on-brand); }
+  .btn.primary:hover { background: var(--bf-brand-strong); border-color: var(--bf-brand-strong); }
+  #home-customer { min-height: 52px; font-size: 16px; }
+  .textlink { color: var(--bf-brand); font: 600 14px/22px var(--bf-font); padding: 4px 0; text-underline-offset: 3px; }
+  footer { border-top: 1px solid var(--bf-line); background: var(--bf-surface); color: var(--bf-muted); font: var(--bf-text-small); font-size: 13px; }
+  footer .wrap { padding-top: 16px; padding-bottom: 16px; display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: space-between; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  footer a { color: var(--bf-ink); text-underline-offset: 3px; }
+  @media (max-width: 1000px) {
+    .products { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    main { padding: 32px 0 24px; }
+    h1 { font-size: 32px; line-height: 38px; }
+    .lede { font-size: 16px; line-height: 26px; }
+    .products { gap: 24px; }
+    .product { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; padding: 20px; }
+    .product .info { padding-bottom: 16px; }
+    .role + .role { margin-top: 16px; }
+    .role p { min-height: 0; }
+    .product h2 { font-size: 24px; line-height: 30px; }
+  }
 </style>
 <script defer src="/web/start.js"></script>
 </head>
-<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md">
-<!-- Slim Top Navigation Shell -->
-<header class="flex justify-between items-center w-full px-space-md h-12 border-b border-wire-border bg-surface-container-lowest sticky top-0 z-50">
-<div class="flex items-center space-x-space-lg">
-<div class="flex items-center space-x-space-sm">
-<div class="w-6 h-6 rounded-lg bg-primary-container flex items-center justify-center text-surface-container-lowest">
-<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">bolt</span>
+<body>
+<header class="top"><div class="wrap">Base Ready · Base Super Local AI</div></header>
+<main>
+<div class="wrap">
+<h1>Two things built on Base in one weekend.</h1>
+<p class="lede">We read <b>34,334</b> City of Austin energy permits so a new lead's form arrives mostly filled, and route the <b>1,421</b> a model should not decide to an engineer. Then we put a local model on a GPU beside the <a id="base-source" href="https://basepowercompany.com/how-it-works" target="_blank" rel="noopener">Base battery</a>, backup reserve first.</p>
+
+<div class="products">
+<section class="product" id="home-card" aria-labelledby="home-title">
+<div class="info">
+<h2 id="home-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7v9H3z"/><path d="M10 20v-5h4v5"/></svg>Base Ready</h2>
+<p class="what" id="home-description">From address to installed battery, without a phone call.</p>
+<p class="sub">Public permits answer most of the form; the lead confirms only what records miss.</p>
+<p class="proof"><span class="n">161 of 200</span>fields filled from public records<span class="tag m">Measured</span></p>
 </div>
-<span class="font-headline-sm text-headline-sm font-bold text-ink-primary tracking-tight">Base Ready · Base Super Local AI</span>
+<div class="role">
+<h3>As a customer</h3>
+<p>Your address fills the form; confirm what is open, add a photo.</p>
+<a class="btn primary" id="home-customer" href="/web/onboarding.html?track=home&amp;persona=lead#home">Start as a new lead</a>
+<a class="btn" id="home-member" href="/web/member.html?track=home&amp;persona=lead">I have Base: my home</a>
 </div>
-</div>
-</header>
-<!-- Main Canvas Section -->
-<main class="st-wash flex-1 flex flex-col justify-center items-center px-4 py-12 md:py-16">
-<div class="w-full max-w-4xl mx-auto flex flex-col items-center">
-<section class="mb-10 max-w-3xl w-full" aria-labelledby="what-base">
-<h1 id="what-base" class="font-display-sm text-display-sm md:font-display-lg md:text-display-lg font-bold text-ink-primary tracking-tight text-balance">What is Base?</h1>
-<p class="font-body-lg text-body-lg text-ink-primary mt-3 text-balance">Base Power puts a large backup battery at your home. In an outage it switches the whole house over in under a second. On normal days it charges when power is cheap and helps steady the Texas grid, always keeping a backup reserve for you.</p>
-<ul class="mt-4 flex flex-wrap gap-2 font-body-sm text-body-sm text-ink-primary list-none p-0">
-<li class="px-3 py-1.5 rounded-lg bg-surface-container-lowest border border-wire-border"><b>39.2 kWh</b> battery</li>
-<li class="px-3 py-1.5 rounded-lg bg-surface-container-lowest border border-wire-border">About <b>36 hours</b> of backup from one battery</li>
-<li class="px-3 py-1.5 rounded-lg bg-surface-container-lowest border border-wire-border"><b>30,000+</b> homes in Texas and Illinois</li>
-</ul>
-<p class="font-body-sm text-body-sm text-outline mt-2">From <a id="base-source" class="underline underline-offset-2" href="https://basepowercompany.com/how-it-works" target="_blank" rel="noopener">basepowercompany.com</a>. We are not Base; this is a hackathon entry.</p>
-<p class="font-headline-sm text-headline-sm text-ink-primary mt-8">We built two things on top of it. Pick one:</p>
-</section>
-<!-- Two Entry Cards Grid -->
-<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-<section class="workspace bg-surface-container-lowest border border-wire-border rounded-xl p-7 flex flex-col justify-between hover:border-outline-variant hover:shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)] transition-all duration-200" id="home-card" aria-labelledby="home-title">
-<div>
-<div class="flex items-center justify-between mb-5">
-<div class="w-12 h-12 rounded-xl bg-surface-subtle border border-wire-border flex items-center justify-center text-primary-container">
-<span class="material-symbols-outlined text-headline-lg" aria-hidden="true">cottage</span>
-</div>
-<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-primary-fixed/40 text-evergreen-deep border border-primary-fixed">
-                HOME TRACK
-              </span>
-</div>
-<h2 class="font-headline-md text-headline-md font-bold text-ink-primary mb-2" id="home-title">Base Ready</h2>
-<p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-2">Base Ready &middot; Track 2</p>
-<p class="font-body-md text-body-md text-outline leading-relaxed mb-6" id="home-description">From address to installed battery, without a phone call.</p>
-<div class="space-y-2.5 pb-6 border-b border-surface-subtle mb-6">
-<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
-<span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">person</span>
-<span><span class="font-semibold">Customer:</span> Skip the form: public permits answer most questions; check the few that are open</span>
-</div>
-<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
-<span class="material-symbols-outlined text-outline mr-2 text-[18px] leading-[18px]" aria-hidden="true">travel_explore</span>
-<span><span class="font-semibold">Base admin:</span> Market, coverage, property, permits</span>
-</div>
-<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
-<span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">check_circle</span>
-<span>Opens live: your address, your details, your photo, status, credit</span>
-</div>
-</div>
-<p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-4">City of Austin permits &middot; records first</p>
-</div>
-<div class="space-y-3">
-<a class="w-full h-11 px-space-lg rounded-xl bg-primary-container hover:bg-evergreen-deep active:scale-[0.99] text-surface-container-lowest font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="home-customer" href="/web/onboarding.html?track=home&amp;persona=lead#home">
-<span>New here: start onboarding</span>
-<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">arrow_forward</span>
-</a>
-<a class="w-full h-11 px-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-subtle active:scale-[0.99] text-ink-primary border border-wire-border font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="home-member" href="/web/member.html?track=home&amp;persona=lead">
-<span>I'm a customer: my home</span>
-<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">home</span>
-</a>
-<a class="w-full h-11 px-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-subtle active:scale-[0.99] text-ink-primary border border-wire-border font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="home-admin" href="/web/market.html?track=home&amp;persona=operations">
-<span>Enter as Base admin</span>
-<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">navigate_next</span>
-</a>
+<div class="role">
+<h3>As Base admin</h3>
+<p>Every Austin permit routed, then one lead's readiness.</p>
+<a class="btn" id="home-admin" href="/web/judgments.html?track=home&amp;persona=operations">Every permit, then one lead</a>
 </div>
 </section>
-<section class="workspace bg-surface-container-lowest border border-wire-border rounded-xl p-7 flex flex-col justify-between hover:border-outline-variant hover:shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)] transition-all duration-200" id="compute-card" aria-labelledby="compute-title">
-<div>
-<div class="flex items-center justify-between mb-5">
-<div class="w-12 h-12 rounded-xl bg-surface-subtle border border-wire-border flex items-center justify-center text-primary-container">
-<span class="material-symbols-outlined text-headline-lg" aria-hidden="true">memory</span>
+
+<section class="product" id="compute-card" aria-labelledby="compute-title">
+<div class="info">
+<h2 id="compute-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>Base Super Local AI</h2>
+<p class="what" id="compute-description">Run AI on a GPU next to the battery. Your data stays local.</p>
+<p class="sub">The battery fleet becomes a place to run AI: jobs run when power allows, backup reserve first, priced by the GPU-hour.</p>
+<p class="proof"><span class="n">$1,041 vs $142</span>fleet margin with compute vs power alone; 50 batteries, 3 real ERCOT days, 0 reserve breaches<span class="tag s">Simulation</span></p>
+<p class="sub">Local model: 18 of 20 answers right, 2.2 s median<span class="tag m">Measured</span></p>
 </div>
-<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-surface-container-high text-on-surface border border-surface-dim">
-                COMPUTE TRACK
-              </span>
+<div class="role">
+<h3>As a customer</h3>
+<p>Your battery, the PC beside it and a private AI at home.</p>
+<a class="btn primary" id="compute-customer" href="/web/compute-home.html?track=compute&amp;persona=gpu">Open my home AI</a>
 </div>
-<h2 class="font-headline-md text-headline-md font-bold text-ink-primary mb-2" id="compute-title">Base Super Local AI</h2>
-<p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-2">Base Super Local AI &middot; Track 3</p>
-<p class="font-body-md text-body-md text-outline leading-relaxed mb-6" id="compute-description">Run AI on a GPU next to the battery. Your data stays local.</p>
-<div class="space-y-2.5 pb-6 border-b border-surface-subtle mb-6">
-<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
-<span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">person</span>
-<span><span class="font-semibold">Customer:</span> Your battery and the PC beside it, the neighborhood hub</span>
-</div>
-<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
-<span class="material-symbols-outlined text-outline mr-2 text-[18px] leading-[18px]" aria-hidden="true">monitoring</span>
-<span><span class="font-semibold">Base admin:</span> Fleet economics, capacity planning, control tower</span>
-</div>
-<div class="flex items-start text-body-sm font-body-sm text-ink-primary">
-<span class="material-symbols-outlined text-solar-green mr-2 text-[18px] leading-[18px]" aria-hidden="true">check_circle</span>
-<span>Opens on a landing page: what it is, why it matters, and where to go</span>
-</div>
-</div>
-<p class="font-mono text-[11px] uppercase tracking-wider text-outline mb-4">Battery stations &middot; private AI next door</p>
-</div>
-<div class="space-y-3">
-<a class="w-full h-11 px-space-lg rounded-xl bg-primary-container hover:bg-evergreen-deep active:scale-[0.99] text-surface-container-lowest font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="compute-customer" href="/web/compute-home.html?track=compute&amp;persona=gpu">
-<span>Enter as Customer</span>
-<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">arrow_forward</span>
-</a>
-<a class="w-full h-11 px-space-lg rounded-xl bg-surface-container-lowest hover:bg-surface-subtle active:scale-[0.99] text-ink-primary border border-wire-border font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-container" id="compute-admin" href="/web/overview.html?track=compute&amp;persona=fleet">
-<span>Enter as Base admin</span>
-<span class="material-symbols-outlined text-headline-sm" aria-hidden="true">navigate_next</span>
-</a>
-<a class="block text-center font-body-sm text-body-sm font-semibold text-primary-container underline underline-offset-2 hover:text-evergreen-deep pt-1" id="compute-pitch" href="/web/pitch.html?track=compute&amp;persona=fleet">Why AI runs next door: see the pitch</a>
+<div class="role">
+<h3>As Base admin</h3>
+<p>Fleet economics, GPU capacity and the 30% backup floor.</p>
+<a class="btn" id="compute-admin" href="/web/overview.html?track=compute&amp;persona=fleet">Fleet and control tower</a>
+<a class="textlink" id="compute-pitch" href="/web/pitch.html?track=compute&amp;persona=fleet">Why AI runs next door: the pitch</a>
 </div>
 </section>
 </div>
 </div>
-<p class="text-center mt-6"><a id="built-link" class="inline-flex items-center gap-1 font-label-md text-label-md font-semibold text-primary-container underline underline-offset-4 hover:text-evergreen-deep" href="/web/built.html">What we built this weekend: the what, why and how</a></p>
 </main>
-<footer class="w-full border-t border-wire-border py-3 px-space-md bg-surface-container-lowest flex flex-col sm:flex-row justify-between items-center text-outline font-body-sm text-body-sm">
-<div class="flex items-center space-x-space-md">
-<span class="font-medium text-ink-primary">Base Ready · Base Super Local AI</span>
+<footer>
+<div class="wrap">
+<span>A Base Power × AITX hackathon entry, Sep 25–27, 2026. Not affiliated with Base.</span>
+<nav aria-label="About this entry">
+<a id="built-link" href="/web/built.html">What we built</a>
+<a href="https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019" target="_blank" rel="noopener">Loom: Base Ready</a>
+<a href="https://www.loom.com/share/37a225004ab248bc874401470ef2653d" target="_blank" rel="noopener">Loom: Super Local AI</a>
+<a href="https://github.com/jravinder/base-aitx" target="_blank" rel="noopener">Repo</a>
+<span data-built-by>Built by <a href="https://www.linkedin.com/in/jravinder/" target="_blank" rel="noopener">Ravinder Jilkapally</a></span>
+</nav>
 </div>
-<span data-built-by>Built by <a class="text-ink-primary underline underline-offset-2" href="https://www.linkedin.com/in/jravinder/" target="_blank" rel="noopener">Ravinder Jilkapally</a> · <a class="text-ink-primary underline underline-offset-2" href="https://aisoft.us" target="_blank" rel="noopener">aisoft.us</a></span>
 </footer>
 </body></html>

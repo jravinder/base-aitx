@@ -28,13 +28,9 @@
   }
 
   function chip(text, tone) {
-    const c = {green: ["bg-emerald-50 text-emerald-800", "bg-solar-green"], amber: ["bg-amber-50 text-amber-900", "bg-warning-amber"],
-      grey: ["bg-surface-subtle text-outline", "bg-outline"]}[tone];
     const s = document.createElement("span");
-    s.className = `inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-semibold shrink-0 ${c[0]}`;
-    const d = document.createElement("span");
-    d.className = `w-1.5 h-1.5 rounded-full ${c[1]}`;
-    s.append(d, text);
+    s.className = `chip ${{green: "green", amber: "todo", grey: "grey"}[tone]}`;
+    s.append(document.createElement("i"), text);
     return s;
   }
 
@@ -58,10 +54,8 @@
     $("crumb-step").textContent = `Step ${(idx < 0 ? 4 : idx) + 1} of 5: ${stage}`;
     const pending = unanswered.length + (s.photo && s.addr === addr ? 0 : 1);
     $("pending-text").textContent = pending ? (pending > 1 ? `One thing now, ${pending - 1} after` : "One thing left") : "You are all set";
-    $("pending-chip").className = pending
-      ? "inline-flex items-center gap-2 px-3 py-1.5 bg-amber-50 border border-amber-200 text-amber-900 rounded-lg font-label-md text-label-md"
-      : "inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg font-label-md text-label-md";
-    $("stage-dot").className = `w-1.5 h-1.5 rounded-full ${pending ? "bg-warning-amber" : "bg-solar-green"}`;
+    $("pending-chip").className = "panel stat";
+    $("stage-dot").style.background = pending ? "var(--bf-blue)" : "var(--bf-brand)";
 
     // Action card.
     const main = $("action-main"), voice = $("action-voice");
@@ -93,11 +87,9 @@
       $("action-main-text").textContent = "Add the panel photo";
       setReward("photo");
     } else {
-      $("action-card").className = "bg-surface-container-lowest border border-wire-border rounded-xl p-5 sm:p-6 shadow-sm";
-      $("action-icon-box").className = "w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center shrink-0";
+      $("action-card").className = "hero done";
       $("action-icon").textContent = "task_alt";
       $("action-kicker").textContent = "All set";
-      $("action-kicker").className = "font-label-caps text-label-caps text-emerald-800 uppercase tracking-wider font-bold";
       $("action-title").textContent = "You are all set";
       $("action-body").textContent = "Your details and photo are in. The engineering review and installation are steps Base does.";
       $("action-reason-box").hidden = true;
@@ -117,15 +109,15 @@
       else if (Object.hasOwn(saved, f)) { label = "Needed from you"; tone = "amber"; sub = "You left this open. You can answer it later."; }
       else { label = "Needed from you"; tone = "amber"; sub = g.source ? `Records: ${g.source}` : "Not on record."; }
       const row = document.createElement("div");
-      row.className = "py-3.5 flex items-center justify-between gap-3";
+      row.className = "row";
       row.dataset.field = f;
       const t = document.createElement("div");
       t.className = "min-w-0";
       const n = document.createElement("p");
-      n.className = "font-label-md text-label-md font-semibold text-ink-primary";
+      n.className = "n";
       n.textContent = FIELDS[f].name;
       const p = document.createElement("p");
-      p.className = `font-body-sm text-body-sm ${tone === "amber" ? "text-amber-900 font-medium" : "text-outline"}`;
+      p.className = "t";
       p.textContent = sub;
       t.append(n, p);
       row.append(t, chip(label, tone));

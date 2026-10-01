@@ -8,164 +8,250 @@
 <script id="tailwind-config">if (window.tailwind) tailwind.config = { darkMode: "class", corePlugins: { preflight: false }, theme: { extend: { "colors": { "surface-container-highest": "#d8e3fb", "inverse-primary": "#a0d3a6", "secondary-container": "#cbf080", "outline": "#717970", "secondary": "#4a6700", "secondary-fixed-dim": "#afd367", "primary-fixed": "#bbefc1", "on-primary-fixed": "#00210b", "primary-container": "#1e4d2b", "on-tertiary": "#ffffff", "ink-primary": "#0F172A", "primary": "#023616", "on-tertiary-container": "#63c479", "inverse-on-surface": "#ecf1ff", "surface-container-high": "#dee8ff", "evergreen-deep": "#004A31", "on-tertiary-fixed-variant": "#005323", "on-secondary-fixed-variant": "#374e00", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "error-container": "#ffdad6", "surface-muted": "#F8FAFC", "background": "#f9f9ff", "tertiary-container": "#004f21", "on-tertiary-fixed": "#00210a", "on-secondary-container": "#506e08", "tertiary": "#003614", "on-surface": "#111c2d", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#21502e", "critical-red": "#EF4444", "tertiary-fixed": "#95f8a7", "tertiary-fixed-dim": "#79db8d", "on-primary-container": "#8bbd92", "on-secondary-fixed": "#141f00", "solar-green": "#22C55E", "wire-border": "#E2E8F0", "on-background": "#111c2d", "on-error-container": "#93000a", "energy-lime": "#84CC16", "surface-subtle": "#F1F5F9", "surface-tint": "#396844", "on-surface-variant": "#414941", "warning-amber": "#F59E0B", "outline-variant": "#c1c9be", "error": "#ba1a1a", "surface": "#f9f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-dim": "#cfdaf2", "surface-container-low": "#f0f3ff", "inverse-surface": "#263143", "secondary-fixed": "#cbf080", "surface-variant": "#d8e3fb", "on-primary": "#ffffff", "primary-fixed-dim": "#a0d3a6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "margin": "2rem", "gutter-lg": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin-xl": "3rem" }, "fontFamily": { "telemetry-metric": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "telemetry-unit": ["Plus Jakarta Sans"], "display-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"] }, "fontSize": { "telemetry-metric": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "telemetry-unit": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-sm": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }] } } } };</script>
 <link rel="stylesheet" href="shell.css">
 <style>.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;overflow:hidden;max-width:1.2em}
-*,*::before,*::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e2e8f0}
-body{margin:0}
-#main{overflow-wrap:anywhere}
-#main p,#main h1,#main h2,#main h3,#main dl,#main dd{margin:0}
-#main a,.shell nav[aria-label=Breadcrumb] a{text-decoration:none}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:var(--bf-text-body)}
+#main{max-width:1440px;margin:0 auto;padding:32px 24px 48px;overflow-wrap:anywhere}
+#main h1,#main h2,#main h3,#main p,#main ul{margin:0}
+#main a{color:var(--bf-brand);text-decoration:none}#main a:hover{text-decoration:underline}
 [hidden]{display:none!important}
-.card{background:#fff;border:1px solid #eef2f7;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.05),0 6px 20px rgba(15,23,42,.04)}
-.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.ledger td.num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
-.img-chip{position:absolute;padding:6px 12px;border-radius:8px;background:rgba(255,255,255,.93);box-shadow:0 1px 3px rgba(0,0,0,.08);font:500 11px/16px ui-monospace,SFMono-Regular,Menlo,monospace;color:#0f172a}
-.tag{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font:700 10px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;background:#f1f5f9;color:#414941;border:1px solid #e2e8f0}
-.tag.sim{background:#cbf080;color:#141f00;border-color:#afd367}
-.gauge{display:flex;height:12px;border-radius:999px;overflow:hidden;background:#f1f5f9}
-.spark{display:flex;align-items:flex-end;gap:1px;height:48px}
-.spark i{flex:1;background:#a0d3a6;border-radius:1px 1px 0 0;min-width:1px}
-.spark i.hot{background:#1e4d2b}
-.ledger{width:100%;border-collapse:collapse;font-size:13px;line-height:18px}
-.ledger th{text-align:left;font:700 11px/16px "Plus Jakarta Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#414941;background:#f1f5f9;padding:10px 16px}
-.ledger td{padding:14px 16px;border-top:1px solid #e2e8f0;vertical-align:top}
-.ledger td.num,.ledger th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.fits span{display:inline-block;margin:0 4px 4px 0;padding:1px 8px;border-radius:999px;background:#f0f3ff;border:1px solid #e2e8f0;font-size:12px}
-.feeder{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:8px;border:1px solid #e2e8f0;background:#f9f9ff;font-size:12px;font-variant-numeric:tabular-nums}
-.feeder b{color:#0f172a}
-.feeder.solo{background:#fff7e6;border-color:#f5d08a}
-@media (max-width:767px){.ledger thead{display:none}.ledger tr{display:block;border-top:1px solid #e2e8f0;padding:8px 0}.ledger td{display:flex;justify-content:space-between;gap:12px;border:0;padding:6px 16px;text-align:right}.ledger td::before{content:attr(data-label);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#414941;text-align:left;flex-shrink:0}.ledger td.num{text-align:right}.ledger td.first{display:block;text-align:left}.ledger td.first::before{content:none}}
+.mono,code{font-family:var(--bf-mono);font-size:12px}
+.eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+.tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+.tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+.tag.s{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
+:root[data-theme="dark"] .tag.m{color:var(--bf-brand)}
+.hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+.hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+.hero .a{font:700 34px/40px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.hero .a small{font:600 22px/30px var(--bf-font);color:var(--bf-muted);letter-spacing:0}
+.hero .line{font:var(--bf-text-body);color:var(--bf-muted);max-width:760px}
+.panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+.runhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.runhead h2{font:var(--bf-text-h2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.state{font:700 11px/16px var(--bf-font);padding:2px 10px;border-radius:999px;background:var(--bf-brand-tint);color:var(--bf-brand-strong);border:1px solid var(--bf-brand-soft)}
+:root[data-theme="dark"] .state{color:var(--bf-brand)}
+.runhead .meta{font:var(--bf-text-small);color:var(--bf-faint)}
+.strip{display:flex;align-items:stretch;padding:12px 14px;gap:0}
+.blk{flex:1;min-width:0;border:1px solid var(--bf-line-strong);border-radius:var(--bf-radius-lg);padding:10px 12px;background:var(--bf-surface)}
+.blk b{display:block;font:var(--bf-text-h3)}
+.blk .op{display:block;font:var(--bf-text-small);color:var(--bf-faint)}
+.blk .st{display:flex;align-items:center;gap:6px;margin-top:6px;font:var(--bf-text-small);color:var(--bf-muted)}
+.blk .st i{width:8px;height:8px;border-radius:50%;background:var(--bf-solar);flex:none}
+.wire{width:28px;height:2px;background:var(--bf-line-strong);flex:none;align-self:center}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{padding:10px 12px;min-width:0}
+.stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+.stat .v{display:block;font:700 22px/28px var(--bf-font);letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
+.gridp .gh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:8px 16px;border-bottom:1px solid var(--bf-line)}
+.gridp .gh b{font:var(--bf-text-h3)}.gridp .gh span{font:var(--bf-text-small);color:var(--bf-faint)}
+.hw{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 6px;padding:12px 16px 6px}
+.hw .ax{font:var(--bf-text-small);color:var(--bf-faint);font-size:10px;line-height:13px;text-align:right;align-self:start;white-space:nowrap}
+.hw .ax.b{align-self:end}
+#sq{display:grid;grid-template-columns:repeat(72,minmax(0,1fr));grid-auto-rows:6px;gap:2px}
+#sq i{border-radius:1px;background:var(--bf-line)}
+#sq i.r{background:var(--bf-blue)}#sq i.a{background:var(--bf-solar)}#sq i.v{background:#F59E0B}#sq i.p{background:#EF4444}
+.spark{display:grid;grid-template-columns:repeat(72,minmax(0,1fr));gap:2px;align-items:end;height:40px;margin-top:6px}
+.spark i{background:var(--bf-brand-soft);border-radius:1px 1px 0 0;min-width:1px}
+.spark i.hot{background:var(--bf-brand-strong)}
+.hours{display:flex;justify-content:space-between;font:var(--bf-text-small);font-size:10px;color:var(--bf-faint);margin-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;padding:4px 16px 10px;font:var(--bf-text-small);color:var(--bf-muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.find{padding:14px 18px;display:grid;gap:8px;border-left:4px solid var(--bf-amber)}
+.find h2{font:var(--bf-text-h2);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.find p{font:var(--bf-text-body);color:var(--bf-muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:var(--bf-radius-lg);background:var(--bf-brand-strong);color:#fff!important;font:var(--bf-text-label);justify-self:start}
+.btn:hover{text-decoration:none!important;filter:brightness(1.1)}
+.act{display:grid;gap:6px}.act p{font:var(--bf-text-small);color:var(--bf-faint)}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:start}
+.left,.right{display:grid;gap:10px;min-width:0}
+@media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+.more{margin-top:20px}
+.more>h2{font:var(--bf-text-h3);margin-bottom:10px}
+details{border-top:1px solid var(--bf-line)}details:last-of-type{border-bottom:1px solid var(--bf-line)}
+summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+details>div{padding:4px 4px 18px;color:var(--bf-muted);min-width:0}
+.card{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+.card h2{font:var(--bf-text-h2);color:var(--bf-ink)}
+.card .big{font:700 40px/44px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink);font-variant-numeric:tabular-nums}
+.card .unit{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted)}
+.card .cap{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint)}
+.card ul{list-style:none;padding:0;display:grid;gap:10px;font:var(--bf-text-small);color:var(--bf-muted)}
+.card li{display:flex;gap:8px;align-items:flex-start}
+.card .ico{font-size:18px;color:var(--bf-solar);flex:none}
+.card .res{margin-top:16px;padding:14px;border-radius:var(--bf-radius-lg);background:var(--bf-sunk);font:var(--bf-text-small);color:var(--bf-muted)}
+.card .res .h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;color:var(--bf-ink);font-weight:600}
+.card .res .h .mono{color:var(--bf-brand-strong);font-weight:600}
+:root[data-theme="dark"] .card .res .h .mono{color:var(--bf-brand)}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rules .card{padding:18px;display:flex;flex-direction:column;justify-content:space-between;gap:12px;min-width:0;border-top:3px solid var(--bf-brand-strong)}
+.rules .card#rule-feeder{border-top-color:var(--bf-solar)}.rules .card#rule-price{border-top-color:var(--bf-amber)}
+.rules .card#rule-price .ico{color:var(--bf-amber)}
+.gauge{display:flex;height:12px;border-radius:999px;overflow:hidden;background:var(--bf-line)}
+.gauge .g1{background:var(--bf-brand-strong)}.gauge .g2{background:var(--bf-solar)}
+#spark-full{height:48px;margin-top:0}
+.topo{position:relative;border-radius:var(--bf-radius-lg);overflow:hidden;margin-bottom:14px;background:var(--bf-sunk)}
+.topo img{width:100%;height:240px;object-fit:cover;display:block}
+.img-chip{position:absolute;padding:6px 12px;border-radius:8px;background:rgba(255,255,255,.93);box-shadow:0 1px 3px rgba(0,0,0,.08);font:500 11px/16px var(--bf-mono);color:#0f172a}
+.feeder{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:8px;border:1px solid var(--bf-line);background:var(--bf-sunk);font-size:12px;font-variant-numeric:tabular-nums;color:var(--bf-ink)}
+.feeder.solo{background:var(--bf-amber-tint);border-color:var(--bf-amber)}
+#feeders{display:flex;flex-wrap:wrap;gap:8px}
+.lwrap{overflow-x:auto}
+.ledger{width:100%;border-collapse:collapse;font-size:13px;line-height:18px;min-width:760px}
+.ledger th{text-align:left;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);background:var(--bf-sunk);padding:8px 12px;border-bottom:1px solid var(--bf-line)}
+.ledger td{padding:10px 12px;border-bottom:1px solid var(--bf-line);vertical-align:top;color:var(--bf-ink)}
+.ledger td .w{color:var(--bf-muted)}
+.ledger td.num,.ledger th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:var(--bf-mono);font-size:12.5px}
+.ledger th.num{font:var(--bf-text-caps)}
+.fits span{display:inline-block;margin:0 4px 4px 0;padding:1px 8px;border-radius:999px;background:var(--bf-sunk);border:1px solid var(--bf-line);font-size:12px}
+#ledger-total{padding:10px 12px;font-family:var(--bf-mono);font-size:12px;color:var(--bf-muted)}
+footer{margin-top:28px;font:var(--bf-text-small);color:var(--bf-faint)}
+@media (max-width:1000px){.rules{grid-template-columns:1fr}}
+@media (max-width:767px){.ledger{min-width:0}.ledger thead{display:none}.ledger tr{display:block;border-top:1px solid var(--bf-line);padding:8px 0}.ledger td{display:flex;justify-content:space-between;gap:12px;border:0;padding:6px 12px;text-align:right}.ledger td::before{content:attr(data-label);font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);text-align:left;flex-shrink:0}.ledger td.first{display:block;text-align:left}.ledger td.first::before{content:none}}
+@media (max-width:640px){
+ #main{padding:24px 16px 40px}
+ .hero .a{font:700 30px/38px var(--bf-font)}.hero .a small{font-size:18px}
+ .strip{flex-direction:column;padding:12px}.wire{width:2px;height:12px;margin-left:24px;align-self:flex-start}
+ .hw{grid-template-columns:1fr;padding:12px}.hw .ax{display:none}
+ #sq{grid-auto-rows:4px;gap:1px}.spark{gap:1px}
+ .topo img{height:180px}
+}
 .skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;z-index:60;background:#fff;padding:6px 10px}</style>
 <script defer src="shell.js"></script><script defer src="jobs.js"></script>
 </head>
-<body class="bg-surface-muted text-ink-primary font-body-md text-body-md antialiased">
+<body>
 <a class="skip" href="#main">Skip to job rules</a>
-<div class="shell">
-<div class="bg-surface-container-lowest border-b border-wire-border">
- <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-body-sm font-body-sm">
-  <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-outline">
-   <a href="tower.html" class="hover:text-ink-primary flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">hub</span><span>Control tower</span></a>
-   <span class="material-symbols-outlined text-[14px] opacity-70" aria-hidden="true">chevron_right</span>
-   <span class="text-ink-primary font-semibold">Job rules</span>
-  </nav>
-  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-solar-green"></span>Three rules on every job</span>
- </div>
-</div>
-<main id="main" class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
-
- <section class="card p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 relative overflow-hidden" style="background:linear-gradient(120deg,#ffffff 55%,#f0f9ec 100%)">
-  <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-gradient-to-br from-energy-lime/15 via-solar-green/10 to-transparent blur-3xl pointer-events-none" aria-hidden="true"></div>
-  <div class="relative flex items-start gap-4 min-w-0">
-   <div class="w-12 h-12 rounded-lg bg-primary-container text-white flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[26px]" aria-hidden="true">verified_user</span></div>
-   <div class="min-w-0">
-    <div class="flex flex-wrap items-center gap-2"><span class="font-label-caps text-label-caps uppercase text-secondary bg-secondary-container/60 px-2 py-0.5 rounded">Control tower rules</span><span class="mono text-[11px] text-on-surface-variant">sim/fleet.py • tower replay</span></div>
-    <h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight mt-1">Three rules the control tower keeps on every job.</h1>
-    <p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-3xl">The member's backup comes first, work stays close to home, and the grid price sets the pace. Each rule below shows its setting in the fleet simulation and what the simulation recorded.</p>
+<main id="main">
+ <div class="cols">
+  <div class="left">
+   <div class="runhead"><h2>fleet_replay <span class="state" id="state">Recorded</span></h2><span class="meta"><span id="run-nodes">50 nodes, 72 hours</span> · <span id="run-days">ERCOT day-ahead prices, Austin Energy zone</span></span></div>
+   <div class="panel strip" aria-label="The three rules">
+    <div class="blk"><b>1 · Backup floor 30%</b><span class="op">member's backup first</span><span class="st"><i></i><span id="s-reserve">Held every hour</span></span></div>
+    <div class="wire"></div>
+    <div class="blk"><b>2 · Work moves on the feeder</b><span class="op">neighbor takes the job</span><span class="st"><i></i><span id="s-feeder">Handoff at hour 20</span></span></div>
+    <div class="wire"></div>
+    <div class="blk"><b>3 · Pause above $400/MWh</b><span class="op">grid price sets the pace</span><span class="st"><i></i><span id="s-price">No job paused</span></span></div>
+   </div>
+   <div class="panel gridp">
+    <div class="gh"><b>Every node, every hour <span style="font-weight:400;color:var(--bf-faint)">· one square per node-hour</span></b><span id="prog">Simulation replay</span></div>
+    <div class="hw">
+     <span class="ax">node 0<br>↓<br>node 49</span>
+     <div id="sq" role="img" aria-label="Grid of 50 nodes by 72 hours, coloured by what each node did that hour"></div>
+     <span class="ax b">$/MWh</span>
+     <div><div id="spark" class="spark" role="img" aria-label="Hourly grid price in the replay"></div><div class="hours"><span>hour 0</span><span>24</span><span>48</span><span>71</span></div></div>
+    </div>
+    <div class="legend" id="legend"><span><i style="background:var(--bf-blue)"></i>Running a job</span><span><i style="background:var(--bf-solar)"></i>Battery selling</span><span><i style="background:var(--bf-line)"></i>Idle</span><span><i style="background:#F59E0B"></i>Held or paused</span><span><i style="background:#EF4444"></i>Offline</span></div>
    </div>
   </div>
-  <div class="relative shrink-0 flex flex-col gap-2 px-4 py-3 rounded-lg bg-surface-subtle/80 border border-wire-border mono text-[12px] text-on-surface-variant">
-   <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-solar-green"></span><span id="run-nodes" class="font-semibold text-ink-primary">50 nodes, 72 hours</span></span>
-   <span id="run-days">ERCOT day-ahead prices, Austin Energy zone</span>
-   <a href="tower.html" id="hero-tower" class="mt-1 inline-flex items-center justify-center gap-2 min-h-[44px] px-5 rounded-lg bg-primary-container text-white font-label-md text-label-md" style="font-family:'Plus Jakarta Sans',sans-serif">Watch the rules run<span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
-  </div>
- </section>
-
- <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-  <section id="rule-reserve" class="card p-6 flex flex-col justify-between min-w-0 relative overflow-hidden">
-   <div class="absolute top-0 left-0 right-0 h-1 bg-primary-container"></div>
-   <div>
-    <div class="flex items-center justify-between gap-2 mb-4"><span class="mono text-[11px] font-bold tracking-widest uppercase text-outline">Rule 01</span><span class="tag sim">Simulation</span></div>
-    <h2 class="font-headline-md text-headline-md text-ink-primary">Backup reserve floor</h2>
-    <div class="my-5"><div class="flex items-baseline gap-2"><span class="mono text-[44px] leading-[48px] font-bold text-primary-container tabular-nums">30%</span><span class="font-label-caps text-label-caps uppercase text-on-surface-variant">floor</span></div>
-     <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">11.8 kWh of each 39.2 kWh pack stays ready for the home's backup.</p></div>
-    <ul class="space-y-3 font-body-sm text-body-sm text-on-surface-variant list-none p-0 m-0">
-     <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[18px] text-solar-green shrink-0" aria-hidden="true">check_circle</span><span>A battery sells power only while its charge stays above the floor after the hour.</span></li>
-     <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[18px] text-solar-green shrink-0" aria-hidden="true">shield</span><span>Each node holds the floor on its own, so the rule holds while the scheduler is down.</span></li>
-    </ul>
+  <aside class="right" aria-label="Summary">
+   <section class="hero">
+    <span class="eyebrow"><i></i>Job rules</span>
+    <p class="q">Can a home battery run AI jobs without risk to the home?</p>
+    <h1 class="a" id="ans">0 GPU-hours lost <small>and the backup floor held.</small></h1>
+    <p class="line">The member's backup comes first, work stays close to home, and the grid price sets the pace. <span class="tag s">Simulation</span></p>
+   </section>
+   <div class="stats">
+    <div class="panel stat"><span class="k">Lowest charge <span class="tag s">Simulation</span></span><b class="v" id="k-low">-</b><span class="s" id="k-low-s">floor is 30%</span></div>
+    <div class="panel stat"><span class="k">GPU-hours lost <span class="tag s">Simulation</span></span><b class="v" id="k-lost">-</b><span class="s" id="k-lost-s">feeders with 2+ nodes</span></div>
+    <div class="panel stat"><span class="k">Peak grid price <span class="tag m">Measured</span></span><b class="v" id="k-peak">-</b><span class="s" id="k-peak-s">ERCOT day-ahead</span></div>
+    <div class="panel stat"><span class="k">Compute margin <span class="tag s">Simulation</span></span><b class="v" id="k-margin">-</b><span class="s" id="k-margin-s">72-hour replay</span></div>
    </div>
-   <div class="mt-6 p-4 rounded-lg bg-surface-subtle">
-    <div class="flex justify-between items-center font-body-sm text-body-sm mb-2"><span class="font-semibold text-ink-primary">Result</span><span id="res-reserve" class="mono text-[12px] font-semibold text-primary-container">0 floor crossings</span></div>
-    <div class="gauge" role="img" aria-label="Battery split: 30% backup reserve, 70% for work and grid"><div class="bg-primary-container" style="width:30%"></div><div class="bg-energy-lime" style="width:70%"></div></div>
-    <div class="flex justify-between text-[11px] mono text-on-surface-variant mt-2"><span>0%</span><span class="font-semibold text-ink-primary">30% floor</span><span>100%</span></div>
-    <p id="res-reserve-note" class="font-body-sm text-body-sm text-on-surface-variant mt-2">The simulation checks the floor on every node, every hour.</p>
+   <section class="panel find" id="find">
+    <h2>A lone node restarts its job <span class="tag s">Simulation</span></h2>
+    <p id="find-p">With one node per feeder, a stopped job restarts from zero. One more node on the feeder gives it a handoff partner.</p>
+   </section>
+   <div class="act">
+    <a id="open-tower" href="tower.html" class="btn">Watch the rules run in the control tower<span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">arrow_forward</span></a>
+    <p>The tower plays the same 72 hours with a node stop, region outage and scheduler outage. Base is building the stations; a member AI service is our proposal.</p>
    </div>
-  </section>
-
-  <section id="rule-feeder" class="card p-6 flex flex-col justify-between min-w-0 relative overflow-hidden">
-   <div class="absolute top-0 left-0 right-0 h-1 bg-solar-green"></div>
-   <div>
-    <div class="flex items-center justify-between gap-2 mb-4"><span class="mono text-[11px] font-bold tracking-widest uppercase text-outline">Rule 02</span><span class="tag sim">Simulation</span></div>
-    <h2 class="font-headline-md text-headline-md text-ink-primary">Work moves on the feeder</h2>
-    <div class="my-5"><div class="flex items-baseline gap-2"><span id="big-lost" class="mono text-[44px] leading-[48px] font-bold text-ink-primary tabular-nums">0</span><span class="font-label-caps text-label-caps uppercase text-on-surface-variant">GPU-hours lost</span></div>
-     <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">With two or more nodes on a feeder, 120 nodes over 3 days.</p></div>
-    <ul class="space-y-3 font-body-sm text-body-sm text-on-surface-variant list-none p-0 m-0">
-     <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[18px] text-solar-green shrink-0" aria-hidden="true">sync_alt</span><span>When a node stops, a neighbor on the same feeder takes its job next and keeps the progress.</span></li>
-     <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[18px] text-solar-green shrink-0" aria-hidden="true">home_pin</span><span>Jobs prefer their own node, then the feeder. Moving data costs $0 on the node, $0.10 on the feeder, $0.40 farther.</span></li>
-    </ul>
-   </div>
-   <div class="mt-6 p-4 rounded-lg bg-surface-subtle">
-    <div class="flex justify-between items-center gap-2 font-body-sm text-body-sm mb-2"><span class="font-semibold text-ink-primary">Replay handoff</span><span id="res-feeder" class="mono text-[12px] font-semibold text-primary-container">Hour 20, 78758-f0</span></div>
-    <p id="res-feeder-note" class="font-body-sm text-body-sm text-on-surface-variant">Node 0 stops at hour 20. Its job goes to a neighbor on the same feeder.</p>
-    <p id="res-density" class="font-body-sm text-body-sm text-on-surface-variant mt-2">A feeder with one node restarts the job: 8 GPU-hours to redo.</p>
-   </div>
-  </section>
-
-  <section id="rule-price" class="card p-6 flex flex-col justify-between min-w-0 relative overflow-hidden">
-   <div class="absolute top-0 left-0 right-0 h-1 bg-warning-amber"></div>
-   <div>
-    <div class="flex items-center justify-between gap-2 mb-4"><span class="mono text-[11px] font-bold tracking-widest uppercase text-outline">Rule 03</span><span class="tag sim">Simulation</span></div>
-    <h2 class="font-headline-md text-headline-md text-ink-primary">Price-driven pause</h2>
-    <div class="my-5"><div class="flex items-baseline gap-2"><span class="mono text-[44px] leading-[48px] font-bold text-ink-primary tabular-nums">$400</span><span class="font-label-caps text-label-caps uppercase text-on-surface-variant">/MWh</span></div>
-     <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Grid price where the lowest-rate batch job pauses: $0.16 per GPU-hour over a 0.4 kW GPU.</p></div>
-    <ul class="space-y-3 font-body-sm text-body-sm text-on-surface-variant list-none p-0 m-0">
-     <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[18px] text-warning-amber shrink-0" aria-hidden="true">trending_up</span><span>A GPU runs a job while the job's rate beats its power cost. Higher tiers keep running to higher prices; member jobs to $3,000/MWh.</span></li>
-     <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[18px] text-warning-amber shrink-0" aria-hidden="true">battery_charging_full</span><span>The battery sells in the four highest-price hours of the day ahead and charges in the lowest.</span></li>
-    </ul>
-   </div>
-   <div class="mt-6 p-4 rounded-lg bg-surface-subtle">
-    <div class="flex justify-between items-center gap-2 font-body-sm text-body-sm mb-2"><span class="font-semibold text-ink-primary">Replay grid price, 72 hours</span><span id="res-peak" class="mono text-[12px] font-semibold text-primary-container tabular-nums">Peak</span></div>
-    <div id="spark" class="spark" role="img" aria-label="Hourly grid price in the replay"></div>
-    <p id="res-price-note" class="font-body-sm text-body-sm text-on-surface-variant mt-2">Loading the replay.</p>
-   </div>
-  </section>
+  </aside>
  </div>
 
- <section class="card p-6 min-w-0">
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
-   <div><span class="font-label-caps text-label-caps uppercase text-secondary">Where the replay nodes sit</span><h2 class="font-headline-md text-headline-md text-ink-primary mt-1">Nodes by feeder</h2></div>
-   <div class="flex flex-wrap items-center gap-3 font-body-sm text-body-sm text-on-surface-variant"><span class="tag sim">Simulation</span><span class="feeder">Shared feeder: handoff ready</span><span class="feeder solo">One node: add a neighbor</span></div>
+ <section class="more">
+  <h2>More detail</h2>
+
+  <details><summary>The three rules in full<span>settings from sim/fleet.py and what the replay recorded</span></summary><div>
+  <div class="rules">
+  <section id="rule-reserve" class="card">
+   <div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px"><span class="cap">Rule 01</span><span class="tag s">Simulation</span></div>
+    <h2>Backup reserve floor</h2>
+    <div style="margin:14px 0"><span class="big">30%</span> <span class="unit">floor</span>
+     <p style="font:var(--bf-text-small);margin-top:6px">11.8 kWh of each 39.2 kWh pack stays ready for the home's backup.</p></div>
+    <ul>
+     <li><span class="material-symbols-outlined ico" aria-hidden="true">check_circle</span><span>A battery sells power only while its charge stays above the floor after the hour.</span></li>
+     <li><span class="material-symbols-outlined ico" aria-hidden="true">shield</span><span>Each node holds the floor on its own, so the rule holds while the scheduler is down.</span></li>
+    </ul>
+   </div>
+   <div class="res">
+    <div class="h"><span>Result</span><span id="res-reserve" class="mono">0 floor crossings</span></div>
+    <div class="gauge" role="img" aria-label="Battery split: 30% backup reserve, 70% for work and grid"><div class="g1" style="width:30%"></div><div class="g2" style="width:70%"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:11px;margin-top:6px" class="mono"><span>0%</span><span>30% floor</span><span>100%</span></div>
+    <p id="res-reserve-note" style="margin-top:6px">The simulation checks the floor on every node, every hour.</p>
+   </div>
+  </section>
+  <section id="rule-feeder" class="card">
+   <div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px"><span class="cap">Rule 02</span><span class="tag s">Simulation</span></div>
+    <h2>Work moves on the feeder</h2>
+    <div style="margin:14px 0"><span id="big-lost" class="big">0</span> <span class="unit">GPU-hours lost</span>
+     <p style="font:var(--bf-text-small);margin-top:6px">With two or more nodes on a feeder, 120 nodes over 3 days.</p></div>
+    <ul>
+     <li><span class="material-symbols-outlined ico" aria-hidden="true">sync_alt</span><span>When a node stops, a neighbor on the same feeder takes its job next and keeps the progress.</span></li>
+     <li><span class="material-symbols-outlined ico" aria-hidden="true">home_pin</span><span>Jobs prefer their own node, then the feeder. Moving data costs $0 on the node, $0.10 on the feeder, $0.40 farther.</span></li>
+    </ul>
+   </div>
+   <div class="res">
+    <div class="h"><span>Replay handoff</span><span id="res-feeder" class="mono">Hour 20, 78758-f0</span></div>
+    <p id="res-feeder-note">Node 0 stops at hour 20. Its job goes to a neighbor on the same feeder.</p>
+    <p id="res-density" style="margin-top:6px">A feeder with one node restarts the job: 8 GPU-hours to redo.</p>
+   </div>
+  </section>
+  <section id="rule-price" class="card">
+   <div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px"><span class="cap">Rule 03</span><span class="tag s">Simulation</span></div>
+    <h2>Price-driven pause</h2>
+    <div style="margin:14px 0"><span class="big">$400</span> <span class="unit">/MWh</span>
+     <p style="font:var(--bf-text-small);margin-top:6px">Grid price where the lowest-rate batch job pauses: $0.16 per GPU-hour over a 0.4 kW GPU.</p></div>
+    <ul>
+     <li><span class="material-symbols-outlined ico" aria-hidden="true">trending_up</span><span>A GPU runs a job while the job's rate beats its power cost. Higher tiers keep running to higher prices; member jobs to $3,000/MWh.</span></li>
+     <li><span class="material-symbols-outlined ico" aria-hidden="true">battery_charging_full</span><span>The battery sells in the four highest-price hours of the day ahead and charges in the lowest.</span></li>
+    </ul>
+   </div>
+   <div class="res">
+    <div class="h"><span>Replay grid price, 72 hours</span><span id="res-peak" class="mono">Peak</span></div>
+    <div id="spark-full" class="spark" role="img" aria-label="Hourly grid price in the replay"></div>
+    <p id="res-price-note" style="margin-top:6px">Loading the replay.</p>
+   </div>
+  </section>
   </div>
-  <div class="relative rounded-xl overflow-hidden mb-5 bg-surface-subtle">
-   <img src="assets/stitch/jobs-1.jpg" alt="Illustration of a neighborhood with homes linked along a power line by glowing data traces" class="w-full h-[180px] sm:h-[240px] lg:h-[300px] object-cover block" loading="lazy">
-   <div class="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
-   <span class="img-chip top-3 left-3" style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:600">Illustration</span>
-   <span class="img-chip bottom-3 left-3 hidden sm:inline" id="topo-chip">Nodes share work along each feeder</span>
-   <span class="img-chip bottom-3 right-3" id="topo-lost">Shared feeders keep every GPU-hour</span>
-  </div>
-  <div id="feeders" class="flex flex-wrap gap-2"></div>
-  <p id="feeders-note" class="font-body-sm text-body-sm text-on-surface-variant mt-4"></p>
+  </div></details>
+
+  <details><summary>Nodes by feeder<span id="feed-sum">where the replay nodes sit</span></summary><div>
+   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px"><span class="tag s">Simulation</span><span class="feeder">Shared feeder: handoff ready</span><span class="feeder solo">One node: add a neighbor</span></div>
+   <div class="topo">
+    <img src="assets/stitch/jobs-1.jpg" alt="Illustration of a neighborhood with homes linked along a power line by glowing data traces" loading="lazy">
+    <span class="img-chip" style="top:12px;left:12px;font-family:var(--bf-font);font-weight:600">Illustration</span>
+    <span class="img-chip" style="bottom:12px;left:12px" id="topo-chip">Nodes share work along each feeder</span>
+    <span class="img-chip" style="bottom:12px;right:12px" id="topo-lost">Shared feeders keep every GPU-hour</span>
+   </div>
+   <div id="feeders"></div>
+   <p id="feeders-note" style="margin-top:12px"></p>
+  </div></details>
+
+  <details><summary>Workload ledger: five tiers, highest rate first<span id="ledger-sum">jobs, GPU-hours and margin per tier</span></summary><div>
+   <p style="margin-bottom:10px">Rates come from public GPU cloud prices checked 2026-09-26. Member jobs use at most 25% of a node's hours. Jobs, GPU-hours and margin are the 72-hour replay totals after power and data moves. <span class="tag s">Simulation</span></p>
+   <div class="lwrap"><table class="ledger">
+    <thead><tr><th>Tier and workload class</th><th>Can run on</th><th class="num">Rate / GPU-hour</th><th class="num">Share of queue</th><th class="num">Jobs</th><th class="num">GPU-hours</th><th class="num">Margin</th><th class="num">Pauses above</th></tr></thead>
+    <tbody id="ledger"></tbody>
+   </table></div>
+   <p id="ledger-total"></p>
+  </div></details>
  </section>
 
- <section class="card overflow-hidden min-w-0">
-  <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-3">
-   <div><span class="font-label-caps text-label-caps uppercase text-secondary inline-flex items-center gap-2">Workload ledger<span class="w-1.5 h-1.5 rounded-full bg-solar-green" aria-hidden="true"></span></span><h2 class="font-headline-md text-headline-md text-ink-primary mt-1">Five tiers, highest rate first</h2>
-    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-3xl">Rates come from public GPU cloud prices checked 2026-09-26. Member jobs use at most 25% of a node's hours. Jobs, GPU-hours and margin are the 72-hour replay totals after power and data moves.</p></div>
-   <span class="tag sim self-start md:self-auto">Simulation</span>
-  </div>
-  <table class="ledger">
-   <thead><tr><th>Tier and workload class</th><th>Can run on</th><th class="num">Rate / GPU-hour</th><th class="num">Share of queue</th><th class="num">Jobs</th><th class="num">GPU-hours</th><th class="num">Margin</th><th class="num">Pauses above</th></tr></thead>
-   <tbody id="ledger"></tbody>
-  </table>
-  <p id="ledger-total" class="px-6 py-4 border-t border-wire-border bg-surface-subtle mono text-[12px] text-on-surface-variant"></p>
- </section>
-
- <section class="card p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-  <div class="min-w-0"><h2 class="font-headline-md text-headline-md text-ink-primary">Watch the rules run</h2>
-   <p class="font-body-md text-body-md text-on-surface-variant mt-1">The control tower plays the same 72 hours node by node, with the node stop, region outage and scheduler outage.</p>
-   <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Base is building the stations; a member AI service is our proposal.</p></div>
-  <a id="open-tower" href="tower.html" class="shrink-0 inline-flex items-center gap-2 min-h-[44px] px-5 rounded-lg bg-primary-container text-white font-label-md text-label-md">Open the control tower<span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
- </section>
-
- <footer class="font-body-sm text-body-sm text-outline py-8 border-t border-wire-border">A Base Super Local AI design. Simulation: sim/fleet.py, recorded in data/tower_replay.json and data/density.json.</footer>
+ <footer>A Base Super Local AI design. Simulation: sim/fleet.py, recorded in data/tower_replay.json and data/density.json. Grid prices: ERCOT day-ahead, Austin Energy zone.</footer>
 </main>
-</div>
 </body>
 </html>

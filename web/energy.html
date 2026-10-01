@@ -38,29 +38,90 @@
   details.en-more>summary::-webkit-details-marker{display:none}
   details.en-more[open] .en-chev{transform:rotate(180deg)}
 </style>
+
+<style>
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}
+.left,.right{display:grid;gap:10px;min-width:0}
+@media (max-width:1000px){.cols{grid-template-columns:1fr}.right{order:-1}}
+.panel{background:var(--bf-surface);border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);box-shadow:var(--bf-shadow-card)}
+.eyebrow{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-muted);padding:4px 10px;border:1px solid var(--bf-line);border-radius:var(--bf-radius-lg);background:var(--bf-sunk)}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--bf-brand)}
+.hero{padding:0 0 10px;border-bottom:1px solid var(--bf-line);display:grid;gap:4px}
+.hero .q{font:var(--bf-text-h1);color:var(--bf-muted)}
+.hero .a{font:700 30px/36px var(--bf-font);letter-spacing:-.02em;color:var(--bf-ink)}
+.hero .line{font:var(--bf-text-body);color:var(--bf-muted)}
+.tag{display:inline-block;font:700 10.5px/16px var(--bf-font);letter-spacing:.04em;text-transform:uppercase;padding:1px 8px;border-radius:999px;border:1px solid;vertical-align:middle;white-space:nowrap}
+.tag.m{background:var(--bf-brand-tint);color:var(--bf-brand-strong);border-color:var(--bf-brand-soft)}
+.tag.s{background:var(--bf-amber-tint);color:var(--bf-amber);border-color:var(--bf-amber)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{padding:10px 12px;min-width:0}
+.stat .k{font:var(--bf-text-caps);letter-spacing:.06em;text-transform:uppercase;color:var(--bf-faint);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:center;overflow-wrap:normal}
+.stat .v{display:block;font:700 22px/28px var(--bf-font);letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums;color:var(--bf-ink)}
+.stat .s{display:block;font:var(--bf-text-small);color:var(--bf-muted);margin-top:2px}
+.find{padding:12px 16px;display:grid;gap:4px;border-left:4px solid var(--bf-brand)}
+.find h2{font:var(--bf-text-h3);color:var(--bf-ink)}
+.find p{font:var(--bf-text-small);color:var(--bf-muted)}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--bf-radius-lg);font:var(--bf-text-label);border:1px solid var(--bf-line);background:var(--bf-surface);color:var(--bf-brand-strong)}
+.btn.pri{background:var(--bf-brand-strong);border-color:var(--bf-brand-strong);color:#fff}
+.gridp .gh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:10px 16px;border-bottom:1px solid var(--bf-line)}
+.gridp .gh b{font:var(--bf-text-h3);color:var(--bf-ink)}.gridp .gh span{font:var(--bf-text-small);color:var(--bf-faint)}
+#gh{display:grid;grid-template-columns:44px repeat(24,minmax(0,1fr));gap:4px;padding:14px 16px 6px}
+#gh .dl,#gh .hl{font:var(--bf-text-small);color:var(--bf-faint);align-self:center;white-space:nowrap;overflow:visible}
+#gh .hl{font-size:10px}
+#gh i{aspect-ratio:1;border-radius:2px;background:var(--bf-line)}
+#gh i.o{background:var(--bf-solar)}#gh i.x{background:var(--bf-blue)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;padding:4px 16px 12px;font:var(--bf-text-small);color:var(--bf-muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.gsrc{padding:0 16px 12px;font:var(--bf-text-small);color:var(--bf-faint)}
+.more{margin-top:24px}
+.more>h2{font:var(--bf-text-h3);margin-bottom:10px;color:var(--bf-ink)}
+.more details{border-top:1px solid var(--bf-line)}.more details:last-of-type{border-bottom:1px solid var(--bf-line)}
+.more summary{cursor:pointer;padding:12px 4px;font:var(--bf-text-label);color:var(--bf-ink)}
+.more summary span{font:var(--bf-text-small);color:var(--bf-faint);margin-left:6px}
+.more details>div{padding:4px 0 18px;display:flex;flex-direction:column;gap:16px}
+@media (max-width:640px){#gh{grid-template-columns:30px repeat(24,minmax(0,1fr));gap:2px;padding:12px}#gh .hl{font-size:9px}.stat .v{font-size:20px}}
+</style>
 </head>
 <body class="bg-surface font-body-md text-body-md text-ink-primary antialiased">
 <main id="main" class="w-full bg-surface">
 <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-6 py-8 flex flex-col gap-8">
+<div class="w-full max-w-[1440px] mx-auto px-4 sm:px-6 py-8">
 
-<!-- Header -->
-<section class="flex flex-col md:flex-row md:items-end justify-between gap-4">
- <div class="min-w-0">
-  <div class="flex flex-wrap items-center gap-2 mb-1">
-   <span class="w-2 h-2 rounded-full bg-solar-green" aria-hidden="true"></span>
-   <span class="font-label-caps text-label-caps uppercase tracking-wider text-primary-container">Your battery and home AI</span>
-   <span id="feeder-chip" class="en-tag">Feeder</span>
+<div class="cols">
+ <div class="left">
+  <section class="panel gridp" aria-labelledby="gh-title">
+   <div class="gh"><b id="gh-title">This week's GPU hours <span style="font-weight:400;color:var(--bf-faint)">· one square per hour</span></b><span><span id="gh-prog"></span> <span class="tag s">Simulation</span></span></div>
+   <div id="gh" role="img" aria-label="Grid of this week's GPU hours: own use, sold, idle"></div>
+   <div class="legend"><span><i style="background:var(--bf-solar)"></i>Your own use</span><span><i style="background:var(--bf-blue)"></i>Sold to others</span><span><i style="background:var(--bf-line)"></i>Idle</span></div>
+   <p class="gsrc" id="gh-src">Source: data/members.json week events for this node (sim/fleet.py). Jobs only run above your backup reserve.</p>
+  </section>
+ </div>
+ <aside class="right" aria-label="This week">
+  <section class="hero">
+   <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span class="eyebrow"><i></i>Your battery and home AI</span><span id="feeder-chip" class="en-tag">Feeder</span></div>
+   <h1 class="q">What did your battery and PC do this week?</h1>
+   <p class="a" id="ans">--</p>
+   <p class="line">Your AI work ran on the GPU next door: data stayed home, spare hours sold by the hour, backup reserve first.</p>
+  </section>
+  <div class="stats">
+   <div class="panel stat"><span class="k">Your own use <span class="tag s">Sim</span></span><span class="v" id="st-own">--</span><span class="s" id="st-own-s"></span></div>
+   <div class="panel stat"><span class="k">Sold to others <span class="tag s">Sim</span></span><span class="v" id="st-sold">--</span><span class="s" id="st-sold-s"></span></div>
+   <div class="panel stat"><span class="k">Money saved <span class="tag s">Sim</span></span><span class="v" id="st-save">--</span><span class="s">vs a hosted AI service</span></div>
+   <div class="panel stat"><span class="k">Backup held <span class="tag s">Sim</span></span><span class="v" id="st-bat">--</span><span class="s" id="st-bat-s"></span></div>
   </div>
-  <h1 class="font-display-sm text-display-sm text-ink-primary tracking-tight">What your battery and PC did this week.</h1>
-  <p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-3xl">Five answers, one simulated week. Each number says where it comes from.</p>
- </div>
- <div class="flex flex-wrap items-center gap-3 self-start md:self-auto">
- <div class="bg-white border border-wire-border shadow-sm px-3.5 py-2 rounded-xl flex items-center gap-2.5"><span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">verified_user</span><div class="text-left"><div class="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Backup lock</div><div class="text-xs font-semibold text-primary-container" id="lock-chip">Reserve held</div></div></div>
- <a href="copilot.html" data-ctx class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-wire-border text-primary-container font-label-md text-label-md shadow-sm hover:bg-surface-subtle"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">psychology</span><span>Ask your AI</span></a>
- <a href="overview.html" data-ctx id="next-overview" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-container text-white font-label-md text-label-md shadow-sm hover:bg-evergreen-deep"><span>See the whole fleet</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
- </div>
-</section>
+  <div class="panel find"><h2>Backup lock: <span id="lock-chip">Reserve held</span></h2><p>Power sales and GPU jobs stop at your reserve. It stays ready for an outage.</p></div>
+  <div class="panel find"><h2 id="st-home">Data kept home</h2><p>Your own questions ran on your PC. None went to a frontier model.</p></div>
+  <div class="acts">
+   <a href="overview.html" data-ctx id="next-overview" class="btn pri"><span>See the whole fleet</span><span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>
+   <a href="copilot.html" data-ctx class="btn"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">psychology</span><span>Ask your AI</span></a>
+  </div>
+ </aside>
+</div>
 
+<section class="more" aria-label="More detail">
+ <h2>More detail</h2>
+ <details><summary>This week at a glance <span>Five numbers, each with its source</span></summary><div>
 <!-- Plain weekly summary -->
 <section class="en-card p-6 lg:p-8" aria-labelledby="wk-title">
  <h2 id="wk-title" class="font-headline-md text-headline-md text-ink-primary mb-2">This week at a glance</h2>
@@ -97,11 +158,8 @@
   </div></div>
  </div>
 </section>
-
-<details class="en-more flex flex-col gap-8" id="charts">
- <summary class="en-card px-6 py-4 flex items-center justify-between gap-3 font-headline-sm text-headline-sm text-ink-primary"><span>See the charts</span><span class="material-symbols-outlined en-chev text-primary-container" aria-hidden="true">expand_more</span></summary>
- <div class="flex flex-col gap-8 mt-8">
-
+ </div></details>
+ <details><summary>Week's value <span>Value, reserve, compute hours, lowest charge</span></summary><div>
 <!-- Metric tiles -->
 <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" aria-label="This week">
  <div class="en-card p-6 min-w-0"><div class="en-glow" aria-hidden="true"></div>
@@ -125,7 +183,8 @@
   <div class="mt-2 font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-solar-green text-[16px]" aria-hidden="true">lock</span><span id="m-low-note">Above your reserve all week</span></div>
  </div>
 </section>
-
+ </div></details>
+ <details id="charts"><summary>Weekly battery flow and event log <span>Seven days on real ERCOT prices, day by day</span></summary><div>
 <!-- Weekly flow + event log -->
 <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
  <article class="lg:col-span-7 en-card p-6 flex flex-col gap-4 min-w-0" aria-labelledby="flow-title">
@@ -166,7 +225,8 @@
   </article>
  </div>
 </section>
-
+ </div></details>
+ <details><summary>Backup reserve <span>Try a setting to see your backup hours</span></summary><div>
 <!-- Reserve control -->
 <section class="en-card p-6 lg:p-8" aria-labelledby="reserve-title">
  <div class="max-w-4xl mx-auto flex flex-col gap-6">
@@ -204,10 +264,8 @@
   <button type="button" id="reserve-reset" class="self-start font-label-md text-label-md text-primary-container underline underline-offset-4" hidden>Back to your setting</button>
  </div>
 </section>
-
- </div>
-</details>
-
+ </div></details>
+ <details><summary>Why is your home AI faster and cheaper? <span>The neighborhood station</span></summary><div>
 <!-- Station card -->
 <section class="en-card p-6 lg:p-8" aria-labelledby="why-title">
  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -239,6 +297,8 @@
    <p class="font-body-sm text-body-sm text-on-surface-variant">Base is building the stations; a member AI service is our proposal.</p>
   </div>
  </div>
+</section>
+ </div></details>
 </section>
 
 </div>
@@ -283,6 +343,27 @@
     $("wk-bat").textContent = `${n.reserve_pct}% held · ${fmt(n.reserve_kwh / LOAD_KW, 1)} h`;
     $("wk-bat").title = `${n.reserve_kwh} kWh reserve / ${LOAD_KW} kW load = ${fmt(n.reserve_kwh / LOAD_KW, 1)} h`;
     $("wk-bat-t").textContent = `Your ${n.reserve_pct}% backup floor was never breached; the lowest charge was ${fmt(low)}%. The reserve alone runs your home ${fmt(n.reserve_kwh / LOAD_KW, 1)} hours in an outage.`;
+    // Right column + GPU-hour grid (same parsed events as above).
+    $("st-own").textContent = `${fmt(ownH)} h`;
+    $("st-own-s").textContent = `${fmt(ownJobs)} jobs of your own questions`;
+    $("st-sold").textContent = money(soldUsd);
+    $("st-sold-s").textContent = `${fmt(soldH)} spare hours, gross, before power`;
+    $("st-save").textContent = money(saved);
+    $("st-bat").textContent = `${n.reserve_pct}% · ${fmt(n.reserve_kwh / LOAD_KW, 1)} h`;
+    $("st-bat-s").textContent = `Lowest charge ${fmt(low)}%, never below the floor`;
+    $("st-home").textContent = `Data kept home: ${fmt(ownJobs)} jobs, 0 sent out`;
+    const idleH = m.week.length * 24 - ownH - soldH;
+    $("ans").textContent = `${fmt(ownH + soldH)} GPU hours: ${fmt(ownH)} yours, ${fmt(soldH)} sold, backup held.`;
+    $("gh-prog").textContent = `${fmt(ownH)} own · ${fmt(soldH)} sold · ${fmt(idleH)} idle`;
+    const g = $("gh"); let html = '<span></span>';
+    for (let h = 0; h < 24; h++) html += `<span class="hl">${h % 6 === 0 ? String(h).padStart(2, "0") : ""}</span>`;
+    m.week.forEach(day => {
+      const hrs = Array(24).fill("");
+      day.events.forEach(e => { const x = e.match(job); if (!x) return; for (let h = +x[2]; h < +x[3]; h++) hrs[h] = x[1] === "member" ? "o" : "x"; });
+      html += `<span class="dl">Day ${day.day}</span>` + hrs.map((c, h) => `<i class="${c}" title="Day ${day.day} ${String(h).padStart(2, "0")}:00 ${c === "o" ? "your own use" : c === "x" ? "sold" : "idle"}"></i>`).join("");
+    });
+    g.innerHTML = html;
+    $("gh-src").textContent = `Source: data/members.json node ${n.nid} week events (sim/fleet.py). ${fmt(ownH + soldH)} of ${m.week.length * 24} hours busy. Jobs only run above your ${n.reserve_pct}% backup reserve.`;
   });
 })();
 </script>

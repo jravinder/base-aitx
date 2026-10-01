@@ -90,7 +90,7 @@
     <section id="nodes-panel" class="card" aria-labelledby="nodes-h">
       <div class="panel-h">
         <h2 id="nodes-h">Every node, by feeder <span id="nodes-sub" class="font-normal text-on-surface-variant"></span></h2>
-        <div class="legend" aria-label="Tile colours"><span><i class="running"></i>Running</span><span><i></i>Idle</span><span><i class="paused"></i>Paused</span><span><i class="held"></i>Holding (scheduler out)</span><span><i class="offline"></i>Offline</span><span class="mono">bar = battery, tick = 30% floor</span></div>
+        <div class="legend" aria-label="Tile colours"><span><i class="running"></i>Running</span><span><i></i>Idle</span><span><i class="paused"></i>Paused</span><span><i class="held"></i>Holding (scheduler out)</span><span><i class="offline"></i>Offline</span><span class="mono">node % = battery charge, tick = 30% floor · feeder kW = export of limit</span></div>
       </div>
       <div id="feeders"></div>
     </section>
@@ -179,7 +179,7 @@ function tileEl(n, s) {
   const st = tileState(n, s), pct = Math.round(100 * n.soc);
   const what = !n.alive ? "Offline" : n.job ? TIER[n.job.tier]?.short ?? n.job.tier : n.gpu === "sell" ? "Market" : "Idle";
   const title = `Node ${n.id} · ${n.feeder} · ${n.region} · ${st} · battery ${pct}% (${n.kwh} kWh, ${n.battery})${n.job ? ` · ${n.job.tier} ${n.job.id}, ${n.job.hours_left} h left` : ""}`;
-  return `<a class="t ${st} ${String(n.id) === memberNode ? "hl" : ""}" href="${nodeHref(n)}" aria-label="Inspect node ${n.id}" title="${esc(title)}"><span class="r1"><span>${n.id}</span><span>${pct}%</span></span><span class="job">${esc(what)}</span><span class="soc"><i style="width:${pct}%"></i><b></b></span></a>`;
+  return `<a class="t ${st} ${String(n.id) === memberNode ? "hl" : ""}" href="${nodeHref(n)}" aria-label="Inspect node ${n.id}" title="${esc(title)}"><span class="r1"><span>${n.id}</span><span title="battery charge">${pct}%</span></span><span class="job">${esc(what)}</span><span class="soc"><i style="width:${pct}%"></i><b></b></span></a>`;
 }
 
 function drawStrip(h) {
@@ -296,7 +296,7 @@ function renderOps(s) {
   $("#nodes-sub").textContent = `· ${s.nodes.length} nodes on ${Object.keys(s.feeders).length} feeders`;
   const byId = Object.fromEntries(s.nodes.map(n => [n.id, n]));
   $("#feeders").innerHTML = Object.entries(s.feeders).sort((a, b) => b[1].nodes.length - a[1].nodes.length || a[0].localeCompare(b[0])).map(([f, v]) =>
-    `<div class="fd" title="${esc(f)} · export ${v.export_kw} of ${v.cap_kw} kW"><div class="fd-h ${v.export_kw >= 0.8 * v.cap_kw ? "cap" : ""}"><span>${esc(f)}</span>${v.nodes.length > 1 ? `<span>${fmt(v.export_kw, 0)}/${fmt(v.cap_kw, 0)}kW</span>` : ""}</div><div class="fd-n">${v.nodes.map(id => tileEl(byId[id], s)).join("")}</div></div>`).join("");
+    `<div class="fd" title="${esc(f)} · export ${v.export_kw} of ${v.cap_kw} kW"><div class="fd-h ${v.export_kw >= 0.8 * v.cap_kw ? "cap" : ""}"><span>${esc(f)}</span>${v.nodes.length > 1 ? `<span>export ${fmt(v.export_kw, 0)} of ${fmt(v.cap_kw, 0)} kW</span>` : ""}</div><div class="fd-n">${v.nodes.map(id => tileEl(byId[id], s)).join("")}</div></div>`).join("");
   // dispatch queue
   const pausedTiers = s.spike ? spikePaused() : [];
   const idle = s.nodes.filter(n => n.alive && !n.job).length;
