@@ -17,49 +17,51 @@
   .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 48px; }
   .top { border-bottom: 1px solid var(--bf-line); background: var(--bf-surface); }
   .top .wrap { height: 48px; display: flex; align-items: center; font: var(--bf-text-label); }
-  main { flex: 1; padding: 56px 0 40px; }
+  main { flex: 1; padding: 44px 0 32px; }
   h1 { font: 700 44px/52px var(--bf-font); letter-spacing: -0.02em; margin: 0; max-width: 32ch; }
   .lede { font: var(--bf-text-body-lg); font-size: 18px; line-height: 28px; color: var(--bf-muted); margin: 16px 0 0; max-width: 64ch; }
   .lede a { color: var(--bf-ink); text-underline-offset: 3px; }
-  .lede b, .entry b { color: var(--bf-ink); font-weight: 600; }
-  .entries { margin-top: 40px; border-top: 1px solid var(--bf-line); }
-  .entry { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto; gap: 16px 40px; align-items: start; padding: 28px 0; border-bottom: 1px solid var(--bf-line); }
-  .entry h2 { margin: 0; font: var(--bf-text-h1); }
-  .entry p { margin: 0; }
-  .entry .what { font: var(--bf-text-body-lg); color: var(--bf-muted); }
-  .proof { margin-top: 10px !important; font: var(--bf-text-body); color: var(--bf-muted); }
-  .proof .n { display: block; font: 700 20px/28px var(--bf-font); color: var(--bf-ink); }
+  .lede b { color: var(--bf-ink); font-weight: 600; }
+  .products { margin-top: 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+  .product { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 1fr auto; gap: 0 24px; background: var(--bf-surface); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-lg); padding: 24px 28px; }
+  .product .info { grid-column: 1 / -1; padding-bottom: 20px; }
+  .product h2 { margin: 0; font: 700 26px/34px var(--bf-font); letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+  .product h2 svg { width: 24px; height: 24px; flex: none; color: var(--bf-brand); }
+  .product p { margin: 0; }
+  .what { margin-top: 8px !important; font: var(--bf-text-body-lg); color: var(--bf-ink); }
+  .sub { margin-top: 4px !important; font: var(--bf-text-body); color: var(--bf-muted); }
+  .proof { margin-top: 12px !important; font: var(--bf-text-body); color: var(--bf-muted); }
+  .proof .n { display: block; font: 700 24px/32px var(--bf-font); color: var(--bf-ink); }
   .tag { display: inline-block; margin-left: 6px; padding: 0 8px; border-radius: var(--bf-radius-pill); border: 1px solid var(--bf-line); font: 600 12px/20px var(--bf-font); white-space: nowrap; vertical-align: 1px; }
   .tag.m { background: var(--bf-brand-tint); border-color: var(--bf-brand-soft); color: var(--bf-brand); }
   .tag.s { background: var(--bf-amber-tint); border-color: transparent; color: var(--bf-amber); }
-  .act { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 240px; }
-  .btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: var(--bf-radius-lg); background: var(--bf-brand); color: var(--bf-on-brand); font: 600 15px/22px var(--bf-font); text-decoration: none; }
-  .btn:hover { background: var(--bf-brand-strong); }
-  .entry.lead .btn { min-height: 48px; padding: 0 24px; font-size: 16px; }
-  .paths { display: flex; flex-direction: column; gap: 4px; font: var(--bf-text-body); }
-  .paths a { color: var(--bf-brand); text-underline-offset: 3px; display: inline-block; padding: 2px 0; }
-  .paths a:hover { color: var(--bf-brand-strong); }
-  .entry.lead { padding: 36px 0; }
-  .entry.lead h2 { font: 700 32px/40px var(--bf-font); letter-spacing: -0.01em; }
-  .entry.lead .proof .n { font-size: 28px; line-height: 36px; }
-  .entry.second h2 { font: var(--bf-text-h2); }
+  .role { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--bf-line); }
+  .role h3 { margin: 0; font: var(--bf-text-label); color: var(--bf-ink); }
+  .role p { font: var(--bf-text-body); color: var(--bf-muted); flex: 1; min-height: 44px; }
+  .btn { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 44px; padding: 8px 16px; border-radius: var(--bf-radius-lg); border: 1px solid var(--bf-line-strong); background: var(--bf-surface); color: var(--bf-ink); font: 600 15px/20px var(--bf-font); text-decoration: none; }
+  .btn:hover { background: var(--bf-sunk); }
+  .btn.primary { background: var(--bf-brand); border-color: var(--bf-brand); color: var(--bf-on-brand); }
+  .btn.primary:hover { background: var(--bf-brand-strong); border-color: var(--bf-brand-strong); }
+  #home-customer { min-height: 52px; font-size: 16px; }
+  .textlink { color: var(--bf-brand); font: 600 14px/22px var(--bf-font); padding: 4px 0; text-underline-offset: 3px; }
   footer { border-top: 1px solid var(--bf-line); background: var(--bf-surface); color: var(--bf-muted); font: var(--bf-text-small); font-size: 13px; }
   footer .wrap { padding-top: 16px; padding-bottom: 16px; display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: space-between; }
   footer nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
   footer a { color: var(--bf-ink); text-underline-offset: 3px; }
-  @media (max-width: 1080px) {
-    .entry { grid-template-columns: minmax(0, 1fr) auto; }
-    .entry .act { grid-column: 2; grid-row: 1 / span 2; }
+  @media (max-width: 1000px) {
+    .products { grid-template-columns: minmax(0, 1fr); }
   }
-  @media (max-width: 720px) {
+  @media (max-width: 640px) {
     .wrap { padding: 0 16px; }
     main { padding: 32px 0 24px; }
     h1 { font-size: 32px; line-height: 38px; }
     .lede { font-size: 16px; line-height: 26px; }
-    .entry, .entry.lead { grid-template-columns: minmax(0, 1fr); padding: 24px 0; gap: 12px; }
-    .entry .act { grid-column: 1; grid-row: auto; min-width: 0; align-items: stretch; }
-    .entry.lead h2 { font-size: 26px; line-height: 32px; }
-    .btn { justify-content: center; }
+    .products { gap: 24px; }
+    .product { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; padding: 20px; }
+    .product .info { padding-bottom: 16px; }
+    .role + .role { margin-top: 16px; }
+    .role p { min-height: 0; }
+    .product h2 { font-size: 24px; line-height: 30px; }
   }
 </style>
 <script defer src="/web/start.js"></script>
@@ -71,34 +73,45 @@
 <h1>Two things built on Base in one weekend.</h1>
 <p class="lede">We read <b>34,334</b> City of Austin energy permits so a new lead's form arrives mostly filled, and route the <b>1,421</b> a model should not decide to an engineer. Then we put a local model on a GPU beside the <a id="base-source" href="https://basepowercompany.com/how-it-works" target="_blank" rel="noopener">Base battery</a>, backup reserve first.</p>
 
-<div class="entries">
-<section class="entry lead" id="home-card" aria-labelledby="home-title">
-<div>
-<h2 id="home-title">Base Ready</h2>
-<p class="proof"><span class="n">161 of 200</span>onboarding fields filled from public records<span class="tag m">Measured</span></p>
+<div class="products">
+<section class="product" id="home-card" aria-labelledby="home-title">
+<div class="info">
+<h2 id="home-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7v9H3z"/><path d="M10 20v-5h4v5"/></svg>Base Ready</h2>
+<p class="what" id="home-description">From address to installed battery, without a phone call.</p>
+<p class="sub">Public permits answer most of the form; the lead confirms only what records miss.</p>
+<p class="proof"><span class="n">161 of 200</span>fields filled from public records<span class="tag m">Measured</span></p>
 </div>
-<p class="what" id="home-description">From address to installed battery without a phone call. Permits answer most of the form; the lead confirms only the few fields records miss.</p>
-<div class="act">
-<a class="btn" id="home-customer" href="/web/onboarding.html?track=home&amp;persona=lead#home">Start as a new lead</a>
-<div class="paths">
-<a id="home-member" href="/web/member.html?track=home&amp;persona=lead">Customer: my home</a>
-<a id="home-admin" href="/web/house.html?track=home&amp;persona=operations">Base admin: follow a lead</a>
+<div class="role">
+<h3>As a customer</h3>
+<p>Your address fills the form; confirm what is open, add a photo.</p>
+<a class="btn primary" id="home-customer" href="/web/onboarding.html?track=home&amp;persona=lead#home">Start as a new lead</a>
+<a class="btn" id="home-member" href="/web/member.html?track=home&amp;persona=lead">I have Base: my home</a>
 </div>
+<div class="role">
+<h3>As Base admin</h3>
+<p>Each lead's readiness and the permit that decided it.</p>
+<a class="btn" id="home-admin" href="/web/house.html?track=home&amp;persona=operations">Follow a lead</a>
 </div>
 </section>
 
-<section class="entry second" id="compute-card" aria-labelledby="compute-title">
-<div>
-<h2 id="compute-title">Base Super Local AI</h2>
-<p class="proof"><span class="n">18 of 20</span>answers right, 2.2 s median, on a laptop<span class="tag m">Measured</span></p>
+<section class="product" id="compute-card" aria-labelledby="compute-title">
+<div class="info">
+<h2 id="compute-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>Base Super Local AI</h2>
+<p class="what" id="compute-description">Run AI on a GPU next to the battery. Your data stays local.</p>
+<p class="sub">The battery fleet becomes a place to run AI: jobs run when power allows, backup reserve first, priced by the GPU-hour.</p>
+<p class="proof"><span class="n">$1,041 vs $142</span>fleet margin with compute vs power alone; 50 batteries, 3 real ERCOT days, 0 reserve breaches<span class="tag s">Simulation</span></p>
+<p class="sub">Local model: 18 of 20 answers right, 2.2 s median<span class="tag m">Measured</span></p>
 </div>
-<p class="what" id="compute-description">AI on a GPU next to the battery. Compute pauses before the 30% backup floor, and the member's data stays local.<span class="tag s">Simulation</span></p>
-<div class="act">
-<a class="btn" id="compute-customer" href="/web/compute-home.html?track=compute&amp;persona=gpu">Open as a customer</a>
-<div class="paths">
-<a id="compute-admin" href="/web/overview.html?track=compute&amp;persona=fleet">Base admin: fleet and control tower</a>
-<a id="compute-pitch" href="/web/pitch.html?track=compute&amp;persona=fleet">Why AI runs next door</a>
+<div class="role">
+<h3>As a customer</h3>
+<p>Your battery, the PC beside it and a private AI at home.</p>
+<a class="btn primary" id="compute-customer" href="/web/compute-home.html?track=compute&amp;persona=gpu">Open my home AI</a>
 </div>
+<div class="role">
+<h3>As Base admin</h3>
+<p>Fleet economics, GPU capacity and the 30% backup floor.</p>
+<a class="btn" id="compute-admin" href="/web/overview.html?track=compute&amp;persona=fleet">Fleet and control tower</a>
+<a class="textlink" id="compute-pitch" href="/web/pitch.html?track=compute&amp;persona=fleet">Why AI runs next door: the pitch</a>
 </div>
 </section>
 </div>
