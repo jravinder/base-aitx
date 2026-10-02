@@ -1,0 +1,9 @@
+base_warehouse:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../../data/warehouse/base.duckdb
+      threads: 4
+      settings:
+        TimeZone: UTC

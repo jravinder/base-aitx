@@ -1,0 +1,45 @@
+version: 2
+
+# Raw layer. Paths are relative to warehouse/dbt (dbt's working directory and the runner's).
+# ERCOT archives are parsed to Parquet unchanged by warehouse/ingest.py (python3 -m warehouse.ingest).
+sources:
+  - name: ercot
+    description: ERCOT MIS public reports, no login. Columns exactly as published.
+    freshness:
+      warn_after: {count: 2, period: day}
+      error_after: {count: 14, period: day}
+    tables:
+      - name: dam_spp
+        description: "Report 13060 (NP4-180-ER) Historical DAM Load Zone and Hub Prices, hourly, all hubs and load zones."
+        meta: {external_location: "read_parquet('../../data/warehouse/raw/dam_spp/*.parquet')"}
+        loaded_at_field: "strptime(delivery_date, '%m/%d/%Y')"
+      - name: rtm_spp
+        description: "Report 13061 (NP6-785-ER) Historical RTM Load Zone and Hub Prices, 15-minute settlement point prices."
+        meta: {external_location: "read_parquet('../../data/warehouse/raw/rtm_spp/*.parquet')"}
+        loaded_at_field: "strptime(delivery_date, '%m/%d/%Y')"
+      - name: as_mcpc
+        description: "Report 13091 (NP4-181-ER) Historical DAM Clearing Prices for Capacity: RegUp, RegDn, RRS, ECRS, Non-Spin, $/MW per hour."
+        meta: {external_location: "read_parquet('../../data/warehouse/raw/as_mcpc/*.parquet')"}
+        loaded_at_field: "strptime(delivery_date, '%m/%d/%Y')"
+      - name: native_load
+        description: "ERCOT Native Load by weather zone, hourly (grid/LOAD.md). The repeated fall-back hour is labelled '02:00 DST'."
+        meta: {external_location: "read_csv('../../data/ercot_load_hourly_2024_2026.csv', all_varchar = true)"}
+        loaded_at_field: "strptime(split_part(datetime, ' ', 1), '%m/%d/%Y')"
+        freshness:
+          warn_after: {count: 30, period: day}
+          error_after: {count: 90, period: day}
+      - name: dam_legacy_csv
+        description: "data/ercot_dam_hourly_2025_2026.csv from grid/ercot_archive.py (repeated hour dropped). Kept to reconcile against."
+        meta: {external_location: "read_csv('../../data/ercot_dam_hourly_2025_2026.csv', all_varchar = true)"}
+        freshness: null
+
+  - name: fleet
+    description: "SIMULATION. 1-minute telemetry for 1,000 Base batteries from warehouse/fleet_sim.py, driven by real ERCOT prices."
+    tables:
+      - name: telemetry
+        meta: {external_location: "read_parquet('../../data/warehouse/raw/telemetry/*/*.parquet', hive_partitioning = true)"}
+      - name: devices
+        meta: {external_location: "read_parquet('../../data/warehouse/raw/devices.parquet')"}
+      - name: faults
+        description: Ground truth of injected faults, used only to score the quality checks.
+        meta: {external_location: "read_parquet('../../data/warehouse/raw/fleet_faults.parquet')"}
