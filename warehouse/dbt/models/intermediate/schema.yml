@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: int_market__zone_hourly
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [interval_start_utc]}}
+    columns:
+      - name: aen
+        data_tests: [not_null]
+      - name: north
+        data_tests: [not_null]
+      - name: houston
+        data_tests: [not_null]
+  - name: int_market__battery_dispatch
+    description: UPPER BOUND. Perfect-foresight DAM arbitrage, per zone and reserve floor.
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [load_zone, reserve_floor_pct, interval_start_utc]}}
+    columns:
+      - name: charge_kw
+        data_tests: [{accepted_range: {arguments: {min_value: 0, max_value: 10.0001}}}]
+      - name: discharge_kw
+        data_tests: [{accepted_range: {arguments: {min_value: 0, max_value: 10.0001}}}]
+      - name: soc_kwh
+        data_tests: [{accepted_range: {arguments: {min_value: -0.0001, max_value: 39.2001}}}]
+  - name: int_market__battery_dispatch_rt
+    description: UPPER BOUND. Perfect-foresight RTM 15-minute arbitrage.
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [load_zone, reserve_floor_pct, interval_start_utc]}}
+  - name: int_market__revenue_stack
+    description: UPPER BOUND. Energy + AS co-optimised, daily per service.
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [load_zone, reserve_floor_pct, local_date, service]}}
+  - name: int_fleet__telemetry_minute
+    description: SIMULATION. Clock-corrected, deduplicated, range-cleaned telemetry, one row per device-minute.
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [device_id, minute_utc]}}
+    columns:
+      - name: device_id
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('stg_fleet__devices'), field: device_id}}
+      - name: soc_pct
+        data_tests: [{accepted_range: {arguments: {min_value: 0, max_value: 100}}}]
+      - name: temp_c
+        data_tests: [{accepted_range: {arguments: {min_value: -30, max_value: 80}}}]
+      - name: kw
+        data_tests: [{accepted_range: {arguments: {min_value: -15, max_value: 15}}}]
+  - name: int_fleet__device_clock
+    columns:
+      - name: device_id
+        data_tests: [unique, not_null]
