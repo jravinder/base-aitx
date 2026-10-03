@@ -49,7 +49,7 @@
   const TRACKS = {home: "Home & Installation", compute: "Energy & Compute"};
   const PERSONAS = {
     lead: {track: "home", label: "Customer", start: "home", pages: ["home", "status", "rewards", "brain", "member", "knowledge", "built", "voice"]},
-    operations: {track: "home", label: "Base admin", start: "judgments", pages: ["judgments", "house", "wall", "recovery", "market"]},
+    operations: {track: "home", label: "Base admin", start: "judgments", pages: ["judgments", "house", "wall", "recovery", "market", "grid"]},
     gpu: {track: "compute", label: "Customer", start: "computehome", pages: ["computehome", "copilot", "energy", "plans", "models", "tower", "block", "built"]},
     fleet: {track: "compute", label: "Base admin", start: "overview", pages: ["overview", "tower", "placement", "jobs", "index", "plans", "block", "models", "pitch", "built"]}
   };
