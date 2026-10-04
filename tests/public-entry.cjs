@@ -33,40 +33,57 @@ const root = path.resolve(__dirname, '..');
   page.on('pageerror',e => errors.push(e.message));
   const shots = path.join(root,process.env.SCREENSHOT_DIR || 'docs/evidence/entry-paths');
   await fs.mkdir(shots,{recursive:true});
+  const choices=[['choose-install','onboarding.html','lead','home','Get the next battery installed faster'],
+   ['choose-fleet','overview.html','fleet','compute','Make the fleet more than backup power'],
+   ['choose-ercot','grid.html','operations','home','Know when a battery is worth the most']];
   for(const track of ['home','compute']) for(const width of [320,390,1440]) {
    await page.setViewportSize({width,height:900});
    await page.goto(origin + (track==='home' ? '/' : '/compute'));
    assert.equal(new URL(page.url()).pathname,'/'+track);
-   assert.equal(await page.locator('h1').innerText(),'Two things built on Base in one weekend.');
-   assert.equal(await page.title(),track==='home'?'Base Ready':'Base Super Local AI');
-   assert.equal(await page.locator('#'+track+'-card.is-route').count(),1);
-   assert.equal(await page.locator('main a').count(),7);
-   assert.equal(await page.locator('select,input,button').count(),0);
-   assert.deepEqual((await page.locator('h2').allTextContents()).map(t=>t.trim()),['Base Ready','Base Super Local AI']);
+   assert.equal(await page.locator('h1').innerText(),'What do you want to dig into?');
+   assert.equal(await page.title(),'Base Power Case Study');
+   // One question, exactly three choices, nothing else in main.
+   assert.equal(await page.locator('main a').count(),3);
+   assert.equal(await page.locator('main .choice').count(),3);
+   assert.equal(await page.locator('h2,select,input,button').count(),0);
    assert.equal(await page.locator('.sh-nav,.sh-beats').count(),0);
    assert(!/sample|fictional|US-TX|Hz|24 ?kWh|islanding|terminal|secure grid/i.test(await page.locator('body').innerText()));
    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false);
-   for(const [id,destination,role,t] of [['home-customer','onboarding.html','lead','home'],['home-admin','judgments.html','operations','home'],['compute-customer','compute-home.html','gpu','compute'],['compute-admin','overview.html','fleet','compute']]) {
-    const target = new URL(await page.locator('#'+id).getAttribute('href'),page.url());
+   for(const [id,destination,role,t,label] of choices) {
+    const choice=page.locator('#'+id);
+    assert(await choice.isVisible());
+    assert.equal((await choice.locator('b').innerText()).trim(),label);
+    const target = new URL(await choice.getAttribute('href'),page.url());
     assert.equal(target.pathname,'/web/'+destination);
     assert.equal(target.searchParams.get('persona'),role);
     assert.equal(target.searchParams.get('track'),t);
    }
+   // All three choices sit on the first screen.
+   if(width>=390) for(const [id] of choices) assert((await page.locator('#'+id).boundingBox()).y + 40 < 900, id+' below the fold');
    const order=[];
-   for(let i=0;i<6;i++){await page.keyboard.press('Tab');order.push(await page.locator(':focus').getAttribute('id'));}
-   assert.deepEqual(order,['base-source','home-customer','home-member','home-admin','compute-customer','compute-admin']);
+   for(let i=0;i<3;i++){await page.keyboard.press('Tab');order.push(await page.locator(':focus').getAttribute('id'));}
+   assert.deepEqual(order,choices.map(c=>c[0]));
+   for(const [label,dest] of [['What we built','/web/built.html'],['Repo','https://github.com/jravinder/base-aitx']]) assert.equal(await page.locator('footer a',{hasText:label}).first().getAttribute('href'),dest);
    await page.screenshot({path:path.join(shots,track+'-'+width+'.png'),fullPage:true});
   }
-  for(const [track,id,role] of [['home','home-customer','lead'],['home','home-admin','operations'],['compute','compute-customer','gpu'],['compute','compute-admin','fleet']]) {
-   await page.goto(origin+'/'+track);
+  for(const [id,,role,track] of choices) {
+   await page.goto(origin+'/home');
    await page.locator('#'+id).click();
    await page.waitForSelector('.sh-nav');
    assert.equal(new URL(page.url()).searchParams.get('persona'),role);
    assert.equal(new URL(page.url()).searchParams.get('track'),track);
    assert.equal(await page.locator('#sh-persona,#sh-track').count(),0);
   }
+  // Base admin is no longer a landing link: from the lead flow, the in-page Customer -> Base admin switch opens it.
+  await page.goto(origin+'/home');
+  await page.locator('#choose-install').click();
+  await page.waitForSelector('.sh-role-link[data-sh-role="operations"]',{state:'attached'});
+  await page.locator('.sh-role-link[data-sh-role="operations"]').click();
+  await page.waitForSelector('.sh-nav');
+  assert.equal(new URL(page.url()).searchParams.get('persona'),'operations');
+  assert.equal(new URL(page.url()).searchParams.get('track'),'home');
   assert.deepEqual(errors,[]);
-  console.log('PASS: /home and /compute; root defaults to /home; 6 viewport/track cases; two track cards; keyboard order; all 4 role destinations; no JS errors.');
+  console.log('PASS: /home and /compute; root defaults to /home; 6 viewport/track cases; one question, three choices; keyboard order; 3 choice destinations; Customer to Base admin switch; no JS errors.');
  } finally {
   if(browser) await browser.close();
   await new Promise(resolve=>server.close(resolve));
