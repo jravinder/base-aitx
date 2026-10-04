@@ -4,7 +4,7 @@
 
 | See it (2 min) | |
 |---|---|
-| [Landing page](https://base-aitx.vercel.app/web/start.html) | the two entries, one screen |
+| [Landing page](https://base-aitx.vercel.app/web/start.html) | one question, three ways in |
 | [ERCOT pipeline and battery value](https://base-aitx.vercel.app/web/grid.html?track=home&persona=operations) | the strongest proof; method in [ERCOT pipeline](#ercot-pipeline) below |
 | [Permit routing](https://base-aitx.vercel.app/web/judgments.html?track=home&persona=operations) | 34,334 permits: 29,878 auto, 3,035 review, 1,421 to a person |
 
