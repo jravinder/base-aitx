@@ -1,4 +1,4 @@
-# Base Power × AITX hackathon entry: an ERCOT data pipeline, and what it says about a Base battery
+# Base Power, an independent case study: lead flow, fleet compute, and what ERCOT says about a Base battery
 
 **When is a Base battery worth the most?** A reproducible DuckDB + dbt warehouse ingests 1.67M rows of public ERCOT prices and load (2025-01-01 to 2026-09-26) plus 43M rows of simulated 1-minute battery telemetry, runs a per-day dispatch LP, and checks itself: 63/63 schema tests, 22 pass / 11 warn / 0 fail quality checks, 34 of 34 injected telemetry faults caught. Answer: **22% of a year's arbitrage value sits in the top 1% of hours (88 hours)**, and peak load is not peak price (2 of the top-100 load hours were top-100 price hours). The same repo routes all 34,334 City of Austin energy permits by rule confidence.
 
@@ -14,7 +14,7 @@
 
 **Run it.** `python3 -m http.server 8741` then open `http://localhost:8741/web/start.html` (checked-in JSON, no keys). Rebuild the warehouse: `python3 -m warehouse.build` (about 64 s). **Tests:** `python3 -m pytest tests/` (warehouse, permit routing, server contracts) and `node tests/public-entry.cjs` (Playwright).
 
-Built at the Base Power × AITX Talent Hackathon, Sep 25 to 27, 2026, then extended. Not affiliated with Base. Demo videos: [Base Ready](https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019) · [Base Super Local AI](https://www.loom.com/share/37a225004ab248bc874401470ef2653d).
+Started at the Base Power × AITX Talent Hackathon (Sep 25 to 27, 2026) and extended since into a case study. Not affiliated with Base. Demo videos: [Base Ready](https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019) · [Base Super Local AI](https://www.loom.com/share/37a225004ab248bc874401470ef2653d).
 
 ## Repo map
 

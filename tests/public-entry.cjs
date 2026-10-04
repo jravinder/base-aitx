@@ -40,8 +40,8 @@ const root = path.resolve(__dirname, '..');
    await page.setViewportSize({width,height:900});
    await page.goto(origin + (track==='home' ? '/' : '/compute'));
    assert.equal(new URL(page.url()).pathname,'/'+track);
-   assert.equal(await page.locator('h1').innerText(),'What would you change at Base first?');
-   assert.equal(await page.title(),track==='home'?'Base Ready':'Base Super Local AI');
+   assert.equal(await page.locator('h1').innerText(),'What do you want to dig into?');
+   assert.equal(await page.title(),'Base Power Case Study');
    // One question, exactly three choices, nothing else in main.
    assert.equal(await page.locator('main a').count(),3);
    assert.equal(await page.locator('main .choice').count(),3);
