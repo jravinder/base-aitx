@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: mart_market__price_concentration
+    description: UPPER BOUND value shares; Measured prices.
+    columns:
+      - name: top1pct_share
+        data_tests: [not_null, {accepted_range: {arguments: {min_value: 0, max_value: 1}}}]
+  - name: mart_market__reserve_cost
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [load_zone, period, reserve_floor_pct]}}
+    columns:
+      - name: reserve_cost_usd
+        data_tests: [{accepted_range: {arguments: {min_value: -0.01}}}]
+  - name: mart_market__revenue_stack
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [load_zone, period, reserve_floor_pct, service]}}
+  - name: mart_market__battery_value_daily
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [load_zone, local_date]}}
+    columns:
+      - name: value_usd_floor30
+        data_tests: [not_null, {accepted_range: {arguments: {min_value: -0.01}}}]
+  - name: mart_fleet__hourly
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [hour_utc]}}
+    columns:
+      - name: devices_below_reserve_grid_up
+        description: Devices under their floor with the grid up. Reserve-first dispatch never discharges through the floor, so these are refilling after an outage.
+  - name: mart_fleet__spike_availability
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [interval_start_utc, load_zone]}}
+    columns:
+      - name: available_share
+        data_tests: [{accepted_range: {arguments: {min_value: 0, max_value: 1}}}]
+  - name: mart_fleet__device_health
+    columns:
+      - name: device_id
+        data_tests: [unique, not_null, {relationships: {arguments: {to: ref('stg_fleet__devices'), field: device_id}}}]

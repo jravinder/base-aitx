@@ -120,6 +120,8 @@
   </script>
 
 <link rel="stylesheet" href="shell.css">
+<link rel="stylesheet" href="permit-jev.css">
+<link rel="stylesheet" href="ercot-run.css">
 <style>
   :root { --paper:var(--bf-bg); --ink:var(--bf-ink); --muted:var(--bf-muted); --rule:var(--bf-line); --card:var(--bf-surface);
     --live:#2f9e5b; --stale:#c98a1c; --gas:#b8471b; --coal:#6b5a4e; --nuke:#7a5aa8; --wind:#4b86b3; --solar:#e0a04a;
@@ -270,9 +272,118 @@
   @media (max-width:640px){#main{padding:24px 16px 40px}.hero .a{font:700 28px/34px var(--bf-font)}}
 </style>
 <script defer src="shell.js"></script>
+<script defer src="ercot-run.js"></script>
 </head>
 <body>
 <main id="main">
+  <div class="notice" id="er-notice">Could not load data/ercot_warehouse.json. Build it with <code>python3 -m warehouse.build</code>, then serve the repo root.</div>
+  <header class="pj-top">
+    <h1>When is a Base battery worth the most?</h1>
+    <a class="pj-next" href="#today">Today's dispatch ↓</a>
+  </header>
+  <section class="er-run" aria-label="Warehouse run">
+    <div class="cols">
+      <div class="left">
+        <div class="er-runhead"><h2><code>build_ercot_warehouse</code> <span class="er-state" id="er-state">Running</span></h2><span class="er-meta" id="er-meta"></span></div>
+        <div class="panel er-strip">
+          <div class="er-blk" id="er-b1"><b>Ingest</b><span class="op">ERCOT archives + fleet Parquet</span><span class="st"><i></i><span id="er-s1">Waiting</span></span><div id="er-d1"></div></div>
+          <div class="er-wire"></div>
+          <div class="er-blk" id="er-b2"><b>Validate</b><span class="op">schema tests + quality checks</span><span class="st"><i></i><span id="er-s2">Waiting</span></span><div id="er-d2"></div></div>
+          <div class="er-wire"></div>
+          <div class="er-blk" id="er-b3"><b>Model</b><span class="op">staging → intermediate, UTC + local</span><span class="st"><i></i><span id="er-s3">Waiting</span></span><div id="er-d3"></div></div>
+          <div class="er-wire"></div>
+          <div class="er-blk" id="er-b4"><b>Analyze</b><span class="op">marts</span><span class="st"><i></i><span id="er-s4">Waiting</span></span><div id="er-d4"></div></div>
+        </div>
+        <div class="panel er-gridp">
+          <div class="gh"><b>battery_value_by_day <span style="font-weight:400;color:var(--bf-faint)">· one square per day · Austin · 30% reserve</span></b><span id="er-prog"></span></div>
+          <div id="er-sq" role="img" aria-label="One square per day, coloured by what one battery could earn that day"></div>
+          <div class="er-legend" id="er-legend"></div>
+        </div>
+      </div>
+      <aside class="right" aria-label="Answer">
+        <section class="hero">
+          <span class="eyebrow"><span class="dot"></span>ERCOT pipeline · <span id="er-per"></span></span>
+          <p class="q">Where does a year's battery value sit?</p>
+          <h2 class="a" id="er-ans">&nbsp;</h2>
+          <p class="line" id="er-line"></p>
+        </section>
+        <div class="stats">
+          <div class="panel stat"><span class="k">Value, one battery, a year <span class="tag u">Upper bound</span></span><b class="v" id="er-k1">$0</b><span class="s" id="er-k1s"></span></div>
+          <div class="panel stat"><span class="k">Value in top 1% of hours <span class="tag u">Upper bound</span></span><b class="v" id="er-k2">0%</b><span class="s" id="er-k2s"></span></div>
+          <div class="panel stat"><span class="k">Cost of a 30% reserve <span class="tag u">Upper bound</span></span><b class="v" id="er-k3">$0</b><span class="s" id="er-k3s"></span></div>
+          <div class="panel stat"><span class="k">Fleet ready in spikes <span class="tag s">Simulation</span></span><b class="v" id="er-k4">0%</b><span class="s" id="er-k4s"></span></div>
+        </div>
+        <section class="panel find warn">
+          <h2>Peak load is not peak price <span class="tag m">Measured</span></h2>
+          <div class="er-duo" id="er-duo"></div>
+          <p id="er-findp"></p>
+        </section>
+      </aside>
+    </div>
+  </section>
+
+  <section class="pj" aria-label="ERCOT notebook">
+    <header class="pj-head">
+      <div>
+        <h2 class="pj-h2">Notebook: what one battery earns, and what limits it</h2>
+        <p class="pj-sub" id="er-sub">&nbsp;</p>
+      </div>
+      <div class="pj-kpi"><div class="pj-strip" id="er-strip2"></div><div class="pj-big" id="er-big"></div></div>
+    </header>
+    <div class="pj-grid">
+      <figure class="pj-fig er-s8" style="margin:0">
+        <figcaption class="pj-cap"><span><b>Fig. 1</b> · day-ahead price, every hour of every day</span><span class="tag m">Measured</span></figcaption>
+        <div class="pj-chips" id="er-chips" role="group" aria-label="Load zone"></div>
+        <div id="er-heat"></div>
+        <div class="er-key" id="er-heat-k"></div>
+        <div class="pj-note" id="er-heat-n"></div>
+      </figure>
+      <figure class="pj-fig er-s4" style="margin:0">
+        <figcaption class="pj-cap"><span><b>Fig. 2</b> · where the value sits</span><span class="tag u">Upper bound</span></figcaption>
+        <div id="er-curve"></div>
+        <div class="er-key" id="er-curve-k"></div>
+        <div class="pj-note" id="er-curve-n"></div>
+      </figure>
+      <figure class="pj-fig er-s4" style="margin:0">
+        <figcaption class="pj-cap"><span><b>Fig. 3</b> · the cost of the backup reserve</span><span class="tag u">Upper bound</span></figcaption>
+        <div id="er-res"></div>
+        <div class="er-key" id="er-res-k"></div>
+        <div class="pj-note" id="er-res-n"></div>
+      </figure>
+      <figure class="pj-fig er-s4" style="margin:0">
+        <figcaption class="pj-cap"><span><b>Fig. 4</b> · revenue stack: energy + ancillary services</span><span class="tag u">Upper bound</span></figcaption>
+        <div id="er-stack"></div>
+        <div class="er-key" id="er-stack-k"></div>
+        <div class="pj-note" id="er-stack-n"></div>
+      </figure>
+      <figure class="pj-fig er-s4" style="margin:0">
+        <figcaption class="pj-cap"><span><b>Fig. 5</b> · three zones compared</span><span class="tag m">Measured</span></figcaption>
+        <div id="er-zones"></div>
+        <div class="pj-note">UB = upper bound (perfect-foresight dispatch); M = measured from ERCOT prices.</div>
+      </figure>
+      <figure class="pj-fig er-s6" style="margin:0">
+        <figcaption class="pj-cap"><span><b>Fig. 6</b> · spike hours vs load hours, by hour of day</span><span class="tag m">Measured</span></figcaption>
+        <div id="er-hod"></div>
+        <div class="pj-note" id="er-hod-n"></div>
+      </figure>
+      <figure class="pj-fig er-s6" style="margin:0">
+        <figcaption class="pj-cap"><span><b>Fig. 7</b> · 1,000 batteries through the January 2026 spike</span><span class="tag s">Simulation</span></figcaption>
+        <div id="er-fleet"></div>
+        <div class="pj-note" id="er-fleet-n"></div>
+      </figure>
+      <figure class="pj-fig er-s12" style="margin:0">
+        <figcaption class="pj-cap"><span><b>Fig. 8</b> · data quality, as code · <span id="er-dq-h"></span></span><span class="tag m">Measured</span></figcaption>
+        <div id="er-dq"></div>
+      </figure>
+      <figure class="pj-fig er-s12" style="margin:0">
+        <figcaption class="pj-cap"><span><b>Fig. 9</b> · lineage: raw → staging → intermediate → marts (rows)</span><span class="tag m">Measured</span></figcaption>
+        <div id="er-lin"></div>
+        <div class="pj-note">Same graph as <code>dbt docs generate</code> on <code>warehouse/dbt</code>. Green: ERCOT market. Blue: fleet telemetry (simulation).</div>
+      </figure>
+    </div>
+  </section>
+
+  <div class="er-below" id="today"><h2>Today's dispatch</h2><span>the live ERCOT snapshot and what a battery does with it</span></div>
   <div class="notice" id="notice">Could not load the grid data. Start the server from the repo root: <code>python3 -m http.server 8741</code>, then open <code>http://localhost:8741/web/grid.html</code>.</div>
   <div class="cols">
     <div class="left">
@@ -289,7 +400,7 @@
       <section class="hero">
         <span class="eyebrow"><span class="dot" id="dot"></span><span id="zoneTag">ERCOT public snapshot</span></span>
         <p class="q">What does the grid ask a Base battery to do right now?</p>
-        <h1 class="a" id="ans">&nbsp;</h1>
+        <h2 class="a" id="ans">&nbsp;</h2>
         <p class="line" id="lede">Inspect public ERCOT snapshots and a separate battery dispatch model.</p>
       </section>
       <div class="stats" id="now-stats"></div>

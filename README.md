@@ -1,8 +1,33 @@
-# Base Power × AITX hackathon entry
+# Base Power, an independent case study: lead flow, fleet compute, and what ERCOT says about a Base battery
 
-Built at the Base Power × AITX Talent Hackathon, Sep 25 to 27, 2026. Two entries share this repo. Start at the [landing page](https://base-aitx.vercel.app/web/start.html).
+**When is a Base battery worth the most?** A reproducible DuckDB + dbt warehouse ingests 1.67M rows of public ERCOT prices and load (2025-01-01 to 2026-09-26) plus 43M rows of simulated 1-minute battery telemetry, runs a per-day dispatch LP, and checks itself: 63/63 schema tests, 22 pass / 11 warn / 0 fail quality checks, 34 of 34 injected telemetry faults caught. Answer: **22% of a year's arbitrage value sits in the top 1% of hours (88 hours)**, and peak load is not peak price (2 of the top-100 load hours were top-100 price hours). The same repo routes all 34,334 City of Austin energy permits by rule confidence.
 
-Demo videos: [Base Ready](https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019) · [Base Super Local AI](https://www.loom.com/share/37a225004ab248bc874401470ef2653d).
+| See it (2 min) | |
+|---|---|
+| [Landing page](https://base-aitx.vercel.app/web/start.html) | one question, three ways in |
+| [ERCOT pipeline and battery value](https://base-aitx.vercel.app/web/grid.html?track=home&persona=operations) | the strongest proof; method in [ERCOT pipeline](#ercot-pipeline) below |
+| [Permit routing](https://base-aitx.vercel.app/web/judgments.html?track=home&persona=operations) | 34,334 permits: 29,878 auto, 3,035 review, 1,421 to a person |
+
+[![The ERCOT page: the warehouse build (ingest, validate, model, analyze), one square per day of battery value, and the tagged results](docs/screenshots/ercot/grid-first-screen-1440.png)](https://base-aitx.vercel.app/web/grid.html?track=home&persona=operations)
+
+**Measured vs simulated.** Every number carries a tag. *Measured*: counted in public data or our own runs. *Upper bound*: perfect-foresight dispatch, so a real battery earns less. *Simulation*: the 1,000-battery telemetry and anything priced off it.
+
+**Run it.** `python3 -m http.server 8741` then open `http://localhost:8741/web/start.html` (checked-in JSON, no keys). Rebuild the warehouse: `python3 -m warehouse.build` (about 64 s). **Tests:** `python3 -m pytest tests/` (warehouse, permit routing, server contracts) and `node tests/public-entry.cjs` (Playwright).
+
+Started at the Base Power × AITX Talent Hackathon (Sep 25 to 27, 2026) and extended since into a case study. Not affiliated with Base. Demo videos: [Base Ready](https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019) · [Base Super Local AI](https://www.loom.com/share/37a225004ab248bc874401470ef2653d).
+
+## Repo map
+
+| Folder | What |
+|---|---|
+| `warehouse/` | **ERCOT pipeline**: ingest, fleet telemetry sim, dispatch LP, quality checks, export; dbt project in `warehouse/dbt/` |
+| `house/`, `store/` | permit mirror and rules; SQLite store, permit judgments, data QA |
+| `grid/`, `collect/` | earlier ERCOT analyses, neighbourhood station model, scheduled collectors |
+| `web/`, `api/` | the static site (pages read checked-in JSON in `web/data/`) and two Vercel functions |
+| `brain/`, `faq/` | Base Brain answers and its FAQ corpus |
+| `sim/`, `panel/`, `admin/`, `scripts/` | Super Local AI fleet sim, photo-reading baseline (Gemini vs gemma4), admin page data, local install |
+| `data/`, `demo/` | public source extracts; demo photos |
+| `tests/`, `docs/` | pytest + Playwright tests; write-ups, ADRs, screenshots |
 
 ## What we built for Track 2, Orchestration: Base Ready
 
@@ -145,6 +170,73 @@ python3 web/data/build_permit_jev.py                  # write web/data/permit_je
 ```
 
 **Tests.** `python3 -m pytest tests/test_permit_routing.py` checks that the mirror plus the rules reproduce the counts in both JSON files, and that the hand-check and model-agreement totals add up.
+
+## ERCOT pipeline
+
+A reproducible warehouse for ERCOT market data plus fleet-scale battery telemetry, in DuckDB. It answers one question: **when is a Base battery worth the most?** The results are on the first screen of `web/grid.html`.
+
+**Rebuild:** `python3 -m warehouse.build` takes about 64 s on an 8-core laptop. It runs ingest, then simulate, then the models, then the schema tests, then the quality checks, then the export. Every table is create-or-replace, and a raw zip is re-parsed only when its sha256 changes, so the build is idempotent. `--fetch` downloads any zip that is missing. `--resim` regenerates the telemetry.
+Needs `duckdb`, `pyarrow`, `numpy`, `scipy`, `pyyaml` and `python-calamine` (`pip install --user ...`).
+**Tests:** `python3 -m pytest tests/test_warehouse.py` (17 tests). These cover DST conversion, the dispatch LP, the schema tests, the quality checks, fault detection and the export.
+**dbt:** the same SQL is a dbt-duckdb project in `warehouse/dbt`. Run `cd warehouse/dbt && ../../.venv/bin/dbt build --profiles-dir .` (92/92 pass), `dbt source freshness` and `dbt docs generate` (lineage). `warehouse/runner.py` runs the same files without dbt: it handles ref, source, config, Python models and the same schema.yml tests.
+
+### Sources (public, no login)
+| source | what | raw rows |
+|---|---|---|
+| ERCOT report 13060, `DAMLZHBSPP_2025/2026.zip` | DAM hourly prices, all hubs and load zones, 2025-01-01 to 2026-09-26 | 228,225 |
+| ERCOT report 13061, `RTMLZHBSPP_2025/2026.zip` | RTM 15-minute settlement point prices (LZ and LZEW types) | 1,399,780 |
+| ERCOT report 13091, `DAMASMCPC_2025/2026.zip` | DAM ancillary service clearing prices: RegUp, RegDn, RRS, ECRS, Non-Spin | 15,215 |
+| `data/ercot_load_hourly_2024_2026.csv` | ERCOT native load by weather zone (grid/LOAD.md) | 23,375 |
+| `warehouse/fleet_sim.py` | **Simulation.** 1,000 batteries, 1-minute telemetry for 30 days (2026-01-12 to 2026-02-10), driven by the real RTM and DAM prices, with a reserve-first dispatch policy and injected faults | 43,063,505 |
+
+The zips are in `data/ercot/raw/`, with their doclookupIds in `warehouse/ingest.py`. Generated files go to `data/warehouse/` (gitignored). Telemetry is stored as Parquet, partitioned by day (263 MB).
+
+### Layers and tables
+- **raw**: the archives parsed to Parquet with every column as published, including the DST repeated-hour flag.
+- **staging** (`stg_ercot__dam_spp`, `__rtm_spp`, `__as_prices`, `__load`, `__dam_legacy`, `stg_fleet__devices`, `__telemetry`): typed, with `interval_start_utc` and `interval_start_local` side by side. Hour ending is normalised to an interval start. The DST macro `chicago_to_utc` resolves the repeated fall-back hour (flag Y, or `02:00 DST` in the load file) and spring-forward days have 23 hours.
+- **intermediate**:
+  - `int_market__zone_hourly`: DAM price, load and AS prices per hour.
+  - `int_market__battery_dispatch` and `__battery_dispatch_rt`: Python models. A perfect-foresight LP per day using scipy HiGHS: 39.2 kWh, 10 kW, 90% round trip, at reserve floors from 0 to 50%.
+  - `int_market__revenue_stack`: energy and AS co-optimised, with energy backing per service.
+  - `int_market__hourly_value`.
+  - `int_fleet__device_clock`: per-device clock offset.
+  - `int_fleet__telemetry_minute`: clock-corrected, deduplicated and range-cleaned. 42.9M rows.
+- **marts**: `mart_market__price_heatmap`, `__price_concentration`, `__concentration_curve`, `__spike_hours`, `__battery_value_daily`, `__battery_value_monthly`, `__reserve_cost`, `__revenue_stack`, `__load_vs_price`, and `mart_fleet__hourly`, `__soc_daily`, `__spike_availability`, `__device_health`.
+
+### Quality checks (`warehouse/quality.py`: `dq_results` table + `data/warehouse/dq_report.json`)
+- Gaps in every hourly and 15-minute series.
+- Duplicates.
+- DST days: 23 or 25 hours, with the expected count taken from the tz database.
+- Price bounds of -$251 to the $5,000 offer cap. Negative prices are allowed.
+- AS price bounds.
+- Load bounds of 25 to 95 GW.
+- Zone sums: SCENT + NCENT + COAST must not exceed the ERCOT total.
+- The legacy CSV must match the re-ingested archive: 45,138 of 45,138 hours do.
+- DAM, RTM and AS must cover the same days.
+- Freshness.
+- For the fleet: orphan rows, duplicates, stale devices, gaps, out-of-range readings, clock skew, stuck temperature, stuck SOC and reserve breaches.
+
+Current run: 63/63 schema tests pass. Quality checks: **22 pass, 11 warn, 0 fail**. The 11 warnings are:
+- **Freshness:** ERCOT posts these archives weekly, so DAM, RTM and AS are 5.8 days old. Load is 31.8 days old.
+- **The faults the simulator injected:** 129,108 duplicate rows, 5 stale devices, 19 skewed clocks, 6 stuck temperature sensors and 3 stuck SOC sensors.
+
+The fleet checks are scored against the injected faults: **34 of 34 caught, 0 false positives**.
+
+### Numbers (one 39.2 kWh battery, LZ_AEN, last 365 days = 2025-09-27 to 2026-09-26)
+| | value | tag |
+|---|---|---|
+| Arbitrage value a year at a 30% reserve floor (perfect-foresight DAM) | $523 (2025: $613) | Upper bound |
+| Share of that value earned in the top 1% of hours (88 hours) / top 5% | 22% / 51% | Upper bound |
+| Cost of the reserve: 0% → 30% → 50% floor | $667 → $523 → $402 a year ($144 / $265) | Upper bound |
+| Energy plus ancillary services at a 30% floor (capacity payments only) | $689 (+$166 over energy alone) | Upper bound |
+| Real-time 15-minute arbitrage compared with day-ahead | 1.30x | Upper bound |
+| Top-100 load hours that were also top-100 price hours, 2025 | 2 of 100; correlation 0.38 | Measured |
+| Fleet online, grid-up and above its floor during RT intervals at $250 or more | 95.6% (83.8% at other times) | Simulation |
+
+The perfect-foresight LP gives $613 for 2025. The `grid/earned.py` heuristic (3 cheapest hours, 3 dearest hours, no losses) gives $603. A real forecast-driven dispatch would earn less than either.
+
+Throughput: 43.06M telemetry rows are clock-corrected and deduplicated in 8.5 s, which is about 5M rows/s.
+The ceiling is higher. The day partitions are written time-major, so the dedup window needs a full sort. Sorting each partition by device_id and timestamp would let it stream, likely at 3 to 5x the rate. The 21 s LP stack could also run per zone in parallel.
 
 ## Known limitations
 

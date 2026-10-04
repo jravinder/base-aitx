@@ -6,3 +6,9 @@ __pycache__
 .git
 node_modules
 docs/evidence
+.venv
+data/warehouse
+data/ercot/raw
+warehouse/dbt/target
+warehouse/dbt/logs
+private

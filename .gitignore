@@ -13,3 +13,15 @@ data/fleet.db
 *.store.json
 
 docs/evidence/
+
+# generated warehouse (python3 -m warehouse.build)
+data/warehouse/
+warehouse/dbt/target/
+warehouse/dbt/logs/
+
+# raw ERCOT archives (fetch with: python3 -m warehouse.build --fetch)
+data/ercot/raw/
+
+# stray local scratch and dbt user file
+private/
+warehouse/dbt/.user.yml

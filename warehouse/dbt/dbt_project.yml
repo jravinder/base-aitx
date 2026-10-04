@@ -1,0 +1,25 @@
+# dbt project for the ERCOT market + Base fleet warehouse. Run from this directory:
+#   ../../.venv/bin/dbt build --profiles-dir .        (models + schema tests)
+#   ../../.venv/bin/dbt source freshness --profiles-dir .
+#   ../../.venv/bin/dbt docs generate --profiles-dir . (lineage in target/manifest.json)
+# The same files also run without dbt: python3 -m warehouse.build (warehouse/runner.py).
+name: base_warehouse
+version: "1.0.0"
+config-version: 2
+profile: base_warehouse
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target"]
+on-run-start:
+  - "{{ duckdb_macros() }}"
+models:
+  base_warehouse:
+    +materialized: table
+    staging:
+      +tags: ["staging"]
+    intermediate:
+      +tags: ["intermediate"]
+    marts:
+      +tags: ["marts"]

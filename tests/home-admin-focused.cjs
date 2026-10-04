@@ -56,7 +56,7 @@ const origin = 'https://home-admin.test';
         } else if (name === 'judgments') {
           // Story step 1: the run screen is the first screen, the notebook figures sit under it, one H1.
           const labels = await page.locator('.sh-link .sh-short').allTextContents();
-          assert.deepEqual(labels.map(t => t.trim()),['Permits','The lead','Will it fit','Ready to install','Where next']);
+          assert.deepEqual(labels.map(t => t.trim()),['Permits','The lead','Will it fit','Ready to install','Where next','Energy']);
           assert.equal(await page.locator('h1').count(),1);
           assert.match(await page.locator('h1').innerText(),/34,334 Austin permits/);
           await page.waitForSelector('#sq i.p');

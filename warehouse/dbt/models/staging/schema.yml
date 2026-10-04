@@ -1,0 +1,96 @@
+version: 2
+
+models:
+  - name: stg_ercot__dam_spp
+    description: DAM settlement point prices, hourly, typed, UTC + local, DST resolved.
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [settlement_point, interval_start_utc]}}
+    columns:
+      - name: settlement_point
+        data_tests: [not_null]
+      - name: interval_start_utc
+        data_tests: [not_null]
+      - name: hour_ending
+        data_tests:
+          - not_null
+          - accepted_range: {arguments: {min_value: 1, max_value: 24}}
+      - name: price_usd_mwh
+        description: Negative prices allowed. Bounded by the ERCOT offer floor (-$250, hubs settle to -$251) and the $5,000 offer cap.
+        data_tests:
+          - not_null
+          - accepted_range: {arguments: {min_value: -251, max_value: 5000}}
+      - name: point_type
+        data_tests:
+          - accepted_values: {arguments: {values: ['load_zone', 'hub']}}
+
+  - name: stg_ercot__rtm_spp
+    description: RTM 15-minute settlement point prices, typed, UTC + local, DST resolved.
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [settlement_point, settlement_point_type, interval_start_utc]}}
+    columns:
+      - name: interval_start_utc
+        data_tests: [not_null]
+      - name: interval_in_hour
+        data_tests:
+          - accepted_range: {arguments: {min_value: 1, max_value: 4}}
+      - name: settlement_point_type
+        data_tests:
+          - accepted_values: {arguments: {values: ['LZ', 'LZEW', 'HU', 'SH', 'AH']}}
+      - name: price_usd_mwh
+        data_tests:
+          - not_null
+          - accepted_range: {arguments: {min_value: -251, max_value: 5000}}
+
+  - name: stg_ercot__as_prices
+    description: DAM ancillary service clearing prices, $/MW per hour, long form.
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [service, interval_start_utc]}}
+    columns:
+      - name: service
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: ['regup', 'regdn', 'rrs', 'ecrs', 'nspin']}}
+      - name: price_usd_mw_h
+        data_tests:
+          - not_null
+          - accepted_range: {arguments: {min_value: 0, max_value: 5000}}
+
+  - name: stg_ercot__load
+    description: ERCOT native load, hourly, by weather zone.
+    data_tests:
+      - unique_combination: {arguments: {combination_of_columns: [weather_zone, interval_start_utc]}}
+    columns:
+      - name: weather_zone
+        data_tests:
+          - accepted_values: {arguments: {values: ['SCENT', 'NCENT', 'COAST', 'ERCOT']}}
+      - name: load_mw
+        data_tests:
+          - not_null
+          - accepted_range: {arguments: {min_value: 0, max_value: 100000}}
+
+  - name: stg_ercot__dam_legacy
+    columns:
+      - name: price_usd_mwh
+        data_tests: [not_null]
+
+  - name: stg_fleet__devices
+    description: SIMULATION. Device dimension.
+    columns:
+      - name: device_id
+        data_tests: [unique, not_null]
+      - name: load_zone
+        data_tests:
+          - accepted_values: {arguments: {values: ['LZ_AEN', 'LZ_NORTH', 'LZ_HOUSTON']}}
+      - name: reserve_floor_pct
+        data_tests:
+          - accepted_range: {arguments: {min_value: 0, max_value: 100}}
+
+  - name: stg_fleet__telemetry
+    description: SIMULATION. Raw telemetry, typed. Duplicates, skew and sentinels still present on purpose.
+    columns:
+      - name: device_id
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('stg_fleet__devices'), field: device_id}}
+      - name: device_ts_utc
+        data_tests: [not_null]
