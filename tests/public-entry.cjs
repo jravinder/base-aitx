@@ -40,7 +40,7 @@ const root = path.resolve(__dirname, '..');
    assert.equal(await page.locator('h1').innerText(),'Two things built on Base in one weekend.');
    assert.equal(await page.title(),track==='home'?'Base Ready':'Base Super Local AI');
    assert.equal(await page.locator('#'+track+'-card.is-route').count(),1);
-   assert.equal(await page.locator('main a').count(),7);
+   assert.equal(await page.locator('main a').count(),8); // 7 entry links + See the pipeline
    assert.equal(await page.locator('select,input,button').count(),0);
    assert.deepEqual((await page.locator('h2').allTextContents()).map(t=>t.trim()),['Base Ready','Base Super Local AI']);
    assert.equal(await page.locator('.sh-nav,.sh-beats').count(),0);

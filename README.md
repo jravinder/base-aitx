@@ -1,8 +1,33 @@
-# Base Power × AITX hackathon entry
+# Base Power × AITX hackathon entry: an ERCOT data pipeline, and what it says about a Base battery
 
-Built at the Base Power × AITX Talent Hackathon, Sep 25 to 27, 2026. Two entries share this repo. Start at the [landing page](https://base-aitx.vercel.app/web/start.html).
+**When is a Base battery worth the most?** A reproducible DuckDB + dbt warehouse ingests 1.67M rows of public ERCOT prices and load (2025-01-01 to 2026-09-26) plus 43M rows of simulated 1-minute battery telemetry, runs a per-day dispatch LP, and checks itself: 63/63 schema tests, 22 pass / 11 warn / 0 fail quality checks, 34 of 34 injected telemetry faults caught. Answer: **22% of a year's arbitrage value sits in the top 1% of hours (88 hours)**, and peak load is not peak price (2 of the top-100 load hours were top-100 price hours). The same repo routes all 34,334 City of Austin energy permits by rule confidence.
 
-Demo videos: [Base Ready](https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019) · [Base Super Local AI](https://www.loom.com/share/37a225004ab248bc874401470ef2653d).
+| See it (2 min) | |
+|---|---|
+| [Landing page](https://base-aitx.vercel.app/web/start.html) | the two entries, one screen |
+| [ERCOT pipeline and battery value](https://base-aitx.vercel.app/web/grid.html?track=home&persona=operations) | the strongest proof; method in [ERCOT pipeline](#ercot-pipeline) below |
+| [Permit routing](https://base-aitx.vercel.app/web/judgments.html?track=home&persona=operations) | 34,334 permits: 29,878 auto, 3,035 review, 1,421 to a person |
+
+[![The ERCOT page: the warehouse build (ingest, validate, model, analyze), one square per day of battery value, and the tagged results](docs/screenshots/ercot/grid-first-screen-1440.png)](https://base-aitx.vercel.app/web/grid.html?track=home&persona=operations)
+
+**Measured vs simulated.** Every number carries a tag. *Measured*: counted in public data or our own runs. *Upper bound*: perfect-foresight dispatch, so a real battery earns less. *Simulation*: the 1,000-battery telemetry and anything priced off it.
+
+**Run it.** `python3 -m http.server 8741` then open `http://localhost:8741/web/start.html` (checked-in JSON, no keys). Rebuild the warehouse: `python3 -m warehouse.build` (about 64 s). **Tests:** `python3 -m pytest tests/` (warehouse, permit routing, server contracts) and `node tests/public-entry.cjs` (Playwright).
+
+Built at the Base Power × AITX Talent Hackathon, Sep 25 to 27, 2026, then extended. Not affiliated with Base. Demo videos: [Base Ready](https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019) · [Base Super Local AI](https://www.loom.com/share/37a225004ab248bc874401470ef2653d).
+
+## Repo map
+
+| Folder | What |
+|---|---|
+| `warehouse/` | **ERCOT pipeline**: ingest, fleet telemetry sim, dispatch LP, quality checks, export; dbt project in `warehouse/dbt/` |
+| `house/`, `store/` | permit mirror and rules; SQLite store, permit judgments, data QA |
+| `grid/`, `collect/` | earlier ERCOT analyses, neighbourhood station model, scheduled collectors |
+| `web/`, `api/` | the static site (pages read checked-in JSON in `web/data/`) and two Vercel functions |
+| `brain/`, `faq/` | Base Brain answers and its FAQ corpus |
+| `sim/`, `panel/`, `admin/`, `scripts/` | Super Local AI fleet sim, photo-reading baseline (Gemini vs gemma4), admin page data, local install |
+| `data/`, `demo/` | public source extracts; demo photos |
+| `tests/`, `docs/` | pytest + Playwright tests; write-ups, ADRs, screenshots |
 
 ## What we built for Track 2, Orchestration: Base Ready
 

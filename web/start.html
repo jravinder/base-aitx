@@ -48,6 +48,16 @@
   footer .wrap { padding-top: 16px; padding-bottom: 16px; display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: space-between; }
   footer nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
   footer a { color: var(--bf-ink); text-underline-offset: 3px; }
+  main { padding-bottom: 0; }
+  .pipeline-wrap { padding-bottom: 32px; }
+  .pipeline { margin-top: 20px; display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr)) auto; gap: 16px 24px; align-items: center; background: var(--bf-surface); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-lg); padding: 20px 28px; }
+  .pipeline .title { margin: 0; font: 700 18px/26px var(--bf-font); }
+  .pipeline .sub { margin: 2px 0 0 !important; font-family: var(--bf-mono); font-size: 13px; }
+  .pipeline .stat { margin: 0; font: var(--bf-text-small); color: var(--bf-muted); }
+  .pipeline .stat b { display: block; font: 700 20px/28px var(--bf-font); color: var(--bf-ink); }
+  .tag.u { background: var(--bf-blue-tint); border-color: var(--bf-blue-line); color: var(--bf-blue); }
+  @media (max-width: 1000px) { .pipeline { grid-template-columns: repeat(3, minmax(0, 1fr)); } .pipeline .head, .pipeline .btn { grid-column: 1 / -1; } }
+  @media (max-width: 640px) { .pipeline { grid-template-columns: minmax(0, 1fr); padding: 20px; gap: 12px; } }
   @media (max-width: 1000px) {
     .products { grid-template-columns: minmax(0, 1fr); }
   }
@@ -115,6 +125,15 @@
 </div>
 </section>
 </div>
+</div>
+<div class="wrap pipeline-wrap">
+<aside class="pipeline" id="pipeline-proof" aria-labelledby="pipeline-title">
+<div class="head"><p class="title" id="pipeline-title">The data underneath: an ERCOT pipeline</p><p class="sub">DuckDB + dbt · 63/63 schema tests · 0 failed quality checks</p></div>
+<p class="stat"><b>1.67M rows</b>public ERCOT prices and load, 2025-01-01 to 2026-09-26<span class="tag m">Measured</span></p>
+<p class="stat"><b>22% in 88 hours</b>of a battery's yearly value sits in the top 1% of hours<span class="tag u">Upper bound</span></p>
+<p class="stat"><b>34 of 34</b>injected faults caught in 43M telemetry rows<span class="tag s">Simulation</span></p>
+<a class="btn primary" id="pipeline-link" href="/web/grid.html?track=home&amp;persona=operations">See the pipeline</a>
+</aside>
 </div>
 </main>
 <footer>
