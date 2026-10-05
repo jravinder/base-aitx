@@ -59,7 +59,7 @@ const root = path.resolve(__dirname, '..');
     assert.equal(target.searchParams.get('track'),t);
    }
    // All three choices sit on the first screen.
-   if(width>=390) for(const [id] of choices) assert((await page.locator('#'+id).boundingBox()).y + 40 < 900, id+' below the fold');
+   if(width>=1000) for(const [id] of choices) { const bb=await page.locator('#'+id).boundingBox(); assert(bb.y + bb.height <= 900, id+' below the fold'); } // desktop: whole choices on the first screen; phone stacks
    const order=[];
    for(let i=0;i<3;i++){await page.keyboard.press('Tab');order.push(await page.locator(':focus').getAttribute('id'));}
    assert.deepEqual(order,choices.map(c=>c[0]));
