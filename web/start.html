@@ -5,134 +5,83 @@
 <title>Base Power Case Study</title>
 <link rel="icon" href="data:,"/>
 <script>try { if (localStorage.getItem("bf-theme") === "dark") document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}</script>
-<!-- Google Analytics (hosted site only) -->
-<script>if (/\.vercel\.app$/.test(location.hostname)) { var s=document.createElement("script"); s.async=true; s.src="https://www.googletagmanager.com/gtag/js?id=G-9QLRH4GSME"; document.head.appendChild(s); window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments);}; gtag("js", new Date()); gtag("config", "G-9QLRH4GSME", {anonymize_ip: true}); }</script>
 <link rel="stylesheet" href="/web/shell.css"/>
-<link rel="stylesheet" href="/web/assets/stitch/fonts.css"/>
-<link rel="stylesheet" href="/web/ercot-run.css"/>
 <style>
   * { box-sizing: border-box; }
   html, body { margin: 0; }
-  body { background: var(--bf-bg); color: var(--bf-ink); font: var(--bf-text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { background: var(--bf-bg); color: var(--bf-ink); font: var(--bf-text-body); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
   a:focus-visible { outline: 3px solid var(--bf-focus); outline-offset: 3px; border-radius: var(--bf-radius-lg); }
   .wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 48px; }
-  .top { border-bottom: 1px solid var(--bf-line); background: var(--bf-surface); }
+  .top { border-bottom: 1px solid var(--bf-line); }
   .top .wrap { height: 48px; display: flex; align-items: center; font: var(--bf-text-label); }
-  main { flex: 1; padding: 24px 0 28px; }
-  /* Hero: H1 panel beside the 634-day band (no overlap), legend with units below. */
-  .band { margin: 0; display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 20px; align-items: stretch; }
-  .hero-panel { background: var(--bf-brand); color: var(--bf-on-brand); border-radius: var(--bf-radius-lg); padding: 24px 28px; display: flex; align-items: center; }
-  h1 { font: 700 38px/44px var(--bf-font); letter-spacing: -0.02em; margin: 0; }
-  .days { position: relative; min-width: 0; }
-  .days-sq { display: grid; grid-template-columns: repeat(auto-fill, 10px); gap: 2px; justify-content: space-between; border-radius: 2px; }
-  .days-sq:focus-visible { outline: 3px solid var(--bf-focus); outline-offset: 4px; }
-  .days-sq i { width: 10px; height: 10px; border-radius: 2px; background: var(--bf-line); }
-  .days-sq i.sel { outline: 2px solid var(--bf-ink); outline-offset: 1px; }
-  .tip { position: absolute; z-index: 5; pointer-events: none; padding: 4px 8px; border-radius: var(--bf-radius); background: var(--bf-ink); color: var(--bf-bg); font: 600 12px/18px var(--bf-font); white-space: nowrap; transform: translate(-50%, -100%); }
-  .tip[hidden] { display: none; }
-  .band figcaption { grid-column: 1 / -1; font: var(--bf-text-small); font-size: 13px; color: var(--bf-muted); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
-  .band figcaption b { color: var(--bf-ink); font-weight: 600; }
-  .ramp { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; color: var(--bf-muted); }
-  .ramp span { display: inline-flex; align-items: center; gap: 4px; }
-  .ramp i { width: 10px; height: 10px; border-radius: 2px; }
-  .tag { display: inline-block; padding: 0 8px; border-radius: var(--bf-radius-pill); border: 1px solid var(--bf-line); font: 600 12px/20px var(--bf-font); white-space: nowrap; }
-  .tag.m { background: var(--bf-brand-tint); border-color: var(--bf-brand-soft); color: var(--bf-brand); }
-  .tag.s { background: var(--bf-amber-tint); border-color: transparent; color: var(--bf-amber); }
-  .tag.u { background: var(--bf-blue-tint); border-color: var(--bf-blue-line); color: var(--bf-blue); }
-  /* Choices. */
-  .choices { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-  .choice { display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 20px 22px; background: var(--bf-surface); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-lg); text-decoration: none; transition: border-color .15s, transform .2s, box-shadow .2s; }
-  .choice:hover, .choice:focus-visible { border-color: var(--bf-brand); transform: translateY(-3px); box-shadow: var(--bf-shadow-card); }
-  .ico { width: 48px; height: 48px; border-radius: 10px; background: var(--bf-brand-tint); color: var(--bf-brand); display: inline-flex; align-items: center; justify-content: center; }
-  .ico .material-symbols-outlined { font-size: 30px; }
-  .ico .material-symbols-outlined::before { content: attr(data-icon); }
-  .choice b { font: 700 20px/28px var(--bf-font); letter-spacing: -0.01em; color: var(--bf-ink); }
-  .viz { height: 76px; display: block; overflow: hidden; border-radius: 2px; margin-top: 4px; }
-  .key { font: var(--bf-text-small); color: var(--bf-faint); margin-top: -4px; }
-  .key i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; vertical-align: -1px; margin-right: 4px; }
-  .viz.permits { display: grid; grid-template-columns: repeat(auto-fill, 9px); grid-auto-rows: 9px; gap: 3px; align-content: start; }
-  .viz.permits i { border-radius: 1px; background: var(--bf-solar); opacity: .5; transition: opacity .2s; }
-  .viz.permits i.v { background: #f59e0b; opacity: .8; }
-  .viz.permits i.p { background: #ef4444; opacity: 1; }
-  .viz.permits i.off { opacity: 0; }
-  .viz.nodes { display: grid; grid-template-columns: repeat(25, minmax(0, 1fr)); gap: 8px 4px; align-content: center; }
-  .viz.nodes i { height: 30px; border-radius: 3px; border: 1px solid var(--bf-line-strong); background: linear-gradient(to top, var(--bf-line-strong) 0 30%, transparent 30%); transition: background .3s, border-color .3s; }
-  .viz.nodes i.on { background: linear-gradient(to top, var(--bf-line-strong) 0 30%, var(--bf-solar) 30% 100%); border-color: var(--bf-solar); }
-  .viz.strip canvas { height: 76px; display: block; transition: transform 3.5s ease-in-out; }
-  .choice:hover .viz.strip canvas, .choice:focus-visible .viz.strip canvas { transform: translateX(var(--pan, 0px)); }
-  .num { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font: 700 18px/26px var(--bf-font); color: var(--bf-ink); }
-  .choice span.line { font: var(--bf-text-body); color: var(--bf-muted); }
-  .choice .num { margin-top: auto; }
-  .choice .go { font: 600 15px/22px var(--bf-font); font-style: normal; color: var(--bf-brand); }
+  main { flex: 1; }
+  .tag { display: inline-block; padding: 0 8px; border-radius: var(--bf-radius-pill); border: 1px solid var(--bf-line); font: 600 12px/20px var(--bf-font); white-space: nowrap; color: var(--bf-muted); }
   footer { border-top: 1px solid var(--bf-line); color: var(--bf-muted); font: var(--bf-text-small); font-size: 13px; }
-  footer .wrap { padding-top: 12px; padding-bottom: 12px; display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: space-between; }
+  footer .wrap { padding-top: 14px; padding-bottom: 14px; display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: space-between; }
   footer nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
   footer a { color: var(--bf-muted); text-underline-offset: 3px; }
   footer a:hover { color: var(--bf-ink); }
-  @media (prefers-reduced-motion: reduce) { .choice, .choice:hover, .choice:focus-visible { transform: none; transition: none; } .viz.strip canvas { transition: none; } .choice:hover .viz.strip canvas { transform: none; } }
-  @media (max-width: 960px) {
-    .band { grid-template-columns: minmax(0, 1fr); }
-    .choices { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
-  }
-  @media (max-width: 640px) {
-    .wrap { padding: 0 16px; }
-    main { padding: 16px 0 24px; }
-    h1 { font-size: 32px; line-height: 38px; }
-    .hero-panel { padding: 20px; }
-    h1 { font-size: 32px; line-height: 38px; }
-    .days-sq { grid-template-columns: repeat(auto-fill, 8px); }
-    .days-sq i { width: 8px; height: 8px; }
-    .choice { padding: 20px; }
-  }
+  @media (max-width: 640px) { .wrap { padding: 0 16px; } }
+  :root { --sq-auto: var(--bf-line-strong); --sq-review: var(--bf-faint); --sq-person: #dc2626; }
+  :root[data-theme="dark"] { --sq-person: #f87171; }
+  main { padding: 36px 0; }
+  h1 { font: 700 40px/48px var(--bf-font); letter-spacing: -0.02em; margin: 0; }
+  .runhead { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .runhead .rh { margin: 0; font: 600 15px/22px var(--bf-mono); display: flex; align-items: center; gap: 10px; }
+  .runhead .meta { font: var(--bf-text-small); color: var(--bf-faint); }
+  .state { font: 600 12px/18px var(--bf-font); padding: 1px 10px; border-radius: 999px; border: 1px solid var(--bf-line-strong); color: var(--bf-muted); }
+  .state.done { border-color: var(--bf-brand-soft); background: var(--bf-brand-tint); color: var(--bf-brand); }
+  .strip { list-style: none; margin: 10px 0 0; padding: 14px; display: flex; align-items: stretch; background: var(--bf-surface); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-lg); }
+  .strip li { flex: 1; min-width: 0; display: flex; }
+  .wire { flex: 0 0 24px !important; align-self: center; height: 2px; background: var(--bf-line-strong); }
+  .blk { flex: 1; display: grid; gap: 6px; padding: 14px 16px; border: 1px solid var(--bf-line-strong); border-radius: var(--bf-radius-lg); text-decoration: none; }
+  .blk:hover { border-color: var(--bf-brand); }
+  .blk b { font: 700 17px/24px var(--bf-font); }
+  .blk .op { font: 13px/18px var(--bf-mono); color: var(--bf-faint); }
+  .blk .st { display: flex; align-items: center; gap: 6px; font: var(--bf-text-small); color: var(--bf-muted); }
+  .blk .st i { width: 8px; height: 8px; border-radius: 50%; background: var(--bf-solar); }
+  .blk .cnt { font: 600 13px/20px var(--bf-mono); color: var(--bf-muted); }
+  .blk .v { font: 700 22px/28px var(--bf-mono); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+  .blk .v .tag { font-family: var(--bf-font); letter-spacing: 0; }
+  .blk .go { font: 600 14px/20px var(--bf-font); font-style: normal; color: var(--bf-brand); }
+  .gridp { margin-top: 12px; background: var(--bf-surface); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-lg); }
+  .gh { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 8px 16px; border-bottom: 1px solid var(--bf-line); font: 13px/20px var(--bf-mono); color: var(--bf-faint); }
+  .gh b { color: var(--bf-ink); font-weight: 600; }
+  #sq { display: grid; grid-template-columns: repeat(auto-fill, 12px); gap: 3px; padding: 14px 16px; }
+  #sq i { width: 12px; height: 12px; border-radius: 2px; background: var(--bf-sunk); }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0 16px 12px; font: var(--bf-text-small); color: var(--bf-muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; } .legend i { width: 10px; height: 10px; border-radius: 2px; }
+  @media (max-width: 900px) { .strip { flex-direction: column; } .wire { flex: 0 0 14px !important; width: 2px; height: 14px; margin-left: 28px; align-self: flex-start; } }
+  @media (max-width: 640px) { main { padding: 24px 0; } h1 { font-size: 30px; line-height: 36px; } #sq { grid-template-columns: repeat(auto-fill, 8px); gap: 2px; padding: 12px; } #sq i { width: 8px; height: 8px; } }
 </style>
-<script defer src="/web/start.js"></script>
+<script defer src="/web/start-opt.js"></script>
 </head>
-<body>
+<body data-variant="b">
 <header class="top"><div class="wrap">Base Power: an independent case study</div></header>
 <main>
 <div class="wrap">
-<figure class="band" aria-labelledby="question">
-<div class="hero-panel"><h1 id="question">What do you want to dig into?</h1></div>
-<div class="days">
-<div class="days-sq" id="days-sq" role="img" tabindex="0" aria-label="634 days of battery value in Austin. Loading."></div>
-<div class="tip" id="days-tip" hidden></div>
-</div>
-<figcaption id="days-cap"><span>Every square is one day: <b>$ per day, one 39.2 kWh Base battery, Austin</b>. Hover or focus and use arrow keys for the date and value.</span><span class="ramp" aria-hidden="true"><span><i style="background:var(--er-h1)"></i>under $0.75</span><span><i style="background:var(--er-h2)"></i>$0.75&ndash;1.25</span><span><i style="background:var(--er-h3)"></i>$1.25&ndash;2</span><span><i style="background:var(--er-h4)"></i>$2&ndash;4</span><span><i style="background:var(--er-h5)"></i>$4&ndash;10</span><span><i style="background:var(--er-h6)"></i>$10+</span></span><span class="tag u">Upper bound</span></figcaption>
-</figure>
-<ul class="choices" aria-labelledby="question">
-<li><a class="choice" id="choose-install" href="/web/onboarding.html?track=home&amp;persona=lead">
-<span class="ico" aria-hidden="true"><span class="material-symbols-outlined" data-icon="home" aria-hidden="true"></span></span>
-<b>Get the next battery installed faster</b>
-<span class="line">A new lead's form fills itself from public permits; only what records miss is asked.</span>
-<span class="viz permits" id="viz-permits" aria-hidden="true"></span>
-<span class="key"><i style="background:#ef4444"></i>red = sent to a person &middot; <i style="background:#f59e0b"></i>amber = review &middot; scaled from 34,334 permits</span>
-<span class="num">1,421 of 34,334 need a person <span class="tag m">Measured</span></span>
-<i class="go">Start a lead &#8594;</i></a></li>
-<li><a class="choice" id="choose-fleet" href="/web/overview.html?track=compute&amp;persona=fleet">
-<span class="ico" aria-hidden="true"><span class="material-symbols-outlined" data-icon="memory" aria-hidden="true"></span></span>
-<b>Make the fleet more than backup power</b>
-<span class="line">Run AI on a GPU beside the battery; reserve first, priced by the hour.</span>
-<span class="viz nodes" id="viz-nodes" aria-hidden="true"></span>
-<span class="key">50 simulated batteries: <i style="background:var(--bf-solar)"></i>green = GPU work &middot; <i style="background:var(--bf-line-strong)"></i>grey base = 30% reserve held</span>
-<span class="num">$1,041 vs $142 fleet margin <span class="tag s">Simulation</span></span>
-<i class="go">See the fleet &#8594;</i></a></li>
-<li><a class="choice" id="choose-ercot" href="/web/grid.html?track=home&amp;persona=operations">
-<span class="ico" aria-hidden="true"><span class="material-symbols-outlined" data-icon="bolt" aria-hidden="true"></span></span>
-<b>Know when a battery is worth the most</b>
-<span class="line">A tested ERCOT pipeline: every Austin day-ahead hour, priced and checked.</span>
-<span class="viz strip" id="viz-strip" aria-hidden="true"></span>
-<span class="key">24 hours &times; 634 days of Austin day-ahead $/MWh: green low, red high</span>
-<span class="num">22% of value in 88 hours <span class="tag u">Upper bound</span></span>
-<i class="go">See the pipeline &#8594;</i></a></li>
-</ul>
+<h1 id="question">What do you want to dig into?</h1>
+<div class="runhead"><p class="rh">case_study_run <span class="state" id="run-state">Running</span></p><span class="meta">3 steps · public data plus one simulation · each block opens its page</span></div>
+<ol class="strip" aria-labelledby="question">
+<li><a class="blk choice" id="choose-install" href="/web/onboarding.html?track=home&amp;persona=lead"><b>Get the next battery installed faster</b><span class="op">read_every_permit</span><span class="st"><i></i>Done</span><span class="cnt">34,334 permits read</span><span class="v">1,421 to a person <span class="tag">Measured</span></span><i class="go">Start a lead &#8594;</i></a></li>
+<li class="wire" aria-hidden="true"></li>
+<li><a class="blk choice" id="choose-fleet" href="/web/overview.html?track=compute&amp;persona=fleet"><b>Make the fleet more than backup power</b><span class="op">run_the_fleet</span><span class="st"><i></i>Done</span><span class="cnt">1,000 batteries · 30 days</span><span class="v">$1,041 vs $142 <span class="tag">Simulation</span></span><i class="go">See the fleet &#8594;</i></a></li>
+<li class="wire" aria-hidden="true"></li>
+<li><a class="blk choice" id="choose-ercot" href="/web/grid.html?track=home&amp;persona=operations"><b>Know when a battery is worth the most</b><span class="op">price_every_hour</span><span class="st"><i></i>Done</span><span class="cnt">634 days · 15,216 hours</span><span class="v">22% in 88 h <span class="tag">Upper bound</span></span><i class="go">See the pipeline &#8594;</i></a></li>
+</ol>
+<section class="gridp" aria-label="Permit grid">
+<div class="gh"><b>read_every_permit</b><span>one square per 50 permits · Austin, 2015 to 2026</span></div>
+<div id="sq" role="img" aria-label="Austin energy permits, one square per 50."></div>
+<div class="legend"><span><i style="background:var(--sq-auto)"></i>Answered from records</span><span><i style="background:var(--sq-review)"></i>Review</span><span><i style="background:var(--sq-person)"></i>To a person</span><span class="tag">Measured</span></div>
+</section>
 </div>
 </main>
 <footer>
 <div class="wrap">
 <span>An independent case study by Ravinder Jilkapally. Started at the Base Power × AITX hackathon (Sep 2026) and extended since. Not affiliated with Base.</span>
 <nav aria-label="About this entry">
-<a id="built-link" href="/web/built.html">What we built</a>
+<a href="/web/built.html">What we built</a>
 <a href="https://www.loom.com/share/5cce9ad808a84c73a7346e334cf5e019" target="_blank" rel="noopener">Loom: Base Ready</a>
 <a href="https://www.loom.com/share/37a225004ab248bc874401470ef2653d" target="_blank" rel="noopener">Loom: Super Local AI</a>
 <a href="https://github.com/jravinder/base-aitx" target="_blank" rel="noopener">Repo</a>
