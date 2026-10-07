@@ -50,17 +50,4 @@
   }).catch(() => {});
 
   // B: the run screen. One square per 50 permits; only "to a person" gets a status colour.
-  if (V === 'b') get('/web/data/judgments.json').then(J => {
-    const p = J.counts.permit, PER = 50, N = Math.ceil((p.auto + p.review + p.human) / PER);
-    const red = Math.round(p.human / PER), amber = Math.round(p.review / PER), routed = red + amber;
-    const kinds = Array(N).fill('a');
-    for (let i = 0, r = 0; i < routed; i++) kinds[Math.floor((i + 0.5) * N / routed)] = (i % 3 === 0 && r < red) ? (r++, 'p') : 'v';
-    const box = $('sq');
-    box.innerHTML = '<i></i>'.repeat(N);
-    box.setAttribute('aria-label', `${N} squares, one per ${PER} permits: ${p.human.toLocaleString('en-US')} of ${(p.auto + p.review + p.human).toLocaleString('en-US')} Austin energy permits go to a person.`);
-    const col = {a: 'var(--sq-auto)', v: 'var(--sq-review)', p: 'var(--sq-person)'};
-    fillIn([...box.children], kinds.map(k => col[k]), 2400);
-    const st = $('run-state');
-    if (st) setTimeout(() => { st.textContent = 'Done'; st.className = 'state done'; }, reduce ? 0 : 2400);
-  }).catch(() => {});
 })();
