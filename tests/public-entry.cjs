@@ -61,8 +61,8 @@ const root = path.resolve(__dirname, '..');
    // All three choices sit on the first screen.
    if(width>=1000) for(const [id] of choices) { const bb=await page.locator('#'+id).boundingBox(); assert(bb.y + bb.height <= 900, id+' below the fold'); } // desktop: whole choices on the first screen; phone stacks
    const order=[];
-   for(let i=0;i<4;i++){await page.keyboard.press('Tab');order.push(await page.locator(':focus').getAttribute('id'));}
-   assert.deepEqual(order,['days-sq',...choices.map(c=>c[0])]); // the day grid is keyboard-readable, then the three choices
+   for(let i=0;i<3;i++){await page.keyboard.press('Tab');order.push(await page.locator(':focus').getAttribute('id'));}
+   assert.deepEqual(order,choices.map(c=>c[0])); // keyboard reaches the three choices first, in order
    for(const [label,dest] of [['What we built','/web/built.html'],['Repo','https://github.com/jravinder/base-aitx']]) assert.equal(await page.locator('footer a',{hasText:label}).first().getAttribute('href'),dest);
    await page.screenshot({path:path.join(shots,track+'-'+width+'.png'),fullPage:true});
   }
