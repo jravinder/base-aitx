@@ -47,19 +47,7 @@
       e.preventDefault();
       show(Math.min(cells.length - 1, Math.max(0, (sel < 0 ? 0 : sel) + step)));
     });
-    if (reduce) cells.forEach((c, i) => c.style.background = fin[i]);
-    else {
-      const t0 = performance.now(), DUR = 2400, WAVE = 24;
-      const tick = now => {
-        const done = Math.round(Math.min(1, (now - t0) / DUR) * cells.length);
-        for (let i = 0; i < cells.length; i++) {
-          const want = i < done - WAVE ? fin[i] : i < done ? 'var(--bf-line-strong)' : '';
-          if (cells[i].style.background !== want) cells[i].style.background = want;
-        }
-        if (done < cells.length) requestAnimationFrame(tick); else cells.forEach((c, i) => c.style.background = fin[i]);
-      };
-      requestAnimationFrame(tick);
-    }
+    cells.forEach((c, i) => c.style.background = fin[i]);
     // ERCOT card: hour x day heatmap of Austin day-ahead $/MWh, drawn 1.8x wider than the card so hover can pan it.
     const G = D.heatmap.LZ_AEN, strip = $('viz-strip'), n = G.length, H = strip.clientHeight || 76;
     const vw = Math.max(200, strip.clientWidth), W = Math.round(vw * 1.8), dpr = devicePixelRatio || 1;
